@@ -15,8 +15,8 @@ const App = () => {
                 minHeight: '100vh',
                 bgcolor: 'black',
                 backgroundImage: `url(${Background})`,
-                backgroundSize: '100% auto', // عرض تصویر 100% و ارتفاع به صورت خودکار
-                backgroundPosition: 'top', // پس‌زمینه از بالا شروع می‌شود
+                backgroundSize: '100% auto',
+                backgroundPosition: 'top',
                 padding: 0,
                 position: 'relative',
                 '&::before': {
@@ -34,28 +34,27 @@ const App = () => {
                     zIndex: 2,
                 },
             }}>
-                <Navbar sx={{
-                    position: 'flex',
+                {/* Navbar */}
+                <Box sx={{
+                    position: 'fixed',  // Navbar ثابت در بالای صفحه
                     top: 0,
                     left: 0,
-                    bottom: 0,
                     width: '100%',
-                    zIndex: 1000,
-                }} />
-                <Box sx={{
-                    flex: 1,
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    maxWidth: '100%',
-                    boxSizing: 'border-box',
+                    zIndex: 1000,  // به اندازه کافی بالا برای نمایش در جلوی سایر المان‌ها
+                    bgcolor: 'black',  // پس‌زمینه برای مطمئن شدن از دیده شدن Navbar
                 }}>
+                    <Navbar />
+                </Box>
+
+                {/* Space for content to avoid overlapping with the fixed Navbar */}
+                <Box sx={{ mt: '64px', flex: 1 }}>
                     <AppRoutes />
                 </Box>
+
                 <Footer />
             </Box>
         </Router>
     );
-}
+};
 
 export default App;
