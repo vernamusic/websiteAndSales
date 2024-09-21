@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 import dash1 from "../../assets/usedash1.png";
 import dash2 from "../../assets/usedash2.png";
 import dash3 from "../../assets/usedash3.png";
+import black from "../../assets/laptopblackpage.png";
 
 const theme = createTheme({
     typography: {
@@ -108,51 +109,68 @@ const Stepper = () => {
                     display: 'flex',
                     flexDirection: 'row',
                     alignItems: 'center',
-                    justifyContent: 'flex-start',
+                    justifyContent: 'center', // وسط چین کردن باکس اصلی
+                    height: '100vh', // می‌توانید این خط را برای تنظیم ارتفاع صفحه به کار ببرید
+                    ml:15,
                 }}
             >
                 <Box
                     sx={{
                         display: 'flex',
                         flexDirection: 'row',
-                        justifyContent: 'right',
-                        pr: 15,
+                        justifyContent: 'center', // وسط چین کردن باکس داخلی
+                        position: 'relative', // Ensure the images stack correctly
+                        width: '100%', // این باعث می‌شود باکس به اندازه‌ی تمام صفحه باشد
+                        maxWidth: '1200px', // می‌توانید یک عرض حداکثر نیز تعیین کنید
+                        mr:10,
                     }}
                 >
                     <img
-                        src={images[step - 1]}
-                        alt={`Step ${step}`}
+                        src={black} // Black background image
+                        alt="Background"
                         style={{
-                            width: '58%',
-                            paddingBottom: 30,
+                            width: '100%',
+                            position: 'relative',
+                            zIndex: 1, // Ensure it is behind other images
+
+                        }}
+                    />
+                    <img
+                        src={images[step - 1]} // Current step image
+                        alt={`Step ${step}`} // Fix alt attribute
+                        style={{
+                            width: '81.5%',
                             opacity: fade ? 1 : 0,
-                            transition: 'opacity 0.4s ease-in-out',
+                            transition: 'opacity 0.2s ease-in-out',
+                            position: 'absolute',
+                            zIndex: 2, // Ensure it is in front of background
+                            top:'21%'
                         }}
                     />
                 </Box>
-                <Box>
+            <Box>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'left',
+                        pr: 25,
+                    }}
+                >
                     <Box
-                        sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            justifyContent: 'left',
-                            pr: 25,
-                        }}
+                        display="flex"
+                        flexDirection="column"
+                        m={0}
+                        p={0}
                     >
-                        <Box
-                            display="flex"
-                            flexDirection="column"
-                            m={0}
-                            p={0}
-                        >
-                            <Typography
-                                variant="h3"
-                                sx={{
-                                    mb: 2,
-                                    ml: 1,
-                                    lineHeight: '1.5',
-                                    width: 600,
-                                    fontSize: 30,
+                        <Typography
+                            variant="h3"
+                            sx={{
+                                mb: 2,
+                                ml: 1,
+                                lineHeight: '1.5',
+                                width: 600,
+                                fontSize: 30,
                                 }}
                             >
                                 HOW CAN WE USE IT?
