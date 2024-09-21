@@ -36,17 +36,16 @@ const App = () => {
             }}>
                 {/* Navbar */}
                 <Box sx={{
-                    position: 'fixed',  // Navbar ثابت در بالای صفحه
+                    position: 'fixed',
                     top: 0,
                     left: 0,
                     width: '100%',
-                    zIndex: 1000,  // به اندازه کافی بالا برای نمایش در جلوی سایر المان‌ها
-                    bgcolor: 'black',  // پس‌زمینه برای مطمئن شدن از دیده شدن Navbar
+                    zIndex: 1000,
+                    bgcolor: 'black',
                 }}>
                     <Navbar />
                 </Box>
 
-                {/* Space for content to avoid overlapping with the fixed Navbar */}
                 <Box sx={{ mt: '64px', flex: 1 }}>
                     <AppRoutes />
                 </Box>

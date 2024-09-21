@@ -109,8 +109,8 @@ const Stepper = () => {
                     display: 'flex',
                     flexDirection: 'row',
                     alignItems: 'center',
-                    justifyContent: 'center', // وسط چین کردن باکس اصلی
-                    height: '100vh', // می‌توانید این خط را برای تنظیم ارتفاع صفحه به کار ببرید
+                    justifyContent: 'center',
+                    height: '100vh',
                     ml:15,
                 }}
             >
@@ -118,32 +118,32 @@ const Stepper = () => {
                     sx={{
                         display: 'flex',
                         flexDirection: 'row',
-                        justifyContent: 'center', // وسط چین کردن باکس داخلی
-                        position: 'relative', // Ensure the images stack correctly
-                        width: '100%', // این باعث می‌شود باکس به اندازه‌ی تمام صفحه باشد
-                        maxWidth: '1200px', // می‌توانید یک عرض حداکثر نیز تعیین کنید
+                        justifyContent: 'center',
+                        position: 'relative',
+                        width: '100%',
+                        maxWidth: '1200px',
                         mr:10,
                     }}
                 >
                     <img
-                        src={black} // Black background image
+                        src={black}
                         alt="Background"
                         style={{
                             width: '100%',
                             position: 'relative',
-                            zIndex: 1, // Ensure it is behind other images
+                            zIndex: 1,
 
                         }}
                     />
                     <img
-                        src={images[step - 1]} // Current step image
-                        alt={`Step ${step}`} // Fix alt attribute
+                        src={images[step - 1]}
+                        alt={`Step ${step}`}
                         style={{
                             width: '81.5%',
                             opacity: fade ? 1 : 0,
                             transition: 'opacity 0.2s ease-in-out',
                             position: 'absolute',
-                            zIndex: 2, // Ensure it is in front of background
+                            zIndex: 2,
                             top:'21%'
                         }}
                     />
