@@ -46,23 +46,26 @@ const proItems = [
 
 const ProductBox = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [animateKey, setAnimateKey] = useState(0);
 
     const handleNext = () => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % proItems.length);
+        setAnimateKey((prevKey) => prevKey + 1);
     };
 
     const handlePrev = () => {
         setCurrentIndex((prevIndex) => (prevIndex - 1 + proItems.length) % proItems.length);
+        setAnimateKey((prevKey) => prevKey + 1);
     };
 
     const handleProductClick = (index) => {
         setCurrentIndex(index);
+        setAnimateKey((prevKey) => prevKey + 1);
     };
 
-    // Function to navigate to the corresponding URL
     const handleSeeProductsClick = () => {
         const currentProduct = proItems[currentIndex];
-        window.location.href = currentProduct.url; // Redirect to product URL
+        window.location.href = currentProduct.url;
     };
 
     return (
@@ -75,18 +78,17 @@ const ProductBox = () => {
                 alignItems: 'center',
             }}>
                 <Box sx={{
-                    width: { xs: '250px', sm: '300px', md: '430px', lg: '480px',xl:'530px' },
+                    width: { xs: '250px', sm: '300px', md: '430px', lg: '480px', xl: '530px' },
                     ml: { xs: 5, sm: 10, md: 15, lg: 25, xl: 38 },
                     mt: { xs: 5, sm: 10, md: 17, lg: 20, xl: 33 },
                     display: 'flex',
                     flexDirection: 'column',
-
                 }}>
                     <Box sx={{ mb: 5 }}>
-                        <Typography sx={{ ...theme.typography.h3, }}>
+                        <Typography sx={{ ...theme.typography.h3 }}>
                             The Mobile App
                         </Typography>
-                        <Typography  sx={{
+                        <Typography sx={{
                             ...theme.typography.h6,
                             mt: 3,
                             width: '100%',
@@ -94,7 +96,7 @@ const ProductBox = () => {
                             An easy and intuitive way to share your data with all professionals in charge of providing you with after-care and medical follow-up.
                         </Typography>
                     </Box>
-                    <Box display="flex" alignItems="center" gap={3} >
+                    <Box display="flex" alignItems="center" gap={3}>
                         {proItems.map((item, index) => (
                             <Box
                                 key={item.id}
@@ -104,11 +106,11 @@ const ProductBox = () => {
                                     backgroundImage: `linear-gradient(360deg, rgba(20, 20, 20, 0.05) 0%, rgba(255, 255, 255, 0.1) 100%), url(${item.image})`,
                                     backgroundSize: '100%',
                                     backgroundPosition: 'center',
-                                    backgroundRepeat: 'no-repeat', // Prevent image from repeating
+                                    backgroundRepeat: 'no-repeat',
                                     borderRadius: '8px',
                                     cursor: 'pointer',
                                     border: currentIndex === index ? '1px solid #B50304' : '1px solid #000000',
-                                    display: 'flex', // Center the image inside the box
+                                    display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
                                 }}
@@ -118,7 +120,6 @@ const ProductBox = () => {
                     </Box>
                     <Button
                         variant="contained"
-
                         size="large"
                         sx={{
                             ...theme.typography.button,
@@ -133,81 +134,93 @@ const ProductBox = () => {
                             },
                         }}
                         disableRipple
-                        onClick={handleSeeProductsClick} // Call function to navigate to the product
+                        onClick={handleSeeProductsClick}
                     >
                         See products
                     </Button>
                 </Box>
+                <Box
+                    sx={{
+                        position: 'relative',
+                        flexDirection: 'column',
+                        width: { md: '300px', lg: '400px', xl: '470px' },
+                        height: { md: '500px', lg: '650px', xl: '820px' },
+                        display: { xs: 'none', sm: 'none', md: 'flex' },
+                    }}
+                >
                     <Box
                         sx={{
-                            position: 'flex',
-                            flexDirection: 'column',
-                            width:{ md: '300px', lg: '400px', xl: '470px'},
-                            height:{ md: '500px', lg: '650px', xl: '820px'},
-                            display: {xs:'none',sm: 'none', md: 'flex'},
-
+                            position: 'relative',
+                            Bottom: '100%',
+                            right: '25%',
+                            width: '100%',
+                            height: '100%',
+                            borderRadius: '0 0 30px 30px',
+                            background: "linear-gradient(180deg, rgba(20, 20, 20, 0.06) 0%, rgba(256, 0, 0, 0.09) 25%, rgba(256, 0, 0, 0.36) 99%)",
+                            zIndex: 1,
                         }}
                     >
                         <Box
+                            key={animateKey}
+                            component="img"
+                            src={proItems[currentIndex].image}
+                            alt="Phone app screenshot"
                             sx={{
-                                position: 'relative',
-                                Bottom:'100%',
-                                right: '25%',
-                                width: '100%',
-                                height: '100%',
-                                borderRadius:'0 0 30px 30px',
-                                background: "linear-gradient(180deg, rgba(20, 20, 20, 0.06) 0%, rgba(256, 0, 0, 0.09) 25%, rgba(256, 0, 0, 0.36) 99%)",
-                                zIndex:1,
+                                position: 'absolute',
+                                right: '-9.5%',
+                                bottom: '5%',
+                                width: '120%',
+                                zIndex: 2,
+                                animation: `fadeUp 0.5s ease`,
                             }}
-                                >
-                            <Box
-                                component="img"
-                                src={proItems[currentIndex].image}
-                                alt="Phone app screenshot"
+                        />
+                        <Box
+                            display="flex"
+                            justifyContent="center"
+                            position="absolute"
+                            bottom={'4%'}
+                            right={'38%'}
+                            gap={-1}
+                            zIndex={3}
+                        >
+                            <IconButton
+                                onClick={handlePrev}
                                 sx={{
-                                    position: 'absolute',
-                                    right: '-9.5%',
-                                    bottom: '5%',
-                                    width: '120%',
-                                    zIndex: 2,
+                                    '&:hover': { backgroundColor: 'transparent' },
+                                    width: '50px',
+                                    height: '50px',
                                 }}
-                            />
-                            <Box
-                                display="flex"
-                                justifyContent="center"
-                                position="absolute"
-                                bottom={'4%'}
-                                right={'38%'}
-                                gap={-1} // Set a very small gap
-                                zIndex={3}
                             >
-                                <IconButton
-                                    onClick={handlePrev}
-                                    sx={{
-                                        '&:hover': { backgroundColor: 'transparent' },
-                                        width: '50px', // اندازه دکمه
-                                        height: '50px'  // ارتفاع دکمه
-                                    }}
-                                >
-                                    <img src={previousarrow} alt="Previous" style={{ width: '100%', }} />
-                                </IconButton>
-                                <IconButton
-                                    onClick={handleNext}
-                                    sx={{
-                                        '&:hover': { backgroundColor: 'transparent' },
-                                        width: '50px',  // اندازه دکمه
-                                        height: '50px'  // ارتفاع دکمه
-                                    }}
-                                >
-                                    <img src={nextarrow} alt="Next" style={{ width: '100%' }} />
-                                </IconButton>
-                            </Box>
-
+                                <img src={previousarrow} alt="Previous" style={{ width: '100%' }} />
+                            </IconButton>
+                            <IconButton
+                                onClick={handleNext}
+                                sx={{
+                                    '&:hover': { backgroundColor: 'transparent' },
+                                    width: '50px',
+                                    height: '50px',
+                                }}
+                            >
+                                <img src={nextarrow} alt="Next" style={{ width: '100%' }} />
+                            </IconButton>
                         </Box>
-
                     </Box>
-
+                </Box>
             </Box>
+            <style>
+                {`
+                    @keyframes fadeUp {
+                        0% {
+                            opacity: 0;
+                            transform: translateY(30%);
+                        }
+                        100% {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                    }
+                `}
+            </style>
         </ThemeProvider>
     );
 };
