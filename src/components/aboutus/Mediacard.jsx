@@ -30,7 +30,7 @@ const theme = createTheme({
     },
 });
 
-const Mediacard = ({ data, buttons }) => {
+const Mediacard = ({data}) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const itemsPerPage = 3;
 
@@ -122,21 +122,52 @@ const Mediacard = ({ data, buttons }) => {
                                         }}
                                     />
                                     <Box
+                                        onClick={box.linked_in ? () => window.open(box.linked_in, "_blank") : null}
                                         sx={{
                                             position: "absolute",
                                             bottom: "-11%",
                                             width: 70,
                                             height: 70,
-                                            backgroundColor: "#B50304",
+                                            backgroundColor: box.linked_in ? "#B50304" : "#4c4c4c",
                                             borderRadius: "50%",
                                             display: "flex",
                                             justifyContent: "center",
                                             alignItems: "center",
                                             zIndex: 1,
+                                            cursor: box.linked_in ? "pointer" : "default",
+                                            transition: "background-color 0.3s, transform 0.3s",
+                                            '&:hover': {
+                                                backgroundColor: box.linked_in ? "#A50203" : "#4c4c4c",
+                                                transform: box.linked_in ? "scale(1.1)" : "none",
+                                            },
                                         }}
                                     >
-                                        <img src={linkedin} style={{ width: "40px" }} />
+                                        <img
+                                            src={linkedin}
+                                            alt="LinkedIn"
+                                            style={{
+                                                width: "40px",
+                                                filter: box.linked_in ? "none" : "grayscale(100%) brightness(0) invert(1)",
+                                            }}
+                                        />
+                                        {!box.linked_in && (
+                                            <Box
+                                                sx={{
+                                                    position: "absolute",
+                                                    top: 0,
+                                                    left: 0,
+                                                    width: "100%",
+                                                    height: "100%",
+                                                    backgroundColor: "#736f6f", // رنگ خاکستری خاص
+                                                    borderRadius: "50%",
+                                                    opacity: 0.5, // تنظیم شفافیت
+                                                }}
+                                            />
+                                        )}
                                     </Box>
+
+
+
                                     <Box
                                         position="absolute"
                                         flexDirection="column"

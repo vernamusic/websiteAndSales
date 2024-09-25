@@ -4,7 +4,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Mediacard from './Mediacard';
-import {Typography} from "@mui/material"; // Ensure this path is correct
+import { Typography } from "@mui/material"; // Ensure this path is correct
 
 const theme = createTheme({
     typography: {
@@ -33,114 +33,120 @@ const theme = createTheme({
     },
 });
 
-const buttons = [
-    { label: 'View All', value: 'view_all' },
-    { label: 'Management', value: 'management_team' },
-    { label: 'Product', value: 'product_team' },
-    { label: 'Design', value: 'design_team' },
-    { label: 'Marketing', value: 'marketing_team' },
-    { label: 'Sales', value: 'sales_team' },
-    { label: 'Advisors', value: 'advisors_team' },
-];
-
-const MyToggleButtonGroup = () => {
-    const [selected, setSelected] = useState('view_all');
+const TeamMembers = () => {
+    const [teams, setTeams] = useState([]);
+    const [selectedTeam, setSelectedTeam] = useState('view_all');
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        fetchData(selected);
-    }, [selected]);
+        const fetchTeams = async () => {
+            const response = await fetch('https://site.vitruvianshield.com/api/v1/members');
+            const teamsData = await response.json();
+            setTeams(teamsData);
+            setData(teamsData); // Initialize data with all teams
+        };
 
-    const fetchData = async (selection) => {
-        let url = `https://site.vitruvianshield.com/api/v1/members`;
-        if (selection !== 'view_all') {
-            url += `?_team=${selection}`; // Adjust URL for _team filtering
+        fetchTeams();
+    }, []);
+
+    useEffect(() => {
+        if (selectedTeam === 'view_all') {
+            setData(teams); // Show all teams if "View All" is selected
+        } else {
+            const selectedData = teams.find(team => team.team_name === selectedTeam)?.members || [];
+            setData(selectedData); // Filter members based on selected team
         }
-        
-        try {
-            const response = await fetch(url);
-            const jsonData = await response.json();
-            setData(jsonData);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-            setData([]);
-        }
-    };
+    }, [selectedTeam, teams]);
 
     const handleToggle = (event, newSelection) => {
         if (newSelection !== null) {
-            setSelected(newSelection);
+            setSelectedTeam(newSelection);
         }
     };
 
     const renderContent = () => {
-        if (selected === 'view_all') {
+        if (selectedTeam === 'view_all') {
             return (
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start',  maxWidth: '100%',gap:5,mt:10 }}>
-                    {buttons.slice(1).map(({ label, value }) => (
-                        <React.Fragment key={value}>
-                            <Box
-                                sx={{
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    justifyContent: 'center', // Vertically centers the content
-                                    alignItems: 'flex-start',  // Aligns text to the left horizontally
-                                    textAlign: 'left',         // Makes sure text inside Typography is left-aligned
-                                    mb:-10,
-                                }}
-                            >
-                                <Typography
-                                    variant="h9"
-                                    gutterBottom
-                                >
-                                    {label}
-                                </Typography>
-                            </Box>
-                            <Mediacard data={data} buttons={buttons} />
-                        </React.Fragment>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0, mt: 10 }}>
+                    {teams.map(({ team_name, members }) => (
+                        <Box key={team_name} sx={{ width: '100%' }}>
+                            <Typography gutterBottom sx={{ ...theme.typography.h3, pl: 1, mb: -6 }}>
+                                {team_name}
+                            </Typography>
+                            <Mediacard data={members} />
+                        </Box>
                     ))}
                 </Box>
-
-
             );
         } else {
-            return <Mediacard data={data} />;
+            return (
+                <Box sx={{ width: '100%' }}>
+                    <Typography gutterBottom sx={{ ...theme.typography.h3, pl: 1, mb: -6,mt:10, }}>
+                        {selectedTeam} {/* Assuming selectedTeam is the team name for the else case */}
+                    </Typography>
+                    <Mediacard data={data} />
+                </Box>
+            );
         }
     };
 
-
     return (
         <ThemeProvider theme={theme}>
-            <Box sx={{ textAlign: 'center', padding: 2 ,borderRadius: '6px 6px 6px 6px',}}>
-                <Box sx={{mt:'44px',}}>
-                    <Typography variant='h3'>
+            <Box sx={{ textAlign: 'left', padding: 2 }}>
+                <Box sx={{ mt: '40px', textAlign: 'center' }}>
+                    <Typography sx={{ ...theme.typography.h3 }}>
                         MEET OUR TEAM
                     </Typography>
-                    <Typography variant='h6' sx={{mt:'24px',}}>
+                    <Typography sx={{ mt: '24px', ...theme.typography.h6 }}>
                         Meet our diverse team of world-class creators, designers, and problem solvers.
                     </Typography>
                 </Box>
                 <ToggleButtonGroup
-                    value={selected}
+                    value={selectedTeam}
                     exclusive
                     onChange={handleToggle}
-                    aria-label="Category selection"
-                    sx={{ display: 'flex', justifyContent: 'center', gap: 2, mt:'78px' }}
+                    aria-label="Team selection"
+                    sx={{ display: 'flex', justifyContent: 'center', gap: 4, mt: '78px' }}
                 >
-                    {buttons.map(({ label, value }) => (
+                    <ToggleButton
+                        value="view_all"
+                        selected={selectedTeam === "view_all"}
+                        sx={{
+                            color: '#e0e0e0',
+                            backgroundColor: selectedTeam === "view_all" ? '#B50304' : 'transparent',
+                            height: '45px',
+                            fontSize: '24px',
+                            textTransform: 'none',
+                            borderRadius: '6px', // اضافه کردن borderRadius
+                            '&.Mui-selected': {
+                                borderRadius: '6px 6px 6px 6px',
+                                backgroundColor: '#B50304',  // Color for selected button
+                                color: '#ffffff',
+                                '&:hover': {
+                                    backgroundColor: '#B50304',  // Color for hover on selected button
+                                },
+                            },
+                            '&:hover': {
+                                backgroundColor: 'transparent',  // Hover for non-selected buttons
+                            },
+                        }}
+                        disableRipple
+                    >
+                        View All
+                    </ToggleButton>
+
+                    {teams.map(({ team_name }) => (
                         <ToggleButton
-                            key={value}
-                            value={value}
-                            selected={selected === value}  // MUI prop to handle selection
+                            key={team_name}
+                            value={team_name}
+                            selected={selectedTeam === team_name}
                             sx={{
                                 color: '#e0e0e0',
-                                borderRadius: '6px',  // Apply borderRadius once
-                                backgroundColor: selected === value ? 'red' : 'transparent',  // Conditional background color
-                                minWidth: `${label.length * 19}px`,  // Dynamically adjust width based on label length
+                                backgroundColor: selectedTeam === team_name ? '#B50304' : 'transparent',
                                 height: '45px',
                                 fontSize: '24px',
                                 textTransform: 'none',
-
+                                borderRadius: '6px', // اضافه کردن borderRadius
                                 '&.Mui-selected': {
                                     borderRadius: '6px 6px 6px 6px',
                                     backgroundColor: '#B50304',  // Color for selected button
@@ -155,7 +161,7 @@ const MyToggleButtonGroup = () => {
                             }}
                             disableRipple
                         >
-                            {label}
+                            {team_name}
                         </ToggleButton>
                     ))}
                 </ToggleButtonGroup>
@@ -169,7 +175,6 @@ const MyToggleButtonGroup = () => {
                         flexDirection: 'column',
                     }}
                 >
-
                     {renderContent()}
                 </Box>
             </Box>
@@ -177,4 +182,4 @@ const MyToggleButtonGroup = () => {
     );
 };
 
-export default MyToggleButtonGroup;
+export default TeamMembers;
