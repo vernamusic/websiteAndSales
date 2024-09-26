@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Mediacard from './Mediacard';
 import { Typography } from "@mui/material"; // Ensure this path is correct
+import Allinonecard from './Allinonecard';
 
 const theme = createTheme({
     typography: {
@@ -80,11 +81,13 @@ const TeamMembers = () => {
             );
         } else {
             return (
-                <Box sx={{ width: '100%' }}>
-                    <Typography gutterBottom sx={{ ...theme.typography.h3, pl: 1, mb: -6,mt:10, }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0, mt: 10,}}>
+                    <Typography gutterBottom sx={{ ...theme.typography.h3, pl: 1, mb: -6, textAlign: 'left' }}>
                         {selectedTeam} {/* Assuming selectedTeam is the team name for the else case */}
                     </Typography>
-                    <Mediacard data={data} />
+                    <Box sx={{ width: '102%', mt: 8,pr:5 }}>
+                        <Allinonecard data={data} />
+                    </Box>
                 </Box>
             );
         }
