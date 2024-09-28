@@ -73,19 +73,19 @@ const ProductBox = () => {
             <Box sx={{
                 width: '100%',
                 display: 'flex',
-                flexDirection: { xs: 'column', md: 'row' },
+                flexDirection: {xs: 'column', md: 'row'},
                 justifyContent: 'space-between',
                 alignItems: 'center',
             }}>
                 <Box sx={{
-                    width: { xs: '250px', sm: '300px', md: '430px', lg: '480px', xl: '530px' },
-                    ml: { xs: 5, sm: 10, md: 15, lg: 25, xl: 38 },
-                    mt: { xs: 5, sm: 10, md: 17, lg: 20, xl: 33 },
+                    width: {xs: '250px', sm: '300px', md: '430px', lg: '480px', xl: '530px'},
+                    ml: {xs: 5, sm: 10, md: 15, lg: 25, xl: 38},
+                    mt: {xs: 5, sm: 10, md: 17, lg: 20, xl: 33},
                     display: 'flex',
                     flexDirection: 'column',
                 }}>
-                    <Box sx={{ mb: 5 }}>
-                        <Typography sx={{ ...theme.typography.h3 }}>
+                    <Box sx={{mb: 5}}>
+                        <Typography sx={{...theme.typography.h3}}>
                             The Mobile App
                         </Typography>
                         <Typography sx={{
@@ -93,7 +93,8 @@ const ProductBox = () => {
                             mt: 3,
                             width: '100%',
                         }}>
-                            An easy and intuitive way to share your data with all professionals in charge of providing you with after-care and medical follow-up.
+                            An easy and intuitive way to share your data with all professionals in charge of providing
+                            you with after-care and medical follow-up.
                         </Typography>
                     </Box>
                     <Box display="flex" alignItems="center" gap={3}>
@@ -101,8 +102,8 @@ const ProductBox = () => {
                             <Box
                                 key={item.id}
                                 sx={{
-                                    width: { xs: '80px', sm: '100px', md: '110px', lg: '120px', xl: '135px' },
-                                    height: { xs: '70px', sm: '90px', md: '100px', lg: '110px', xl: '120px' },
+                                    width: {xs: '80px', sm: '100px', md: '110px', lg: '120px', xl: '135px'},
+                                    height: {xs: '70px', sm: '90px', md: '100px', lg: '110px', xl: '120px'},
                                     backgroundImage: `linear-gradient(360deg, rgba(20, 20, 20, 0.05) 0%, rgba(255, 255, 255, 0.1) 100%), url(${item.image})`,
                                     backgroundSize: '100%',
                                     backgroundPosition: 'center',
@@ -128,7 +129,7 @@ const ProductBox = () => {
                             backgroundColor: '#B50304',
                             textTransform: 'none',
                             width: '48%',
-                            height: { xs: '30px', sm: '45px', md: '50px', lg: '55px', xl: '65px' },
+                            height: {xs: '30px', sm: '45px', md: '50px', lg: '55px', xl: '65px'},
                             '&:hover': {
                                 backgroundColor: '#B50304',
                             },
@@ -143,9 +144,9 @@ const ProductBox = () => {
                     sx={{
                         position: 'relative',
                         flexDirection: 'column',
-                        width: { md: '300px', lg: '400px', xl: '470px' },
-                        height: { md: '500px', lg: '650px', xl: '820px' },
-                        display: { xs: 'none', sm: 'none', md: 'flex' },
+                        width: {md: '300px', lg: '400px', xl: '470px'},
+                        height: {md: '500px', lg: '650px', xl: '820px'},
+                        display: {xs: 'none', sm: 'none', md: 'flex'},
                     }}
                 >
                     <Box
@@ -171,7 +172,7 @@ const ProductBox = () => {
                                 bottom: '5%',
                                 width: '120%',
                                 zIndex: 2,
-                                animation: `fadeUp 0.5s ease`,
+                                animation: `fadeLeft 0.7s ease`,
                             }}
                         />
                         <Box
@@ -186,22 +187,22 @@ const ProductBox = () => {
                             <IconButton
                                 onClick={handlePrev}
                                 sx={{
-                                    '&:hover': { backgroundColor: 'transparent' },
+                                    '&:hover': {backgroundColor: 'transparent'},
                                     width: '50px',
                                     height: '50px',
                                 }}
                             >
-                                <img src={previousarrow} alt="Previous" style={{ width: '100%' }} />
+                                <img src={previousarrow} alt="Previous" style={{width: '100%'}}/>
                             </IconButton>
                             <IconButton
                                 onClick={handleNext}
                                 sx={{
-                                    '&:hover': { backgroundColor: 'transparent' },
+                                    '&:hover': {backgroundColor: 'transparent'},
                                     width: '50px',
                                     height: '50px',
                                 }}
                             >
-                                <img src={nextarrow} alt="Next" style={{ width: '100%' }} />
+                                <img src={nextarrow} alt="Next" style={{width: '100%'}}/>
                             </IconButton>
                         </Box>
                     </Box>
@@ -209,17 +210,19 @@ const ProductBox = () => {
             </Box>
             <style>
                 {`
-                    @keyframes fadeUp {
-                        0% {
-                            opacity: 0;
-                            transform: translateY(30%);
-                        }
-                        100% {
-                            opacity: 1;
-                            transform: translateY(0);
-                        }
-                    }
-                `}
+    @keyframes fadeLeft {
+      0% {
+        opacity: 0;
+        transform: translateX(15%);
+        animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1); 
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  `}
             </style>
         </ThemeProvider>
     );
