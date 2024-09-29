@@ -7,7 +7,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import logo from '../assets/redvslogo.svg';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import searchimg from '../assets/searchicon.png';
-import SignUpDialog from './SignUpDialog'; // Import the SignUpDialog component
+import SignUpDialog from '../components/SignUp/SignUpDialog.jsx'; // Import the SignUpDialog component
 
 const theme = createTheme({
     typography: {

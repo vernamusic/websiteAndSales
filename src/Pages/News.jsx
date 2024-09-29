@@ -1,31 +1,63 @@
-// src/pages/News.jsx
+// src/pages/About.jsx
 import React from 'react';
-import { Box, Typography, Container, List, ListItem, ListItemText } from '@mui/material';
+import { Box, Typography, Container } from '@mui/material';
+import ContactBox from '../components/News/ContactBox.jsx'
+import MeetBox from '../components/News/MeetBox.jsx';
+import MemberBox from '../components/News/MemberBox.jsx';
+import MemberCountBox from '../components/News/MemberCountBox.jsx'
 
-const News = () => {
-    const newsItems = [
-        { title: 'News 1', date: '2023-07-20', description: 'Description of news item 1.' },
-        { title: 'News 2', date: '2023-07-18', description: 'Description of news item 2.' },
-        { title: 'News 3', date: '2023-07-15', description: 'Description of news item 3.' },
-    ];
-
+const About = () => {
     return (
-        <Container maxWidth="md" sx={{ mt: 8 }}>
-            <Typography variant="h4" gutterBottom>
-                Latest News
-            </Typography>
-            <List>
-                {newsItems.map((news, index) => (
-                    <ListItem key={index} divider>
-                        <ListItemText
-                            primary={news.title}
-                            secondary={`${news.date} - ${news.description}`}
-                        />
-                    </ListItem>
-                ))}
-            </List>
-        </Container>
+        <Box
+            sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                width: '100%',
+                minHeight: '100vh',
+            }}
+        >
+            <Box
+                sx={{
+                    width: '100%',
+                    minHeight: { xs: '500px', md: '850px' },
+                    display: 'flex',
+                    justifyContent: 'center',
+                }}
+            >
+                <ContactBox />
+            </Box>
+            <Box
+                sx={{
+                    width: '100%',
+                    minHeight: { xs: '150px', md: '200px' },
+                    display: 'flex',
+                    justifyContent: 'center',
+                }}
+            >
+                <MemberCountBox />
+            </Box>
+            <Box
+                sx={{
+                    width: '100%',
+                    minHeight: { xs: '500px', md: '850px' },
+                    display: 'flex',
+                    justifyContent: 'center',
+                }}
+            >
+                <MemberBox />
+            </Box>
+            <Box
+                sx={{
+                    width: '100%',
+                    minHeight: { xs: '500px', md: '850px' },
+                    display: 'flex',
+                    justifyContent: 'center',
+                }}
+            >
+                <MeetBox />
+            </Box>
+        </Box>
     );
 }
 
-export default News;
+export default About;
