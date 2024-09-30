@@ -10,35 +10,61 @@ import photo5 from '../../assets/news3.png'
 
 const theme = createTheme({
     typography: {
-        fontFamily: 'Sen, Arial, sans-serif',
-        h3: {
-            fontFamily: 'Lato',
-            fontWeight: 600,
-            fontSize: '26px',
-            lineHeight: '26px',
-            color: "#FFFFFF",
-        },
         h6: {
-            fontFamily: 'Sen',
-            fontWeight: 400,
-            fontSize: '18px',
-            lineHeight: '21.66px',
-            color: "#FFFFFF",
+            fontFamily:'sen',
+            fontSize: { xs: '6px', sm: '10px', md: '12px', lg: '16px', xl: '20px' },
+            lineHeight: { xs: '18px', sm: '20px', md: '20px', lg: '24px', xl: '26px' },
+            color: "#F1F1F1",
+            textTransform: 'none',
         },
-        h9: {
-            fontFamily: 'Lato',
-            fontWeight: 600,
-            fontSize: '23px',
-            lineHeight: '23px',
-            color: '#FFFFFF',
+
+        h3: {
+            fontFamily: "Lato",
+            fontWeight:700,
+            fontSize: {xs: '8px', sm: '13px', md: '20px', lg: '25px', xl: '29px'},
+            color: "#F1F1F1",
+            textTransform: 'none',
+        },
+        button: {
+            fontFamily: 'Inter',
+            fontSize: { xs: '10px', sm: '15px', md: '18px', lg: '20px', xl: '24px' },
+            textTransform: 'none',
         },
     },
 });
 
 const teamsData = [
     {
-        team_name: "Team 1",
+        team_name: "Top News",
         members: [
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Hggggggggggggggggandles campaignsfgdfkjgnd kjdgn dfjk gdfkg kdnkgnkjdfnkkjdn gdfgdfgbdbdgrebgdbhrhrr  ebetgetgvb", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
             { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
             { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
             { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
@@ -85,8 +111,8 @@ const TeamMembers = () => {
             return (
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0, mt: 10 }}>
                     {teamsData.map(({ team_name, members }) => (
-                        <Box key={team_name} sx={{ width: '100%' }}>
-                            <Typography gutterBottom sx={{ ...theme.typography.h3, pl: 1, mb: -6 }}>
+                        <Box key={team_name} sx={{ width: '100%',mb: {xs:4, sm: 5, md: 7, lg: 9, xl: 10,}, }}>
+                            <Typography gutterBottom sx={{ ...theme.typography.h3, pl: 1,  }}>
                                 {team_name}
                             </Typography>
                             <Mediacard data={members} />
@@ -97,10 +123,10 @@ const TeamMembers = () => {
         } else {
             return (
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0, mt: 10 }}>
-                    <Typography gutterBottom sx={{ ...theme.typography.h3, pl: 1, mb: -6, textAlign: 'left' }}>
+                    <Typography gutterBottom sx={{ ...theme.typography.h3, pl: 1, mb: 0, textAlign: 'left' }}>
                         {selectedTeam}
                     </Typography>
-                    <Box sx={{ width: '100%'}}>
+                    <Box sx={{ width: '100%',}}>
                         <Mediacard data={data} />
                     </Box>
                 </Box>
@@ -133,7 +159,7 @@ const TeamMembers = () => {
                             color: '#e0e0e0',
                             backgroundColor: selectedTeam === "view_all" ? '#B50304' : 'transparent',
                             height: '45px',
-                            fontSize: '24px',
+                            ...theme.typography.button,
                             textTransform: 'none',
                             borderRadius: '6px',
                             '&.Mui-selected': {
@@ -162,7 +188,7 @@ const TeamMembers = () => {
                                 color: '#e0e0e0',
                                 backgroundColor: selectedTeam === team_name ? '#B50304' : 'transparent',
                                 height: '45px',
-                                fontSize: '24px',
+                                ...theme.typography.button,
                                 textTransform: 'none',
                                 borderRadius: '6px',
                                 '&.Mui-selected': {

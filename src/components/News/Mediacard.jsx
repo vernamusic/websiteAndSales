@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import {
     Box,
     Typography,
@@ -8,15 +8,15 @@ import {
 } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { useSwipeable } from "react-swipeable"; // <-- Import swipeable
+import { useSwipeable } from "react-swipeable";
 
 const theme = createTheme({
     typography: {
         h6: {
             fontFamily:'sen',
-            fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '18px', xl: '21px' },
-            lineHeight: { xs: '18px', sm: '20px', md: '20px', lg: '24px', xl: '26px' },
-            fontWeight:300,
+            fontSize: { xs: '6px', sm: '10px', md: '12px', lg: '16px', xl: '20px' },
+            lineHeight: 'normal',
+            letterSpacing: '0.4px',
             color: "#F1F1F1",
             textTransform: 'none',
         },
@@ -24,21 +24,28 @@ const theme = createTheme({
         h3: {
             fontFamily: "Lato",
             fontWeight:700,
-            fontSize: {xs: '16px', sm: '19px', md: '20px', lg: '25px', xl: '29px'},
+            fontSize: {xs: '8px', sm: '13px', md: '20px', lg: '25px', xl: '29px'},
             color: "#F1F1F1",
             textTransform: 'none',
         },
         button: {
             fontFamily: 'Inter',
-            fontSize: { xs: '12px', sm: '15px', md: '6.5px', lg: '11.5px', xl: '15px' },
+            fontSize: { xs: '6px', sm: '6px', md: '9px', lg: '13px', xl: '16px' },
             textTransform: 'none',
         },
     },
 });
 
-const Mediacard = ({data}) => {
+const Mediacard = ({ data }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const itemsPerPage = 3;
+    const gap = useMemo(() => {
+        if (window.innerWidth < 600) return 1; // xs
+        if (window.innerWidth < 900) return 1.5; // sm
+        if (window.innerWidth < 1200) return 2; // md
+        if (window.innerWidth < 1536) return 3; // lg
+        return 6; // xl
+    }, [window.innerWidth]);
 
     const handleNext = () => {
         if (currentIndex + itemsPerPage < data.length) {
@@ -54,12 +61,20 @@ const Mediacard = ({data}) => {
 
     // Swipe handlers
     const swipeHandlers = useSwipeable({
-        onSwipedLeft: handleNext,  // Swipe left to move to the next item
-        onSwipedRight: handlePrev, // Swipe right to move to the previous item
+        onSwipedLeft: handleNext,
+        onSwipedRight: handlePrev,
         preventDefaultTouchmoveEvent: true,
-        trackMouse: true, // Optional: allows swiping with a mouse (useful for testing)
+        trackMouse: true,
     });
 
+    // محاسبه عرض کارت‌ها بر اساس سایز صفحه
+    const widthOfCard = useMemo(() => {
+        if (window.innerWidth < 600) return 133; // xs
+        if (window.innerWidth < 900) return 199.45; // sm
+        if (window.innerWidth < 1200) return 266; // md
+        if (window.innerWidth < 1536) return 336; // lg
+        return 472; // xl
+    }, [window.innerWidth]);
 
     return (
         <ThemeProvider theme={theme}>
@@ -68,7 +83,7 @@ const Mediacard = ({data}) => {
                 flexDirection="row"
                 alignItems="center"
                 position="relative"
-                {...swipeHandlers}  // <-- Attach swipe handlers to Box
+                {...swipeHandlers}
             >
                 <Box
                     display="flex"
@@ -77,75 +92,119 @@ const Mediacard = ({data}) => {
                     position="relative"
                     sx={{
                         overflow: "hidden",
-                        maxWidth: "1220px",
+                        maxWidth: {
+                            xs: "400px",
+                            sm: "600px",
+                            md: "800px",
+                            lg: "1000px",
+                            xl: "1400px",
+                        },
                     }}
                 >
                     <Box
                         display="flex"
                         justifyContent="start"
-                        gap={6}
-                        width="100%"
+
                         sx={{
-                            transform: `translateX(-${currentIndex * 34.25}%)`,
+                            transform: `translateX(-${currentIndex * (widthOfCard + gap)}px)`,  // استفاده از عرض کارت و فاصله
                             transition: "transform 0.6s ease-in-out",
+                            gap:{xs: 1, sm: 1.5, md: 2, lg: 3, xl: 6,}
                         }}
                     >
                         {data.map((box, index) => (
                             <Box
                                 key={index}
                                 sx={{
-                                    width: { xs: '143', sm: '185px', md: '280px', lg: '350px', xl: '430px' },
-                                    height: { xs: '200', sm: '265px', md: '390px', lg: '488px', xl: '600px' },
-                                    position: "relative",
-                                    justifyContent: "flex-end",
+                                    width: { xs: '126px', sm: '189px', md: '252px', lg: '315px', xl: '430px' },
+                                    height: { xs: '200px', sm: '265px', md: '390px', lg: '488px', xl: '600px' },
+                                    position: "relative", // Position relative to allow absolute positioning of inner boxes
                                     borderRadius: "20px",
-                                    display: "flex",
-                                    flexDirection: "column",
                                     color: "white",
                                     overflow: "hidden",
-                                    backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 46.58%, rgba(0, 0, 0, 0.472485) 56.73%, rgba(0, 0, 0, 0.86) 66%), url(${box.photo})`,
+                                    backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 46.58%, rgba(0, 0, 0, 0.472485) 56.73%, rgba(0, 0, 0, 0.9) 66.51%), url(${box.photo})`,
                                     backgroundSize: "cover",
                                     backgroundPosition: "center",
                                     backgroundRepeat: "no-repeat",
-                                    padding:4,
-                                    my: 10,
                                 }}
                             >
-                                <Typography sx={{
-                                    ...theme.typography.h3
-                                }}>
-                                    {box.title}
-                                    {data.index}
-                                </Typography>
-                                <Typography
-                                    sx={{mt:0.8,
-                                        ...theme.typography.h6 }}
+                                <Box
+                                    sx={{
+                                        position: "absolute", // Keep the main box as relative
+                                        width: "100%",
+                                        height: '37%', // Ensure the main box has a fixed height
+                                        bottom: '0',
+                                    }}
                                 >
-                                    {box.details.length > 50
-                                        ? `${box.details.substring(0, 80)}...`
-                                        : box.details}
-                                </Typography>
-                                <Box sx={{ mt: 1.8 }}>
-                                    <Button
-                                        variant="contained"
+                                    {/* Box for Text (Top Aligned) */}
+                                    <Box
                                         sx={{
-                                            borderRadius: "6px",
-                                            backgroundColor: "transparent",
-                                            textTransform: "none",
-                                            width: '31%',
-                                            height: { xs: '10px', sm: '15px', md: '25px', lg: '35px', xl: '42px' },
-                                            ...theme.typography.button,
-                                            border: "1.5px solid rgba(255, 255, 255, 1)", // Added border property
-                                            "&:hover": {
-                                                backgroundColor: "#000000", // Background color on hover
-                                                opacity: 0.8, // Optional: slightly reduce opacity on hover
-                                            },
+                                            position: "absolute",
+                                            top: '0', // Fixed position from the top of the parent box
+                                            width: '100%',
+                                            display: "flex",
+                                            flexDirection: "column",
+                                            alignItems: "flex-start", // Align content to the left
+                                            ml:{xs:1, sm: 2, md: 3, lg: 3, xl: 4,},
+
                                         }}
                                     >
-                                        See more
-                                    </Button>
+                                        <Typography
+                                            sx={{
+                                                ...theme.typography.h3,
+                                            }}
+                                        >
+                                            {box.title}
+                                        </Typography>
+                                        <Typography
+                                            sx={{
+                                                mt: {xs:0.1, sm: 0.2, md: 0.4, lg: 0.6, xl: 0.8,},
+                                                ...theme.typography.h6,
+                                                width: { xs: '120px', sm: '189px', md: '200px', lg: '270px', xl: '350px' },
+                                            }}
+                                        >
+                                            {box.details.length > 50
+                                                ? `${box.details.substring(0, 80)}...`
+                                                : box.details}
+                                        </Typography>
+                                    </Box>
+
+                                    {/* Box for Button (Bottom Aligned) */}
+                                    <Box
+                                        sx={{
+                                            position: "absolute",
+                                            bottom: '0', // Fixed position from the bottom of the parent box
+                                            width: '100%',
+                                            display: "flex",
+                                            alignContent: "flex-start",
+
+                                        }}
+                                    >
+                                        <Button
+                                            variant="contained"
+                                            sx={{
+                                                borderRadius: "6px",
+                                                backgroundColor: "transparent",
+                                                textTransform: "none",
+                                                ml:{xs:1, sm: 2, md: 3, lg: 3, xl: 4,},
+                                                mb:{xs:0.5, sm: 2, md: 2.5, lg: 2.5, xl: 3,},
+                                                width: { xs: '20px',sm: '55px', md: '80px', lg: '100px', xl: '125px' },
+                                                height: { xs: '20px', sm: '20px', md: '30px', lg: '35px', xl: '45px' },
+                                                ...theme.typography.button,
+                                                border: "1px solid rgba(255, 255, 255, 0.8)", // Border around the button
+                                                "&:hover": {
+                                                    backgroundColor: "#000000", // Background color on hover
+                                                    opacity: 0.8, // Optional: slightly reduce opacity on hover
+                                                },
+                                            }}
+                                        >
+                                            See more
+                                        </Button>
+                                    </Box>
                                 </Box>
+
                             </Box>
+
+
                         ))}
                     </Box>
                 </Box>
@@ -156,7 +215,12 @@ const Mediacard = ({data}) => {
                     disabled={currentIndex === 0}
                     sx={{
                         position: "absolute",
-                        left: "-60px",
+                        left: {
+                            xs: "-30px",
+                            sm: "-40px",
+                            md: "-50px",
+                            lg: "-60px",
+                        },
                         top: "50%",
                         transform: "translateY(-50%)",
                         color: "#FFFFFF",
@@ -168,7 +232,7 @@ const Mediacard = ({data}) => {
                         },
                     }}
                 >
-                    <ArrowBackIosIcon sx={{ fontSize: "50px" }} />
+                    <ArrowBackIosIcon sx={{ fontSize: { xs: "30px", sm: "40px", md: "50px" } }} />
                 </IconButton>
 
                 {/* Right Arrow */}
@@ -177,7 +241,12 @@ const Mediacard = ({data}) => {
                     disabled={currentIndex + itemsPerPage >= data.length}
                     sx={{
                         position: "absolute",
-                        right: "-60px",
+                        right: {
+                            xs: "-30px",
+                            sm: "-40px",
+                            md: "-50px",
+                            lg: "-60px",
+                        },
                         top: "50%",
                         transform: "translateY(-50%)",
                         color: "#FFFFFF",
@@ -189,7 +258,7 @@ const Mediacard = ({data}) => {
                         },
                     }}
                 >
-                    <ArrowForwardIosIcon sx={{ fontSize: "50px" }} />
+                    <ArrowForwardIosIcon sx={{ fontSize: { xs: "30px", sm: "40px", md: "50px" } }} />
                 </IconButton>
             </Box>
         </ThemeProvider>
