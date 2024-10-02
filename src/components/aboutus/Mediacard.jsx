@@ -1,38 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import {
     Box,
     Typography,
     IconButton,
     createTheme,
-    ThemeProvider,
+    ThemeProvider, Button,
 } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { useSwipeable } from "react-swipeable";
 import linkedin from "../../assets/linkedin.png";
-import { useSwipeable } from "react-swipeable"; // <-- Import swipeable
 
 const theme = createTheme({
     typography: {
-        fontFamily: "Sen, Arial, sans-serif",
         h6: {
-            fontSize: "19px",
-            fontWeight: 400,
-            lineHeight: "26.47px",
+            fontFamily:'sen',
+            fontSize: { xs: '6px', sm: '10px', md: '12px', lg: '16px', xl: '20px' },
+            lineHeight: 'normal',
+            letterSpacing: '0.4px',
             color: "#F1F1F1",
+            textTransform: 'none',
         },
+
         h3: {
             fontFamily: "Lato",
-            fontWeight: 700,
-            fontSize: "29px",
-            lineHeight: "2rem",
-            color: "#FFFFFF",
+            fontWeight:700,
+            fontSize: {xs: '11.5px', sm: '13px', md: '20px', lg: '25px', xl: '29px'},
+            color: "#F1F1F1",
+            textTransform: 'none',
+        },
+        button: {
+            fontFamily: 'Inter',
+            fontSize: { xs: '6px', sm: '6px', md: '9px', lg: '13px', xl: '16px' },
+            textTransform: 'none',
         },
     },
 });
 
-const Mediacard = ({data}) => {
+const Mediacard = ({ data }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const itemsPerPage = 3;
+    const gap = useMemo(() => {
+        if (window.innerWidth < 600) return 1; // xs
+        if (window.innerWidth < 900) return 1.5; // sm
+        if (window.innerWidth < 1200) return 2; // md
+        if (window.innerWidth < 1536) return 3; // lg
+        return 6; // xl
+    }, [window.innerWidth]);
 
     const handleNext = () => {
         if (currentIndex + itemsPerPage < data.length) {
@@ -48,11 +62,20 @@ const Mediacard = ({data}) => {
 
     // Swipe handlers
     const swipeHandlers = useSwipeable({
-        onSwipedLeft: handleNext,  // Swipe left to move to the next item
-        onSwipedRight: handlePrev, // Swipe right to move to the previous item
+        onSwipedLeft: handleNext,
+        onSwipedRight: handlePrev,
         preventDefaultTouchmoveEvent: true,
-        trackMouse: true, // Optional: allows swiping with a mouse (useful for testing)
+        trackMouse: true,
     });
+
+    // محاسبه عرض کارت‌ها بر اساس سایز صفحه
+    const widthOfCard = useMemo(() => {
+        if (window.innerWidth < 600) return 149; // xs
+        if (window.innerWidth < 900) return 216.5; // sm
+        if (window.innerWidth < 1200) return 299; // md
+        if (window.innerWidth < 1536) return 368; // lg
+        return 404; // xl
+    }, [window.innerWidth]);
 
     return (
         <ThemeProvider theme={theme}>
@@ -61,7 +84,7 @@ const Mediacard = ({data}) => {
                 flexDirection="row"
                 alignItems="center"
                 position="relative"
-                {...swipeHandlers}  // <-- Attach swipe handlers to Box
+                {...swipeHandlers}
             >
                 <Box
                     display="flex"
@@ -70,64 +93,61 @@ const Mediacard = ({data}) => {
                     position="relative"
                     sx={{
                         overflow: "hidden",
-                        maxWidth: "1220px",
+                        maxWidth: {
+                            xs: "450px",
+                            sm: "650px",
+                            md: "900px",
+                            lg: "1100px",
+                            xl: "1200px",
+                        },
                     }}
                 >
                     <Box
                         display="flex"
                         justifyContent="start"
-                        gap={6}
-                        width="100%"
+
                         sx={{
-                            transform: `translateX(-${currentIndex * 34.25}%)`,
+                            transform: `translateX(-${currentIndex * (widthOfCard + gap)}px)`,  // استفاده از عرض کارت و فاصله
                             transition: "transform 0.6s ease-in-out",
+                            gap:{xs: 1, sm: 1.5, md: 2, lg: 3, xl: 5,}
                         }}
                     >
                         {data.map((box, index) => (
                             <Box
                                 key={index}
                                 sx={{
-                                    width: { sm: "370px" },
-                                    height: { sm: "600px" },
+                                    width: { xs: '142px', sm: '206px', md: '285px', lg: '347px', xl: '370px' },
+                                    height: { xs: '230px', sm: '334px', md: '462px', lg: '564px', xl: '600px' },
+                                    position: "relative", // Position relative to allow absolute positioning of inner boxes
                                     borderRadius: "20px",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    justifyContent: "space-between",
+                                    color: "white",
+                                    overflow: "hidden",
+                                    alignItems: "center",
+                                    border:'0.01px solid rgba(255, 255, 255, 0.2)',
                                     backgroundColor: "#0A0A0A",
-                                    border: "1px solid #FFFFFF33",
-                                    position: "relative",
-                                    my: 10,
                                 }}
                             >
                                 <Box
                                     sx={{
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        alignItems: "center",
-                                        position: "relative",
-                                        padding: 0,
-                                        margin: 0,
+                                        position: "absolute",
+                                        width: "100%",
+                                        height: '50%',
+                                        top:'0',
+                                        zIndex:2,
+                                        backgroundImage:`url(${box.photo})`,
+                                        backgroundSize: "cover",
+                                        backgroundRepeat: 'no-repeat',
+                                        backgroundPosition:'center top',
+                                        justifyItem: "center",
                                     }}
                                 >
                                     <Box
-                                        component="img"
-                                        src={box.photo}
-                                        alt={box.full_name}
-                                        sx={{
-                                            width: { sm: "369px" },
-                                            height: "315px",
-                                            borderRadius: "20px 20px 0px 0px",
-                                            objectFit: "cover",
-                                            objectPosition: "top",
-                                        }}
-                                    />
-                                    <Box
+                                        width='20%'
+                                        height='25%'
                                         onClick={box.linked_in ? () => window.open(box.linked_in, "_blank") : null}
                                         sx={{
                                             position: "absolute",
                                             bottom: "-11%",
-                                            width: 70,
-                                            height: 70,
                                             backgroundColor: box.linked_in ? "#B50304" : "#4c4c4c",
                                             borderRadius: "50%",
                                             display: "flex",
@@ -136,6 +156,7 @@ const Mediacard = ({data}) => {
                                             zIndex: 1,
                                             cursor: box.linked_in ? "pointer" : "default",
                                             transition: "background-color 0.3s, transform 0.3s",
+                                            right: "40%",
                                             '&:hover': {
                                                 backgroundColor: box.linked_in ? "#A50203" : "#4c4c4c",
                                                 transform: box.linked_in ? "scale(1.1)" : "none",
@@ -146,7 +167,7 @@ const Mediacard = ({data}) => {
                                             src={linkedin}
                                             alt="LinkedIn"
                                             style={{
-                                                width: "40px",
+                                                width: "60%",
                                                 filter: box.linked_in ? "none" : "grayscale(100%) brightness(0) invert(1)",
                                             }}
                                         />
@@ -154,8 +175,6 @@ const Mediacard = ({data}) => {
                                             <Box
                                                 sx={{
                                                     position: "absolute",
-                                                    top: 0,
-                                                    left: 0,
                                                     width: "100%",
                                                     height: "100%",
                                                     backgroundColor: "#736f6f", // رنگ خاکستری خاص
@@ -166,34 +185,79 @@ const Mediacard = ({data}) => {
                                         )}
                                     </Box>
 
-
+                                </Box>
+                                <Box
+                                    sx={{
+                                        position: "absolute",
+                                        width: "100%",
+                                        height: '40%',
+                                        bottom: '0',
+                                    }}
+                                >
 
                                     <Box
-                                        position="absolute"
-                                        flexDirection="column"
-                                        display="flex"
-                                        justifyContent="center"
-                                        alignItems="center"
-                                        textAlign="center"
-                                        maxWidth="300px"
-                                        sx={{ bottom: "-80%" }}
+                                        sx={{
+                                            display: "flex",
+                                            justifyContent: "center",
+                                            width: "100%",
+                                        }}
                                     >
-                                        <Typography variant="h3" sx={{ marginTop: 1 }} gutterBottom>
+                                        <Typography
+                                            sx={{
+                                                ...theme.typography.h3,
+                                                textAlign: "center",
+                                                maxWidth: '90%',
+                                            }}
+                                        >
                                             {box.full_name}
                                         </Typography>
+                                    </Box>
+
+                                    {/* Job */}
+                                    <Box
+                                        sx={{
+                                            display: "flex",
+                                            justifyContent: "center",
+                                            width: "100%",
+                                            mt: 2, // Add margin-top to space out
+                                        }}
+                                    >
                                         <Typography
-                                            variant="h6"
-                                            sx={{ marginTop: 0.5 }}
-                                            gutterBottom
+                                            sx={{
+                                                ...theme.typography.h6,
+                                                textAlign: "center",
+                                                maxWidth: '80%',
+                                            }}
                                         >
                                             {box._job}
                                         </Typography>
-                                        <Typography variant="h6" sx={{ marginTop: 3 }} gutterBottom>
+                                    </Box>
+
+                                    {/* Details */}
+                                    <Box
+                                        sx={{
+                                            display: "flex",
+                                            justifyContent: "center",
+                                            width: "100%",
+                                            mt: 3, // Add margin-top to space out
+                                        }}
+                                    >
+                                        <Typography
+                                            sx={{
+                                                ...theme.typography.h6,
+                                                textAlign: "center",
+                                                maxWidth: '80%',
+                                            }}
+                                        >
                                             {box.details}
                                         </Typography>
                                     </Box>
+
                                 </Box>
+
                             </Box>
+
+
                         ))}
                     </Box>
                 </Box>
@@ -204,7 +268,12 @@ const Mediacard = ({data}) => {
                     disabled={currentIndex === 0}
                     sx={{
                         position: "absolute",
-                        left: "-60px",
+                        left: {
+                            xs: "-30px",
+                            sm: "-40px",
+                            md: "-50px",
+                            lg: "-60px",
+                        },
                         top: "50%",
                         transform: "translateY(-50%)",
                         color: "#FFFFFF",
@@ -216,7 +285,7 @@ const Mediacard = ({data}) => {
                         },
                     }}
                 >
-                    <ArrowBackIosIcon sx={{ fontSize: "50px" }} />
+                    <ArrowBackIosIcon sx={{ fontSize: { xs: "30px", sm: "40px", md: "50px" } }} />
                 </IconButton>
 
                 {/* Right Arrow */}
@@ -225,7 +294,12 @@ const Mediacard = ({data}) => {
                     disabled={currentIndex + itemsPerPage >= data.length}
                     sx={{
                         position: "absolute",
-                        right: "-60px",
+                        right: {
+                            xs: "-30px",
+                            sm: "-40px",
+                            md: "-50px",
+                            lg: "-60px",
+                        },
                         top: "50%",
                         transform: "translateY(-50%)",
                         color: "#FFFFFF",
@@ -237,7 +311,7 @@ const Mediacard = ({data}) => {
                         },
                     }}
                 >
-                    <ArrowForwardIosIcon sx={{ fontSize: "50px" }} />
+                    <ArrowForwardIosIcon sx={{ fontSize: { xs: "30px", sm: "40px", md: "50px" } }} />
                 </IconButton>
             </Box>
         </ThemeProvider>
