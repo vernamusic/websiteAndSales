@@ -129,7 +129,7 @@ const TeamMembers = () => {
                         {selectedTeam}
                     </Typography>
                     <Box sx={{ width: '100%',}}>
-                        <Mediacard data={data} />
+                        <Allinonecard data={data} />
                     </Box>
                 </Box>
             );
@@ -141,7 +141,7 @@ const TeamMembers = () => {
             <Box sx={{ textAlign: 'left',}}>
                 <Box sx={{ mt: '40px', textAlign: 'center' }}>
                     <Typography sx={{ ...theme.typography.h3 }}>
-                        MEET OUR TEAM
+                        NEWS
                     </Typography>
                     <Typography sx={{ ...theme.typography.h6,mt: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 } }}>
                         Meet our diverse team of world-class creators, designers, and problem solvers.

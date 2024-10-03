@@ -1,10 +1,8 @@
 // src/pages/About.jsx
 import React from 'react';
 import { Box, Typography, Container } from '@mui/material';
-import ContactBox from '../components/News/ContactBox.jsx'
-import MeetBox from '../components/News/MeetBox.jsx';
-import MemberBox from '../components/News/MemberBox.jsx';
-import MemberCountBox from '../components/News/MemberCountBox.jsx'
+import TopNews from '../components/News/TopNews.jsx'
+import MemberBox from '../components/News/NewsMain.jsx';
 
 const About = () => {
     return (
@@ -13,28 +11,18 @@ const About = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 width: '100%',
-                minHeight: '100vh',
+                minHeight: '95vh',
             }}
         >
             <Box
                 sx={{
                     width: '100%',
-                    minHeight: { xs: '500px', md: '850px' },
+                    minHeight: '95vh',
                     display: 'flex',
                     justifyContent: 'center',
                 }}
             >
-                <ContactBox />
-            </Box>
-            <Box
-                sx={{
-                    width: '100%',
-                    minHeight: { xs: '150px', md: '200px' },
-                    display: 'flex',
-                    justifyContent: 'center',
-                }}
-            >
-                <MemberCountBox />
+                <TopNews />
             </Box>
             <Box
                 sx={{
@@ -45,16 +33,6 @@ const About = () => {
                 }}
             >
                 <MemberBox />
-            </Box>
-            <Box
-                sx={{
-                    width: '100%',
-                    minHeight: { xs: '500px', md: '850px' },
-                    display: 'flex',
-                    justifyContent: 'center',
-                }}
-            >
-                <MeetBox />
             </Box>
         </Box>
     );

@@ -4,25 +4,31 @@ import {
     Typography,
     createTheme,
     ThemeProvider,
-    Grid,
+    Button,
 } from "@mui/material";
-import linkedin from "../../assets/linkedin.png";
 
 const theme = createTheme({
     typography: {
-        fontFamily: "Sen, Arial, sans-serif",
         h6: {
-            fontSize: "19px",
-            fontWeight: 400,
-            lineHeight: "26.47px",
+            fontFamily:'sen',
+            fontSize: { xs: '6px', sm: '10px', md: '12px', lg: '16px', xl: '20px' },
+            lineHeight: 'normal',
+            letterSpacing: '0.4px',
             color: "#F1F1F1",
+            textTransform: 'none',
         },
+
         h3: {
             fontFamily: "Lato",
-            fontWeight: 700,
-            fontSize: "29px",
-            lineHeight: "2rem",
-            color: "#FFFFFF",
+            fontWeight:700,
+            fontSize: {xs: '8px', sm: '13px', md: '20px', lg: '25px', xl: '29px'},
+            color: "#F1F1F1",
+            textTransform: 'none',
+        },
+        button: {
+            fontFamily: 'Inter',
+            fontSize: { xs: '6px', sm: '6px', md: '9px', lg: '13px', xl: '16px' },
+            textTransform: 'none',
         },
     },
 });
@@ -33,119 +39,129 @@ const Allinonecard = ({ data }) => {
             <Box
                 display="flex"
                 flexDirection="column"
-                sx={{ maxWidth: "1220px",alignItems: 'center' }}
+                sx={{
+                    maxWidth: {
+                        xs: "400px",
+                        sm: "600px",
+                        md: "800px",
+                        lg: "1000px",
+                        xl: "1400px",
+                    },
+                    alignItems: 'center',
+                }}
             >
-                <Grid container spacing={6} justifyContent="flex-start">
+                <Box
+                    display="flex"
+                    flexWrap="wrap"
+                    justifyContent="start"
+                    sx={{gap:{xs: 1, sm: 1.5, md: 2, lg: 3, xl: 6,},
+                        maxWidth: {
+                            xs: "400px",
+                            sm: "600px",
+                            md: "800px",
+                            lg: "1000px",
+                            xl: "1400px",
+                        },
+                    }}
+                >
                     {data.map((box, index) => (
-                        <Grid item key={index} xs={12} sm={4}>
+                        <Box
+                            display="flex"
+                            key={index}
+                            sx={{
+                                width: { xs: '126px', sm: '189px', md: '252px', lg: '315px', xl: '430px' },
+                                height: { xs: '200px', sm: '265px', md: '390px', lg: '488px', xl: '600px' },
+                                position: "relative",
+                                borderRadius: "20px",
+                                color: "white",
+                                overflow: "hidden",
+                                backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 46.58%, rgba(0, 0, 0, 0.472485) 56.73%, rgba(0, 0, 0, 0.9) 66.51%), url(${box.photo})`,
+                                backgroundSize: "cover",
+                                backgroundPosition: "center",
+                                backgroundRepeat: "no-repeat",
+                            }}
+                        >
                             <Box
                                 sx={{
-                                    borderRadius: "20px",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    justifyContent: "space-between",
-                                    backgroundColor: "#0A0A0A",
-                                    border: "1px solid #FFFFFF33",
-                                    height: "600px",
-                                    position: "relative",
-                                    my: 2,
+                                    position: "absolute", // Keep the main box as relative
+                                    width: "100%",
+                                    height: '37%', // Ensure the main box has a fixed height
+                                    bottom: '0',
                                 }}
                             >
+                                {/* Box for Text (Top Aligned) */}
                                 <Box
                                     sx={{
+                                        position: "absolute",
+                                        top: '0', // Fixed position from the top of the parent box
+                                        width: '100%',
                                         display: "flex",
                                         flexDirection: "column",
-                                        alignItems: "center",
-                                        position: "relative",
-                                        padding: 0,
-                                        margin: 0,
+                                        alignItems: "flex-start", // Align content to the left
+                                        ml:{xs:1, sm: 2, md: 3, lg: 3, xl: 4,},
+
                                     }}
                                 >
-                                    <Box
-                                        component="img"
-                                        src={box.photo}
-                                        alt={box.full_name}
+                                    <Typography
                                         sx={{
-                                            width: "100%",
-                                            height: "315px",
-                                            borderRadius: "20px 20px 0px 0px",
-                                            objectFit: "cover",
-                                            objectPosition: "top",
+                                            ...theme.typography.h3,
                                         }}
-                                    />
-                                    <Box
-                                        onClick={box.linked_in ? () => window.open(box.linked_in, "_blank") : null}
+                                    >
+                                        {box.title}
+                                    </Typography>
+                                    <Typography
                                         sx={{
-                                            position: "absolute",
-                                            bottom: "-11%",
-                                            width: 70,
-                                            height: 70,
-                                            backgroundColor: box.linked_in ? "#B50304" : "#4c4c4c",
-                                            borderRadius: "50%",
-                                            display: "flex",
-                                            justifyContent: "center",
-                                            alignItems: "center",
-                                            zIndex: 1,
-                                            cursor: box.linked_in ? "pointer" : "default",
-                                            transition: "background-color 0.3s, transform 0.3s",
-                                            '&:hover': {
-                                                backgroundColor: box.linked_in ? "#A50203" : "#4c4c4c",
-                                                transform: box.linked_in ? "scale(1.1)" : "none",
+                                            mt: {xs:0.1, sm: 0.2, md: 0.4, lg: 0.6, xl: 0.8,},
+                                            ...theme.typography.h6,
+                                            width: { xs: '120px', sm: '189px', md: '200px', lg: '270px', xl: '350px' },
+                                        }}
+                                    >
+                                        {box.details.length > 50
+                                            ? `${box.details.substring(0, 80)}...`
+                                            : box.details}
+                                    </Typography>
+                                </Box>
+
+                                {/* Box for Button (Bottom Aligned) */}
+                                <Box
+                                    sx={{
+                                        position: "absolute",
+                                        bottom: '0', // Fixed position from the bottom of the parent box
+                                        width: '100%',
+                                        display: "flex",
+                                        alignContent: "flex-start",
+
+                                    }}
+                                >
+                                    <Button
+                                        variant="contained"
+                                        sx={{
+                                            borderRadius: "6px",
+                                            backgroundColor: "transparent",
+                                            textTransform: "none",
+                                            ml:{xs:1, sm: 2, md: 3, lg: 3, xl: 4,},
+                                            mb:{xs:0.5, sm: 2, md: 2.5, lg: 2.5, xl: 3,},
+                                            width: { xs: '20px',sm: '55px', md: '80px', lg: '100px', xl: '125px' },
+                                            height: { xs: '20px', sm: '20px', md: '30px', lg: '35px', xl: '45px' },
+                                            ...theme.typography.button,
+                                            border: "1px solid rgba(255, 255, 255, 0.8)", // Border around the button
+                                            "&:hover": {
+                                                backgroundColor: "#000000", // Background color on hover
+                                                opacity: 0.8, // Optional: slightly reduce opacity on hover
                                             },
                                         }}
                                     >
-                                        <img
-                                            src={linkedin ? linkedin : "#"}
-                                            alt="LinkedIn"
-                                            style={{
-                                                width: "40px",
-                                                filter: box.linked_in ? "none" : "grayscale(100%) brightness(0) invert(1)",
-                                            }}
-                                        />
-                                        {!box.linked_in && (
-                                            <Box
-                                                sx={{
-                                                    position: "absolute",
-                                                    top: 0,
-                                                    left: 0,
-                                                    width: "100%",
-                                                    height: "100%",
-                                                    backgroundColor: "#736f6f",
-                                                    borderRadius: "50%",
-                                                    opacity: 0.5,
-                                                }}
-                                            />
-                                        )}
-                                    </Box>
-
-                                    <Box
-                                        position="absolute"
-                                        flexDirection="column"
-                                        display="flex"
-                                        justifyContent="center"
-                                        alignItems="center"
-                                        textAlign="center"
-                                        maxWidth="300px"
-                                        sx={{ bottom: "-80%" }}
-                                    >
-                                        <Typography variant="h3" sx={{ marginTop: 1 }} gutterBottom>
-                                            {box.full_name}
-                                        </Typography>
-                                        <Typography variant="h6" sx={{ marginTop: 0.5 }} gutterBottom>
-                                            {box._job}
-                                        </Typography>
-                                        <Typography variant="h6" sx={{ marginTop: 3 }} gutterBottom>
-                                            {box.details}
-                                        </Typography>
-                                    </Box>
+                                        See more
+                                    </Button>
                                 </Box>
                             </Box>
-                        </Grid>
+                        </Box>
                     ))}
-                </Grid>
+                </Box>
             </Box>
         </ThemeProvider>
     );
 };
 
 export default Allinonecard;
+
