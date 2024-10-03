@@ -8,6 +8,7 @@ import About from './Pages/About';
 import Login from './Pages/Login';
 import Dashboard from './Pages/Dashboard';
 import Watch from './Pages/Watch';
+import Company from './Pages/Company';
 
 const AppRoutes = () => {
     return (
@@ -17,6 +18,7 @@ const AppRoutes = () => {
             <Route path="/products/mobile-app" element={<Moblie />} />
             <Route path="/products/dashboard" element={<Dashboard />} />
             <Route path="/products/smart-watch" element={<Watch />} />
+            <Route path="/company" element={<Company />} />
             <Route path="/news" element={<News />} />
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<Login />} />
