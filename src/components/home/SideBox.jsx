@@ -33,7 +33,6 @@ const SideBox = () => {
             position: 'relative',
 
         }}>
-            {/* باکس متن در سمت چپ */}
             <Box
                 sx={{
                     position:'absolute',
@@ -84,17 +83,16 @@ const SideBox = () => {
                 </Button>
             </Box>
 
-            {/* باکس لوگو در سمت راست */}
             <Box
                 sx={{
                     display: 'flex',
                     position:'absolute',
-                    justifyContent: 'flex-end', // چسباندن به راست
-                    right:'8%',
+                    justifyContent: 'flex-end',
+                    right:{md:'8%',sm:'2%',xs:'4%'},
                     top:{md:'0%',sm:'15%'},
                     alignItems: 'center',
-                    width: { xs: '180px', sm: '270px', md: '300px', lg: '400px', xl: '470px' },
-                    height: { xs: '180px', sm: '270px', md: '500px', lg: '650px', xl: '820px' },
+                    width: { xs: '180px', sm: '220px', md: '300px', lg: '400px', xl: '470px' },
+                    height: { xs: '180px', sm: '220px', md: '500px', lg: '650px', xl: '820px' },
                 }}
             >
                 <img

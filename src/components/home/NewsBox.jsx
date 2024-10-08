@@ -57,53 +57,61 @@ const NewsBox = () => {
       <Box
         sx={{
           width: "100%",
-            position:'relative',
-            justifyContent: "center",
         }}
       >
-        <Box
-            sx={{
-                width: "100%",
-                display: 'flex',
-                position:'relative',
-              alignItems: 'flex-start',
-                pb:{xs:6, sm: 8, md: 10, lg: 12, xl: 15,},
-            }}
-        >
-            <Typography
-                sx={{
-                    position: "absolute",
-                    left: "13%", // چسباندن به چپ
-                    top: "0%", // وسط‌چین عمودی
-                    ...theme.typography.h3,
-                }}
-            >
-                News
-            </Typography>
+          <Box
+              sx={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
 
-            <Button
-                component={Link} // لینک به صفحه نیوز
-                to="/news"
-                sx={{
-                    ...theme.typography.h3,
-                    position: "absolute",
-                    right: "12.5%", // چسباندن به راست
-                    top: "0%", // وسط‌چین عمودی
-                    "&:hover": {
-                        backgroundColor: "transparent", // حذف رنگ پس‌زمینه در حالت هاور
-                    },
-                }}
-                endIcon={<img src={moreicn} alt="more" style={{ width: "20px", height: "20px" }} />}
-            >
-                more
-            </Button>
-        </Box>
-        <Box display="flex" alignItems="center" justifyContent="center" sx={{gap:{xs: 1, sm: 2, md: 3, lg: 6, xl: 9}}} >
+                  gap: { xs: 35, sm: 60, md: 92, lg: 120, xl: 156 },
+              }}
+          >
+              {/* Typography برای News */}
+              <Typography
+                  sx={{
+                      fontSize: { xs: "14px", sm: "18px", md: "22px", lg: "26px", xl: "30px" },
+                      color: "#FFFFFF",
+                  }}
+              >
+                  News
+              </Typography>
+
+
+              <Button
+                  component={Link}
+                  to="/news"
+                  sx={{
+                      color: "#FFFFFF",
+                      textTransform: "none",
+                      fontSize: { xs: "12px", sm: "16px", md: "20px", lg: "24px", xl: "28px" },
+                      display: "flex",
+                      alignItems: "center",
+                      "&:hover": {
+                          backgroundColor: "transparent",
+                      },
+                  }}
+                  endIcon={<Box
+                      component="img"
+                      src={moreicn}
+                      alt="more"
+                      sx={{
+                          width: { xs: "10px", sm: "15px", md: "19px", lg: "21px", xl: "22px" },
+                          height: { xs: "10px", sm: "15px", md: "19px", lg: "21px", xl: "22px" },
+                      }}
+                  />}
+              >
+                  more
+              </Button>
+          </Box>
+        <Box display="flex" alignItems="center" justifyContent="center" sx={{gap:{xs: 1, sm: 1, md: 3, lg: 6, xl: 9}}} >
           {newsItems.map((item) => (
             <Box
               key={item.id}
               sx={{
-                  width: { xs: '126px', sm: '210px', md: '280px', lg: '345px', xl: '430px' },
+                  width: { xs: '126px', sm: '200px', md: '280px', lg: '345px', xl: '430px' },
                   height: { xs: '200px', sm: '293px', md: '391px', lg: '488px', xl: '600px' },
                 position: "relative",
                 borderRadius: "20px",

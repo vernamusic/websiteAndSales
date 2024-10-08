@@ -171,8 +171,8 @@ const ProductBox = () => {
                     sx={{
                         position: 'relative',
                         flexDirection: 'column',
-                        width: {xs:'150px',sm:'230px',md: '300px', lg: '400px', xl: '470px'},
-                        height: {xs:'300px',sm:'400px',md: '500px', lg: '650px', xl: '820px'},
+                        width: {xs:'150px',sm:'200px',md: '300px', lg: '400px', xl: '470px'},
+                        height: {xs:'300px',sm:'380px',md: '500px', lg: '650px', xl: '820px'},
                         display: 'flex',
                     }}
                 >
@@ -180,7 +180,7 @@ const ProductBox = () => {
                         sx={{
                             position: 'relative',
                             Bottom: '100%',
-                            right: '35%',
+                            right: {md:'35%',sm:'15%',xs:'20%'},
                             width: '100%',
                             height: '100%',
                             borderRadius: '0 0 30px 30px',
