@@ -32,6 +32,7 @@ const ContactBox = () => {
             <Box
                 sx={{
                     width: '100vw',
+                    height: '95vh',
                     position: 'relative',
                     backgroundImage: `linear-gradient(90deg, rgba(0, 0, 0, 0.5) 14.54%, rgba(0, 0, 0, 0.4) 23.41%, rgba(0, 0, 0, 0.3) 40.86%, rgba(0, 0, 0, 0.1) 100%), url(${backgroundImage})`,
                     backgroundSize: 'cover',

@@ -5,9 +5,10 @@ import backgroundImage from '/src/assets/learningpic.png';
 
 const theme = createTheme({
     typography: {
+        fontFamily: 'Sen, Arial, sans-serif',
         h6: {
             fontFamily: 'sen',
-            fontSize: { xs: '15px', sm: '18px', md: '20px', lg: '22px', xl: '26px' },
+            fontSize: { xs: '10px', sm: '13px', md: '16px', lg: '21px', xl: '26px' },
             color: "#F1F1F1",
             letterSpacing: '0.4px',
             lineHeight: 'normal',
@@ -21,7 +22,7 @@ const theme = createTheme({
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: { xs: '15px', sm: '15px', md: '16px', lg: '20px', xl: '22px' },
+            fontSize: { xs: '9.5px', sm: '13px', md: '18px', lg: '20px', xl: '22px' },
             color: "#FFFFFF",
         },
     },
@@ -44,23 +45,27 @@ const LearningBox = () => {
                 <Box
                     sx={{
                         position: 'relative',
-                        zIndex: 1,
-                        ml: { xs: 5, sm: 10, md: 20, lg: 25, xl: 38 },
-                        mt: { xs: 10, sm: 10, md: 20, lg: 25, xl: 38 },
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'flex-start',
+                        height:'100%',
+                        ml: { xs: 5, sm: 10, md: 15, lg: 25, xl: 38 },
+                        gap: {xs: 1, sm: 1, md: 1.5, lg: 2, xl: 2,},
                     }}
                 >
                     <Typography
                         sx={{
+                            width: { xs: '200px', sm: '230px', md: '250px', lg: '300px',xl:'350px' },
                             ...theme.typography.h3,
                         }}
                     >
-                        The Professional <br/>
-                        Full-Stack Courses
+                        The Professional Full-Stack Courses
                     </Typography>
                     <Typography
                         sx={{
                             ...theme.typography.h6,
-                            width: { xs: '430px', sm: '500px', md: '560px', lg: '620px',xl:'720px' },
+                            width: { xs: '348px', sm: '445px', md: '540px', lg: '580px',xl:'720px' },
                             mt:1,
                         }}
                     >
@@ -71,13 +76,12 @@ const LearningBox = () => {
 
                             size="large"
                             sx={{
-                                mt:2,
                                 ...theme.typography.button,
                                 borderRadius: '4px',
                                 backgroundColor: '#B50304',
                                 textTransform: 'none',
-                                width: '14.8%',
-                                height: { xs: '30px', sm: '45px', md: '50px', lg: '55px', xl: '65px' },
+                                width:{ xs: '110px', sm: '135px', md: '170px', lg: '190px', xl: '220px' },
+                                height: { xs: '30px', sm: '37px', md: '48px', lg: '52px', xl: '58px' },
                                 '&:hover': {
                                     backgroundColor: '#B50304',
                                 },

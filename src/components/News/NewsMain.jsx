@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Box from '@mui/material/Box';
@@ -6,21 +6,23 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Mediacard from './Mediacard';
 import { Typography } from "@mui/material";
 import Allinonecard from './Allinonecard';
+import photo5 from '../../assets/news3.png'
 
 const theme = createTheme({
     typography: {
         h6: {
-            fontFamily: 'sen',
+            fontFamily:'sen',
             fontSize: { xs: '8px', sm: '11px', md: '17px', lg: '20px', xl: '24px' },
             lineHeight: 'normal',
             letterSpacing: '0.4px',
             color: "#F1F1F1",
             textTransform: 'none',
         },
+
         h3: {
             fontFamily: "Lato",
-            fontWeight: 700,
-            fontSize: { xs: '12px', sm: '18px', md: '24px', lg: '28px', xl: '32px' },
+            fontWeight:700,
+            fontSize: {xs: '12px', sm: '18px', md: '24px', lg: '28px', xl: '32px'},
             color: "#F1F1F1",
             textTransform: 'none',
         },
@@ -33,44 +35,86 @@ const theme = createTheme({
     },
 });
 
+const teamsData = [
+    {
+        team_name: "Top News",
+        members: [
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Hggggggggggggggggandles campaignsfgdfkjgnd kjdgn dfjk gdfkg kdnkgnkjdfnkkjdn gdfgdfgbdbdgrebgdbhrhrr  ebetgetgvb", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+        ]
+    },
+    {
+        team_name: "Latest News",
+        members: [
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+        ]
+    },
+    {
+        team_name: "Events News",
+        members: [
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
+        ]
+    }
+];
+
 const TeamMembers = () => {
-    const [teams, setTeams] = useState([]);
     const [selectedTeam, setSelectedTeam] = useState('view_all');
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        const fetchTeams = async () => {
-            const response = await fetch('https://site.vitruvianshield.com/api/v1/members');
-            const teamsData = await response.json();
-            setTeams(teamsData);
-            setData(teamsData); // Initialize data with all teams
-        };
-
-        fetchTeams();
-    }, []);
-
-    useEffect(() => {
-        if (selectedTeam === 'view_all') {
-            setData(teams); // Show all teams if "View All" is selected
-        } else {
-            const selectedMembers = teams.find(team => team.team_name === selectedTeam)?.members || [];
-            setData(selectedMembers); // Filter members based on selected team
-        }
-    }, [selectedTeam, teams]);
+    const [data, setData] = useState(teamsData);
 
     const handleToggle = (event, newSelection) => {
         if (newSelection !== null) {
             setSelectedTeam(newSelection);
+            if (newSelection === 'view_all') {
+                setData(teamsData); // Show all teams
+            } else {
+                const selectedTeamData = teamsData.find(team => team.team_name === newSelection)?.members || [];
+                setData(selectedTeamData); // Show members of the selected team
+            }
         }
     };
 
     const renderContent = () => {
         if (selectedTeam === 'view_all') {
             return (
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0, mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 }, }}>
-                    {teams.map(({ team_name, members }) => (
-                        <Box key={team_name} sx={{ width: '100%', mb: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 }, }}>
-                            <Typography gutterBottom sx={{ ...theme.typography.h3, pl: 1, mb: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 }, textAlign: 'left' }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },}}>
+                    {teamsData.map(({ team_name, members }) => (
+                        <Box key={team_name} sx={{ width: '100%' }}>
+                            <Typography gutterBottom sx={{ ...theme.typography.h3, pl: 1, mb: 3, textAlign: 'left' }}>
                                 {team_name}
                             </Typography>
                             <Mediacard data={members} />
@@ -80,11 +124,13 @@ const TeamMembers = () => {
             );
         } else {
             return (
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0, mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },}}>
-                    <Typography gutterBottom sx={{ ...theme.typography.h3, pl: 1, mb: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 }, textAlign: 'left' }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },}}>
+                    <Typography gutterBottom sx={{ ...theme.typography.h3, pl: 1, mb: 3, textAlign: 'left' }}>
                         {selectedTeam}
                     </Typography>
-                    <Allinonecard data={data} /> {/* Now passes only members data */}
+                    <Box sx={{ width: '100%',}}>
+                        <Allinonecard data={data} />
+                    </Box>
                 </Box>
             );
         }
@@ -92,12 +138,12 @@ const TeamMembers = () => {
 
     return (
         <ThemeProvider theme={theme}>
-            <Box sx={{ textAlign: 'left', }}>
+            <Box sx={{ textAlign: 'left',}}>
                 <Box sx={{ mt: '40px', textAlign: 'center' }}>
                     <Typography sx={{ ...theme.typography.h3 }}>
-                        MEET OUR TEAM
+                        NEWS
                     </Typography>
-                    <Typography sx={{ ...theme.typography.h6, mt: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 } }}>
+                    <Typography sx={{ ...theme.typography.h6,mt: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 } }}>
                         Meet our diverse team of world-class creators, designers, and problem solvers.
                     </Typography>
                 </Box>
@@ -107,7 +153,6 @@ const TeamMembers = () => {
                         justifyContent: 'center',
                         mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
                         maxHeight: '40px',
-                        maxWidth: '1220px',
                     }}
                 >
                     <ToggleButtonGroup
@@ -153,7 +198,7 @@ const TeamMembers = () => {
                                 '&:not(.Mui-selected)': {
                                     backgroundColor: '#0B0B0B',
                                     borderRadius: '6px',
-                                    border: '0.01px solid rgba(255, 255, 255, 0.15)',
+                                    border:'0.01px solid rgba(255, 255, 255, 0.2)',
                                     '&:hover': {
                                         backgroundColor: '#0B0B0B',
                                     },
@@ -164,7 +209,8 @@ const TeamMembers = () => {
                             View All
                         </ToggleButton>
 
-                        {teams.map(({ team_name }) => (
+
+                        {teamsData.map(({ team_name }) => (
                             <ToggleButton
                                 key={team_name}
                                 value={team_name}
@@ -197,7 +243,7 @@ const TeamMembers = () => {
                                     '&:not(.Mui-selected)': {
                                         backgroundColor: '#0B0B0B',
                                         borderRadius: '6px',
-                                        border: '0.01px solid rgba(255, 255, 255, 0.15)',
+                                        border:'0.01px solid rgba(255, 255, 255, 0.2)',
                                         '&:hover': {
                                             backgroundColor: '#0B0B0B',
                                         },
@@ -210,6 +256,7 @@ const TeamMembers = () => {
                         ))}
                     </ToggleButtonGroup>
                 </Box>
+
 
                 <Box width={'100%'}>
                     {renderContent()}

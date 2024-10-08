@@ -18,7 +18,13 @@ const Home = () => {
             <Box
                 sx={{
                     width: '100%',
-                    minHeight: { xs: '500px', md: '900px',}, // ارتفاع متغیر برای موبایل و دسکتاپ
+                    minHeight: {
+                        xs: '300px',
+                        sm: '450px',
+                        md: '540px',
+                        lg: '675px',
+                        xl: '900px',
+                    },
                     display: 'flex',
                     justifyContent: 'center',
                     bgcolor: 'black',
@@ -30,7 +36,13 @@ const Home = () => {
             <Box
                 sx={{
                     width: '100%',
-                    minHeight: { xs: '500px', md: '900px' }, // ارتفاع متغیر
+                    minHeight: {
+                        xs: '300px',
+                        sm: '450px',
+                        md: '540px',
+                        lg: '675px',
+                        xl: '900px',
+                    },
                     display: 'flex',
                     justifyContent: 'center',
                 }}
@@ -41,7 +53,13 @@ const Home = () => {
             <Box
                 sx={{
                     width: '100%',
-                    minHeight: { xs: '500px', md: '900px' }, // ارتفاع متغیر
+                    minHeight: {
+                        xs: '300px',
+                        sm: '450px',
+                        md: '540px',
+                        lg: '675px',
+                        xl: '900px',
+                    },
                     display: 'flex',
                     justifyContent: 'center',
                 }}
@@ -52,7 +70,13 @@ const Home = () => {
             {/* <Box
                 sx={{
                     width: '100%',
-                    minHeight: { xs: '500px', md: '900px' }, // ارتفاع متغیر
+                    minHeight: {
+                        xs: '300px',
+                        sm: '450px',
+                        md: '540px',
+                        lg: '675px',
+                        xl: '900px',
+                    },
                     display: 'flex',
                     justifyContent: 'center',
                 }}
@@ -63,7 +87,13 @@ const Home = () => {
             <Box
                 sx={{
                     width: '100%',
-                    minHeight: { xs: '500px', md: '700px' }, // ارتفاع متغیر
+                    minHeight: {
+                        xs: '300px',
+                        sm: '450px',
+                        md: '540px',
+                        lg: '675px',
+                        xl: '900px',
+                    },
                     display: 'flex',
                     justifyContent: 'center',
                 }}

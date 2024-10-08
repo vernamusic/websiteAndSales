@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Dialog, DialogTitle, Box, Slide, Fade, IconButton } from '@mui/material';
 import { Close } from '@mui/icons-material';
-import LoginDialog from '../components/SignUp/Login';
-import ForgotPasswordDialog from '../components/SignUp/ForgetPassword';
-import VerificationEmailDialog from '../components/SignUp/Verification';
+import LoginDialog from './Login.jsx';
+import ForgotPasswordDialog from './ForgetPassword.jsx';
+import VerificationEmailDialog from './Verification.jsx';
 
 const MainDialog = ({ open, onClose }) => {
     const [dialogMode, setDialogMode] = useState('login'); // تغییر به 'login' به‌عنوان حالت پیش‌فرض

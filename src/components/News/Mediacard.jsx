@@ -9,7 +9,6 @@ import {
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useSwipeable } from "react-swipeable";
-import linkedin from "../../assets/linkedin.png";
 
 const theme = createTheme({
     typography: {
@@ -25,7 +24,7 @@ const theme = createTheme({
         h3: {
             fontFamily: "Lato",
             fontWeight:700,
-            fontSize: {xs: '11.5px', sm: '13px', md: '20px', lg: '25px', xl: '29px'},
+            fontSize: {xs: '8px', sm: '13px', md: '20px', lg: '25px', xl: '29px'},
             color: "#F1F1F1",
             textTransform: 'none',
         },
@@ -70,11 +69,11 @@ const Mediacard = ({ data }) => {
 
     // محاسبه عرض کارت‌ها بر اساس سایز صفحه
     const widthOfCard = useMemo(() => {
-        if (window.innerWidth < 600) return 149; // xs
-        if (window.innerWidth < 900) return 216.5; // sm
-        if (window.innerWidth < 1200) return 299; // md
-        if (window.innerWidth < 1536) return 368; // lg
-        return 404; // xl
+        if (window.innerWidth < 600) return 133; // xs
+        if (window.innerWidth < 900) return 199.45; // sm
+        if (window.innerWidth < 1200) return 266; // md
+        if (window.innerWidth < 1536) return 336; // lg
+        return 472; // xl
     }, [window.innerWidth]);
 
     return (
@@ -94,11 +93,11 @@ const Mediacard = ({ data }) => {
                     sx={{
                         overflow: "hidden",
                         maxWidth: {
-                            xs: "450px",
-                            sm: "650px",
-                            md: "900px",
-                            lg: "1100px",
-                            xl: "1200px",
+                            xs: "400px",
+                            sm: "600px",
+                            md: "800px",
+                            lg: "1000px",
+                            xl: "1400px",
                         },
                     }}
                 >
@@ -109,150 +108,98 @@ const Mediacard = ({ data }) => {
                         sx={{
                             transform: `translateX(-${currentIndex * (widthOfCard + gap)}px)`,  // استفاده از عرض کارت و فاصله
                             transition: "transform 0.6s ease-in-out",
-                            gap:{xs: 1, sm: 1.5, md: 2, lg: 3, xl: 5,}
+                            gap:{xs: 1, sm: 1.5, md: 2, lg: 3, xl: 6,}
                         }}
                     >
                         {data.map((box, index) => (
                             <Box
                                 key={index}
                                 sx={{
-                                    width: { xs: '142px', sm: '206px', md: '285px', lg: '347px', xl: '370px' },
-                                    height: { xs: '230px', sm: '334px', md: '462px', lg: '564px', xl: '600px' },
+                                    width: { xs: '126px', sm: '189px', md: '252px', lg: '315px', xl: '430px' },
+                                    height: { xs: '200px', sm: '265px', md: '390px', lg: '488px', xl: '600px' },
                                     position: "relative", // Position relative to allow absolute positioning of inner boxes
                                     borderRadius: "20px",
                                     color: "white",
                                     overflow: "hidden",
-                                    alignItems: "center",
-                                    border:'0.01px solid rgba(255, 255, 255, 0.2)',
-                                    backgroundColor: "#0A0A0A",
+                                    backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 46.58%, rgba(0, 0, 0, 0.472485) 56.73%, rgba(0, 0, 0, 0.9) 66.51%), url(${box.photo})`,
+                                    backgroundSize: "cover",
+                                    backgroundPosition: "center",
+                                    backgroundRepeat: "no-repeat",
                                 }}
                             >
                                 <Box
                                     sx={{
-                                        position: "absolute",
+                                        position: "absolute", // Keep the main box as relative
                                         width: "100%",
-                                        height: '50%',
-                                        top:'0',
-                                        zIndex:2,
-                                        backgroundImage:`url(${box.photo})`,
-                                        backgroundSize: "cover",
-                                        backgroundRepeat: 'no-repeat',
-                                        backgroundPosition:'center top',
-                                        justifyItem: "center",
-                                    }}
-                                >
-                                    <Box
-                                        width='20%'
-                                        height='25%'
-                                        onClick={box.linked_in ? () => window.open(box.linked_in, "_blank") : null}
-                                        sx={{
-                                            position: "absolute",
-                                            bottom: "-11%",
-                                            backgroundColor: box.linked_in ? "#B50304" : "#4c4c4c",
-                                            borderRadius: "50%",
-                                            display: "flex",
-                                            justifyContent: "center",
-                                            alignItems: "center",
-                                            zIndex: 1,
-                                            cursor: box.linked_in ? "pointer" : "default",
-                                            transition: "background-color 0.3s, transform 0.3s",
-                                            right: "40%",
-                                            '&:hover': {
-                                                backgroundColor: box.linked_in ? "#A50203" : "#4c4c4c",
-                                                transform: box.linked_in ? "scale(1.1)" : "none",
-                                            },
-                                        }}
-                                    >
-                                        <img
-                                            src={linkedin}
-                                            alt="LinkedIn"
-                                            style={{
-                                                width: "60%",
-                                                filter: box.linked_in ? "none" : "grayscale(100%) brightness(0) invert(1)",
-                                            }}
-                                        />
-                                        {!box.linked_in && (
-                                            <Box
-                                                sx={{
-                                                    position: "absolute",
-                                                    width: "100%",
-                                                    height: "100%",
-                                                    backgroundColor: "#736f6f", // رنگ خاکستری خاص
-                                                    borderRadius: "50%",
-                                                    opacity: 0.5, // تنظیم شفافیت
-                                                }}
-                                            />
-                                        )}
-                                    </Box>
-
-                                </Box>
-                                <Box
-                                    sx={{
-                                        position: "absolute",
-                                        width: "100%",
-                                        height: '40%',
+                                        height: '37%', // Ensure the main box has a fixed height
                                         bottom: '0',
                                     }}
                                 >
-
+                                    {/* Box for Text (Top Aligned) */}
                                     <Box
                                         sx={{
+                                            position: "absolute",
+                                            top: '0', // Fixed position from the top of the parent box
+                                            width: '100%',
                                             display: "flex",
-                                            justifyContent: "center",
-                                            width: "100%",
+                                            flexDirection: "column",
+                                            alignItems: "flex-start", // Align content to the left
+                                            ml:{xs:1, sm: 2, md: 3, lg: 3, xl: 4,},
+
                                         }}
                                     >
                                         <Typography
                                             sx={{
                                                 ...theme.typography.h3,
-                                                textAlign: "center",
-                                                maxWidth: '90%',
                                             }}
                                         >
-                                            {box.full_name}
+                                            {box.title}
                                         </Typography>
-                                    </Box>
-
-                                    {/* Job */}
-                                    <Box
-                                        sx={{
-                                            display: "flex",
-                                            justifyContent: "center",
-                                            width: "100%",
-                                            mt: 2, // Add margin-top to space out
-                                        }}
-                                    >
                                         <Typography
                                             sx={{
+                                                mt: {xs:0.1, sm: 0.2, md: 0.4, lg: 0.6, xl: 0.8,},
                                                 ...theme.typography.h6,
-                                                textAlign: "center",
-                                                maxWidth: '80%',
+                                                width: { xs: '120px', sm: '189px', md: '200px', lg: '270px', xl: '350px' },
                                             }}
                                         >
-                                            {box._job}
+                                            {box.details.length > 50
+                                                ? `${box.details.substring(0, 80)}...`
+                                                : box.details}
                                         </Typography>
                                     </Box>
 
-                                    {/* Details */}
+                                    {/* Box for Button (Bottom Aligned) */}
                                     <Box
                                         sx={{
+                                            position: "absolute",
+                                            bottom: '0', // Fixed position from the bottom of the parent box
+                                            width: '100%',
                                             display: "flex",
-                                            justifyContent: "center",
-                                            width: "100%",
-                                            mt: 3, // Add margin-top to space out
+                                            alignContent: "flex-start",
+
                                         }}
                                     >
-                                        <Typography
+                                        <Button
+                                            variant="contained"
                                             sx={{
-                                                ...theme.typography.h6,
-                                                textAlign: "center",
-                                                maxWidth: '80%',
+                                                borderRadius: "6px",
+                                                backgroundColor: "transparent",
+                                                textTransform: "none",
+                                                ml:{xs:1, sm: 2, md: 3, lg: 3, xl: 4,},
+                                                mb:{xs:0.5, sm: 2, md: 2.5, lg: 2.5, xl: 3,},
+                                                width: { xs: '20px',sm: '55px', md: '80px', lg: '100px', xl: '125px' },
+                                                height: { xs: '20px', sm: '20px', md: '30px', lg: '35px', xl: '45px' },
+                                                ...theme.typography.button,
+                                                border: "1px solid rgba(255, 255, 255, 0.8)", // Border around the button
+                                                "&:hover": {
+                                                    backgroundColor: "#000000", // Background color on hover
+                                                    opacity: 0.8, // Optional: slightly reduce opacity on hover
+                                                },
                                             }}
                                         >
-                                            {box.details}
-                                        </Typography>
+                                            See more
+                                        </Button>
                                     </Box>
-
                                 </Box>
 
                             </Box>

@@ -9,10 +9,11 @@ import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
     typography: {
+        // می‌توانید تنظیمات تایپوگرافی را اینجا قرار دهید
     },
 });
 
-const LoginForm = ({ onForgotPassword, onLoginSuccess }) => {
+const AuthForm = ({ onForgotPassword, onLoginSuccess }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -22,22 +23,29 @@ const LoginForm = ({ onForgotPassword, onLoginSuccess }) => {
 
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleMouseDownPassword = (event) => event.preventDefault();
+
     const handleEmailChange = (event) => setEmail(event.target.value);
     const handlePasswordChange = (event) => setPassword(event.target.value);
 
     const validateEmail = (email) => /\S+@\S+\.\S+/.test(email);
 
+    const showSnackbar = (message, severity) => {
+        setSnackbarMessage(message);
+        setSnackbarSeverity(severity);
+        setOpenSnackbar(true);
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
+
         if (!validateEmail(email)) {
-            setSnackbarMessage('Please enter a valid email address.');
-            setSnackbarSeverity('error');
-            setOpenSnackbar(true);
+            showSnackbar('Please enter a valid email address.', 'error');
             return;
         }
 
         try {
-            const response = await fetch('https://site.vitruvianshield.com/api/v1/register/', {
+            // ابتدا تلاش برای ورود به سیستم
+            const loginResponse = await fetch('https://site.vitruvianshield.com/api/v1/token/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -45,19 +53,40 @@ const LoginForm = ({ onForgotPassword, onLoginSuccess }) => {
                 body: JSON.stringify({ email, password }),
             });
 
-            const data = await response.json();
-            if (response.ok) {
-                localStorage.setItem('authToken', data.token);
+            const loginData = await loginResponse.json();
+
+            if (loginResponse.status === 200) {
+                // ورود موفقیت‌آمیز
+                localStorage.setItem('authToken', loginData.token);
                 onLoginSuccess();
+                showSnackbar('Login successful!', 'success');
+            } else if (loginResponse.status === 401) {
+                // اگر وضعیت 400 بود، ثبت‌نام انجام شود
+                showSnackbar('User not found. Registering...', 'info');
+
+                const registerResponse = await fetch('https://site.vitruvianshield.com/api/v1/register/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password }),
+                });
+
+                const registerData = await registerResponse.json();
+
+                if (registerResponse.status === 201) {
+                    // ثبت‌نام موفقیت‌آمیز
+                    localStorage.setItem('authToken', registerData.token);
+                    onLoginSuccess();
+                    showSnackbar('Registration successful!', 'success');
+                } else {
+                    showSnackbar(registerData.message || 'Registration failed. Please try again.', 'error');
+                }
             } else {
-                setSnackbarMessage(data.message || 'Login failed. Please try again.');
-                setSnackbarSeverity('error');
-                setOpenSnackbar(true);
+                showSnackbar(loginData.message || 'Login failed. Please check your credentials.', 'error');
             }
         } catch (error) {
-            setSnackbarMessage('Login failed. Please try again.');
-            setSnackbarSeverity('error');
-            setOpenSnackbar(true);
+            showSnackbar('An unexpected error occurred. Please try again.', 'error');
         }
     };
 
@@ -99,6 +128,7 @@ const LoginForm = ({ onForgotPassword, onLoginSuccess }) => {
                         aria-label="Email address"
                     />
                 </FormControl>
+
                 <FormControl variant="outlined" fullWidth sx={{ mb: 4 }}>
                     <InputLabel
                         htmlFor="password-input"
@@ -144,6 +174,7 @@ const LoginForm = ({ onForgotPassword, onLoginSuccess }) => {
                         aria-label="Password"
                     />
                 </FormControl>
+
                 <Box display="flex" justifyContent="left" width="380px">
                     <Link
                         href="#"
@@ -155,6 +186,7 @@ const LoginForm = ({ onForgotPassword, onLoginSuccess }) => {
                         Forgot your password?
                     </Link>
                 </Box>
+
                 <Button
                     variant="contained"
                     type="submit"
@@ -167,7 +199,7 @@ const LoginForm = ({ onForgotPassword, onLoginSuccess }) => {
                         },
                     }}
                 >
-                    Log in
+                    Log in / Sign Up
                 </Button>
             </form>
 
@@ -184,9 +216,9 @@ const LoginForm = ({ onForgotPassword, onLoginSuccess }) => {
     );
 };
 
-LoginForm.propTypes = {
+AuthForm.propTypes = {
     onForgotPassword: PropTypes.func.isRequired,
     onLoginSuccess: PropTypes.func.isRequired,
 };
 
-export default LoginForm;
+export default AuthForm;

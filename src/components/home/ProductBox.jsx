@@ -12,7 +12,7 @@ const theme = createTheme({
         fontFamily: 'Sen, Arial, sans-serif',
         h6: {
             fontFamily: 'sen',
-            fontSize: { xs: '15px', sm: '18px', md: '20px', lg: '22px', xl: '26px' },
+            fontSize: { xs: '10px', sm: '13px', md: '16px', lg: '21px', xl: '26px' },
             color: "#F1F1F1",
             letterSpacing: '0.4px',
             lineHeight: 'normal',
@@ -31,17 +31,16 @@ const theme = createTheme({
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: { xs: '10px', sm: '16px', md: '18px', lg: '20px', xl: '24px' },
+            fontSize: { xs: '9.5px', sm: '13px', md: '18px', lg: '20px', xl: '22px' },
             color: "#FFFFFF",
         },
     },
 });
 
-// Define URLs for each product
 const proItems = [
-    { id: '1', image: pro1, url: '/products/mobile-app' },
-    { id: '2', image: pro2, url: '/products/smart-watch' },
-    { id: '3', image: pro3, url: '/products/dashboard' },
+    { id: '1', title: "The Mobile App",  image: pro1, url: '/products/mobile-app', description: "An easy and intuitive way to share your data with all professionals in charge of providing you with after-care and medical follow-up.", },
+    { id: '2', title: "Web Application", image: pro2, url: '/products/smart-watch',description: "An easy and intuitive way to share your data with all professionals in charge of providing you with after-care and medical follow-up." },
+    { id: '3', title: "Desktop Platform",image: pro3, url: '/products/dashboard',  description: "An easy and intuitive way to share your data with all professionals in charge of providing you with after-care and medical follow-up." },
 ];
 
 const ProductBox = () => {
@@ -72,36 +71,46 @@ const ProductBox = () => {
         <ThemeProvider theme={theme}>
             <Box sx={{
                 width: '100%',
+                height: '100%',
                 display: 'flex',
-                flexDirection: {xs: 'column', md: 'row'},
+                flexDirection: {xs: 'row', md: 'row'},
                 justifyContent: 'space-between',
                 alignItems: 'center',
+
             }}>
-                <Box sx={{
-                    width: {xs: '250px', sm: '300px', md: '430px', lg: '480px', xl: '530px'},
+                <Box
+                    key={animateKey}
+                    sx={{
+                    width: {xs: '210px', sm: '270px', md: '335px', lg: '430px', xl: '530px'},
                     ml: {xs: 5, sm: 10, md: 15, lg: 25, xl: 38},
-                    mt: {xs: 5, sm: 10, md: 17, lg: 20, xl: 33},
                     display: 'flex',
                     flexDirection: 'column',
+                    gap: {xs: 1, sm: 1, md: 1.5, lg: 2, xl: 2,},
                 }}>
-                    <Box sx={{mb: 5}}>
-                        <Typography sx={{...theme.typography.h3}}>
-                            The Mobile App
-                        </Typography>
-                        <Typography sx={{
-                            ...theme.typography.h6,
-                            mt: 3,
-                            width: '100%',
-                        }}>
-                            An easy and intuitive way to share your data with all professionals in charge of providing
-                            you with after-care and medical follow-up.
-                        </Typography>
-                    </Box>
-                    <Box display="flex" alignItems="center" gap={3}>
+                    {/* متن عنوان بر اساس currentIndex */}
+                    <Typography sx={{
+                        ...theme.typography.h3,
+                        animation: 'fadeLeft 0.8s ease-in-out',
+                    }}>
+                        {proItems[currentIndex].title}
+                    </Typography>
+
+                    <Typography sx={{
+                        ...theme.typography.h6,
+                        width: '100%',
+                        animation: 'fadeLeft 0.7s ease-in-out',
+                        pb: {xs: 1, sm: 1, md: 1.5, lg: 2, xl: 2,},
+                    }}>
+                        {proItems[currentIndex].description}
+                    </Typography>
+
+                    <Box display="flex" alignItems="center" sx={{gap:{xs: 1, sm: 1, md: 1.5, lg: 2, xl: 3,}}}>
                         {proItems.map((item, index) => (
                             <Box
                                 key={item.id}
                                 sx={{
+                                    position:'relative',
+                                    overflow: 'hidden',
                                     width: {xs: '80px', sm: '100px', md: '110px', lg: '120px', xl: '135px'},
                                     height: {xs: '70px', sm: '90px', md: '100px', lg: '110px', xl: '120px'},
                                     backgroundImage: `linear-gradient(360deg, rgba(20, 20, 20, 0.05) 0%, rgba(255, 255, 255, 0.1) 100%), url(${item.image})`,
@@ -111,15 +120,33 @@ const ProductBox = () => {
                                     borderRadius: '8px',
                                     cursor: 'pointer',
                                     border: currentIndex === index ? '1px solid #B50304' : '1px solid #000000',
+                                    animation: currentIndex === index ? 'borderExpand 0.5s ease' : 'none',
                                     display: 'flex',
+                                    transition: 'border 0.2s ease',
                                     alignItems: 'center',
                                     justifyContent: 'center',
+                                    gap:{xs: 1, sm: 1, md: 1.5, lg: 2, xl: 2,},
+                                    '@keyframes borderExpand': {
+                                        '0%': {
+                                            borderWidth: '1px',
+                                            borderOpacity: 0, // شفافیت در حالت ابتدایی
+                                        },
+                                        '50%': {
+                                            borderWidth: '4px', // عرض مرز در حالت میانی
+                                            borderOpacity: 1, // شفافیت در حالت میانی
+                                        },
+                                        '100%': {
+                                            borderWidth: '1px',
+                                            borderOpacity: 0, // شفافیت در حالت پایانی
+                                        },
+                                    },
                                 }}
                                 onClick={() => handleProductClick(index)}
                             />
                         ))}
-                    </Box>
-                    <Button
+                </Box>
+
+                <Button
                         variant="contained"
                         size="large"
                         sx={{
@@ -128,8 +155,8 @@ const ProductBox = () => {
                             borderRadius: '4px',
                             backgroundColor: '#B50304',
                             textTransform: 'none',
-                            width: '48%',
-                            height: {xs: '30px', sm: '45px', md: '50px', lg: '55px', xl: '65px'},
+                            width:{ xs: '100px', sm: '135px', md: '170px', lg: '190px', xl: '220px' },
+                            height: { xs: '30px', sm: '37px', md: '48px', lg: '52px', xl: '58px' },
                             '&:hover': {
                                 backgroundColor: '#B50304',
                             },
@@ -144,16 +171,16 @@ const ProductBox = () => {
                     sx={{
                         position: 'relative',
                         flexDirection: 'column',
-                        width: {md: '300px', lg: '400px', xl: '470px'},
-                        height: {md: '500px', lg: '650px', xl: '820px'},
-                        display: {xs: 'none', sm: 'none', md: 'flex'},
+                        width: {xs:'150px',sm:'230px',md: '300px', lg: '400px', xl: '470px'},
+                        height: {xs:'300px',sm:'400px',md: '500px', lg: '650px', xl: '820px'},
+                        display: 'flex',
                     }}
                 >
                     <Box
                         sx={{
                             position: 'relative',
                             Bottom: '100%',
-                            right: '25%',
+                            right: '35%',
                             width: '100%',
                             height: '100%',
                             borderRadius: '0 0 30px 30px',
@@ -178,31 +205,29 @@ const ProductBox = () => {
                         <Box
                             display="flex"
                             justifyContent="center"
+
                             position="absolute"
-                            bottom={'4%'}
-                            right={'38%'}
-                            gap={-1}
+                            bottom={'5%'}
+                            right={'40%'}
                             zIndex={3}
+                            sx={{gap:{xs: 0.5, sm: 1.5, md: 3, lg: 5, xl: 6,}}}
                         >
                             <IconButton
                                 onClick={handlePrev}
                                 sx={{
                                     '&:hover': {backgroundColor: 'transparent'},
-                                    width: '50px',
-                                    height: '50px',
+
                                 }}
                             >
-                                <img src={previousarrow} alt="Previous" style={{width: '100%'}}/>
+                                <img src={previousarrow} alt="Previous" style={{width:'2.5vw', position:"absolute"}}/>
                             </IconButton>
                             <IconButton
                                 onClick={handleNext}
                                 sx={{
                                     '&:hover': {backgroundColor: 'transparent'},
-                                    width: '50px',
-                                    height: '50px',
                                 }}
                             >
-                                <img src={nextarrow} alt="Next" style={{width: '100%'}}/>
+                                <img src={nextarrow} alt="Next" style={{width:'2.5vw',position:"absolute"}}/>
                             </IconButton>
                         </Box>
                     </Box>

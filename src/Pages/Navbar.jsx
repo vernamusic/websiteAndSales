@@ -7,7 +7,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import logo from '../assets/redvslogo.svg';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import searchimg from '../assets/searchicon.png';
-import SignUpDialog from './SignUpDialog'; // Import the SignUpDialog component
+import SignUpDialog from '../components/SignUp/SignUpDialog.jsx'; // Import the SignUpDialog component
 
 const theme = createTheme({
     typography: {
@@ -89,9 +89,9 @@ const Navbar = React.memo((props) => {
     const pages = [
         { name: 'Home', path: '/', disabled: false },
         { name: 'Products', path: '/products', disabled: false },
-        { name: 'Company', path: '/companies', disabled: true },
+        { name: 'Company', path: '/company', disabled: false },
         { name: 'Learning', path: '/learning', disabled: true },
-        { name: 'News', path: '/news', disabled: true },
+        { name: 'News', path: '/news', disabled: false },
         { name: 'About Us', path: '/about', disabled: false }
     ];
 
