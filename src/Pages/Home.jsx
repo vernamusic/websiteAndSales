@@ -4,7 +4,7 @@ import ProductBox from '../components/home/ProductBox';
 import RegBox from '../components/home/RegBox';
 import NewsBox from '../components/home/NewsBox';
 import SideBox from '../components/home/SideBox';
-import LearningBox from "../components/home/LearningBox.jsx";
+// import LearningBox from "../components/home/LearningBox.jsx";
 
 const Home = () => {
     return (
@@ -49,7 +49,7 @@ const Home = () => {
                 <SideBox />
             </Box>
 
-            <Box
+            {/* <Box
                 sx={{
                     width: '100%',
                     minHeight: { xs: '500px', md: '900px' }, // ارتفاع متغیر
@@ -58,7 +58,7 @@ const Home = () => {
                 }}
             >
                 <LearningBox />
-            </Box>
+            </Box> */}
 
             <Box
                 sx={{
