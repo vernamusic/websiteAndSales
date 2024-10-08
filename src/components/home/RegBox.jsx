@@ -7,7 +7,7 @@ const theme = createTheme({
     typography: {
         h6: {
             fontFamily: 'sen',
-            fontSize: { xs: '15px', sm: '18px', md: '20px', lg: '22px', xl: '26px' },
+            fontSize: { xs: '10px', sm: '13px', md: '16px', lg: '21px', xl: '26px' },
             color: "#F1F1F1",
             letterSpacing: '0.4px',
             lineHeight: 'normal',
@@ -21,12 +21,12 @@ const theme = createTheme({
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: { xs: '10px', sm: '18px', md: '20px', lg: '22px', xl: '26px' },
+            fontSize: { xs: '10px', sm: '15px', md: '18px', lg: '20px', xl: '22px' },
             color: "#FFFFFF",
         },
         form: {
             fontFamily: 'Inter',
-            fontSize: { xs: '12px', sm: '15px', md: '18px', lg: '20px', xl: '22px' },
+            fontSize: { xs: '10px', sm: '15px', md: '18px', lg: '20px', xl: '22px' },
             fontWeight: 400,
         },
 
@@ -39,11 +39,10 @@ const RegBox = () => {
             <Box
                 sx={{
                     width: '100vw',
-                    height: '95vh',
                     position: 'relative',
                     backgroundImage: `linear-gradient(90deg, rgba(0, 0, 0, 0.738) 14.54%, rgba(0, 0, 0, 0.686) 23.41%, rgba(0, 0, 0, 0.584) 40.86%, rgba(0, 0, 0, 0.164) 100%), url(${backgroundImage})`,
                     backgroundSize: 'cover',
-                    backgroundPosition: 'center',
+                    backgroundPosition: 'top right',
                     backgroundRepeat: 'no-repeat',
                   }}
                   
@@ -51,8 +50,13 @@ const RegBox = () => {
                 <Box
                     sx={{
                         position: 'relative',
-                        ml: { xs: 5, sm: 10, md: 20, lg: 25, xl: 38 },
-                        mt: { xs: 10, sm: 10, md: 20, lg: 25, xl: 38 },
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'flex-start',
+                        gap: {xs: 1, sm: 1, md: 1.5, lg: 2, xl: 2,},
+                        height: '100%',
+                        pl:{ xs: 5, sm: 10, md: 20, lg: 25, xl: 38 },
                     }}
                 >
                     <Typography
@@ -65,9 +69,7 @@ const RegBox = () => {
                     <Typography
                         sx={{
                             ...theme.typography.h6,
-                            mt: 2,
-                            mb: 1.5,
-                            width: { xs: '350px', sm: '430px', md: '480px', lg: '500px',xl:'625px' },
+                            width: { xs: '250px', sm: '310px', md: '380px', lg: '500px',xl:'625px' },
                         }}
                     >
                         Vitruvian Shield aims to significantly improve the quality of life of patients in their daily life outside of the hospital by offering a solution which monitors your health signals with medically certified precision                    </Typography>
@@ -79,7 +81,6 @@ const RegBox = () => {
                             justifyContent:'space-between',
                             width: { xs: '300px', sm: '450px', md: '530px', lg: '600px', xl: '690px' },
                             height: { xs: '30px', sm: '45px', md: '50px', lg: '55px', xl: '65px' },
-                            mt: 2,
                             gap:'4%',
                         }}
                     >
@@ -88,23 +89,28 @@ const RegBox = () => {
                             fullWidth
                             sx={{
                                 height: '100%',
+                                display: 'flex',
+                                justifyContent: 'center', // برای وسط‌چین کردن محتوا در محور y
                             }}
                         >
                             <InputLabel
                                 htmlFor="email-input"
                                 sx={{
-                                    pl: '15px',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    textAlign: 'left',
-                                    textJustify: 'center',
+                                    position: 'absolute', // برای قرار دادن لیبل در مرکز
+                                    top: '25%', // از بالا 50% فاصله
+                                    left:'2%',
+                                    transform: 'translateY(0%)', // برای وسط‌چین کردن در محور y
+                                    textAlign: 'center',
                                     ...theme.typography.form,
                                     color: '#000000',
+                                    opacity: 1,
+                                    transition: 'opacity 0.4s ease-in-out, transform 0.4s ease-in-out',
+
                                     '&.MuiInputLabel-shrink': {
-                                        transform: 'translate(3px, 0.3px) scale(0.5)',
-                                        transition: 'transform 0.2s ease-in-out, color 0.2s ease-in-out',
-                                        color: '#ec0000',
-                                    },
+                                        opacity: 0,
+                                        transform: 'translateX(100%)', // تغییر به موقعیت اصلی (سمت چپ)
+                                        color: '#ec0000', // تغییر رنگ در حالت shrink
+                                    }
                                 }}
                             >
                                 Email address
@@ -117,17 +123,19 @@ const RegBox = () => {
                                     borderRadius: '6px',
                                     height: '100%',
                                     display: 'flex',
-                                    alignItems: 'center',
-                                    fontSize: '20px',
+                                    alignItems: 'center', // برای عمودی وسط‌چین کردن متن ورودی
+                                    justifyContent: 'center', // برای وسط‌چین کردن متن ورودی در محور y
+                                    ...theme.typography.form,
                                     '& input': {
                                         height: '100%',
+                                        textAlign: 'start', // متن ورودی وسط چین شود
                                     },
                                     '&:hover .MuiOutlinedInput-notchedOutline': {
                                         borderColor: '#a80d0d',
                                     },
                                     '&.Mui-focused': {
                                         '& input': {
-                                            fontSize: '20px',
+                                            ...theme.typography.form,
                                         },
                                         '& .MuiOutlinedInput-notchedOutline': {
                                             borderColor: '#a80d0d',
@@ -137,6 +145,7 @@ const RegBox = () => {
                                 }}
                             />
                         </FormControl>
+
                         <Button
                             variant="contained"
                             sx={{
