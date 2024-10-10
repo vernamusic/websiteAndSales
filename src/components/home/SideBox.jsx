@@ -32,6 +32,7 @@ const SideBox = () => {
             alignItems: 'center',
             position: 'relative',
 
+
         }}>
             <Box
                 sx={{
@@ -40,8 +41,9 @@ const SideBox = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'flex-start',
-                    justifyContent: 'flex-start',
+                    justifyContent: {xs:'center',sm:'flex-start'},
                     textAlign: 'left',
+                    mt:{xs:1.2,sm:0},
                     ml: {xs: 5, sm: 10, md: 15, lg: 25, xl: 38},
                     gap: { xs: 1, sm: 1, md: 1.5, lg: 2, xl: 3 },
                     width: { xs: '230px', sm: '300px', md: '430px', lg: '480px', xl: '580px' },
@@ -50,11 +52,12 @@ const SideBox = () => {
                 <img
                     src={Vname}
                     alt="Vname"
-                    style={{ width: '100%' }}
+                    style={{ width: '85%' }}
                 />
                 <Typography
                     color="white"
                     sx={{
+                        display:{xs:'none',sm:'block'},
                         ...theme.typography.h6,
                         width: { xs: '240px', sm: '300px', md: '400px', lg: '480px', xl: '580px' },
                     }}
@@ -71,8 +74,8 @@ const SideBox = () => {
                         borderRadius: '4px',
                         backgroundColor: '#B50304',
                         textTransform: 'none',
-                        width: { xs: '110px', sm: '135px', md: '170px', lg: '190px', xl: '220px' },
-                        height: { xs: '30px', sm: '37px', md: '48px', lg: '52px', xl: '58px' },
+                        width: { xs: '106px', sm: '135px', md: '170px', lg: '190px', xl: '220px' },
+                        height: { xs: '25px', sm: '37px', md: '48px', lg: '52px', xl: '58px' },
                         '&:hover': {
                             backgroundColor: '#B50304',
                         },
@@ -91,8 +94,8 @@ const SideBox = () => {
                     right:{md:'8%',sm:'2%',xs:'4%'},
                     top:{md:'0%',sm:'15%'},
                     alignItems: 'center',
-                    width: { xs: '180px', sm: '220px', md: '300px', lg: '400px', xl: '470px' },
-                    height: { xs: '180px', sm: '220px', md: '500px', lg: '650px', xl: '820px' },
+                    width: { xs: '120px', sm: '220px', md: '300px', lg: '400px', xl: '470px' },
+                    height: { xs: '120px', sm: '220px', md: '500px', lg: '650px', xl: '820px' },
                 }}
             >
                 <img
