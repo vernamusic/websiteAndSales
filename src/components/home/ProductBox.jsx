@@ -233,8 +233,6 @@ const ProductBox = () => {
                     </Box>
                 </Box>
 
-                //mobile
-
             </Box>
             <Box sx={{
                 width: '100%',
