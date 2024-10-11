@@ -37,9 +37,20 @@
 
 .Content {
     position: relative;
-    top: 64px; /* ارتفاع Navbar */
+    top: 64px;
     z-index: 1;
 }
+.Footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    left: 0;
+}
+
 
 
 @media (max-width: 425px) {

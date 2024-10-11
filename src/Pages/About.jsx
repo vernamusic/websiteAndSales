@@ -13,13 +13,18 @@ const About = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 width: '100%',
-                minHeight: '100vh',
             }}
         >
             <Box
                 sx={{
                     width: '100%',
-                    minHeight: { xs: '500px', md: '850px' },
+                    minHeight: {
+                        xs: '200px',
+                        sm: '350px',
+                        md: '500px',
+                        lg: '650px',
+                        xl: '100vh',
+                    },
                     display: 'flex',
                     justifyContent: 'center',
                 }}
@@ -29,7 +34,6 @@ const About = () => {
             <Box
                 sx={{
                     width: '100%',
-                    minHeight: { xs: '150px', md: '200px' },
                     display: 'flex',
                     justifyContent: 'center',
                 }}
@@ -39,7 +43,6 @@ const About = () => {
             <Box
                 sx={{
                     width: '100%',
-                    minHeight: { xs: '500px', md: '850px' },
                     display: 'flex',
                     justifyContent: 'center',
                 }}
@@ -49,7 +52,13 @@ const About = () => {
             <Box
                 sx={{
                     width: '100%',
-                    minHeight: { xs: '500px', md: '850px' },
+                    minHeight: {
+                        xs: '300px',
+                        sm: '350px',
+                        md: '500px',
+                        lg: '650px',
+                        xl: '100vh',
+                    },
                     display: 'flex',
                     justifyContent: 'center',
                 }}
