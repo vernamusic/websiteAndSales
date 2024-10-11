@@ -63,7 +63,6 @@ const ContactBox = () => {
                     <Typography
                         sx={{
                             ...theme.typography.h6,
-                            mt:1,
                         }}
                     >
                         Lorem ipsum dolor sit Mauris tincidunt Lorem ipsum dolor sit amet consectetur. Mauris tincidunt euismod tincidunt nibh. Aenean lectus cras libero.

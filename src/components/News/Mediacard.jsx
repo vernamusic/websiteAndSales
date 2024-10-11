@@ -9,6 +9,7 @@ import {
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useSwipeable } from "react-swipeable";
+import ArrowIcon from "../../assets/Arrow.png";
 
 const theme = createTheme({
     typography: {
@@ -216,24 +217,31 @@ const Mediacard = ({ data }) => {
                     sx={{
                         position: "absolute",
                         left: {
-                            xs: "-30px",
+                            xs: "-28px",
                             sm: "-40px",
-                            md: "-50px",
-                            lg: "-60px",
+                            md: "-60px",
+                            lg: "-70px",
                         },
                         top: "50%",
                         transform: "translateY(-50%)",
                         color: "#FFFFFF",
-                        "&:disabled": {
-                            color: "#555",
-                        },
+                        opacity: currentIndex === 0 ? "0.5" : "1",
                         "&:hover": {
                             backgroundColor: "transparent",
                         },
                     }}
+                    disableRipple
                 >
-                    <ArrowBackIosIcon sx={{ fontSize: { xs: "30px", sm: "40px", md: "50px" } }} />
+                    <img
+                        src={ArrowIcon}
+                        alt="Previous"
+                        style={{
+                            width: '2.5vw',
+                            opacity: currentIndex === 0 ? '0.5' : '1',
+                        }}
+                    />
                 </IconButton>
+
 
                 {/* Right Arrow */}
                 <IconButton
@@ -242,23 +250,30 @@ const Mediacard = ({ data }) => {
                     sx={{
                         position: "absolute",
                         right: {
-                            xs: "-30px",
-                            sm: "-40px",
+                            xs: "-20px",
+                            sm: "-30px",
                             md: "-50px",
                             lg: "-60px",
                         },
                         top: "50%",
                         transform: "translateY(-50%)",
                         color: "#FFFFFF",
-                        "&:disabled": {
-                            color: "#555",
-                        },
+                        opacity: currentIndex + itemsPerPage >= data.length ? "0.5" : "1",
                         "&:hover": {
                             backgroundColor: "transparent",
                         },
                     }}
+                    disableRipple
                 >
-                    <ArrowForwardIosIcon sx={{ fontSize: { xs: "30px", sm: "40px", md: "50px" } }} />
+                    <img
+                        src={ArrowIcon}
+                        alt="Previous"
+                        style={{
+                            width: '2.5vw',
+                            transform: 'scaleX(-1)',
+                            opacity: currentIndex + itemsPerPage >= data.length ? '0.5' : '1',
+                        }}
+                    />
                 </IconButton>
             </Box>
         </ThemeProvider>

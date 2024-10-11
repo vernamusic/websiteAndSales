@@ -36,7 +36,7 @@ const MeetBox = () => {
                     position: 'relative',
                     backgroundImage: `linear-gradient(90deg, rgba(0, 0, 0, 0.738) 14.54%, rgba(0, 0, 0, 0.686) 23.41%, rgba(0, 0, 0, 0.584) 40.86%, rgba(0, 0, 0, 0.164) 100%), url(${backgroundImage})`,
                     backgroundSize: 'cover',
-                    backgroundPosition: 'center',
+                    backgroundPosition: 'bottom right',
                     backgroundRepeat: 'no-repeat',
                 }}
             >
@@ -47,7 +47,7 @@ const MeetBox = () => {
                         flexDirection: 'column',
                         justifyContent: 'center',
                         alignItems: 'flex-start',
-                        my:'auto',
+                        pb:{xs:6,sm:6},
                         height:'100%',
                         ml: { xs: 5, sm: 10, md: 15, lg: 25, xl: 38 },
                         gap: {xs: 1, sm: 1, md: 1.5, lg: 2, xl: 2,},

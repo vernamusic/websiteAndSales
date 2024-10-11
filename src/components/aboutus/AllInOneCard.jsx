@@ -48,6 +48,7 @@ const Allinonecard = ({ data }) => {
                         xl: "1200px",
                     },
                     alignItems: 'center',
+                    mb: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 }
                 }}
             >
                 <Box

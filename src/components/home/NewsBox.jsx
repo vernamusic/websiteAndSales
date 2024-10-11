@@ -70,7 +70,6 @@ const NewsBox = () => {
                   gap: { xs: 32, sm: 60, md: 92, lg: 120, xl: 156 },
               }}
           >
-              {/* Typography برای News */}
               <Typography
                   sx={{
                       fontSize: { xs: "14px", sm: "18px", md: "22px", lg: "26px", xl: "30px" },
