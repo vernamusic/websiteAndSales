@@ -56,14 +56,13 @@ const Mediacard = () => {
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
-        // Fetch top news data from the API
         const fetchTopNews = async () => {
             try {
-                const topNewsResponse = await fetch('https://site.vitruvianshield.com/api/v1/top-news');
-                const topNewsData = await topNewsResponse.json();
-                setData(topNewsData.results);
+                const response = await fetch('https://site.vitruvianshield.com/api/v1/top-news');
+                const newsData = await response.json();
+                setData(newsData.results);
             } catch (error) {
-                console.error("Error fetching the top news data: ", error);
+                console.error("Error fetching top news data: ", error);
             }
         };
 
@@ -77,7 +76,7 @@ const Mediacard = () => {
         setTimeout(() => {
             setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length);
             setFade(true);
-            setProgress(0);  // Reset progress when switching slide
+            setProgress(0);
         }, 300);
     };
 
@@ -86,7 +85,7 @@ const Mediacard = () => {
         setTimeout(() => {
             setCurrentIndex((prevIndex) => (prevIndex === 0 ? data.length - 1 : prevIndex - 1));
             setFade(true);
-            setProgress(0);  // Reset progress when switching slide
+            setProgress(0);
         }, 300);
     };
 
@@ -95,7 +94,7 @@ const Mediacard = () => {
         setTimeout(() => {
             setCurrentIndex(index);
             setFade(true);
-            setProgress(0);  // Reset progress when manually switching
+            setProgress(0);
         }, 300);
     };
 
@@ -110,18 +109,18 @@ const Mediacard = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setProgress((oldProgress) => {
-                if (oldProgress === 100) {
+                if (oldProgress >= 100) {
                     handleNext();
                     return 0;
                 }
-                return Math.min(oldProgress + 1, 100);
+                return oldProgress + 1;
             });
         }, 100);
 
         return () => {
             clearInterval(interval);
         };
-    }, []);
+    }, [handleNext]);
 
     if (data.length === 0) {
         return <div>Loading...</div>;
@@ -140,8 +139,8 @@ const Mediacard = () => {
             >
                 <Box
                     sx={{
-                        width:'100%',
-                        height:'100%',
+                        width: '100%',
+                        height: '100%',
                         position: 'relative',
                         backgroundImage: `linear-gradient(90deg, rgba(0, 0, 0, 0.738) 14.54%, rgba(0, 0, 0, 0.686) 23.41%, rgba(0, 0, 0, 0.584) 40.86%, rgba(0, 0, 0, 0.164) 100%), url(${currentData.picture})`,
                         backgroundSize: 'cover',
@@ -153,88 +152,88 @@ const Mediacard = () => {
                         <Box
                             sx={{
                                 position: "absolute",
+                                display:'flex',
                                 top: "35%",
                                 left: "18%",
                                 width: "50%",
-                                padding: "20px",
                                 borderRadius: "10px",
+                                flexDirection: 'column',
+                                gap:{xs:1,sm:1,md:2,lg:2,xl:2},
                             }}
                         >
-                            <Typography sx={{ ...theme.typography.h3, }}>
+                            <Typography sx={{ ...theme.typography.h3 }}>
                                 {currentData.title}
                             </Typography>
-                            <Typography sx={{ mt: 2, maxWidth:500, ...theme.typography.h6, }}>
+                            <Typography sx={{maxWidth: 500, ...theme.typography.h6 }}>
                                 {currentData.details}
                             </Typography>
 
-                            <Box display="flex" alignItems="center" sx={{ mt: 2 }}>
+                            <Box display="flex" alignItems="center">
                                 <AccessTimeIcon sx={{ fontSize: 18, mr: 1 }} />
-                                <Typography variant="caption" sx={{ mr: 2 }}>
+                                <Typography variant="caption" sx={{ mr: 2 ,...theme.typography.caption}}>
                                     {currentData.read_time}m
                                 </Typography>
-
-                                <VisibilityIcon sx={{ fontSize: 18, mr: 1, }} />
-                                <Typography variant="caption">
+                                <VisibilityIcon sx={{ fontSize: 18, mr: 1 }} />
+                                <Typography variant="caption" sx={{...theme.typography.caption}}>
                                     {currentData.views}
                                 </Typography>
                             </Box>
 
                             <Button
                                 variant="contained"
+
+                                size="large"
                                 sx={{
                                     ...theme.typography.button,
-                                    borderRadius: '6px',
+                                    borderRadius: '4px',
                                     backgroundColor: '#B50304',
                                     textTransform: 'none',
-                                    width: '15%',
-                                    height: '10%',
-                                    alignItems: 'center',
-                                    mt:2.5,
+                                    width:{ xs: '88px', sm: '98px', md: '120px', lg: '140px', xl: '150px' },
+                                    height: { xs: '24px', sm: '30px', md: '40px', lg: '45px', xl: '50px' },
                                     '&:hover': {
                                         backgroundColor: '#B50304',
                                     },
                                 }}
+                                disableRipple
                             >
                                 Read more
                             </Button>
                         </Box>
                     </Fade>
-
-                    <IconButton
-                        onClick={handlePrev}
-                        sx={{
-                            position: "absolute",
-                            left: "10px",
-                            top: "50%",
-                            color: "#fff",
-                        }}
-                    >
-                        <ArrowBackIosIcon />
-                    </IconButton>
-
-                    <IconButton
-                        onClick={handleNext}
-                        sx={{
-                            position: "absolute",
-                            right: "10px",
-                            top: "50%",
-                            color: "#fff",
-                        }}
-                    >
-                        <ArrowForwardIosIcon />
-                    </IconButton>
                 </Box>
-                <Box
-                    display="flex"
-                    justifyContent="center"
+
+                <IconButton
+                    onClick={handlePrev}
+                    sx={{
+                        position: "absolute",
+                        left: "10px",
+                        top: "50%",
+                        color: "#fff",
+                    }}
                 >
+                    <ArrowBackIosIcon />
+                </IconButton>
+
+                <IconButton
+                    onClick={handleNext}
+                    sx={{
+                        position: "absolute",
+                        right: "10px",
+                        top: "50%",
+                        color: "#fff",
+                    }}
+                >
+                    <ArrowForwardIosIcon />
+                </IconButton>
+
+                <Box display="flex" justifyContent="center">
                     <Box
                         sx={{
                             position: "absolute",
-                            bottom: "5%",
+                            bottom: 0,
                             left: 0,
                             right: 0,
-                            height: "4px",
+                            height: {sm:'2px',md:'4px'},
                             backgroundColor: "rgba(255, 255, 255, 0.3)",
                         }}
                     >
@@ -248,17 +247,23 @@ const Mediacard = () => {
                         />
                     </Box>
 
+                </Box>
+                <Box display="flex"
+                     flexDirection="row"
+                     alignItems="center"
+                >
                     {data.map((_, index) => (
                         <ButtonBase
                             key={index}
                             onClick={() => handleCircleClick(index)}
                             sx={{
-                                position:'relative',
-                                width: 10,
-                                height: 10,
+                                position: 'relative',
+                                width: {xs:6,sm:7,md:8,lg:9,xl:10},
+                                height: {xs:6,sm:7,md:8,lg:9,xl:10},
                                 borderRadius: "50%",
                                 backgroundColor: currentIndex === index ? "#ca0000" : "rgba(255, 255, 255, 0.5)",
-                                mx: 1,
+                                mx: {xs:0.5,sm:0.8,md:1,lg:1,xl:1},
+                                mb:{xs:-1,sm:-2,md:-2,lg:-3,xl:-3},
                             }}
                         />
                     ))}
