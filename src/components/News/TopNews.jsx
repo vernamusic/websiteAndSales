@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     Box,
     Typography,
@@ -14,8 +14,6 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { useSwipeable } from "react-swipeable";
-import photo1 from "../../assets/about1.png";
-import photo2 from "../../assets/about2.png";
 
 const theme = createTheme({
     typography: {
@@ -52,32 +50,26 @@ const theme = createTheme({
 });
 
 const Mediacard = () => {
-    const data = [
-        {
-            title: "Top News",
-            details: "Lorem ipsum dolor sit Mauris tincidunt Lorem ipsum dolor sit amet consectetur. Mauris tincidunt euismod tincidunt nibh. Aenean lectus cras libero.",
-            time: "7 min read",
-            views: "5k",
-            photo: photo1,
-        },
-        {
-            title: "Another News",
-            details: "Another piece of news with some description about events happening today.",
-            time: "5 min read",
-            views: "3.4k",
-            photo: photo2,
-        },
-        {
-            title: "Top News",
-            details: "Lorem ipsum dolor sit Mauris tincidunt Lorem ipsum dolor sit amet consectetur. Mauris tincidunt euismod tincidunt nibh. Aenean lectus cras libero.",
-            time: "7 min read",
-            views: "5k",
-            photo: photo1,
-        },
-    ];
-
+    const [data, setData] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [fade, setFade] = useState(true);
+    const [progress, setProgress] = useState(0);
+
+    useEffect(() => {
+        // Fetch top news data from the API
+        const fetchTopNews = async () => {
+            try {
+                const topNewsResponse = await fetch('https://site.vitruvianshield.com/api/v1/top-news');
+                const topNewsData = await topNewsResponse.json();
+                setData(topNewsData.results);
+            } catch (error) {
+                console.error("Error fetching the top news data: ", error);
+            }
+        };
+
+        fetchTopNews();
+    }, []);
+
     const currentData = data[currentIndex];
 
     const handleNext = () => {
@@ -85,6 +77,7 @@ const Mediacard = () => {
         setTimeout(() => {
             setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length);
             setFade(true);
+            setProgress(0);  // Reset progress when switching slide
         }, 300);
     };
 
@@ -93,6 +86,7 @@ const Mediacard = () => {
         setTimeout(() => {
             setCurrentIndex((prevIndex) => (prevIndex === 0 ? data.length - 1 : prevIndex - 1));
             setFade(true);
+            setProgress(0);  // Reset progress when switching slide
         }, 300);
     };
 
@@ -101,6 +95,7 @@ const Mediacard = () => {
         setTimeout(() => {
             setCurrentIndex(index);
             setFade(true);
+            setProgress(0);  // Reset progress when manually switching
         }, 300);
     };
 
@@ -111,29 +106,50 @@ const Mediacard = () => {
         trackMouse: true,
     });
 
+    // Auto-slide logic
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setProgress((oldProgress) => {
+                if (oldProgress === 100) {
+                    handleNext();
+                    return 0;
+                }
+                return Math.min(oldProgress + 1, 100);
+            });
+        }, 100);
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, []);
+
+    if (data.length === 0) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <ThemeProvider theme={theme}>
             <Box
                 display="flex"
-                flexDirection="row"
+                flexDirection="column"
                 alignItems="center"
                 justifyContent="center"
                 position="relative"
                 {...swipeHandlers}
-                sx={{ width: '100%', height: '100vh', backgroundColor: "#333" }}
+                sx={{ width: '100%', backgroundColor: "transparent" }}
             >
                 <Box
                     sx={{
-                        width: '100vw',
-                        height: '95vh',
-                        position: "relative",
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                        backgroundImage: ` linear-gradient(90deg, rgba(0, 0, 0, 0.738) 14.54%, rgba(0, 0, 0, 0.686126) 23.41%, rgba(0, 0, 0, 0.584051) 40.86%, rgba(0, 0, 0, 0.164) 100%),url(${currentData.photo})`,
-                        color: "#fff",
+                        width:'100%',
+                        height:'100%',
+                        position: 'relative',
+                        backgroundImage: `linear-gradient(90deg, rgba(0, 0, 0, 0.738) 14.54%, rgba(0, 0, 0, 0.686) 23.41%, rgba(0, 0, 0, 0.584) 40.86%, rgba(0, 0, 0, 0.164) 100%), url(${currentData.picture})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat',
                     }}
                 >
-                    <Fade in={fade} timeout={300}>
+                    <Fade in={fade} timeout={200}>
                         <Box
                             sx={{
                                 position: "absolute",
@@ -144,7 +160,7 @@ const Mediacard = () => {
                                 borderRadius: "10px",
                             }}
                         >
-                            <Typography sx={{ ...theme.typography.h3,}}>
+                            <Typography sx={{ ...theme.typography.h3, }}>
                                 {currentData.title}
                             </Typography>
                             <Typography sx={{ mt: 2, maxWidth:500, ...theme.typography.h6, }}>
@@ -154,7 +170,7 @@ const Mediacard = () => {
                             <Box display="flex" alignItems="center" sx={{ mt: 2 }}>
                                 <AccessTimeIcon sx={{ fontSize: 18, mr: 1 }} />
                                 <Typography variant="caption" sx={{ mr: 2 }}>
-                                    {currentData.time}
+                                    {currentData.read_time}m
                                 </Typography>
 
                                 <VisibilityIcon sx={{ fontSize: 18, mr: 1, }} />
@@ -207,26 +223,45 @@ const Mediacard = () => {
                     >
                         <ArrowForwardIosIcon />
                     </IconButton>
-
+                </Box>
+                <Box
+                    display="flex"
+                    justifyContent="center"
+                >
                     <Box
-                        display="flex"
-                        justifyContent="center"
-                        sx={{ position: "absolute", bottom: "8%", width: "100%" }}
+                        sx={{
+                            position: "absolute",
+                            bottom: "5%",
+                            left: 0,
+                            right: 0,
+                            height: "4px",
+                            backgroundColor: "rgba(255, 255, 255, 0.3)",
+                        }}
                     >
-                        {data.map((_, index) => (
-                            <ButtonBase
-                                key={index}
-                                onClick={() => handleCircleClick(index)}
-                                sx={{
-                                    width: 10,
-                                    height: 10,
-                                    borderRadius: "50%",
-                                    backgroundColor: currentIndex === index ? "#ca0000" : "rgba(255, 255, 255, 0.5)",
-                                    mx: 1,
-                                }}
-                            />
-                        ))}
+                        <Box
+                            sx={{
+                                width: `${progress}%`,
+                                height: "100%",
+                                backgroundColor: "#ca0000",
+                                transition: "width 0.1s linear",
+                            }}
+                        />
                     </Box>
+
+                    {data.map((_, index) => (
+                        <ButtonBase
+                            key={index}
+                            onClick={() => handleCircleClick(index)}
+                            sx={{
+                                position:'relative',
+                                width: 10,
+                                height: 10,
+                                borderRadius: "50%",
+                                backgroundColor: currentIndex === index ? "#ca0000" : "rgba(255, 255, 255, 0.5)",
+                                mx: 1,
+                            }}
+                        />
+                    ))}
                 </Box>
             </Box>
         </ThemeProvider>

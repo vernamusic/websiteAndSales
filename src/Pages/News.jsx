@@ -11,13 +11,18 @@ const About = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 width: '100%',
-                minHeight: '95vh',
             }}
         >
             <Box
                 sx={{
-                    width: '100%',
-                    minHeight: '95vh',
+                    width: '100vw',
+                    minHeight: {
+                        xs: '200px',
+                        sm: '450px',
+                        md: '540px',
+                        lg: '675px',
+                        xl: '900px',
+                    },
                     display: 'flex',
                     justifyContent: 'center',
                 }}

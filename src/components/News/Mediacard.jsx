@@ -6,8 +6,7 @@ import {
     createTheme,
     ThemeProvider, Button,
 } from "@mui/material";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+
 import { useSwipeable } from "react-swipeable";
 import ArrowIcon from "../../assets/Arrow.png";
 
@@ -68,7 +67,6 @@ const Mediacard = ({ data }) => {
         trackMouse: true,
     });
 
-    // محاسبه عرض کارت‌ها بر اساس سایز صفحه
     const widthOfCard = useMemo(() => {
         if (window.innerWidth < 600) return 133; // xs
         if (window.innerWidth < 900) return 199.45; // sm
@@ -122,7 +120,7 @@ const Mediacard = ({ data }) => {
                                     borderRadius: "20px",
                                     color: "white",
                                     overflow: "hidden",
-                                    backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 46.58%, rgba(0, 0, 0, 0.472485) 56.73%, rgba(0, 0, 0, 0.9) 66.51%), url(${box.photo})`,
+                                    backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 46.58%, rgba(0, 0, 0, 0.472485) 56.73%, rgba(0, 0, 0, 0.9) 66.51%), url(${box.picture})`,
                                     backgroundSize: "cover",
                                     backgroundPosition: "center",
                                     backgroundRepeat: "no-repeat",

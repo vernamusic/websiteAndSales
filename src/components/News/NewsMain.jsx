@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Box from '@mui/material/Box';
@@ -6,7 +6,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Mediacard from './Mediacard';
 import { Typography } from "@mui/material";
 import Allinonecard from './Allinonecard';
-import photo5 from '../../assets/news3.png'
 
 const theme = createTheme({
     typography: {
@@ -35,76 +34,44 @@ const theme = createTheme({
     },
 });
 
-const teamsData = [
-    {
-        team_name: "Top News",
-        members: [
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Hggggggggggggggggandles campaignsfgdfkjgnd kjdgn dfjk gdfkg kdnkgnkjdfnkkjdn gdfgdfgbdbdgrebgdbhrhrr  ebetgetgvb", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-        ]
-    },
-    {
-        team_name: "Latest News",
-        members: [
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-        ]
-    },
-    {
-        team_name: "Events News",
-        members: [
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-            { title: "Charlie Lee", details: "Handles campaigns", photo: photo5 },
-        ]
+const fetchNewsData = async () => {
+    try {
+        const topNewsResponse = await fetch('https://site.vitruvianshield.com/api/v1/top-news');
+        const topNewsData = await topNewsResponse.json();
+
+        const latestNewsResponse = await fetch('https://site.vitruvianshield.com/api/v1/news');
+        const latestNewsData = await latestNewsResponse.json();
+
+        const eventsNewsResponse = await fetch('https://site.vitruvianshield.com/api/v1/event-news');
+        const eventsNewsData = await eventsNewsResponse.json();
+
+        return [
+            { team_name: "Top News", members: topNewsData.results },
+            { team_name: "Latest News", members: latestNewsData.results },
+            { team_name: "Events News", members: eventsNewsData.results },
+        ];
+    } catch (error) {
+        console.error("Error fetching news data: ", error);
+        return [];
     }
-];
+};
 
 const TeamMembers = () => {
     const [selectedTeam, setSelectedTeam] = useState('view_all');
-    const [data, setData] = useState(teamsData);
+    const [teamsData, setTeamsData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await fetchNewsData();
+            setTeamsData(data);
+        };
+
+        fetchData();
+    }, []);
 
     const handleToggle = (event, newSelection) => {
         if (newSelection !== null) {
             setSelectedTeam(newSelection);
-            if (newSelection === 'view_all') {
-                setData(teamsData); // Show all teams
-            } else {
-                const selectedTeamData = teamsData.find(team => team.team_name === newSelection)?.members || [];
-                setData(selectedTeamData); // Show members of the selected team
-            }
         }
     };
 
@@ -123,13 +90,14 @@ const TeamMembers = () => {
                 </Box>
             );
         } else {
+            const selectedTeamData = teamsData.find(team => team.team_name === selectedTeam)?.members || [];
             return (
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },}}>
                     <Typography gutterBottom sx={{ ...theme.typography.h3, pl: 1, mb: 3, textAlign: 'left' }}>
                         {selectedTeam}
                     </Typography>
                     <Box sx={{ width: '100%',}}>
-                        <Allinonecard data={data} />
+                        <Allinonecard data={selectedTeamData} />
                     </Box>
                 </Box>
             );
@@ -256,7 +224,6 @@ const TeamMembers = () => {
                         ))}
                     </ToggleButtonGroup>
                 </Box>
-
 
                 <Box width={'100%'}>
                     {renderContent()}
