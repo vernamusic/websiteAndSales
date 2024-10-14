@@ -4,35 +4,32 @@ import { Share, Visibility, AccessTime } from '@mui/icons-material';
 import { useParams } from 'react-router-dom';
 
 const NewsCard = () => {
-    const { slug } = useParams(); // دریافت slug از URL
-    const [newsData, setNewsData] = useState(null); // برای ذخیره داده‌های خبر
+    const { slug } = useParams();
+    const [newsData, setNewsData] = useState(null);
 
     useEffect(() => {
-        // فراخوانی API برای دریافت داده‌های مربوط به slug
+
         fetch(`https://site.vitruvianshield.com/api/v1/news/${slug}`)
             .then((response) => response.json())
             .then((data) => setNewsData(data));
     }, [slug]);
 
-    if (!newsData) return <div>Loading...</div>; // نمایش Loading تا زمانی که داده‌ها دریافت شود
+    if (!newsData) return <div>Loading...</div>;
 
     return (
         <Box
             sx={{
                 backgroundColor: 'rgba(0, 0, 0, 0.7)',
                 color: 'white',
-                padding: '20px',
                 borderRadius: '10px',
-                maxWidth: '600px',
-                height: '1000px',
-                margin: 'auto',
+                height: '200vh',
                 position: 'relative',
             }}
         >
             <Box
                 sx={{
                     width: '100vw',
-                    height:'100%',
+                    height:'60vh',
                     position: 'relative',
                     backgroundImage: `linear-gradient(90deg, rgba(0, 0, 0, 0.738) 14.54%, rgba(0, 0, 0, 0.686) 23.41%, rgba(0, 0, 0, 0.584) 40.86%, rgba(0, 0, 0, 0.164) 100%), url(${newsData.picture})`,
                     backgroundSize: 'cover',
