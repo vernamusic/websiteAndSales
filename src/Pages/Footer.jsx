@@ -160,15 +160,19 @@ const Footer = () => (
 
           {/* Biopole Section */}
           <Box marginTop={4}>
-            <img src={footerloc} alt="locationLogo" style={{ width: '22px', height: 'auto', marginRight: '8px' }} />
             <img src={biopole} alt="Biopole" style={{ width: '103px', height: 'auto', marginRight: '8px' }} />
             <Box marginTop="16px">
+            <Box display="flex" alignItems="center">
+            <img src={footerloc} alt="locationLogo" style={{ width: '22px', height: 'auto', marginRight: '8px' }} />
               <Typography variant="h6" gutterBottom>
                 VITRUVIAN SHIELD SA
               </Typography>
+              </Box>
+              <Box  sx={{mt:'12px'}}>
               <Typography variant="body3" paragraph>
                 Rue de la Corniche n°3a, Bâtiment Phenyl, 1066 Epalinges; Switzerland
               </Typography>
+              </Box>
             </Box>
             <Link href="https://biopole.ch" target="_blank" rel="noopener" variant="body2">
               Biopole
@@ -177,15 +181,19 @@ const Footer = () => (
 
           {/* Astrolabs Section */}
           <Box marginTop={4}>
-            <img src={footerloc} alt="locationLogo" style={{ width: '22px', height: 'auto', marginRight: '8px' }} />
             <img src={astrolab} alt="Astrolab" style={{ width: '103px', height: 'auto', marginRight: '8px' }} />
             <Box marginTop="16px">
+            <Box display="flex" alignItems="center">
+            <img src={footerloc} alt="locationLogo" style={{ width: '22px', height: 'auto', marginRight: '8px' }} />
               <Typography variant="h6" gutterBottom>
                 VITRUVIAN SHIELD DMCC
               </Typography>
+              </Box>
+              <Box  sx={{mt:'12px'}}>
               <Typography variant="body3" paragraph>
                 Parkside Retail Level; Cluster R - Jumeirah Lake Towers; Dubai - United Arab Emirates
               </Typography>
+              </Box>
             </Box>
             <Link href="https://astrolabs.com" target="_blank" rel="noopener" variant="body2">
               Astrolabs
@@ -194,15 +202,19 @@ const Footer = () => (
 
           {/* Creative Science Park Section */}
           <Box marginTop={4}>
-            <img src={footerloc} alt="locationLogo" style={{ width: '22px', height: 'auto', marginRight: '8px' }} />
             <img src={pci} alt="science park" style={{ width: '103px', height: 'auto', marginRight: '8px' }} />
             <Box marginTop="16px">
-              <Typography variant="h6" gutterBottom>
-                VITRUVIAN SHIELD - PT
-              </Typography>
-              <Typography variant="body3" paragraph>
+            <Box display="flex" alignItems="center">
+            <img src={footerloc} alt="locationLogo" style={{ width: '22px', height: 'auto', marginRight: '8px' }} />
+            <Typography variant="h6" gutterBottom>
+              VITRUVIAN SHIELD - PT
+            </Typography>
+          </Box>
+          <Box sx={{mt:'12px'}}>
+              <Typography variant="body3">
                 PCI - Creative Science Park; Via do Conhecimento, Edf. Central, 3830-352 Ílhavo, Portugal
               </Typography>
+          </Box>
             </Box>
             <Link href="https://sciencepark.pt" target="_blank" rel="noopener" variant="body2">
               Creative Science Park
@@ -216,6 +228,7 @@ const Footer = () => (
             width: { xs: '100%', sm: '320px' },
             backgroundColor: '#14141426',
             borderRadius: '8px',
+            overflow:'none',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -224,7 +237,7 @@ const Footer = () => (
             justifyContent: 'center',
           }}
         >
-          {['aWnbr8Aagbo', 'aWnbr8Aagbo', 'aWnbr8Aagbo'].map((id, index) => (
+          {['aWnbr8Aagbo', 'z2KFOvcP3IQ', 'YOpXuRqvpVU'].map((id, index) => (
             <iframe
               key={index}
               title={`YouTube Video ${index + 1}`}
