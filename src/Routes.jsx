@@ -9,6 +9,8 @@ import Login from './Pages/Login';
 import Dashboard from './Pages/Dashboard';
 import Watch from './Pages/Watch';
 import Company from './Pages/Company';
+import NewsMore from './components/News/NewsMore';
+
 
 const AppRoutes = () => {
     return (
@@ -22,6 +24,7 @@ const AppRoutes = () => {
             <Route path="/news" element={<News />} />
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/news/:slug" element={<NewsMore />} />
         </Routes>
     );
 }

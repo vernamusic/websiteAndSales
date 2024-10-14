@@ -9,6 +9,7 @@ import {
 
 import { useSwipeable } from "react-swipeable";
 import ArrowIcon from "../../assets/Arrow.png";
+import {useNavigate} from "react-router-dom";
 
 const theme = createTheme({
     typography: {
@@ -74,6 +75,12 @@ const Mediacard = ({ data }) => {
         if (window.innerWidth < 1536) return 336; // lg
         return 472; // xl
     }, [window.innerWidth]);
+
+    const navigate = useNavigate();
+
+    const handleClick = (slug) => {
+        navigate(`/news/${slug}`);
+    };
 
     return (
         <ThemeProvider theme={theme}>
@@ -180,6 +187,7 @@ const Mediacard = ({ data }) => {
                                     >
                                         <Button
                                             variant="contained"
+                                            onClick={() => handleClick(box.slug)}
                                             sx={{
                                                 borderRadius: "6px",
                                                 backgroundColor: "transparent",
