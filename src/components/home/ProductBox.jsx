@@ -20,7 +20,7 @@ const theme = createTheme({
         h3: {
             fontFamily: 'Lato',
             fontWeight: 700,
-            fontSize: { xs: '20px', sm: '24px', md: '28px', lg: '35px', xl: '41px' },
+            fontSize: { xs: '14px', sm: '24px', md: '28px', lg: '35px', xl: '41px' },
             color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
@@ -38,9 +38,9 @@ const theme = createTheme({
 });
 
 const proItems = [
-    { id: '1', title: "The Mobile App",  image: pro1, url: '/products/mobile-app', description: "An easy and intuitive way to share your data with all professionals in charge of providing you with after-care and medical follow-up.", },
-    { id: '2', title: "Web Application", image: pro2, url: '/products/smart-watch',description: "An easy and intuitive way to share your data with all professionals in charge of providing you with after-care and medical follow-up." },
-    { id: '3', title: "Desktop Platform",image: pro3, url: '/products/dashboard',  description: "An easy and intuitive way to share your data with all professionals in charge of providing you with after-care and medical follow-up." },
+    { id: '1', title: "Mobile App",  image: pro1, url: '/products/mobile-app', description: "An easy and intuitive way to share your data with all professionals in charge of providing you with after-care and medical follow-up.", },
+    { id: '2', title: "Watch", image: pro2, url: '/products/smart-watch',description: "An easy and intuitive way to share your data with all professionals in charge of providing you with after-care and medical follow-up." },
+    { id: '3', title: "Web App",image: pro3, url: '/products/dashboard',  description: "An easy and intuitive way to share your data with all professionals in charge of providing you with after-care and medical follow-up." },
 ];
 
 const ProductBox = () => {
@@ -72,8 +72,8 @@ const ProductBox = () => {
             <Box sx={{
                 width: '100%',
                 height: '100%',
-                display: 'flex',
-                flexDirection: {xs: 'row', md: 'row'},
+                display:{xs:'none',sm:'flex'},
+                flexDirection: 'row',
                 justifyContent: 'space-between',
                 alignItems: 'center',
 
@@ -171,8 +171,8 @@ const ProductBox = () => {
                     sx={{
                         position: 'relative',
                         flexDirection: 'column',
-                        width: {xs:'150px',sm:'230px',md: '300px', lg: '400px', xl: '470px'},
-                        height: {xs:'300px',sm:'400px',md: '500px', lg: '650px', xl: '820px'},
+                        width: {xs:'150px',sm:'200px',md: '300px', lg: '400px', xl: '470px'},
+                        height: {xs:'300px',sm:'380px',md: '500px', lg: '650px', xl: '820px'},
                         display: 'flex',
                     }}
                 >
@@ -180,12 +180,12 @@ const ProductBox = () => {
                         sx={{
                             position: 'relative',
                             Bottom: '100%',
-                            right: '35%',
+                            right: {md:'35%',sm:'15%',xs:'20%'},
                             width: '100%',
                             height: '100%',
                             borderRadius: '0 0 30px 30px',
                             background: "linear-gradient(180deg, rgba(20, 20, 20, 0.06) 0%, rgba(256, 0, 0, 0.09) 25%, rgba(256, 0, 0, 0.36) 99%)",
-                            zIndex: 1,
+                            zIndex: 3,
                         }}
                     >
                         <Box
@@ -232,7 +232,59 @@ const ProductBox = () => {
                         </Box>
                     </Box>
                 </Box>
+
             </Box>
+            <Box sx={{
+                width: '100%',
+                display: { xs: 'flex', sm: 'none' },
+                justifyContent: 'center',
+                flexDirection: 'column',
+                gap: 2,
+            }}>
+                <Typography sx={{
+                    ...theme.typography.h3,
+                    textJustify: 'start',
+                    pl:2,
+                }}>
+                    Products
+                </Typography>
+
+                <Box sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'space-around',
+                    alignItems: 'center',
+                    width: '100%',
+                }}>
+                    {proItems.map((item) => (
+                        <Box key={item.id} sx={{
+                            width: '28%',
+                            textAlign: 'center',
+                            background: 'linear-gradient(360deg, rgba(20, 20, 20, 0.05) 0%, rgba(255, 255, 255, 0.25) 100%)', // پس‌زمینه
+                            borderRadius: '10px 10px 0 0',
+                            overflow: 'hidden',
+                        }}>
+                            <a href={item.url} style={{ textDecoration: 'none' }}>
+                                <Box
+                                    component="img"
+                                    src={item.image}
+                                    alt={item.title}
+                                    sx={{
+                                        width: '90%',
+                                        height: 'auto',
+                                    }}
+                                />
+                                <Typography sx={{
+                                    ...theme.typography.h3,
+                                }}>
+                                    {item.title}
+                                </Typography>
+                            </a>
+                        </Box>
+                    ))}
+                </Box>
+            </Box>
+
             <style>
                 {`
     @keyframes fadeLeft {

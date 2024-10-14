@@ -1,83 +1,71 @@
-import React from "react";
-import {Box, Typography, createTheme, ThemeProvider} from "@mui/material";
+import React, { useState, useEffect } from 'react';
+import { Box, Typography, createTheme, ThemeProvider } from "@mui/material";
 
 const theme = createTheme({
     typography: {
-        fontFamily: 'Sen, Arial, sans-serif',
+        h6: {
+            fontFamily: 'sen',
+            fontSize: { xs: '13px', sm: '13px', md: '16px', lg: '21px', xl: '26px' },
+            color: "#F1F1F1",
+            letterSpacing: '0.4px',
+            lineHeight: 'normal',
+        },
         h3: {
             fontFamily: 'Lato',
-            fontWeight: 800,
-            fontSize: '35px',
-            lineHeight: '35px',
+            fontWeight: 700,
+            fontSize: { xs: '20px', sm: '24px', md: '28px', lg: '35px', xl: '41px' },
             color: "#FFFFFF",
-        },
-        h6: {
-            fontFamily: 'Sen',
-            fontWeight: 400,
-            fontSize: '18px',
-            lineHeight: '21.66px',
-            color: "#FFFFFF",
+            letterSpacing: '0.4px',
         },
     },
 });
 
 const MemberCountBox = () => {
-    return(
+    const [data, setData] = useState([
+        { value: "1.5M", label: "Global Happy Clients" },// default
+        { value: "0", label: "Team Members" }, // default
+        { value: "1", label: "Project Complemented" },// default
+    ]);
+
+    useEffect(() => {
+        const fetchMembers = async () => {
+            try {
+                const response = await fetch('https://site.vitruvianshield.com/api/v1/members');
+                const apiData = await response.json();
+
+                const totalMembers = apiData.reduce((acc, team) => acc + team.members.length, 0);
+
+                setData(prevData => prevData.map(item =>
+                    item.label === "Team Members" ? { ...item, value: totalMembers } : item
+                ));
+            } catch (error) {
+                console.error('Error fetching members:', error);
+            }
+        };
+
+        fetchMembers();
+    }, []);
+
+    return (
         <ThemeProvider theme={theme}>
-        <Box sx={{
-            width:'100%',
-            backgroundColor: 'rgba(20, 20, 20, 0.4)',
-            flexDirection: 'row',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: '138px',  
-        }}>
-            <Box 
-            sx={{
+            <Box sx={{
+                width: '100%',
+                backgroundColor: 'rgba(20, 20, 20, 0.4)',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                flexDirection: 'column',
-                }}>
-                <Typography variant='h3'>
-                    1.5M
-                </Typography>
-                <Typography variant='h6'>
-                    Global Happy Clients
-                </Typography>
+                gap: { xs: '28px', sm: '45px', md: '70px', lg: '120px', xl: '160px' },
+                py: { xs: '20px', sm: '24px', md: '28px', lg: '35px', xl: '42px' },
+            }}>
+                {data.map((item, index) => (
+                    <Box key={index} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <Typography sx={{ ...theme.typography.h3 }}>{item.value}</Typography>
+                        <Typography sx={{ ...theme.typography.h6 }}>{item.label}</Typography>
+                    </Box>
+                ))}
             </Box>
-            <Box
-            sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                flexDirection: 'column',
-                }}>
-                <Typography variant='h3'>
-                    15
-                </Typography>
-                <Typography variant='h6'>
-                    Team Members
-                </Typography>
-            </Box>
-            <Box
-            sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                flexDirection: 'column',
-                }}>
-                <Typography variant='h3'>
-                    1
-                </Typography>
-                <Typography variant='h6'>
-                    Project Complemented
-                </Typography>
-            </Box>
-        </Box>
         </ThemeProvider>
     );
-}
+};
 
 export default MemberCountBox;

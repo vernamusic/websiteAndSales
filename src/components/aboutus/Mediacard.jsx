@@ -6,8 +6,7 @@ import {
     createTheme,
     ThemeProvider, Button,
 } from "@mui/material";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowIcon from "../../assets/Arrow.png";
 import { useSwipeable } from "react-swipeable";
 import linkedin from "../../assets/linkedin.png";
 
@@ -68,7 +67,6 @@ const Mediacard = ({ data }) => {
         trackMouse: true,
     });
 
-    // محاسبه عرض کارت‌ها بر اساس سایز صفحه
     const widthOfCard = useMemo(() => {
         if (window.innerWidth < 600) return 149; // xs
         if (window.innerWidth < 900) return 216.5; // sm
@@ -107,9 +105,10 @@ const Mediacard = ({ data }) => {
                         justifyContent="start"
 
                         sx={{
-                            transform: `translateX(-${currentIndex * (widthOfCard + gap)}px)`,  // استفاده از عرض کارت و فاصله
+                            transform: `translateX(-${currentIndex * (widthOfCard + gap)}px)`,
                             transition: "transform 0.6s ease-in-out",
-                            gap:{xs: 1, sm: 1.5, md: 2, lg: 3, xl: 5,}
+                            gap:{xs: 1, sm: 1.5, md: 2, lg: 3, xl: 5,},
+
                         }}
                     >
                         {data.map((box, index) => (
@@ -177,9 +176,9 @@ const Mediacard = ({ data }) => {
                                                     position: "absolute",
                                                     width: "100%",
                                                     height: "100%",
-                                                    backgroundColor: "#736f6f", // رنگ خاکستری خاص
+                                                    backgroundColor: "#736f6f",
                                                     borderRadius: "50%",
-                                                    opacity: 0.5, // تنظیم شفافیت
+                                                    opacity: 0.5,
                                                 }}
                                             />
                                         )}
@@ -219,7 +218,7 @@ const Mediacard = ({ data }) => {
                                             display: "flex",
                                             justifyContent: "center",
                                             width: "100%",
-                                            mt: 2, // Add margin-top to space out
+                                            mt: 2,
                                         }}
                                     >
                                         <Typography
@@ -239,7 +238,7 @@ const Mediacard = ({ data }) => {
                                             display: "flex",
                                             justifyContent: "center",
                                             width: "100%",
-                                            mt: 3, // Add margin-top to space out
+                                            mt: 3,
                                         }}
                                     >
                                         <Typography
@@ -269,24 +268,31 @@ const Mediacard = ({ data }) => {
                     sx={{
                         position: "absolute",
                         left: {
-                            xs: "-30px",
+                            xs: "-28px",
                             sm: "-40px",
-                            md: "-50px",
-                            lg: "-60px",
+                            md: "-60px",
+                            lg: "-70px",
                         },
                         top: "50%",
                         transform: "translateY(-50%)",
                         color: "#FFFFFF",
-                        "&:disabled": {
-                            color: "#555",
-                        },
+                        opacity: currentIndex === 0 ? "0.5" : "1",
                         "&:hover": {
                             backgroundColor: "transparent",
                         },
                     }}
+                    disableRipple
                 >
-                    <ArrowBackIosIcon sx={{ fontSize: { xs: "30px", sm: "40px", md: "50px" } }} />
+                    <img
+                        src={ArrowIcon}
+                        alt="Previous"
+                        style={{
+                            width: '2.5vw',
+                            opacity: currentIndex === 0 ? '0.5' : '1',
+                        }}
+                    />
                 </IconButton>
+
 
                 {/* Right Arrow */}
                 <IconButton
@@ -295,23 +301,30 @@ const Mediacard = ({ data }) => {
                     sx={{
                         position: "absolute",
                         right: {
-                            xs: "-30px",
-                            sm: "-40px",
+                            xs: "-20px",
+                            sm: "-30px",
                             md: "-50px",
                             lg: "-60px",
                         },
                         top: "50%",
                         transform: "translateY(-50%)",
                         color: "#FFFFFF",
-                        "&:disabled": {
-                            color: "#555",
-                        },
+                        opacity: currentIndex + itemsPerPage >= data.length ? "0.5" : "1",
                         "&:hover": {
                             backgroundColor: "transparent",
                         },
                     }}
+                    disableRipple
                 >
-                    <ArrowForwardIosIcon sx={{ fontSize: { xs: "30px", sm: "40px", md: "50px" } }} />
+                    <img
+                        src={ArrowIcon}
+                        alt="Previous"
+                        style={{
+                            width: '2.5vw',
+                            transform: 'scaleX(-1)',
+                            opacity: currentIndex + itemsPerPage >= data.length ? '0.5' : '1',
+                        }}
+                    />
                 </IconButton>
             </Box>
         </ThemeProvider>
