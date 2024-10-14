@@ -1,5 +1,15 @@
 import React from 'react';
-import { Box, Typography, ThemeProvider, createTheme, Link } from '@mui/material';
+import {
+  Box,
+  Typography,
+  ThemeProvider,
+  createTheme,
+  Link,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+} from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import pci from '../assets/pci.png';
 import biopole from '../assets/biopole.png';
 import astrolab from '../assets/astrolab.png';
@@ -31,13 +41,6 @@ const theme = createTheme({
       letterSpacing: '0.5px',
       color: '#D9D9D970',
     },
-    body6: {
-      fontFamily: 'Lato',
-      fontWeight: 500,
-      fontSize: '14px',
-      lineHeight: '14px',
-      color: '#FFFFFF',
-    },
     body9: {
       fontFamily: 'Lato',
       fontWeight: 500,
@@ -48,183 +51,88 @@ const theme = createTheme({
   },
 });
 
+const locations = [
+  {
+    image: biopole,
+    name: 'VITRUVIAN SHIELD SA',
+    address: 'Rue de la Corniche n°3a, Bâtiment Phenyl, 1066 Epalinges; Switzerland',
+    link: 'https://biopole.ch',
+  },
+  {
+    image: astrolab,
+    name: 'VITRUVIAN SHIELD DMCC',
+    address: 'Parkside Retail Level; Cluster R - Jumeirah Lake Towers; Dubai - United Arab Emirates',
+    link: 'https://astrolabs.com',
+  },
+  {
+    image: pci,
+    name: 'VITRUVIAN SHIELD - PT',
+    address: 'PCI - Creative Science Park; Via do Conhecimento, Edf. Central, 3830-352 Ílhavo, Portugal',
+    link: 'https://sciencepark.pt',
+  },
+];
+
+const videoIds = ['aWnbr8Aagbo', 'z2KFOvcP3IQ', 'YOpXuRqvpVU'];
+
 const Footer = () => (
   <ThemeProvider theme={theme}>
+    {/* Desktop version */}
     <Box
       sx={{
         backgroundColor: 'black',
         py: 8,
         width: '100%',
         minHeight: '800px',
-        display: 'flex',
+        display: { xs: 'none', sm: 'flex' },
         flexDirection: 'column',
         alignItems: 'center',
         px: 2,
       }}
     >
       <Box sx={{ width: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '32px' }}>
-        <Box>
-          <Box
-            sx={{
-              width: { xs: '100%', sm: '320px' },
-              backgroundColor: '#14141426',
-              borderRadius: '8px',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-              p: 2,
-            }}
-          >
-            <Typography variant="h3" marginTop="16px">
-              OUR SOLUTIONS
-            </Typography>
+        {/* OUR SOLUTIONS Box */}
+        <Box sx={commonBoxStyles}>
+          <Typography variant="h3" marginTop="16px">OUR SOLUTIONS</Typography>
+          {['The problem', 'Concept', 'The Smartwatch', 'Mobile App', 'Research API', 'Data & Research', 'Certifications'].map((text, index) => (
+            <Typography variant="body9" marginTop="0.5px" key={index}>{text}</Typography>
+          ))}
+        </Box>
 
-            <Typography variant="body9" marginTop="32px">
-              The problem
-            </Typography>
-            <Typography variant="body9" marginTop="0.5px">
-              Concept
-            </Typography>
-            <Typography variant="body9" marginTop="0.5px">
-              The Smartwatch
-            </Typography>
-            <Typography variant="body9" marginTop="0.5px">
-              Mobile App
-            </Typography>
-            <Typography variant="body9" marginTop="0.5px">
-              Research API
-            </Typography>
-            <Typography variant="body9" marginTop="0.5px">
-              Data & Research
-            </Typography>
-            <Typography variant="body9" marginTop="0.5px">
-              Certifications
-            </Typography>
-          </Box>
-
-          <Box
-            sx={{
-              width: { xs: '100%', sm: '320px' },
-              backgroundColor: '#14141426',
-              borderRadius: '8px',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-              mt: { xs: 4, sm: 0 },
-              p: 2,
-            }}
-          >
-            <Typography variant="h3" marginTop="64px">
-              ABOUT US
-            </Typography>
-
-            <Typography variant="body9" marginTop="32px">
-              Our Vision
-            </Typography>
-            <Typography variant="body9" marginTop="0.5px">
-              Our Team
-            </Typography>
-            <Typography variant="body9" marginTop="0.5px">
-              Our Partners
-            </Typography>
-            <Typography variant="body9" marginTop="0.5px">
-              Become a Partner
-            </Typography>
-            <Typography variant="body9" marginTop="0.5px">
-              Donations
-            </Typography>
-            <Typography variant="body9" marginTop="0.5px">
-              Contact Us
-            </Typography>
-            <Typography variant="body9" marginTop="0.5px">
-              Gallery
-            </Typography>
-          </Box>
+        {/* ABOUT US Box */}
+        <Box sx={commonBoxStyles}>
+          <Typography variant="h3" marginTop="16px">ABOUT US</Typography>
+          {['Our Vision', 'Our Team', 'Our Partners', 'Become a Partner', 'Donations', 'Contact Us', 'Gallery'].map((text, index) => (
+            <Typography variant="body9" marginTop="0.5px" key={index}>{text}</Typography>
+          ))}
         </Box>
 
         {/* Visit us Section */}
-        <Box
-          sx={{
-            width: { xs: '100%', sm: '320px' },
-            backgroundColor: '#14141426',
-            borderRadius: '8px',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            p: 2,
-          }}
-        >
-          <Typography variant="h3" marginTop="16px">
-            Visit us
-          </Typography>
-
-          {/* Biopole Section */}
-          <Box marginTop={4}>
-            <img src={footerloc} alt="locationLogo" style={{ width: '22px', height: 'auto', marginRight: '8px' }} />
-            <img src={biopole} alt="Biopole" style={{ width: '103px', height: 'auto', marginRight: '8px' }} />
-            <Box marginTop="16px">
-              <Typography variant="h6" gutterBottom>
-                VITRUVIAN SHIELD SA
-              </Typography>
-              <Typography variant="body3" paragraph>
-                Rue de la Corniche n°3a, Bâtiment Phenyl, 1066 Epalinges; Switzerland
-              </Typography>
+        <Box sx={commonBoxStyles}>
+          <Typography variant="h3" marginTop="16px">Visit us</Typography>
+          {locations.map((location, index) => (
+            <Box marginTop={4} key={index}>
+              <img src={location.image} alt={location.name} style={{ width: '103px', height: 'auto', marginRight: '8px' }} />
+              <Box marginTop="16px">
+                <Box display="flex" alignItems="center">
+                  <img src={footerloc} alt="locationLogo" style={{ width: '22px', height: 'auto', marginRight: '8px' }} />
+                  <Typography variant="h6" gutterBottom>{location.name}</Typography>
+                </Box>
+                <Typography variant="body3" paragraph sx={{ mt: '12px' }}>{location.address}</Typography>
+                <Link href={location.link} target="_blank" rel="noopener" variant="body2">{location.link.split('//')[1]}</Link>
+              </Box>
             </Box>
-            <Link href="https://biopole.ch" target="_blank" rel="noopener" variant="body2">
-              Biopole
-            </Link>
-          </Box>
-
-          {/* Astrolabs Section */}
-          <Box marginTop={4}>
-            <img src={footerloc} alt="locationLogo" style={{ width: '22px', height: 'auto', marginRight: '8px' }} />
-            <img src={astrolab} alt="Astrolab" style={{ width: '103px', height: 'auto', marginRight: '8px' }} />
-            <Box marginTop="16px">
-              <Typography variant="h6" gutterBottom>
-                VITRUVIAN SHIELD DMCC
-              </Typography>
-              <Typography variant="body3" paragraph>
-                Parkside Retail Level; Cluster R - Jumeirah Lake Towers; Dubai - United Arab Emirates
-              </Typography>
-            </Box>
-            <Link href="https://astrolabs.com" target="_blank" rel="noopener" variant="body2">
-              Astrolabs
-            </Link>
-          </Box>
-
-          {/* Creative Science Park Section */}
-          <Box marginTop={4}>
-            <img src={footerloc} alt="locationLogo" style={{ width: '22px', height: 'auto', marginRight: '8px' }} />
-            <img src={pci} alt="science park" style={{ width: '103px', height: 'auto', marginRight: '8px' }} />
-            <Box marginTop="16px">
-              <Typography variant="h6" gutterBottom>
-                VITRUVIAN SHIELD - PT
-              </Typography>
-              <Typography variant="body3" paragraph>
-                PCI - Creative Science Park; Via do Conhecimento, Edf. Central, 3830-352 Ílhavo, Portugal
-              </Typography>
-            </Box>
-            <Link href="https://sciencepark.pt" target="_blank" rel="noopener" variant="body2">
-              Creative Science Park
-            </Link>
-          </Box>
+          ))}
         </Box>
 
         {/* Video Section */}
         <Box
           sx={{
-            width: { xs: '100%', sm: '320px' },
-            backgroundColor: '#14141426',
-            borderRadius: '8px',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            p: 2,
-            gap: '64px',
+            ...commonBoxStyles,
             justifyContent: 'center',
+            gap: '32px',
           }}
         >
-          {['aWnbr8Aagbo', 'aWnbr8Aagbo', 'aWnbr8Aagbo'].map((id, index) => (
+          {videoIds.map((id, index) => (
             <iframe
               key={index}
               title={`YouTube Video ${index + 1}`}
@@ -239,7 +147,108 @@ const Footer = () => (
         </Box>
       </Box>
     </Box>
+
+    {/* Mobile version */}
+    <Box
+      sx={{
+        backgroundColor: 'black',
+        py: 8,
+        width: '100%',
+        minHeight: '800px',
+        display: { xs: 'flex', sm: 'none' },
+        flexDirection: 'column',
+        alignItems: 'center',
+        px: 2,
+      }}
+    >
+      <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '32px' }}>
+        {/* OUR SOLUTIONS Accordion */}
+        <Accordion sx={{ backgroundColor: '#14141426' }}>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+            <Typography variant="h3">OUR SOLUTIONS</Typography>
+          </AccordionSummary>
+          <AccordionDetails sx={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            {['The problem', 'Concept', 'The Smartwatch', 'Mobile App', 'Research API', 'Data & Research', 'Certifications'].map((text, index) => (
+              <Typography variant="body9" key={index}>{text}</Typography>
+            ))}
+          </AccordionDetails>
+        </Accordion>
+
+        {/* ABOUT US Accordion */}
+        <Accordion sx={{ backgroundColor: '#14141426' }}>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel2a-content" id="panel2a-header">
+            <Typography variant="h3">ABOUT US</Typography>
+          </AccordionSummary>
+          <AccordionDetails sx={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            {['Our Vision', 'Our Team', 'Our Partners', 'Become a Partner', 'Donations', 'Contact Us', 'Gallery'].map((text, index) => (
+              <Typography variant="body9" key={index}>{text}</Typography>
+            ))}
+          </AccordionDetails>
+        </Accordion>
+
+        {/* Visit us Accordion */}
+        <Accordion sx={{ backgroundColor: '#14141426' }}>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel3a-content" id="panel3a-header">
+            <Typography variant="h3">Visit us</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Box>
+              {locations.map((location, index) => (
+                <Box marginTop={4} key={index}>
+                  <img src={location.image} alt={location.name} style={{ width: '103px', height: 'auto', marginRight: '8px' }} />
+                  <Box marginTop="16px">
+                    <Box display="flex" alignItems="center">
+                      <img src={footerloc} alt="locationLogo" style={{ width: '22px', height: 'auto', marginRight: '8px' }} />
+                      <Typography variant="h6" gutterBottom>{location.name}</Typography>
+                    </Box>
+                    <Typography variant="body3" paragraph sx={{ mt: '12px' }}>{location.address}</Typography>
+                    <Link href={location.link} target="_blank" rel="noopener" variant="body2">{location.link.split('//')[1]}</Link>
+                  </Box>
+                </Box>
+              ))}
+            </Box>
+          </AccordionDetails>
+        </Accordion>
+
+        {/* Video Section Accordion */}
+        <Accordion sx={{ backgroundColor: '#14141426' }}>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel4a-content" id="panel4a-header">
+            <Typography variant="h3">Videos</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              {videoIds.map((id, index) => (
+                <iframe
+                  key={index}
+                  title={`YouTube Video ${index + 1}`}
+                  width="260px"
+                  height="160px"
+                  src={`https://www.youtube.com/embed/${id}`}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ))}
+            </Box>
+          </AccordionDetails>
+        </Accordion>
+      </Box>
+    </Box>
   </ThemeProvider>
 );
+
+// Common styles for the boxes
+const commonBoxStyles = {
+  backgroundColor: '#141414',
+  borderRadius: '12px',
+  px: '16px',
+  py: '16px',
+  width: { xs: '100%', sm: '260px' },
+  height: 'auto',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-start',
+  gap: '12px',
+};
 
 export default Footer;
