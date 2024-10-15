@@ -33,18 +33,21 @@ const CertificationBox = () => {
     return (
         <ThemeProvider theme={theme}>
             <Box>
-                <Box
-                    display="flex"
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                    textAlign="center"
-                    mt={6}
-                    mb={6}
+            <Box
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    textAlign: "center",
+                    mt: {xs:'none',sm:'64px'},
+                    mb: {xs:'none',sm:'64px'},
+                }}
                 >
                     <Typography
                         sx={{
                             ...theme.typography.h3,
+                            display:{xs:'none', sm:'flex'},
                             mb: 2.5,
                             lineHeight: '1.5',
                             width: '600',
@@ -55,7 +58,7 @@ const CertificationBox = () => {
                     <Typography
                         sx={{
                             ...theme.typography.h6,
-                            mb: 5,
+                            mb: {xs:'none', sm:'5'},
                         }}
                     >
                         At the moment, we are undergoing the following certifications:

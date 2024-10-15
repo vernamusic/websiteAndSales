@@ -18,7 +18,13 @@ const Company = () =>{
             <Box
                 sx={{
                     width: '100%',
-                    minHeight: { xs: '500px', md: '900px',},
+                    minHeight: {
+                        xs: '200px',
+                        sm: '450px',
+                        md: '540px',
+                        lg: '675px',
+                        xl: '900px',
+                    },
                     display: 'flex',
                     justifyContent: 'center',
                     bgcolor: 'black',
@@ -29,7 +35,13 @@ const Company = () =>{
             <Box
                 sx={{
                     width: '100%',
-                    minHeight: { xs: '500px', md: '900px',},
+                    minHeight: {
+                        xs: '200px',
+                        sm: '450px',
+                        md: '540px',
+                        lg: '675px',
+                        xl: '900px',
+                    },
                     display: 'flex',
                     justifyContent: 'center',
                 }}
@@ -39,7 +51,13 @@ const Company = () =>{
             <Box
                 sx={{
                     width: '100%',
-                    minHeight: { xs: '500px', md: '900px',},
+                    minHeight: {
+                        xs: '200px',
+                        sm: '450px',
+                        md: '540px',
+                        lg: '675px',
+                        xl: '900px',
+                    },
                     display: 'flex',
                     justifyContent: 'center',
                 }}
@@ -49,7 +67,13 @@ const Company = () =>{
             <Box
                 sx={{
                     width: '100%',
-                    minHeight: { xs: '500px', md: '900px',},
+                    minHeight: {
+                        xs: '200px',
+                        sm: '450px',
+                        md: '540px',
+                        lg: '675px',
+                        xl: '900px',
+                    },
                     display: 'flex',
                     justifyContent: 'center',
                 }}
