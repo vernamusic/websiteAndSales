@@ -6,9 +6,10 @@ import {
     createTheme,
     ThemeProvider, Button,
 } from "@mui/material";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+
 import { useSwipeable } from "react-swipeable";
+import ArrowIcon from "../../assets/Arrow.png";
+import {useNavigate} from "react-router-dom";
 
 const theme = createTheme({
     typography: {
@@ -67,7 +68,6 @@ const Mediacard = ({ data }) => {
         trackMouse: true,
     });
 
-    // محاسبه عرض کارت‌ها بر اساس سایز صفحه
     const widthOfCard = useMemo(() => {
         if (window.innerWidth < 600) return 133; // xs
         if (window.innerWidth < 900) return 199.45; // sm
@@ -75,6 +75,12 @@ const Mediacard = ({ data }) => {
         if (window.innerWidth < 1536) return 336; // lg
         return 472; // xl
     }, [window.innerWidth]);
+
+    const navigate = useNavigate();
+
+    const handleClick = (slug) => {
+        navigate(`/news/${slug}`);
+    };
 
     return (
         <ThemeProvider theme={theme}>
@@ -121,7 +127,7 @@ const Mediacard = ({ data }) => {
                                     borderRadius: "20px",
                                     color: "white",
                                     overflow: "hidden",
-                                    backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 46.58%, rgba(0, 0, 0, 0.472485) 56.73%, rgba(0, 0, 0, 0.9) 66.51%), url(${box.photo})`,
+                                    backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 46.58%, rgba(0, 0, 0, 0.472485) 56.73%, rgba(0, 0, 0, 0.9) 66.51%), url(${box.picture})`,
                                     backgroundSize: "cover",
                                     backgroundPosition: "center",
                                     backgroundRepeat: "no-repeat",
@@ -181,6 +187,7 @@ const Mediacard = ({ data }) => {
                                     >
                                         <Button
                                             variant="contained"
+                                            onClick={() => handleClick(box.slug)}
                                             sx={{
                                                 borderRadius: "6px",
                                                 backgroundColor: "transparent",
@@ -216,24 +223,31 @@ const Mediacard = ({ data }) => {
                     sx={{
                         position: "absolute",
                         left: {
-                            xs: "-30px",
+                            xs: "-28px",
                             sm: "-40px",
-                            md: "-50px",
-                            lg: "-60px",
+                            md: "-60px",
+                            lg: "-70px",
                         },
                         top: "50%",
                         transform: "translateY(-50%)",
                         color: "#FFFFFF",
-                        "&:disabled": {
-                            color: "#555",
-                        },
+                        opacity: currentIndex === 0 ? "0.5" : "1",
                         "&:hover": {
                             backgroundColor: "transparent",
                         },
                     }}
+                    disableRipple
                 >
-                    <ArrowBackIosIcon sx={{ fontSize: { xs: "30px", sm: "40px", md: "50px" } }} />
+                    <img
+                        src={ArrowIcon}
+                        alt="Previous"
+                        style={{
+                            width: '2.5vw',
+                            opacity: currentIndex === 0 ? '0.5' : '1',
+                        }}
+                    />
                 </IconButton>
+
 
                 {/* Right Arrow */}
                 <IconButton
@@ -242,23 +256,30 @@ const Mediacard = ({ data }) => {
                     sx={{
                         position: "absolute",
                         right: {
-                            xs: "-30px",
-                            sm: "-40px",
+                            xs: "-20px",
+                            sm: "-30px",
                             md: "-50px",
                             lg: "-60px",
                         },
                         top: "50%",
                         transform: "translateY(-50%)",
                         color: "#FFFFFF",
-                        "&:disabled": {
-                            color: "#555",
-                        },
+                        opacity: currentIndex + itemsPerPage >= data.length ? "0.5" : "1",
                         "&:hover": {
                             backgroundColor: "transparent",
                         },
                     }}
+                    disableRipple
                 >
-                    <ArrowForwardIosIcon sx={{ fontSize: { xs: "30px", sm: "40px", md: "50px" } }} />
+                    <img
+                        src={ArrowIcon}
+                        alt="Previous"
+                        style={{
+                            width: '2.5vw',
+                            transform: 'scaleX(-1)',
+                            opacity: currentIndex + itemsPerPage >= data.length ? '0.5' : '1',
+                        }}
+                    />
                 </IconButton>
             </Box>
         </ThemeProvider>

@@ -16,7 +16,7 @@ const theme = createTheme({
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: { xs: '10px', sm: '13px', md: '18px', lg: '20px', xl: '22px' },
+            fontSize: { xs: '1.54vw', sm: '13px', md: '18px', lg: '20px', xl: '22px' },
             color: "#FFFFFF",
         },
     },
@@ -32,30 +32,32 @@ const SideBox = () => {
             alignItems: 'center',
             position: 'relative',
 
+
         }}>
-            {/* باکس متن در سمت چپ */}
             <Box
                 sx={{
-                    position:'absolute',
+                    position:{xs:'relative',sm:'absolute'},
                     top:'20%',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'flex-start',
-                    justifyContent: 'flex-start',
+                    justifyContent: {xs:'center',sm:'flex-start'},
                     textAlign: 'left',
                     ml: {xs: 5, sm: 10, md: 15, lg: 25, xl: 38},
                     gap: { xs: 1, sm: 1, md: 1.5, lg: 2, xl: 3 },
-                    width: { xs: '230px', sm: '300px', md: '430px', lg: '480px', xl: '580px' },
+                    mb: {xs: 8, sm: 0,},
+                    width: { xs: '240px', sm: '300px', md: '430px', lg: '480px', xl: '580px' },
                 }}
             >
                 <img
                     src={Vname}
                     alt="Vname"
-                    style={{ width: '100%' }}
+                    style={{ width: '85%' }}
                 />
                 <Typography
                     color="white"
                     sx={{
+                        display:{xs:'none',sm:'block'},
                         ...theme.typography.h6,
                         width: { xs: '240px', sm: '300px', md: '400px', lg: '480px', xl: '580px' },
                     }}
@@ -72,8 +74,8 @@ const SideBox = () => {
                         borderRadius: '4px',
                         backgroundColor: '#B50304',
                         textTransform: 'none',
-                        width: { xs: '110px', sm: '135px', md: '170px', lg: '190px', xl: '220px' },
-                        height: { xs: '30px', sm: '37px', md: '48px', lg: '52px', xl: '58px' },
+                        width: { xs: '45%', sm: '135px', md: '170px', lg: '190px', xl: '220px' },
+                        height: { xs: '24px', sm: '37px', md: '48px', lg: '52px', xl: '58px' },
                         '&:hover': {
                             backgroundColor: '#B50304',
                         },
@@ -84,17 +86,16 @@ const SideBox = () => {
                 </Button>
             </Box>
 
-            {/* باکس لوگو در سمت راست */}
             <Box
                 sx={{
                     display: 'flex',
-                    position:'absolute',
-                    justifyContent: 'flex-end', // چسباندن به راست
-                    right:'8%',
+                    position:{xs:'relative',sm:'absolute'},
+                    justifyContent: 'flex-end',
+                    right:{md:'9%',sm:'3%',xs:'5%'},
                     top:{md:'0%',sm:'15%'},
                     alignItems: 'center',
-                    width: { xs: '180px', sm: '270px', md: '300px', lg: '400px', xl: '470px' },
-                    height: { xs: '180px', sm: '270px', md: '500px', lg: '650px', xl: '820px' },
+                    width: { xs: '120px', sm: '220px', md: '300px', lg: '400px', xl: '470px' },
+                    height: { xs: '120px', sm: '220px', md: '500px', lg: '650px', xl: '820px' },
                 }}
             >
                 <img

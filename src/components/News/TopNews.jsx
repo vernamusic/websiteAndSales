@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     Box,
     Typography,
@@ -14,8 +14,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { useSwipeable } from "react-swipeable";
-import photo1 from "../../assets/about1.png";
-import photo2 from "../../assets/about2.png";
+import {useNavigate} from "react-router-dom";
 
 const theme = createTheme({
     typography: {
@@ -52,32 +51,29 @@ const theme = createTheme({
 });
 
 const Mediacard = () => {
-    const data = [
-        {
-            title: "Top News",
-            details: "Lorem ipsum dolor sit Mauris tincidunt Lorem ipsum dolor sit amet consectetur. Mauris tincidunt euismod tincidunt nibh. Aenean lectus cras libero.",
-            time: "7 min read",
-            views: "5k",
-            photo: photo1,
-        },
-        {
-            title: "Another News",
-            details: "Another piece of news with some description about events happening today.",
-            time: "5 min read",
-            views: "3.4k",
-            photo: photo2,
-        },
-        {
-            title: "Top News",
-            details: "Lorem ipsum dolor sit Mauris tincidunt Lorem ipsum dolor sit amet consectetur. Mauris tincidunt euismod tincidunt nibh. Aenean lectus cras libero.",
-            time: "7 min read",
-            views: "5k",
-            photo: photo1,
-        },
-    ];
-
+    const [data, setData] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [fade, setFade] = useState(true);
+    const [progress, setProgress] = useState(0);
+
+    useEffect(() => {
+        const fetchTopNews = async () => {
+            try {
+                const response = await fetch('https://site.vitruvianshield.com/api/v1/top-news');
+                const newsData = await response.json();
+                setData(newsData.results);
+            } catch (error) {
+                console.error("Error fetching top news data: ", error);
+            }
+        };
+
+        fetchTopNews();
+    }, []);
+    const navigate = useNavigate();
+
+    const handleClick = (slug) => {
+        navigate(`/news/${slug}`);
+    };
     const currentData = data[currentIndex];
 
     const handleNext = () => {
@@ -85,6 +81,7 @@ const Mediacard = () => {
         setTimeout(() => {
             setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length);
             setFade(true);
+            setProgress(0);
         }, 300);
     };
 
@@ -93,6 +90,7 @@ const Mediacard = () => {
         setTimeout(() => {
             setCurrentIndex((prevIndex) => (prevIndex === 0 ? data.length - 1 : prevIndex - 1));
             setFade(true);
+            setProgress(0);
         }, 300);
     };
 
@@ -101,6 +99,7 @@ const Mediacard = () => {
         setTimeout(() => {
             setCurrentIndex(index);
             setFade(true);
+            setProgress(0);
         }, 300);
     };
 
@@ -111,122 +110,170 @@ const Mediacard = () => {
         trackMouse: true,
     });
 
+    // Auto-slide logic
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setProgress((oldProgress) => {
+                if (oldProgress >= 100) {
+                    handleNext();
+                    return 0;
+                }
+                return oldProgress + 1;
+            });
+        }, 100);
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, [handleNext]);
+
+    if (data.length === 0) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <ThemeProvider theme={theme}>
             <Box
                 display="flex"
-                flexDirection="row"
+                flexDirection="column"
                 alignItems="center"
                 justifyContent="center"
                 position="relative"
                 {...swipeHandlers}
-                sx={{ width: '100%', height: '100vh', backgroundColor: "#333" }}
+                sx={{ width: '100%', backgroundColor: "transparent" }}
             >
                 <Box
                     sx={{
-                        width: '100vw',
-                        height: '95vh',
-                        position: "relative",
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                        backgroundImage: ` linear-gradient(90deg, rgba(0, 0, 0, 0.738) 14.54%, rgba(0, 0, 0, 0.686126) 23.41%, rgba(0, 0, 0, 0.584051) 40.86%, rgba(0, 0, 0, 0.164) 100%),url(${currentData.photo})`,
-                        color: "#fff",
+                        width: '100%',
+                        height: '100%',
+                        position: 'relative',
+                        backgroundImage: `linear-gradient(90deg, rgba(0, 0, 0, 0.738) 14.54%, rgba(0, 0, 0, 0.686) 23.41%, rgba(0, 0, 0, 0.584) 40.86%, rgba(0, 0, 0, 0.164) 100%), url(${currentData.picture})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat',
                     }}
                 >
-                    <Fade in={fade} timeout={300}>
+                    <Fade in={fade} timeout={200}>
                         <Box
                             sx={{
                                 position: "absolute",
+                                display:'flex',
                                 top: "35%",
                                 left: "18%",
                                 width: "50%",
-                                padding: "20px",
                                 borderRadius: "10px",
+                                flexDirection: 'column',
+                                gap:{xs:1,sm:1,md:2,lg:2,xl:2},
                             }}
                         >
-                            <Typography sx={{ ...theme.typography.h3,}}>
+                            <Typography sx={{ ...theme.typography.h3 }}>
                                 {currentData.title}
                             </Typography>
-                            <Typography sx={{ mt: 2, maxWidth:500, ...theme.typography.h6, }}>
-                                {currentData.details}
+                            <Typography sx={{maxWidth: 500, ...theme.typography.h6 }}>
+                                {currentData.details.length > 200
+                                    ? `${currentData.details.substring(0, 200)}...`
+                                    : currentData.details}
                             </Typography>
 
-                            <Box display="flex" alignItems="center" sx={{ mt: 2 }}>
+                            <Box display="flex" alignItems="center">
                                 <AccessTimeIcon sx={{ fontSize: 18, mr: 1 }} />
-                                <Typography variant="caption" sx={{ mr: 2 }}>
-                                    {currentData.time}
+                                <Typography variant="caption" sx={{ mr: 2 ,...theme.typography.caption}}>
+                                    {currentData.read_time}m
                                 </Typography>
-
-                                <VisibilityIcon sx={{ fontSize: 18, mr: 1, }} />
-                                <Typography variant="caption">
+                                <VisibilityIcon sx={{ fontSize: 18, mr: 1 }} />
+                                <Typography variant="caption" sx={{...theme.typography.caption}}>
                                     {currentData.views}
                                 </Typography>
                             </Box>
 
                             <Button
                                 variant="contained"
+                                onClick={() => handleClick(currentData.slug)}
+                                size="large"
                                 sx={{
                                     ...theme.typography.button,
-                                    borderRadius: '6px',
+                                    borderRadius: '4px',
                                     backgroundColor: '#B50304',
                                     textTransform: 'none',
-                                    width: '15%',
-                                    height: '10%',
-                                    alignItems: 'center',
-                                    mt:2.5,
+                                    width:{ xs: '88px', sm: '98px', md: '120px', lg: '140px', xl: '150px' },
+                                    height: { xs: '24px', sm: '30px', md: '40px', lg: '45px', xl: '50px' },
                                     '&:hover': {
                                         backgroundColor: '#B50304',
                                     },
                                 }}
+                                disableRipple
                             >
                                 Read more
                             </Button>
                         </Box>
                     </Fade>
+                </Box>
 
-                    <IconButton
-                        onClick={handlePrev}
-                        sx={{
-                            position: "absolute",
-                            left: "10px",
-                            top: "50%",
-                            color: "#fff",
-                        }}
-                    >
-                        <ArrowBackIosIcon />
-                    </IconButton>
+                <IconButton
+                    onClick={handlePrev}
+                    sx={{
+                        position: "absolute",
+                        left: "10px",
+                        top: "50%",
+                        color: "#fff",
+                    }}
+                >
+                    <ArrowBackIosIcon />
+                </IconButton>
 
-                    <IconButton
-                        onClick={handleNext}
-                        sx={{
-                            position: "absolute",
-                            right: "10px",
-                            top: "50%",
-                            color: "#fff",
-                        }}
-                    >
-                        <ArrowForwardIosIcon />
-                    </IconButton>
+                <IconButton
+                    onClick={handleNext}
+                    sx={{
+                        position: "absolute",
+                        right: "10px",
+                        top: "50%",
+                        color: "#fff",
+                    }}
+                >
+                    <ArrowForwardIosIcon />
+                </IconButton>
 
+                <Box display="flex" justifyContent="center">
                     <Box
-                        display="flex"
-                        justifyContent="center"
-                        sx={{ position: "absolute", bottom: "8%", width: "100%" }}
+                        sx={{
+                            position: "absolute",
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            height: {sm:'2px',md:'4px'},
+                            backgroundColor: "rgba(255, 255, 255, 0.3)",
+                        }}
                     >
-                        {data.map((_, index) => (
-                            <ButtonBase
-                                key={index}
-                                onClick={() => handleCircleClick(index)}
-                                sx={{
-                                    width: 10,
-                                    height: 10,
-                                    borderRadius: "50%",
-                                    backgroundColor: currentIndex === index ? "#ca0000" : "rgba(255, 255, 255, 0.5)",
-                                    mx: 1,
-                                }}
-                            />
-                        ))}
+                        <Box
+                            sx={{
+                                width: `${progress}%`,
+                                height: "100%",
+                                backgroundColor: "#ca0000",
+                                transition: "width 0.1s linear",
+                            }}
+                        />
                     </Box>
+
+                </Box>
+                <Box display="flex"
+                     flexDirection="row"
+                     alignItems="center"
+                >
+                    {data.map((_, index) => (
+                        <ButtonBase
+                            key={index}
+                            onClick={() => handleCircleClick(index)}
+                            sx={{
+                                position: 'relative',
+                                width: {xs:6,sm:7,md:8,lg:9,xl:10},
+                                height: {xs:6,sm:7,md:8,lg:9,xl:10},
+                                borderRadius: "50%",
+                                backgroundColor: currentIndex === index ? "#ca0000" : "rgba(255, 255, 255, 0.5)",
+                                mx: {xs:0.5,sm:0.8,md:1,lg:1,xl:1},
+                                mb:{xs:-1,sm:-2,md:-2,lg:-3,xl:-3},
+                            }}
+                        />
+                    ))}
                 </Box>
             </Box>
         </ThemeProvider>

@@ -81,7 +81,7 @@ const TeamMembers = () => {
         } else {
             return (
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0, mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },}}>
-                    <Typography gutterBottom sx={{ ...theme.typography.h3, pl: 1, mb: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 }, textAlign: 'left' }}>
+                    <Typography gutterBottom sx={{ ...theme.typography.h3,  mb: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 }, textAlign: 'left', pl:{xs:5.5,sm:1}, }}>
                         {selectedTeam}
                     </Typography>
                     <Allinonecard data={data} /> {/* Now passes only members data */}

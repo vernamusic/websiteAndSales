@@ -19,7 +19,7 @@ const Home = () => {
                 sx={{
                     width: '100%',
                     minHeight: {
-                        xs: '300px',
+                        xs: '200px',
                         sm: '450px',
                         md: '540px',
                         lg: '675px',
@@ -35,9 +35,9 @@ const Home = () => {
 
             <Box
                 sx={{
-                    width: '100%',
+                    width: { xs: '90%', sm: '100%'},
                     minHeight: {
-                        xs: '300px',
+                        xs: '200px',
                         sm: '450px',
                         md: '540px',
                         lg: '675px',
@@ -45,6 +45,10 @@ const Home = () => {
                     },
                     display: 'flex',
                     justifyContent: 'center',
+                    zIndex:3,
+                    mb:{xs:2,sm:0},
+                    mx: 'auto',
+
                 }}
             >
                 <ProductBox />
@@ -52,19 +56,24 @@ const Home = () => {
 
             <Box
                 sx={{
-                    width: '100%',
+                    width: { xs: '90%', sm: '100%'},
                     minHeight: {
-                        xs: '300px',
+                        xs: '180px',
                         sm: '450px',
                         md: '540px',
                         lg: '675px',
                         xl: '900px',
                     },
                     display: 'flex',
+                    background:{xs:'rgba(20, 20, 20, 1)',sm:'transparent'},
+                    borderRadius:'20px',
                     justifyContent: 'center',
+                    mb: { xs: 2, sm: 0 },
+                    mx: 'auto',
                 }}
             >
-                <SideBox />
+
+            <SideBox />
             </Box>
 
             {/* <Box
@@ -96,6 +105,7 @@ const Home = () => {
                     },
                     display: 'flex',
                     justifyContent: 'center',
+                    mb:{xs:2,sm:0}
                 }}
             >
                 <NewsBox />

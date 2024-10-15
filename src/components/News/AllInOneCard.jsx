@@ -6,6 +6,7 @@ import {
     ThemeProvider,
     Button,
 } from "@mui/material";
+import {useNavigate} from "react-router-dom";
 
 const theme = createTheme({
     typography: {
@@ -34,6 +35,11 @@ const theme = createTheme({
 });
 
 const Allinonecard = ({ data }) => {
+    const navigate = useNavigate();
+
+    const handleClick = (slug) => {
+        navigate(`/news/${slug}`);
+    };
     return (
         <ThemeProvider theme={theme}>
             <Box
@@ -75,7 +81,7 @@ const Allinonecard = ({ data }) => {
                                 borderRadius: "20px",
                                 color: "white",
                                 overflow: "hidden",
-                                backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 46.58%, rgba(0, 0, 0, 0.472485) 56.73%, rgba(0, 0, 0, 0.9) 66.51%), url(${box.photo})`,
+                                backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 46.58%, rgba(0, 0, 0, 0.472485) 56.73%, rgba(0, 0, 0, 0.9) 66.51%), url(${box.picture})`,
                                 backgroundSize: "cover",
                                 backgroundPosition: "center",
                                 backgroundRepeat: "no-repeat",
@@ -135,6 +141,7 @@ const Allinonecard = ({ data }) => {
                                 >
                                     <Button
                                         variant="contained"
+                                        onClick={() => handleClick(box.slug)}
                                         sx={{
                                             borderRadius: "6px",
                                             backgroundColor: "transparent",
