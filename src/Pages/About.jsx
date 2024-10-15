@@ -12,6 +12,7 @@ const About = () => {
             sx={{
                 display: 'flex',
                 flexDirection: 'column',
+                alignItems:'center',
                 width: '100%',
             }}
         >
@@ -19,7 +20,7 @@ const About = () => {
                 sx={{
                     width: '100%',
                     minHeight: {
-                        xs: '200px',
+                        xs: '250px',
                         sm: '350px',
                         md: '500px',
                         lg: '650px',

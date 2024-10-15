@@ -53,6 +53,7 @@ const MemberCountBox = () => {
                 backgroundColor: 'rgba(20, 20, 20, 0.4)',
                 display: 'flex',
                 justifyContent: 'center',
+                textAlign:'center',
                 alignItems: 'center',
                 gap: { xs: '28px', sm: '45px', md: '70px', lg: '120px', xl: '160px' },
                 py: { xs: '20px', sm: '24px', md: '28px', lg: '35px', xl: '42px' },

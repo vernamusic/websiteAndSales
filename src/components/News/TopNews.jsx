@@ -170,7 +170,9 @@ const Mediacard = () => {
                                 {currentData.title}
                             </Typography>
                             <Typography sx={{maxWidth: 500, ...theme.typography.h6 }}>
-                                {currentData.details}
+                                {currentData.details.length > 200
+                                    ? `${currentData.details.substring(0, 200)}...`
+                                    : currentData.details}
                             </Typography>
 
                             <Box display="flex" alignItems="center">
