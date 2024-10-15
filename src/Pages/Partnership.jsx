@@ -1,9 +1,9 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import ProductBox from '../components/home/ProductBox';
-import RegBox from '../components/home/RegBox';
+import MessageBox from '../components/partnership/MessageBox';
+import ReqBox from '../components/partnership/ReqBox';
 
-const Home = () => {
+const Partnership = () => {
     return (
         <Box
             sx={{
@@ -27,7 +27,7 @@ const Home = () => {
                     bgcolor: 'black',
                 }}
             >
-                <RegBox />
+                <MessageBox />
             </Box>
 
             <Box
@@ -44,10 +44,10 @@ const Home = () => {
                     justifyContent: 'center',
                 }}
             >
-                <ProductBox />
+                <ReqBox />
             </Box>
         </Box>
     );
 }
 
-export default Home;
+export default Partnership;
