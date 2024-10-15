@@ -92,7 +92,7 @@ const Mediacard = ({ data }) => {
                     sx={{
                         overflow: "hidden",
                         maxWidth: {
-                            xs: "450px",
+                            xs: "380px",
                             sm: "650px",
                             md: "900px",
                             lg: "1100px",
@@ -115,8 +115,8 @@ const Mediacard = ({ data }) => {
                             <Box
                                 key={index}
                                 sx={{
-                                    width: { xs: '142px', sm: '206px', md: '285px', lg: '347px', xl: '370px' },
-                                    height: { xs: '230px', sm: '334px', md: '462px', lg: '564px', xl: '600px' },
+                                    width: { xs: '121px', sm: '206px', md: '285px', lg: '347px', xl: '370px' },
+                                    height: { xs: '196px', sm: '334px', md: '462px', lg: '564px', xl: '600px' },
                                     position: "relative", // Position relative to allow absolute positioning of inner boxes
                                     borderRadius: "20px",
                                     color: "white",
@@ -238,7 +238,7 @@ const Mediacard = ({ data }) => {
                                             display: "flex",
                                             justifyContent: "center",
                                             width: "100%",
-                                            mt: 3,
+                                            mt: 2,
                                         }}
                                     >
                                         <Typography

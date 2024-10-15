@@ -57,7 +57,7 @@ const Allinonecard = ({ data }) => {
                     justifyContent="start"
                     sx={{ gap: { xs: 1, sm: 1.5, md: 2, lg: 3, xl: 5 },
                             width: {
-                                xs: "450px",
+                                xs: "380px",
                                 sm: "650px",
                                 md: "900px",
                                 lg: "1100px",
@@ -71,8 +71,8 @@ const Allinonecard = ({ data }) => {
                             sx={{
                                 flexDirection: "column",
                                 justifyContent: "space-between",
-                                width: { xs: '142px', sm: '206px', md: '285px', lg: '347px', xl: '370px' },
-                                height: { xs: '230px', sm: '334px', md: '462px', lg: '564px', xl: '600px' },
+                                width: { xs: '121px', sm: '206px', md: '285px', lg: '347px', xl: '370px' },
+                                height: { xs: '196px', sm: '334px', md: '462px', lg: '564px', xl: '600px' },
                                 position: "relative",
                                 borderRadius: "20px",
                                 color: "white",
@@ -132,9 +132,9 @@ const Allinonecard = ({ data }) => {
                                                 position: "absolute",
                                                 width: "100%",
                                                 height: "100%",
-                                                backgroundColor: "#736f6f", // رنگ خاکستری خاص
+                                                backgroundColor: "#736f6f",
                                                 borderRadius: "50%",
-                                                opacity: 0.5, // تنظیم شفافیت
+                                                opacity: 0.5,
                                             }}
                                         />
                                     )}
@@ -173,7 +173,7 @@ const Allinonecard = ({ data }) => {
                                             display: "flex",
                                             justifyContent: "center",
                                             width: "100%",
-                                            mt: 2, // Add margin-top to space out
+                                            mt: 2,
                                         }}
                                     >
                                         <Typography
@@ -193,7 +193,7 @@ const Allinonecard = ({ data }) => {
                                             display: "flex",
                                             justifyContent: "center",
                                             width: "100%",
-                                            mt: 2, // Add margin-top to space out
+                                            mt: 2,
                                         }}
                                     >
                                         <Typography

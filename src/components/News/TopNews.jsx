@@ -14,6 +14,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { useSwipeable } from "react-swipeable";
+import {useNavigate} from "react-router-dom";
 
 const theme = createTheme({
     typography: {
@@ -68,7 +69,11 @@ const Mediacard = () => {
 
         fetchTopNews();
     }, []);
+    const navigate = useNavigate();
 
+    const handleClick = (slug) => {
+        navigate(`/news/${slug}`);
+    };
     const currentData = data[currentIndex];
 
     const handleNext = () => {
@@ -165,7 +170,9 @@ const Mediacard = () => {
                                 {currentData.title}
                             </Typography>
                             <Typography sx={{maxWidth: 500, ...theme.typography.h6 }}>
-                                {currentData.details}
+                                {currentData.details.length > 200
+                                    ? `${currentData.details.substring(0, 200)}...`
+                                    : currentData.details}
                             </Typography>
 
                             <Box display="flex" alignItems="center">
@@ -181,7 +188,7 @@ const Mediacard = () => {
 
                             <Button
                                 variant="contained"
-
+                                onClick={() => handleClick(currentData.slug)}
                                 size="large"
                                 sx={{
                                     ...theme.typography.button,

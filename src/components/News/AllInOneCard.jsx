@@ -6,6 +6,7 @@ import {
     ThemeProvider,
     Button,
 } from "@mui/material";
+import {useNavigate} from "react-router-dom";
 
 const theme = createTheme({
     typography: {
@@ -34,6 +35,11 @@ const theme = createTheme({
 });
 
 const Allinonecard = ({ data }) => {
+    const navigate = useNavigate();
+
+    const handleClick = (slug) => {
+        navigate(`/news/${slug}`);
+    };
     return (
         <ThemeProvider theme={theme}>
             <Box
@@ -135,6 +141,7 @@ const Allinonecard = ({ data }) => {
                                 >
                                     <Button
                                         variant="contained"
+                                        onClick={() => handleClick(box.slug)}
                                         sx={{
                                             borderRadius: "6px",
                                             backgroundColor: "transparent",
