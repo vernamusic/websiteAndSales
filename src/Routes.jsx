@@ -9,7 +9,7 @@ import Login from './Pages/Login';
 import Dashboard from './Pages/Dashboard';
 import Watch from './Pages/Watch';
 import Company from './Pages/Company';
-import Partnership from './Pages/Partnership';
+
 
 const AppRoutes = () => {
     return (
