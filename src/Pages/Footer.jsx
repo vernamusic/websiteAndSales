@@ -90,6 +90,7 @@ const Footer = () => (
       }}
     >
       <Box sx={{ width: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '32px' }}>
+        <Box>
         {/* OUR SOLUTIONS Box */}
         <Box sx={commonBoxStyles}>
           <Typography variant="h3" marginTop="16px">OUR SOLUTIONS</Typography>
@@ -105,10 +106,11 @@ const Footer = () => (
             <Typography variant="body9" marginTop="0.5px" key={index}>{text}</Typography>
           ))}
         </Box>
+        </Box>
 
         {/* Visit us Section */}
         <Box sx={commonBoxStyles}>
-          <Typography variant="h3" marginTop="16px">Visit us</Typography>
+          <Typography variant="h3" marginTop="16px">VISIT US</Typography>
           {locations.map((location, index) => (
             <Box marginTop={4} key={index}>
               <img src={location.image} alt={location.name} style={{ width: '103px', height: 'auto', marginRight: '8px' }} />
@@ -133,16 +135,27 @@ const Footer = () => (
           }}
         >
           {videoIds.map((id, index) => (
+            <Box sx={{ position: 'relative', width: '100%', paddingTop: '56.25%' }}> {/* نسبت 16:9 */}
             <iframe
               key={index}
               title={`YouTube Video ${index + 1}`}
-              width="260px"
-              height="160px"
               src={`https://www.youtube.com/embed/${id}`}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                borderRadius: '8px',
+                overflow: 'hidden',
+              }}
             />
+          </Box>
+          
+          
           ))}
         </Box>
       </Box>
@@ -218,16 +231,25 @@ const Footer = () => (
           <AccordionDetails>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               {videoIds.map((id, index) => (
+                <Box sx={{ position: 'relative', width: '100%', paddingTop: '56.25%' }}> {/* نسبت 16:9 */}
                 <iframe
                   key={index}
                   title={`YouTube Video ${index + 1}`}
-                  width="260px"
-                  height="160px"
                   src={`https://www.youtube.com/embed/${id}`}
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: '8px',
+                    overflow: 'hidden',
+                  }}
                 />
+              </Box>
               ))}
             </Box>
           </AccordionDetails>
@@ -239,8 +261,8 @@ const Footer = () => (
 
 // Common styles for the boxes
 const commonBoxStyles = {
-  backgroundColor: '#141414',
-  borderRadius: '12px',
+  backgroundColor: '#14141415',
+  borderRadius: '8px',
   px: '16px',
   py: '16px',
   width: { xs: '100%', sm: '260px' },
