@@ -167,18 +167,25 @@ const Footer = () => (
         backgroundColor: 'black',
         py: 8,
         width: '100%',
-        minHeight: '800px',
         display: { xs: 'flex', sm: 'none' },
         flexDirection: 'column',
         alignItems: 'center',
         px: 2,
       }}
     >
-      <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '32px' }}>
+      <Box sx={{ width: '100vw',backgroundColor: '#080808', display: 'flex', flexDirection: 'column',}}>
         {/* OUR SOLUTIONS Accordion */}
-        <Accordion sx={{ backgroundColor: '#14141426' }}>
-          <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-            <Typography variant="h3">OUR SOLUTIONS</Typography>
+        <Accordion sx={{ backgroundColor: '#080808' }}>
+          <AccordionSummary
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+            sx={{ display: 'flex', alignItems: 'center' }}
+          >
+            {/* Add the arrow icon to the left side */}
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <ExpandMoreIcon sx={{ color: 'white' }} /> {/* Left arrow in white */}
+              <Typography variant="h3" sx={{ color: 'white' }}>Our solution</Typography> {/* Text in white */}
+            </Box>
           </AccordionSummary>
           <AccordionDetails sx={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             {['The problem', 'Concept', 'The Smartwatch', 'Mobile App', 'Research API', 'Data & Research', 'Certifications'].map((text, index) => (
@@ -187,10 +194,22 @@ const Footer = () => (
           </AccordionDetails>
         </Accordion>
 
+        <Box sx={{ borderBottom: '1px solid #D9D9D912'}} />
+
+
+
         {/* ABOUT US Accordion */}
-        <Accordion sx={{ backgroundColor: '#14141426' }}>
-          <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel2a-content" id="panel2a-header">
-            <Typography variant="h3">ABOUT US</Typography>
+        <Accordion sx={{ backgroundColor: '#080808' }}>
+        <AccordionSummary
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+            sx={{ display: 'flex', alignItems: 'center' }}
+          >
+            {/* Add the arrow icon to the left side */}
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <ExpandMoreIcon sx={{ color: 'white' }} /> {/* Left arrow in white */}
+              <Typography variant="h3" sx={{ color: 'white' }}>About Us</Typography> {/* Text in white */}
+            </Box>
           </AccordionSummary>
           <AccordionDetails sx={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             {['Our Vision', 'Our Team', 'Our Partners', 'Become a Partner', 'Donations', 'Contact Us', 'Gallery'].map((text, index) => (
@@ -199,10 +218,15 @@ const Footer = () => (
           </AccordionDetails>
         </Accordion>
 
+        <Box sx={{ borderBottom: '1px solid #D9D9D912'}} />
+
         {/* Visit us Accordion */}
-        <Accordion sx={{ backgroundColor: '#14141426' }}>
+        <Accordion sx={{ backgroundColor: '#080808' }}>
           <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel3a-content" id="panel3a-header">
-            <Typography variant="h3">Visit us</Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <ExpandMoreIcon sx={{ color: 'white' }} /> {/* Left arrow in white */}
+              <Typography variant="h3" sx={{ color: 'white' }}>Visit Us</Typography> {/* Text in white */}
+            </Box>
           </AccordionSummary>
           <AccordionDetails>
             <Box>
@@ -223,10 +247,15 @@ const Footer = () => (
           </AccordionDetails>
         </Accordion>
 
+        <Box sx={{ borderBottom: '1px solid #D9D9D912'}} />
+
         {/* Video Section Accordion */}
-        <Accordion sx={{ backgroundColor: '#14141426' }}>
+        <Accordion sx={{ backgroundColor: '#080808' }}>
           <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel4a-content" id="panel4a-header">
-            <Typography variant="h3">Videos</Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <ExpandMoreIcon sx={{ color: 'white' }} /> {/* Left arrow in white */}
+              <Typography variant="h3" sx={{ color: 'white' }}>Our YouTube</Typography> {/* Text in white */}
+            </Box>
           </AccordionSummary>
           <AccordionDetails>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
