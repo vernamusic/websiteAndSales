@@ -9,6 +9,7 @@ import Login from './Pages/Login';
 import Dashboard from './Pages/Dashboard';
 import Watch from './Pages/Watch';
 import Company from './Pages/Company';
+import Partnership from './Pages/Partnership';
 
 const AppRoutes = () => {
     return (
@@ -19,6 +20,7 @@ const AppRoutes = () => {
             <Route path="/products/dashboard" element={<Dashboard />} />
             <Route path="/products/smart-watch" element={<Watch />} />
             <Route path="/company" element={<Company />} />
+            <Route path="/partnership" element={<Partnership />} />
             <Route path="/news" element={<News />} />
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<Login />} />
