@@ -46,7 +46,8 @@ const theme = createTheme({
       fontWeight: 500,
       fontSize: '16px',
       lineHeight: '28.8px',
-      color: '#FFFFFF90',
+      color: '#FFFFFFE5',
+      
     },
   },
 });
@@ -89,23 +90,23 @@ const Footer = () => (
         px: 2,
       }}
     >
-      <Box sx={{ width: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '32px' }}>
+      <Box sx={{ width: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '128px' }}>
         <Box>
-        {/* OUR SOLUTIONS Box */}
-        <Box sx={commonBoxStyles}>
-          <Typography variant="h3" marginTop="16px">OUR SOLUTIONS</Typography>
-          {['The problem', 'Concept', 'The Smartwatch', 'Mobile App', 'Research API', 'Data & Research', 'Certifications'].map((text, index) => (
-            <Typography variant="body9" marginTop="0.5px" key={index}>{text}</Typography>
-          ))}
-        </Box>
+          {/* OUR SOLUTIONS Box */}
+          <Box sx={commonBoxStyles}>
+            <Typography gutterBottom variant="h3" marginTop="16px" marginBottom="16px">OUR SOLUTIONS</Typography>
+            {['The problem', 'Concept', 'The Smartwatch', 'Mobile App', 'Research API', 'Data & Research', 'Certifications'].map((text, index) => (
+              <Typography variant="body9" marginTop="0.5px" key={index}>{text}</Typography>
+            ))}
+          </Box>
 
-        {/* ABOUT US Box */}
-        <Box sx={commonBoxStyles}>
-          <Typography variant="h3" marginTop="16px">ABOUT US</Typography>
-          {['Our Vision', 'Our Team', 'Our Partners', 'Become a Partner', 'Donations', 'Contact Us', 'Gallery'].map((text, index) => (
-            <Typography variant="body9" marginTop="0.5px" key={index}>{text}</Typography>
-          ))}
-        </Box>
+          {/* ABOUT US Box */}
+          <Box sx={commonBoxStyles}>
+            <Typography gutterBottom variant="h3" marginTop="64px" marginBottom="16px">ABOUT US</Typography>
+            {['Our Vision', 'Our Team', 'Our Partners', 'Become a Partner', 'Donations', 'Contact Us', 'Gallery'].map((text, index) => (
+              <Typography variant="body9" marginTop="0.5px" key={index}>{text}</Typography>
+            ))}
+          </Box>
         </Box>
 
         {/* Visit us Section */}
@@ -131,7 +132,7 @@ const Footer = () => (
           sx={{
             ...commonBoxStyles,
             justifyContent: 'center',
-            gap: '32px',
+            gap: '64px',
           }}
         >
           {videoIds.map((id, index) => (
@@ -292,14 +293,11 @@ const Footer = () => (
 const commonBoxStyles = {
   backgroundColor: '#14141415',
   borderRadius: '8px',
-  px: '16px',
-  py: '16px',
   width: { xs: '100%', sm: '260px' },
   height: 'auto',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
-  gap: '12px',
 };
 
 export default Footer;
