@@ -92,10 +92,7 @@ const TeamMembers = () => {
         } else {
             const selectedTeamData = teamsData.find(team => team.team_name === selectedTeam)?.members || [];
             return (
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },}}>
-                    <Typography gutterBottom sx={{ ...theme.typography.h3, pl: 1, mb: 3, textAlign: 'left' }}>
-                        {selectedTeam}
-                    </Typography>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },}}>
                     <Box sx={{ width: '100%',}}>
                         <Allinonecard data={selectedTeamData} />
                     </Box>
@@ -121,6 +118,7 @@ const TeamMembers = () => {
                         justifyContent: 'center',
                         mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
                         maxHeight: '40px',
+
                     }}
                 >
                     <ToggleButtonGroup
