@@ -1,12 +1,12 @@
 import React from 'react';
-import { Box, Grid, Typography, Button, createTheme, ThemeProvider } from '@mui/material';
+import { Box, Typography, Button, createTheme, ThemeProvider } from '@mui/material';
 
 const theme = createTheme({
   typography: {
     h6: {
-      fontFamily: 'Sen',
+      fontFamily: 'Lato',
       fontWeight: 700,
-      fontSize: { xs: '12px', sm: '15px', md: '17px', lg: '21px', xl: '24px' },
+      fontSize: { sm: '15px', md: '17px', lg: '21px', xl: '24px' },
       color: '#FFFFFF',
       letterSpacing: '0.4px',
       lineHeight: 'normal',
@@ -14,21 +14,37 @@ const theme = createTheme({
     h3: {
       fontFamily: 'Lato',
       fontWeight: 600,
-      fontSize: { xs: '16px', sm: '20px', md: '24px', lg: '28px', xl: '35px' },
+      fontSize: { sm: '20px', md: '24px', lg: '28px', xl: '35px' },
       color: '#FFFFFF',
       letterSpacing: '0.4px',
     },
+    h9: {
+      fontFamily: 'Lato',
+      fontWeight: 700,
+      lineHeight: '20.4px',
+      fontSize: {sm: '12px', md: '17px' },
+      color: '#FFFFFF',
+    },
     body1: {
-      fontFamily: 'Sen',
-      fontWeight: 600,
-      fontSize: { xs: '12px', sm: '14px', md: '16px' },
+      fontFamily: 'Lato',
+      fontWeight: 400,
+      lineHeight: '19.2px',
+      fontSize: {sm: '12px', md: '16px' },
       color: '#FFFFFF',
     },
     body2: {
-      fontFamily: 'Sen',
+      fontFamily: 'Lato',
       fontWeight: 500,
-      fontSize: { xs: '10px', sm: '12px', md: '14px' },
+      lineHeight: '15px',
+      fontSize: {sm: '12px', md: '16px' },
       color: '#FFFFFF',
+    },
+    body3: {
+      fontFamily: 'Sen',
+      fontWeight: 400,
+      lineHeight: '21.66px',
+      fontSize: {sm: '12px', md: '16px' },
+      color: '#F1F1F1',
     },
   },
 });
@@ -58,7 +74,7 @@ const PricingBox = () => {
           </Typography>
           <Typography
             sx={{
-              ...theme.typography.h6,
+              ...theme.typography.body3,
               mb: 5,
             }}
           >
@@ -67,90 +83,80 @@ const PricingBox = () => {
         </Box>
 
         {/* Pricing Cards */}
-        <Grid container spacing={3} justifyContent="center">
-          {/* Full Platform License */}
-          <Grid item xs={12} sm={6} md={4}>
-            <Box
-              sx={{
-                backgroundColor: '#141414',
-                borderRadius: '10px',
-                padding: 4,
-                boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.2)',
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Typography sx={{ ...theme.typography.h3 }}>260,00 CHF</Typography>
-              <Typography sx={{ ...theme.typography.h6 }}>
-                Full Platform License (CTMS & RPM)
-              </Typography>
-              <Typography sx={{ ...theme.typography.body2, mt: 2 }}>
-                Monthly Fee
-              </Typography>
-              <Box component="ul" sx={{ paddingLeft: '1rem', margin: 0 }}>
-                <li style={{ color: 'red' }}>
-                  <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                    850 CHF per smartwatch
-                  </Typography>
-                </li>
-                <li style={{ color: 'red' }}>
-                  <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                    40 CHF per month per watch
-                  </Typography>
-                </li>
-                <li style={{ color: 'red' }}>
-                  <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                    Cloud data storage and traffic management
-                  </Typography>
-                </li>
-              </Box>
-              <Typography sx={{ ...theme.typography.body1, mt: 2 }}>FEATURES</Typography>
-              <Box component="ul" sx={{ paddingLeft: '1rem', margin: 0 }}>
-                <li style={{ color: 'red' }}>
-                  <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                    Research Protocol Designing
-                  </Typography>
-                </li>
-                <li style={{ color: 'red' }}>
-                  <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                    Research KPIs and Monitoring
-                  </Typography>
-                </li>
-                <li style={{ color: 'red' }}>
-                  <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                    Resource Management
-                  </Typography>
-                </li>
-                <li style={{ color: 'red' }}>
-                  <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                    eConsent
-                  </Typography>
-                </li>
-                <li style={{ color: 'red' }}>
-                  <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                    Trial Planning and Designing
-                  </Typography>
-                </li>
-                <li style={{ color: 'red' }}>
-                  <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                    Site and Staff Management
-                  </Typography>
-                </li>
-              </Box>
-              <Box display="flex" flexDirection="column" gap={2} mt={4}>
-                <Button
-                  variant="contained"
-                  fullWidth
-                  sx={{
-                    backgroundColor: 'red',
-                    textTransform: 'none',
-                    borderRadius: '5px',
-                  }}
-                >
-                  Buy
-                </Button>
+        <Box
+          display="flex"
+          flexDirection={{ sm: 'row' }}
+          justifyContent="center"
+          gap={12}
+        >
+          {/* CTMS */}
+          <Box
+            sx={{
+              backgroundColor: '#141414',
+              borderRadius: '15px',
+              padding: 4,
+              boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.2)',
+              flex: '1 1 400px', // Increased from 300px to 350px
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              border: '1px solid #FFFFFF33',
+              maxWidth: '450px', // Optional: Set a maxWidth for further control
+            }}
+          >
+            <Typography sx={{ ...theme.typography.h6 }}>CTMS</Typography>
+            <Typography sx={{ ...theme.typography.body1 }}>
+              Cutting-edge Clinical Trials Management
+            </Typography>
+            <Typography sx={{ ...theme.typography.h9, mt: 2 }}>FEATURES</Typography>
+            <Box component="ul" sx={{ paddingLeft: '1rem', margin: 0 }}>
+              <li style={{ color: 'red', marginBottom: '4px' }}>
+                <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
+                  Data collection
+                </Typography>
+              </li>
+              <li style={{ color: 'red', marginBottom: '4px' }}>
+                <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
+                  Wearable devices
+                </Typography>
+              </li>
+              <li style={{ color: 'red', marginBottom: '4px' }}>
+                <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
+                  Remote patient monitoring
+                </Typography>
+              </li>
+              <li style={{ color: 'red', marginBottom: '4px' }}>
+                <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
+                  Resource Management
+                </Typography>
+              </li>
+              <li style={{ color: 'red', marginBottom: '4px' }}>
+                <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
+                  Research KPIs and monitoring
+                </Typography>
+              </li>
+              <li style={{ color: 'red', marginBottom: '4px' }}>
+                <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
+                  eConsent
+                </Typography>
+              </li>
+              <li style={{ color: 'red', marginBottom: '4px' }}>
+                <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
+                  Site and staff management
+                </Typography>
+              </li>
+              <li style={{ color: 'red', marginBottom: '4px' }}>
+                <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
+                  Trial planning and designing
+                </Typography>
+              </li>
+              <li style={{ color: 'red', marginBottom: '4px' }}>
+                <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
+                  Randomization and blindness
+                </Typography>
+              </li>
+            </Box>
+            <Box display="flex" flexDirection="column" gap={2} mt={4}>
                 <Button
                   variant="outlined"
                   fullWidth
@@ -163,93 +169,88 @@ const PricingBox = () => {
                 >
                   More
                 </Button>
-              </Box>
+              <Button
+                variant="contained"
+                fullWidth
+                sx={{
+                  backgroundColor: 'red',
+                  textTransform: 'none',
+                  borderRadius: '5px',
+                }}
+              >
+                Buy
+              </Button>
             </Box>
-          </Grid>
+          </Box>
 
-          {/* Individual Service License */}
-          <Grid item xs={12} sm={6} md={4}>
-            <Box
-              sx={{
-                backgroundColor: '#111111',
-                borderRadius: '10px',
-                padding: 4,
-                boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.2)',
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Typography sx={{ ...theme.typography.h3 }}>160,00 CHF</Typography>
-              <Typography sx={{ ...theme.typography.h6 }}>
-                Individual Service License (CTMS or RPM)
-              </Typography>
-              <Typography sx={{ ...theme.typography.body2, mt: 2 }}>
-                Monthly Fee
-              </Typography>
-              <Box component="ul" sx={{ paddingLeft: '1rem', margin: 0 }}>
-                <li style={{ color: 'red' }}>
-                  <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                    850 CHF per smartwatch
-                  </Typography>
-                </li>
-                <li style={{ color: 'red' }}>
-                  <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                    40 CHF per month per watch
-                  </Typography>
-                </li>
-                <li style={{ color: 'red' }}>
-                  <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                    Cloud data storage and traffic management
-                  </Typography>
-                </li>
-              </Box>
-              <Typography sx={{ ...theme.typography.body1, mt: 2 }}>FEATURES</Typography>
-              <Box component="ul" sx={{ paddingLeft: '1rem', margin: 0 }}>
-                <li style={{ color: 'red' }}>
-                  <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                    Research Protocol Designing
-                  </Typography>
-                </li>
-                <li style={{ color: 'red' }}>
-                  <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                    Research KPIs and Monitoring
-                  </Typography>
-                </li>
-                <li style={{ color: 'red' }}>
-                  <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                    Resource Management
-                  </Typography>
-                </li>
-                <li style={{ color: 'red' }}>
-                  <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                    eConsent
-                  </Typography>
-                </li>
-                <li style={{ color: 'red' }}>
-                  <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                    Trial Planning and Designing
-                  </Typography>
-                </li>
-                <li style={{ color: 'red' }}>
-                  <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                    Site and Staff Management
-                  </Typography>
-                </li>
-              </Box>
-              <Box display="flex" flexDirection="column" gap={2} mt={4}>
-                <Button
-                  variant="contained"
-                  fullWidth
-                  sx={{
-                    backgroundColor: 'red',
-                    textTransform: 'none',
-                    borderRadius: '5px',
-                  }}
-                >
-                  Buy
-                </Button>
+          {/* RPM */}
+          <Box
+            sx={{
+              backgroundColor: '#141414',
+              borderRadius: '15px',
+              padding: 4,
+              boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.2)',
+              flex: '1 1 400px', // Increased from 300px to 350px
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              border: '1px solid #FFFFFF33',
+              maxWidth: '450px', // Optional: Set a maxWidth for further control
+            }}
+          >
+            <Typography sx={{ ...theme.typography.h6 }}>RPM</Typography>
+            <Typography sx={{ ...theme.typography.body1 }}>
+              Remote Patient Monitoring
+            </Typography>
+            <Typography sx={{ ...theme.typography.h9, mt: 2 }}>FEATURES</Typography>
+            <Box component="ul" sx={{ paddingLeft: '1rem', margin: 0 }}>
+              <li style={{ color: 'red', marginBottom: '4px' }}>
+                <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
+                  Data collection
+                </Typography>
+              </li>
+              <li style={{ color: 'red', marginBottom: '4px' }}>
+                <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
+                  Wearable devices
+                </Typography>
+              </li>
+              <li style={{ color: 'red', marginBottom: '4px' }}>
+                <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
+                  Remote patient monitoring
+                </Typography>
+              </li>
+              <li style={{ color: 'red', marginBottom: '4px' }}>
+                <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
+                  Resource Management
+                </Typography>
+              </li>
+              <li style={{ color: 'red', marginBottom: '4px' }}>
+                <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
+                  Research KPIs and monitoring
+                </Typography>
+              </li>
+              <li style={{ color: 'red', marginBottom: '4px' }}>
+                <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
+                  eConsent
+                </Typography>
+              </li>
+              <li style={{ color: 'red', marginBottom: '4px' }}>
+                <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
+                  Site and staff management
+                </Typography>
+              </li>
+              <li style={{ color: 'red', marginBottom: '4px' }}>
+                <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
+                  Trial planning and designing
+                </Typography>
+              </li>
+              <li style={{ color: 'red', marginBottom: '4px' }}>
+                <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
+                  Randomization and blindness
+                </Typography>
+              </li>
+            </Box>
+            <Box display="flex" flexDirection="column" gap={2} mt={4}>
                 <Button
                   variant="outlined"
                   fullWidth
@@ -262,10 +263,20 @@ const PricingBox = () => {
                 >
                   More
                 </Button>
-              </Box>
+              <Button
+                variant="contained"
+                fullWidth
+                sx={{
+                  backgroundColor: 'red',
+                  textTransform: 'none',
+                  borderRadius: '5px',
+                }}
+              >
+                Buy
+              </Button>
             </Box>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
       </Box>
     </ThemeProvider>
   );
