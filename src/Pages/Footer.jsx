@@ -46,7 +46,8 @@ const theme = createTheme({
       fontWeight: 500,
       fontSize: '16px',
       lineHeight: '28.8px',
-      color: '#FFFFFF90',
+      color: '#FFFFFFE5',
+      
     },
   },
 });
@@ -89,26 +90,28 @@ const Footer = () => (
         px: 2,
       }}
     >
-      <Box sx={{ width: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '32px' }}>
-        {/* OUR SOLUTIONS Box */}
-        <Box sx={commonBoxStyles}>
-          <Typography variant="h3" marginTop="16px">OUR SOLUTIONS</Typography>
-          {['The problem', 'Concept', 'The Smartwatch', 'Mobile App', 'Research API', 'Data & Research', 'Certifications'].map((text, index) => (
-            <Typography variant="body9" marginTop="0.5px" key={index}>{text}</Typography>
-          ))}
-        </Box>
+      <Box sx={{ width: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '128px' }}>
+        <Box>
+          {/* OUR SOLUTIONS Box */}
+          <Box sx={commonBoxStyles}>
+            <Typography gutterBottom variant="h3" marginTop="16px" marginBottom="16px">OUR SOLUTIONS</Typography>
+            {['The problem', 'Concept', 'The Smartwatch', 'Mobile App', 'Research API', 'Data & Research', 'Certifications'].map((text, index) => (
+              <Typography variant="body9" marginTop="0.5px" key={index}>{text}</Typography>
+            ))}
+          </Box>
 
-        {/* ABOUT US Box */}
-        <Box sx={commonBoxStyles}>
-          <Typography variant="h3" marginTop="16px">ABOUT US</Typography>
-          {['Our Vision', 'Our Team', 'Our Partners', 'Become a Partner', 'Donations', 'Contact Us', 'Gallery'].map((text, index) => (
-            <Typography variant="body9" marginTop="0.5px" key={index}>{text}</Typography>
-          ))}
+          {/* ABOUT US Box */}
+          <Box sx={commonBoxStyles}>
+            <Typography gutterBottom variant="h3" marginTop="64px" marginBottom="16px">ABOUT US</Typography>
+            {['Our Vision', 'Our Team', 'Our Partners', 'Become a Partner', 'Donations', 'Contact Us', 'Gallery'].map((text, index) => (
+              <Typography variant="body9" marginTop="0.5px" key={index}>{text}</Typography>
+            ))}
+          </Box>
         </Box>
 
         {/* Visit us Section */}
         <Box sx={commonBoxStyles}>
-          <Typography variant="h3" marginTop="16px">Visit us</Typography>
+          <Typography variant="h3" marginTop="16px">VISIT US</Typography>
           {locations.map((location, index) => (
             <Box marginTop={4} key={index}>
               <img src={location.image} alt={location.name} style={{ width: '103px', height: 'auto', marginRight: '8px' }} />
@@ -129,20 +132,31 @@ const Footer = () => (
           sx={{
             ...commonBoxStyles,
             justifyContent: 'center',
-            gap: '32px',
+            gap: '64px',
           }}
         >
           {videoIds.map((id, index) => (
+            <Box sx={{ position: 'relative', width: '100%', paddingTop: '56.25%' }}> {/* نسبت 16:9 */}
             <iframe
               key={index}
               title={`YouTube Video ${index + 1}`}
-              width="260px"
-              height="160px"
               src={`https://www.youtube.com/embed/${id}`}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                borderRadius: '8px',
+                overflow: 'hidden',
+              }}
             />
+          </Box>
+          
+          
           ))}
         </Box>
       </Box>
@@ -151,21 +165,28 @@ const Footer = () => (
     {/* Mobile version */}
     <Box
       sx={{
-        backgroundColor: 'black',
-        py: 8,
         width: '100%',
-        minHeight: '800px',
         display: { xs: 'flex', sm: 'none' },
         flexDirection: 'column',
         alignItems: 'center',
+        py: 8,
         px: 2,
+        mt: 4,
       }}
     >
-      <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '32px' }}>
+      <Box sx={{ width: '100vw',backgroundColor: '#080808', display: 'flex', flexDirection: 'column',}}>
         {/* OUR SOLUTIONS Accordion */}
-        <Accordion sx={{ backgroundColor: '#14141426' }}>
-          <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-            <Typography variant="h3">OUR SOLUTIONS</Typography>
+        <Accordion sx={{ backgroundColor: '#080808' }}>
+          <AccordionSummary
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+            sx={{ display: 'flex', alignItems: 'center' }}
+          >
+            {/* Add the arrow icon to the left side */}
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <ExpandMoreIcon sx={{ color: 'white' }} /> {/* Left arrow in white */}
+              <Typography variant="h3" sx={{ color: 'white' }}>Our solution</Typography> {/* Text in white */}
+            </Box>
           </AccordionSummary>
           <AccordionDetails sx={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             {['The problem', 'Concept', 'The Smartwatch', 'Mobile App', 'Research API', 'Data & Research', 'Certifications'].map((text, index) => (
@@ -174,10 +195,22 @@ const Footer = () => (
           </AccordionDetails>
         </Accordion>
 
+        <Box sx={{ borderBottom: '1px solid #D9D9D912'}} />
+
+
+
         {/* ABOUT US Accordion */}
-        <Accordion sx={{ backgroundColor: '#14141426' }}>
-          <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel2a-content" id="panel2a-header">
-            <Typography variant="h3">ABOUT US</Typography>
+        <Accordion sx={{ backgroundColor: '#080808' }}>
+        <AccordionSummary
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+            sx={{ display: 'flex', alignItems: 'center' }}
+          >
+            {/* Add the arrow icon to the left side */}
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <ExpandMoreIcon sx={{ color: 'white' }} /> {/* Left arrow in white */}
+              <Typography variant="h3" sx={{ color: 'white' }}>About Us</Typography> {/* Text in white */}
+            </Box>
           </AccordionSummary>
           <AccordionDetails sx={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             {['Our Vision', 'Our Team', 'Our Partners', 'Become a Partner', 'Donations', 'Contact Us', 'Gallery'].map((text, index) => (
@@ -186,10 +219,15 @@ const Footer = () => (
           </AccordionDetails>
         </Accordion>
 
+        <Box sx={{ borderBottom: '1px solid #D9D9D912'}} />
+
         {/* Visit us Accordion */}
-        <Accordion sx={{ backgroundColor: '#14141426' }}>
+        <Accordion sx={{ backgroundColor: '#080808' }}>
           <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel3a-content" id="panel3a-header">
-            <Typography variant="h3">Visit us</Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <ExpandMoreIcon sx={{ color: 'white' }} /> {/* Left arrow in white */}
+              <Typography variant="h3" sx={{ color: 'white' }}>Visit Us</Typography> {/* Text in white */}
+            </Box>
           </AccordionSummary>
           <AccordionDetails>
             <Box>
@@ -210,24 +248,38 @@ const Footer = () => (
           </AccordionDetails>
         </Accordion>
 
+        <Box sx={{ borderBottom: '1px solid #D9D9D912'}} />
+
         {/* Video Section Accordion */}
-        <Accordion sx={{ backgroundColor: '#14141426' }}>
+        <Accordion sx={{ backgroundColor: '#080808' }}>
           <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel4a-content" id="panel4a-header">
-            <Typography variant="h3">Videos</Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <ExpandMoreIcon sx={{ color: 'white' }} /> {/* Left arrow in white */}
+              <Typography variant="h3" sx={{ color: 'white' }}>Our YouTube</Typography> {/* Text in white */}
+            </Box>
           </AccordionSummary>
           <AccordionDetails>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               {videoIds.map((id, index) => (
+                <Box sx={{ position: 'relative', width: '100%', paddingTop: '56.25%' }}> {/* نسبت 16:9 */}
                 <iframe
                   key={index}
                   title={`YouTube Video ${index + 1}`}
-                  width="260px"
-                  height="160px"
                   src={`https://www.youtube.com/embed/${id}`}
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: '8px',
+                    overflow: 'hidden',
+                  }}
                 />
+              </Box>
               ))}
             </Box>
           </AccordionDetails>
@@ -239,16 +291,13 @@ const Footer = () => (
 
 // Common styles for the boxes
 const commonBoxStyles = {
-  backgroundColor: '#141414',
-  borderRadius: '12px',
-  px: '16px',
-  py: '16px',
+  backgroundColor: '#14141415',
+  borderRadius: '8px',
   width: { xs: '100%', sm: '260px' },
   height: 'auto',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
-  gap: '12px',
 };
 
 export default Footer;

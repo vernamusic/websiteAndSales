@@ -1,13 +1,13 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import CompanyBox from '../components/company/CompanyBox.jsx'
-import CertificationBox from '../components/company/CertificationBox.jsx'
-import PartnerBox from '../components/company/PartnerBox.jsx'
-import VideoBox from '../components/company/VideoBox.jsx'
-import PricingBox from '../components/company/PricingBox.jsx'
+import MessageBox from '../components/partnership/MessageBox';
+import ReqBox from '../components/partnership/ReqBox';
+import FinancialBox from '../components/partnership/FinancialBox';
+import TechnologicalBox from '../components/partnership/TechnologicalBox';
+import DevBox from '../components/partnership/DevBox';
 
-const Company = () =>{
-    return(
+const Partnership = () => {
+    return (
         <Box
             sx={{
                 display: 'flex',
@@ -19,7 +19,7 @@ const Company = () =>{
                 sx={{
                     width: '100%',
                     minHeight: {
-                        xs: '200px',
+                        xs: '300px',
                         sm: '450px',
                         md: '540px',
                         lg: '675px',
@@ -30,72 +30,93 @@ const Company = () =>{
                     bgcolor: 'black',
                 }}
             >
-                <CompanyBox />
+                <MessageBox />
             </Box>
-            <Box
-                sx={{
-                    width: '100%',
-                    minHeight: {
-                        xs: '200px',
-                        sm: '450px',
-                        md: '540px',
-                        lg: '675px',
-                        xl: '900px',
-                    },
-                    display: 'flex',
-                    justifyContent: 'center',
-                }}
-            >
-                <VideoBox />
-            </Box>
-            <Box
-                sx={{
-                    width: '100%',
-                    minHeight: {
-                        xs: '200px',
-                        sm: '450px',
-                        md: '540px',
-                        lg: '675px',
-                        xl: '900px',
-                    },
-                    display: 'flex',
-                    justifyContent: 'center',
-                }}
-            >
-                <CertificationBox />
-            </Box>
-            <Box
-                sx={{
-                    width: '100%',
-                    minHeight: {
-                        xs: '200px',
-                        sm: '450px',
-                        md: '540px',
-                        lg: '675px',
-                        xl: '900px',
-                    },
-                    display: 'flex',
-                    justifyContent: 'center',
-                }}
-            >
-                <PartnerBox />
-            </Box>
-            <Box
-                sx={{
-                    width: '100%',
-                    minHeight: { xs: '500px', md: '900px',},
-                    display: {xs:'none',sm:'flex'},
-                    justifyContent: 'center',
-                }}
-            >
-                <PricingBox />
-            </Box>
-            
-            
 
+            <Box
+                sx={{
+                    width: '100%',
+                    minHeight: {
+                        xs: '300px',
+                        sm: '450px',
+                        md: '540px',
+                        lg: '675px',
+                        xl: '900px',
+                    },
+                    display: 'flex',
+                    justifyContent: 'center',
+                }}
+            >
+                <ReqBox />
+            </Box>
+            <Box
+                sx={{
+                    width: '100%',
+                    minHeight: {
+                        xs: '300px',
+                        sm: '450px',
+                        md: '540px',
+                        lg: '675px',
+                        xl: '900px',
+                    },
+                    display: 'flex',
+                    justifyContent: 'center',
+                }}
+            >
+                <FinancialBox />
+            </Box>
+            <Box
+                sx={{
+                    width: '100%',
+                    minHeight: {
+                        xs: '300px',
+                        sm: '450px',
+                        md: '540px',
+                        lg: '675px',
+                        xl: '900px',
+                    },
+                    display: 'flex',
+                    justifyContent: 'center',
+                }}
+            >
+                <TechnologicalBox />
+            </Box>
+            <Box
+                sx={{
+                    width: '100%',
+                    minHeight: {
+                        xs: '300px',
+                        sm: '450px',
+                        md: '540px',
+                        lg: '675px',
+                        xl: '900px',
+                    },
+                    display: 'flex',
+                    justifyContent: 'center',
+                }}
+            >
+                <DevBox />
+            </Box>
 
+            <Box
+                sx={{
+                    width: '100%',
+                    minHeight: {
+                        xs: '300px',
+                        sm: '450px',
+                        md: '540px',
+                        lg: '675px',
+                        xl: '900px',
+                    },
+                    display: 'flex',
+                    justifyContent: 'center',
+                    bgcolor: 'black',
+                }}
+            >
+                <MessageBox />
+            </Box>
         </Box>
     );
 }
 
-export default Company
+export default Partnership;

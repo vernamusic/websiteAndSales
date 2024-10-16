@@ -1,9 +1,11 @@
 import React from 'react';
 import { Box, Typography, createTheme, ThemeProvider } from '@mui/material';
-import ISO from '../../assets/ISO.png';
-import CE from '../../assets/CE.png';
-import ISOicon from '../../assets/ISOicon.png';
-import CEicon from '../../assets/CEicon.png';
+import BusinessDocumentation from '../../assets/BusinessDocumentation.png';
+import DoctorFemale from '../../assets/DoctorFemale.png';
+import SystemTask from '../../assets/SystemTask.png';
+import Req1 from '../../assets/Req1.png';
+import Req2 from '../../assets/Req2.png';
+import Req3 from '../../assets/Req3.png';
 
 const theme = createTheme({
     typography: {
@@ -25,43 +27,41 @@ const theme = createTheme({
 });
 
 const howData = [
-    { title: 'ISO 13485', description: "ISO 13485:2016 specifies requirements for a quality management system ", image: ISO, icon: ISOicon },
-    { title: 'Medical Devices Class IIb', description: "Lorem jnjflbm kbs bk fkdmfsgg hbbhb kllfdsv lmlmmlmlm", image: CE, icon: CEicon },
+    { title: 'International stakeholders', description: "Swiss and International stakeholders in the epilepsy field", image: Req1, icon: BusinessDocumentation },
+    { title: 'Clinical trial ', description: "Clinical trial collaborators interested in implementing our solutions", image: Req2, icon: DoctorFemale },
+    { title: 'Collaborators', description: "Remote care monitoring collaborators interested in implementing our solutions", image: Req3, icon: SystemTask },
 ];
 
 const CertificationBox = () => {
     return (
         <ThemeProvider theme={theme}>
             <Box>
-            <Box
-                sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    textAlign: "center",
-                    mt: {xs:'none',sm:'64px'},
-                    mb: {xs:'none',sm:'64px'},
-                }}
+                <Box
+                    display="flex"
+                    flexDirection="column"
+                    justifyContent="center"
+                    alignItems="center"
+                    textAlign="center"
+                    mt={6}
+                    mb={6}
                 >
                     <Typography
                         sx={{
                             ...theme.typography.h3,
-                            display:{xs:'none', sm:'flex'},
                             mb: 2.5,
                             lineHeight: '1.5',
                             width: '600',
                         }}
                     >
-                        OUR CERTIFICATIONS
+                        BECOME A PARTNER
                     </Typography>
                     <Typography
                         sx={{
                             ...theme.typography.h6,
-                            mb: {xs:'none', sm:'5'},
+                            mb: 5,
                         }}
                     >
-                        At the moment, we are undergoing the following certifications:
+                        We are especially looking for partners that are:
                     </Typography>
                 </Box>
 
@@ -69,11 +69,8 @@ const CertificationBox = () => {
                     display="flex"
                     flexWrap="wrap"
                     justifyContent="center"
-                    sx={{
-                        gap:{xs:'32px',sm:'48px'},
-                        mt:'32px',
-                        mb:'80px',
-                    }}
+                    gap={6}
+                    mb={10}
                 >
                     {howData.map((box, index) => (
                         <Box
@@ -84,14 +81,14 @@ const CertificationBox = () => {
                                     lg: '323px',
                                     md: '266px',
                                     sm: '180px',
-                                    xs: '160px'
+                                    xs: '132px'
                                 },
                                 height: {
                                     xl: '430px',
                                     lg: '365.5px',
                                     md: '301px',
                                     sm: '210px',
-                                    xs: '182px'
+                                    xs: '152px'
                                 },
 
                                 borderRadius: '20px',
@@ -114,14 +111,14 @@ const CertificationBox = () => {
                                         lg: '50px',
                                         md: '36px',
                                         sm: '26px',
-                                        xs: '21px'
+                                        xs: '19px'
                                     },
                                     height: {
                                         xl: '70px',
                                         lg: '50px',
                                         md: '36px',
                                         sm: '26px',
-                                        xs: '21px'
+                                        xs: '19px'
                                     },
 
                                     backgroundColor: '#B50304',
@@ -185,11 +182,10 @@ const CertificationBox = () => {
                                 sx={{
                                     width: '100%',
                                     height: '50%',
-                                    objectFit: 'contain',
+                                    objectFit: 'fit',
                                     backgroundColor: '#FFFFFF',
                                     borderRadius: '0 0 20px 20px',
                                     mt: 'auto',
-                                    padding: '10%',
                                 }}
                             /> 
                         </Box>

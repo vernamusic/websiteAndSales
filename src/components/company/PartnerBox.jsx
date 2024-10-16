@@ -47,18 +47,21 @@ const PartnerBox = () => {
   return (
     <ThemeProvider theme={theme}>
       <Box>
-        <Box
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-          textAlign="center"
-          mt={6}
-          mb={6}
-        >
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "center",
+          mt: {xs:'none',sm:'64px'},
+          mb: {xs:'none',sm:'64px'},
+        }}
+      >
           <Typography
             sx={{
               ...theme.typography.h3,
+              display: {xs:'none', sm:'flex'},
               mb: 2.5,
               lineHeight: '1.5',
               width: '600px',
@@ -69,10 +72,20 @@ const PartnerBox = () => {
           <Typography
             sx={{
               ...theme.typography.h6,
+              display:{xs:'none',sm:'flex'},
               mb: 5,
             }}
           >
             Explore our trusted partners who help us deliver exceptional experiences
+          </Typography>
+          <Typography
+            sx={{
+              ...theme.typography.h6,
+              display:{xs:'flex',sm:'none'},
+              mb: 5,
+            }}
+          >
+            Our trusted partners who help us deliver exceptional experiences.
           </Typography>
         </Box>
 
@@ -81,28 +94,47 @@ const PartnerBox = () => {
             backgroundColor: '#f5f5f5', 
             padding: '20px', 
             borderRadius: '15px', 
-            minHeight: '404px', 
-            maxWidth: '80%', // Reduced width of the box
-            margin: '0 auto' // Center the box horizontally
+            maxWidth: '90%', // Reduced width for mobile
+            margin: '0 auto', // Center the box horizontally
+            display: 'flex',
+            flexWrap: 'wrap', 
+            justifyContent: 'center',
+            alignItems: 'center',
+            [theme.breakpoints.up('sm')]: {
+              maxWidth: '80%', // Lower width on larger screens
+            }
           }}
         >
-          <Grid container justifyContent="center" alignItems="center">
-            {partners.map((partner, index) => (
-              <Grid item key={index} sx={{ display: 'flex', justifyContent: 'center', margin: '20px' }}>
-                <Box
-                  component="img"
-                  src={partner.src}
-                  alt={partner.alt}
-                  sx={{
-                    maxWidth: partner.size.width,
-                    height: partner.size.height,
-                    margin: '0 20px', // Increased horizontal spacing
-                  }}
-                />
-              </Grid>
-            ))}
-          </Grid>
+          {partners.map((partner, index) => (
+            <Box
+              key={index}
+              sx={{ 
+                display: 'flex', 
+                justifyContent: 'center', 
+                margin: '5px', // Reduced margin for mobile
+                [theme.breakpoints.up('sm')]: {
+                  margin: '20px', // Larger margin on bigger screens
+                }
+              }}
+            >
+              <Box
+                component="img"
+                src={partner.src}
+                alt={partner.alt}
+                sx={{
+                  maxWidth: '65px', // Smaller size for mobile
+                  height: 'auto', // Maintain aspect ratio
+                  [theme.breakpoints.up('sm')]: {
+                    maxWidth: partner.size.width, // Original size for larger screens
+                    margin: '0 20px', // Original spacing on larger screens
+                  }
+                }}
+              />
+            </Box>
+          ))}
         </Box>
+
+
       </Box>
     </ThemeProvider>
   );
