@@ -84,7 +84,7 @@ const CompanyBox = () => {
                                 borderRadius: '6px',
                                 backgroundColor: '#B50304',
                                 textTransform: 'none',
-                                width: '10%',
+                                width: { lg:'10%'},
                                 alignItems: 'center',
                                 '&:hover': {
                                     backgroundColor: '#B50304',
