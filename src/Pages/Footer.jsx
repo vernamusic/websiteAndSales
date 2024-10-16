@@ -165,13 +165,13 @@ const Footer = () => (
     {/* Mobile version */}
     <Box
       sx={{
-        backgroundColor: 'black',
-        py: 8,
         width: '100%',
         display: { xs: 'flex', sm: 'none' },
         flexDirection: 'column',
         alignItems: 'center',
+        py: 8,
         px: 2,
+        mt: 4,
       }}
     >
       <Box sx={{ width: '100vw',backgroundColor: '#080808', display: 'flex', flexDirection: 'column',}}>
