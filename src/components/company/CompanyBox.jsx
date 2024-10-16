@@ -7,7 +7,7 @@ const theme = createTheme({
     typography: {
         h6: {
             fontFamily: 'sen',
-            fontSize: { xs: '15px', sm: '18px', md: '20px', lg: '22px', xl: '26px' },
+            fontSize: { xs: '13px', sm: '13px', md: '16px', lg: '21px', xl: '26px' },
             color: "#F1F1F1",
             letterSpacing: '0.4px',
             lineHeight: 'normal',
@@ -15,25 +15,24 @@ const theme = createTheme({
         h3: {
             fontFamily: 'Lato',
             fontWeight: 700,
-            fontSize: { xs: '20px', sm: '24px', md: '28px', lg: '35px', xl: '41px' },
+            fontSize: { xs: '22px', sm: '24px', md: '28px', lg: '35px', xl: '41px' },
             color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: { xs: '7px', sm: '9px', md: '12px', lg: '14px', xl: '16px' },
+            fontSize: { xs: '10px', sm: '15px', md: '18px', lg: '20px', xl: '22px' },
             color: "#FFFFFF",
         },
         form: {
             fontFamily: 'Inter',
-            fontSize: { xs: '12px', sm: '15px', md: '18px', lg: '20px', xl: '22px' },
+            fontSize: { xs: '10px', sm: '15px', md: '18px', lg: '20px', xl: '22px' },
             fontWeight: 400,
         },
-
     },
 });
 
-const RegBox = () => {
+const CompanyBox = () => {
     return (
         <ThemeProvider theme={theme}>
             <Box
@@ -42,7 +41,7 @@ const RegBox = () => {
                     position: 'relative',
                     backgroundImage: `linear-gradient(90deg, rgba(0, 0, 0, 0.738) 14.54%, rgba(0, 0, 0, 0.686) 23.41%, rgba(0, 0, 0, 0.584) 40.86%, rgba(0, 0, 0, 0.164) 100%), url(${backgroundImage})`,
                     backgroundSize: 'cover',
-                    backgroundPosition: 'center',
+                    backgroundPosition: 'top right',
                     backgroundRepeat: 'no-repeat',
                   }}
                   
@@ -50,8 +49,13 @@ const RegBox = () => {
                 <Box
                     sx={{
                         position: 'relative',
-                        ml: { xs: 5, sm: 10, md: 20, lg: 25, xl: 38 },
-                        mt: { xs: 10, sm: 10, md: 20, lg: 25, xl: 38 },
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'flex-start',
+                        gap: { xs: 0.5, sm: 1, md: 1.5, lg: 2, xl: 2 },
+                        height: '100%',
+                        pl: { xs: 5, sm: 10, md: 20, lg: 25, xl: 38 },
                     }}
                 >
                     <Typography
@@ -76,11 +80,11 @@ const RegBox = () => {
                             variant="contained"
                             sx={{
                                 ...theme.typography.button,
+                                display:{xs:'none', sm:'flex'},
                                 borderRadius: '6px',
                                 backgroundColor: '#B50304',
                                 textTransform: 'none',
-                                width: '131px',
-                                height: '40px',
+                                width: '10%',
                                 alignItems: 'center',
                                 '&:hover': {
                                     backgroundColor: '#B50304',
@@ -95,4 +99,4 @@ const RegBox = () => {
     );
 }
 
-export default RegBox;
+export default CompanyBox;
