@@ -69,9 +69,11 @@ const CertificationBox = () => {
                     display="flex"
                     flexWrap="wrap"
                     justifyContent="center"
-                    gap={6}
-                    mt={4}
-                    mb={10}
+                    sx={{
+                        gap:{xs:'32px',sm:'48px'},
+                        mt:'32px',
+                        mb:'80px',
+                    }}
                 >
                     {howData.map((box, index) => (
                         <Box
@@ -82,14 +84,14 @@ const CertificationBox = () => {
                                     lg: '323px',
                                     md: '266px',
                                     sm: '180px',
-                                    xs: '132px'
+                                    xs: '160px'
                                 },
                                 height: {
                                     xl: '430px',
                                     lg: '365.5px',
                                     md: '301px',
                                     sm: '210px',
-                                    xs: '152px'
+                                    xs: '182px'
                                 },
 
                                 borderRadius: '20px',
