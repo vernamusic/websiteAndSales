@@ -84,7 +84,7 @@ const Company = () =>{
                 sx={{
                     width: '100%',
                     minHeight: { xs: '500px', md: '900px',},
-                    display: 'flex',
+                    display: {xs:'none',sm:'flex'},
                     justifyContent: 'center',
                 }}
             >

@@ -61,6 +61,7 @@ const PartnerBox = () => {
           <Typography
             sx={{
               ...theme.typography.h3,
+              display: {xs:'none', sm:'flex'},
               mb: 2.5,
               lineHeight: '1.5',
               width: '600px',
@@ -71,10 +72,20 @@ const PartnerBox = () => {
           <Typography
             sx={{
               ...theme.typography.h6,
+              display:{xs:'none',sm:'flex'},
               mb: 5,
             }}
           >
             Explore our trusted partners who help us deliver exceptional experiences
+          </Typography>
+          <Typography
+            sx={{
+              ...theme.typography.h6,
+              display:{xs:'flex',sm:'none'},
+              mb: 5,
+            }}
+          >
+            Our trusted partners who help us deliver exceptional experiences.
           </Typography>
         </Box>
 
@@ -83,7 +94,7 @@ const PartnerBox = () => {
             backgroundColor: '#f5f5f5', 
             padding: '20px', 
             borderRadius: '15px', 
-            maxWidth: '60%', // Reduced width for mobile
+            maxWidth: '90%', // Reduced width for mobile
             margin: '0 auto', // Center the box horizontally
             display: 'flex',
             flexWrap: 'wrap', 

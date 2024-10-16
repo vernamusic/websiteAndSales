@@ -70,6 +70,7 @@ const CertificationBox = () => {
                     flexWrap="wrap"
                     justifyContent="center"
                     gap={6}
+                    mt={4}
                     mb={10}
                 >
                     {howData.map((box, index) => (
@@ -111,14 +112,14 @@ const CertificationBox = () => {
                                         lg: '50px',
                                         md: '36px',
                                         sm: '26px',
-                                        xs: '19px'
+                                        xs: '21px'
                                     },
                                     height: {
                                         xl: '70px',
                                         lg: '50px',
                                         md: '36px',
                                         sm: '26px',
-                                        xs: '19px'
+                                        xs: '21px'
                                     },
 
                                     backgroundColor: '#B50304',
