@@ -61,7 +61,7 @@ const PartnerBox = () => {
           <Typography
             sx={{
               ...theme.typography.h3,
-              display: {xs:'none', sm:'flex'},
+              display: {xs:'none', sm:'block'},
               mb: 2.5,
               lineHeight: '1.5',
               width: '600px',
