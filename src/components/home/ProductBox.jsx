@@ -9,10 +9,9 @@ import previousarrow from "../../assets/leftArrow.png";
 
 const theme = createTheme({
     typography: {
-        fontFamily: 'Sen, Arial, sans-serif',
         h6: {
             fontFamily: 'sen',
-            fontSize: { xs: '10px', sm: '13px', md: '16px', lg: '21px', xl: '26px' },
+            fontSize: { xs: '11px', sm: '11px', md: '13px', lg: '16px', xl: '21px' },
             color: "#F1F1F1",
             letterSpacing: '0.4px',
             lineHeight: 'normal',
@@ -20,19 +19,19 @@ const theme = createTheme({
         h3: {
             fontFamily: 'Lato',
             fontWeight: 700,
-            fontSize: { xs: '14px', sm: '24px', md: '28px', lg: '35px', xl: '41px' },
+            fontSize: { xs: '18px', sm: '22px', md: '24px', lg: '28px', xl: '35px' },
             color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
-        form: {
-            fontFamily: 'Inter',
-            fontSize: { xs: '12px', sm: '15px', md: '18px', lg: '20px', xl: '22px' },
-            fontWeight: 400,
-        },
         button: {
             fontFamily: 'Lato',
-            fontSize: { xs: '9.5px', sm: '13px', md: '18px', lg: '20px', xl: '22px' },
+            fontSize: { xs: '10px', sm: '10px', md: '15px', lg: '18px', xl: '20px' },
             color: "#FFFFFF",
+        },
+        form: {
+            fontFamily: 'Inter',
+            fontSize: { xs: '10px', sm: '10px', md: '15px', lg: '18px', xl: '20px' },
+            fontWeight: 400,
         },
     },
 });
@@ -82,10 +81,10 @@ const ProductBox = () => {
                     key={animateKey}
                     sx={{
                     width: {xs: '210px', sm: '270px', md: '335px', lg: '430px', xl: '530px'},
-                    ml: {xs: 5, sm: 10, md: 15, lg: 25, xl: 38},
+                    ml: {xs: 5, sm: 10, md: 15, lg: 24, xl: 35},
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: {xs: 1, sm: 1, md: 1.5, lg: 2, xl: 2,},
+                    gap: {xs: 1, sm: 0.8, md: 0.8, lg: 1, xl: 1,},
                 }}>
                     {/* متن عنوان بر اساس currentIndex */}
                     <Typography sx={{
@@ -151,12 +150,12 @@ const ProductBox = () => {
                         size="large"
                         sx={{
                             ...theme.typography.button,
-                            mt: 2,
+                            mt:{xs: 1, sm: 1, md: 1, lg: 1.2, xl: 2,} ,
                             borderRadius: '4px',
                             backgroundColor: '#B50304',
                             textTransform: 'none',
-                            width:{ xs: '100px', sm: '135px', md: '170px', lg: '190px', xl: '220px' },
-                            height: { xs: '30px', sm: '37px', md: '48px', lg: '52px', xl: '58px' },
+                            width:{ xs: '100px', sm: '135px', md: '140px', lg: '160px', xl: '180px' },
+                            height: { xs: '25px', sm: '30px', md: '38px', lg: '45px', xl: '50px' },
                             '&:hover': {
                                 backgroundColor: '#B50304',
                             },
