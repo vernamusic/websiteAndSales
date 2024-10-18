@@ -32,7 +32,7 @@ const About = () => {
             >
                 <ContactBox />
             </Box>
-            <Box
+            {/* <Box
                 sx={{
                     width: '100%',
                     display: 'flex',
@@ -40,7 +40,7 @@ const About = () => {
                 }}
             >
                 <MemberCountBox />
-            </Box>
+            </Box> */}
             <Box
                 sx={{
                     width: '100%',

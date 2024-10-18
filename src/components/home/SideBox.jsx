@@ -71,6 +71,7 @@ const SideBox = () => {
                     to={'/company'}
                     sx={{
                         ...theme.typography.button,
+                        display:{xs:'none', sm:'block'},
                         borderRadius: '4px',
                         backgroundColor: '#B50304',
                         textTransform: 'none',

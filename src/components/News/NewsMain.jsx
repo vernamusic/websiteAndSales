@@ -108,7 +108,7 @@ const TeamMembers = () => {
                     <Typography sx={{ ...theme.typography.h3 }}>
                         NEWS
                     </Typography>
-                    <Typography sx={{ ...theme.typography.h6,mt: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 } }}>
+                    <Typography sx={{ ...theme.typography.h6,mt: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 }, display:{xs:'none', sm:'block'}, }}>
                         Meet our diverse team of world-class creators, designers, and problem solvers.
                     </Typography>
                 </Box>
