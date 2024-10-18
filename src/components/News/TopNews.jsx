@@ -235,7 +235,7 @@ const Mediacard = () => {
                 </IconButton>
 
                 <Box display="flex" justifyContent="center">
-                    <Box
+                    {/* <Box
                         sx={{
                             position: "absolute",
                             bottom: 0,
@@ -253,7 +253,7 @@ const Mediacard = () => {
                                 transition: "width 0.1s linear",
                             }}
                         />
-                    </Box>
+                    </Box> */}
 
                 </Box>
                 <Box display="flex"
