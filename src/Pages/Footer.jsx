@@ -57,19 +57,16 @@ const locations = [
     image: biopole,
     name: 'VITRUVIAN SHIELD SA',
     address: 'Rue de la Corniche n°3a, Bâtiment Phenyl, 1066 Epalinges; Switzerland',
-    link: 'https://biopole.ch',
   },
   {
     image: astrolab,
     name: 'VITRUVIAN SHIELD DMCC',
     address: 'Parkside Retail Level; Cluster R - Jumeirah Lake Towers; Dubai - United Arab Emirates',
-    link: 'https://astrolabs.com',
   },
   {
     image: pci,
     name: 'VITRUVIAN SHIELD - PT',
     address: 'PCI - Creative Science Park; Via do Conhecimento, Edf. Central, 3830-352 Ílhavo, Portugal',
-    link: 'https://sciencepark.pt',
   },
 ];
 
@@ -121,7 +118,6 @@ const Footer = () => (
                   <Typography variant="h6" gutterBottom>{location.name}</Typography>
                 </Box>
                 <Typography variant="body3" paragraph sx={{ mt: '12px' }}>{location.address}</Typography>
-                <Link href={location.link} target="_blank" rel="noopener" variant="body2">{location.link.split('//')[1]}</Link>
               </Box>
             </Box>
           ))}
@@ -240,7 +236,6 @@ const Footer = () => (
                       <Typography variant="h6" gutterBottom>{location.name}</Typography>
                     </Box>
                     <Typography variant="body3" paragraph sx={{ mt: '12px' }}>{location.address}</Typography>
-                    <Link href={location.link} target="_blank" rel="noopener" variant="body2">{location.link.split('//')[1]}</Link>
                   </Box>
                 </Box>
               ))}
