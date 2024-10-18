@@ -176,14 +176,12 @@ const Mediacard = () => {
                             </Typography>
 
                             <Box display="flex" alignItems="center">
-
                                 <AccessTimeIcon sx={{ fontSize: 18, mr: 1,...theme.typography.caption, display:{xs:'none', sm:'block'}, }} />
                                 <Typography variant="caption" sx={{ mr: 2 ,...theme.typography.caption, display:{xs:'none', sm:'block'},}}>
                                     {currentData.read_time}m
                                 </Typography>
                                 <VisibilityIcon sx={{ fontSize: 18, mr: 1 ,...theme.typography.caption, display:{xs:'none', sm:'block'},}} />
                                 <Typography variant="caption" sx={{...theme.typography.caption, display:{xs:'none', sm:'block'},}}>
-
                                     {currentData.views}
                                 </Typography>
                             </Box>
