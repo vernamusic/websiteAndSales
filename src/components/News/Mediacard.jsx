@@ -97,7 +97,7 @@ const Mediacard = ({ data }) => {
                     alignItems="center"
                     position="relative"
                     sx={{
-                        overflow: "hidden",
+                        overflow: "scroll",
                         maxWidth: {
                             xs: "400px",
                             sm: "600px",
@@ -105,6 +105,13 @@ const Mediacard = ({ data }) => {
                             lg: "1000px",
                             xl: "1400px",
                         },
+                        '&::-webkit-scrollbar': {
+                            display: 'none',
+                        },
+                        '*': {
+                            '-ms-overflow-style': 'none',
+                            'scrollbar-width': 'none',
+                        }
                     }}
                 >
                     <Box
@@ -112,8 +119,8 @@ const Mediacard = ({ data }) => {
                         justifyContent="start"
 
                         sx={{
-                            transform: `translateX(-${currentIndex * (widthOfCard + gap)}px)`,  // استفاده از عرض کارت و فاصله
-                            transition: "transform 0.6s ease-in-out",
+                            transform: {sm:'none',md:`translateX(-${currentIndex * (widthOfCard + gap)}px)`},
+                            transition: {sm:'none',md:"transform 0.6s ease-in-out"},
                             gap:{xs: 1, sm: 1.5, md: 2, lg: 3, xl: 6,}
                         }}
                     >
@@ -221,6 +228,7 @@ const Mediacard = ({ data }) => {
                     onClick={handlePrev}
                     disabled={currentIndex === 0}
                     sx={{
+                        display: { xs: "none", sm: "none", md: "flex" },
                         position: "absolute",
                         left: {
                             xs: "-28px",
@@ -254,6 +262,7 @@ const Mediacard = ({ data }) => {
                     onClick={handleNext}
                     disabled={currentIndex + itemsPerPage >= data.length}
                     sx={{
+                        display: { xs: "none", sm: "none", md: "flex" },
                         position: "absolute",
                         right: {
                             xs: "-20px",
