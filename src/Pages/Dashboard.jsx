@@ -84,6 +84,7 @@ function Moblie() {
                     width: '100%',
                     display: 'flex',
                     justifyContent: 'center',
+                    mb:'75px'
                 }}
             >
                 <OverviewBox />

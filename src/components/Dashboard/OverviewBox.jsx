@@ -150,6 +150,7 @@ const HowBox = () => {
                                     sx={{
                                         width: '297px',
                                         height: '212px',
+                                        border:'solid 1px #000',
                                         objectFit: 'cover',
                                         mb: '24px',
                                         mt: 'auto',

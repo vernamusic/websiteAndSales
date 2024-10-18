@@ -84,7 +84,6 @@ const Footer = () => (
         display: { xs: 'none', sm: 'flex' },
         flexDirection: 'column',
         alignItems: 'center',
-        px: 2,
       }}
     >
       <Box sx={{ width: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '128px' }}>
