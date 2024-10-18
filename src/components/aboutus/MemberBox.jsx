@@ -93,7 +93,7 @@ const TeamMembers = () => {
     return (
         <ThemeProvider theme={theme}>
             <Box sx={{ textAlign: 'left', }}>
-                <Box sx={{ mt: '40px', textAlign: 'center' }}>
+                <Box sx={{ mt: '40px', textAlign: 'center', display:{xs:'none', sm:'block'} }}>
                     <Typography sx={{ ...theme.typography.h3 }}>
                         MEET OUR TEAM
                     </Typography>

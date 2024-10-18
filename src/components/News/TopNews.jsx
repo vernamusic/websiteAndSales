@@ -176,12 +176,12 @@ const Mediacard = () => {
                             </Typography>
 
                             <Box display="flex" alignItems="center">
-                                <AccessTimeIcon sx={{ fontSize: 18, mr: 1 }} />
-                                <Typography variant="caption" sx={{ mr: 2 ,...theme.typography.caption}}>
+                                <AccessTimeIcon sx={{ fontSize: 18, mr: 1, display:{xs:'none', sm:'block'}, }} />
+                                <Typography variant="caption" sx={{ mr: 2 ,...theme.typography.caption, display:{xs:'none', sm:'block'},}}>
                                     {currentData.read_time}m
                                 </Typography>
-                                <VisibilityIcon sx={{ fontSize: 18, mr: 1 }} />
-                                <Typography variant="caption" sx={{...theme.typography.caption}}>
+                                <VisibilityIcon sx={{ fontSize: 18, mr: 1 , display:{xs:'none', sm:'block'},}} />
+                                <Typography variant="caption" sx={{...theme.typography.caption, display:{xs:'none', sm:'block'},}}>
                                     {currentData.views}
                                 </Typography>
                             </Box>
@@ -192,6 +192,7 @@ const Mediacard = () => {
                                 size="large"
                                 sx={{
                                     ...theme.typography.button,
+                                    display:{xs:'none', sm:'block'},
                                     borderRadius: '4px',
                                     backgroundColor: '#B50304',
                                     textTransform: 'none',
@@ -271,6 +272,7 @@ const Mediacard = () => {
                                 backgroundColor: currentIndex === index ? "#ca0000" : "rgba(255, 255, 255, 0.5)",
                                 mx: {xs:0.5,sm:0.8,md:1,lg:1,xl:1},
                                 mb:{xs:-1,sm:-2,md:-2,lg:-3,xl:-3},
+                                mt:{xs:1,sm:2,md:2,lg:3,xl:3},
                             }}
                         />
                     ))}
