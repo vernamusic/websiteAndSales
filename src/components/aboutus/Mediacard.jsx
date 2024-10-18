@@ -90,7 +90,7 @@ const Mediacard = ({ data }) => {
                     alignItems="center"
                     position="relative"
                     sx={{
-                        overflow: "hidden",
+                        overflow: "scroll",
                         maxWidth: {
                             xs: "380px",
                             sm: "650px",
@@ -98,15 +98,23 @@ const Mediacard = ({ data }) => {
                             lg: "1100px",
                             xl: "1200px",
                         },
+                        '&::-webkit-scrollbar': {
+                            display: 'none',
+                        },
+                        '*': {
+                            '-ms-overflow-style': 'none',
+                            'scrollbar-width': 'none',
+                        }
                     }}
                 >
-                    <Box
+
+                <Box
                         display="flex"
                         justifyContent="start"
 
                         sx={{
-                            transform: `translateX(-${currentIndex * (widthOfCard + gap)}px)`,
-                            transition: "transform 0.6s ease-in-out",
+                            transform: {sm:'none',md:`translateX(-${currentIndex * (widthOfCard + gap)}px)`},
+                            transition: {sm:'none',md:"transform 0.6s ease-in-out"},
                             gap:{xs: 1, sm: 1.5, md: 2, lg: 3, xl: 5,},
 
                         }}
@@ -266,6 +274,7 @@ const Mediacard = ({ data }) => {
                     onClick={handlePrev}
                     disabled={currentIndex === 0}
                     sx={{
+                        display: { xs: "none", sm: "none", md: "flex" },
                         position: "absolute",
                         left: {
                             xs: "-28px",
@@ -299,6 +308,7 @@ const Mediacard = ({ data }) => {
                     onClick={handleNext}
                     disabled={currentIndex + itemsPerPage >= data.length}
                     sx={{
+                        display: { xs: "none", sm: "none", md: "flex" },
                         position: "absolute",
                         right: {
                             xs: "-20px",
