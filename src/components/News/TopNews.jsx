@@ -158,7 +158,7 @@ const Mediacard = () => {
                             sx={{
                                 position: "absolute",
                                 display:'flex',
-                                top: "35%",
+                                top: {xs:'20%',sm:"35%"},
                                 left: "18%",
                                 width: "50%",
                                 borderRadius: "10px",
@@ -176,11 +176,11 @@ const Mediacard = () => {
                             </Typography>
 
                             <Box display="flex" alignItems="center">
-                                <AccessTimeIcon sx={{ fontSize: 18, mr: 1 }} />
+                                <AccessTimeIcon sx={{ fontSize: 18, mr: 1,...theme.typography.caption }} />
                                 <Typography variant="caption" sx={{ mr: 2 ,...theme.typography.caption}}>
                                     {currentData.read_time}m
                                 </Typography>
-                                <VisibilityIcon sx={{ fontSize: 18, mr: 1 }} />
+                                <VisibilityIcon sx={{ fontSize: 18, mr: 1,...theme.typography.caption }} />
                                 <Typography variant="caption" sx={{...theme.typography.caption}}>
                                     {currentData.views}
                                 </Typography>
@@ -212,13 +212,14 @@ const Mediacard = () => {
                 <IconButton
                     onClick={handlePrev}
                     sx={{
+
                         position: "absolute",
                         left: "10px",
                         top: "50%",
                         color: "#fff",
                     }}
                 >
-                    <ArrowBackIosIcon />
+                    <ArrowBackIosIcon sx={{...theme.typography.caption}}/>
                 </IconButton>
 
                 <IconButton
@@ -230,7 +231,7 @@ const Mediacard = () => {
                         color: "#fff",
                     }}
                 >
-                    <ArrowForwardIosIcon />
+                    <ArrowForwardIosIcon sx={{...theme.typography.caption}}/>
                 </IconButton>
 
                 <Box display="flex" justifyContent="center">
@@ -240,7 +241,7 @@ const Mediacard = () => {
                             bottom: 0,
                             left: 0,
                             right: 0,
-                            height: {sm:'2px',md:'4px'},
+                            height: {xs:'2px',sm:'2px',md:'4px'},
                             backgroundColor: "rgba(255, 255, 255, 0.3)",
                         }}
                     >

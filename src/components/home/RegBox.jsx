@@ -7,7 +7,7 @@ const theme = createTheme({
     typography: {
         h6: {
             fontFamily: 'sen',
-            fontSize: { xs: '13px', sm: '13px', md: '16px', lg: '21px', xl: '26px' },
+            fontSize: { xs: '11px', sm: '11px', md: '13px', lg: '16px', xl: '21px' },
             color: "#F1F1F1",
             letterSpacing: '0.4px',
             lineHeight: 'normal',
@@ -15,18 +15,18 @@ const theme = createTheme({
         h3: {
             fontFamily: 'Lato',
             fontWeight: 700,
-            fontSize: { xs: '22px', sm: '24px', md: '28px', lg: '35px', xl: '41px' },
+            fontSize: { xs: '18px', sm: '22px', md: '24px', lg: '28px', xl: '35px' },
             color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: { xs: '10px', sm: '15px', md: '18px', lg: '20px', xl: '22px' },
+            fontSize: { xs: '10px', sm: '10px', md: '14px', lg: '16px', xl: '18px' },
             color: "#FFFFFF",
         },
         form: {
             fontFamily: 'Inter',
-            fontSize: { xs: '10px', sm: '15px', md: '18px', lg: '20px', xl: '22px' },
+            fontSize: { xs: '10px', sm: '10px', md: '14px', lg: '16px', xl: '18px' },
             fontWeight: 400,
         },
     },
@@ -54,13 +54,13 @@ const RegBox = () => {
                         alignItems: 'flex-start',
                         gap: { xs: 0.5, sm: 1, md: 1.5, lg: 2, xl: 2 },
                         height: '100%',
-                        pl: { xs: 5, sm: 10, md: 20, lg: 25, xl: 38 },
+                        pl: { xs: 5, sm: 10, md: 19, lg: 24, xl: 35 },
                     }}
                 >
                     <Typography
                         sx={{
                             ...theme.typography.h3,
-                            pl:{xs:0}
+                            pl:0
                         }}
                     >
                         Vitruvian Shield
@@ -69,7 +69,7 @@ const RegBox = () => {
                         sx={{
                             display: { xs: 'none', sm: 'block' },
                             ...theme.typography.h6,
-                            width: { xs: '250px', sm: '310px', md: '380px', lg: '500px', xl: '625px' },
+                            width: { xs: '250px', sm: '260px', md: '310px', lg: '380px', xl: '500px' },
                         }}
                     >
                         Vitruvian Shield aims to significantly improve the quality of life of patients in their daily life outside of the hospital by offering a solution which monitors your health signals with medically certified precision
@@ -78,7 +78,7 @@ const RegBox = () => {
                         sx={{
                             display: { xs: 'block', sm: 'none' },
                             ...theme.typography.h6,
-                            width:'200px'
+                            width:'160px'
                         }}
                     >
                         Vitruvian Shield aims to significantly improve the quality of life of patients
@@ -90,9 +90,9 @@ const RegBox = () => {
                             alignItems: 'center',
                             flexDirection: 'row',
                             justifyContent: 'space-between',
-                            width: { xs: '300px', sm: '450px', md: '530px', lg: '600px', xl: '690px' },
-                            height: { xs: '30px', sm: '45px', md: '50px', lg: '55px', xl: '65px' },
-                            gap: '4%',
+                            width: { xs: '300px', sm: '300px', md: '450px', lg: '480px', xl: '550px' },
+                            height: { xs: '25px', sm: '30px', md: '38px', lg: '45px', xl: '50px' },
+                            gap: '2%',
                         }}
                     >
                         <FormControl
@@ -109,7 +109,7 @@ const RegBox = () => {
                                 sx={{
                                     position: 'absolute',
                                     top: '25%',
-                                    left: '2%',
+                                    left: '4%',
                                     transform: 'translateY(0%)',
                                     textAlign: 'center',
                                     ...theme.typography.form,
@@ -163,7 +163,7 @@ const RegBox = () => {
                                 borderRadius: '6px',
                                 backgroundColor: '#B50304',
                                 textTransform: 'none',
-                                width: '43%',
+                                width: '40%',
                                 height: '100%',
                                 alignItems: 'center',
                                 '&:hover': {
