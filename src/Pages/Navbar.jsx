@@ -90,7 +90,7 @@ const Navbar = React.memo((props) => {
         { name: 'Home', path: '/', disabled: false },
         { name: 'Products', path: '/products', disabled: false },
         { name: 'Company', path: '/company', disabled: false },
-        { name: 'Learning', path: '/learning', disabled: true },
+        // { name: 'Learning', path: '/learning', disabled: true },
         { name: 'News', path: '/news', disabled: false },
         { name: 'About Us', path: '/about', disabled: false }
     ];
