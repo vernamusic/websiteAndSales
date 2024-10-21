@@ -9,14 +9,21 @@ const theme = createTheme({
     typography: {
         h6: {
             fontFamily: 'sen',
-            fontSize: { xs: '10px', sm: '13px', md: '17px', lg: '21px', xl: '26px' },
+            fontSize: {xs: '11px', sm: '11px', md: '13px', lg: '16px', xl: '21px'},
             color: "#F1F1F1",
             letterSpacing: '0.4px',
             lineHeight: 'normal',
         },
+        h3: {
+            fontFamily: 'Lato',
+            fontWeight: 700,
+            fontSize: {xs: '18px', sm: '22px', md: '24px', lg: '28px', xl: '35px'},
+            color: "#FFFFFF",
+            letterSpacing: '0.4px',
+        },
         button: {
             fontFamily: 'Lato',
-            fontSize: { xs: '1.54vw', sm: '13px', md: '18px', lg: '20px', xl: '22px' },
+            fontSize: {xs: '10px', sm: '10px', md: '14px', lg: '16px', xl: '18px'},
             color: "#FFFFFF",
         },
     },
@@ -59,7 +66,7 @@ const SideBox = () => {
                     sx={{
                         display:{xs:'none',sm:'block'},
                         ...theme.typography.h6,
-                        width: { xs: '240px', sm: '300px', md: '400px', lg: '480px', xl: '580px' },
+                        width: { xs: '240px', sm: '260px', md: '300px', lg: '380px', xl: '480px' },
                     }}
                 >
                     Vitruvian Shield is one of the progressive digital health companies whose headquarters office resides in the Biopole of Lausanne, Switzerland. Vitruvian Shield promotes a comprehensive digital health platform.
@@ -67,16 +74,17 @@ const SideBox = () => {
                 <Button
                     variant="contained"
                     component={Link}
-                    size="large"
                     to={'/company'}
                     sx={{
                         ...theme.typography.button,
                         display:{xs:'none', sm:'block'},
                         borderRadius: '4px',
+                        textAlign:'center',
+                        textJustify:'center',
                         backgroundColor: '#B50304',
                         textTransform: 'none',
-                        width: { xs: '45%', sm: '135px', md: '170px', lg: '190px', xl: '220px' },
-                        height: { xs: '24px', sm: '37px', md: '48px', lg: '52px', xl: '58px' },
+                        width:{ xs: '100px', sm: '100px', md: '120px', lg: '140px', xl: '170px' },
+                        height: { xs: '25px', sm: '30px', md: '37px', lg: '43px', xl: '47px' },
                         '&:hover': {
                             backgroundColor: '#B50304',
                         },
