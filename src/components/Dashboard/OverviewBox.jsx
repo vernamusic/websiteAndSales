@@ -51,6 +51,9 @@ const HowBox = () => {
                     gap={'18px'}
                     mt={'72px'}
                     mb={'100px'}
+                    sx={{
+                        display:{xs:'none', sm:'flex'}
+                    }}
                 >
                     <Typography variant='h3'>Web Overview</Typography>
                     <Typography variant='h6'>Overview of key concepts and main features</Typography>
@@ -58,17 +61,15 @@ const HowBox = () => {
 
                 <Box
                     display="flex"
-                    flexWrap="wrap"
                     justifyContent="center"
-                    gap={4}
-                    mb={0}
+                    gap={8}
                 >
                     {howData.map((box, index) => (
                         <Box
                             key={index}
                             sx={{
-                                width: { xs: '100%', sm: '323px' },
-                                height: { xs: 'auto', sm: '507px' },
+                                width: {sm:'220px',md:'260px',lg: '323px' },
+                                height: {sm:'340px',md:'430px',lg: '507px' },
                                 display: 'flex',
                                 flexDirection: 'column',
                                 justifyContent: 'center',
@@ -77,8 +78,7 @@ const HowBox = () => {
                                 border: '1px solid #FFFFFF33',
                                 borderRadius: '20px 20px 0 0',
                                 overflow: 'hidden',
-                                m:0,
-                                p:0,
+                                mb:'50px'
                             }}
                         >
                             {index % 2 === 1 ? (
@@ -89,10 +89,10 @@ const HowBox = () => {
                                     src={box.image}
                                     alt={box.title}
                                     sx={{
-                                        width: '297px',
-                                        height: '212px',
+                                        width: {sm:'200px',md:'297px'},
+                                        height: {sm:'170px',md:'212px'},
                                         objectFit: 'cover',
-                                        mt: '64px',
+                                        mt: {sm:'84px',md:'64px'},
                                     }}
                                 />
                                 <Box
@@ -148,11 +148,10 @@ const HowBox = () => {
                                     src={box.image}
                                     alt={box.title}
                                     sx={{
-                                        width: '297px',
-                                        height: '212px',
+                                        width: {sm:'200px',md:'297px'},
+                                        height: {sm:'170px',md:'212px'},
                                         objectFit: 'cover',
-                                        mb: '24px',
-                                        mt: 'auto',
+                                        mb: {sm:'84px',md:'64px'},
                                     }}
                                 />
                             </>
