@@ -73,7 +73,8 @@ const NewsBox = () => {
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
-                  mb:{xs: 1, sm: 2, md: 3, lg: 4, xl: 4},
+                  mb:{xs: 1, sm: 2, md: 3, lg: 4, xl: 4},             
+                  gap: { xs: 32, sm: 60, md: 92, lg: 120, xl: 156 },
               }}
           >
               <Typography
@@ -224,6 +225,108 @@ const NewsBox = () => {
 
                       ))}
                   </Box>
+=======
+        <Box display="flex" alignItems="center" justifyContent="center" sx={{gap:{xs: 1, sm: 1, md: 3, lg: 6, xl: 9}}} >
+          {newsItems.map((item) => (
+            <Box
+              key={item.id}
+              sx={{
+                  width: { xs: '124px', sm: '200px', md: '280px', lg: '345px', xl: '430px' },
+                  height: { xs: '200px', sm: '293px', md: '391px', lg: '488px', xl: '600px' },
+                position: "relative",
+                borderRadius: "20px",
+                
+                display: "flex",
+                flexDirection: "column",
+                color: "white",
+                overflow: "hidden",
+                backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 46.58%, rgba(0, 0, 0, 0.472485) 56.73%, rgba(0, 0, 0, 0.86) 66%), url(${item.picture})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                  mb:5,
+              }}
+
+            >
+                <Box
+                    sx={{
+                        position: "absolute",
+                        height: '37%',
+                        bottom: '-2%',
+                        width: { xs: '120px', sm: '189px', md: '252px', lg: '315px', xl: '430px' },
+                    }}
+                >
+
+                    <Box
+                        sx={{
+                            position: "absolute",
+                            top: '0',
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "flex-start",
+                            ml:{xs:1, sm: 2, md: 3, lg: 3, xl: 4,},
+
+                        }}
+                    >
+                        <Typography
+                            sx={{
+                                ...theme.typography.h3,
+                            }}
+                        >
+                            {item.title.length > 28
+                                ? `${item.title.substring(0, 28)}...`
+                                : item.title}
+
+                        </Typography>
+                        <Typography
+                            sx={{
+                                mt: {xs:0.1, sm: 0.2, md: 0.4, lg: 0.6, xl: 0.8,},
+                                ...theme.typography.h6,
+
+                            }}
+                        >
+                            {item.details.length > 50
+                                ? `${item.details.substring(0, 80)}...`
+                                : item.details}
+                        </Typography>
+                    </Box>
+
+
+                    <Box
+                        sx={{
+                            position: "absolute",
+                            bottom: '0',
+                            width: '100%',
+                            display: "flex",
+                            alignContent: "flex-start",
+
+                        }}
+                    >
+                        <Button
+                            variant="contained"
+                            sx={{
+                                borderRadius: "6px",
+                                backgroundColor: "transparent",
+                                textTransform: "none",
+                                ml:{xs:1, sm: 2, md: 3, lg: 3, xl: 4,},
+                                mb:{xs:1.2, sm: 2.5, md: 3, lg: 5, xl: 6,},
+                                width: { xs: '20px',sm: '55px', md: '80px', lg: '100px', xl: '125px' },
+                                height: { xs: '20px', sm: '20px', md: '30px', lg: '35px', xl: '45px' },
+                                ...theme.typography.button,
+                                border: "1px solid rgba(255, 255, 255, 0.8)",
+                                "&:hover": {
+                                    backgroundColor: "#000000",
+                                    opacity: 0.8,
+                                },
+                            }}
+                        >
+                            See more
+                        </Button>
+                    </Box>
+                </Box>
+            </Box>
+          ))}
+        </Box>
       </Box>
     </ThemeProvider>
   );

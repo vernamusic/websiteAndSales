@@ -50,26 +50,27 @@ const HowBox = () => {
                     alignItems="center"
                     textAlign="center"
                     gap={'18px'}
-                    mt={'72px'}
+                    mt={'50px'}
                     mb={'100px'}
+                    sx={{
+                        display:{xs:'none', sm:'flex'}
+                    }}
                 >
                     <Typography variant='h3'>Mobile Overview</Typography>
-                    <Typography variant='h6'>Lorem ipsum dolor sit amet consecteturLorem ipsum</Typography>
+                    <Typography variant='h6'>Overview of key concepts and main features</Typography>
                 </Box>
 
                 <Box
                     display="flex"
-                    flexWrap="wrap"
                     justifyContent="center"
-                    gap={4}
-                    mb={0}
+                    gap={8}
                 >
                     {howData.map((box, index) => (
                         <Box
                             key={index}
                             sx={{
-                                width: { xs: '100%', sm: '323px' },
-                                height: { xs: 'auto', sm: '507px' },
+                                width: {sm:'220px',md:'260px',lg: '323px' },
+                                height: {sm:'340px',md:'430px',lg: '507px' },
                                 display: 'flex',
                                 flexDirection: 'column',
                                 justifyContent: 'center',
@@ -78,8 +79,7 @@ const HowBox = () => {
                                 border: '1px solid #FFFFFF33',
                                 borderRadius: '20px 20px 0 0',
                                 overflow: 'hidden',
-                                m:0,
-                                p:0,
+                                mb:'50px'
                             }}
                         >
                             {index % 2 === 1 ? (
@@ -90,10 +90,9 @@ const HowBox = () => {
                                     src={box.image}
                                     alt={box.title}
                                     sx={{
-                                        width: '200px',
-                                        height: '340px',
+                                        width: {sm:'160px',md:'200px'},
+                                        height: {sm:'280px',md:'340px'},
                                         objectFit: 'cover',
-                                        
                                         mt: 'auto',
                                     }}
                                 />
@@ -110,7 +109,7 @@ const HowBox = () => {
                                     variant='h9'
                                         gutterBottom
                                         sx={{
-                                            mb: '48px',
+                                            mb: '64px',
                                             fontFamily: 'Lato',
                                             fontWeight: 600,
                                             fontSize: '18px',
@@ -152,8 +151,8 @@ const HowBox = () => {
                                     src={box.image}
                                     alt={box.title}
                                     sx={{
-                                        width: '200px',
-                                        height: '340px',
+                                        width: {sm:'140px',md:'200px'},
+                                        height: {sm:'240px',md:'340px'},
                                         objectFit: 'cover',
                                         mb: '24px',
                                         mt: 'auto',
