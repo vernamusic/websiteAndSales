@@ -97,15 +97,14 @@ const Home = () => {
                 sx={{
                     width: '100%',
                     minHeight: {
-                        xs: '300px',
+                        xs: '250px',
                         sm: '450px',
                         md: '540px',
                         lg: '675px',
-                        xl: '900px',
+                        xl: '800px',
                     },
                     display: 'flex',
                     justifyContent: 'center',
-                    mb:{xs:2,sm:0}
                 }}
             >
                 <NewsBox />
