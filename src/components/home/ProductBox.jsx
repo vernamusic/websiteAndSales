@@ -38,7 +38,7 @@ const theme = createTheme({
 
 const proItems = [
     { id: '1', title: "Mobile App",  image: pro1, url: '/products/mobile-app', description: "An easy and intuitive way to share your data with all professionals in charge of providing you with after-care and medical follow-up.", },
-    { id: '2', title: "Watch", image: pro2, url: '/products/smart-watch',description: "Equipped with a vast range of state of the art sensors, the Vitruvian Shield Smartwatch collects biometric data from the wearer" },
+    { id: '2', title: "Smart Watch", image: pro2, url: '/products/smart-watch',description: "Equipped with a vast range of state of the art sensors, the Vitruvian Shield Smartwatch collects biometric data from the wearer" },
     { id: '3', title: "Web App",image: pro3, url: '/products/dashboard',  description: "This Web App allows healthcare providers and researchers to analyze, manage and monitor their patients' health data in real time.\n" +
             "\n" },
 ];
@@ -70,11 +70,11 @@ const ProductBox = () => {
     return (
         <ThemeProvider theme={theme}>
             <Box sx={{
-                width: '100%',
+                width: '92%',
                 height: '100%',
                 display:{xs:'none',sm:'flex'},
                 flexDirection: 'row',
-                justifyContent: 'space-between',
+                justifyContent: 'space-around',
                 alignItems: 'center',
 
             }}>
@@ -82,7 +82,6 @@ const ProductBox = () => {
                     key={animateKey}
                     sx={{
                     width: {xs: '210px', sm: '270px', md: '335px', lg: '430px', xl: '530px'},
-                    ml: {xs: 5, sm: 10, md: 15, lg: 24, xl: 35},
                     display: 'flex',
                     flexDirection: 'column',
                     gap: {xs: 1, sm: 0.8, md: 0.8, lg: 1, xl: 1,},
@@ -161,7 +160,7 @@ const ProductBox = () => {
                             borderRadius: '4px',
                             backgroundColor: '#B50304',
                             textTransform: 'none',
-                            width:{ xs: '100px', sm: '100px', md: '120px', lg: '140px', xl: '170px' },
+                            width:{ xs: '100px', sm: '100px', md: '130px', lg: '150px', xl: '170px' },
                             height: { xs: '25px', sm: '30px', md: '37px', lg: '43px', xl: '47px' },
                             '&:hover': {
                                 backgroundColor: '#B50304',
@@ -177,16 +176,14 @@ const ProductBox = () => {
                     sx={{
                         position: 'relative',
                         flexDirection: 'column',
-                        width: {xs:'150px',sm:'200px',md: '300px', lg: '400px', xl: '470px'},
-                        height: {xs:'300px',sm:'380px',md: '500px', lg: '650px', xl: '820px'},
+                        width: {xs:'150px',sm:'200px',md: '300px', lg: '400px', xl: '430px'},
+                        height: {xs:'300px',sm:'380px',md: '500px', lg: '650px', xl: '750px'},
                         display: 'flex',
                     }}
                 >
                     <Box
                         sx={{
                             position: 'relative',
-                            Bottom: '100%',
-                            right: {md:'35%',sm:'15%',xs:'20%'},
                             width: '100%',
                             height: '100%',
                             borderRadius: '0 0 30px 30px',
@@ -198,11 +195,10 @@ const ProductBox = () => {
                             key={animateKey}
                             component="img"
                             src={proItems[currentIndex].image}
-                            alt="Phone app screenshot"
                             sx={{
                                 position: 'absolute',
                                 right: '-9.5%',
-                                bottom: '5%',
+                                bottom: '10%',
                                 width: '120%',
                                 zIndex: 2,
                                 animation: `fadeLeft 0.7s ease`,
@@ -214,9 +210,9 @@ const ProductBox = () => {
 
                             position="absolute"
                             bottom={'5%'}
-                            right={'40%'}
+                            right={'42%'}
                             zIndex={3}
-                            sx={{gap:{xs: 0.5, sm: 1.5, md: 3, lg: 5, xl: 6,}}}
+                            sx={{gap:{sm: 1, md: 3, lg: 4, xl: 5,}}}
                         >
                             <IconButton
                                 onClick={handlePrev}
@@ -225,7 +221,7 @@ const ProductBox = () => {
 
                                 }}
                             >
-                                <img src={previousarrow} alt="Previous" style={{width:'2.5vw', position:"absolute"}}/>
+                                <img src={previousarrow} alt="Previous" style={{width:'2.2vw', position:"absolute"}}/>
                             </IconButton>
                             <IconButton
                                 onClick={handleNext}
@@ -233,7 +229,7 @@ const ProductBox = () => {
                                     '&:hover': {backgroundColor: 'transparent'},
                                 }}
                             >
-                                <img src={nextarrow} alt="Next" style={{width:'2.5vw',position:"absolute"}}/>
+                                <img src={nextarrow} alt="Next" style={{width:'2.2vw',position:"absolute"}}/>
                             </IconButton>
                         </Box>
                     </Box>

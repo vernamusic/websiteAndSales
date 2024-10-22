@@ -32,10 +32,10 @@ const theme = createTheme({
 const SideBox = () => {
     return (
         <Box sx={{
-            width: '100%',
+            width: '90%',
             display: 'flex',
             flexDirection: 'row',
-            justifyContent: 'space-between',
+            justifyContent: 'space-around',
             alignItems: 'center',
             position: 'relative',
 
@@ -43,16 +43,13 @@ const SideBox = () => {
         }}>
             <Box
                 sx={{
-                    position:{xs:'relative',sm:'absolute'},
-                    top:'20%',
+                    position:'relative',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'flex-start',
                     justifyContent: {xs:'center',sm:'flex-start'},
                     textAlign: 'left',
-                    ml: {xs: 5, sm: 10, md: 15, lg: 25, xl: 38},
                     gap: { xs: 1, sm: 1, md: 1.5, lg: 2, xl: 3 },
-                    mb: {xs: 8, sm: 0,},
                     width: { xs: '240px', sm: '300px', md: '430px', lg: '480px', xl: '580px' },
                 }}
             >
@@ -77,7 +74,7 @@ const SideBox = () => {
                     to={'/company'}
                     sx={{
                         ...theme.typography.button,
-                        display:{xs:'none', sm:'block'},
+                        display:'flex',
                         borderRadius: '4px',
                         textAlign:'center',
                         textJustify:'center',
@@ -98,10 +95,8 @@ const SideBox = () => {
             <Box
                 sx={{
                     display: 'flex',
-                    position:{xs:'relative',sm:'absolute'},
+                    position:'relative',
                     justifyContent: 'flex-end',
-                    right:{md:'9%',sm:'3%',xs:'5%'},
-                    top:{md:'0%',sm:'15%'},
                     alignItems: 'center',
                     width: { xs: '120px', sm: '220px', md: '300px', lg: '400px', xl: '470px' },
                     height: { xs: '120px', sm: '220px', md: '500px', lg: '650px', xl: '820px' },

@@ -6,21 +6,20 @@ import { Link, useLocation } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import logo from '../assets/redvslogo.svg';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import searchimg from '../assets/searchicon.png';
 import SignUpDialog from '../components/SignUp/SignUpDialog.jsx'; // Import the SignUpDialog component
 
 const theme = createTheme({
     typography: {
         h6: {
             fontFamily:'Lato',
-            fontSize: { xs: '12px', sm: '14px', md: '16px', lg: '21px', xl: '24px' },
+            fontSize: { xs: '12px', sm: '14px', md: '16px', lg: '18px', xl: '20px' },
             fontWeight: 500,
             color: "#F1F1F1",
             textTransform: 'none',
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: {md: '11px', lg: '16px', xl: '20px' },
+            fontSize: {md: '16px', lg: '18px', xl: '20px' },
             fontWeight: 500,
             textTransform: 'none',
         },
@@ -39,6 +38,7 @@ const getActiveStyle = (path, location) => {
     return {
         position: 'relative',
         '&::after': {
+            fontWeight: 700,
             content: '""',
             position: 'absolute',
             width: '100%',
@@ -90,7 +90,7 @@ const Navbar = React.memo((props) => {
         { name: 'Home', path: '/', disabled: false },
         { name: 'Products', path: '/products', disabled: false },
         { name: 'Company', path: '/company', disabled: false },
-        // { name: 'Learning', path: '/learning', disabled: true },
+        { name: 'Partnership', path: '/partnership', disabled: false },
         { name: 'News', path: '/news', disabled: false },
         { name: 'About Us', path: '/about', disabled: false }
     ];
@@ -119,14 +119,14 @@ const Navbar = React.memo((props) => {
                         <Button
                             component={Link}
                             to="/"
-                            sx={{ mx: { xs: '0.5vw', md: '0.8vw' }, display: 'flex', alignItems: 'center',
+                            sx={{ mx: { xs: '0.5vw'}, display: 'flex', alignItems: 'center',
                                 '&:hover': {
                                     backgroundColor: 'transparent',
                                 },
                             }}
                             disableRipple
                         >
-                            <img src={logo} alt="logo" style={{ width: 'calc(2.2vw + 30px)' }} />
+                            <img src={logo} alt="logo" style={{ width: 'calc(2vw + 20px)' }} />
                         </Button>
                     </Box>
                     <Box sx={{ display: { xs: 'flex', md: 'none' }, ml: 'auto' }}>
@@ -141,18 +141,32 @@ const Navbar = React.memo((props) => {
                                     </IconButton>
                                 </Box>
                                 <Divider sx={{ mt: 1.5, height: '1px', backgroundColor: '#B50304' }} />
-                                {pages.map((page) => (
-                                    <MenuItem
-                                        key={page.name}
-                                        component={Link}
-                                        to={page.path}
-                                        disabled={page.disabled}
-                                        onClick={toggleDrawer(false)}
-                                        sx={{ color: page.disabled === true ? 'rgba(255,255,255,0.40)' : '#fff' }}
-                                    >
-                                        {page.name}
-                                    </MenuItem>
-                                ))}
+                                {pages.map((page) =>
+                                    page.name === 'Products' ? (
+                                        productItems.map((item) => (
+                                            <MenuItem
+                                                key={item.id}
+                                                component={Link}
+                                                to={item.path}
+                                                onClick={toggleDrawer(false)}
+                                                sx={{ color: '#fff' }}
+                                            >
+                                                {item.name}
+                                            </MenuItem>
+                                        ))
+                                    ) : (
+                                        <MenuItem
+                                            key={page.name}
+                                            component={Link}
+                                            to={page.path}
+                                            disabled={page.disabled}
+                                            onClick={toggleDrawer(false)}
+                                            sx={{ color: page.disabled === true ? 'rgba(255,255,255,0.40)' : '#fff' }}
+                                        >
+                                            {page.name}
+                                        </MenuItem>
+                                    )
+                                )}
                                 <MenuItem>
                                     <Button
                                         variant="outlined"
@@ -231,39 +245,25 @@ const Navbar = React.memo((props) => {
                                 sx: {
                                     bgcolor: '#141414',
                                     color: 'white',
-                                    minWidth: 150,
+                                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                                    minWidth: 100,
+                                    justifyContent: 'space-between',
+                                    textAlign:'center'
                                 },
                             }}
                         >
                             {productItems.map((item, index) => (
-                                <React.Fragment key={item.name}>
-                                    <MenuItem component={Link} to={item.path} onClick={handleMenuClose}>
+                                <React.Fragment key={item.name} >
+                                    <MenuItem component={Link} to={item.path} onClick={handleMenuClose} disableRipple>
                                         {item.name}
                                     </MenuItem>
-                                    {index < productItems.length - 1 && <Divider sx={{ bgcolor: 'gray' }} />}
+                                    {index < productItems.length - 1 && <Divider sx={{ bgcolor: 'rgba(255, 255, 255, 0.2)' }} />}
                                 </React.Fragment>
                             ))}
                         </Menu>
                     </Box>
 
-                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        <Button
-                            component={Link}
-                            to="/"
-                            sx={{
 
-                                ml: 0,
-                                display: 'flex',
-                                alignItems: 'center',
-                                fontSize: '18px',
-                                fontWeight: 'bold',
-                                width: { md: '1.5vw' },
-                            }}
-                            disableRipple
-                        >
-                            <img src={searchimg} alt="search" style={{ width: 'calc(1.7vw + 5px)' }} />
-                        </Button>
-                    </Box>
                     <Button
                         variant="contained"
                         onClick={() => setDialogOpen(true)} // Open dialog on click
@@ -273,8 +273,8 @@ const Navbar = React.memo((props) => {
                             ml: { md:-1, lg: 1.2 },
                             borderRadius: '4px',
                             backgroundColor: '#B50304',
-                            width: 'calc(9.6vw + 6px)',
-                            height: 'calc(2.5vw + 5px)',
+                            width:{ xs: '100px', sm: '100px', md: '120px', lg: '140px', xl: '170px' },
+                            height: { xs: '25px', sm: '30px', md: '37px', lg: '43px', xl: '47px' },
                             '&:hover': {
                                 backgroundColor: '#B50304',
                             },
