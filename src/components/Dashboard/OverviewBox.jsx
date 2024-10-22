@@ -51,6 +51,9 @@ const HowBox = () => {
                     gap={'18px'}
                     mt={'72px'}
                     mb={'100px'}
+                    sx={{
+                        display:{xs:'none', sm:'flex'}
+                    }}
                 >
                     <Typography variant='h3'>Web Overview</Typography>
                     <Typography variant='h6'>Overview of key concepts and main features</Typography>
@@ -58,10 +61,8 @@ const HowBox = () => {
 
                 <Box
                     display="flex"
-                    flexWrap="wrap"
                     justifyContent="center"
-                    gap={4}
-                    mb={0}
+                    gap={8}
                 >
                     {howData.map((box, index) => (
                         <Box
@@ -77,8 +78,7 @@ const HowBox = () => {
                                 border: '1px solid #FFFFFF33',
                                 borderRadius: '20px 20px 0 0',
                                 overflow: 'hidden',
-                                m:0,
-                                p:0,
+                                mb:'50px'
                             }}
                         >
                             {index % 2 === 1 ? (

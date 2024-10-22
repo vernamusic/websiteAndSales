@@ -50,8 +50,11 @@ const HowBox = () => {
                     alignItems="center"
                     textAlign="center"
                     gap={'18px'}
-                    mt={'72px'}
+                    mt={'50px'}
                     mb={'100px'}
+                    sx={{
+                        display:{xs:'none', sm:'flex'}
+                    }}
                 >
                     <Typography variant='h3'>Mobile Overview</Typography>
                     <Typography variant='h6'>Lorem ipsum dolor sit amet consecteturLorem ipsum</Typography>
@@ -59,10 +62,8 @@ const HowBox = () => {
 
                 <Box
                     display="flex"
-                    flexWrap="wrap"
                     justifyContent="center"
-                    gap={4}
-                    mb={0}
+                    gap={8}
                 >
                     {howData.map((box, index) => (
                         <Box
@@ -78,8 +79,7 @@ const HowBox = () => {
                                 border: '1px solid #FFFFFF33',
                                 borderRadius: '20px 20px 0 0',
                                 overflow: 'hidden',
-                                m:0,
-                                p:0,
+                                mb:'50px'
                             }}
                         >
                             {index % 2 === 1 ? (
@@ -93,7 +93,6 @@ const HowBox = () => {
                                         width: '200px',
                                         height: '340px',
                                         objectFit: 'cover',
-                                        
                                         mt: 'auto',
                                     }}
                                 />
@@ -110,7 +109,7 @@ const HowBox = () => {
                                     variant='h9'
                                         gutterBottom
                                         sx={{
-                                            mb: '48px',
+                                            mb: '64px',
                                             fontFamily: 'Lato',
                                             fontWeight: 600,
                                             fontSize: '18px',
