@@ -11,6 +11,7 @@ import Watch from './Pages/Watch';
 import Company from './Pages/Company';
 import Partnership from './Pages/Partnership';
 import NewsMore from './components/News/NewsMore';
+import Profile from './Pages/Profile';
 
 const AppRoutes = () => {
     return (
@@ -26,6 +27,7 @@ const AppRoutes = () => {
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<Login />} />
             <Route path="/news/:slug" element={<NewsMore />} />
+            <Route path="/profile" element={<Profile />} />
         </Routes>
     );
 }

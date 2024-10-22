@@ -4,8 +4,6 @@ import moreicn from "../../assets/next.png";
 import { Link } from "react-router-dom";
 
 
-const apihost = "https://site.vitruvianshield.com";
-
 const theme = createTheme({
     typography: {
         h6: {
@@ -38,12 +36,12 @@ const NewsBox = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch(`${apihost}/api/v1/top-news`);
+        const response = await fetch(`https://site.vitruvianshield.com/api/v1/home-news`);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        setNewsItems(data.results);
+        setNewsItems(data);
       } catch (error) {
         console.error("Error fetching news:", error);
       }
@@ -155,7 +153,10 @@ const NewsBox = () => {
                                 ...theme.typography.h3,
                             }}
                         >
-                            {item.title}
+                            {item.title.length > 28
+                                ? `${item.title.substring(0, 28)}...`
+                                : item.title}
+
                         </Typography>
                         <Typography
                             sx={{

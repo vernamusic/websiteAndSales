@@ -38,8 +38,9 @@ const theme = createTheme({
 
 const proItems = [
     { id: '1', title: "Mobile App",  image: pro1, url: '/products/mobile-app', description: "An easy and intuitive way to share your data with all professionals in charge of providing you with after-care and medical follow-up.", },
-    { id: '2', title: "Watch", image: pro2, url: '/products/smart-watch',description: "An easy and intuitive way to share your data with all professionals in charge of providing you with after-care and medical follow-up." },
-    { id: '3', title: "Web App",image: pro3, url: '/products/dashboard',  description: "An easy and intuitive way to share your data with all professionals in charge of providing you with after-care and medical follow-up." },
+    { id: '2', title: "Watch", image: pro2, url: '/products/smart-watch',description: "Equipped with a vast range of state of the art sensors, the Vitruvian Shield Smartwatch collects biometric data from the wearer" },
+    { id: '3', title: "Web App",image: pro3, url: '/products/dashboard',  description: "This Web App allows healthcare providers and researchers to analyze, manage and monitor their patients' health data in real time.\n" +
+            "\n" },
 ];
 
 const ProductBox = () => {
@@ -86,7 +87,6 @@ const ProductBox = () => {
                     flexDirection: 'column',
                     gap: {xs: 1, sm: 0.8, md: 0.8, lg: 1, xl: 1,},
                 }}>
-                    {/* متن عنوان بر اساس currentIndex */}
                     <Typography sx={{
                         ...theme.typography.h3,
                         animation: 'fadeLeft 0.8s ease-in-out',
@@ -112,7 +112,7 @@ const ProductBox = () => {
                                     overflow: 'hidden',
                                     width: {xs: '80px', sm: '100px', md: '110px', lg: '120px', xl: '135px'},
                                     height: {xs: '70px', sm: '90px', md: '100px', lg: '110px', xl: '120px'},
-                                    backgroundImage: `linear-gradient(360deg, rgba(20, 20, 20, 0.05) 0%, rgba(255, 255, 255, 0.1) 100%), url(${item.image})`,
+                                    backgroundImage: `linear-gradient(360deg, rgba(20, 20, 20, 0.05) 0%, rgba(255, 255, 255, 0.1) 100%)`,
                                     backgroundSize: '100%',
                                     backgroundPosition: 'center',
                                     backgroundRepeat: 'no-repeat',
@@ -128,34 +128,41 @@ const ProductBox = () => {
                                     '@keyframes borderExpand': {
                                         '0%': {
                                             borderWidth: '1px',
-                                            borderOpacity: 0, // شفافیت در حالت ابتدایی
+                                            borderOpacity: 0,
                                         },
                                         '50%': {
-                                            borderWidth: '4px', // عرض مرز در حالت میانی
-                                            borderOpacity: 1, // شفافیت در حالت میانی
+                                            borderWidth: '4px',
+                                            borderOpacity: 1,
                                         },
                                         '100%': {
                                             borderWidth: '1px',
-                                            borderOpacity: 0, // شفافیت در حالت پایانی
+                                            borderOpacity: 0,
                                         },
                                     },
                                 }}
                                 onClick={() => handleProductClick(index)}
-                            />
+                            >
+                                <Box sx={{
+                                    backgroundImage: `url(${item.image})`,
+                                    width: '85%',
+                                    height: '85%',
+                                    backgroundSize: 'cover',
+                                    backgroundPosition: 'center',
+                                }} />
+                            </Box>
                         ))}
                 </Box>
 
                 <Button
                         variant="contained"
-                        size="large"
                         sx={{
                             ...theme.typography.button,
                             mt:{xs: 1, sm: 1, md: 1, lg: 1.2, xl: 2,} ,
                             borderRadius: '4px',
                             backgroundColor: '#B50304',
                             textTransform: 'none',
-                            width:{ xs: '100px', sm: '135px', md: '140px', lg: '160px', xl: '180px' },
-                            height: { xs: '25px', sm: '30px', md: '38px', lg: '45px', xl: '50px' },
+                            width:{ xs: '100px', sm: '100px', md: '120px', lg: '140px', xl: '170px' },
+                            height: { xs: '25px', sm: '30px', md: '37px', lg: '43px', xl: '47px' },
                             '&:hover': {
                                 backgroundColor: '#B50304',
                             },
