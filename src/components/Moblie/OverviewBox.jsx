@@ -57,7 +57,7 @@ const HowBox = () => {
                     }}
                 >
                     <Typography variant='h3'>Mobile Overview</Typography>
-                    <Typography variant='h6'>Lorem ipsum dolor sit amet consecteturLorem ipsum</Typography>
+                    <Typography variant='h6'>Overview of key concepts and main features</Typography>
                 </Box>
 
                 <Box
@@ -69,8 +69,8 @@ const HowBox = () => {
                         <Box
                             key={index}
                             sx={{
-                                width: { xs: '100%', sm: '323px' },
-                                height: { xs: 'auto', sm: '507px' },
+                                width: {sm:'220px',md:'260px',lg: '323px' },
+                                height: {sm:'340px',md:'430px',lg: '507px' },
                                 display: 'flex',
                                 flexDirection: 'column',
                                 justifyContent: 'center',
@@ -90,8 +90,8 @@ const HowBox = () => {
                                     src={box.image}
                                     alt={box.title}
                                     sx={{
-                                        width: '200px',
-                                        height: '340px',
+                                        width: {sm:'160px',md:'200px'},
+                                        height: {sm:'280px',md:'340px'},
                                         objectFit: 'cover',
                                         mt: 'auto',
                                     }}
@@ -151,8 +151,8 @@ const HowBox = () => {
                                     src={box.image}
                                     alt={box.title}
                                     sx={{
-                                        width: '200px',
-                                        height: '340px',
+                                        width: {sm:'140px',md:'200px'},
+                                        height: {sm:'240px',md:'340px'},
                                         objectFit: 'cover',
                                         mb: '24px',
                                         mt: 'auto',

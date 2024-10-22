@@ -68,8 +68,8 @@ const HowBox = () => {
                         <Box
                             key={index}
                             sx={{
-                                width: { xs: '100%', sm: '323px' },
-                                height: { xs: 'auto', sm: '507px' },
+                                width: {sm:'220px',md:'260px',lg: '323px' },
+                                height: {sm:'340px',md:'430px',lg: '507px' },
                                 display: 'flex',
                                 flexDirection: 'column',
                                 justifyContent: 'center',
@@ -89,10 +89,10 @@ const HowBox = () => {
                                     src={box.image}
                                     alt={box.title}
                                     sx={{
-                                        width: '297px',
-                                        height: '212px',
+                                        width: {sm:'200px',md:'297px'},
+                                        height: {sm:'170px',md:'212px'},
                                         objectFit: 'cover',
-                                        mt: '64px',
+                                        mt: {sm:'84px',md:'64px'},
                                     }}
                                 />
                                 <Box
@@ -148,11 +148,10 @@ const HowBox = () => {
                                     src={box.image}
                                     alt={box.title}
                                     sx={{
-                                        width: '297px',
-                                        height: '212px',
+                                        width: {sm:'200px',md:'297px'},
+                                        height: {sm:'170px',md:'212px'},
                                         objectFit: 'cover',
-                                        mb: '24px',
-                                        mt: 'auto',
+                                        mb: {sm:'84px',md:'64px'},
                                     }}
                                 />
                             </>

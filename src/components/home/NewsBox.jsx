@@ -64,7 +64,7 @@ const NewsBox = () => {
                   justifyContent: "center",
                   alignItems: "center",
                   mb:{xs: 1, sm: 2, md: 3, lg: 4, xl: 4},
-
+                    
                   gap: { xs: 32, sm: 60, md: 92, lg: 120, xl: 156 },
               }}
           >
@@ -116,6 +116,7 @@ const NewsBox = () => {
                   height: { xs: '200px', sm: '293px', md: '391px', lg: '488px', xl: '600px' },
                 position: "relative",
                 borderRadius: "20px",
+                
                 display: "flex",
                 flexDirection: "column",
                 color: "white",
