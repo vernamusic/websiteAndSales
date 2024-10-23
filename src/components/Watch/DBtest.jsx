@@ -8,7 +8,7 @@ const theme = createTheme({
     typography: {
         h6: {
             fontFamily: 'sen',
-            fontSize: { xs: '15px', sm: '18px', md: '20px', lg: '22px', xl: '26px' },
+            fontSize: { xs: '12px', sm: '15px', md: '18px', lg: '20px', xl: '22px' },
             color: "#F1F1F1",
             letterSpacing: '0.4px',
             lineHeight: 'normal',
@@ -16,13 +16,13 @@ const theme = createTheme({
         h3: {
             fontFamily: 'Lato',
             fontWeight: 700,
-            fontSize: { xs: '20px', sm: '24px', md: '28px', lg: '35px', xl: '41px' },
+            fontSize: { xs: '18px', sm: '22px', md: '24px', lg: '28px', xl: '35px' },
             color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: { xs: '10px', sm: '18px', md: '20px', lg: '22px', xl: '26px' },
+            fontSize: { xs: '10px', sm: '10px', md: '14px', lg: '18px', xl: '20px' },
             color: "#FFFFFF",
         },
     },
@@ -37,12 +37,21 @@ const Home = () => {
             <Box
                 sx={{
                     position: 'relative',
-                    width: '100%',
-                    height: {xs:'35vh',sm:'55vh',md:'75vh',lg:'90vh',xl:'115vh'},
                     backgroundImage: `url(${background})`,
+                    backgroundSize: 'cover',  // Ensures the image maintains aspect ratio
                     backgroundRepeat: 'no-repeat',
-                    backgroundSize: 'contain',
-                    backgroundPositionY:'-100px'
+                    backgroundPosition: 'top right',
+                    width: '100vw',
+                    minHeight: {
+                        xs: '300px',
+                        sm: '450px',
+                        md: '700px',
+                        lg: '800px',
+                        xl: '1000px',
+                    },
+
+                    // Optional: Set aspect ratio if needed
+                    // aspectRatio: '16/9',  // Use this if the image has a specific aspect ratio like 16:9
                 }}
             >
 
@@ -55,7 +64,7 @@ const Home = () => {
                         zIndex: 1,
                         ml: { xs: 5, sm: 10, md: 20, lg: 25, xl: 38 },
                         mt: { xs: 10, sm: 10, md: 10, lg: 19, xl: 30 },
-                        maxWidth:{xs:'330px',sm:'380px',md: '460px', lg: '500px', xl: '550px' }
+                        width:'30%',
                     }}
                 >
                     <Typography
@@ -72,7 +81,6 @@ const Home = () => {
                         variant="h6"
                         sx={{
                             mb: 0,
-                            maxWidth: '580px',
                             ...theme.typography.h6,
                         }}
                     >
@@ -81,19 +89,20 @@ const Home = () => {
 
                     <Box sx={{ display: 'flex', gap: '15px', marginTop: '30px', }}>
                         <Button
-                            variant="outlined"
+                            variant="contained"
                             component={Link}
                             to="/signup"
                             sx={{
-                                display: { xs: 'none', md: 'flex' },
-                                borderRadius: '5px',
-                                borderColor: 'white',
-                                color: 'white',
-                                width: 'calc(8.5vw + 7px)',
-                                height: 'calc(2.4vw + 5px)',
-                                fontSize: 'calc(1vw + 1px)',
+                                display: { xs: 'none', sm: 'flex' },
+                                borderRadius: '4px',
+                                backgroundColor: '#B50304',
+                                width:{ xs: '110px', sm: '110px', md: '135px', lg: '170px', xl: '190px' },
+                                height: { xs: '30px', sm: '30px', md: '37px', lg: '48px', xl: '52px' },
+                                ...theme.typography.button,
                                 textTransform: 'none',
-                                '&:hover': {},
+                                '&:hover': {
+                                    backgroundColor: '#B50304',
+                                },
                             }}
                             disableRipple
                         >

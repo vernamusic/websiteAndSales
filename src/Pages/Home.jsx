@@ -18,13 +18,7 @@ const Home = () => {
             <Box
                 sx={{
                     width: '100%',
-                    minHeight: {
-                        xs: '200px',
-                        sm: '450px',
-                        md: '540px',
-                        lg: '675px',
-                        xl: '900px',
-                    },
+                    height:'100%',
                     display: 'flex',
                     justifyContent: 'center',
                     bgcolor: 'black',
