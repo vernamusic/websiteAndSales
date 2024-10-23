@@ -7,7 +7,7 @@ const theme = createTheme({
     typography: {
         h6: {
             fontFamily: 'sen',
-            fontSize: { xs: '6px', sm: '6px', md: '11px', lg: '15px', xl: '17px' },
+            fontSize:'0.8333vw',
             color: "#F1F1F1",
             letterSpacing: '0.4px',
             lineHeight: 'normal',
@@ -15,18 +15,26 @@ const theme = createTheme({
         h3: {
             fontFamily: 'Lato',
             fontWeight: 700,
-            fontSize: { xs: '8px', sm: '10px', md: '15px', lg: '19px', xl: '24px' },
+            fontSize:'1.09375vw',
             color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: { xs: '8px', sm: '8px', md: '10px', lg: '12px', xl: '14px' },
+            fontSize:'0.677vw',
             textTransform: 'none',
             color: "#FFFFFF",
         },
+        h1: {
+            fontFamily: 'Lato',
+            fontWeight: 700,
+            fontSize:'1.458vw',
+            color: "#FFFFFF",
+            letterSpacing: '0.4px',
+        },
     },
 });
+
 
 const NewsCard = ({ picture, title, details, slug, onClick }) => {
     const isMobile = useMediaQuery((theme) => theme.breakpoints.down('sm'));
@@ -37,9 +45,9 @@ const NewsCard = ({ picture, title, details, slug, onClick }) => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                flexBasis: '30%',
-                height: '100%',
-                borderRadius: "20px",
+                flexBasis: '28%',
+                height: '27.5vw',
+                borderRadius: "16px",
                 backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.01) 40.5%, rgba(0, 0, 0, 0.8) 71%, rgba(0, 0, 0, 0.9) 100%), url(${picture})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
@@ -50,29 +58,29 @@ const NewsCard = ({ picture, title, details, slug, onClick }) => {
             }}
             onClick={isMobile ? onClick : undefined} // Only enable onClick for mobile
         >
-            <Box sx={{ position: "relative", width: '85%', height: '20%', display: "flex", flexDirection: "column", justifyContent: 'flex-start', mb: 4 }}>
+            <Box sx={{ position: "relative", width: '85%', height: '68%', display: "flex", flexDirection: "column", justifyContent: 'flex-end',overflow:'hidden', }}/>
+            <Box sx={{ position: "relative", width: '85%', height: '22%', display: "flex", flexDirection: "column", justifyContent: 'flex-start',overflow:'hidden', }}>
                 <Typography sx={{ width: '100%', ...theme.typography.h3 }}>{title}</Typography>
-                <Typography sx={{ width: '100%', mt: 0.4, ...theme.typography.h6 }}>
+                <Typography sx={{ width: '100%', mt: 0.5, ...theme.typography.h6 }}>
                     {details.length > 50 ? `${details.substring(0, 80)}...` : details}
                 </Typography>
             </Box>
 
-            <Box sx={{ position: "relative", width: '85%', height: '12%', display: { xs: 'none', sm: 'flex' }, alignItems: "flex-start" }}>
+            <Box sx={{ position: "relative", width: '85%', height: '15%', display: { xs: 'none', sm: 'flex' }, justifyContent: "flex-start",alignItems: 'center' }}>
                 <Button
-                    variant="contained"
                     onClick={(e) => {
-                        e.stopPropagation(); // Prevent click event from propagating to the Box
+                        e.stopPropagation();
                         onClick();
                     }}
                     sx={{
                         ...theme.typography.button,
-                        mt: 1.2,
                         borderRadius: '4px',
                         border: '1px solid white',
                         backgroundColor: 'transparent',
-                        width: { sm: '30px', md: '60px', lg: '75px', xl: '95px' },
-                        height: { sm: '20px', md: '30px', lg: '35px', xl: '40px' },
+                        width: '4.6875vw',
+                        height: '1.8229vw',
                         paddingX: 0,
+                        minWidth: 0,
                         '&:hover': { backgroundColor: 'transparent' },
                     }}
                     disableRipple
@@ -106,9 +114,9 @@ const NewsBox = () => {
 
     return (
         <ThemeProvider theme={theme}>
-            <Box sx={{ width: "70%", height: '100%' }}>
-                <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", mb: 4 }}>
-                    <Typography sx={{ fontSize: { xs: "14px", sm: "18px", md: "22px", lg: "26px", xl: "30px" }, color: "#FFFFFF" }}>
+            <Box sx={{ width: "70%", height: '100%',justifyItems: "center",}}>
+                <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", mb: {xs:1,sm:1,md:2,lg:3,xl:4},px:"3%" }}>
+                    <Typography sx={{ ...theme.typography.h1, color: "#FFFFFF" }}>
                         News
                     </Typography>
 
@@ -118,7 +126,7 @@ const NewsBox = () => {
                         sx={{
                             color: "#FFFFFF",
                             textTransform: "none",
-                            fontSize: { xs: "12px", sm: "16px", md: "20px", lg: "24px", xl: "28px" },
+                            ...theme.typography.h1,
                             display: "flex",
                             alignItems: "center",
                             "&:hover": { backgroundColor: "transparent" },
@@ -129,7 +137,7 @@ const NewsBox = () => {
                     </Button>
                 </Box>
 
-                <Box sx={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'start' }}>
+                <Box sx={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
                     {newsItems.map((box, index) => (
                         <NewsCard
                             key={index}
