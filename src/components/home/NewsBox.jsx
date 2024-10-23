@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import {Box, Typography, createTheme, ThemeProvider, Button,} from "@mui/material";
+import { Box, Typography, createTheme, ThemeProvider, Button, useMediaQuery } from "@mui/material";
 import moreicn from "../../assets/next.png";
-import {Link, useNavigate} from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 
 const theme = createTheme({
     typography: {
         h6: {
             fontFamily: 'sen',
-            fontSize: { xs: '6px', sm: '8px', md: '12px', lg: '16px', xl: '18px' },
+            fontSize: { xs: '6px', sm: '6px', md: '11px', lg: '15px', xl: '17px' },
             color: "#F1F1F1",
             letterSpacing: '0.4px',
             lineHeight: 'normal',
@@ -16,309 +15,135 @@ const theme = createTheme({
         h3: {
             fontFamily: 'Lato',
             fontWeight: 700,
-            fontSize: { xs: '8.5px', sm: '12px', md: '16px', lg: '20px', xl: '24px' },
+            fontSize: { xs: '8px', sm: '10px', md: '15px', lg: '19px', xl: '24px' },
             color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: { xs: '8px', sm: '8px', md: '10px', lg: '14px', xl: '16px' },
+            fontSize: { xs: '8px', sm: '8px', md: '10px', lg: '12px', xl: '14px' },
             textTransform: 'none',
             color: "#FFFFFF",
-        },
-        form: {
-            fontFamily: 'Inter',
-            fontSize: { xs: '10px', sm: '10px', md: '15px', lg: '18px', xl: '20px' },
-            fontWeight: 400,
         },
     },
 });
 
-const NewsBox = () => {
-  const [newsItems, setNewsItems] = useState([]);
+const NewsCard = ({ picture, title, details, slug, onClick }) => {
+    const isMobile = useMediaQuery((theme) => theme.breakpoints.down('sm'));
 
-  useEffect(() => {
-    const fetchNews = async () => {
-      try {
-        const response = await fetch(`https://site.vitruvianshield.com/api/v1/home-news`);
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        setNewsItems(data);
-      } catch (error) {
-        console.error("Error fetching news:", error);
-      }
-    };
-
-    fetchNews();
-  }, []);
-
-    const navigate = useNavigate();
-
-    const handleClick = (slug) => {
-        navigate(`/news/${slug}`);
-    };
-
-  return (
-    <ThemeProvider theme={theme}>
-      <Box
-        sx={{
-          width: "75%",
-            height:'100%',
-
-        }}
-      >
-          <Box
-              sx={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  mb:{xs: 1, sm: 2, md: 3, lg: 4, xl: 4},             
-                  gap: { xs: 32, sm: 60, md: 92, lg: 120, xl: 156 },
-              }}
-          >
-              <Typography
-                  sx={{
-                      fontSize: { xs: "14px", sm: "18px", md: "22px", lg: "26px", xl: "30px" },
-                      color: "#FFFFFF",
-                  }}
-              >
-                  News
-              </Typography>
-
-
-              <Button
-                  component={Link}
-                  to="/news"
-                  sx={{
-                      pl:{xs:3,sm:0},
-                      color: "#FFFFFF",
-                      textTransform: "none",
-                      fontSize: { xs: "12px", sm: "16px", md: "20px", lg: "24px", xl: "28px" },
-                      display: "flex",
-                      alignItems: "center",
-                      "&:hover": {
-                          backgroundColor: "transparent",
-                      },
-                  }}
-                  endIcon={<Box
-                      component="img"
-                      src={moreicn}
-                      alt="more"
-                      sx={{
-                          ml:0,
-                          mt:0.5,
-                          width: { xs: "9px", sm: "15px", md: "19px", lg: "21px", xl: "22px" },
-                          height: { xs: "9px", sm: "15px", md: "19px", lg: "21px", xl: "22px" },
-                      }}
-                  />}
-              >
-                  more
-              </Button>
-          </Box>
-          <Box
-              sx={{
-                  width: '100%',
-                  height: '100%',
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between', // ایجاد فاصله بین آیتم‌ها
-                  alignItems: 'start',
-                  position: 'relative',
-              }}
-          >
-              {newsItems.map((box, index) => (
-                  <Box
-                      key={index}
-                      sx={{
-                          display: 'flex',
-                          flexDirection: 'column',
-                          alignItems: 'center',
-                          flexBasis: '30%', // تنظیم اندازه بر اساس فضای باقی‌مانده
-                          height: '100%',
-                          borderRadius: "20px",
-                          backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.01) 40.5%, rgba(0, 0, 0, 0.8) 71%, rgba(0, 0, 0, 0.9) 100%), url(${box.picture})`,
-                          backgroundSize: "cover",
-                          backgroundPosition: "center",
-                          backgroundRepeat: "no-repeat",
-                          justifyContent: 'flex-end', // قرار دادن محتوای داخلی در انتهای محور y
-                          textAlign: 'start',
-                      }}
-                  >
-                                      <Box
-                                          sx={{
-                                              position: "relative",
-                                              width: '80%',
-                                              height: '20%',
-                                              display: "flex",
-                                              flexDirection: "column",
-                                              justifyContent: 'flex-start',
-                                              mb:{xs: 1, sm: 2, md: 3, lg: 4, xl: 4}
-
-                                          }}
-                                      >
-                                          <Typography
-                                              sx={{
-                                                  width: '100%',
-                                                  ...theme.typography.h3,
-                                              }}
-                                          >
-                                              {box.title}
-                                          </Typography>
-                                          <Typography
-                                              sx={{
-                                                  width: '100%',
-                                                  mt: {xs:0.1, sm: 0.2, md: 0.4, lg: 0.6, xl: 0.8,},
-                                                  ...theme.typography.h6,
-
-                                              }}
-                                          >
-                                              {box.details.length > 50
-                                                  ? `${box.details.substring(0, 80)}...`
-                                                  : box.details}
-                                          </Typography>
-                                      </Box>
-
-                              <Box
-                                  sx={{
-                                      position: "relative",
-                                      width: '80%',
-                                      height: '12%',
-                                      display: "flex",
-                                      flexDirection: 'column',
-                                      alignItems: "flex-start",
-                                      justifyContent: 'flex-start',
-                                  }}
-                              >
-                                  <Button
-                                      variant="contained"
-                                      onClick={() => handleClick(box.slug)}
-                                      sx={{
-                                          borderRadius: "6px",
-                                          backgroundColor: "transparent",
-                                          textTransform: "none",
-                                          width: { xs: '20px',sm: '55px', md: '80px', lg: '100px', xl: '125px' },
-                                          height: { xs: '20px', sm: '20px', md: '30px', lg: '35px', xl: '45px' },
-                                          ...theme.typography.button,
-                                          border: "1px solid rgba(255, 255, 255, 0.8)", // Border around the button
-                                          "&:hover": {
-                                              backgroundColor: "#000000", // Background color on hover
-                                              opacity: 0.8, // Optional: slightly reduce opacity on hover
-                                          },
-                                      }}
-                                  >
-                                      See more
-                                  </Button>
-                              </Box>
-                                  </Box>
-                      ))}
-                  </Box>
-        <Box display="flex" alignItems="center" justifyContent="center" sx={{gap:{xs: 1, sm: 1, md: 3, lg: 6, xl: 9}}} >
-          {newsItems.map((item) => (
-            <Box
-              key={item.id}
-              sx={{
-                  width: { xs: '124px', sm: '200px', md: '280px', lg: '345px', xl: '430px' },
-                  height: { xs: '200px', sm: '293px', md: '391px', lg: '488px', xl: '600px' },
-                position: "relative",
+    return (
+        <Box
+            sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                flexBasis: '30%',
+                height: '100%',
                 borderRadius: "20px",
-                
-                display: "flex",
-                flexDirection: "column",
-                color: "white",
-                overflow: "hidden",
-                backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 46.58%, rgba(0, 0, 0, 0.472485) 56.73%, rgba(0, 0, 0, 0.86) 66%), url(${item.picture})`,
+                backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.01) 40.5%, rgba(0, 0, 0, 0.8) 71%, rgba(0, 0, 0, 0.9) 100%), url(${picture})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
-                  mb:5,
-              }}
+                justifyContent: 'flex-end',
+                textAlign: 'start',
+                cursor: isMobile ? 'pointer' : 'default', // Pointer cursor only on mobile
+            }}
+            onClick={isMobile ? onClick : undefined} // Only enable onClick for mobile
+        >
+            <Box sx={{ position: "relative", width: '85%', height: '20%', display: "flex", flexDirection: "column", justifyContent: 'flex-start', mb: 4 }}>
+                <Typography sx={{ width: '100%', ...theme.typography.h3 }}>{title}</Typography>
+                <Typography sx={{ width: '100%', mt: 0.4, ...theme.typography.h6 }}>
+                    {details.length > 50 ? `${details.substring(0, 80)}...` : details}
+                </Typography>
+            </Box>
 
-            >
-                <Box
-                    sx={{
-                        position: "absolute",
-                        height: '37%',
-                        bottom: '-2%',
-                        width: { xs: '120px', sm: '189px', md: '252px', lg: '315px', xl: '430px' },
+            <Box sx={{ position: "relative", width: '85%', height: '12%', display: { xs: 'none', sm: 'flex' }, alignItems: "flex-start" }}>
+                <Button
+                    variant="contained"
+                    onClick={(e) => {
+                        e.stopPropagation(); // Prevent click event from propagating to the Box
+                        onClick();
                     }}
+                    sx={{
+                        ...theme.typography.button,
+                        mt: 1.2,
+                        borderRadius: '4px',
+                        border: '1px solid white',
+                        backgroundColor: 'transparent',
+                        width: { sm: '30px', md: '60px', lg: '75px', xl: '95px' },
+                        height: { sm: '20px', md: '30px', lg: '35px', xl: '40px' },
+                        paddingX: 0,
+                        '&:hover': { backgroundColor: 'transparent' },
+                    }}
+                    disableRipple
                 >
+                    See more
+                </Button>
+            </Box>
+        </Box>
+    );
+};
 
-                    <Box
+const NewsBox = () => {
+    const [newsItems, setNewsItems] = useState([]);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchNews = async () => {
+            try {
+                const response = await fetch(`https://site.vitruvianshield.com/api/v1/home-news`);
+                if (!response.ok) throw new Error("Network response was not ok");
+                const data = await response.json();
+                setNewsItems(data);
+            } catch (error) {
+                console.error("Error fetching news:", error);
+            }
+        };
+        fetchNews();
+    }, []);
+
+    const handleClick = (slug) => navigate(`/news/${slug}`);
+
+    return (
+        <ThemeProvider theme={theme}>
+            <Box sx={{ width: "70%", height: '100%' }}>
+                <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", mb: 4 }}>
+                    <Typography sx={{ fontSize: { xs: "14px", sm: "18px", md: "22px", lg: "26px", xl: "30px" }, color: "#FFFFFF" }}>
+                        News
+                    </Typography>
+
+                    <Button
+                        component={Link}
+                        to="/news"
                         sx={{
-                            position: "absolute",
-                            top: '0',
+                            color: "#FFFFFF",
+                            textTransform: "none",
+                            fontSize: { xs: "12px", sm: "16px", md: "20px", lg: "24px", xl: "28px" },
                             display: "flex",
-                            flexDirection: "column",
-                            alignItems: "flex-start",
-                            ml:{xs:1, sm: 2, md: 3, lg: 3, xl: 4,},
-
+                            alignItems: "center",
+                            "&:hover": { backgroundColor: "transparent" },
                         }}
+                        endIcon={<Box component="img" src={moreicn} alt="more" sx={{ width: { xs: "9px", sm: "15px", md: "19px", lg: "21px", xl: "22px" }, height: { xs: "9px", sm: "15px", md: "19px", lg: "21px", xl: "22px" } }} />}
                     >
-                        <Typography
-                            sx={{
-                                ...theme.typography.h3,
-                            }}
-                        >
-                            {item.title.length > 28
-                                ? `${item.title.substring(0, 28)}...`
-                                : item.title}
+                        more
+                    </Button>
+                </Box>
 
-                        </Typography>
-                        <Typography
-                            sx={{
-                                mt: {xs:0.1, sm: 0.2, md: 0.4, lg: 0.6, xl: 0.8,},
-                                ...theme.typography.h6,
-
-                            }}
-                        >
-                            {item.details.length > 50
-                                ? `${item.details.substring(0, 80)}...`
-                                : item.details}
-                        </Typography>
-                    </Box>
-
-
-                    <Box
-                        sx={{
-                            position: "absolute",
-                            bottom: '0',
-                            width: '100%',
-                            display: "flex",
-                            alignContent: "flex-start",
-
-                        }}
-                    >
-                        <Button
-                            variant="contained"
-                            sx={{
-                                borderRadius: "6px",
-                                backgroundColor: "transparent",
-                                textTransform: "none",
-                                ml:{xs:1, sm: 2, md: 3, lg: 3, xl: 4,},
-                                mb:{xs:1.2, sm: 2.5, md: 3, lg: 5, xl: 6,},
-                                width: { xs: '20px',sm: '55px', md: '80px', lg: '100px', xl: '125px' },
-                                height: { xs: '20px', sm: '20px', md: '30px', lg: '35px', xl: '45px' },
-                                ...theme.typography.button,
-                                border: "1px solid rgba(255, 255, 255, 0.8)",
-                                "&:hover": {
-                                    backgroundColor: "#000000",
-                                    opacity: 0.8,
-                                },
-                            }}
-                        >
-                            See more
-                        </Button>
-                    </Box>
+                <Box sx={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'start' }}>
+                    {newsItems.map((box, index) => (
+                        <NewsCard
+                            key={index}
+                            picture={box.picture}
+                            title={box.title}
+                            details={box.details}
+                            slug={box.slug}
+                            onClick={() => handleClick(box.slug)}
+                        />
+                    ))}
                 </Box>
             </Box>
-          ))}
-        </Box>
-      </Box>
-    </ThemeProvider>
-  );
+        </ThemeProvider>
+    );
 };
 
 export default NewsBox;

@@ -97,11 +97,11 @@ const Home = () => {
                 sx={{
                     width: '100%',
                     height: {
-                        xs: '200px',
+                        xs: '150px',
                         sm: '250px',
-                        md: '450px',
+                        md: '400px',
                         lg: '500px',
-                        xl: '500px',
+                        xl: '600px',
                     },
                     display: 'flex',
                     justifyContent: 'center',
