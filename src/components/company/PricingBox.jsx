@@ -22,21 +22,21 @@ const theme = createTheme({
       fontFamily: 'Lato',
       fontWeight: 700,
       lineHeight: '20.4px',
-      fontSize: { sm: '10px', md: '12px', lg: '14px', xl: '17px' },
+      fontSize: { sm: '11px', md: '12px', lg: '14px', xl: '17px' },
       color: '#FFFFFF',
     },
     body1: {
       fontFamily: 'Lato',
       fontWeight: 400,
       lineHeight: '19.2px',
-      fontSize: { sm: '8px', md: '11px', lg: '14px', xl: '16px' },
+      fontSize: { sm: '10px', md: '11px', lg: '14px', xl: '16px' },
       color: '#FFFFFF',
     },
     body2: {
       fontFamily: 'Lato',
       fontWeight: 500,
       lineHeight: '15px',
-      fontSize: { sm: '7px', md: '10px', lg: '13px', xl: '15px' },
+      fontSize: { sm: '10px', md: '10px', lg: '13px', xl: '15px' },
       color: '#FFFFFF',
     },
     body3: {
@@ -87,7 +87,7 @@ const PricingBox = () => {
           display="flex"
           flexDirection={{ sm: 'row' }}
           justifyContent="center"
-          gap={12}
+          gap={10}
         >
           {/* CTMS */}
           <Box
@@ -99,9 +99,11 @@ const PricingBox = () => {
               display: 'flex',
               flexDirection: 'column',
               border: '1px solid #FFFFFF33',
-              width: '405px',
-              height:'590px',
-              gap:1,
+              flex:'1 1',
+              mb:'100px',
+              width: {sm:'320px',md:'350px',lg:'380px',xl:'405px'},
+              height:{sm:'520px',md:'530px',lg:'560px',xl:'590px'},
+              gap:{sm:0.1,md:0.1,lg:0.5,xl:1},
             }}
           >
             <Typography sx={{ ...theme.typography.h6 }}>CTMS</Typography>
@@ -188,9 +190,11 @@ const PricingBox = () => {
               display: 'flex',
               flexDirection: 'column',
               border: '1px solid #FFFFFF33',
-              width: '405px',
-              height:'590px',
-              gap:1,
+              flex:'1 1',
+              mb:'100px',
+              width: {sm:'320px',md:'350px',lg:'380px',xl:'405px'},
+              height:{sm:'520px',md:'530px',lg:'560px',xl:'590px'},
+              gap:{sm:0.1,md:0.1,lg:0.5,xl:1},
             }}
           >
             <Typography sx={{ ...theme.typography.h6 }}>RPM</Typography>
