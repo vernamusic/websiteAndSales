@@ -15,7 +15,7 @@ const theme = createTheme({
     typography: {
         h6: {
             fontFamily:'sen',
-            fontSize: { xs: '6px', sm: '10px', md: '12px', lg: '16px', xl: '20px' },
+            fontSize: { xs: '6px', sm: '6px', md: '6px', lg: '10px', xl: '12px' },
             lineHeight: 'normal',
             letterSpacing: '0.4px',
             color: "#F1F1F1",
@@ -25,13 +25,13 @@ const theme = createTheme({
         h3: {
             fontFamily: "Lato",
             fontWeight:700,
-            fontSize: {xs: '8px', sm: '13px', md: '20px', lg: '25px', xl: '29px'},
+            fontSize: {xs: '8px', sm: '8px', md: '8px', lg: '13px', xl: '20px'},
             color: "#F1F1F1",
             textTransform: 'none',
         },
         button: {
             fontFamily: 'Inter',
-            fontSize: { xs: '6px', sm: '6px', md: '9px', lg: '13px', xl: '16px' },
+            fontSize: { xs: '4px', sm: '4px', md: '5px', lg: '6px', xl: '9px' },
             textTransform: 'none',
         },
     },
@@ -134,7 +134,7 @@ const Mediacard = ({ data }) => {
                                     borderRadius: "20px",
                                     color: "white",
                                     overflow: "hidden",
-                                    backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 46.58%, rgba(0, 0, 0, 0.472485) 56.73%, rgba(0, 0, 0, 0.9) 66.51%), url(${box.picture})`,
+                                    backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.01) 40.5%, rgba(0, 0, 0, 0.8) 71%, rgba(0, 0, 0, 0.9) 100%), url(${box.picture})`,
                                     backgroundSize: "cover",
                                     backgroundPosition: "center",
                                     backgroundRepeat: "no-repeat",
@@ -153,7 +153,7 @@ const Mediacard = ({ data }) => {
                                         sx={{
                                             position: "absolute",
                                             top: '0', // Fixed position from the top of the parent box
-                                            width: '100%',
+                                            width: '80%',
                                             display: "flex",
                                             flexDirection: "column",
                                             alignItems: "flex-start", // Align content to the left

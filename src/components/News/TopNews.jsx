@@ -61,13 +61,13 @@ const Mediacard = () => {
             try {
                 const response = await fetch('https://site.vitruvianshield.com/api/v1/top-news');
                 const newsData = await response.json();
-                setData(newsData.results);
+                // Set only the first 3 results
+                setData(newsData.results.slice(0, 3));
             } catch (error) {
                 console.error("Error fetching top news data: ", error);
             }
         };
-
-        fetchTopNews();
+    fetchTopNews();
     }, []);
     const navigate = useNavigate();
 

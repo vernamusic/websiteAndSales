@@ -25,6 +25,11 @@ const About = () => {
                     },
                     display: 'flex',
                     justifyContent: 'center',
+                    mb:{xs: 2,
+                        sm: 4,
+                        md: 5,
+                        lg: 6,
+                        xl: 9,}
                 }}
             >
                 <TopNews />

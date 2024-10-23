@@ -169,7 +169,7 @@ const ProductBox = () => {
                         disableRipple
                         onClick={handleSeeProductsClick}
                     >
-                        See products
+                        view product
                     </Button>
                 </Box>
                 <Box
