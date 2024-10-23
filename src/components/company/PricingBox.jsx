@@ -6,7 +6,7 @@ const theme = createTheme({
     h6: {
       fontFamily: 'Lato',
       fontWeight: 700,
-      fontSize: { sm: '15px', md: '17px', lg: '21px', xl: '24px' },
+      fontSize: { sm: '14px', md: '17px', lg: '20px', xl: '23px' },
       color: '#FFFFFF',
       letterSpacing: '0.4px',
       lineHeight: 'normal',
@@ -14,7 +14,7 @@ const theme = createTheme({
     h3: {
       fontFamily: 'Lato',
       fontWeight: 600,
-      fontSize: { sm: '20px', md: '24px', lg: '28px', xl: '35px' },
+      fontSize: { sm: '17px', md: '19px', lg: '23px', xl: '26px' },
       color: '#FFFFFF',
       letterSpacing: '0.4px',
     },
@@ -22,28 +22,28 @@ const theme = createTheme({
       fontFamily: 'Lato',
       fontWeight: 700,
       lineHeight: '20.4px',
-      fontSize: {sm: '12px', md: '17px' },
+      fontSize: { sm: '10px', md: '12px', lg: '14px', xl: '17px' },
       color: '#FFFFFF',
     },
     body1: {
       fontFamily: 'Lato',
       fontWeight: 400,
       lineHeight: '19.2px',
-      fontSize: {sm: '12px', md: '16px' },
+      fontSize: { sm: '8px', md: '11px', lg: '14px', xl: '16px' },
       color: '#FFFFFF',
     },
     body2: {
       fontFamily: 'Lato',
       fontWeight: 500,
       lineHeight: '15px',
-      fontSize: {sm: '12px', md: '16px' },
+      fontSize: { sm: '7px', md: '10px', lg: '13px', xl: '15px' },
       color: '#FFFFFF',
     },
     body3: {
       fontFamily: 'Sen',
       fontWeight: 400,
       lineHeight: '21.66px',
-      fontSize: {sm: '12px', md: '16px' },
+      fontSize: { sm: '11px', md: '13px', lg: '15px', xl: '18px' },
       color: '#F1F1F1',
     },
   },
@@ -70,7 +70,7 @@ const PricingBox = () => {
               width: { xs: '90%', sm: '600px' },
             }}
           >
-            PRICING
+            OUR PLAN
           </Typography>
           <Typography
             sx={{
@@ -94,65 +94,60 @@ const PricingBox = () => {
             sx={{
               backgroundColor: '#141414',
               borderRadius: '15px',
-              padding: 4,
+              padding: 6,
               boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.2)',
-              flex: '1 1 400px', // Increased from 300px to 350px
               display: 'flex',
               flexDirection: 'column',
-              justifyContent: 'space-between',
               border: '1px solid #FFFFFF33',
-              maxWidth: '450px', // Optional: Set a maxWidth for further control
+              width: '405px',
+              height:'590px',
+              gap:1,
             }}
           >
             <Typography sx={{ ...theme.typography.h6 }}>CTMS</Typography>
-            <Typography sx={{ ...theme.typography.body1 }}>
-              Cutting-edge Clinical Trials Management
+            <Typography sx={{ ...theme.typography.body1,mt:'16px' }}>
+            Cutting-edge clinical trials management 
             </Typography>
             <Typography sx={{ ...theme.typography.h9, mt: 2 }}>FEATURES</Typography>
-            <Box component="ul" sx={{ paddingLeft: '1rem', margin: 0 }}>
+            <Box component="ul" sx={{ paddingLeft: '1rem', display:'flex',flexDirection:'column', margin: 0 , gap:1}}>
               <li style={{ color: 'red', marginBottom: '4px' }}>
                 <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                  Data collection
+                Remote patient monitoring
                 </Typography>
               </li>
               <li style={{ color: 'red', marginBottom: '4px' }}>
                 <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                  Wearable devices
+                Geo tracking
                 </Typography>
               </li>
               <li style={{ color: 'red', marginBottom: '4px' }}>
                 <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                  Remote patient monitoring
+                Site management
                 </Typography>
               </li>
               <li style={{ color: 'red', marginBottom: '4px' }}>
                 <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                  Resource Management
+                Staff management
                 </Typography>
               </li>
               <li style={{ color: 'red', marginBottom: '4px' }}>
                 <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                  Research KPIs and monitoring
+                Feedback
                 </Typography>
               </li>
               <li style={{ color: 'red', marginBottom: '4px' }}>
                 <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                  eConsent
+                Adverse event reporting
                 </Typography>
               </li>
               <li style={{ color: 'red', marginBottom: '4px' }}>
                 <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                  Site and staff management
+                Video consultation
                 </Typography>
               </li>
               <li style={{ color: 'red', marginBottom: '4px' }}>
                 <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                  Trial planning and designing
-                </Typography>
-              </li>
-              <li style={{ color: 'red', marginBottom: '4px' }}>
-                <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                  Randomization and blindness
+                Emergency call
                 </Typography>
               </li>
             </Box>
@@ -173,7 +168,7 @@ const PricingBox = () => {
                 variant="contained"
                 fullWidth
                 sx={{
-                  backgroundColor: 'red',
+                  backgroundColor: '#B50304',
                   textTransform: 'none',
                   borderRadius: '5px',
                 }}
@@ -188,65 +183,60 @@ const PricingBox = () => {
             sx={{
               backgroundColor: '#141414',
               borderRadius: '15px',
-              padding: 4,
+              padding: 6,
               boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.2)',
-              flex: '1 1 400px', // Increased from 300px to 350px
               display: 'flex',
               flexDirection: 'column',
-              justifyContent: 'space-between',
               border: '1px solid #FFFFFF33',
-              maxWidth: '450px', // Optional: Set a maxWidth for further control
+              width: '405px',
+              height:'590px',
+              gap:1,
             }}
           >
             <Typography sx={{ ...theme.typography.h6 }}>RPM</Typography>
-            <Typography sx={{ ...theme.typography.body1 }}>
-              Remote Patient Monitoring
+            <Typography sx={{ ...theme.typography.body1,mt:'16px' }}>
+            Remote patient monitoring
             </Typography>
             <Typography sx={{ ...theme.typography.h9, mt: 2 }}>FEATURES</Typography>
-            <Box component="ul" sx={{ paddingLeft: '1rem', margin: 0 }}>
+            <Box component="ul" sx={{ paddingLeft: '1rem', display:'flex',flexDirection:'column', margin: 0 , gap:1}}>
               <li style={{ color: 'red', marginBottom: '4px' }}>
                 <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                  Data collection
+                Electronic data management
                 </Typography>
               </li>
               <li style={{ color: 'red', marginBottom: '4px' }}>
                 <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                  Wearable devices
+                ECG
                 </Typography>
               </li>
               <li style={{ color: 'red', marginBottom: '4px' }}>
                 <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                  Remote patient monitoring
+                Emergency call
                 </Typography>
               </li>
               <li style={{ color: 'red', marginBottom: '4px' }}>
                 <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                  Resource Management
+                Geo tracking
                 </Typography>
               </li>
               <li style={{ color: 'red', marginBottom: '4px' }}>
                 <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                  Research KPIs and monitoring
+                AI chat bot
                 </Typography>
               </li>
               <li style={{ color: 'red', marginBottom: '4px' }}>
                 <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                  eConsent
+                Adverse event reporting
                 </Typography>
               </li>
               <li style={{ color: 'red', marginBottom: '4px' }}>
                 <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                  Site and staff management
+                e-Consent
                 </Typography>
               </li>
               <li style={{ color: 'red', marginBottom: '4px' }}>
                 <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                  Trial planning and designing
-                </Typography>
-              </li>
-              <li style={{ color: 'red', marginBottom: '4px' }}>
-                <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
-                  Randomization and blindness
+                Vital signs
                 </Typography>
               </li>
             </Box>
@@ -267,7 +257,7 @@ const PricingBox = () => {
                 variant="contained"
                 fullWidth
                 sx={{
-                  backgroundColor: 'red',
+                  backgroundColor: '#B50304',
                   textTransform: 'none',
                   borderRadius: '5px',
                 }}
