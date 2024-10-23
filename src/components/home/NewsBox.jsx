@@ -139,7 +139,7 @@ const NewsBox = () => {
                           flexBasis: '30%', // تنظیم اندازه بر اساس فضای باقی‌مانده
                           height: '100%',
                           borderRadius: "20px",
-                          backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 46.58%, rgba(0, 0, 0, 0.472485) 56.73%, rgba(0, 0, 0, 0.9) 66.52%), url(${box.picture})`,
+                          backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.01) 40.5%, rgba(0, 0, 0, 0.8) 71%, rgba(0, 0, 0, 0.9) 100%), url(${box.picture})`,
                           backgroundSize: "cover",
                           backgroundPosition: "center",
                           backgroundRepeat: "no-repeat",
@@ -215,7 +215,6 @@ const NewsBox = () => {
                                   </Box>
                       ))}
                   </Box>
-=======
         <Box display="flex" alignItems="center" justifyContent="center" sx={{gap:{xs: 1, sm: 1, md: 3, lg: 6, xl: 9}}} >
           {newsItems.map((item) => (
             <Box
