@@ -32,7 +32,7 @@ const Company = () =>{
             >
                 <CompanyBox />
             </Box>
-            <Box
+            {/* <Box
                 sx={{
                     width: '100%',
                     minHeight: {
@@ -79,7 +79,7 @@ const Company = () =>{
                 }}
             >
                 <PartnerBox />
-            </Box>
+            </Box> */}
             <Box
                 sx={{
                     width: '100%',
