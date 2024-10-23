@@ -20,8 +20,6 @@ function Moblie() {
             <Box
                 sx={{
                     width: '100%',
-                    display: 'flex',
-                    justifyContent: 'center',
                 }}
             >
                 <DownloadBox />
