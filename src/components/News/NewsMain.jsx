@@ -82,8 +82,8 @@ const TeamMembers = () => {
                     sx={{
                         display: 'flex',
                         flexDirection: 'column',
-                        justifyContent: 'center',  // محور عمودی وسط‌چین
-                        alignItems: 'center',      // محور افقی وسط‌چین
+                        justifyContent: 'center',
+                        alignItems: 'center',
                         gap: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
                         mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
                     }}
@@ -92,7 +92,7 @@ const TeamMembers = () => {
                         <Box key={team_name} sx={{ width: '90%' }}>
                             <Typography
                                 gutterBottom
-                                sx={{ ...theme.typography.h3, mb: 3, textAlign: 'left' }}  // متن به سمت چپ
+                                sx={{ ...theme.typography.h3, mb: 3, textAlign: 'left',ml:'0.8vw' }}
                             >
                                 {team_name}
                             </Typography>
@@ -121,7 +121,7 @@ const TeamMembers = () => {
                     <Typography sx={{ ...theme.typography.h3 }}>
                         NEWS
                     </Typography>
-                    <Typography sx={{ ...theme.typography.h6,mt: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 }, display:{xs:'none', sm:'block'}, }}>
+                    <Typography sx={{ ...theme.typography.h6,mt: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 },}}>
                         Meet our diverse team of world-class creators, designers, and problem solvers.
                     </Typography>
                 </Box>
@@ -157,7 +157,7 @@ const TeamMembers = () => {
                                 height: '2.3958vw',
                                 ...theme.typography.button,
                                 '&.Mui-selected': {
-                                    borderRadius: '6px',
+                                    borderRadius: '0.3125vw',
                                     backgroundColor: '#B50304',
                                     color: '#ffffff',
                                     '&:hover': {
@@ -201,7 +201,7 @@ const TeamMembers = () => {
                                     },
                                     '&:not(.Mui-selected)': {
                                         backgroundColor: '#0B0B0B',
-                                        borderRadius: '6px',
+                                        borderRadius: '0.3125vw',
                                         border:'0.01px solid rgba(255, 255, 255, 0.2)',
                                         '&:hover': {
                                             backgroundColor: '#0B0B0B',
