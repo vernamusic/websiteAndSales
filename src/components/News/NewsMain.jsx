@@ -78,16 +78,29 @@ const TeamMembers = () => {
     const renderContent = () => {
         if (selectedTeam === 'view_all') {
             return (
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },}}>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',  // محور عمودی وسط‌چین
+                        alignItems: 'center',      // محور افقی وسط‌چین
+                        gap: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
+                        mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
+                    }}
+                >
                     {teamsData.map(({ team_name, members }) => (
-                        <Box key={team_name} sx={{ width: '100%' }}>
-                            <Typography gutterBottom sx={{ ...theme.typography.h3, pl: 1, mb: 3, textAlign: 'left' }}>
+                        <Box key={team_name} sx={{ width: '90%' }}>
+                            <Typography
+                                gutterBottom
+                                sx={{ ...theme.typography.h3, mb: 3, textAlign: 'left' }}  // متن به سمت چپ
+                            >
                                 {team_name}
                             </Typography>
                             <Mediacard data={members} />
                         </Box>
                     ))}
                 </Box>
+
             );
         } else {
             const selectedTeamData = teamsData.find(team => team.team_name === selectedTeam)?.members || [];
@@ -139,18 +152,18 @@ const TeamMembers = () => {
                             sx={{
                                 color: '#ffffff',
                                 width: {
-                                    xs: '90px',
-                                    sm: '90px',
-                                    md: '130px',
-                                    lg: '180px',
-                                    xl: '200px',
+                                    xs: '82px',
+                                    sm: '82px',
+                                    md: '110px',
+                                    lg: '130px',
+                                    xl: '180px',
                                 },
                                 height: {
-                                    xs: '30px',
-                                    sm: '30px',
-                                    md: '36px',
-                                    lg: '46px',
-                                    xl: '48px',
+                                    xs: '28px',
+                                    sm: '28px',
+                                    md: '30px',
+                                    lg: '36px',
+                                    xl: '46px',
                                 },
                                 ...theme.typography.button,
                                 '&.Mui-selected': {
@@ -184,18 +197,18 @@ const TeamMembers = () => {
                                 sx={{
                                     color: '#e0e0e0',
                                     width: {
-                                        xs: '90px',
-                                        sm: '90px',
-                                        md: '130px',
-                                        lg: '180px',
-                                        xl: '200px',
+                                        xs: '82px',
+                                        sm: '82px',
+                                        md: '110px',
+                                        lg: '130px',
+                                        xl: '180px',
                                     },
                                     height: {
-                                        xs: '30px',
-                                        sm: '30px',
-                                        md: '36px',
-                                        lg: '46px',
-                                        xl: '48px',
+                                        xs: '28px',
+                                        sm: '28px',
+                                        md: '30px',
+                                        lg: '36px',
+                                        xl: '46px',
                                     },
                                     ...theme.typography.button,
                                     '&.Mui-selected': {
