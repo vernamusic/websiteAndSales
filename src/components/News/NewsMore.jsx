@@ -10,7 +10,7 @@ const theme = createTheme({
     typography: {
         h6: {
             fontFamily: 'sen',
-            fontSize: { xs: '8px', sm: '10px', md: '16px', lg: '20px', xl: '24px' },
+            fontSize: '1.0417vw',
             lineHeight: 'normal',
             letterSpacing: '0.8px',
             fontWeight: 400,
@@ -20,13 +20,13 @@ const theme = createTheme({
         h3: {
             fontFamily: 'Lato',
             fontWeight: 700,
-            fontSize: { xs: '10px', sm: '15px', md: '19px', lg: '28px', xl: '32px' },
+            fontSize: '1.4583vw',
             color: '#F1F1F1',
             textTransform: 'none',
         },
         button: {
             fontFamily: 'Inter',
-            fontSize: { xs: '9px', sm: '12px', md: '18px', lg: '22px', xl: '26px' },
+            fontSize: '1.1458vw',
             textTransform: 'none',
             color: '#F1F1F1',
         },
@@ -86,13 +86,7 @@ const NewsCard = () => {
                 <Box
                     sx={{
                         width: '100vw',
-                        height: {
-                            xs: '230px',
-                            sm: '300px',
-                            md: '430px',
-                            lg: '560px',
-                            xl: '700px',
-                        },
+                        height: '38vw',
                         position: 'relative',
                         backgroundImage: `url(${newsData.picture})`,
                         backgroundSize: 'cover',
