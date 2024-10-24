@@ -7,8 +7,8 @@ import {
     Button,
 } from "@mui/material";
 import {useNavigate} from "react-router-dom";
-import AccessTimeIcon from "@mui/icons-material/AccessTime.js";
-import VisibilityIcon from "@mui/icons-material/Visibility.js";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
 const theme = createTheme({
     typography: {

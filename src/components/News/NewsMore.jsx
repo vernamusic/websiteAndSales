@@ -4,7 +4,7 @@ import { Share, Visibility, Facebook, Twitter } from '@mui/icons-material';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Mediacard from './Mediacard.jsx'; // ایمپورت کردن کامپوننت Mediacard
+import Mediacard from './Mediacard.jsx';
 
 const theme = createTheme({
     typography: {
@@ -52,6 +52,24 @@ const NewsCard = () => {
             });
     }, [slug]);
 
+    const shareOnFacebook = (url) => {
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+    };
+
+    const shareOnTwitter = (url) => {
+        window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(newsData.title)}`, '_blank');
+    };
+
+    const copyToClipboard = (url) => {
+        navigator.clipboard.writeText(url)
+            .then(() => {
+                alert('Link copied to clipboard!');
+            })
+            .catch((error) => {
+                console.error('Could not copy text: ', error);
+            });
+    };
+
     if (!newsData) return <div>Loading...</div>;
 
     return (
@@ -88,70 +106,69 @@ const NewsCard = () => {
                         position: 'relative',
                         width: '70%',
                         margin: '0 auto',
-                        justifyItems: 'center',
+                        justifyItems: 'start',
                         pt: { xs: 1, sm: 1, md: 1.5, lg: 2, xl: 2 },
                     }}
                 >
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            marginBottom: '10px',
-                            gap:0,
-                            justifyContent:'space-between'
-                        }}
-                    >
+                    <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", mb: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 }, }}>
                         <Typography variant="h4" sx={theme.typography.h3}>
                             {newsData.title}
                         </Typography>
 
-                        <Box sx={{ display: 'flex', gap:0.5,}}>
-                            <Visibility sx={{fontSize: { xs: '8px', sm: '10px', md: '16px', lg: '20px', xl: '24px' },ml: {sx:0.5,sm:1,md:2},color:'gray' }} />
-                            <Typography sx={{ ...theme.typography.h6,mr:{sx:0.5,sm:1,md:2},color:'gray'}}>
-                                {newsData.views}
-                            </Typography>
-                            <Typography sx={{ ...theme.typography.h6,display:{sm:'block',xs:'none'} }}>
+                        <Box sx={{ display: 'flex', gap: 0.5 }}>
+                            <Typography sx={{ ...theme.typography.h6, display: { sm: 'block', xs: 'none' } }}>
                                 Share:
                             </Typography>
-                            <IconButton color="primary" aria-label="share on facebook" sx={{p:0}}>
-                                <Facebook sx={{fontSize: { xs: '8px', sm: '10px', md: '16px', lg: '20px', xl: '24px' }}}/>
+                            <IconButton color="primary" aria-label="share on facebook" sx={{ p: 0 }} onClick={() => shareOnFacebook(`https://site.vitruvianshield.com/news/${slug}`)}>
+                                <Facebook sx={{ fontSize: { xs: '8px', sm: '10px', md: '16px', lg: '20px', xl: '24px' } }} />
                             </IconButton>
-                            <IconButton color="primary" aria-label="share on twitter" sx={{p:0}}>
-                                <Twitter sx={{fontSize: { xs: '8px', sm: '10px', md: '16px', lg: '20px', xl: '24px' }}}/>
+                            <IconButton color="primary" aria-label="share on twitter" sx={{ p: 0 }} onClick={() => shareOnTwitter(`https://site.vitruvianshield.com/news/${slug}`)}>
+                                <Twitter sx={{ fontSize: { xs: '8px', sm: '10px', md: '16px', lg: '20px', xl: '24px' } }} />
                             </IconButton>
-                            <IconButton color="primary" aria-label="share" sx={{p:0}}>
-                                <Share sx={{fontSize: { xs: '8px', sm: '10px', md: '16px', lg: '20px', xl: '24px' }}}/>
+                            <IconButton color="primary" aria-label="share" sx={{ p: 0 }} onClick={() => copyToClipboard(`https://site.vitruvianshield.com/news/${slug}`)}>
+                                <Share sx={{ fontSize: { xs: '8px', sm: '10px', md: '16px', lg: '20px', xl: '24px' } }} />
                             </IconButton>
                         </Box>
                     </Box>
 
-                    <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                        <Typography variant="body2" sx={{...theme.typography.h6, color: '#a50202'}}>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            justifyContent: 'flex-start',
+                            gap: 1,
+                            mt: -2,
+                            mb: 2,
+                        }}
+                    >
+                        <Visibility sx={{ fontSize: { xs: '8px', sm: '10px', md: '16px', lg: '20px', xl: '24px' }, ml: { sx: 0.5, sm: 1, md: 2 }, color: 'gray' }} />
+                        <Typography sx={{ ...theme.typography.h6, mr: { sx: 0.5, sm: 1, md: 2 }, color: 'gray' }}>
+                            {newsData.views}
+                        </Typography>
+                        <Typography variant="body2" sx={{ ...theme.typography.h6, color: '#a50202' }}>
                             {newsData.read_time} min read
                         </Typography>
                     </Box>
 
-                    {/* تقسیم متن details به بندها و نمایش هر بند در یک Typography */}
                     {newsData.details.split('\n').map((paragraph, index) => (
                         <Typography key={index} variant="body1" sx={{ marginTop: '10px', ...theme.typography.h6 }}>
                             {paragraph}
                         </Typography>
                     ))}
 
-                    <Box sx={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
-                        <Typography sx={theme.typography.h6}>{timeAgo}</Typography>
+                    <Box sx={{ display: 'flex', alignItems: 'center', marginTop: '10px', }}>
+                        <Typography sx={{ ...theme.typography.h6, color: 'gray' }}>{timeAgo}</Typography>
                         <Divider orientation="vertical" flexItem sx={{ mx: 2, borderColor: 'gray' }} />
-                        <Typography sx={theme.typography.h6}>
+                        <Typography sx={{ ...theme.typography.h6, color: 'gray' }}>
                             {moment(newsData.created_at).format('ddd MMMM D, YYYY')}
                         </Typography>
                     </Box>
-                    <Box sx={{mb: { xs: 8, sm: 8, md: 10, lg: 10, xl: 10 },}}>
-                        <Typography gutterBottom sx={{ ...theme.typography.h3, pl: 1, mb: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 }, textAlign: 'left',mt:{ xs: 2, sm: 2, md: 3, lg: 4, xl: 4 } }}>
+                    <Box sx={{ mb: { xs: 8, sm: 8, md: 10, lg: 10, xl: 10 }, }}>
+                        <Typography gutterBottom sx={{ ...theme.typography.h3, pl: 1, mb: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 }, textAlign: 'left', mt: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 } }}>
                             Related News:
                         </Typography>
                         <Mediacard data={newsData.related_news} />
                     </Box>
-
                 </Box>
             </Box>
         </ThemeProvider>

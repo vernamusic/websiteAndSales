@@ -20,7 +20,7 @@ const theme = createTheme({
     typography: {
         h6: {
             fontFamily: 'sen',
-            fontSize: { xs: '8px', sm: '11px', md: '17px', lg: '20px', xl: '24px' },
+            fontSize: '1.04vw',
             lineHeight: 'normal',
             letterSpacing: '0.4px',
             color: "#F1F1F1",
@@ -29,19 +29,19 @@ const theme = createTheme({
         h3: {
             fontFamily: "Lato",
             fontWeight: 700,
-            fontSize: { xs: '12px', sm: '18px', md: '24px', lg: '28px', xl: '32px' },
+            fontSize: '1.59vw',
             color: "#F1F1F1",
             textTransform: 'none',
         },
         button: {
             fontFamily: 'Inter',
-            fontSize: { xs: '8px', sm: '10px', md: '14px', lg: '16px', xl: '18px' },
+            fontSize: '0.94vw',
             textTransform: 'none',
             color: "#F1F1F1",
         },
         caption: {
             fontFamily: 'sen',
-            fontSize: { xs: '7px', sm: '8px', md: '15px', lg: '18px', xl: '21px' },
+            fontSize: '1.04vw',
             lineHeight: 'normal',
             letterSpacing: '0.4px',
             color: "#F1F1F1",
@@ -159,7 +159,7 @@ const Mediacard = () => {
                                 position: "absolute",
                                 display:'flex',
                                 top: {xs:'20%',sm:"35%"},
-                                left: "18%",
+                                left: "15%",
                                 width: "50%",
                                 borderRadius: "10px",
                                 flexDirection: 'column',
