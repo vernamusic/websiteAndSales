@@ -53,7 +53,7 @@ const CompanyBox = () => {
                         flexDirection: 'column',
                         justifyContent: 'center',
                         alignItems: 'flex-start',
-                        gap: { xs: 0.5, sm: 1, md: 1.5, lg: 2, xl: 2 },
+                        gap: { xs: 0.5, sm: 1, md: 1.5, lg: 1.5, xl: 1.5 },
                         height: '100%',
                         pl: { xs: 5, sm: 10, md: 20, lg: 25, xl: 38 },
                     }}
@@ -69,7 +69,7 @@ const CompanyBox = () => {
                         sx={{
                             ...theme.typography.h6,
                             mt: 2,
-                            mb: 1.5,
+                            mb: 1,
                             width: { xs: '350px', sm: '430px', md: '480px', lg: '500px',xl:'625px' },
                         }}
                     >
