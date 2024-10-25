@@ -7,7 +7,7 @@ const theme = createTheme({
     typography: {
         h6: {
             fontFamily: 'sen',
-            fontSize: { xs: '13px', sm: '13px', md: '16px', lg: '21px', xl: '26px' },
+            fontSize: '1.04vw',
             color: "#F1F1F1",
             letterSpacing: '0.4px',
             lineHeight: 'normal',
@@ -15,7 +15,7 @@ const theme = createTheme({
         h3: {
             fontFamily: 'Lato',
             fontWeight: 700,
-            fontSize: { xs: '22px', sm: '24px', md: '28px', lg: '35px', xl: '41px' },
+            fontSize: '1.59vw',
             color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
