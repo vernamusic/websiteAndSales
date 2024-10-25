@@ -1,11 +1,9 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import MessageBox from '../components/partnership/MessageBox';
+import MessageBox from '../components/partnership/newParter.jsx';
 import ReqBox from '../components/partnership/ReqBox';
-import FinancialBox from '../components/partnership/FinancialBox';
-import TechnologicalBox from '../components/partnership/TechnologicalBox';
-import DevBox from '../components/partnership/DevBox';
-
+import Gb from '../components/partnership/groupButton.jsx';
+import PartnerBox from '../components/partnership/partnerBox.jsx';
 const Partnership = () => {
     return (
         <Box
@@ -13,13 +11,14 @@ const Partnership = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 width: '100%',
+                minHeight: '100vw',
             }}
         >
             <Box
                 sx={{
                     width: '100%',
                     minHeight: {
-                        xs: '300px',
+                        xs: '200px',
                         sm: '450px',
                         md: '540px',
                         lg: '675px',
@@ -33,76 +32,34 @@ const Partnership = () => {
                 <MessageBox />
             </Box>
 
+
+
+
             <Box
                 sx={{
                     width: '100%',
-                    minHeight: {
-                        xs: '300px',
-                        sm: '450px',
-                        md: '540px',
-                        lg: '675px',
-                        xl: '900px',
-                    },
-                    display: 'flex',
-                    justifyContent: 'center',
+                    minHeight: '40vw',
+                    pt:'5vw',
+                    mb: '10vw',
+                }}
+            >
+                <Gb/>
+            </Box>
+
+            <Box
+                sx={{
+                    width: '100%',
+                    minHeight: '40vw',
                 }}
             >
                 <ReqBox />
             </Box>
-            <Box
-                sx={{
-                    width: '100%',
-                    minHeight: {
-                        xs: '300px',
-                        sm: '450px',
-                        md: '540px',
-                        lg: '675px',
-                        xl: '900px',
-                    },
-                    display: 'flex',
-                    justifyContent: 'center',
-                }}
-            >
-                <FinancialBox />
-            </Box>
-            <Box
-                sx={{
-                    width: '100%',
-                    minHeight: {
-                        xs: '300px',
-                        sm: '450px',
-                        md: '540px',
-                        lg: '675px',
-                        xl: '900px',
-                    },
-                    display: 'flex',
-                    justifyContent: 'center',
-                }}
-            >
-                <TechnologicalBox />
-            </Box>
-            <Box
-                sx={{
-                    width: '100%',
-                    minHeight: {
-                        xs: '300px',
-                        sm: '450px',
-                        md: '540px',
-                        lg: '675px',
-                        xl: '900px',
-                    },
-                    display: 'flex',
-                    justifyContent: 'center',
-                }}
-            >
-                <DevBox />
-            </Box>
 
             <Box
                 sx={{
                     width: '100%',
                     minHeight: {
-                        xs: '300px',
+                        xs: '200px',
                         sm: '450px',
                         md: '540px',
                         lg: '675px',
@@ -113,7 +70,7 @@ const Partnership = () => {
                     bgcolor: 'black',
                 }}
             >
-                <MessageBox />
+                <PartnerBox />
             </Box>
         </Box>
     );
