@@ -6,7 +6,7 @@ const theme = createTheme({
     h6: {
       fontFamily: 'Lato',
       fontWeight: 700,
-      fontSize: { sm: '14px', md: '17px', lg: '20px', xl: '23px' },
+      fontSize: { sm: '16px', md: '18px', lg: '20px', xl: '23px' },
       color: '#FFFFFF',
       letterSpacing: '0.4px',
       lineHeight: 'normal',
@@ -29,14 +29,14 @@ const theme = createTheme({
       fontFamily: 'Lato',
       fontWeight: 400,
       lineHeight: '19.2px',
-      fontSize: { sm: '10px', md: '11px', lg: '14px', xl: '16px' },
+      fontSize: { sm: '11px', md: '13px', lg: '14px', xl: '16px' },
       color: '#FFFFFF',
     },
     body2: {
       fontFamily: 'Lato',
       fontWeight: 500,
       lineHeight: '15px',
-      fontSize: { sm: '10px', md: '10px', lg: '13px', xl: '15px' },
+      fontSize: { sm: '11px', md: '12px', lg: '13px', xl: '15px' },
       color: '#FFFFFF',
     },
     body3: {
@@ -52,7 +52,7 @@ const theme = createTheme({
 const PricingBox = () => {
   return (
     <ThemeProvider theme={theme}>
-      <Box>
+      <Box mb={6}>
         <Box
           display="flex"
           flexDirection="column"
@@ -88,6 +88,7 @@ const PricingBox = () => {
           flexDirection={{ sm: 'row' }}
           justifyContent="center"
           gap={10}
+
         >
           {/* CTMS */}
           <Box
@@ -101,15 +102,17 @@ const PricingBox = () => {
               border: '1px solid #FFFFFF33',
               flex:'1 1',
               mb:'100px',
-              width: {sm:'320px',md:'350px',lg:'380px',xl:'405px'},
+              width: {sm:'310px',md:'350px',lg:'380px',xl:'405px'},
               height:{sm:'520px',md:'530px',lg:'560px',xl:'590px'},
-              gap:{sm:0.1,md:0.1,lg:0.5,xl:1},
+              gap:{sm:0,md:0.1,lg:0.5,xl:1},
             }}
           >
+            <Box>
             <Typography sx={{ ...theme.typography.h6 }}>CTMS</Typography>
-            <Typography sx={{ ...theme.typography.body1,mt:'16px' }}>
+            <Typography sx={{ ...theme.typography.body1,mt:1 }}>
             Cutting-edge clinical trials management 
             </Typography>
+            </Box>
             <Typography sx={{ ...theme.typography.h9, mt: 2 }}>FEATURES</Typography>
             <Box component="ul" sx={{ paddingLeft: '1rem', display:'flex',flexDirection:'column', margin: 0 , gap:1}}>
               <li style={{ color: 'red', marginBottom: '4px' }}>
@@ -197,10 +200,12 @@ const PricingBox = () => {
               gap:{sm:0.1,md:0.1,lg:0.5,xl:1},
             }}
           >
+            <Box>
             <Typography sx={{ ...theme.typography.h6 }}>RPM</Typography>
-            <Typography sx={{ ...theme.typography.body1,mt:'16px' }}>
+            <Typography sx={{ ...theme.typography.body1,mt:1 }}>
             Remote patient monitoring
             </Typography>
+            </Box>
             <Typography sx={{ ...theme.typography.h9, mt: 2 }}>FEATURES</Typography>
             <Box component="ul" sx={{ paddingLeft: '1rem', display:'flex',flexDirection:'column', margin: 0 , gap:1}}>
               <li style={{ color: 'red', marginBottom: '4px' }}>
