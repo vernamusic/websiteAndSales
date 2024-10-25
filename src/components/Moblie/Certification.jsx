@@ -1,25 +1,21 @@
 import React from 'react';
 import { Box, Typography, createTheme, ThemeProvider } from '@mui/material';
-import phonehow1 from '../../assets/phonehow1.png';
-import phonehow2 from '../../assets/phonehow2.png';
-import phonehow3 from '../../assets/phonehow3.png';
-import Design from '../../assets/mobileapp/Design.png';
-import Easy from '../../assets/mobileapp/Easy.png';
-import Support from '../../assets/mobileapp/Support.png';
+import cerImage from '../../assets/mobileapp/Group 349.png';
 
 const theme = createTheme({
     typography: {
         h6: {
             fontFamily: 'Lato',
-            fontSize:'1.23vw',
+            fontSize:'0.98vw',
             color: "#F1F1F1",
             letterSpacing: '0.4px',
             lineHeight: 'normal',
         },
         h3: {
             fontFamily: 'sen',
-            fontWeight: 400,
+            fontWeight: 700,
             fontSize:'1.294vw',
+
             color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
@@ -41,12 +37,12 @@ const theme = createTheme({
 });
 
 const howData = [
-    { title: 'Awesome design', description: "Stunning templates that captivate", image: phonehow1, icon: Design },
-    { title: 'Easy to customize', description: "Tailor designs to fit your unique style.", image: phonehow2, icon: Easy },
-    { title: 'Any time support', description: "We're here for you whenever you need assistance!", image: phonehow3, icon: Support },
+    { title: 'ISO 27001', description: "ISMS certification",},
+    { title: 'ISO 13485', description: "QMS certification",},
+    { title: 'ISO 14971', description: "Risk management",},
 ];
 
-const HowBox = () => {
+const Certification = () => {
     return (
         <ThemeProvider theme={theme}>
             <Box>
@@ -59,21 +55,21 @@ const HowBox = () => {
                 >
                     <Typography
                         sx={{
-                            ...theme.typography.h1,
+                            ...theme.typography.h3,
                             mb: '1vw',
                             lineHeight: '1.5',
                             width: '600',
                         }}
                     >
-                        HOW IT WORKS
+                        OUR CERTIFICATIONS
                     </Typography>
                     <Typography
                         sx={{
-                            ...theme.typography.h3,
+                            ...theme.typography.h6,
                             mb: '6vw',
                         }}
                     >
-                        Powerful tools designed to enhance your experience and simplify your tasks.
+                        At the moment, we are undergoing the following certifications:
                     </Typography>
                 </Box>
 
@@ -89,11 +85,11 @@ const HowBox = () => {
                             key={index}
                             sx={{
                                 width: '17.5vw',
-                                height: '22.57vw',
+                                height: '21vw',
                                 borderRadius: '1.39vw',
                                 display: 'flex',
                                 flexDirection: 'column',
-                                justifyContent: 'center',
+                                justifyItems:'flex-start',
                                 alignItems: 'center',
                                 backgroundColor: '#0A0A0A',
                                 border: '1px solid #FFFFFF33',
@@ -101,75 +97,46 @@ const HowBox = () => {
                             }}
                         >
 
-                        <Box
+                            <Box
+                                component="img"
+                                src={cerImage}
+                                alt={box.title}
                                 sx={{
-                                    position: 'absolute',
-                                    top: '-2vw',
-                                    left: '50%',
-                                    transform: 'translateX(-50%)',
-                                    width: '4vw',
-                                    height: '4vw',
-
-
-                                    backgroundColor: '#B50304',
-                                    borderRadius: '50%',
-                                    display: 'flex',
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
+                                    width: '100%',
+                                    height: '50%',
+                                    justifyItems:'flex-start',
+                                    backgroundColor: '#FFFFFF',
+                                    objectFit: 'cover',
+                                    borderRadius: '1.39vw 1.39vw 0 0',
                                 }}
-                            >
-                                {typeof box.icon === 'string' ? (
-                                    <Box
-                                        component="img"
-                                        src={box.icon}
-                                        alt="Design"
-                                        sx={{
-                                            width: '2vw'
-                                        }}
-                                    />
-                                ) : (
-                                    React.createElement(box.icon, { sx: { color: '#fff', fontSize: 30 } })
-                                )}
-                            </Box>
-
+                            />
                             <Box
                                 sx={{
+                                    mt:'2vw',
                                     display: 'flex',
                                     flexDirection: 'column',
                                     justifyContent: 'center',
                                     justifyItems: 'center',
                                     alignItems: 'center',
-                                    mt:'3.8vw',
                                     gap: '0.7vw',
                                     textAlign: 'center',
                                     width:'12vw'
                                 }}
                             >
                                 <Typography
-                                    sx={{...theme.typography.h6,}}
+                                    sx={{...theme.typography.h3,}}
                                     gutterBottom
                                 >
                                     {box.title}
                                 </Typography>
                                 <Typography
-                                    sx={{...theme.typography.h9,}}
+                                    sx={{...theme.typography.h6,}}
                                 >
                                     {box.description}
                                 </Typography>
                             </Box>
 
-                            <Box
-                                component="img"
-                                src={box.image}
-                                alt={box.title}
-                                sx={{
-                                    width: '100%',
-                                    height: '45%',
-                                    objectFit: 'cover',
-                                    borderRadius: '0 0 1.39vw 1.39vw',
-                                    mt: 'auto',
-                                }}
-                            /> 
+
                         </Box>
                     ))}
                 </Box>
@@ -178,4 +145,4 @@ const HowBox = () => {
     );
 };
 
-export default HowBox;
+export default Certification;

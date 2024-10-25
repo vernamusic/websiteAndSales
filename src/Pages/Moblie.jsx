@@ -1,11 +1,11 @@
 import React from 'react';
 import {Box} from '@mui/material';
-import DownloadBox from '../components/Moblie/DBtest.jsx';
+import DownloadBox from '../components/Moblie/DownloadBox.jsx';
 import HowBox from '../components/Moblie/HowBox.jsx';
 import OverviewBox from '../components/Moblie/OverviewBox.jsx';
 import FeaturesBox from '../components/Moblie/FeaturesBox.jsx';
 import UseBox from "../components/Moblie/UseBox.jsx";
-
+import CertificateBox from '../components/Moblie/Certification.jsx';
 
 function Moblie() {
     return (
@@ -14,12 +14,13 @@ function Moblie() {
                 display: 'flex',
                 flexDirection: 'column',
                 width: '100%',
-                minHeight: '100vh',
+                minHeight: '100vw',
             }}
         >
             <Box
                 sx={{
                     width: '100%',
+                    minHeight: '40vw',
                 }}
             >
                 <DownloadBox />
@@ -28,7 +29,7 @@ function Moblie() {
             <Box
                 sx={{
                     width: '100%',
-                    minHeight: { xs: '500px', md: '750px' },
+                    minHeight: '50vw',
                     display: 'flex',
                     justifyContent: 'center',
                 }}
@@ -39,7 +40,7 @@ function Moblie() {
             <Box
                 sx={{
                     width: '100%',
-                    minHeight: { xs: '500px', md: '750px' },
+                    minHeight: '50vw',
                     display: 'flex',
                     justifyContent: 'center',
                 }}
@@ -49,13 +50,23 @@ function Moblie() {
 
             <Box
                 sx={{
+                    mt:'4vw',
                     width: '100%',
-                    minHeight: { xs: '500px', md: '850px' },
+                    minHeight: '50vw',
                     display: 'flex',
                     justifyContent: 'center',
                 }}
             >
                 <UseBox />
+            </Box>
+
+            <Box
+                sx={{
+                    width: '100%',
+                    minHeight: '40vw',
+                }}
+            >
+                <CertificateBox/>
             </Box>
 
             <Box
