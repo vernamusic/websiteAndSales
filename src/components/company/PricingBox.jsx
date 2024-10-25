@@ -265,19 +265,17 @@ const PricingBox = () => {
                   More
                 </Button>
                 <DialogBox>
-                <DialogBox>
-              <Button
-                variant="contained"
-                fullWidth
-                sx={{
-                  backgroundColor: '#B50304',
-                  textTransform: 'none',
-                  borderRadius: '5px',
-                }}
-              >
-                Buy
-              </Button>
-                </DialogBox>
+                <Button
+                  variant="contained"
+                  fullWidth
+                  sx={{
+                    backgroundColor: '#B50304',
+                    textTransform: 'none',
+                    borderRadius: '5px',
+                  }}
+                >
+                  Buy
+                </Button>
                 </DialogBox>
             </Box>
           </Box>
