@@ -265,6 +265,7 @@ const PricingBox = () => {
                   More
                 </Button>
                 <DialogBox>
+                <DialogBox>
               <Button
                 variant="contained"
                 fullWidth
@@ -276,6 +277,7 @@ const PricingBox = () => {
               >
                 Buy
               </Button>
+                </DialogBox>
                 </DialogBox>
             </Box>
           </Box>

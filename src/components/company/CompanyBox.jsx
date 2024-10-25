@@ -68,7 +68,7 @@ const CompanyBox = () => {
                     <Typography
                         sx={{
                             ...theme.typography.h6,
-                            mt: 2,
+                            mt: 0.5,
                             mb: 1,
                             width: { xs: '350px', sm: '430px', md: '480px', lg: '500px',xl:'625px' },
                         }}
