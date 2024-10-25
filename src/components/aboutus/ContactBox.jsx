@@ -5,25 +5,35 @@ import backgroundImage from '../../assets/about1.png';
 
 const theme = createTheme({
     typography: {
-            h6: {
-                fontFamily: 'sen',
-                fontSize: { xs: '13px', sm: '13px', md: '16px', lg: '21px', xl: '26px' },
-                color: "#F1F1F1",
-                letterSpacing: '0.4px',
-                lineHeight: 'normal',
-            },
-            h3: {
-                fontFamily: 'Lato',
-                fontWeight: 700,
-                fontSize: { xs: '20px', sm: '24px', md: '28px', lg: '35px', xl: '41px' },
-                color: "#FFFFFF",
-                letterSpacing: '0.4px',
-            },
-            button: {
-                fontFamily: 'Lato',
-                fontSize: { xs: '10px', sm: '15px', md: '18px', lg: '20px', xl: '22px' },
-                color: "#FFFFFF",
-            },
+        h6: {
+            fontFamily: 'sen',
+            fontSize: '1.04vw',
+            lineHeight: 'normal',
+            letterSpacing: '0.4px',
+            color: "#F1F1F1",
+            textTransform: 'none',
+        },
+        h3: {
+            fontFamily: "Lato",
+            fontWeight: 700,
+            fontSize: '1.59vw',
+            color: "#F1F1F1",
+            textTransform: 'none',
+        },
+        button: {
+            fontFamily: 'Inter',
+            fontSize: '0.94vw',
+            textTransform: 'none',
+            color: "#F1F1F1",
+        },
+        caption: {
+            fontFamily: 'sen',
+            fontSize: '1.04vw',
+            lineHeight: 'normal',
+            letterSpacing: '0.4px',
+            color: "#F1F1F1",
+            textTransform: 'none',
+        },
     },
 });
 
@@ -49,12 +59,13 @@ const ContactBox = () => {
                         alignItems: 'flex-start',
                         height:'100%',
                         ml: { xs: 5, sm: 10, md: 15, lg: 25, xl: 38 },
-                        gap: {xs: 1, sm: 1, md: 1.5, lg: 2, xl: 2,},
-                        width: { xs: '270px', sm: '310px', md: '380px', lg: '500px', xl: '650px' },
+                        gap: '0.5vw',
+                        width: '25vw',
                     }}
                 >
                     <Typography
                         sx={{
+
                             ...theme.typography.h3,
                         }}
                     >
@@ -63,6 +74,7 @@ const ContactBox = () => {
                     <Typography
                         sx={{
                             ...theme.typography.h6,
+                            mb: {xs: 1, sm: 1, md: 1.5, lg: 2, xl: 2,},
                         }}
                     >
                         Lorem ipsum dolor sit Mauris tincidunt Lorem ipsum dolor sit amet consectetur. Mauris tincidunt euismod tincidunt nibh. Aenean lectus cras libero.
@@ -71,15 +83,16 @@ const ContactBox = () => {
                     <Button
                         variant="contained"
 
-                        size="large"
+
                         sx={{
                             ...theme.typography.button,
-                            display:{xs:'none',sm:'block'},
+                            padding:0,
+                            minWidth: 0,
                             borderRadius: '4px',
                             backgroundColor: '#B50304',
                             textTransform: 'none',
-                            width:{ xs: '110px', sm: '135px', md: '170px', lg: '190px', xl: '220px' },
-                            height: { xs: '30px', sm: '37px', md: '48px', lg: '52px', xl: '58px' },
+                            width:'8.0656vw',
+                            height: '2.34375vw',
                             '&:hover': {
                                 backgroundColor: '#B50304',
                             },

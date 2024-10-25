@@ -89,6 +89,7 @@ const Mediacard = ({ data }) => {
                     display="flex"
                     flexDirection="row"
                     alignItems="center"
+                    justifyContent="center"
                     position="relative"
                     sx={{
                         overflow:{xs:"scroll",sm:"scroll",md:'hidden'},

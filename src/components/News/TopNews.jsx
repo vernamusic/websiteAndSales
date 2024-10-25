@@ -169,35 +169,34 @@ const Mediacard = () => {
                             <Typography sx={{ ...theme.typography.h3 }}>
                                 {currentData.title}
                             </Typography>
-                            <Typography sx={{maxWidth: 500, ...theme.typography.h6 }}>
+                            <Typography sx={{maxWidth: '30vw', ...theme.typography.h6 }}>
                                 {currentData.details.length > 200
                                     ? `${currentData.details.substring(0, 200)}...`
                                     : currentData.details}
                             </Typography>
 
                             <Box display="flex" alignItems="center">
-                                <AccessTimeIcon sx={{ fontSize: 18, mr: 1,...theme.typography.caption, display:{xs:'none', sm:'block'}, }} />
-                                <Typography variant="caption" sx={{ mr: 2 ,...theme.typography.caption, display:{xs:'none', sm:'block'},}}>
+                                <AccessTimeIcon sx={{mr: '0.5vw',...theme.typography.caption,  }} />
+                                <Typography variant="caption" sx={{mr: '1vw' ,...theme.typography.caption,}}>
                                     {currentData.read_time}m
                                 </Typography>
-                                <VisibilityIcon sx={{ fontSize: 18, mr: 1 ,...theme.typography.caption, display:{xs:'none', sm:'block'},}} />
-                                <Typography variant="caption" sx={{...theme.typography.caption, display:{xs:'none', sm:'block'},}}>
+                                <VisibilityIcon sx={{mr: '0.5vw' ,...theme.typography.caption,}} />
+                                <Typography variant="caption" sx={{...theme.typography.caption,}}>
                                     {currentData.views}
                                 </Typography>
                             </Box>
 
                             <Button
-                                variant="contained"
                                 onClick={() => handleClick(currentData.slug)}
-                                size="large"
                                 sx={{
                                     ...theme.typography.button,
-                                    display:{xs:'none', sm:'block'},
                                     borderRadius: '4px',
                                     backgroundColor: '#B50304',
                                     textTransform: 'none',
-                                    width:{ xs: '88px', sm: '98px', md: '120px', lg: '140px', xl: '150px' },
-                                    height: { xs: '24px', sm: '30px', md: '40px', lg: '45px', xl: '50px' },
+                                    width:'7.8125vw',
+                                    height: '2.6042vw',
+                                    minWidth: 0,
+                                    padding:0,
                                     '&:hover': {
                                         backgroundColor: '#B50304',
                                     },

@@ -10,28 +10,35 @@ import linkedin from "../../assets/linkedin.png";
 const theme = createTheme({
     typography: {
         h6: {
-            fontFamily:'sen',
-            fontSize: { xs: '6px', sm: '10px', md: '12px', lg: '16px', xl: '20px' },
-            lineHeight: 'normal',
+            fontFamily: 'sen',
+            fontSize:'1.2vw',
+            color: "rgba(191, 191, 191, 1)",
             letterSpacing: '0.4px',
-            color: "#F1F1F1",
-            textTransform: 'none',
+            lineHeight: 'normal',
         },
-
         h3: {
-            fontFamily: "Lato",
-            fontWeight:700,
-            fontSize: {xs: '11.5px', sm: '13px', md: '20px', lg: '25px', xl: '29px'},
-            color: "#F1F1F1",
-            textTransform: 'none',
+            fontFamily: 'Lato',
+            fontWeight: 700,
+            fontSize:'1.3889vw',
+            color: "#FFFFFF",
+            letterSpacing: '0.4px',
         },
         button: {
-            fontFamily: 'Inter',
-            fontSize: { xs: '6px', sm: '6px', md: '9px', lg: '13px', xl: '16px' },
+            fontFamily: 'Lato',
+            fontSize:'0.677vw',
             textTransform: 'none',
+            color: "#FFFFFF",
+        },
+        h1: {
+            fontFamily: 'Lato',
+            fontWeight: 400,
+            fontSize:'1.0417vw',
+            color: "rgba(191, 191, 191, 1)",
+            letterSpacing: '0.4px',
         },
     },
 });
+
 
 const Allinonecard = ({ data }) => {
     return (
@@ -40,13 +47,8 @@ const Allinonecard = ({ data }) => {
                 display="flex"
                 flexDirection="column"
                 sx={{
-                    width: {
-                        xs: "450px",
-                        sm: "650px",
-                        md: "900px",
-                        lg: "1100px",
-                        xl: "1200px",
-                    },
+                    maxWidth: '63.8vw',
+                    justifyItems:'center',
                     alignItems: 'center',
                     mb: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 }
                 }}
@@ -54,14 +56,9 @@ const Allinonecard = ({ data }) => {
                 <Box
                     display="flex"
                     flexWrap="wrap"
-                    justifyContent="start"
-                    sx={{ gap: { xs: 1, sm: 1.5, md: 2, lg: 3, xl: 5 },
-                            width: {
-                                xs: "380px",
-                                sm: "650px",
-                                md: "900px",
-                                lg: "1100px",
-                                xl: "1200px",}
+                    justifyContent="center"
+                    sx={{ gap: '1.8vw',
+                        maxWidth: '57vw',
                 }}
                 >
                     {data.map((box, index) => (
@@ -71,8 +68,8 @@ const Allinonecard = ({ data }) => {
                             sx={{
                                 flexDirection: "column",
                                 justifyContent: "space-between",
-                                width: { xs: '121px', sm: '206px', md: '285px', lg: '347px', xl: '370px' },
-                                height: { xs: '196px', sm: '334px', md: '462px', lg: '564px', xl: '600px' },
+                                width: '17.78vw',
+                                height: '31.5972vw',
                                 position: "relative",
                                 borderRadius: "20px",
                                 color: "white",
@@ -86,7 +83,7 @@ const Allinonecard = ({ data }) => {
                                 sx={{
                                     position: "absolute",
                                     width: "100%",
-                                    height: '50%',
+                                    height: '45%',
                                     top:'0',
                                     zIndex:2,
                                     backgroundImage:`url(${box.photo})`,
@@ -144,7 +141,7 @@ const Allinonecard = ({ data }) => {
                                 sx={{
                                     position: "absolute",
                                     width: "100%",
-                                    height: '40%',
+                                    height: '47.5%',
                                     bottom: '0',
                                 }}
                             >
@@ -173,12 +170,12 @@ const Allinonecard = ({ data }) => {
                                             display: "flex",
                                             justifyContent: "center",
                                             width: "100%",
-                                            mt: 2,
+                                            mt: '0.7vw',
                                         }}
                                     >
                                         <Typography
                                             sx={{
-                                                ...theme.typography.h6,
+                                                ...theme.typography.h1,
                                                 textAlign: "center",
                                                 maxWidth: '80%',
                                             }}
@@ -193,7 +190,7 @@ const Allinonecard = ({ data }) => {
                                             display: "flex",
                                             justifyContent: "center",
                                             width: "100%",
-                                            mt: 2,
+                                            mt: '1.5vw',
                                         }}
                                     >
                                         <Typography

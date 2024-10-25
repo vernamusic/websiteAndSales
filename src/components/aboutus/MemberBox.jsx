@@ -10,23 +10,24 @@ import Allinonecard from './Allinonecard';
 const theme = createTheme({
     typography: {
         h6: {
-            fontFamily: 'sen',
-            fontSize: { xs: '8px', sm: '11px', md: '17px', lg: '20px', xl: '24px' },
+            fontFamily:'sen',
+            fontSize: '1.0417vw',
             lineHeight: 'normal',
             letterSpacing: '0.4px',
             color: "#F1F1F1",
             textTransform: 'none',
         },
+
         h3: {
             fontFamily: "Lato",
-            fontWeight: 700,
-            fontSize: { xs: '12px', sm: '18px', md: '24px', lg: '28px', xl: '32px' },
+            fontWeight:700,
+            fontSize:'1.4583vw',
             color: "#F1F1F1",
             textTransform: 'none',
         },
         button: {
             fontFamily: 'Inter',
-            fontSize: { xs: '9px', sm: '12px', md: '18px', lg: '22px', xl: '26px' },
+            fontSize: '1.0417vw',
             textTransform: 'none',
             color: "#F1F1F1",
         },
@@ -67,10 +68,20 @@ const TeamMembers = () => {
     const renderContent = () => {
         if (selectedTeam === 'view_all') {
             return (
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0, mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 }, }}>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        gap: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
+                        mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
+                        mb:{ xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
+                    }}
+                >
                     {teams.map(({ team_name, members }) => (
-                        <Box key={team_name} sx={{ width: '100%', mb: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 }, }}>
-                            <Typography gutterBottom sx={{ ...theme.typography.h3, pl: 1, mb: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 }, textAlign: 'left' }}>
+                        <Box key={team_name} sx={{ width: '90%' }}>
+                            <Typography gutterBottom sx={{ ...theme.typography.h3, mb: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 }, textAlign: 'left', ml:'0.5vw'}}>
                                 {team_name}
                             </Typography>
                             <Mediacard data={members} />
@@ -81,7 +92,7 @@ const TeamMembers = () => {
         } else {
             return (
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0, mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },}}>
-                    <Typography gutterBottom sx={{ ...theme.typography.h3,  mb: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 }, textAlign: 'left', pl:{xs:5.5,sm:1}, }}>
+                    <Typography gutterBottom sx={{ ...theme.typography.h3,  mb: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 }, textAlign: 'left', ml:'0.25vw' }}>
                         {selectedTeam}
                     </Typography>
                     <Allinonecard data={data} /> {/* Now passes only members data */}
@@ -93,7 +104,7 @@ const TeamMembers = () => {
     return (
         <ThemeProvider theme={theme}>
             <Box sx={{ textAlign: 'left', }}>
-                <Box sx={{ mt: '40px', textAlign: 'center', display:{xs:'none', sm:'block'} }}>
+                <Box sx={{ mt: '2.0833vw', textAlign: 'center', }}>
                     <Typography sx={{ ...theme.typography.h3 }}>
                         MEET OUR TEAM
                     </Typography>
@@ -107,7 +118,7 @@ const TeamMembers = () => {
                         justifyContent: 'center',
                         mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
                         maxHeight: '40px',
-                        maxWidth: '1220px',
+
                     }}
                 >
                     <ToggleButtonGroup
@@ -126,24 +137,14 @@ const TeamMembers = () => {
                             value="view_all"
                             selected={selectedTeam === "view_all"}
                             sx={{
+                                padding: 0,
+                                minWidth: 0,
                                 color: '#ffffff',
-                                width: {
-                                    xs: '90px',
-                                    sm: '130px',
-                                    md: '180px',
-                                    lg: '200px',
-                                    xl: '220px',
-                                },
-                                height: {
-                                    xs: '30px',
-                                    sm: '36px',
-                                    md: '46px',
-                                    lg: '48px',
-                                    xl: '52px',
-                                },
+                                width: '9.375vw',
+                                height: '2.3958vw',
                                 ...theme.typography.button,
                                 '&.Mui-selected': {
-                                    borderRadius: '6px',
+                                    borderRadius: '0.3125vw',
                                     backgroundColor: '#B50304',
                                     color: '#ffffff',
                                     '&:hover': {
@@ -152,7 +153,7 @@ const TeamMembers = () => {
                                 },
                                 '&:not(.Mui-selected)': {
                                     backgroundColor: '#0B0B0B',
-                                    borderRadius: '6px',
+                                    borderRadius: '0.3125vw',
                                     border: '0.01px solid rgba(255, 255, 255, 0.15)',
                                     '&:hover': {
                                         backgroundColor: '#0B0B0B',
@@ -170,24 +171,14 @@ const TeamMembers = () => {
                                 value={team_name}
                                 selected={selectedTeam === team_name}
                                 sx={{
-                                    color: '#e0e0e0',
-                                    width: {
-                                        xs: '90px',
-                                        sm: '130px',
-                                        md: '180px',
-                                        lg: '200px',
-                                        xl: '220px',
-                                    },
-                                    height: {
-                                        xs: '30px',
-                                        sm: '36px',
-                                        md: '46px',
-                                        lg: '48px',
-                                        xl: '52px',
-                                    },
+                                    padding: 0,
+                                    minWidth: 0,
+                                    color: '#ffffff',
+                                    width: '9.375vw',
+                                    height: '2.3958vw',
                                     ...theme.typography.button,
                                     '&.Mui-selected': {
-                                        borderRadius: '6px',
+                                        borderRadius: '0.3125vw',
                                         backgroundColor: '#B50304',
                                         color: '#ffffff',
                                         '&:hover': {
@@ -196,7 +187,7 @@ const TeamMembers = () => {
                                     },
                                     '&:not(.Mui-selected)': {
                                         backgroundColor: '#0B0B0B',
-                                        borderRadius: '6px',
+                                        borderRadius: '0.3125vw',
                                         border: '0.01px solid rgba(255, 255, 255, 0.15)',
                                         '&:hover': {
                                             backgroundColor: '#0B0B0B',

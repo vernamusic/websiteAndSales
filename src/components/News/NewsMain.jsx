@@ -11,7 +11,7 @@ const theme = createTheme({
     typography: {
         h6: {
             fontFamily:'sen',
-            fontSize: { xs: '8px', sm: '8px', md: '11px', lg: '17px', xl: '20px' },
+            fontSize: '1.0417vw',
             lineHeight: 'normal',
             letterSpacing: '0.4px',
             color: "#F1F1F1",
@@ -21,13 +21,13 @@ const theme = createTheme({
         h3: {
             fontFamily: "Lato",
             fontWeight:700,
-            fontSize: {xs: '12px', sm: '12px', md: '18px', lg: '24px', xl: '28px'},
+            fontSize:'1.4583vw',
             color: "#F1F1F1",
             textTransform: 'none',
         },
         button: {
             fontFamily: 'Inter',
-            fontSize: { xs: '9px', sm: '9px', md: '12px', lg: '18px', xl: '22px' },
+            fontSize: '1.0417vw',
             textTransform: 'none',
             color: "#F1F1F1",
         },
@@ -82,8 +82,8 @@ const TeamMembers = () => {
                     sx={{
                         display: 'flex',
                         flexDirection: 'column',
-                        justifyContent: 'center',  // محور عمودی وسط‌چین
-                        alignItems: 'center',      // محور افقی وسط‌چین
+                        justifyContent: 'center',
+                        alignItems: 'center',
                         gap: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
                         mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
                     }}
@@ -92,7 +92,7 @@ const TeamMembers = () => {
                         <Box key={team_name} sx={{ width: '90%' }}>
                             <Typography
                                 gutterBottom
-                                sx={{ ...theme.typography.h3, mb: 3, textAlign: 'left' }}  // متن به سمت چپ
+                                sx={{ ...theme.typography.h3, mb: 3, textAlign: 'left',ml:'0.8vw' }}
                             >
                                 {team_name}
                             </Typography>
@@ -121,7 +121,7 @@ const TeamMembers = () => {
                     <Typography sx={{ ...theme.typography.h3 }}>
                         NEWS
                     </Typography>
-                    <Typography sx={{ ...theme.typography.h6,mt: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 }, display:{xs:'none', sm:'block'}, }}>
+                    <Typography sx={{ ...theme.typography.h6,mt: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 },}}>
                         Meet our diverse team of world-class creators, designers, and problem solvers.
                     </Typography>
                 </Box>
@@ -150,24 +150,14 @@ const TeamMembers = () => {
                             value="view_all"
                             selected={selectedTeam === "view_all"}
                             sx={{
+                                padding: 0,
+                                minWidth: 0,
                                 color: '#ffffff',
-                                width: {
-                                    xs: '82px',
-                                    sm: '82px',
-                                    md: '110px',
-                                    lg: '130px',
-                                    xl: '180px',
-                                },
-                                height: {
-                                    xs: '28px',
-                                    sm: '28px',
-                                    md: '30px',
-                                    lg: '36px',
-                                    xl: '46px',
-                                },
+                                width: '9.375vw',
+                                height: '2.3958vw',
                                 ...theme.typography.button,
                                 '&.Mui-selected': {
-                                    borderRadius: '6px',
+                                    borderRadius: '0.3125vw',
                                     backgroundColor: '#B50304',
                                     color: '#ffffff',
                                     '&:hover': {
@@ -176,7 +166,7 @@ const TeamMembers = () => {
                                 },
                                 '&:not(.Mui-selected)': {
                                     backgroundColor: '#0B0B0B',
-                                    borderRadius: '6px',
+                                    borderRadius: '0.3125vw',
                                     border:'0.01px solid rgba(255, 255, 255, 0.2)',
                                     '&:hover': {
                                         backgroundColor: '#0B0B0B',
@@ -195,24 +185,14 @@ const TeamMembers = () => {
                                 value={team_name}
                                 selected={selectedTeam === team_name}
                                 sx={{
+                                    padding: 0,
+                                    minWidth: 0,
                                     color: '#e0e0e0',
-                                    width: {
-                                        xs: '82px',
-                                        sm: '82px',
-                                        md: '110px',
-                                        lg: '130px',
-                                        xl: '180px',
-                                    },
-                                    height: {
-                                        xs: '28px',
-                                        sm: '28px',
-                                        md: '30px',
-                                        lg: '36px',
-                                        xl: '46px',
-                                    },
+                                    width: '9.375vw',
+                                    height: '2.3958vw',
                                     ...theme.typography.button,
                                     '&.Mui-selected': {
-                                        borderRadius: '6px',
+                                        borderRadius: '0.3125vw',
                                         backgroundColor: '#B50304',
                                         color: '#ffffff',
                                         '&:hover': {
@@ -221,7 +201,7 @@ const TeamMembers = () => {
                                     },
                                     '&:not(.Mui-selected)': {
                                         backgroundColor: '#0B0B0B',
-                                        borderRadius: '6px',
+                                        borderRadius: '0.3125vw',
                                         border:'0.01px solid rgba(255, 255, 255, 0.2)',
                                         '&:hover': {
                                             backgroundColor: '#0B0B0B',
