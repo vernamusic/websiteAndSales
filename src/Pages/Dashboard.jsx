@@ -1,6 +1,6 @@
 import React from 'react';
 import {Box, createTheme} from '@mui/material';
-import DownloadBox from '../components/Dashboard/DBtest.jsx';
+import DownloadBox from '../components/Dashboard/DownloadBox.jsx';
 import HowBox from '../components/Dashboard/HowBox.jsx';
 import OverviewBox from '../components/Dashboard/OverviewBox.jsx';
 import FeaturesBox from '../components/Dashboard/FeaturesBox.jsx';
