@@ -37,7 +37,7 @@ const theme = createTheme({
 });
 
 const proItems = [
-    { id: '1', title: "Mobile App",  image: pro1, url: '/products/mobile-app', description: "An easy and intuitive way to share your data with all professionals in charge of providing you with after-care and medical follow-up.", },
+    { id: '1', title: "Mobile App",  image: pro1, url: '/products/mobile-app', description: "The App monitors the user's health in real time, offering many features that allow the user to configure his/her experience.", },
     { id: '2', title: "Smart Watch", image: pro2, url: '/products/smart-watch',description: "Equipped with a vast range of state of the art sensors, the Vitruvian Shield Smartwatch collects biometric data from the wearer" },
     { id: '3', title: "Web App",image: pro3, url: '/products/dashboard',  description: "This Web App allows healthcare providers and researchers to analyze, manage and monitor their patients' health data in real time.\n" +
             "\n" },
