@@ -77,7 +77,7 @@ const ContactBox = () => {
                             mb: {xs: 1, sm: 1, md: 1.5, lg: 2, xl: 2,},
                         }}
                     >
-                        Lorem ipsum dolor sit Mauris tincidunt Lorem ipsum dolor sit amet consectetur. Mauris tincidunt euismod tincidunt nibh. Aenean lectus cras libero.
+                        Vitruvian Shield is a comprehensive digital health platform that combines cutting-edge sensor technology, cloud computing, and AI-powered analytics to provide a holistic approach to medical research and remote patient monitoring.
                     </Typography>
 
                     <Button

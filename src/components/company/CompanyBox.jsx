@@ -7,7 +7,7 @@ const theme = createTheme({
     typography: {
         h6: {
             fontFamily: 'sen',
-            fontSize: { xs: '13px', sm: '13px', md: '16px', lg: '21px', xl: '26px' },
+            fontSize: '1.04vw',
             color: "#F1F1F1",
             letterSpacing: '0.4px',
             lineHeight: 'normal',
@@ -15,7 +15,7 @@ const theme = createTheme({
         h3: {
             fontFamily: 'Lato',
             fontWeight: 700,
-            fontSize: { xs: '22px', sm: '24px', md: '28px', lg: '35px', xl: '41px' },
+            fontSize: '1.59vw',
             color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
@@ -68,7 +68,7 @@ const CompanyBox = () => {
                     <Typography
                         sx={{
                             ...theme.typography.h6,
-                            mt: 2,
+                            mt: 0.5,
                             mb: 1,
                             width: { xs: '350px', sm: '430px', md: '480px', lg: '500px',xl:'625px' },
                         }}

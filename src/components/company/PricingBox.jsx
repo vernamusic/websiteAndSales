@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography, Button, createTheme, ThemeProvider } from '@mui/material';
-
+import DialogBox from './DialogBox';
 const theme = createTheme({
   typography: {
     h6: {
@@ -169,6 +169,7 @@ const PricingBox = () => {
                 >
                   More
                 </Button>
+                <DialogBox>
               <Button
                 variant="contained"
                 fullWidth
@@ -180,6 +181,7 @@ const PricingBox = () => {
               >
                 Buy
               </Button>
+                </DialogBox>
             </Box>
           </Box>
 
@@ -262,17 +264,19 @@ const PricingBox = () => {
                 >
                   More
                 </Button>
-              <Button
-                variant="contained"
-                fullWidth
-                sx={{
-                  backgroundColor: '#B50304',
-                  textTransform: 'none',
-                  borderRadius: '5px',
-                }}
-              >
-                Buy
-              </Button>
+                <DialogBox>
+                <Button
+                  variant="contained"
+                  fullWidth
+                  sx={{
+                    backgroundColor: '#B50304',
+                    textTransform: 'none',
+                    borderRadius: '5px',
+                  }}
+                >
+                  Buy
+                </Button>
+                </DialogBox>
             </Box>
           </Box>
         </Box>

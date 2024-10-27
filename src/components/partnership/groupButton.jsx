@@ -3,14 +3,18 @@ import ToggleButton from "@mui/material/ToggleButton";
 import React, { useState } from "react";
 import Adscc from "../../assets/adscc.png";
 import CHUV from "../../assets/partner5.png";
-
+import yas from "../../assets/yas.png";
+import hug from "../../assets/hug.png";
+import vaud from "../../assets/vaud.png";
+import gilomen from "../../assets/partner4.png";
 import { Box, createTheme, ThemeProvider, Typography } from "@mui/material";
+import { Category } from "@mui/icons-material";
 
 const customTheme = createTheme({
     typography: {
         h6: {
             fontFamily: 'Lato',
-            fontSize:'0.98vw',
+            fontSize: '0.98vw',
             color: "#F1F1F1",
             letterSpacing: '0.4px',
             lineHeight: 'normal',
@@ -18,32 +22,34 @@ const customTheme = createTheme({
         h3: {
             fontFamily: 'sen',
             fontWeight: 400,
-            fontSize:'1.294vw',
-
+            fontSize: '1.294vw',
             color: "#FFFFFF",
             letterSpacing: '0.4px',
-        },
-        h9: {
-            fontFamily: 'Lato',
-            fontSize:'0.98vw',
-            textTransform: 'none',
-            color: 'rgba(255, 255, 255, 1)',
-
         },
         h1: {
             fontFamily: 'Lato',
             fontWeight: 700,
-            fontSize:'1.85vw',
+            fontSize: '1.85vw',
             color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
+        button: {
+            fontFamily: 'Lato',
+            fontWeight: 500,
+            fontSize: '1vw',
+            lineHeight: '1.2vw',
+            textTransform: 'none',
+        }
     },
 });
 
 const howData = [
-    { title: 'Gilomen', description: "Development and Customer", image: Adscc, link: '' },
-    { title: 'CHUV', description: "Development and Customer", image: CHUV, link: '' },
-    { title: 'YAS', description: "Development and Customer", image: Adscc, link: '' },
+    { title: 'ADSCC', description: "Development and Customer", image: Adscc ,Category: "Development" },
+    { title: 'CHUV', description: "Development and Customer", image: CHUV ,Category: "Development"},
+    { title: 'YAS', description: "Development and Customer", image: yas ,Category: "Development"},
+    { title: 'HUG', description: "Development and Customer", image: hug ,Category: "Development"},
+    { title: 'VAUD', description: "Government support", image: vaud ,Category: "Technological"},
+    { title: 'Gilomen', description: "Financial support", image: gilomen ,Category: "Financial"},
 ];
 
 const GroupButton = () => {
@@ -55,6 +61,16 @@ const GroupButton = () => {
         }
     };
 
+    // Filter partners based on the selected category
+    const filteredData = selectedTeam === "view_all"
+        ? howData
+        : howData.filter(box => {
+            if (selectedTeam === "financial") return box.Category === "Financial"; // Example filter
+            if (selectedTeam === "technological") return box.Category === "Technological"; // Example filter
+            if (selectedTeam === "development") return box.Category === "Development"; // Example filter
+            return false;
+        });
+
     return (
         <ThemeProvider theme={customTheme}>
             <Box>
@@ -64,21 +80,12 @@ const GroupButton = () => {
                     justifyContent="center"
                     alignItems="center"
                     textAlign="center"
+                    mb="3vw" // Add bottom margin for spacing
                 >
-                    <Typography
-                        sx={{
-                            ...customTheme.typography.h1,
-                            mb: '1vw',
-                        }}
-                    >
+                    <Typography sx={{ ...customTheme.typography.h1, mb: '1vw' }}>
                         OUR PARTNERS
                     </Typography>
-                    <Typography
-                        sx={{
-                            ...customTheme.typography.h3,
-                            mb: '2vw',
-                        }}
-                    >
+                    <Typography sx={{ ...customTheme.typography.h3, mb: '2vw' }}>
                         Explore our trusted partners who help us deliver exceptional experiences
                     </Typography>
                 </Box>
@@ -95,15 +102,14 @@ const GroupButton = () => {
                             width: '100%',
                         }}
                     >
-                        {["View All", "Option 2", "Option 3", "Option 4"].map((label, index) => (
+                        {["View All", "Financial", "Technological", "Development"].map((label, index) => (
                             <ToggleButton
                                 key={index}
                                 value={label.toLowerCase().replace(" ", "_")}
                                 sx={{
                                     padding: 0,
-                                    minWidth: 0,
+                                    minWidth: '9.375vw',
                                     color: '#ffffff',
-                                    width: '9.375vw',
                                     height: '2.3958vw',
                                     ...customTheme.typography.button,
                                     '&.Mui-selected': {
@@ -130,119 +136,57 @@ const GroupButton = () => {
                         ))}
                     </ToggleButtonGroup>
                 </Box>
-                <Box
-                    display="flex"
-
-                    justifyContent="center"
-                    gap="2.5vw"
-                    pt="1.5vw"
-                >
-
-
-                    {howData.map((box, index) => (
-                        <Box
-                            key={index}
-                            sx={{
-                                width: '17.5vw',
-                                height: '21vw',
-                                borderRadius: '1.39vw',
-                                display: 'flex',
-                                flexDirection: 'column',
-                                alignItems: 'center',
-                                backgroundColor: '#0A0A0A',
-                                border: '1px solid #FFFFFF33',
-                                position: 'relative',
-                            }}
-                        >
+                <Box display="flex" justifyContent="center">
+                    <Box width="75vw" display="flex" flexWrap="wrap" justifyContent="center" gap="2.5vw" pt="8.5vw">
+                        {filteredData.map((box, index) => (
                             <Box
-                                component="img"
-                                src={box.image}
-                                alt={box.title}
+                                key={index}
                                 sx={{
-                                    width: '100%',
-                                    height: '50%',
-                                    backgroundColor: '#FFFFFF',
-                                    objectFit: 'cover',
-                                    borderRadius: '1.39vw 1.39vw 0 0',
-                                }}
-                            />
-                            <Box
-                                sx={{
-                                    mt: '2vw',
+                                    width: '17.5vw',
+                                    height: '21vw',
+                                    borderRadius: '1.39vw',
                                     display: 'flex',
                                     flexDirection: 'column',
                                     alignItems: 'center',
-                                    gap: '0.7vw',
-                                    textAlign: 'center',
-                                    width: '12vw',
+                                    backgroundColor: '#0A0A0A',
+                                    border: '1px solid #FFFFFF33',
+                                    position: 'relative',
                                 }}
                             >
-                                <Typography sx={{ ...customTheme.typography.h3 }} gutterBottom>
-                                    {box.title}
-                                </Typography>
-                                <Typography sx={{ ...customTheme.typography.h6 }}>
-                                    {box.description}
-                                </Typography>
+                                <Box
+                                    component="img"
+                                    src={box.image}
+                                    alt={box.title}
+                                    sx={{
+                                        width: '100%',
+                                        height: '50%',
+                                        backgroundColor: '#FFFFFF',
+                                        objectFit: 'contain',
+                                        borderRadius: '1.39vw 1.39vw 0 0',
+                                        padding: 3
+                                    }}
+                                />
+                                <Box
+                                    sx={{
+                                        mt: '2vw',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        gap: '0.7vw',
+                                        textAlign: 'center',
+                                        width: '12vw',
+                                    }}
+                                >
+                                    <Typography sx={{ ...customTheme.typography.h3 }} gutterBottom>
+                                        {box.title}
+                                    </Typography>
+                                    <Typography sx={{ ...customTheme.typography.h6 }}>
+                                        {box.description}
+                                    </Typography>
+                                </Box>
                             </Box>
-                        </Box>
-                    ))}
-                </Box>
-                <Box
-                    display="flex"
-
-                    justifyContent="center"
-                    gap="2.5vw"
-                    pt="8.5vw"
-                >
-
-
-                    {howData.map((box, index) => (
-                        <Box
-                            key={index}
-                            sx={{
-                                width: '17.5vw',
-                                height: '21vw',
-                                borderRadius: '1.39vw',
-                                display: 'flex',
-                                flexDirection: 'column',
-                                alignItems: 'center',
-                                backgroundColor: '#0A0A0A',
-                                border: '1px solid #FFFFFF33',
-                                position: 'relative',
-                            }}
-                        >
-                            <Box
-                                component="img"
-                                src={box.image}
-                                alt={box.title}
-                                sx={{
-                                    width: '100%',
-                                    height: '50%',
-                                    backgroundColor: '#FFFFFF',
-                                    objectFit: 'cover',
-                                    borderRadius: '1.39vw 1.39vw 0 0',
-                                }}
-                            />
-                            <Box
-                                sx={{
-                                    mt: '2vw',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    alignItems: 'center',
-                                    gap: '0.7vw',
-                                    textAlign: 'center',
-                                    width: '12vw',
-                                }}
-                            >
-                                <Typography sx={{ ...customTheme.typography.h3 }} gutterBottom>
-                                    {box.title}
-                                </Typography>
-                                <Typography sx={{ ...customTheme.typography.h6 }}>
-                                    {box.description}
-                                </Typography>
-                            </Box>
-                        </Box>
-                    ))}
+                        ))}
+                    </Box>
                 </Box>
             </Box>
         </ThemeProvider>
