@@ -1,25 +1,42 @@
-import React, { useState, useCallback, useMemo, useEffect } from 'react';
+import React, { useState, useCallback, useMemo,} from 'react';
 import { Box, Button, Typography, createTheme, ThemeProvider } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import dash1 from "../../assets/usedash1.png";
-import dash2 from "../../assets/usedash2.png";
-import dash3 from "../../assets/usedash3.png";
+import phone1 from "../../assets/usedash1.png";
+import phone2 from "../../assets/usedash2.png";
+import phone3 from "../../assets/usedash3.png";
 import black from "../../assets/laptopblackpage.png";
 
 const theme = createTheme({
     typography: {
-        fontFamily: 'Sen, Arial, sans-serif',
-        h6: {
-            fontSize: '18px',
-            fontWeight: 400,
-            lineHeight: '24px',
+        h1: {
+            fontFamily:'Lato',
+            fontSize: '1.39vw',
+            fontWeight: 600,
             color: "#F1F1F1",
         },
         h3: {
+            fontFamily: 'sen',
+            fontWeight: 400,
+            fontSize: '1.25vw',
+            color: "rgba(241, 241, 241, 1)",
+        },
+        h6: {
             fontFamily: 'Lato',
-            fontWeight: 700,
-            fontSize: '24px',
-            lineHeight: '28px',
+            fontWeight: 600,
+            fontSize: '1.25vw',
+            color: "#FFFFFF",
+        },
+        h9: {
+            fontFamily: 'sen',
+            fontWeight: 400,
+            fontSize: '1.0vw',
+            lineHeight:'1.3vw',
+            color: "rgba(241, 241, 241, 1)",
+        },
+        button: {
+            fontFamily: 'Lato',
+            fontSize: '0.83vw',
+            textTransform: "none",
             color: "#FFFFFF",
         },
     },
@@ -33,12 +50,12 @@ const features = [
 
 const StepCircle = styled(Box)(({ active }) => ({
     position: 'absolute',
-    top: 22,
-    left: 0,
-    width: 70,
-    height: 70,
+    top: '1.5vw',
+    left: '0vw',
+    width: '3.7vw',
+    height: '3.7vw',
     backgroundColor: active ? '#B50304' : 'transparent',
-    border: `2px solid ${active ? 'transparent' : '#B50304'}`,
+    border: `0.15vw solid ${active ? 'transparent' : '#B50304'}`,
     borderRadius: '50%',
     display: 'flex',
     justifyContent: 'center',
@@ -50,10 +67,10 @@ const RedLine = ({ top }) => (
     <Box
         sx={{
             position: 'absolute',
-            top: top || 90,
-            left: 34.5,
-            width: '2px',
-            height: 92,
+            top: top || '1vw',
+            left: '1.85vw',
+            width: '0.09vw',
+            height: '5.5vw',
             backgroundColor: '#B50304',
             transform: 'translateX(-50%)',
         }}
@@ -93,14 +110,14 @@ const Stepper = () => {
     }, []);
 
     const getCircleContent = useCallback((index) => (
-        <Typography variant="h6" sx={{ color: '#fff', fontSize: 27 }}>
+        <Typography variant="h6" sx={{ color: '#fff',}}>
             {index + 1}
         </Typography>
     ), []);
 
     const memoizedFeatures = useMemo(() => features, []);
 
-    const images = [dash1, dash2, dash3];
+    const images = [phone1, phone2, phone3]; // Images array for steps
 
     return (
         <ThemeProvider theme={theme}>
@@ -108,69 +125,61 @@ const Stepper = () => {
                 sx={{
                     display: 'flex',
                     flexDirection: 'row',
-                    alignItems: 'center',
+                    alignItems: 'flex-start',
                     justifyContent: 'center',
-                    height: '100vh',
-                    ml:15,
+
                 }}
             >
                 <Box
                     sx={{
                         display: 'flex',
                         flexDirection: 'row',
-                        justifyContent: 'center',
+                        alignContent: 'flex-start',
+                        justifyContent: 'flex-start',
                         position: 'relative',
-                        width: '100%',
-                        maxWidth: '1200px',
-                        mr:10,
+                        width: '23vw',
                     }}
                 >
                     <img
-                        src={black}
+                        src={black} // Black background image
                         alt="Background"
                         style={{
-                            width: '100%',
-                            position: 'relative',
-                            zIndex: 1,
-
+                            width: '28vw',
+                            top: '5vw',
+                            position: 'absolute',
+                            zIndex: 1, // Ensure it is behind other images
                         }}
                     />
                     <img
                         src={images[step - 1]}
                         alt={`Step ${step}`}
                         style={{
-                            width: '81.5%',
+                            width: '28vw',
+                            top: '5vw',
                             opacity: fade ? 1 : 0,
                             transition: 'opacity 0.2s ease-in-out',
                             position: 'absolute',
                             zIndex: 2,
-                            top:'21%'
                         }}
                     />
                 </Box>
-            <Box>
-                <Box
-                    sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'left',
-                        pr: 25,
-                    }}
-                >
+                <Box>
                     <Box
-                        display="flex"
-                        flexDirection="column"
-                        m={0}
-                        p={0}
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'left',
+                            ml: '10vw',
+                        }}
                     >
-                        <Typography
-                            variant="h3"
-                            sx={{
-                                mb: 2,
-                                ml: 1,
-                                lineHeight: '1.5',
-                                width: 600,
-                                fontSize: 30,
+                        <Box
+                            display="flex"
+                            flexDirection="column"
+                        >
+                            <Typography
+                                sx={{
+                                    mb: '0.7vw',
+                                    ...theme.typography.h1,
                                 }}
                             >
                                 HOW CAN WE USE IT?
@@ -182,8 +191,8 @@ const Stepper = () => {
                                 display="flex"
                                 flexDirection="row"
                                 alignItems="center"
-                                gap={2}
-                                p={3}
+                                gap='1vw'
+                                p='1.3vw'
                                 sx={{ position: 'relative' }}
                             >
                                 <StepCircle
@@ -194,36 +203,37 @@ const Stepper = () => {
                                 </StepCircle>
 
                                 {index < memoizedFeatures.length - 1 && (
-                                    <RedLine top={90} />
+                                    <RedLine top={'5.1vw'} />
                                 )}
 
-                                <Box ml={9} maxWidth={490}>
-                                    <Typography variant="h3">
+                                <Box ml='3.8vw' maxWidth='28vw'>
+                                    <Typography sx={{...theme.typography.h6,}}>
                                         {feature.title}
                                     </Typography>
 
-                                    <Typography variant="h6" pt={1.5}>
+                                    <Typography sx={{...theme.typography.h9,}} pt='0.6vw'>
                                         {feature.description}
                                     </Typography>
                                 </Box>
                             </Box>
                         ))}
-                        <Box display="flex" flexDirection="row" gap={2} ml={2.5} mt={2}>
-                        <Button
+                        <Box display="flex" flexDirection="row" gap='1vw' mt='1vw'>
+                            <Button
                                 variant="contained"
                                 onClick={handlePrevious}
                                 disabled={step === 1}
                                 sx={{
-                                    display: { xs: 'none', md: 'flex' },
-                                    borderRadius: '4px',
+                                    padding:0,
+                                    minWidth:0,
+                                    display: 'flex',
+                                    borderRadius: '0.21vw',
+                                    width: '6.82vw',
+                                    height: '2.08vw',
+                                    ...theme.typography.button,
                                     border:'1px solid #fff',
                                     backgroundColor: 'transparent',
                                     color: '#fff',
                                     borderColor:  '#fff',
-                                    width: 150,
-                                    height: 45,
-                                    fontSize: 17,
-                                    textTransform: 'none',
                                     '&:hover': {
                                         backgroundColor: 'transparent',
                                     },
@@ -242,15 +252,16 @@ const Stepper = () => {
                                 onClick={handleNext}
                                 disabled={step === 3}
                                 sx={{
-                                    textTransform: 'none',
-                                    display: { xs: 'none', md: 'flex' },
-                                    borderRadius: '4px',
+                                    padding:0,
+                                    minWidth:0,
+                                    display: 'flex',
+                                    borderRadius: '0.21vw',
+                                    width: '6.82vw',
+                                    height: '2.08vw',
+                                    ...theme.typography.button,
                                     backgroundColor: '#B50304',
                                     color: '#fff',
                                     borderColor:'transparent',
-                                    width: 150,
-                                    height: 45,
-                                    fontSize: 17,
                                     '&:hover': {
                                         backgroundColor: '#B50304',
                                     },

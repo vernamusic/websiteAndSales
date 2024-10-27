@@ -5,6 +5,7 @@ import HowBox from '../components/Dashboard/HowBox.jsx';
 import OverviewBox from '../components/Dashboard/OverviewBox.jsx';
 import FeaturesBox from '../components/Dashboard/FeaturesBox.jsx';
 import UseBox from "../components/Dashboard/UseBox.jsx";
+import CertificateBox from "../components/Dashboard/Certification.jsx";
 
 const theme = createTheme({
     typography: {
@@ -32,15 +33,13 @@ function Moblie() {
                 display: 'flex',
                 flexDirection: 'column',
                 width: '100%',
-                minHeight: '100vh',
+                minHeight: '100vw',
             }}
         >
             <Box
                 sx={{
                     width: '100%',
-                    minHeight: { xs: '500px', md: '850px' },
-                    display: 'flex',
-                    justifyContent: 'center',
+                    minHeight: '40vw',
                 }}
             >
                 <DownloadBox />
@@ -49,7 +48,7 @@ function Moblie() {
             <Box
                 sx={{
                     width: '100%',
-                    minHeight: { xs: '500px', md: '750px' },
+                    minHeight: '50vw',
                     display: 'flex',
                     justifyContent: 'center',
                 }}
@@ -60,7 +59,7 @@ function Moblie() {
             <Box
                 sx={{
                     width: '100%',
-                    minHeight: { xs: '500px', md: '750px' },
+                    minHeight: '50vw',
                     display: 'flex',
                     justifyContent: 'center',
                 }}
@@ -70,8 +69,9 @@ function Moblie() {
 
             <Box
                 sx={{
+                    mt:'4vw',
                     width: '100%',
-                    minHeight: { xs: '500px', md: '850px' },
+                    minHeight: '50vw',
                     display: 'flex',
                     justifyContent: 'center',
                 }}
@@ -82,9 +82,17 @@ function Moblie() {
             <Box
                 sx={{
                     width: '100%',
+                    minHeight: '40vw',
+                }}
+            >
+                <CertificateBox/>
+            </Box>
+
+            <Box
+                sx={{
+                    width: '100%',
                     display: {xs:'none',sm:'block'},
                     justifyContent: 'center',
-                    mb:'75px'
                 }}
             >
                 <OverviewBox />
