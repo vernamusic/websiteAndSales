@@ -1,7 +1,8 @@
-import React from 'react';
-import { Typography, Button, Box} from '@mui/material';
+import React, { useState } from 'react';
+import { Typography, Button, Box } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import backgroundImage from '/src/assets/companypic1.jpg';
+import ContactFormDialog from './ContactFormDialog';
 
 const theme = createTheme({
     typography: {
@@ -33,6 +34,16 @@ const theme = createTheme({
 });
 
 const CompanyBox = () => {
+    const [dialogOpen, setDialogOpen] = useState(false);
+
+    const handleOpenDialog = () => {
+        setDialogOpen(true);
+    };
+
+    const handleCloseDialog = () => {
+        setDialogOpen(false);
+    };
+
     return (
         <ThemeProvider theme={theme}>
             <Box
@@ -43,8 +54,7 @@ const CompanyBox = () => {
                     backgroundSize: 'cover',
                     backgroundPosition: 'top right',
                     backgroundRepeat: 'no-repeat',
-                  }}
-                  
+                }}
             >
                 <Box
                     sx={{
@@ -58,45 +68,43 @@ const CompanyBox = () => {
                         pl: { xs: 5, sm: 10, md: 20, lg: 25, xl: 38 },
                     }}
                 >
-                    <Typography
-                        sx={{
-                            ...theme.typography.h3,
-                        }}
-                    >
-                        Vitruvian Shield
-                    </Typography>
+                    <Typography sx={{ ...theme.typography.h3 }}>Vitruvian Shield</Typography>
                     <Typography
                         sx={{
                             ...theme.typography.h6,
                             mt: 0.5,
                             mb: 1,
-                            width: { xs: '350px', sm: '430px', md: '480px', lg: '500px',xl:'625px' },
+                            width: { xs: '350px', sm: '430px', md: '480px', lg: '500px', xl: '625px' },
                         }}
                     >
                         Vitruvian Shield is an e-Health Software as a Service (Saas), integrating (CTMS)
                         and Remote Patient Monitoring (RPM) with state-of-the-art wearable technology
-                        </Typography>
-                        <Button
-                            variant="contained"
-                            sx={{
-                                ...theme.typography.button,
-                                display:{xs:'none', sm:'flex'},
-                                borderRadius: '6px',
+                    </Typography>
+                    <Button
+                        variant="contained"
+                        sx={{
+                            ...theme.typography.button,
+                            display: { xs: 'none', sm: 'flex' },
+                            borderRadius: '6px',
+                            backgroundColor: '#B50304',
+                            textTransform: 'none',
+                            width: { lg: '10%' },
+                            alignItems: 'center',
+                            '&:hover': {
                                 backgroundColor: '#B50304',
-                                textTransform: 'none',
-                                width: { lg:'10%'},
-                                alignItems: 'center',
-                                '&:hover': {
-                                    backgroundColor: '#B50304',
-                                },
-                            }}
-                        >
-                            Contact Us
-                        </Button>
+                            },
+                        }}
+                        onClick={handleOpenDialog}
+                    >
+                        Contact Us
+                    </Button>
                 </Box>
+
+                {/* ContactFormDialog */}
+                <ContactFormDialog open={dialogOpen} onClose={handleCloseDialog} />
             </Box>
         </ThemeProvider>
     );
-}
+};
 
 export default CompanyBox;
