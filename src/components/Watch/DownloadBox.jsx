@@ -1,169 +1,190 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Box, Typography, Button, createTheme } from '@mui/material';
 import background from '../../assets/Artboard 2.png';
 import watch from '../../assets/watch.png';
 import mini from '../../assets/miniwatch.png';
 import { ThemeProvider } from "@mui/material/styles";
 import { Link } from "react-router-dom";
+import iphonescreen from "../../assets/iphonescreen.png";
 
 const theme = createTheme({
     typography: {
-        fontFamily: 'Sen, Arial, sans-serif',
         h6: {
-            fontSize: '27px',
-            lineHeight: '33px',
-            fontWeight: '200',
+            fontFamily: 'sen',
+            fontSize: '1.15vw', // تغییر به vw با نسبت 1920
             color: "#F1F1F1",
+            letterSpacing: '0.4px',
+            lineHeight: 'normal',
         },
         h3: {
             fontFamily: 'Lato',
-            fontSize: '40px',
-            fontWeight: '600',
-            lineHeight: '28px',
+            fontWeight: 700,
+            fontSize: '1.67vw', // تغییر به vw با نسبت 1920
+            color: "#FFFFFF",
+            letterSpacing: '0.4px',
+        },
+        button: {
+            fontFamily: 'Lato',
+            fontSize: '0.83vw', // تغییر به vw با نسبت 1920
             color: "#FFFFFF",
         },
     },
 });
 
 const Home = () => {
+    const [clipPath, setClipPath] = useState('');
+
+    const updateClipPath = () => {
+        const vw = window.innerWidth;
+
+        // محاسبه مقادیر clip-path با استفاده از vw
+        const calculatedClipPath = `path("M 0 0 L 0 ${vw * 0.45} C ${vw * 0.5} ${vw * 0.3} ${vw * 0.6} ${vw * 0.5} ${vw} ${vw * 0.4} L ${vw} 0 L 0 0")`;
+        setClipPath(calculatedClipPath);
+    };
+
+    useEffect(() => {
+        updateClipPath(); // به‌روزرسانی clip-path در زمان بارگذاری
+        window.addEventListener('resize', updateClipPath); // اضافه کردن لیسنر برای تغییر اندازه پنجره
+
+        return () => {
+            window.removeEventListener('resize', updateClipPath); // پاک کردن لیسنر هنگام Unmount
+        };
+    }, []);
+
     return (
         <ThemeProvider theme={theme}>
             {/* Parent Box that contains everything */}
-            <Box
-            sx={{position: 'relative',width: '100%', minHeight: '750px'}}
-            >
+            <Box sx={{ position: 'relative', width: '100%' }}>
                 <Box
                     component="img"
                     src={mini}
                     alt="Circular Image"
                     sx={{
                         position: 'absolute',
-                        bottom:'2%',
-                        right: '28%',
+                        bottom: '-1.5vw', // تغییر به vw
+                        right: '15vw', // تغییر به vw
                         transform: 'translate(-50%, -50%)',
-                        width: '210px',
-                        height: '210px',
+                        width: '11vw', // تغییر به vw
+                        height: '11vw', // تغییر به vw
                         borderRadius: '50%',
-                        zIndex: 3, // لایه بالاتر برای این عنصر
+                        zIndex: 3,
                     }}
                 />
-            <Box
-                sx={{
-                    position: 'relative', // برای تنظیم موقعیت فرزندان
-                    height: '100vh',
-                    width: '100%',
-                    backgroundImage: `url(${background})`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundSize: '100% 100%',
-                    backgroundPosition: '0px -50px',
-                    clipPath: 'path("M 0 0 L 0 830 C 1000 500 1400 900 2000 700 L 2000 0 L 0 0")',
-                }}
-            >
-                {/* Circular Image */}
 
-
-                {/* Main Content */}
+                {/* Box with dynamic clip-path */}
                 <Box
                     sx={{
-                        position: 'absolute',
-                        zIndex: 2,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        ml: 35,
-                        mt:25,
-                        color: '#fff',
+                        position: 'relative',
+                        height: '50vw',
+                        width: '100%',
+                        backgroundImage: `url(${background})`,
+                        backgroundRepeat: 'no-repeat',
+                        backgroundSize: '100%',
+
+                        clipPath: clipPath, // استفاده از clipPath دینامیک
                     }}
                 >
-                    <Typography
-                        variant="h3"
+
+
+
+
+                    <Box
                         sx={{
-                            mb: 1,
-                            ml: -0.5,
-                            lineHeight: '1.5',
+                            position: 'absolute',
+                            zIndex: 1,
+                            ml: '15vw',
+                            mt: '14vw',
+                            maxWidth:'26.04vw',
                         }}
                     >
+                        <Typography
+                            sx={{
+                                mb: '0.4vw',
+                                ml: '-0.2vw',
+                                lineHeight: '1.5',
+                                ...theme.typography.h3,
+                            }}
+                        >
                         Watch
                     </Typography>
-                    <Typography
-                        variant="h6"
-                        sx={{
-                            mb: 0,
-                            maxWidth: '510px',
-                        }}
-                    >
+                        <Typography
+                            variant="h6"
+                            sx={{
+                                ...theme.typography.h6,
+                            }}
+                        >
                         Equipped with the latest generation of non-invasive sensors with medically certified precision.<br/>And it looks great!
-                    </Typography>
+                        </Typography>
 
-                    <Box sx={{ display: 'flex', gap: '15px', marginTop: '30px' }}>
-                        <Button
-                            variant="outlined"
-                            component={Link}
-                            to="/signup"
-                            sx={{
-                                display: { xs: 'none', md: 'flex' },
-                                borderRadius: '5px',
-                                borderColor: 'white',
-                                color: 'white',
-                                width: 'calc(8.5vw + 7px)',
-                                height: 'calc(2.4vw + 5px)',
-                                fontSize: 'calc(1vw + 1px)',
-                                textTransform: 'none',
-                                '&:hover': {},
-                            }}
-                            disableRipple
-                        >
-                            Chat with us
-                        </Button>
+                        <Box sx={{ display: 'flex', gap: '0.78vw', marginTop: '1.56vw',}}>
+                            <Button
+                                variant="outlined"
+                                component={Link}
+                                to="/signup"
+                                sx={{
+                                    padding:0,
+                                    minWidth:0,
+                                    display: 'flex',
+                                    borderRadius: '0.21vw',
+                                    width: '6.82vw',
+                                    height: '2.08vw',
+                                    ...theme.typography.button,
+                                    borderColor: 'white',
+                                    color: 'white',
+                                    textTransform: 'none',
+                                    '&:hover': {},
+                                }}
+                                disableRipple
+                            >
+                                Chat with us
+                            </Button>
 
-                        <Button
-                            variant="contained"
-                            component={Link}
-                            to="/signup"
-                            sx={{
-                                display: { xs: 'none', md: 'flex' },
-                                borderRadius: '4px',
-                                backgroundColor: '#B50304',
-                                width: 'calc(8.5vw + 7px)',
-                                height: 'calc(2.4vw + 5px)',
-                                fontSize: 'calc(1vw + 1px)',
-                                textTransform: 'none',
-                                '&:hover': {
+                            <Button
+                                variant="contained"
+                                component={Link}
+                                to="/signup"
+                                sx={{
+                                    padding:0,
+                                    minWidth:0,
+                                    display: 'flex',
+                                    borderRadius: '0.21vw',
+                                    width: '6.82vw',
+                                    height: '2.08vw',
+                                    ...theme.typography.button,
+
                                     backgroundColor: '#B50304',
-                                },
-                            }}
-                            disableRipple
-                        >
-                            Buy
-                        </Button>
+                                    textTransform: 'none',
+                                    '&:hover': {
+                                        backgroundColor: '#B50304',
+                                    },
+                                }}
+                                disableRipple
+                            >
+                                Buy
+                            </Button>
+                        </Box>
                     </Box>
 
-                    <Typography variant="h3" sx={{ marginTop: 15 }}>
-                        1.5M
-                    </Typography>
-                    <Typography variant="h6" sx={{ fontSize: '20px', mt: 1 }}>
-                        Users already got the app
-                    </Typography>
-                </Box>
+                    {/* Phone Screenshot */}
+                    <Box
+                        component="img"
+                        src={watch}
+                        alt="Phone app screenshot"
+                        sx={{
+                            position: 'absolute',
+                            right: '6vw', // تغییر به vw
+                            top: '12vw', // تغییر به vw
+                            maxWidth: '26vw', // تغییر به vw
+                            height: 'auto',
+                            zIndex: 1, // لایه پایین‌تر از همه
+                            transition: 'transform 0.3s ease-in-out',
+                            '&:hover': {
+                                transform: 'scale(1.05)',
+                            },
+                        }}
+                    />
 
-                {/* Phone Screenshot */}
-                <Box
-                    component="img"
-                    src={watch}
-                    alt="Phone app screenshot"
-                    sx={{
-                        position: 'absolute',
-                        right: '-1%',
-                        bottom: '17%',
-                        maxWidth: '45%',
-                        height: 'auto',
-                        zIndex: 1,
-                        transition: 'transform 0.3s ease-in-out',
-                        '&:hover': {
-                            transform: 'scale(1.05)',
-                        },
-                    }}
-                />
-            </Box>
+                </Box>
             </Box>
         </ThemeProvider>
     );

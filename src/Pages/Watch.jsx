@@ -1,45 +1,26 @@
 import React from 'react';
-import {Box, createTheme} from '@mui/material';
-import DownloadBox from '../components/Watch/DBtest.jsx';
+import {Box,} from '@mui/material';
+import DownloadBox from '../components/Watch/DownloadBox.jsx';
 import HowBox from '../components/Watch/HowBox.jsx';
 import OverviewBox from '../components/Watch/OverviewBox.jsx';
 import FeaturesBox from '../components/Watch/FeaturesBox.jsx';
+import CertificateBox from "../components/Watch/Certification.jsx";
 
-const theme = createTheme({
-    typography: {
-        fontFamily: 'Sen, Arial, sans-serif',
-        h6: {
-            fontSize: '18px',
-            fontWeight: 400,
-            lineHeight: '24px',
-            color: "#F1F1F1",
-        },
-        h3: {
-            fontFamily: 'Lato',
-            fontWeight: 700,
-            fontSize: '24px',
-            lineHeight: '28px',
-            color: "#FFFFFF",
-        },
-    },
-});
 
-function Moblie() {
+function Watch() {
     return (
         <Box
             sx={{
                 display: 'flex',
                 flexDirection: 'column',
                 width: '100%',
-                minHeight: '100vh',
+                minHeight: '100vw',
             }}
         >
             <Box
                 sx={{
                     width: '100%',
-                    minHeight: { xs: '500px', md: '850px' },
-                    display: 'flex',
-                    justifyContent: 'center',
+                    minHeight: '40vw',
                 }}
             >
                 <DownloadBox />
@@ -48,7 +29,7 @@ function Moblie() {
             <Box
                 sx={{
                     width: '100%',
-                    minHeight: { xs: '500px', md: '750px' },
+                    minHeight: '50vw',
                     display: 'flex',
                     justifyContent: 'center',
                 }}
@@ -59,12 +40,21 @@ function Moblie() {
             <Box
                 sx={{
                     width: '100%',
-                    minHeight: { xs: '500px', md: '750px' },
+                    minHeight: '50vw',
                     display: 'flex',
                     justifyContent: 'center',
                 }}
             >
                 <FeaturesBox />
+            </Box>
+
+            <Box
+                sx={{
+                    width: '100%',
+                    minHeight: '40vw',
+                }}
+            >
+                <CertificateBox/>
             </Box>
 
             <Box
@@ -83,4 +73,4 @@ function Moblie() {
     );
 };
 
-export default Moblie;
+export default Watch;

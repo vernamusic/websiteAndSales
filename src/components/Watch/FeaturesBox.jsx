@@ -8,21 +8,35 @@ import Sleep from '../../assets/watch/Sleep.png';
 import FinancialGrowthAnalysis from '../../assets/watch/FinancialGrowthAnalysis.png';
 import WatchImage from '../../assets/watch.png';
 
-const theme = createTheme({
+const themes = createTheme({
     typography: {
-        h6: {
-            fontFamily:'sen',
-            fontSize: { xs: '6px', sm: '10px', md: '14px', lg: '16px', xl: '20px' },
-            fontWeight: 400,
-            letterSpacing: '0.4px',
+        h1: {
+            fontFamily:'Lato',
+            fontSize: '1.39vw',
+            fontWeight: 600,
             color: "#F1F1F1",
         },
         h3: {
+            fontFamily: 'sen',
+            fontWeight: 400,
+            fontSize: '1.25vw',
+            color: "rgba(241, 241, 241, 1)",
+        },
+        h6: {
             fontFamily: 'Lato',
-            fontWeight: 700,
-            fontSize: { xs: '12px', sm: '15px', md: '22px', lg: '26px', xl: '30px' },
+            fontWeight: 600,
+            lineHeight:'1.4vw',
+            fontSize: '1.15vw',
             color: "#FFFFFF",
         },
+        caption: {
+            fontFamily: 'sen',
+            fontWeight: 400,
+            lineHeight:'1.20vw',
+            fontSize: '0.95vw',
+            color: "rgba(241, 241, 241, 1)",
+        },
+
     },
 });
 
@@ -37,34 +51,49 @@ const featureData = [
 
 const FeaturesGrid = () => {
     return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={themes}>
             <Box>
-                <Box sx={{mt:'44px',mb:'44px', textAlign: 'center'}}>
-                    <Typography sx={{...theme.typography.h3,}}>
-
+                <Box
+                    display="flex"
+                    flexDirection="column"
+                    justifyContent="center"
+                    alignItems="center"
+                    textAlign="center"
+                >
+                    <Typography
+                        sx={{
+                            ...themes.typography.h1,
+                            mb: '1vw',
+                            lineHeight: '1.5',
+                            width: '600',
+                        }}
+                    >
                         ADVANCE FEATURES
                     </Typography>
-                    <Typography sx={{mt:{ xs: '12px', sm: '15px', md: '22px', lg: '26px', xl: '30px' },
-                        ...theme.typography.h6,
-                    }}
+                    <Typography
+                        sx={{
+                            ...themes.typography.h3,
+                            mb: '6vw',
+                        }}
                     >
                         Integrate advanced features to improve user experience
                     </Typography>
                 </Box>
 
                 <Box
+                    mt='2.8vw'
                     display="flex"
                     flexWrap="wrap"
                     justifyContent="center"
                     alignItems="center"
-                    mb={10}
-                    gap={6}
+                    gap='3vw'
+
                 >
                     <Box
                         display="flex"
                         flexDirection="column"
-                        gap={1}
-                        flex={1}
+                        maxWidth='22vw'
+                        gap='3.8vw'
                     >
                         {featureData.slice(0, 3).map((feature, index) => (
                             <Box
@@ -72,27 +101,14 @@ const FeaturesGrid = () => {
                                 position="relative"
                                 display="flex"
                                 flexDirection="row"
-                                py={3}
                             >
                                 <Box
                                     sx={{
-                                        width: {
-                                            xl: '80px',
-                                            lg: '60px',
-                                            md: '50px',
-                                            sm: '40px',
-                                            xs: '30px'
-                                        },
-                                        height: {
-                                            xl: '80px',
-                                            lg: '60px',
-                                            md: '50px',
-                                            sm: '40px',
-                                            xs: '30px'
-                                        },
+                                        width: '4vw',
+                                        height: '4vw',
                                         backgroundColor: '#B50304',
                                         position:'absolute',
-                                        top:{xl:'10%',md:'13%'},
+                                        top:'0vw',
                                         clipPath: 'circle(45%)',
                                         display: 'flex',
                                         justifyContent: 'center',
@@ -104,28 +120,22 @@ const FeaturesGrid = () => {
                                         src={feature.icon}
                                         alt={feature.title}
                                         sx={{
-                                            width: {
-                                                xl: '45px',
-                                                lg: '32px',
-                                                md: '26px',
-                                                sm: '17px',
-                                                xs: '13px'
-                                            }
+                                            width: '2vw',
                                         }}
                                     />
                                 </Box>
                                 <Box
-                                    sx={{width: { xs: '140px', sm: '180px', md: '320px', lg: '380px',xl:'400px' },ml:{xl:13,lg:10,md:8},}}
+                                    sx={{pl:'5.5vw',}}
                                 >
                                     <Typography
-                                        sx={{...theme.typography.h3,}}
+                                        sx={{...themes.typography.h6,}}
                                     >
                                         {feature.title}
                                     </Typography>
 
                                     <Typography
-                                        pt={1.5}
-                                        sx={{...theme.typography.h6,}}
+                                        pt='0.5vw'
+                                        sx={{...themes.typography.caption,}}
                                     >
                                         {feature.description}
                                     </Typography>
@@ -138,16 +148,16 @@ const FeaturesGrid = () => {
                         component="img"
                         src={WatchImage}
                         sx={{
-                            width: { xs: '140px', sm: '180px', md: '250px', lg: '350px',xl:'400px' },
+                            width: '18vw',
                             height: 'auto',
-                            borderRadius: '8px',
+                            objectFit: 'cover',
                         }}
                     />
                     <Box
                         display="flex"
                         flexDirection="column"
-                        gap={1}
-                        flex={1}
+                        maxWidth='21vw'
+                        gap='3.8vw'
                     >
                         {featureData.slice(3, 6).map((feature, index) => (
                             <Box
@@ -155,31 +165,19 @@ const FeaturesGrid = () => {
                                 position="relative"
                                 display="flex"
                                 flexDirection="row"
-                                py={4}
                             >
                                 <Box
                                     sx={{
-                                        width: {
-                                            xl: '80px',
-                                            lg: '60px',
-                                            md: '50px',
-                                            sm: '40px',
-                                            xs: '30px'
-                                        },
-                                        height: {
-                                            xl: '80px',
-                                            lg: '60px',
-                                            md: '50px',
-                                            sm: '40px',
-                                            xs: '30px'
-                                        },
+                                        width: '4vw',
+                                        height: '4vw',
                                         backgroundColor: '#B50304',
                                         position:'absolute',
-                                        top:{xl:'10%',md:'13%'},
+                                        top:'0vw',
                                         clipPath: 'circle(45%)',
                                         display: 'flex',
                                         justifyContent: 'center',
                                         alignItems: 'center',
+
                                     }}
                                 >
                                     <Box
@@ -187,28 +185,22 @@ const FeaturesGrid = () => {
                                         src={feature.icon}
                                         alt={feature.title}
                                         sx={{
-                                            width: {
-                                                xl: '45px',
-                                                lg: '32px',
-                                                md: '26px',
-                                                sm: '17px',
-                                                xs: '13px'
-                                            }
+                                            width: '2vw',
                                         }}
                                     />
                                 </Box>
                                 <Box
-                                    sx={{width: { xs: '140px', sm: '180px', md: '320px', lg: '380px',xl:'400px' },ml:{xl:13,lg:10,md:8},}}
+                                    sx={{pl:'5.5vw',}}
                                 >
                                     <Typography
-                                        sx={{...theme.typography.h3,}}
+                                        sx={{...themes.typography.h6,}}
                                     >
                                         {feature.title}
                                     </Typography>
 
                                     <Typography
-                                        pt={1.5}
-                                        sx={{...theme.typography.h6,}}
+                                        pt='0.5vw'
+                                        sx={{...themes.typography.caption,}}
                                     >
                                         {feature.description}
                                     </Typography>

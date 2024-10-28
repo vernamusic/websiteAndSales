@@ -1,14 +1,14 @@
 import React from 'react';
 import { Box, Typography, createTheme, ThemeProvider } from '@mui/material';
 import phoneImage from '../../assets/iphonescreen2.png';
-import Responsive from '../../assets/mobileapp/Location.png';
+import Responsive from '../../assets/Location.png';
 import Support from '../../assets/mobileapp/OnlineSupport.png';
 import AvailableUpdates from '../../assets/mobileapp/Treatment.png';
 import Relax from '../../assets/mobileapp/AI Chatting.png';
 import Clock from '../../assets/mobileapp/Pulse.png';
 import SecurityShield from '../../assets/mobileapp/Heart with Pulse.png';
 
-const theme = createTheme({
+const themes = createTheme({
     typography: {
         h1: {
             fontFamily:'Lato',
@@ -25,13 +25,15 @@ const theme = createTheme({
         h6: {
             fontFamily: 'Lato',
             fontWeight: 600,
-            fontSize: '1.25vw',
+            lineHeight:'1.4vw',
+            fontSize: '1.15vw',
             color: "#FFFFFF",
         },
-        h9: {
+        caption: {
             fontFamily: 'sen',
             fontWeight: 400,
-            fontSize: '1.0vw',
+            lineHeight:'1.20vw',
+            fontSize: '0.95vw',
             color: "rgba(241, 241, 241, 1)",
         },
 
@@ -49,7 +51,7 @@ const featureData = [
 
 const FeaturesGrid = () => {
     return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={themes}>
             <Box>
                 <Box
                     display="flex"
@@ -60,7 +62,7 @@ const FeaturesGrid = () => {
                 >
                     <Typography
                         sx={{
-                            ...theme.typography.h1,
+                            ...themes.typography.h1,
                             mb: '1vw',
                             lineHeight: '1.5',
                             width: '600',
@@ -70,7 +72,7 @@ const FeaturesGrid = () => {
                     </Typography>
                     <Typography
                         sx={{
-                            ...theme.typography.h3,
+                            ...themes.typography.h3,
                             mb: '6vw',
                         }}
                     >
@@ -125,14 +127,14 @@ const FeaturesGrid = () => {
                                 sx={{pl:'5.5vw',}}
                             >
                                 <Typography
-                                    sx={{...theme.typography.h6,}}
+                                    sx={{...themes.typography.h6,}}
                                 >
                                     {feature.title}
                                 </Typography>
 
                                 <Typography
                                     pt='0.5vw'
-                                    sx={{...theme.typography.h9,}}
+                                    sx={{...themes.typography.caption,}}
                                 >
                                     {feature.description}
                                 </Typography>
@@ -190,14 +192,14 @@ const FeaturesGrid = () => {
                                 sx={{pl:'5.5vw',}}
                             >
                                 <Typography
-                                    sx={{...theme.typography.h6,}}
+                                    sx={{...themes.typography.h6,}}
                                 >
                                     {feature.title}
                                 </Typography>
 
                                 <Typography
                                     pt='0.5vw'
-                                    sx={{...theme.typography.h9,}}
+                                    sx={{...themes.typography.caption,}}
                                 >
                                     {feature.description}
                                 </Typography>
