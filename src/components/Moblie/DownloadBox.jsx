@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Box, Typography, Button, createTheme } from '@mui/material';
 import background from '../../assets/Artboard 1.png';
 import iphonescreen from '../../assets/iphonescreen.png';
-import miniphone from '../../assets/miniphone.png';
+import mini from '../../assets/miniphone.png';
 import { ThemeProvider } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 
@@ -57,7 +57,7 @@ const Home = () => {
             <Box sx={{ position: 'relative', width: '100%' }}>
                 <Box
                     component="img"
-                    src={miniphone}
+                    src={mini}
                     alt="Circular Image"
                     sx={{
                         position: 'absolute',
