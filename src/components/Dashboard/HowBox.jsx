@@ -13,6 +13,7 @@ const theme = createTheme({
         h6: {
             fontFamily: 'Lato',
             fontSize:'1.23vw',
+            fontWeight: 600,
             color: "#F1F1F1",
             letterSpacing: '0.4px',
             lineHeight: 'normal',
@@ -24,9 +25,10 @@ const theme = createTheme({
             color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
-        h9: {
+        caption: {
             fontFamily: 'Lato',
             fontSize:'0.98vw',
+            lineHeight:'1.35',
             textTransform: 'none',
             color: 'rgba(255, 255, 255, 1)',
 
@@ -141,19 +143,19 @@ const HowBox = () => {
                                     justifyItems: 'center',
                                     alignItems: 'center',
                                     mt:'3.8vw',
-                                    gap: '0.7vw',
+                                    gap: '0.5vw',
                                     textAlign: 'center',
                                     width:'100%'
                                 }}
                             >
                                 <Typography
-                                    sx={{...theme.typography.h6,width:'14vw'}}
+                                    sx={{...theme.typography.h6,width:'15vw'}}
                                     gutterBottom
                                 >
                                     {box.title}
                                 </Typography>
                                 <Typography
-                                    sx={{...theme.typography.h9,width:'12vw'}}
+                                    sx={{...theme.typography.caption,width:'12vw'}}
                                 >
                                     {box.description}
                                 </Typography>

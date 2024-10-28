@@ -171,8 +171,8 @@ const Home = () => {
                         sx={{
                             position: 'absolute',
                             right: '2.5vw', // تغییر به vw
-                            top: '16vw', // تغییر به vw
-                            maxWidth: '38vw', // تغییر به vw
+                            top: '15.6vw', // تغییر به vw
+                            maxWidth: '40vw', // تغییر به vw
                             height: 'auto',
                             zIndex: 1, // لایه پایین‌تر از همه
                             transition: 'transform 0.3s ease-in-out',
