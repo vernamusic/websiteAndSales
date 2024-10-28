@@ -12,7 +12,7 @@ import Company from './Pages/Company';
 import Partnership from './Pages/Partnership';
 import NewsMore from './components/News/NewsMore';
 import Profile from './Pages/Profile';
-
+import Test from './components/SignUp/Login.jsx'
 const AppRoutes = () => {
     return (
         <Routes>
@@ -28,6 +28,7 @@ const AppRoutes = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/news/:slug" element={<NewsMore />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/Test" element={<Test />} />
         </Routes>
     );
 }

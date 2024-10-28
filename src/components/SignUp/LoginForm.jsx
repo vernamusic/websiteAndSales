@@ -6,14 +6,12 @@ import {
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import PropTypes from 'prop-types';
 import { createTheme } from '@mui/material/styles';
-
 const theme = createTheme({
     typography: {
-        // می‌توانید تنظیمات تایپوگرافی را اینجا قرار دهید
     },
 });
 
-const AuthForm = ({ onForgotPassword, onLoginSuccess }) => {
+const AuthForm = ({ onForgotPassword, onLoginSuccess, onSendResetLink}) => {
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -44,7 +42,6 @@ const AuthForm = ({ onForgotPassword, onLoginSuccess }) => {
         }
 
         try {
-            // ابتدا تلاش برای ورود به سیستم
             const loginResponse = await fetch('https://site.vitruvianshield.com/api/v1/token/', {
                 method: 'POST',
                 headers: {
@@ -56,12 +53,16 @@ const AuthForm = ({ onForgotPassword, onLoginSuccess }) => {
             const loginData = await loginResponse.json();
 
             if (loginResponse.status === 200) {
-                // ورود موفقیت‌آمیز
-                localStorage.setItem('authToken', loginData.token);
+                localStorage.setItem('authToken', loginData.access);
+                localStorage.setItem('refreshToken', loginData.refresh);
                 onLoginSuccess();
                 showSnackbar('Login successful!', 'success');
-            } else if (loginResponse.status === 401) {
-                // اگر وضعیت 400 بود، ثبت‌نام انجام شود
+            }
+            else if (loginResponse.status === 202) {
+                showSnackbar('User not verified.', 'error');
+                onSendResetLink(email);
+            }
+            else if (loginResponse.status === 401) {
                 showSnackbar('User not found. Registering...', 'info');
 
                 const registerResponse = await fetch('https://site.vitruvianshield.com/api/v1/register/', {
@@ -75,9 +76,8 @@ const AuthForm = ({ onForgotPassword, onLoginSuccess }) => {
                 const registerData = await registerResponse.json();
 
                 if (registerResponse.status === 201) {
-                    // ثبت‌نام موفقیت‌آمیز
-                    localStorage.setItem('authToken', registerData.token);
-                    onLoginSuccess();
+
+                    onSendResetLink(email);
                     showSnackbar('Registration successful!', 'success');
                 } else {
                     showSnackbar(registerData.message || 'Registration failed. Please try again.', 'error');

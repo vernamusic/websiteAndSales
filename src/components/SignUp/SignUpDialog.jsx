@@ -6,39 +6,56 @@ import ForgotPasswordDialog from './ForgetPassword.jsx';
 import VerificationEmailDialog from './Verification.jsx';
 
 const MainDialog = ({ open, onClose }) => {
-    const [dialogMode, setDialogMode] = useState('login'); // تغییر به 'login' به‌عنوان حالت پیش‌فرض
-    const [email, setEmail] = useState(''); // ذخیره ایمیل برای استفاده در تایید
+    const [dialogMode, setDialogMode] = useState('login');
+    const [email, setEmail] = useState('');
 
-    // تابعی برای نمایش دیالوگ فراموشی رمز عبور
+
     const handleForgotPassword = () => setDialogMode('forgotPassword');
 
-    // تابعی برای بازگشت به صفحه ورود
+
     const handleBackToLogin = () => setDialogMode('login');
 
-    // تابعی برای نمایش دیالوگ تایید ایمیل
+
     const handleVerificationEmail = (email) => {
-        setEmail(email); // ذخیره ایمیل برای استفاده در تایید
+        setEmail(email);
+        handleResendVerificationEmail(email);
         setDialogMode('verificationEmail');
     };
 
-    // تابعی برای ارسال دوباره لینک تایید ایمیل
+
     const handleResendVerificationEmail = () => {
-        console.log('Resend verification email');
+        fetch('https://site.vitruvianshield.com/api/v1/request-verification-code/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email })
+        })
+            .then(response => {
+                if (!response.ok) throw new Error('Failed to resend verification email');
+                return response.json();
+            })
+            .then(data => {
+                console.log('Verification email resent:', data.message);
+            })
+            .catch(error => {
+                console.error('Error resending verification email:', error);
+            });
     };
 
-    // تابعی برای موفقیت در ورود
+
     const handleLoginSuccess = () => {
-        // توکن را از Local Storage یا هر روش ذخیره‌سازی دیگری استفاده کنید
         console.log('User logged in successfully');
-        // به عنوان مثال، می‌توانید کاربر را به صفحه اصلی هدایت کنید
-        window.location.href = '/home'; // یا مدیریت وضعیت ورود در اینجا
+        //window.location.href = '/';
     };
 
-    // تابعی برای ارسال لینک بازنشانی رمز عبور و نمایش تایید ایمیل
+
     const handleSendResetLink = (email) => {
-        setEmail(email); // ذخیره ایمیل برای استفاده در تایید
+        setEmail(email);
         setDialogMode('verificationEmail');
     };
+
+
 
     const renderDialogContent = () => {
         switch (dialogMode) {
@@ -50,19 +67,23 @@ const MainDialog = ({ open, onClose }) => {
                     />
                 );
             case 'verificationEmail':
+
                 return (
                     <VerificationEmailDialog
-                        email={email} // ارسال ایمیل به دیالوگ تایید
+                        email={email}
                         onResend={handleResendVerificationEmail}
                         onBack={handleBackToLogin}
+                        onSubmit={handleBackToLogin}
                     />
                 );
             case 'login':
             default:
                 return (
                     <LoginDialog
+                        email={email}
                         onForgotPassword={handleForgotPassword}
                         onLoginSuccess={handleLoginSuccess}
+                        onSendResetLink={handleVerificationEmail}
                     />
                 );
         }
