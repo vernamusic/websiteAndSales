@@ -7,7 +7,7 @@ import google from '../../assets/Google.png';
 import apple from '../../assets/Apple.png';
 import LoginForm from './LoginForm';
 
-const LoginDialog = ({ onForgotPassword, onClose, onLoginSuccess }) => {
+const LoginDialog = ({ onForgotPassword, onClose, onLoginSuccess, onSendResetLink,email }) => {
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [snackbarSeverity, setSnackbarSeverity] = useState('error');
@@ -22,7 +22,7 @@ const LoginDialog = ({ onForgotPassword, onClose, onLoginSuccess }) => {
                     <Typography variant="h5" style={{ marginBottom: 10 }}>Get Started</Typography>
                     <Typography variant="h6" style={{ marginBottom: 10, color: '#9f9b9b' }}>Welcome to Vitruvian Shield</Typography>
                 </Box>
-                <LoginForm onForgotPassword={onForgotPassword} onLoginSuccess={onLoginSuccess} />
+                <LoginForm onForgotPassword={onForgotPassword} onLoginSuccess={onLoginSuccess} onSendResetLink={onSendResetLink} />
 
                 <Box display="flex" alignItems="center" width="100%" maxWidth="380px" mb={2}>
                     <Box flexGrow={1} height="1px" bgcolor="#9f9b9b" />
