@@ -9,6 +9,9 @@ import {
   AccordionSummary,
   AccordionDetails,
 } from '@mui/material';
+import { Facebook, LinkedIn, YouTube } from '@mui/icons-material';
+import FacebookCircled from '../assets/Facebook.png'
+import LinkedInCircled from '../assets/LinkedInCircled.png'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import pci from '../assets/pci.png';
 import biopole from '../assets/biopole.png';
@@ -243,41 +246,41 @@ const Footer = () => (
         </Accordion>
 
         <Box sx={{ borderBottom: '1px solid #D9D9D912'}} />
+        <Box sx={{ width: '100vw', backgroundColor: '#080808', display: 'flex', flexDirection: 'column' }}>
+  {/* ... Existing accordions ... */}
 
-        {/* Video Section Accordion */}
-        <Accordion sx={{ backgroundColor: '#080808' }}>
-          <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel4a-content" id="panel4a-header">
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <ExpandMoreIcon sx={{ color: 'white' }} /> {/* Left arrow in white */}
-              <Typography variant="h3" sx={{ color: 'white' }}>Our YouTube</Typography> {/* Text in white */}
-            </Box>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              {videoIds.map((id, index) => (
-                <Box sx={{ position: 'relative', width: '100%', paddingTop: '56.25%' }}> {/* نسبت 16:9 */}
-                <iframe
-                  key={index}
-                  title={`YouTube Video ${index + 1}`}
-                  src={`https://www.youtube.com/embed/${id}`}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    borderRadius: '8px',
-                    overflow: 'hidden',
-                  }}
-                />
-              </Box>
-              ))}
-            </Box>
-          </AccordionDetails>
-        </Accordion>
+        {/* Social Media Icons */}
+        <Box sx={{ display: 'flex', justifyContent: 'center', gap: '1rem', mt: 2 }}>
+        <img
+          src={FacebookCircled}
+          alt="Facebook"
+          style={{
+            width: '40px',
+            height: '40px',
+            opacity: 0.9,
+          }}
+        />
+        <img
+          src={LinkedInCircled}
+          alt="Facebook"
+          style={{
+            width: '40px',
+            height: '40px',
+            opacity: 0.9,
+          }}
+        />
+
+
+          
+          <Box sx={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: 'white',opacity: 0.9, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <YouTube sx={{ color: 'black' }} />
+          </Box>
+        </Box>
+      </Box>
+
+        
+
+
       </Box>
     </Box>
   </ThemeProvider>

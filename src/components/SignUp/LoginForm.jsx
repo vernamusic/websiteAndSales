@@ -99,6 +99,7 @@ const AuthForm = ({ onForgotPassword, onLoginSuccess }) => {
                     <InputLabel
                         htmlFor="email-input"
                         sx={{
+                            
                             ...theme.typography.text06,
                             color: '#000000',
                             '&.MuiInputLabel-shrink': {
@@ -199,7 +200,7 @@ const AuthForm = ({ onForgotPassword, onLoginSuccess }) => {
                         },
                     }}
                 >
-                    Log in / Sign Up
+                    Get started
                 </Button>
             </form>
 

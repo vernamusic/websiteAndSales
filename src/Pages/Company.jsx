@@ -3,7 +3,6 @@ import { Box } from '@mui/material';
 import CompanyBox from '../components/company/CompanyBox.jsx'
 import CertificationBox from '../components/company/CertificationBox.jsx'
 import PartnerBox from '../components/company/PartnerBox.jsx'
-import VideoBox from '../components/company/VideoBox.jsx'
 import PricingBox from '../components/company/PricingBox.jsx'
 
 const Company = () =>{
