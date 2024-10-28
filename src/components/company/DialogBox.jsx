@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import {
   Button,
   Checkbox,
@@ -78,7 +79,23 @@ const theme = createTheme({
 
 const FeaturesDialog = () => {
   const [open, setOpen] = useState(false);
+  const [features, setFeatures] = useState([]);
   const [selectedFeatures, setSelectedFeatures] = useState(["Geo tracking"]);
+
+  useEffect(() => {
+    // Assume features are already predefined in component or add initial setup here
+    setFeatures([
+      "Select all",
+      "Geo tracking",
+      "Remote patient monitoring",
+      "Staff management",
+      "Electronic document management",
+      "Feedback",
+      "Adverse event reporting",
+      "Video consultation",
+      "Site management",
+    ]);
+  }, []);
 
   const handleFeatureToggle = (feature) => {
     setSelectedFeatures((prev) =>
@@ -92,21 +109,28 @@ const FeaturesDialog = () => {
     );
   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const handleSubmit = () => {
+    const payload = {
+      geo_tracking: selectedFeatures.includes("Geo tracking"),
+      remote_patient_monitoring: selectedFeatures.includes("Remote patient monitoring"),
+      staff_management: selectedFeatures.includes("Staff management"),
+      electronic_document_management: selectedFeatures.includes("Electronic document management"),
+      feedback: selectedFeatures.includes("Feedback"),
+      adverse_event_reporting: selectedFeatures.includes("Adverse event reporting"),
+      video_consultation: selectedFeatures.includes("Video consultation"),
+      site_management: selectedFeatures.includes("Site management"),
+    };
 
-  const features = [
-    "Select all",
-    "Geo tracking",
-    "Remote patient monitoring",
-    "Staff management",
-    "Electronic document management",
-    "Feedback",
-    "Adverse event reporting",
-    "Video consultation",
-    "Site management",
-  ];
+    axios
+      .post('https://site.vitruvianshield.com/api/v1/feature-req', payload)
+      .then((response) => {
+        console.log("Features submitted successfully:", response.data);
+        setOpen(false); // Close dialog on success
+      })
+      .catch((error) => {
+        console.error("Error submitting features:", error);
+      });
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -121,12 +145,12 @@ const FeaturesDialog = () => {
         Buy
       </Button>
 
-      <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
+      <Dialog open={open} onClose={() => setOpen(false)} maxWidth="sm" fullWidth>
         <DialogContent dividers sx={{ backgroundColor: theme.palette.background.paper }}>
           <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
             <IconButton
               aria-label="close"
-              onClick={handleClose}
+              onClick={() => setOpen(false)}
               sx={{
                 color: '#FFFFFF',
               }}
@@ -148,23 +172,23 @@ const FeaturesDialog = () => {
                 <FormControlLabel
                   control={
                     <Checkbox
-                    checked={
+                      checked={
                         feature === "Select all"
-                        ? selectedFeatures.length === features.length - 1
-                        : selectedFeatures.includes(feature)
-                    }
-                    onChange={() =>
+                          ? selectedFeatures.length === features.length - 1
+                          : selectedFeatures.includes(feature)
+                      }
+                      onChange={() =>
                         feature === "Select all" ? handleSelectAll() : handleFeatureToggle(feature)
-                    }
-                    sx={{
+                      }
+                      sx={{
                         color: theme.palette.text.secondary,
                         '&.Mui-checked': {
-                        color: theme.palette.primary.main,
+                          color: theme.palette.primary.main,
                         },
                         '&:hover': {
-                        backgroundColor: 'transparent', // Removes the hover background
+                          backgroundColor: 'transparent', // Removes the hover background
                         },
-                    }}
+                      }}
                     />
                   }
                   label={feature}
@@ -185,21 +209,20 @@ const FeaturesDialog = () => {
         </DialogContent>
 
         <DialogActions sx={{ justifyContent: 'center' }}>
-        <Button 
-        onClick={handleClose} 
-        variant="contained" 
-        color="primary"
-        sx={{
-            width: '90%', // Fixed width
-            minHeight: '50.82px', // Fixed height
-            textTransform: 'none', // Prevents uppercase
-            gap: '8px',
-            mb : 4,
-        }}
-        >
-        Submit
-        </Button>
-
+          <Button 
+            onClick={handleSubmit} 
+            variant="contained" 
+            color="primary"
+            sx={{
+              width: '90%', // Fixed width
+              minHeight: '50.82px', // Fixed height
+              textTransform: 'none', // Prevents uppercase
+              gap: '8px',
+              mb: 4,
+            }}
+          >
+            Submit
+          </Button>
         </DialogActions>
       </Dialog>
     </ThemeProvider>
