@@ -11,32 +11,24 @@ import {
   Box,
   ThemeProvider,
   createTheme,
+  useMediaQuery,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
-// Create a custom theme
 const theme = createTheme({
   palette: {
-    primary: {
-      main: '#B50304', // Primary color for buttons
-    },
-    background: {
-      default: '#fff',
-      paper: '#262626', // Background color for paper components
-    },
-    text: {
-      primary: '#fff', // Primary text color
-      secondary: '#fff', // Secondary text color
-    },
+    primary: { main: '#B50304' },
+    background: { default: '#fff', paper: '#262626' },
+    text: { primary: '#fff', secondary: '#fff' },
   },
   typography: {
     fontFamily: 'Lato, sans-serif',
     button: {
-      textTransform: 'none', // Prevent uppercase transformation for buttons
-      fontSize: '16px', // Updated font size
-      fontWeight: 600, // Updated font weight
-      lineHeight: '16px', // Updated line height
-      textAlign: 'center', // Center text
+      textTransform: 'none',
+      fontSize: '16px',
+      fontWeight: 600,
+      lineHeight: '16px',
+      textAlign: 'center',
     },
     subtitle2: {
       fontFamily: 'Sen',
@@ -44,21 +36,22 @@ const theme = createTheme({
       fontWeight: 400,
       lineHeight: '19.25px',
       textAlign: 'center',
-      color: '#FFFFFFA6', // Color for subtitle2
+      color: '#FFFFFFA6',
     },
     leaveMessage: {
       fontFamily: 'Lato',
-      fontSize: '23px', // Adjust as needed
-      fontWeight: 600, // Adjust as needed
-      lineHeight: '23px', // Adjust as needed
+      fontSize: '23px',
+      fontWeight: 600,
+      lineHeight: '23px',
       textAlign: 'center',
-      color: '#FFFFFF', // Color for the message text
+      color: '#FFFFFF',
     },
   },
 });
 
 const ContactFormDialog = ({ open, onClose }) => {
-  // State for form fields
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
@@ -69,40 +62,23 @@ const ContactFormDialog = ({ open, onClose }) => {
     type: null,
   });
 
-  // Handle input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const response = await fetch('https://site.vitruvianshield.com/api/v1/contact-req', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-
       if (response.ok) {
-        // Reset form after successful submission
-        setFormData({
-          first_name: '',
-          last_name: '',
-          email: '',
-          phone_number: null,
-          subject: '',
-          message: '',
-          type: null,
-        });
-        onClose(); // Close the dialog
-        // Optionally handle success message here
+        setFormData({ first_name: '', last_name: '', email: '', phone_number: null, subject: '', message: '', type: null });
+        onClose();
       } else {
-        // Handle errors
         console.error('Error submitting the form:', response.statusText);
       }
     } catch (error) {
@@ -111,24 +87,24 @@ const ContactFormDialog = ({ open, onClose }) => {
   };
 
   return (
-    <ThemeProvider theme={theme}> {/* Wrap with ThemeProvider */}
-      <Dialog 
-        open={open} 
-        onClose={onClose} 
-        maxWidth="xs" 
-        fullWidth 
+    <ThemeProvider theme={theme}>
+      <Dialog
+        open={open}
+        onClose={onClose}
+        maxWidth="xs"
+        fullWidth
         PaperProps={{
           style: {
             maxWidth: '528px',
             backgroundColor: theme.palette.background.paper,
             color: theme.palette.text.primary,
             borderRadius: '15px',
-            padding: 16
+            padding: 16,
           },
         }}
       >
         <DialogTitle sx={{ m: 0, p: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <Typography variant="leaveMessage" sx={{mt: 4}}>
+          <Typography variant="leaveMessage" sx={{ mt: 4 }}>
             Leave a message
           </Typography>
           <IconButton
@@ -145,100 +121,80 @@ const ContactFormDialog = ({ open, onClose }) => {
           </IconButton>
         </DialogTitle>
 
-        <DialogContent sx={{ padding: '16px 24px' }}> {/* Add padding here */}
-          <Typography variant="subtitle2" align="center" gutterBottom sx={{mb: 4}}>
+        <DialogContent
+          sx={{
+            padding: '24px 70px',
+            overflow: isSmallScreen ? 'hidden' : 'auto', // Disable scrollbar on smaller screens
+          }}
+        >
+          <Typography variant="subtitle2" align="center" gutterBottom sx={{ mb: 4 }}>
             Please fill this form in a decent manner
           </Typography>
           <Box sx={{ display: 'flex', gap: 2 }}>
-            <TextField 
-              fullWidth 
+            <TextField
+              fullWidth
               name="first_name"
-              placeholder="First name" 
-              variant="outlined" 
+              placeholder="First name"
+              variant="outlined"
               margin="dense"
               value={formData.first_name}
               onChange={handleInputChange}
               InputProps={{
-                style: { 
-                  backgroundColor: '#fff', // White background
-                  borderRadius: '4px', // 4px border radius
-                  color: '#262626', // Change text color to #262626 for better contrast
-                  fontFamily: theme.typography.fontFamily,
-                }
+                style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
               }}
             />
-            <TextField 
-              fullWidth 
+            <TextField
+              fullWidth
               name="last_name"
-              placeholder="Last name" 
-              variant="outlined" 
+              placeholder="Last name"
+              variant="outlined"
               margin="dense"
               value={formData.last_name}
               onChange={handleInputChange}
               InputProps={{
-                style: { 
-                  backgroundColor: '#fff', // White background
-                  borderRadius: '4px', // 4px border radius
-                  color: '#262626', // Change text color to #262626 for better contrast
-                  fontFamily: theme.typography.fontFamily,
-                }
+                style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
               }}
             />
           </Box>
           <Box mt={2}>
-            <TextField 
-              fullWidth 
+            <TextField
+              fullWidth
               name="email"
-              placeholder="Enter your email" 
-              variant="outlined" 
+              placeholder="Enter your email"
+              variant="outlined"
               margin="dense"
               value={formData.email}
               onChange={handleInputChange}
               InputProps={{
-                style: { 
-                  backgroundColor: '#fff', // White background
-                  borderRadius: '4px', // 4px border radius
-                  color: '#262626', // Change text color to #262626 for better contrast
-                  fontFamily: theme.typography.fontFamily,
-                }
+                style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
               }}
             />
           </Box>
           <Box mt={2}>
-            <TextField 
-              fullWidth 
+            <TextField
+              fullWidth
               name="phone_number"
-              placeholder="Enter your number" 
-              variant="outlined" 
+              placeholder="Enter your number"
+              variant="outlined"
               margin="dense"
               value={formData.phone_number || ''}
               onChange={handleInputChange}
               InputProps={{
-                style: { 
-                  backgroundColor: '#fff', // White background
-                  borderRadius: '4px', // 4px border radius
-                  color: '#262626', // Change text color to #262626 for better contrast
-                  fontFamily: theme.typography.fontFamily,
-                }
+                style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
               }}
             />
           </Box>
           <Box mt={2}>
-            <TextField 
-              fullWidth 
+            <TextField
+              fullWidth
               name="subject"
-              placeholder="Enter the subject" 
-              variant="outlined" 
+              placeholder="Enter the subject"
+              variant="outlined"
               margin="dense"
               value={formData.subject}
               onChange={handleInputChange}
               InputProps={{
-                style: { 
-                  backgroundColor: '#fff', // White background
-                  borderRadius: '4px', // 4px border radius
-                  color: '#262626', // Change text color to #262626 for better contrast
-                  fontFamily: theme.typography.fontFamily,
-                }
+                style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
               }}
             />
           </Box>
@@ -254,32 +210,27 @@ const ContactFormDialog = ({ open, onClose }) => {
               value={formData.message}
               onChange={handleInputChange}
               InputProps={{
-                style: { 
-                  backgroundColor: '#fff', // White background
-                  borderRadius: '4px', // 4px border radius
-                  color: '#262626', // Change text color to #262626 for better contrast
-                  fontFamily: theme.typography.fontFamily,
-                }
+                style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
               }}
             />
           </Box>
         </DialogContent>
-        <DialogActions sx={{ justifyContent: 'center', pb: 2, padding: '0 24px' }}> {/* Add padding here */}
-          <Button 
-            fullWidth 
-            variant="contained" 
+        <DialogActions sx={{ justifyContent: 'center', pb: 2, padding: '0 24px' }}>
+          <Button
+            fullWidth
+            variant="contained"
             onClick={handleSubmit}
-            sx={{ 
-              width: '100%', // Fixed width
-              minHeight: '50.82px', // Fixed height
+            sx={{
+              width: '80%',
+              minHeight: '50.82px',
               mb: 4,
-              backgroundColor: theme.palette.primary.main, 
+              backgroundColor: theme.palette.primary.main,
               '&:hover': { backgroundColor: theme.palette.primary.main },
               fontFamily: theme.typography.fontFamily,
-              fontSize: theme.typography.button.fontSize, // Use updated font size
-              fontWeight: theme.typography.button.fontWeight, // Use updated font weight
-              lineHeight: theme.typography.button.lineHeight, // Use updated line height
-              textAlign: theme.typography.button.textAlign, // Center text
+              fontSize: theme.typography.button.fontSize,
+              fontWeight: theme.typography.button.fontWeight,
+              lineHeight: theme.typography.button.lineHeight,
+              textAlign: theme.typography.button.textAlign,
             }}
           >
             Submit

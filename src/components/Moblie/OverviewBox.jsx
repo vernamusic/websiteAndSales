@@ -8,7 +8,7 @@ const theme = createTheme({
     typography: {
         fontFamily: 'Sen, Arial, sans-serif',
         h6: {
-            fontSize: '22px',
+            fontSize: '1.145vw',
             fontWeight: 400,
             lineHeight: '26.47px',
             color: "#F1F1F1",
@@ -16,14 +16,14 @@ const theme = createTheme({
         h3: {
             fontFamily: 'Lato',
             fontWeight: 700,
-            fontSize: '26px',
+            fontSize: '1.354vw',
             lineHeight: '2rem',
             color: "#FFFFFF",
         },
         h9: {
             fontFamily: 'Lato',
             fontWeight: 600,
-            fontSize: '23px',
+            fontSize: '1.197vw',
             lineHeight: '23px',
             color: "#000000",
         },
@@ -53,7 +53,7 @@ const HowBox = () => {
                     mt={'50px'}
                     mb={'100px'}
                     sx={{
-                        display:{xs:'none', sm:'flex'}
+                        display:{sm:'none', md:'flex'}
                     }}
                 >
                     <Typography variant='h3'>Mobile Overview</Typography>
@@ -69,8 +69,8 @@ const HowBox = () => {
                         <Box
                             key={index}
                             sx={{
-                                width: {sm:'220px',md:'260px',lg: '323px' },
-                                height: {sm:'340px',md:'430px',lg: '507px' },
+                                width: '16.822vw',
+                                height: '26.406vw',
                                 display: 'flex',
                                 flexDirection: 'column',
                                 justifyContent: 'center',
@@ -90,8 +90,8 @@ const HowBox = () => {
                                     src={box.image}
                                     alt={box.title}
                                     sx={{
-                                        width: {sm:'160px',md:'200px'},
-                                        height: {sm:'280px',md:'340px'},
+                                        width: '10.416vw',
+                                        height: '17.708vw',
                                         objectFit: 'cover',
                                         mt: 'auto',
                                     }}
@@ -151,8 +151,8 @@ const HowBox = () => {
                                     src={box.image}
                                     alt={box.title}
                                     sx={{
-                                        width: {sm:'140px',md:'200px'},
-                                        height: {sm:'240px',md:'340px'},
+                                        width: '10.416vw',
+                                        height: '17.708vw',
                                         objectFit: 'cover',
                                         mb: '24px',
                                         mt: 'auto',

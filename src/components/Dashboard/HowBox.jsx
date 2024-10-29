@@ -35,8 +35,8 @@ const theme = createTheme({
         },
         h1: {
             fontFamily: 'Lato',
-            fontWeight: 700,
-            fontSize:'1.85vw',
+            fontWeight: 600,
+            fontSize:'1.354vw',
             color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
