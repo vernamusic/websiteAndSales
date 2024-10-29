@@ -92,7 +92,9 @@ const NewPartner = () => {
                             minWidth: 0,
                             borderRadius: '4px',
                             backgroundColor: '#B50304',
+                            textTransform: 'none',
                             width: '8.0656vw',
+                            height: '2.34375vw',
                             '&:hover': { backgroundColor: '#B50304' },
                         }}
                         onClick={handleOpenDialog} // Open the dialog on click

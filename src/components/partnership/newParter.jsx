@@ -1,7 +1,8 @@
-import React from 'react';
-import { Typography, Button, Box} from '@mui/material';
+import React, { useState } from 'react';
+import { Typography, Button, Box } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import backgroundImage from '/src/assets/partnerpic.png';
+import ContactFormDialog2 from './ContactFormDialog2';
 
 const theme = createTheme({
     typography: {
@@ -37,7 +38,17 @@ const theme = createTheme({
     },
 });
 
-const newParter = () => {
+const NewPartner = () => {
+    const [openDialog, setOpenDialog] = useState(false);
+
+    const handleOpenDialog = () => {
+        setOpenDialog(true);
+    };
+
+    const handleCloseDialog = () => {
+        setOpenDialog(false);
+    };
+
     return (
         <ThemeProvider theme={theme}>
             <Box
@@ -57,54 +68,45 @@ const newParter = () => {
                         flexDirection: 'column',
                         justifyContent: 'center',
                         alignItems: 'flex-start',
-                        height:'100%',
+                        height: '100%',
                         ml: { xs: 5, sm: 10, md: 15, lg: 25, xl: 38 },
                         gap: '0.5vw',
                         width: '20vw',
                     }}
                 >
-                    <Typography
-                        sx={{
-
-                            ...theme.typography.h3,
-                        }}
-                    >
+                    <Typography sx={{ ...theme.typography.h3 }}>
                         Our Partner
                     </Typography>
-                    <Typography
-                        sx={{
-                            ...theme.typography.h6,
-                            mb: {xs: 1, sm: 1, md: 1.5, lg: 2, xl: 2,},
-                        }}
-                    >
+                    <Typography sx={{ ...theme.typography.h6, mb: { xs: 1, sm: 1, md: 1.5, lg: 2, xl: 2 } }}>
                         Our team consists of highly skilled professionals and resourceful partners.
                         With our partners we are able to create the state of the art product we wish to deliver.
                     </Typography>
 
                     <Button
                         variant="contained"
-
-
                         sx={{
                             ...theme.typography.button,
-                            padding:0,
+                            padding: 0,
                             minWidth: 0,
                             borderRadius: '4px',
                             backgroundColor: '#B50304',
                             textTransform: 'none',
-                            width:'8.0656vw',
+                            width: '8.0656vw',
                             height: '2.34375vw',
-                            '&:hover': {
-                                backgroundColor: '#B50304',
-                            },
+                            '&:hover': { backgroundColor: '#B50304' },
                         }}
                         disableRipple
+                        onClick={handleOpenDialog} // Open dialog on click
                     >
                         Leave a message
                     </Button>
                 </Box>
+
+                {/* Dialog component */}
+                <ContactFormDialog2 open={openDialog} onClose={handleCloseDialog} />
             </Box>
         </ThemeProvider>
     );
-}
-export default newParter;
+};
+
+export default NewPartner;

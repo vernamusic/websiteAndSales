@@ -49,7 +49,7 @@ const theme = createTheme({
   },
 });
 
-const ContactFormDialog2 = ({ open, onClose }) => {
+const ContactFormDialog = ({ open, onClose }) => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   const [formData, setFormData] = useState({
@@ -241,4 +241,4 @@ const ContactFormDialog2 = ({ open, onClose }) => {
   );
 };
 
-export default ContactFormDialog2;
+export default ContactFormDialog3;
