@@ -43,7 +43,7 @@ const getActiveStyle = (path, location) => {
             content: '""',
             position: 'absolute',
             width: '100%',
-            height: '3px',
+            height: '0.156vw',
             bottom: 5,
             left: location.pathname === path ? '50%':'42%',
             backgroundColor: isActive ? 'white' : 'transparent',
@@ -279,6 +279,7 @@ const Navbar = React.memo((props) => {
                             textTransform: 'none',
                             width:'8.0656vw',
                             height: '2.34375vw',
+
                             '&:hover': {
                                 backgroundColor: '#B50304',
                             },
