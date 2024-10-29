@@ -13,7 +13,7 @@ import {
     IconButton,
     Typography,
 } from '@mui/material';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { Visibility, VisibilityOff, Close } from '@mui/icons-material';
 
 const ResetPasswordDialog = ({ open, onClose, token }) => {
     const [password, setPassword] = useState('');
@@ -70,7 +70,13 @@ const ResetPasswordDialog = ({ open, onClose, token }) => {
     return (
         <Dialog
             open={open}
-            onClose={onClose}
+            onClose={(event, reason) => {
+                // اجازه بستن فقط با دکمه ضربدر
+                if (reason !== 'backdropClick' && reason !== 'escapeKeyDown') {
+                    onClose();
+                }
+            }}
+            disableEscapeKeyDown
             PaperProps={{
                 sx: {
                     backgroundColor: '#1e1e1e',
@@ -84,19 +90,24 @@ const ResetPasswordDialog = ({ open, onClose, token }) => {
         >
             <DialogTitle
                 sx={{
-                    textAlign: 'center',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
                     fontSize: '24px',
                     fontWeight: 'bold',
                     pb: 0,
                 }}
             >
                 Reset Password
+                <IconButton onClick={onClose} aria-label="close" sx={{ color: 'white' }}>
+                    <Close />
+                </IconButton>
             </DialogTitle>
             <DialogContent>
                 <Typography
                     variant="subtitle1"
                     sx={{
-                        textAlign: 'center',
+                        textAlign: 'left',
                         color: 'rgba(255, 255, 255, 0.7)',
                         mb: 2,
                     }}
@@ -122,6 +133,7 @@ const ResetPasswordDialog = ({ open, onClose, token }) => {
                         onFocus={() => setPasswordFocused(true)}
                         onBlur={() => setPasswordFocused(false)}
                         onChange={(e) => setPassword(e.target.value)}
+                        autoComplete="off"
                         sx={{
                             backgroundColor: '#FFFFFF',
                             '&:hover .MuiOutlinedInput-notchedOutline': {
@@ -164,6 +176,7 @@ const ResetPasswordDialog = ({ open, onClose, token }) => {
                         onFocus={() => setConfirmPasswordFocused(true)}
                         onBlur={() => setConfirmPasswordFocused(false)}
                         onChange={(e) => setConfirmPassword(e.target.value)}
+                        autoComplete="off"
                         sx={{
                             backgroundColor: '#FFFFFF',
                             '&:hover': {
@@ -193,7 +206,7 @@ const ResetPasswordDialog = ({ open, onClose, token }) => {
                     onClick={handleConfirm}
                     fullWidth
                     sx={{
-                        py:1.5,
+                        py: 1.5,
                         mt: 1,
                         backgroundColor: '#a80d0d',
                         '&:hover': {
