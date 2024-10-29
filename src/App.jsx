@@ -19,7 +19,9 @@ const App = () => {
                         <AppRoutes />
                     </Box>
 
+                    <Box className="Footer">
                     <Footer />
+                    </Box>
                 </Box>
         </Router>
     );

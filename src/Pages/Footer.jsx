@@ -167,9 +167,9 @@ const Footer = () => (
         display: { xs: 'flex', sm: 'none' },
         flexDirection: 'column',
         alignItems: 'center',
-        py: 8,
-        px: 2,
-        mt: 4,
+        bottom: 0,         // Aligns to bottom
+        left: 0,           // Aligns to left edge
+        zIndex: 1300, 
       }}
     >
       <Box sx={{ width: '100vw',backgroundColor: '#080808', display: 'flex', flexDirection: 'column',}}>
