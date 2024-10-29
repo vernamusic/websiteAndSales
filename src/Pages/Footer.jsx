@@ -9,9 +9,10 @@ import {
   AccordionSummary,
   AccordionDetails,
 } from '@mui/material';
-import { Facebook, LinkedIn, YouTube } from '@mui/icons-material';
 import FacebookCircled from '../assets/Facebook.png'
 import LinkedInCircled from '../assets/LinkedInCircled.png'
+import YoutubeCircled from '../assets/Youtube.png'
+
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import pci from '../assets/pci.png';
 import biopole from '../assets/biopole.png';
@@ -268,19 +269,22 @@ const Footer = () => (
         />
         <img
           src={LinkedInCircled}
-          alt="Facebook"
+          alt="Linkedin"
           style={{
             width: '40px',
             height: '40px',
             opacity: 0.9,
           }}
         />
-
-
-          
-          <Box sx={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: 'white',opacity: 0.9, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <YouTube sx={{ color: 'black' }} />
-          </Box>
+        <img
+          src={YoutubeCircled}
+          alt="Youtube"
+          style={{
+            width: '40px',
+            height: '40px',
+            opacity: 0.9,
+          }}
+        />
         </Box>
       </Box>
 
