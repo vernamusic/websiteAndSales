@@ -89,7 +89,7 @@ const Footer = () => (
         alignItems: 'center',
       }}
     >
-      <Box sx={{ width: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '128px' }}>
+      <Box sx={{ width: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1.66vw' }}>
         <Box>
           {/* OUR SOLUTIONS Box */}
           <Box sx={commonBoxStyles}>
@@ -112,7 +112,7 @@ const Footer = () => (
         <Box sx={commonBoxStyles}>
           <Typography variant="h3" marginTop="16px">VISIT US</Typography>
           {locations.map((location, index) => (
-            <Box marginTop={4} key={index}>
+            <Box marginTop={7} key={index}>
               <img src={location.image} alt={location.name} style={{ width: '103px', height: 'auto', marginRight: '8px',display:'flex', justifyContent:'flex-start' }} />
               <Box marginTop="16px">
                 <Box display="flex" alignItems="center" justifyContent="flex-start">
@@ -292,6 +292,7 @@ const Footer = () => (
 // Common styles for the boxes
 const commonBoxStyles = {
   backgroundColor: '#14141415',
+  padding:2,
   borderRadius: '8px',
   width: '17.656vw',
   height: 'auto',

@@ -9,9 +9,10 @@ const theme = createTheme({
         h6: {
             fontFamily: 'sen',
             fontSize: '1.04vw',
-            color: "#F1F1F1",
-            letterSpacing: '0.4px',
             lineHeight: 'normal',
+            letterSpacing: '0.4px',
+            color: "#F1F1F1",
+            textTransform: 'none',
         },
         h3: {
             fontFamily: 'Lato',
@@ -22,12 +23,12 @@ const theme = createTheme({
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: { xs: '10px', sm: '15px', md: '18px', lg: '20px', xl: '22px' },
+            fontSize: '0.94vw',
             color: "#FFFFFF",
         },
         form: {
             fontFamily: 'Inter',
-            fontSize: { xs: '10px', sm: '15px', md: '18px', lg: '20px', xl: '22px' },
+            fontSize: '1.145vw',
             fontWeight: 400,
         },
     },
