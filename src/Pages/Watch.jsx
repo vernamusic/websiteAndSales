@@ -60,7 +60,7 @@ function Watch() {
             <Box
                 sx={{
                     width: '100%',
-                    display: {sm:'none',md:'block'},
+                    display: {xs:'none',sm:'none',md:'flex'},
                     justifyContent: 'center',
                 }}
             >
