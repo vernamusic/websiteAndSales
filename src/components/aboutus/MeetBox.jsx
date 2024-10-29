@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Typography, Box, Button } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import backgroundImage from '../../assets/about2.png';
+import ContactFormDialog3 from './ContactFormDialog3';
 
 const theme = createTheme({
     typography: {
@@ -38,6 +39,16 @@ const theme = createTheme({
 });
 
 const MeetBox = () => {
+    const [openDialog, setOpenDialog] = useState(false);
+
+    const handleButtonClick = () => {
+        setOpenDialog(true);
+    };
+
+    const handleDialogClose = () => {
+        setOpenDialog(false);
+    };
+
     return (
         <ThemeProvider theme={theme}>
             <Box
@@ -69,18 +80,19 @@ const MeetBox = () => {
                             ...theme.typography.h3,
                         }}
                     >
-                        Let’s discuses together
+                        Let’s discuss together
                     </Typography>
                     <Typography
                         sx={{
                             ...theme.typography.h6,
-                            mb: {xs: 1, sm: 1, md: 1.5, lg: 2, xl: 2,},
+                            mb: {xs: 1, sm: 1, md: 1.5, lg: 2, xl: 2, },
                         }}
                     >
                         We’d love to hear from you! Whether you have questions, feedback, or just want to chat, our team is here to help.
                     </Typography>
 
                     <Button
+                        onClick={handleButtonClick}
                         sx={{
                             ...theme.typography.button,
                             padding:0,
@@ -99,6 +111,8 @@ const MeetBox = () => {
                         Apply for meeting
                     </Button>
                 </Box>
+
+                <ContactFormDialog3 open={openDialog} onClose={handleDialogClose} />
             </Box>
         </ThemeProvider>
     );

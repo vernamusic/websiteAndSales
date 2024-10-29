@@ -72,7 +72,7 @@ function Moblie() {
             <Box
                 sx={{
                     width: '100%',
-                    display: {sm:'none',md:'flex'},
+                    display: {xs:'none',sm:'none',md:'flex'},
                     justifyContent: 'center',
                 }}
             >
