@@ -49,7 +49,7 @@ const theme = createTheme({
   },
 });
 
-const ContactFormDialog = ({ open, onClose }) => {
+const ContactFormDialog3 = ({ open, onClose }) => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   const [formData, setFormData] = useState({
