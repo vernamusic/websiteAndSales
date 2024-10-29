@@ -107,8 +107,9 @@ const Certification = () => {
                                     width: '100%',
                                     height: '50%',
                                     backgroundColor: '#FFFFFF',
-                                    objectFit: 'cover',
+                                    objectFit: 'contain',
                                     borderRadius: '1.39vw 1.39vw 0 0',
+                                    padding:'1vw',
                                 }}
                             />
                             <Box
