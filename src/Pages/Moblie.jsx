@@ -13,13 +13,13 @@ function Moblie() {
             sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                width: '100%',
+                width: '100vw',
                 minHeight: '100vw',
             }}
         >
             <Box
                 sx={{
-                    width: '100%',
+                    width: '100vw',
                     minHeight: '40vw',
                 }}
             >
@@ -28,7 +28,7 @@ function Moblie() {
 
             <Box
                 sx={{
-                    width: '100%',
+                    width: '100vw',
                     minHeight: '50vw',
                     display: 'flex',
                     justifyContent: 'center',
@@ -72,7 +72,7 @@ function Moblie() {
             <Box
                 sx={{
                     width: '100%',
-                    display: {xs:'none',sm:'block'},
+                    display: {sm:'none',md:'flex'},
                     justifyContent: 'center',
                 }}
             >

@@ -8,7 +8,7 @@ const theme = createTheme({
     typography: {
         fontFamily: 'Sen, Arial, sans-serif',
         h6: {
-            fontSize: '22px',
+            fontSize: '1.145vw',
             fontWeight: 400,
             lineHeight: '26.47px',
             color: "#F1F1F1",
@@ -16,13 +16,13 @@ const theme = createTheme({
         h3: {
             fontFamily: 'Lato',
             fontWeight: 700,
-            fontSize: '26px',
+            fontSize: '1.354vw',
             lineHeight: '2rem',
             color: "#FFFFFF",
         },
         h9: {
             fontWeight: 600,
-            fontSize: '18px',
+            fontSize: '0.937vw',
             lineHeight: '21.66px',
             color: "#000000",
         },
@@ -68,8 +68,8 @@ const HowBox = () => {
                         <Box
                             key={index}
                             sx={{
-                                width: {sm:'220px',md:'260px',lg: '323px' },
-                                height: {sm:'340px',md:'430px',lg: '507px' },
+                                width: '16.822vw',
+                                height: '26.406vw',
                                 display: 'flex',
                                 flexDirection: 'column',
                                 justifyContent: 'center',
@@ -89,10 +89,10 @@ const HowBox = () => {
                                     src={box.image}
                                     alt={box.title}
                                     sx={{
-                                        width: {sm:'160px',md:'189px'},
-                                        height: {sm:'270px',md:'288px'},
+                                        width: '9.843vw',
+                                        height: '15vw',
                                         objectFit: 'cover',
-                                        mt: '64px',
+                                        mt: '3.33vw',
                                     }}
                                 />
                                 <Box
@@ -100,8 +100,8 @@ const HowBox = () => {
                                         display: 'flex',
                                         textAlign: 'center',
                                         flexGrow: 1,
-                                        padding: 6,
-                                        mt: 1,
+                                        padding: 4,
+                                        //mt: 1,
                                     }}
                                 >
                                     <Typography
@@ -110,7 +110,7 @@ const HowBox = () => {
                                             mb: '64px',
                                             fontFamily: 'Lato',
                                             fontWeight: 600,
-                                            fontSize: '18px',
+                                            fontSize: '1vw',
                                             lineHeight: '21.66px',
                                         }}
                                     >
@@ -126,8 +126,8 @@ const HowBox = () => {
                                         display: 'flex',
                                         textAlign: 'center',
                                         flexGrow: 1,
-                                        padding: 6,
-                                        mt: 1,
+                                        padding: 4,
+                                        //mt: 1,
                                     }}
                                 >
                                     <Typography
@@ -136,7 +136,7 @@ const HowBox = () => {
                                             mt: '64px',
                                             fontFamily: 'Lato',
                                             fontWeight: 600,
-                                            fontSize: '18px',
+                                            fontSize: '1vw',
                                             lineHeight: '21.66px',
                                         }}
                                     >
@@ -148,11 +148,11 @@ const HowBox = () => {
                                     src={box.image}
                                     alt={box.title}
                                     sx={{
-                                        width: '350px',
-                                        height: '350px',
+                                        width: '18.229vw',
+                                        height: '18.229vw',
                                         objectFit: 'cover',
-                                        mb: '24px',
-                                        mt: 'auto',
+                                        mb: '3.33vw',
+                                        //mt: 'auto',
                                     }}
                                 />
                             </>

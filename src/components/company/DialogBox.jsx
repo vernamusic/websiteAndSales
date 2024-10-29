@@ -14,7 +14,6 @@ import {
 } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 
-// Define the theme constants
 const theme = createTheme({
   typography: {
     h6: {
@@ -83,7 +82,6 @@ const FeaturesDialog = () => {
   const [selectedFeatures, setSelectedFeatures] = useState(["Geo tracking"]);
 
   useEffect(() => {
-    // Assume features are already predefined in component or add initial setup here
     setFeatures([
       "Select all",
       "Geo tracking",
@@ -125,7 +123,7 @@ const FeaturesDialog = () => {
       .post('https://site.vitruvianshield.com/api/v1/feature-req', payload)
       .then((response) => {
         console.log("Features submitted successfully:", response.data);
-        setOpen(false); // Close dialog on success
+        setOpen(false);
       })
       .catch((error) => {
         console.error("Error submitting features:", error);
@@ -146,7 +144,14 @@ const FeaturesDialog = () => {
       </Button>
 
       <Dialog open={open} onClose={() => setOpen(false)} maxWidth="sm" fullWidth>
-        <DialogContent dividers sx={{ backgroundColor: theme.palette.background.paper }}>
+        <DialogContent
+          dividers
+          sx={{
+            backgroundColor: theme.palette.background.paper,
+            overflow: 'hidden',
+            maxHeight: '100vh',
+          }}
+        >
           <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
             <IconButton
               aria-label="close"
@@ -186,7 +191,7 @@ const FeaturesDialog = () => {
                           color: theme.palette.primary.main,
                         },
                         '&:hover': {
-                          backgroundColor: 'transparent', // Removes the hover background
+                          backgroundColor: 'transparent',
                         },
                       }}
                     />
@@ -214,9 +219,9 @@ const FeaturesDialog = () => {
             variant="contained" 
             color="primary"
             sx={{
-              width: '90%', // Fixed width
-              minHeight: '50.82px', // Fixed height
-              textTransform: 'none', // Prevents uppercase
+              width: '90%',
+              minHeight: '50.82px',
+              textTransform: 'none',
               gap: '8px',
               mb: 4,
             }}
