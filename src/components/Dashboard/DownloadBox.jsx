@@ -37,17 +37,17 @@ const Home = () => {
     const updateClipPath = () => {
         const vw = window.innerWidth;
 
-        // محاسبه مقادیر clip-path با استفاده از vw
+
         const calculatedClipPath = `path("M 0 0 L 0 ${vw * 0.45} C ${vw * 0.5} ${vw * 0.3} ${vw * 0.6} ${vw * 0.5} ${vw} ${vw * 0.4} L ${vw} 0 L 0 0")`;
         setClipPath(calculatedClipPath);
     };
 
     useEffect(() => {
-        updateClipPath(); // به‌روزرسانی clip-path در زمان بارگذاری
-        window.addEventListener('resize', updateClipPath); // اضافه کردن لیسنر برای تغییر اندازه پنجره
+        updateClipPath();
+        window.addEventListener('resize', updateClipPath);
 
         return () => {
-            window.removeEventListener('resize', updateClipPath); // پاک کردن لیسنر هنگام Unmount
+            window.removeEventListener('resize', updateClipPath);
         };
     }, []);
     return (
@@ -78,7 +78,7 @@ const Home = () => {
                         backgroundRepeat: 'no-repeat',
                         backgroundSize: '100%',
 
-                        clipPath: clipPath, // استفاده از clipPath دینامیک
+                        clipPath: clipPath,
                     }}
                 >
 

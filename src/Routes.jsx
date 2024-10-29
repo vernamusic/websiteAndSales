@@ -13,24 +13,28 @@ import Partnership from './Pages/Partnership';
 import NewsMore from './components/News/NewsMore';
 import Profile from './Pages/Profile';
 import Test from './components/SignUp/Login.jsx'
+import ResetPassword from './components/home/ResetPassword.jsx';
+
 const AppRoutes = () => {
-    return (
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/learning" element={<Learning />} />
-            <Route path="/products/mobile-app" element={<Moblie />} />
-            <Route path="/products/dashboard" element={<Dashboard />} />
-            <Route path="/products/smart-watch" element={<Watch />} />
-            <Route path="/company" element={<Company />} />
-            <Route path="/partnership" element={<Partnership />} />
-            <Route path="/news" element={<News />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/news/:slug" element={<NewsMore />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/Test" element={<Test />} />
-        </Routes>
-    );
+        return (
+            <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/learning" element={<Learning />} />
+                    <Route path="/products/mobile-app" element={<Moblie />} />
+                    <Route path="/products/dashboard" element={<Dashboard />} />
+                    <Route path="/products/smart-watch" element={<Watch />} />
+                    <Route path="/company" element={<Company />} />
+                    <Route path="/partnership" element={<Partnership />} />
+                    <Route path="/news" element={<News />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/news/:slug" element={<NewsMore />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/reset-password/:token" element={<Home />} />
+                    <Route path="/Test" element={<Test />} />
+            </Routes>
+        );
 }
+
 
 export default AppRoutes;

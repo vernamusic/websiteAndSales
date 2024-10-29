@@ -36,10 +36,32 @@ const theme = createTheme({
     },
 });
 
-const ForgotPasswordDialog = ({ onBack, onSubmit }) => {
+const ForgotPasswordDialog = ({ onBack, showSnackbar }) => {
     const [email, setEmail] = useState('');
 
     const handleEmailChange = (event) => setEmail(event.target.value);
+
+    const handleSendResetLink = () => {
+        fetch('https://site.vitruvianshield.com/api/v1/forgot-password/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email })
+        })
+            .then(response => {
+                if (!response.ok) throw new Error('Failed to send reset link');
+                return response.json();
+            })
+            .then(data => {
+                showSnackbar('Reset link sent successfully!'); // نمایش پیام موفقیت
+                onBack(); // برگشت به صفحه ورود
+            })
+            .catch(error => {
+                console.error('Error sending reset link:', error);
+                showSnackbar('Error sending reset link.', 'error'); // نمایش خطا
+            });
+    };
 
     return (
         <ThemeProvider theme={theme}>
@@ -97,7 +119,7 @@ const ForgotPasswordDialog = ({ onBack, onSubmit }) => {
                                     height: '50px',
                                     textTransform: 'none',
                                 }}
-                                onClick={onSubmit}
+                                onClick={handleSendResetLink} // استفاده از handleSendResetLink
                             >
                                 Send Reset Link
                             </Button>

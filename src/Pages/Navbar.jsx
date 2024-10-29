@@ -11,20 +11,21 @@ import SignUpDialog from '../components/SignUp/SignUpDialog.jsx'; // Import the 
 const theme = createTheme({
     typography: {
         h6: {
-            fontFamily:'Lato',
-            fontSize: { xs: '12px', sm: '14px', md: '16px', lg: '18px', xl: '20px' },
+            fontFamily: 'Lato',
+            fontSize: '1.04167vw',
             fontWeight: 500,
             color: "#F1F1F1",
             textTransform: 'none',
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: {md: '16px', lg: '18px', xl: '20px' },
+            fontSize: '1.04167vw',
             fontWeight: 500,
             textTransform: 'none',
         },
     },
 });
+
 
 const getActiveStyle = (path, location) => {
     const isActive = location.pathname === path || (
@@ -126,7 +127,7 @@ const Navbar = React.memo((props) => {
                             }}
                             disableRipple
                         >
-                            <img src={logo} alt="logo" style={{ width: 'calc(2vw + 20px)' }} />
+                            <img src={logo} alt="logo" style={{ width: 'calc(2vw + 25px)' }} />
                         </Button>
                     </Box>
                     <Box sx={{ display: { xs: 'flex', md: 'none' }, ml: 'auto' }}>
@@ -271,10 +272,13 @@ const Navbar = React.memo((props) => {
                             display: { xs: 'none', md: 'flex' },
                             ...theme.typography.button,
                             ml: { md:-1, lg: 1.2 },
-                            borderRadius: '4px',
                             backgroundColor: '#B50304',
-                            width:{ xs: '100px', sm: '100px', md: '120px', lg: '140px', xl: '170px' },
-                            height: { xs: '25px', sm: '30px', md: '37px', lg: '43px', xl: '47px' },
+                            padding:0,
+                            minWidth: 0,
+                            borderRadius: '4px',
+                            textTransform: 'none',
+                            width:'8.0656vw',
+                            height: '2.34375vw',
                             '&:hover': {
                                 backgroundColor: '#B50304',
                             },

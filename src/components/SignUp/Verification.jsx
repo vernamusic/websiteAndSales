@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Box, TextField, Typography, Button, Link, ThemeProvider, createTheme } from '@mui/material';
+import { Box, TextField, Typography, Button, Link, ThemeProvider, createTheme, Snackbar, Alert } from '@mui/material';
 
 const theme = createTheme({
     palette: {
@@ -9,6 +9,12 @@ const theme = createTheme({
         },
         error: {
             main: '#ff0000',
+        },
+        warning: {
+            main: '#ff9800', // رنگ هشدار
+        },
+        info: {
+            main: '#2196f3', // رنگ اطلاعات
         },
     },
     typography: {
@@ -31,6 +37,9 @@ const EmailVerification = ({ email, onSubmit, onResend, onBack }) => {
     const [code, setCode] = useState(Array(6).fill(''));
     const [timeLeft, setTimeLeft] = useState(150); // 2:30 in seconds
     const inputRefs = useRef([]);
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+    const [snackbarSeverity, setSnackbarSeverity] = useState('success');
 
     useEffect(() => {
         if (timeLeft > 0) {
@@ -38,6 +47,12 @@ const EmailVerification = ({ email, onSubmit, onResend, onBack }) => {
             return () => clearTimeout(timerId);
         }
     }, [timeLeft]);
+
+    const showSnackbar = (message, severity = 'success') => {
+        setSnackbarMessage(message);
+        setSnackbarSeverity(severity);
+        setSnackbarOpen(true);
+    };
 
     const handleChange = (e, index) => {
         const { value } = e.target;
@@ -73,15 +88,16 @@ const EmailVerification = ({ email, onSubmit, onResend, onBack }) => {
                 if (response.ok) {
                     const result = await response.json();
                     onSubmit(result); // ارسال نتیجه به تابع onSubmit
+                    showSnackbar('Verification successful!', 'success'); // نمایش پیام موفقیت
                 } else {
-                    alert('Verification failed. Please try again.');
+                    showSnackbar('Verification failed. Please try again.', 'error'); // نمایش پیام خطا
                 }
             } catch (error) {
                 console.error('Error verifying code:', error);
-                alert('An error occurred. Please try again later.');
+                showSnackbar('An error occurred. Please try again later.', 'error'); // نمایش پیام خطا
             }
         } else {
-            alert('Please enter all 6 digits');
+            showSnackbar('Please enter all 6 digits', 'warning'); // نمایش پیام هشدار
         }
     };
 
@@ -95,29 +111,33 @@ const EmailVerification = ({ email, onSubmit, onResend, onBack }) => {
         setTimeLeft(150);
         setCode(Array(6).fill(''));
         inputRefs.current[0].focus();
-        if (onResend) onResend();
+        if (onResend) {
+            onResend();
+            showSnackbar('Verification code resent!', 'info'); // نمایش پیام اطلاعات
+        }
     };
 
     return (
         <ThemeProvider theme={theme}>
             <Box
                 sx={{
-                    bgcolor: 'background.default',
                     color: 'text.primary',
-                    minHeight: '100vh',
+                    minHeight: '20vw',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    padding: 3,
+                    maxWidth: '400px',
+                    pb: 2,
                 }}
             >
                 <Typography variant="h5" gutterBottom>
                     Verify your email address
                 </Typography>
-                <Typography variant="body1" gutterBottom>
-                    Enter verification code we sent to your email
+                <Typography variant="body1" gutterBottom sx={{ textAlign: 'center' }}>
+                    Enter verification code we sent to:<br /> {email}
                 </Typography>
+
                 <Box display="flex" justifyContent="center" gap={1} mt={2} mb={2}>
                     {code.map((value, index) => (
                         <TextField
@@ -128,29 +148,33 @@ const EmailVerification = ({ email, onSubmit, onResend, onBack }) => {
                             inputRef={(el) => (inputRefs.current[index] = el)}
                             inputProps={{
                                 maxLength: 1,
-                                style: { textAlign: 'center', fontSize: '20px', width: '40px' },
+                                style: { textAlign: 'center', fontSize: '18px', width: '27px' },
                             }}
                             variant="outlined"
                         />
                     ))}
                 </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
-                    <Typography variant="body2">
-                        Didn’t receive a verification code?
-                    </Typography>
-                    <Typography variant="body2" color="primary">
-                        {timeLeft > 0 ? formatTime(timeLeft) : "Reset Code"}
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2, maxWidth: '350px' }}>
+                    <Typography variant="body2" sx={{ textAlign: 'center' }}>
+                        Your verification code may take a few moments to arrive. Didn't receive a verification code? {timeLeft > 0 ? formatTime(timeLeft) : (
+                        <Link
+                            component="button"
+                            variant="body2"
+                            onClick={handleResend}
+                            sx={{
+                                mb: 0.5,
+                                color: 'inherit',
+                                '&:hover': {
+                                    color: 'primary.main',
+                                    textDecoration: 'underline',
+                                },
+                            }}
+                        >
+                            Resend
+                        </Link>
+                    )}
                     </Typography>
                 </Box>
-                <Link
-                    component="button"
-                    variant="body2"
-                    onClick={handleResend}
-                    disabled={timeLeft > 0}
-                    sx={{ mb: 2 }}
-                >
-                    Resend
-                </Link>
                 <Button
                     onClick={handleSubmit}
                     variant="contained"
@@ -160,6 +184,7 @@ const EmailVerification = ({ email, onSubmit, onResend, onBack }) => {
                         mt: 2,
                         py: 1.5,
                         fontSize: '1.1rem',
+                        textTransform: 'none'
                     }}
                 >
                     Confirm
@@ -169,10 +194,21 @@ const EmailVerification = ({ email, onSubmit, onResend, onBack }) => {
                     variant="text"
                     color="primary"
                     fullWidth
-                    sx={{ mt: 1 }}
+                    sx={{ mt: 1, textTransform: 'none' }}
                 >
                     Back
                 </Button>
+
+                <Snackbar
+                    open={snackbarOpen}
+                    autoHideDuration={6000}
+                    onClose={() => setSnackbarOpen(false)}
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // تغییر موقعیت
+                >
+                    <Alert onClose={() => setSnackbarOpen(false)} severity={snackbarSeverity} sx={{ backgroundColor: theme.palette[snackbarSeverity].main, color: '#fff' }}>
+                        {snackbarMessage}
+                    </Alert>
+                </Snackbar>
             </Box>
         </ThemeProvider>
     );

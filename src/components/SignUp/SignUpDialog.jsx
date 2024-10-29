@@ -1,20 +1,26 @@
 import React, { useState } from 'react';
-import { Dialog, DialogTitle, Box, Slide, Fade, IconButton } from '@mui/material';
+import { Dialog, DialogTitle, Box, Slide, Fade, IconButton, Snackbar, Alert } from '@mui/material';
 import { Close } from '@mui/icons-material';
 import LoginDialog from './Login.jsx';
 import ForgotPasswordDialog from './ForgetPassword.jsx';
 import VerificationEmailDialog from './Verification.jsx';
 
-const MainDialog = ({ open, onClose }) => {
+const SignUpDialog = ({ open, onClose }) => {
     const [dialogMode, setDialogMode] = useState('login');
     const [email, setEmail] = useState('');
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+    const [snackbarSeverity, setSnackbarSeverity] = useState('success');
 
+    const showSnackbar = (message, severity = 'success') => {
+        setSnackbarMessage(message);
+        setSnackbarSeverity(severity);
+        setSnackbarOpen(true);
+    };
 
     const handleForgotPassword = () => setDialogMode('forgotPassword');
 
-
     const handleBackToLogin = () => setDialogMode('login');
-
 
     const handleVerificationEmail = (email) => {
         setEmail(email);
@@ -22,8 +28,7 @@ const MainDialog = ({ open, onClose }) => {
         setDialogMode('verificationEmail');
     };
 
-
-    const handleResendVerificationEmail = () => {
+    const handleResendVerificationEmail = (email) => {
         fetch('https://site.vitruvianshield.com/api/v1/request-verification-code/', {
             method: 'POST',
             headers: {
@@ -36,26 +41,18 @@ const MainDialog = ({ open, onClose }) => {
                 return response.json();
             })
             .then(data => {
-                console.log('Verification email resent:', data.message);
+                showSnackbar('Verification email resent successfully!'); // نمایش پیام
             })
             .catch(error => {
                 console.error('Error resending verification email:', error);
+                showSnackbar('Error resending verification email.', 'error'); // نمایش خطا
             });
     };
 
-
     const handleLoginSuccess = () => {
         console.log('User logged in successfully');
-        //window.location.href = '/';
+        // window.location.href = '/';
     };
-
-
-    const handleSendResetLink = (email) => {
-        setEmail(email);
-        setDialogMode('verificationEmail');
-    };
-
-
 
     const renderDialogContent = () => {
         switch (dialogMode) {
@@ -63,11 +60,10 @@ const MainDialog = ({ open, onClose }) => {
                 return (
                     <ForgotPasswordDialog
                         onBack={handleBackToLogin}
-                        onSubmit={handleSendResetLink}
+                        showSnackbar={showSnackbar} // اتصال showSnackbar به ForgotPasswordDialog
                     />
                 );
             case 'verificationEmail':
-
                 return (
                     <VerificationEmailDialog
                         email={email}
@@ -140,8 +136,18 @@ const MainDialog = ({ open, onClose }) => {
                     </Fade>
                 </Box>
             </Slide>
+            <Snackbar
+                open={snackbarOpen}
+                autoHideDuration={6000}
+                onClose={() => setSnackbarOpen(false)}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // تغییر موقعیت
+            >
+                <Alert onClose={() => setSnackbarOpen(false)} severity={snackbarSeverity}>
+                    {snackbarMessage}
+                </Alert>
+            </Snackbar>
         </Dialog>
     );
 };
 
-export default MainDialog;
+export default SignUpDialog;
