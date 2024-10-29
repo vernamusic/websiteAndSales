@@ -23,7 +23,7 @@ const theme = createTheme({
     h3: {
       fontFamily: 'Lato',
       fontWeight: 600,
-      fontSize: '18px',
+      fontSize: '0.9375vw',
       lineHeight: '18px',
       letterSpacing: '0.5px',
       color: '#FFFFFF',
@@ -31,7 +31,7 @@ const theme = createTheme({
     h6: {
       fontFamily: 'Lato',
       fontWeight: 700,
-      fontSize: '16px',
+      fontSize: '0.833vw',
       lineHeight: '16px',
       letterSpacing: '0.5px',
       color: '#FFFFFF',
@@ -39,7 +39,7 @@ const theme = createTheme({
     body3: {
       fontFamily: 'Lato',
       fontWeight: 700,
-      fontSize: '16px',
+      fontSize: '0.833vw',
       lineHeight: '19.2px',
       letterSpacing: '0.5px',
       color: '#D9D9D970',
@@ -47,7 +47,7 @@ const theme = createTheme({
     body9: {
       fontFamily: 'Lato',
       fontWeight: 500,
-      fontSize: '16px',
+      fontSize: '0.833vw',
       lineHeight: '28.8px',
       color: '#FFFFFFE5',
       
@@ -113,13 +113,16 @@ const Footer = () => (
           <Typography variant="h3" marginTop="16px">VISIT US</Typography>
           {locations.map((location, index) => (
             <Box marginTop={4} key={index}>
-              <img src={location.image} alt={location.name} style={{ width: '103px', height: 'auto', marginRight: '8px' }} />
+              <img src={location.image} alt={location.name} style={{ width: '103px', height: 'auto', marginRight: '8px',display:'flex', justifyContent:'flex-start' }} />
               <Box marginTop="16px">
-                <Box display="flex" alignItems="center">
+                <Box display="flex" alignItems="center" justifyContent="flex-start">
                   <img src={footerloc} alt="locationLogo" style={{ width: '22px', height: 'auto', marginRight: '8px' }} />
                   <Typography variant="h6" gutterBottom>{location.name}</Typography>
                 </Box>
-                <Typography variant="body3" paragraph sx={{ mt: '12px' }}>{location.address}</Typography>
+                <Typography variant="body3" sx={{ mt: '12px',display:'flex', textAlign: 'left' }}>
+                  {location.address}
+                </Typography>
+
               </Box>
             </Box>
           ))}
@@ -290,7 +293,7 @@ const Footer = () => (
 const commonBoxStyles = {
   backgroundColor: '#14141415',
   borderRadius: '8px',
-  width: { xs: '100%', sm: '260px' },
+  width: '17.656vw',
   height: 'auto',
   display: 'flex',
   flexDirection: 'column',
