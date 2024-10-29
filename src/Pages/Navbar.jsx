@@ -12,14 +12,14 @@ const theme = createTheme({
     typography: {
         h6: {
             fontFamily:'Lato',
-            fontSize: { xs: '12px', sm: '14px', md: '16px', lg: '18px', xl: '20px' },
+            fontSize: '1.041vw',
             fontWeight: 500,
             color: "#F1F1F1",
             textTransform: 'none',
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: {md: '16px', lg: '18px', xl: '20px' },
+            fontSize: '1.041vw',
             fontWeight: 500,
             textTransform: 'none',
         },
@@ -42,7 +42,7 @@ const getActiveStyle = (path, location) => {
             content: '""',
             position: 'absolute',
             width: '100%',
-            height: '3px',
+            height: '0.156vw',
             bottom: 5,
             left: location.pathname === path ? '50%':'42%',
             backgroundColor: isActive ? 'white' : 'transparent',
@@ -273,8 +273,8 @@ const Navbar = React.memo((props) => {
                             ml: { md:-1, lg: 1.2 },
                             borderRadius: '4px',
                             backgroundColor: '#B50304',
-                            width:{ xs: '100px', sm: '100px', md: '120px', lg: '140px', xl: '170px' },
-                            height: { xs: '25px', sm: '30px', md: '37px', lg: '43px', xl: '47px' },
+                            width:'8.854vw',
+                            height: '2.447vw',
                             '&:hover': {
                                 backgroundColor: '#B50304',
                             },
