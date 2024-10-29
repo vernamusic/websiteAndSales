@@ -89,7 +89,7 @@ const Footer = () => (
         alignItems: 'center',
       }}
     >
-      <Box sx={{ width: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '6.666vw' }}>
+      <Box sx={{ width: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1.66vw' }}>
         <Box>
           {/* OUR SOLUTIONS Box */}
           <Box sx={commonBoxStyles}>
@@ -292,6 +292,7 @@ const Footer = () => (
 // Common styles for the boxes
 const commonBoxStyles = {
   backgroundColor: '#14141415',
+  padding:2,
   borderRadius: '8px',
   width: '17.656vw',
   height: 'auto',
