@@ -11,20 +11,21 @@ import SignUpDialog from '../components/SignUp/SignUpDialog.jsx'; // Import the 
 const theme = createTheme({
     typography: {
         h6: {
-            fontFamily:'Lato',
-            fontSize: '1.041vw',
+            fontFamily: 'Lato',
+            fontSize: '1.04167vw',
             fontWeight: 500,
             color: "#F1F1F1",
             textTransform: 'none',
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: '1.041vw',
+            fontSize: '1.04167vw',
             fontWeight: 500,
             textTransform: 'none',
         },
     },
 });
+
 
 const getActiveStyle = (path, location) => {
     const isActive = location.pathname === path || (
@@ -126,7 +127,7 @@ const Navbar = React.memo((props) => {
                             }}
                             disableRipple
                         >
-                            <img src={logo} alt="logo" style={{ width: 'calc(2vw + 20px)' }} />
+                            <img src={logo} alt="logo" style={{ width: 'calc(2vw + 25px)' }} />
                         </Button>
                     </Box>
                     <Box sx={{ display: { xs: 'flex', md: 'none' }, ml: 'auto' }}>
@@ -271,10 +272,14 @@ const Navbar = React.memo((props) => {
                             display: { xs: 'none', md: 'flex' },
                             ...theme.typography.button,
                             ml: { md:-1, lg: 1.2 },
-                            borderRadius: '4px',
                             backgroundColor: '#B50304',
-                            width:'8.854vw',
-                            height: '2.447vw',
+                            padding:0,
+                            minWidth: 0,
+                            borderRadius: '4px',
+                            textTransform: 'none',
+                            width:'8.0656vw',
+                            height: '2.34375vw',
+
                             '&:hover': {
                                 backgroundColor: '#B50304',
                             },

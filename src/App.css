@@ -38,7 +38,6 @@
 
 .Content {
     position: relative;
-    top: 64px;
     z-index: 1;
 }
 .Footer {
@@ -56,24 +55,23 @@
 
 @media (max-width: 425px) {
     .Content {
-        top: 56px;
+        top: 10vw;
     }
 }
-
 @media (min-width: 425px) and (max-width: 768px) {
     .Content {
-        top: 64px;
+        top: 8vw;
     }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
     .Content {
-        top: 72px;
+        top: 6vw;
     }
 }
 
 @media (min-width: 1024px) {
     .Content {
-        top: 80px;
+        top: 4.5vw;
     }
 }
