@@ -4,6 +4,7 @@ import { Close } from '@mui/icons-material';
 import LoginDialog from './Login.jsx';
 import ForgotPasswordDialog from './ForgetPassword.jsx';
 import VerificationEmailDialog from './Verification.jsx';
+import {useNavigate} from "react-router-dom";
 
 const SignUpDialog = ({ open, onClose, email: initialEmail = null }) => {
     const [dialogMode, setDialogMode] = useState('login');
@@ -11,6 +12,7 @@ const SignUpDialog = ({ open, onClose, email: initialEmail = null }) => {
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (initialEmail) {
@@ -55,8 +57,8 @@ const SignUpDialog = ({ open, onClose, email: initialEmail = null }) => {
     };
 
     const handleLoginSuccess = () => {
-        console.log('User logged in successfully');
-        // window.location.href = '/';
+        navigate('/');
+        window.location.reload();
     };
 
     const renderDialogContent = () => {
