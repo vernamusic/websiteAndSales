@@ -49,17 +49,17 @@ const theme = createTheme({
   },
 });
 
-const ContactFormDialog2 = ({ open, onClose }) => {
+const ContactFormDialog4 = ({ open, onClose }) => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
     email: '',
-    phone_number: null,
+    phone_number: '',
     subject: '',
     message: '',
-    type: 10,
+    type: 12,
   });
 
   const handleInputChange = (e) => {
@@ -76,7 +76,7 @@ const ContactFormDialog2 = ({ open, onClose }) => {
         body: JSON.stringify(formData),
       });
       if (response.ok) {
-        setFormData({ first_name: '', last_name: '', email: '', phone_number: null, subject: '', message: '', type: 10 });
+        setFormData({ first_name: '', last_name: '', email: '', phone_number: null, subject: '', message: '', type: 12 });
         onClose();
       } else {
         console.error('Error submitting the form:', response.statusText);
@@ -243,4 +243,4 @@ const ContactFormDialog2 = ({ open, onClose }) => {
   );
 };
 
-export default ContactFormDialog2;
+export default ContactFormDialog4;

@@ -59,7 +59,7 @@ const ContactFormDialog3 = ({ open, onClose }) => {
     phone_number: '',
     subject: '',
     message: '',
-    type: 2,
+    type: 11,
   });
 
   const handleInputChange = (e) => {
@@ -76,7 +76,7 @@ const ContactFormDialog3 = ({ open, onClose }) => {
         body: JSON.stringify(formData),
       });
       if (response.ok) {
-        setFormData({ first_name: '', last_name: '', email: '', phone_number: null, subject: '', message: '', type: 2 });
+        setFormData({ first_name: '', last_name: '', email: '', phone_number: null, subject: '', message: '', type: 11 });
         onClose();
       } else {
         console.error('Error submitting the form:', response.statusText);
