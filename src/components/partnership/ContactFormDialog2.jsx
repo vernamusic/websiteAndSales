@@ -124,7 +124,9 @@ const ContactFormDialog2 = ({ open, onClose }) => {
         <DialogContent
           sx={{
             padding: '24px 70px',
-            overflow: isSmallScreen ? 'hidden' : 'auto', // Disable scrollbar on smaller screens
+            maxHeight: '500px', // Set a max height for scrolling
+              overflowY: 'auto', // Allow vertical scrolling
+              '&::-webkit-scrollbar': { display: 'none' },  // Set height to avoid overflow
           }}
         >
           <Typography variant="subtitle2" align="center" gutterBottom sx={{ mb: 4 }}>
