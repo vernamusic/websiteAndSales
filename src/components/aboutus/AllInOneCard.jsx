@@ -47,7 +47,7 @@ const Allinonecard = ({ data }) => {
                 display="flex"
                 flexDirection="column"
                 sx={{
-                    maxWidth: '63.8vw',
+                    maxWidth: '100vw',
                     justifyItems:'center',
                     alignItems: 'center',
                     mb: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 }
@@ -58,7 +58,7 @@ const Allinonecard = ({ data }) => {
                     flexWrap="wrap"
                     justifyContent="center"
                     sx={{ gap: '1.8vw',
-                        maxWidth: '57vw',
+                        maxWidth: '80vw',
                 }}
                 >
                     {data.map((box, index) => (
@@ -71,7 +71,7 @@ const Allinonecard = ({ data }) => {
                                 width: '17.78vw',
                                 height: '31.5972vw',
                                 position: "relative",
-                                borderRadius: "20px",
+                                borderRadius: "1.5vw",
                                 color: "white",
                                 overflow: "hidden",
                                 alignItems: "center",

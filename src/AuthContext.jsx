@@ -1,10 +1,12 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [authToken, setAuthToken] = useState(localStorage.getItem('authToken'));
     const [refreshToken, setRefreshToken] = useState(localStorage.getItem('refreshToken'));
+    const navigate = useNavigate();
 
     const login = (token, refresh) => {
         setAuthToken(token);
@@ -18,6 +20,8 @@ export const AuthProvider = ({ children }) => {
         setRefreshToken(null);
         localStorage.removeItem('authToken');
         localStorage.removeItem('refreshToken');
+        navigate('/');
+        window.location.reload();
     };
 
     const isTokenExpired = (token) => {
@@ -71,9 +75,3 @@ export const AuthProvider = ({ children }) => {
 export const useAuth = () => {
     return useContext(AuthContext);
 };
-
-// Scenarios:
-// 1. Use login(token, refresh) to log in and save tokens.
-// 2. Call logout() to log out and clear tokens.
-// 3. Check token expiry with isTokenExpired(token) before making requests.
-// 4. Refresh access token using refreshAccessToken() if the token is expired.

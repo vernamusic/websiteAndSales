@@ -80,11 +80,11 @@ const TeamMembers = () => {
                     }}
                 >
                     {teams.map(({ team_name, members }) => (
-                        <Box key={team_name} sx={{ width: '90%' }}>
+                        <Box key={team_name} sx={{ width: '100%' }}>
                             <Typography gutterBottom sx={{ ...theme.typography.h3, mb: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 }, textAlign: 'left', ml:'0.5vw'}}>
                                 {team_name}
                             </Typography>
-                            <Mediacard data={members} />
+                            <Allinonecard data={members} />
                         </Box>
                     ))}
                 </Box>
@@ -116,7 +116,7 @@ const TeamMembers = () => {
                     sx={{
                         display: 'flex',
                         justifyContent: 'center',
-                        mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
+//                      mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
                         maxHeight: '40px',
 
                     }}
@@ -127,7 +127,7 @@ const TeamMembers = () => {
                         onChange={handleToggle}
                         aria-label="Team selection"
                         sx={{
-                            display: 'flex',
+                            display: 'none',
                             gap: { xs: 0.8, sm: 1, md: 2, lg: 3, xl: 4 },
                             justifyContent: 'center',
                             width: '100%',

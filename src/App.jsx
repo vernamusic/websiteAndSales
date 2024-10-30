@@ -10,8 +10,8 @@ import './app.css';
 
 const App = () => {
     return (
+        <Router>
         <AuthProvider>
-            <Router>
                 <Box className="App">
                     <Box className="Navbar">
                         <Navbar />
@@ -25,8 +25,8 @@ const App = () => {
                         <Footer />
                     </Box>
                 </Box>
-            </Router>
         </AuthProvider>
+        </Router>
     );
 };
 
