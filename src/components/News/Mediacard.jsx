@@ -86,12 +86,14 @@ const Mediacard = ({ data }) => {
                 {...swipeHandlers}
             >
                 <Box
+                
                     display="flex"
                     flexDirection="row"
                     alignItems="center"
                     justifyContent="center"
                     position="relative"
                     sx={{
+                        justifyContent:'flex-start',
                         overflow:{xs:"scroll",sm:"scroll",md:'hidden'},
                         maxWidth: '72.92vw',
                         '&::-webkit-scrollbar': {
@@ -107,7 +109,7 @@ const Mediacard = ({ data }) => {
                         display="flex"
                         justifyContent="start"
                         sx={{
-                            transform: `translateX(-${currentIndex * 22.7}vw)`,
+                            transform: `translateX(-${currentIndex * 20.7}vw)`,
                             transition: "transform 0.6s ease-in-out",
                             gap: '3.7vw',
                         }}
@@ -119,8 +121,8 @@ const Mediacard = ({ data }) => {
                                 sx={{
                                     display: 'flex',
                                     flexDirection: 'column',
-                                    width: '19vw',
-                                    height: '27.5vw',
+                                    width: '17vw',
+                                    height: '25vw',
                                     position: "relative", // Position relative to allow absolute positioning of inner boxes
                                     borderRadius: "16px",
                                     flexBasis: '28%',
@@ -137,7 +139,7 @@ const Mediacard = ({ data }) => {
                                 }}
                             >
                                 <Box sx={{ position: "relative", width: '85%', height: '68%', display: "flex", flexDirection: "column", justifyContent: 'flex-end',overflow:'hidden', }}/>
-                                <Box sx={{ position: "relative", width: '85%', height: '22%', display: "flex", flexDirection: "column", justifyContent: 'flex-start',overflow:'hidden', }}>
+                                <Box sx={{ position: "relative", width: '85%', height: '22%', display: "flex", flexDirection: "column", justifyContent: 'flex-start',mb:3, }}>
                                     <Typography sx={{ width: '100%', ...theme.typography.h3 }}>{box.title}</Typography>
                                     <Typography sx={{ width: '100%', mt: 0.5, ...theme.typography.h6 }}>
                                         {box.details.length > 50 ? `${box.details.substring(0, 80)}...` : box.details}

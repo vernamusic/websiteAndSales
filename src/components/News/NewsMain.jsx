@@ -80,6 +80,7 @@ const TeamMembers = () => {
             return (
                 <Box
                     sx={{
+                        
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'center',
@@ -89,7 +90,7 @@ const TeamMembers = () => {
                     }}
                 >
                     {teamsData.map(({ team_name, members }) => (
-                        <Box key={team_name} sx={{ width: '90%' }}>
+                        <Box key={team_name} sx={{ width: '80%' }}>
                             <Typography
                                 gutterBottom
                                 sx={{ ...theme.typography.h3, mb: 3, textAlign: 'left',ml:'0.8vw' }}
@@ -127,6 +128,7 @@ const TeamMembers = () => {
                 </Box>
                 <Box
                     sx={{
+                        
                         display: 'flex',
                         justifyContent: 'center',
                         mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
