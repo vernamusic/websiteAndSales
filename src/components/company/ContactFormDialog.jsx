@@ -124,7 +124,7 @@ const ContactFormDialog = ({ open, onClose }) => {
         <DialogContent
           sx={{
             padding: '24px 70px',
-            overflow: 'hidden', // Hide scrollbar
+            overflow: 'hidden',
           }}
         >
           <Typography variant="subtitle2" align="center" gutterBottom sx={{ mb: 4 }}>
@@ -132,9 +132,9 @@ const ContactFormDialog = ({ open, onClose }) => {
           </Typography>
           <Box
             sx={{
-              maxHeight: '500px', // Set a max height for scrolling
-              overflowY: 'auto', // Allow vertical scrolling
-              '&::-webkit-scrollbar': { display: 'none' }, // Hide scrollbar for webkit browsers
+              maxHeight: '500px',
+              overflowY: 'auto',
+              '&::-webkit-scrollbar': { display: 'none' },
             }}
           >
             <Box sx={{ display: 'flex', gap: 2 }}>
