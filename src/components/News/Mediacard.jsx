@@ -29,7 +29,7 @@ const theme = createTheme({
         },
         button: {
             fontFamily: 'Lato',
-            fontSize:'0.677vw',
+            fontSize:'0.7vw',
             textTransform: 'none',
             color: "#FFFFFF",
         },

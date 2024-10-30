@@ -59,7 +59,7 @@ const ContactFormDialog = ({ open, onClose }) => {
     phone_number: null,
     subject: '',
     message: '',
-    type: null,
+    type: 9,
   });
 
   const handleInputChange = (e) => {
@@ -76,7 +76,7 @@ const ContactFormDialog = ({ open, onClose }) => {
         body: JSON.stringify(formData),
       });
       if (response.ok) {
-        setFormData({ first_name: '', last_name: '', email: '', phone_number: null, subject: '', message: '', type: null });
+        setFormData({ first_name: '', last_name: '', email: '', phone_number: null, subject: '', message: '', type: 9 });
         onClose();
       } else {
         console.error('Error submitting the form:', response.statusText);
@@ -124,95 +124,103 @@ const ContactFormDialog = ({ open, onClose }) => {
         <DialogContent
           sx={{
             padding: '24px 70px',
-            overflow: isSmallScreen ? 'hidden' : 'auto', // Disable scrollbar on smaller screens
+            overflow: 'hidden',
           }}
         >
           <Typography variant="subtitle2" align="center" gutterBottom sx={{ mb: 4 }}>
             Please fill this form in a decent manner
           </Typography>
-          <Box sx={{ display: 'flex', gap: 2 }}>
-            <TextField
-              fullWidth
-              name="first_name"
-              placeholder="First name"
-              variant="outlined"
-              margin="dense"
-              value={formData.first_name}
-              onChange={handleInputChange}
-              InputProps={{
-                style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
-              }}
-            />
-            <TextField
-              fullWidth
-              name="last_name"
-              placeholder="Last name"
-              variant="outlined"
-              margin="dense"
-              value={formData.last_name}
-              onChange={handleInputChange}
-              InputProps={{
-                style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
-              }}
-            />
-          </Box>
-          <Box mt={2}>
-            <TextField
-              fullWidth
-              name="email"
-              placeholder="Enter your email"
-              variant="outlined"
-              margin="dense"
-              value={formData.email}
-              onChange={handleInputChange}
-              InputProps={{
-                style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
-              }}
-            />
-          </Box>
-          <Box mt={2}>
-            <TextField
-              fullWidth
-              name="phone_number"
-              placeholder="Enter your number"
-              variant="outlined"
-              margin="dense"
-              value={formData.phone_number || ''}
-              onChange={handleInputChange}
-              InputProps={{
-                style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
-              }}
-            />
-          </Box>
-          <Box mt={2}>
-            <TextField
-              fullWidth
-              name="subject"
-              placeholder="Enter the subject"
-              variant="outlined"
-              margin="dense"
-              value={formData.subject}
-              onChange={handleInputChange}
-              InputProps={{
-                style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
-              }}
-            />
-          </Box>
-          <Box mt={2}>
-            <TextField
-              fullWidth
-              name="message"
-              placeholder="Message"
-              variant="outlined"
-              margin="dense"
-              multiline
-              rows={4}
-              value={formData.message}
-              onChange={handleInputChange}
-              InputProps={{
-                style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
-              }}
-            />
+          <Box
+            sx={{
+              maxHeight: '500px',
+              overflowY: 'auto',
+              '&::-webkit-scrollbar': { display: 'none' },
+            }}
+          >
+            <Box sx={{ display: 'flex', gap: 2 }}>
+              <TextField
+                fullWidth
+                name="first_name"
+                placeholder="First name"
+                variant="outlined"
+                margin="dense"
+                value={formData.first_name}
+                onChange={handleInputChange}
+                InputProps={{
+                  style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
+                }}
+              />
+              <TextField
+                fullWidth
+                name="last_name"
+                placeholder="Last name"
+                variant="outlined"
+                margin="dense"
+                value={formData.last_name}
+                onChange={handleInputChange}
+                InputProps={{
+                  style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
+                }}
+              />
+            </Box>
+            <Box mt={2}>
+              <TextField
+                fullWidth
+                name="email"
+                placeholder="Enter your email"
+                variant="outlined"
+                margin="dense"
+                value={formData.email}
+                onChange={handleInputChange}
+                InputProps={{
+                  style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
+                }}
+              />
+            </Box>
+            <Box mt={2}>
+              <TextField
+                fullWidth
+                name="phone_number"
+                placeholder="Enter your number"
+                variant="outlined"
+                margin="dense"
+                value={formData.phone_number || ''}
+                onChange={handleInputChange}
+                InputProps={{
+                  style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
+                }}
+              />
+            </Box>
+            <Box mt={2}>
+              <TextField
+                fullWidth
+                name="subject"
+                placeholder="Enter the subject"
+                variant="outlined"
+                margin="dense"
+                value={formData.subject}
+                onChange={handleInputChange}
+                InputProps={{
+                  style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
+                }}
+              />
+            </Box>
+            <Box mt={2}>
+              <TextField
+                fullWidth
+                name="message"
+                placeholder="Message"
+                variant="outlined"
+                margin="dense"
+                multiline
+                rows={4}
+                value={formData.message}
+                onChange={handleInputChange}
+                InputProps={{
+                  style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
+                }}
+              />
+            </Box>
           </Box>
         </DialogContent>
         <DialogActions sx={{ justifyContent: 'center', pb: 2, padding: '0 24px' }}>
