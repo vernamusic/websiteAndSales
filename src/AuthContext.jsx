@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext();
 
@@ -21,30 +21,45 @@ export const AuthProvider = ({ children }) => {
     };
 
     const isTokenExpired = (token) => {
-        if (!token) return true;
-        const payload = JSON.parse(atob(token.split('.')[1]));
-        const expiry = payload.exp * 1000;
-        return Date.now() > expiry;
+        try {
+            if (!token) return true;
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            const expiry = payload.exp * 1000;
+            return Date.now() > expiry;
+        } catch (e) {
+            return true;
+        }
     };
 
     const refreshAccessToken = async () => {
         if (!refreshToken) return;
-        const response = await fetch('https://site.vitruvianshield.com/api/v1/token/refresh/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ refresh: refreshToken }),
-        });
+        try {
+            const response = await fetch('https://site.vitruvianshield.com/api/v1/token/refresh/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ refresh: refreshToken }),
+            });
 
-        const data = await response.json();
-        if (response.ok) {
-            setAuthToken(data.access);
-            localStorage.setItem('authToken', data.access);
-        } else {
+            const data = await response.json();
+            if (response.ok) {
+                setAuthToken(data.access);
+                localStorage.setItem('authToken', data.access);
+            } else {
+                logout();
+            }
+        } catch (error) {
+            console.error("Token refresh failed:", error);
             logout();
         }
     };
+
+    useEffect(() => {
+        if (isTokenExpired(authToken)) {
+            refreshAccessToken();
+        }
+    }, [authToken]);
 
     return (
         <AuthContext.Provider value={{ authToken, refreshToken, login, logout, isTokenExpired, refreshAccessToken }}>

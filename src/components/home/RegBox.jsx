@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Typography, Button, Box, OutlinedInput, FormControl, InputLabel } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import backgroundImage from '/src/assets/regboxpic.jpg';
-
+import SignUpDialog from "../SignUp/SignUpDialog.jsx";
 const theme = createTheme({
     typography: {
         h6: {
@@ -33,6 +33,10 @@ const theme = createTheme({
 });
 
 const RegBox = () => {
+    const [email, setEmail] = useState('');
+    const [dialogOpen, setDialogOpen] = useState(false);
+
+    const handleOpenDialog = () => setDialogOpen(true);
     return (
         <ThemeProvider theme={theme}>
             <Box
@@ -95,69 +99,25 @@ const RegBox = () => {
                             gap: '2%',
                         }}
                     >
-                        <FormControl
-                            variant="outlined"
-                            fullWidth
-                            sx={{
-                                height: '100%',
-                                display: 'flex',
-                                justifyContent: 'center',
-                            }}
-                        >
-                            <InputLabel
-                                htmlFor="email-input"
-                                sx={{
-                                    position: 'absolute',
-                                    top: '25%',
-                                    left: '4%',
-                                    transform: 'translateY(0%)',
-                                    textAlign: 'center',
-                                    ...theme.typography.form,
-                                    color: '#000000',
-                                    opacity: 1,
-                                    transition: 'opacity 0.4s ease-in-out, transform 0.4s ease-in-out',
-                                    '&.MuiInputLabel-shrink': {
-                                        opacity: 0,
-                                        transform: 'translateX(100%)',
-                                        color: '#ec0000',
-                                    }
-                                }}
-                            >
-                                Email address
-                            </InputLabel>
+                        <FormControl variant="outlined" fullWidth sx={{ height: '100%' }}>
+                            <InputLabel htmlFor="email-input">Email address</InputLabel>
                             <OutlinedInput
                                 id="email-input"
                                 autoComplete="off"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                                 sx={{
                                     backgroundColor: '#FFFFFF',
                                     borderRadius: '6px',
                                     height: '100%',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
                                     ...theme.typography.form,
-                                    '& input': {
-                                        height: '100%',
-                                        textAlign: 'start',
-                                    },
-                                    '&:hover .MuiOutlinedInput-notchedOutline': {
-                                        borderColor: '#a80d0d',
-                                    },
-                                    '&.Mui-focused': {
-                                        '& input': {
-                                            ...theme.typography.form,
-                                        },
-                                        '& .MuiOutlinedInput-notchedOutline': {
-                                            borderColor: '#a80d0d',
-                                            borderWidth: '2px',
-                                        },
-                                    },
                                 }}
                             />
                         </FormControl>
 
                         <Button
                             variant="contained"
+                            onClick={handleOpenDialog}
                             sx={{
                                 ...theme.typography.button,
                                 borderRadius: '6px',
@@ -176,6 +136,7 @@ const RegBox = () => {
                     </Box>
                 </Box>
             </Box>
+            <SignUpDialog open={dialogOpen} onClose={() => setDialogOpen(false)} email={email} />
         </ThemeProvider>
     );
 }

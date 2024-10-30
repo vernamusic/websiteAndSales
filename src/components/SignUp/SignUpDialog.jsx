@@ -1,16 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Dialog, DialogTitle, Box, Slide, Fade, IconButton, Snackbar, Alert } from '@mui/material';
 import { Close } from '@mui/icons-material';
 import LoginDialog from './Login.jsx';
 import ForgotPasswordDialog from './ForgetPassword.jsx';
 import VerificationEmailDialog from './Verification.jsx';
 
-const SignUpDialog = ({ open, onClose }) => {
+const SignUpDialog = ({ open, onClose, email: initialEmail = null }) => {
     const [dialogMode, setDialogMode] = useState('login');
-    const [email, setEmail] = useState('');
+    const [email, setEmail] = useState(initialEmail);
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+
+    useEffect(() => {
+        if (initialEmail) {
+            setEmail(initialEmail);
+        }
+    }, [initialEmail]);
 
     const showSnackbar = (message, severity = 'success') => {
         setSnackbarMessage(message);
@@ -19,7 +25,6 @@ const SignUpDialog = ({ open, onClose }) => {
     };
 
     const handleForgotPassword = () => setDialogMode('forgotPassword');
-
     const handleBackToLogin = () => setDialogMode('login');
 
     const handleVerificationEmail = (email) => {
@@ -57,12 +62,10 @@ const SignUpDialog = ({ open, onClose }) => {
     const renderDialogContent = () => {
         switch (dialogMode) {
             case 'forgotPassword':
-                return (
-                    <ForgotPasswordDialog
-                        onBack={handleBackToLogin}
-                        showSnackbar={showSnackbar} // اتصال showSnackbar به ForgotPasswordDialog
-                    />
-                );
+                return <ForgotPasswordDialog
+                    onBack={handleBackToLogin}
+                    showSnackbar={showSnackbar}
+                />;
             case 'verificationEmail':
                 return (
                     <VerificationEmailDialog
@@ -103,34 +106,15 @@ const SignUpDialog = ({ open, onClose }) => {
         >
             <DialogTitle>
                 <Box display="flex" justifyContent="flex-end">
-                    <IconButton
-                        edge="end"
-                        color="inherit"
-                        onClick={onClose}
-                        aria-label="close"
-                    >
+                    <IconButton edge="end" color="inherit" onClick={onClose} aria-label="close">
                         <Close />
                     </IconButton>
                 </Box>
             </DialogTitle>
             <Slide direction="up" in={open} mountOnEnter unmountOnExit>
-                <Box
-                    display="flex"
-                    flexDirection="column"
-                    alignItems="center"
-                    width="100%"
-                >
-                    <Fade
-                        in={open}
-                        timeout={{ enter: 800, exit: 800 }}
-                        style={{ transitionDelay: '200ms' }}
-                    >
-                        <Box
-                            display="flex"
-                            flexDirection="column"
-                            alignItems="center"
-                            width="100%"
-                        >
+                <Box display="flex" flexDirection="column" alignItems="center" width="100%">
+                    <Fade in={open} timeout={{ enter: 800, exit: 800 }} style={{ transitionDelay: '200ms' }}>
+                        <Box display="flex" flexDirection="column" alignItems="center" width="100%">
                             {renderDialogContent()}
                         </Box>
                     </Fade>
@@ -140,7 +124,7 @@ const SignUpDialog = ({ open, onClose }) => {
                 open={snackbarOpen}
                 autoHideDuration={6000}
                 onClose={() => setSnackbarOpen(false)}
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // تغییر موقعیت
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
             >
                 <Alert onClose={() => setSnackbarOpen(false)} severity={snackbarSeverity}>
                     {snackbarMessage}
