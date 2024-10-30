@@ -16,7 +16,7 @@ const theme = createTheme({
     h3: {
       fontFamily: 'Lato',
       fontWeight: 600,
-      fontSize: { sm: '17px', md: '19px', lg: '23px', xl: '26px' },
+      fontSize:'1.4583vw',
       color: '#FFFFFF',
       letterSpacing: '0.4px',
     },

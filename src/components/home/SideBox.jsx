@@ -56,7 +56,7 @@ const SideBox = () => {
                 <img
                     src={Vname}
                     alt="Vname"
-                    style={{ width: '85%' }}
+                    style={{ width: '17.7vw' }}
                 />
                 <Typography
                     color="white"

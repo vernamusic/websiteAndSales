@@ -75,7 +75,7 @@ const CompanyBox = () => {
                             ...theme.typography.h6,
                             mt: 0.5,
                             mb: 1,
-                            width: { xs: '350px', sm: '430px', md: '480px', lg: '500px', xl: '625px' },
+                            width: { xs: '300px', sm: '310px', md: '360px', lg: '500px', xl: '625px' },
                         }}
                     >
                         Vitruvian Shield is an e-Health Software as a Service (Saas), integrating (CTMS)
