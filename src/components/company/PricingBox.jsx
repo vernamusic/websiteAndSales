@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography, Button, createTheme, ThemeProvider } from '@mui/material';
-import DialogBox from './DialogBox';
+import DialogBoxCTMS from './DialogBoxCTMS';
+import DialogBoxRPM from './DoalogBoxRPM';
 
 const theme = createTheme({
   typography: {
@@ -118,7 +119,7 @@ const PricingBox = () => {
           justifyContent="center"
           gap={10}
         >
-          {/* CTMS */}
+          {/* CTMS Card */}
           <Box
             sx={{
               backgroundColor: '#141414',
@@ -165,7 +166,7 @@ const PricingBox = () => {
               >
                 More
               </Button>
-              <DialogBox>
+              <DialogBoxCTMS>
                 <Button
                   variant="contained"
                   fullWidth
@@ -177,11 +178,11 @@ const PricingBox = () => {
                 >
                   Buy
                 </Button>
-              </DialogBox>
+              </DialogBoxCTMS>
             </Box>
           </Box>
 
-          {/* RPM */}
+          {/* RPM Card */}
           <Box
             sx={{
               backgroundColor: '#141414',
@@ -228,7 +229,7 @@ const PricingBox = () => {
               >
                 More
               </Button>
-              <DialogBox>
+              <DialogBoxRPM>
                 <Button
                   variant="contained"
                   fullWidth
@@ -240,7 +241,7 @@ const PricingBox = () => {
                 >
                   Buy
                 </Button>
-              </DialogBox>
+              </DialogBoxRPM>
             </Box>
           </Box>
         </Box>
