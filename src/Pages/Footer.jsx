@@ -9,9 +9,10 @@ import {
   AccordionSummary,
   AccordionDetails,
 } from '@mui/material';
-import { Facebook, LinkedIn, YouTube } from '@mui/icons-material';
 import FacebookCircled from '../assets/Facebook.png'
 import LinkedInCircled from '../assets/LinkedInCircled.png'
+import YoutubeCircled from '../assets/Youtube.png'
+
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import pci from '../assets/pci.png';
 import biopole from '../assets/biopole.png';
@@ -23,7 +24,7 @@ const theme = createTheme({
     h3: {
       fontFamily: 'Lato',
       fontWeight: 600,
-      fontSize: '0.9375vw',
+      fontSize: '18px',
       lineHeight: '18px',
       letterSpacing: '0.5px',
       color: '#FFFFFF',
@@ -31,7 +32,7 @@ const theme = createTheme({
     h6: {
       fontFamily: 'Lato',
       fontWeight: 700,
-      fontSize: '0.833vw',
+      fontSize: '16px',
       lineHeight: '16px',
       letterSpacing: '0.5px',
       color: '#FFFFFF',
@@ -39,7 +40,7 @@ const theme = createTheme({
     body3: {
       fontFamily: 'Lato',
       fontWeight: 700,
-      fontSize: '0.833vw',
+      fontSize: '16px',
       lineHeight: '19.2px',
       letterSpacing: '0.5px',
       color: '#D9D9D970',
@@ -47,7 +48,7 @@ const theme = createTheme({
     body9: {
       fontFamily: 'Lato',
       fontWeight: 500,
-      fontSize: '0.833vw',
+      fontSize: '16px',
       lineHeight: '28.8px',
       color: '#FFFFFFE5',
       
@@ -232,18 +233,21 @@ const Footer = () => (
           </AccordionSummary>
           <AccordionDetails>
             <Box>
-              {locations.map((location, index) => (
-                <Box marginTop={4} key={index}>
-                  <img src={location.image} alt={location.name} style={{ width: '103px', height: 'auto', marginRight: '8px' }} />
-                  <Box marginTop="16px">
-                    <Box display="flex" alignItems="center">
-                      <img src={footerloc} alt="locationLogo" style={{ width: '22px', height: 'auto', marginRight: '8px' }} />
-                      <Typography variant="h6" gutterBottom>{location.name}</Typography>
-                    </Box>
-                    <Typography variant="body3" paragraph sx={{ mt: '12px' }}>{location.address}</Typography>
-                  </Box>
+            {locations.map((location, index) => (
+            <Box marginTop={7} key={index}>
+              <img src={location.image} alt={location.name} style={{ width: '103px', height: 'auto', marginRight: '8px',display:'flex', justifyContent:'flex-start' }} />
+              <Box marginTop="16px">
+                <Box display="flex" alignItems="center" justifyContent="flex-start">
+                  <img src={footerloc} alt="locationLogo" style={{ width: '22px', height: 'auto', marginRight: '8px' }} />
+                  <Typography variant="h6" gutterBottom>{location.name}</Typography>
                 </Box>
-              ))}
+                <Typography variant="body3" sx={{ mt: '12px',display:'flex', textAlign: 'left' }}>
+                  {location.address}
+                </Typography>
+
+              </Box>
+            </Box>
+          ))}
             </Box>
           </AccordionDetails>
         </Accordion>
@@ -265,19 +269,22 @@ const Footer = () => (
         />
         <img
           src={LinkedInCircled}
-          alt="Facebook"
+          alt="Linkedin"
           style={{
             width: '40px',
             height: '40px',
             opacity: 0.9,
           }}
         />
-
-
-          
-          <Box sx={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: 'white',opacity: 0.9, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <YouTube sx={{ color: 'black' }} />
-          </Box>
+        <img
+          src={YoutubeCircled}
+          alt="Youtube"
+          style={{
+            width: '40px',
+            height: '40px',
+            opacity: 0.9,
+          }}
+        />
         </Box>
       </Box>
 
