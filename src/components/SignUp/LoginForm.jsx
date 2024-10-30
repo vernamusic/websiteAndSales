@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     FormControl, InputLabel, OutlinedInput, Box, Button, Link,
     InputAdornment, IconButton, Snackbar, Alert
@@ -6,18 +6,24 @@ import {
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import PropTypes from 'prop-types';
 import { createTheme } from '@mui/material/styles';
+
 const theme = createTheme({
-    typography: {
-    },
+    typography: {},
 });
 
-const AuthForm = ({ onForgotPassword, onLoginSuccess, onSendResetLink}) => {
+const AuthForm = ({email: initialEmail = null, onForgotPassword, onLoginSuccess, onSendResetLink,}) => {
     const [showPassword, setShowPassword] = useState(false);
-    const [email, setEmail] = useState('');
+    const [email, setEmail] = useState(initialEmail);
     const [password, setPassword] = useState('');
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [snackbarSeverity, setSnackbarSeverity] = useState('error');
+
+    useEffect(() => {
+        if (initialEmail) {
+            setEmail(initialEmail);
+        }
+    }, [initialEmail]);
 
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleMouseDownPassword = (event) => event.preventDefault();
@@ -57,12 +63,10 @@ const AuthForm = ({ onForgotPassword, onLoginSuccess, onSendResetLink}) => {
                 localStorage.setItem('refreshToken', loginData.refresh);
                 onLoginSuccess();
                 showSnackbar('Login successful!', 'success');
-            }
-            else if (loginResponse.status === 202) {
+            } else if (loginResponse.status === 202) {
                 showSnackbar('User not verified.', 'error');
                 onSendResetLink(email);
-            }
-            else if (loginResponse.status === 401) {
+            } else if (loginResponse.status === 401) {
                 showSnackbar('User not found. Registering...', 'info');
 
                 const registerResponse = await fetch('https://site.vitruvianshield.com/api/v1/register/', {
@@ -76,7 +80,6 @@ const AuthForm = ({ onForgotPassword, onLoginSuccess, onSendResetLink}) => {
                 const registerData = await registerResponse.json();
 
                 if (registerResponse.status === 201) {
-
                     onSendResetLink(email);
                     showSnackbar('Registration successful!', 'success');
                 } else {
@@ -99,7 +102,6 @@ const AuthForm = ({ onForgotPassword, onLoginSuccess, onSendResetLink}) => {
                     <InputLabel
                         htmlFor="email-input"
                         sx={{
-                            
                             ...theme.typography.text06,
                             color: '#000000',
                             '&.MuiInputLabel-shrink': {
@@ -220,6 +222,7 @@ const AuthForm = ({ onForgotPassword, onLoginSuccess, onSendResetLink}) => {
 AuthForm.propTypes = {
     onForgotPassword: PropTypes.func.isRequired,
     onLoginSuccess: PropTypes.func.isRequired,
+    onSendResetLink: PropTypes.func.isRequired, // اضافه کردن PropTypes برای onSendResetLink
 };
 
 export default AuthForm;

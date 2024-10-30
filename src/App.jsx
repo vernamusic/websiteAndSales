@@ -4,12 +4,14 @@ import { Box } from '@mui/material';
 import Navbar from './Pages/Navbar';
 import AppRoutes from './Routes';
 import Footer from './Pages/Footer';
+import { AuthProvider } from './AuthContext.jsx';
 
 import './app.css';
 
 const App = () => {
     return (
-        <Router>
+        <AuthProvider>
+            <Router>
                 <Box className="App">
                     <Box className="Navbar">
                         <Navbar />
@@ -20,10 +22,11 @@ const App = () => {
                     </Box>
 
                     <Box className="Footer">
-                    <Footer />
+                        <Footer />
                     </Box>
                 </Box>
-        </Router>
+            </Router>
+        </AuthProvider>
     );
 };
 
