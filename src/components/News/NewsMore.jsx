@@ -76,7 +76,6 @@ const NewsCard = () => {
         <ThemeProvider theme={theme}>
             <Box
                 sx={{
-                    backgroundColor: 'rgba(0, 0, 0, 0.7)',
                     color: 'white',
                     height: 'auto',
                     position: 'relative',
@@ -104,12 +103,16 @@ const NewsCard = () => {
                         pt: { xs: 1, sm: 1, md: 1.5, lg: 2, xl: 2 },
                     }}
                 >
-                    <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", mb: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 }, }}>
-                        <Typography variant="h4" sx={theme.typography.h3}>
+                    <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", mb: { xs: 1, sm: 1, md: 2, lg: 3, xl: 5 },mt: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 } }}>
+                        <Typography variant="h4" sx={{
+                                ...theme.typography.h3,
+                                mt: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 },
+                            }}>
                             {newsData.title}
                         </Typography>
 
-                        <Box sx={{ display: 'flex', gap: 0.5 }}>
+                        <Box sx={{ display: 'flex', gap: 0.5,
+                                mt: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 } }}>
                             <Typography sx={{ ...theme.typography.h6, display: { sm: 'block', xs: 'none' } }}>
                                 Share:
                             </Typography>
@@ -131,7 +134,7 @@ const NewsCard = () => {
                             flexDirection: 'row',
                             justifyContent: 'flex-start',
                             gap: 1,
-                            mt: -2,
+                            mt: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 },
                             mb: 2,
                         }}
                     >
@@ -145,12 +148,13 @@ const NewsCard = () => {
                     </Box>
 
                     {newsData.details.split('\n').map((paragraph, index) => (
-                        <Typography key={index} variant="body1" sx={{ marginTop: '10px', ...theme.typography.h6 }}>
+                        <Typography key={index} variant="body1" sx={{
+                            mt: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 }, ...theme.typography.h6 }}>
                             {paragraph}
                         </Typography>
                     ))}
 
-                    <Box sx={{ display: 'flex', alignItems: 'center', marginTop: '10px', }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', mt: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 }, }}>
                         <Typography sx={{ ...theme.typography.h6, color: 'gray' }}>{timeAgo}</Typography>
                         <Divider orientation="vertical" flexItem sx={{ mx: 2, borderColor: 'gray' }} />
                         <Typography sx={{ ...theme.typography.h6, color: 'gray' }}>
@@ -158,7 +162,7 @@ const NewsCard = () => {
                         </Typography>
                     </Box>
                     <Box sx={{ mb: { xs: 8, sm: 8, md: 10, lg: 10, xl: 10 }, }}>
-                        <Typography gutterBottom sx={{ ...theme.typography.h3, pl: 1, mb: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 }, textAlign: 'left', mt: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 } }}>
+                        <Typography gutterBottom sx={{ ...theme.typography.h3, pl: 1, mb: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 }, textAlign: 'left', mt: { xs: 3, sm: 4, md: 5, lg: 7, xl: 10 } }}>
                             Related News:
                         </Typography>
                         <Mediacard data={newsData.related_news} />
