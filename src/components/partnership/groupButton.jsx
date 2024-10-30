@@ -29,7 +29,7 @@ const customTheme = createTheme({
         h1: {
             fontFamily: 'Lato',
             fontWeight: 700,
-            fontSize: '1.85vw',
+            fontSize:'1.4583vw',
             color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
@@ -137,7 +137,7 @@ const GroupButton = () => {
                     </ToggleButtonGroup>
                 </Box>
                 <Box display="flex" justifyContent="center">
-                    <Box width="75vw" display="flex" flexWrap="wrap" justifyContent="center" gap="2.5vw" pt="8.5vw">
+                    <Box width="75vw" display="flex" flexWrap="wrap" justifyContent="center" gap="2.5vw" pt="3vw">
                         {filteredData.map((box, index) => (
                             <Box
                                 key={index}
