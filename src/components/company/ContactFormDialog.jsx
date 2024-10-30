@@ -54,8 +54,6 @@ const theme = createTheme({
 const ContactFormDialog = ({ open, onClose }) => {
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
     const { authToken } = useAuth();
-    const Token = localStorage.getItem('authToken');
-
     const [formData, setFormData] = useState({
         first_name: '',
         last_name: '',
@@ -65,9 +63,8 @@ const ContactFormDialog = ({ open, onClose }) => {
         message: '',
         type: 9,
     });
-
     const [errorMessage, setErrorMessage] = useState('');
-    const [dialogOpen, setDialogOpen] = useState(false); // اضافه کردن وضعیت برای دیالوگ ثبت‌نام
+    const [dialogOpen, setDialogOpen] = useState(false);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -75,14 +72,14 @@ const ContactFormDialog = ({ open, onClose }) => {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); // این خط باید همیشه اجرا شود
+        e.preventDefault();
         if (authToken) {
             try {
                 const response = await fetch('https://site.vitruvianshield.com/api/v1/contact-req', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${Token}`, // شامل توکن Bearer
+                        'Authorization': `Bearer ${authToken}`,
                     },
                     body: JSON.stringify(formData),
                 });
@@ -96,16 +93,15 @@ const ContactFormDialog = ({ open, onClose }) => {
                         message: '',
                         type: 9,
                     });
-                    onClose(); // بستن دیالوگ
+                    onClose();
                 } else {
-                    setErrorMessage('خطا در ارسال فرم. لطفاً دوباره امتحان کنید.'); // مدیریت خطا
+                    setErrorMessage('خطا در ارسال فرم. لطفاً دوباره امتحان کنید.');
                 }
             } catch (error) {
-                console.error('خطا در ارسال فرم:', error);
-                setErrorMessage('خطا در ارسال فرم. لطفاً دوباره امتحان کنید.'); // مدیریت خطا
+                setErrorMessage('خطا در ارسال فرم. لطفاً دوباره امتحان کنید.');
             }
         } else {
-            setDialogOpen(true); // باز کردن دیالوگ ثبت‌نام
+            setDialogOpen(true);
         }
     };
 
@@ -133,29 +129,18 @@ const ContactFormDialog = ({ open, onClose }) => {
                     <IconButton
                         aria-label="close"
                         onClick={onClose}
-                        sx={{
-                            position: 'absolute',
-                            right: 8,
-                            top: 8,
-                            color: theme.palette.text.secondary,
-                        }}
+                        sx={{ position: 'absolute', right: 8, top: 8, color: theme.palette.text.secondary }}
                     >
                         <CloseIcon />
                     </IconButton>
                 </DialogTitle>
 
                 <DialogContent sx={{ padding: '24px 70px', overflow: 'hidden' }}>
-                    {errorMessage && <Typography color="error">{errorMessage}</Typography>} {/* نمایش پیام خطا */}
+                    {errorMessage && <Typography color="error">{errorMessage}</Typography>}
                     <Typography variant="subtitle2" align="center" gutterBottom sx={{ mb: 4 }}>
-                        لطفاً این فرم را به طور معقول پر کنید
+                        Please fill this form in decent manner
                     </Typography>
-                    <Box
-                        sx={{
-                            maxHeight: '500px',
-                            overflowY: 'auto',
-                            '&::-webkit-scrollbar': { display: 'none' },
-                        }}
-                    >
+                    <Box sx={{ maxHeight: '500px', overflowY: 'auto', '&::-webkit-scrollbar': { display: 'none' } }}>
                         <Box sx={{ display: 'flex', gap: 2 }}>
                             <TextField
                                 fullWidth
@@ -165,9 +150,7 @@ const ContactFormDialog = ({ open, onClose }) => {
                                 margin="dense"
                                 value={formData.first_name}
                                 onChange={handleInputChange}
-                                InputProps={{
-                                    style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
-                                }}
+                                InputProps={{ style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626' } }}
                                 required
                             />
                             <TextField
@@ -178,9 +161,7 @@ const ContactFormDialog = ({ open, onClose }) => {
                                 margin="dense"
                                 value={formData.last_name}
                                 onChange={handleInputChange}
-                                InputProps={{
-                                    style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
-                                }}
+                                InputProps={{ style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626' } }}
                                 required
                             />
                         </Box>
@@ -193,9 +174,7 @@ const ContactFormDialog = ({ open, onClose }) => {
                                 margin="dense"
                                 value={formData.email}
                                 onChange={handleInputChange}
-                                InputProps={{
-                                    style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
-                                }}
+                                InputProps={{ style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626' } }}
                                 required
                             />
                         </Box>
@@ -208,9 +187,7 @@ const ContactFormDialog = ({ open, onClose }) => {
                                 margin="dense"
                                 value={formData.phone_number}
                                 onChange={handleInputChange}
-                                InputProps={{
-                                    style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
-                                }}
+                                InputProps={{ style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626' } }}
                                 required
                             />
                         </Box>
@@ -223,9 +200,7 @@ const ContactFormDialog = ({ open, onClose }) => {
                                 margin="dense"
                                 value={formData.subject}
                                 onChange={handleInputChange}
-                                InputProps={{
-                                    style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
-                                }}
+                                InputProps={{ style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626' } }}
                                 required
                             />
                         </Box>
@@ -240,14 +215,13 @@ const ContactFormDialog = ({ open, onClose }) => {
                                 rows={4}
                                 value={formData.message}
                                 onChange={handleInputChange}
-                                InputProps={{
-                                    style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
-                                }}
+                                InputProps={{ style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626' } }}
                                 required
                             />
                         </Box>
                     </Box>
                 </DialogContent>
+                
                 <DialogActions sx={{ justifyContent: 'center', pb: 2, padding: '0 24px' }}>
                     <Button
                         fullWidth
@@ -259,20 +233,14 @@ const ContactFormDialog = ({ open, onClose }) => {
                             mb: 4,
                             backgroundColor: theme.palette.primary.main,
                             '&:hover': { backgroundColor: theme.palette.primary.main },
-                            fontFamily: theme.typography.fontFamily,
-                            fontSize: theme.typography.button.fontSize,
-                            fontWeight: theme.typography.button.fontWeight,
-                            lineHeight: theme.typography.button.lineHeight,
-                            textAlign: 'center',
-                            borderRadius: '12px',
+                            borderRadius: '4px',
                         }}
                     >
-                        ارسال
+                        Submit
                     </Button>
                 </DialogActions>
             </Dialog>
-
-            {/* دیالوگ ثبت‌نام */}
+            
             <SignUpDialog open={dialogOpen} onClose={() => setDialogOpen(false)} />
         </ThemeProvider>
     );
