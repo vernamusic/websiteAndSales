@@ -1,12 +1,13 @@
 import React, { useState, useCallback } from 'react';
-import {AppBar, Box, Toolbar, Button, IconButton, MenuItem, Drawer, Divider, Menu} from '@mui/material';
+import {AppBar, Box, Toolbar, Button, IconButton, MenuItem, Drawer, Divider, Menu, Avatar} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import { Link, useLocation } from 'react-router-dom';
+import {Link, useLocation, useNavigate} from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import logo from '../assets/redvslogo.svg';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import SignUpDialog from '../components/SignUp/SignUpDialog.jsx'; // Import the SignUpDialog component
+import SignUpDialog from '../components/SignUp/SignUpDialog.jsx';
+import { useAuth } from '../AuthContext.jsx';
 
 const theme = createTheme({
     typography: {
@@ -26,7 +27,6 @@ const theme = createTheme({
     },
 });
 
-
 const getActiveStyle = (path, location) => {
     const isActive = location.pathname === path || (
         path === '/products' && (
@@ -45,7 +45,7 @@ const getActiveStyle = (path, location) => {
             width: '100%',
             height: '0.156vw',
             bottom: 5,
-            left: location.pathname === path ? '50%':'42%',
+            left: location.pathname === path ? '50%' : '42%',
             backgroundColor: isActive ? 'white' : 'transparent',
             transform: isActive ? 'translateX(-50%) scaleX(0.3)' : 'translateX(-50%) scaleX(0)',
             transformOrigin: 'center',
@@ -56,24 +56,23 @@ const getActiveStyle = (path, location) => {
                 location.pathname.startsWith('/products/mobile-app') ||
                 location.pathname.startsWith('/products/dashboard') ||
                 location.pathname.startsWith('/products/smart-watch')
-            ) ? {} :
-            {
-            content: '""',
-            position: 'absolute',
-            width: '100%',
-            height: '3px',
-            bottom: 5,
-            left: '50%',
-            backgroundColor: isActive ? 'white' : 'gray',
-            transform: 'translateX(-50%) scaleX(0.4)',
-            transformOrigin: 'center',
-            transition: 'transform 0.3s ease-in-out, background-color 0.3s ease-in-out,',
-        },
+            ) ? {} : {
+                content: '""',
+                position: 'absolute',
+                width: '100%',
+                height: '3px',
+                bottom: 5,
+                left: '50%',
+                backgroundColor: isActive ? 'white' : 'gray',
+                transform: 'translateX(-50%) scaleX(0.4)',
+                transformOrigin: 'center',
+                transition: 'transform 0.3s ease-in-out, background-color 0.3s ease-in-out',
+            },
     };
 };
 
-
 const Navbar = React.memo((props) => {
+    const navigate = useNavigate();
     const location = useLocation();
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [dialogOpen, setDialogOpen] = useState(false);
@@ -87,6 +86,16 @@ const Navbar = React.memo((props) => {
         setAnchorEl(null);
     };
 
+    const handleProfileClick = () => {
+        navigate('/profile');
+        handleMenuClose();
+    };
+
+    const handleLogout = () => {
+        logout();
+        handleMenuClose();
+    };
+
     const pages = [
         { name: 'Home', path: '/', disabled: false },
         { name: 'Products', path: '/products', disabled: false },
@@ -96,7 +105,6 @@ const Navbar = React.memo((props) => {
         { name: 'About Us', path: '/about', disabled: false }
     ];
 
-
     const productItems = [
         { name: 'Mobile App', path: '/products/mobile-app' },
         { name: 'Dashboard', path: '/products/dashboard' },
@@ -104,27 +112,17 @@ const Navbar = React.memo((props) => {
     ];
 
     const toggleDrawer = useCallback((open) => () => setDrawerOpen(open), []);
+    const { authToken, logout } = useAuth(); // Using the useAuth hook
 
     return (
         <ThemeProvider theme={theme}>
-            <AppBar
-                position="static"
-                sx={{
-                    boxShadow: 0,
-                    bgcolor: '#141414',
-                    width: '100%',
-                    }}
-            >
-                <Toolbar sx={{ py:{xs: 0.4, sm: 0.4, md: 0.6, lg: 0.8, xl: 1}, display: 'flex', justifyContent: 'space-between' }}>
+            <AppBar position="static" sx={{ boxShadow: 0, bgcolor: '#141414', width: '100%' }}>
+                <Toolbar sx={{ py: { xs: 0.4, sm: 0.4, md: 0.6, lg: 0.8, xl: 1 }, display: 'flex', justifyContent: 'space-between' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <Button
                             component={Link}
                             to="/"
-                            sx={{ mx: { xs: '0.5vw'}, display: 'flex', alignItems: 'center',
-                                '&:hover': {
-                                    backgroundColor: 'transparent',
-                                },
-                            }}
+                            sx={{ mx: { xs: '0.5vw' }, display: 'flex', alignItems: 'center', '&:hover': { backgroundColor: 'transparent' } }}
                             disableRipple
                         >
                             <img src={logo} alt="logo" style={{ width: 'calc(2vw + 25px)' }} />
@@ -146,11 +144,11 @@ const Navbar = React.memo((props) => {
                                     page.name === 'Products' ? (
                                         productItems.map((item) => (
                                             <MenuItem
-                                                key={item.id}
+                                                key={item.path}
                                                 component={Link}
                                                 to={item.path}
                                                 onClick={toggleDrawer(false)}
-                                                sx={{ color: '#fff' }}
+                                                sx={{color: '#ffffff',}}
                                             >
                                                 {item.name}
                                             </MenuItem>
@@ -169,27 +167,44 @@ const Navbar = React.memo((props) => {
                                     )
                                 )}
                                 <MenuItem>
+                                    {authToken ? (
+                                        <>
+                                            <Button
+                                                variant="outlined"
+                                                onClick={handleProfileClick}
+                                                sx={{ color: '#ffffff', borderColor: '#B50304', fontSize: '15px' }}
+                                            >
+                                                Profile
+                                            </Button>
+                                            <Button
+                                                variant="outlined"
+                                                onClick={handleLogout}
+                                                sx={{ color: '#ffffff', borderColor: '#B50304', fontSize: '15px' }}
+                                            >
+                                                Log out
+                                            </Button>
+                                        </>
+                                    ) : (
                                     <Button
                                         variant="outlined"
-                                        onClick={() => setDialogOpen(true)} // Open dialog on click
+                                        onClick={() => setDialogOpen(true)}
                                         fullWidth
                                         sx={{ color: '#ffffff', borderColor: '#B50304', fontSize: '15px' }}
                                     >
                                         Get started
                                     </Button>
+                                        )}
                                 </MenuItem>
                             </Box>
                         </Drawer>
                     </Box>
-                    <Box
-                        sx={{
-                            display: { xs: 'none', md: 'flex' },
-                            flexGrow: 1,
-                            justifyContent: 'start',
-                            ml:{md: -0.5, lg: 0.5, xl: 3},
-                            gap: {md: 1, lg: 3, xl: 5},
-                        }}
-                    >
+                    <Box sx={{
+                        display: { xs: 'none', md: 'flex' },
+                        flexGrow: 1,
+                        justifyContent: 'start',
+                        ml: { md: -0.5, lg: 0.5, xl: 3 },
+                        gap: { md: 1, lg: 3, xl: 5 },
+                    }}>
                         {pages.map((page) =>
                             page.name === 'Products' ? (
                                 <Button
@@ -198,7 +213,6 @@ const Navbar = React.memo((props) => {
                                     color="inherit"
                                     onMouseEnter={handleMenuOpen}
                                     sx={{
-
                                         ...theme.typography.h6,
                                         color: '#ffffff',
                                         display: 'flex',
@@ -208,25 +222,20 @@ const Navbar = React.memo((props) => {
                                     disableRipple
                                 >
                                     {page.name}
-                                    <ArrowDropDownIcon sx={{...theme.typography.h6,
-                                    }} />
+                                    <ArrowDropDownIcon sx={{ ...theme.typography.h6, ml: 0.5 }} />
                                 </Button>
                             ) : (
                                 <Button
-                                    key={page.name}
+                                    key={page.path}
                                     component={Link}
-                                    disabled={page.disabled}
                                     to={page.path}
+                                    color="inherit"
                                     sx={{
                                         ...theme.typography.h6,
-                                        color:'rgba(255,255,255,1)',
+                                        color: '#ffffff',
+                                        display: 'flex',
+                                        alignItems: 'center',
                                         ...getActiveStyle(page.path, location),
-                                        '&.Mui-disabled': {
-                                            color: 'rgba(255,255,255,0.40)',
-                                    },
-                                        '&:hover': {
-                                            backgroundColor: 'transparent',
-                                        },
                                     }}
                                     disableRipple
                                 >
@@ -234,63 +243,61 @@ const Navbar = React.memo((props) => {
                                 </Button>
                             )
                         )}
-
-                        {/* Dropdown Menu */}
-                        <Menu
-                            anchorEl={anchorEl}
-                            open={open}
-                            onClose={handleMenuClose}
-                            onMouseLeave={handleMenuClose}
-                            MenuListProps={{ onMouseLeave: handleMenuClose }}
-                            PaperProps={{
-                                sx: {
-                                    bgcolor: '#141414',
-                                    color: 'white',
-                                    border: '1px solid rgba(255, 255, 255, 0.2)',
-                                    minWidth: 100,
-                                    justifyContent: 'space-between',
-                                    textAlign:'center'
-                                },
-                            }}
-                        >
-                            {productItems.map((item, index) => (
-                                <React.Fragment key={item.name} >
-                                    <MenuItem component={Link} to={item.path} onClick={handleMenuClose} disableRipple>
-                                        {item.name}
-                                    </MenuItem>
-                                    {index < productItems.length - 1 && <Divider sx={{ bgcolor: 'rgba(255, 255, 255, 0.2)' }} />}
-                                </React.Fragment>
-                            ))}
-                        </Menu>
                     </Box>
-
-
-                    <Button
-                        variant="contained"
-                        onClick={() => setDialogOpen(true)} // Open dialog on click
-                        sx={{
-                            display: { xs: 'none', md: 'flex' },
-                            ...theme.typography.button,
-                            ml: { md:-1, lg: 1.2 },
-                            backgroundColor: '#B50304',
-                            padding:0,
-                            minWidth: 0,
-                            borderRadius: '4px',
-                            textTransform: 'none',
-                            width:'8.0656vw',
-                            height: '2.34375vw',
-
-                            '&:hover': {
-                                backgroundColor: '#B50304',
-                            },
-                        }}
-                        disableRipple
-                    >
-                        Get started
-                    </Button>
+                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                        {authToken ? (
+                            <>
+                                <Avatar
+                                    onClick={handleMenuOpen}
+                                    size='large'
+                                    sx={{ cursor: 'pointer', width: '3.5vw', height: '3.5vw',mr:'0.5vw' }}
+                                />
+                                <Menu
+                                    anchorEl={anchorEl}
+                                    open={open}
+                                    onClose={handleMenuClose}
+                                    PaperProps={{
+                                        sx: {
+                                            bgcolor: '#141414',
+                                            color: 'white',
+                                            border: '1px solid rgba(255, 255, 255, 0.2)',
+                                            minWidth: 100,
+                                            justifyContent: 'space-between',
+                                            textAlign: 'center',
+                                        },
+                                    }}
+                                >
+                                    <MenuItem onClick={handleProfileClick}>Profile</MenuItem>
+                                    <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                                </Menu>
+                            </>
+                        ) : (
+                            <Button
+                                variant="contained"
+                                onClick={() => setDialogOpen(true)}
+                                sx={{
+                                    ...theme.typography.button,
+                                    ml: { md: -1, lg: 1.2 },
+                                    backgroundColor: '#B50304',
+                                    padding: 0,
+                                    minWidth: 0,
+                                    borderRadius: '4px',
+                                    textTransform: 'none',
+                                    width: '8.0656vw',
+                                    height: '2.34375vw',
+                                    '&:hover': {
+                                        backgroundColor: '#B50304',
+                                    },
+                                }}
+                                disableRipple
+                            >
+                                Get started
+                            </Button>
+                        )}
+                    </Box>
                 </Toolbar>
             </AppBar>
-            <SignUpDialog open={dialogOpen} onClose={() => setDialogOpen(false)} /> {/* Use SignUpDialog */}
+            <SignUpDialog open={dialogOpen} onClose={() => setDialogOpen(false)} />
         </ThemeProvider>
     );
 });
