@@ -97,7 +97,7 @@ const NewsCard = () => {
                 <Box
                     sx={{
                         position: 'relative',
-                        width: '70%',
+                        width: '60%',
                         margin: '0 auto',
                         justifyItems: 'start',
                         pt: { xs: 1, sm: 1, md: 1.5, lg: 2, xl: 2 },
@@ -161,7 +161,7 @@ const NewsCard = () => {
                             {moment(newsData.created_at).format('ddd MMMM D, YYYY')}
                         </Typography>
                     </Box>
-                    <Box sx={{ mb: { xs: 8, sm: 8, md: 10, lg: 10, xl: 10 }, }}>
+                    <Box sx={{ mb: { xs: 9, sm: 10, md: 13, lg: 15, xl: 20 }, }}>
                         <Typography gutterBottom sx={{ ...theme.typography.h3, pl: 1, mb: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 }, textAlign: 'left', mt: { xs: 3, sm: 4, md: 5, lg: 7, xl: 10 } }}>
                             Related News:
                         </Typography>

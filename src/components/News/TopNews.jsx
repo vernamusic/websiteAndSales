@@ -195,7 +195,6 @@ const Mediacard = () => {
                                     textTransform: 'none',
                                     width:'7.8125vw',
                                     height: '2.6042vw',
-                                    minWidth: 0,
                                     padding:0,
                                     '&:hover': {
                                         backgroundColor: '#B50304',

@@ -73,12 +73,11 @@ const CompanyBox = () => {
                     <Typography
                         sx={{
                             ...theme.typography.h6,
-                            mt: 0.5,
                             mb: 1,
-                            width: { xs: '300px', sm: '310px', md: '360px', lg: '500px', xl: '625px' },
+                            width: '30vw',
                         }}
                     >
-                        Vitruvian Shield is an e-Health Software as a Service (Saas), integrating (CTMS)
+                        Vitruvian Shield is an e-Health Software as a Service (Saas), integrating cutting-edge Clinical Trials Management Systems  (CTMS)
                         and Remote Patient Monitoring (RPM) with state-of-the-art wearable technology
                     </Typography>
                     <Button
@@ -89,7 +88,9 @@ const CompanyBox = () => {
                             borderRadius: '6px',
                             backgroundColor: '#B50304',
                             textTransform: 'none',
-                            width: { lg: '10%' },
+                            width:'7.8125vw',
+                            height: '2.6042vw',
+                            padding:0,
                             alignItems: 'center',
                             '&:hover': {
                                 backgroundColor: '#B50304',

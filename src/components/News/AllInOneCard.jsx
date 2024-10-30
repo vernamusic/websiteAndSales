@@ -78,6 +78,7 @@ const Allinonecard = ({ data }) => {
                     flexWrap="wrap"
                     justifyContent="center"
                     sx={{gap:{xs: 1, sm: 1.5, md: 2, lg: 3, xl: 6,},
+                    
                         maxWidth: {
                             xs: "400px",
                             sm: "600px",
@@ -108,6 +109,7 @@ const Allinonecard = ({ data }) => {
                                 backgroundSize: "cover",
                                 backgroundPosition: "center",
                                 backgroundRepeat: "no-repeat",
+                                
                             }}
                         >
                             <Box
