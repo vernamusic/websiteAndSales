@@ -56,7 +56,7 @@ const ContactFormDialog3 = ({ open, onClose }) => {
     first_name: '',
     last_name: '',
     email: '',
-    phone_number: null,
+    phone_number: '',
     subject: '',
     message: '',
     type: 2,
@@ -124,7 +124,9 @@ const ContactFormDialog3 = ({ open, onClose }) => {
         <DialogContent
           sx={{
             padding: '24px 70px',
-            overflow: isSmallScreen ? 'hidden' : 'auto', // Disable scrollbar on smaller screens
+            maxHeight: '500px',
+              overflowY: 'auto',
+              '&::-webkit-scrollbar': { display: 'none' },
           }}
         >
           <Typography variant="subtitle2" align="center" gutterBottom sx={{ mb: 4 }}>
