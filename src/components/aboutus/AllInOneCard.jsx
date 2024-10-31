@@ -50,7 +50,7 @@ const Allinonecard = ({ data }) => {
                     maxWidth: '100vw',
                     justifyItems:'center',
                     alignItems: 'center',
-                    mb: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 }
+                    mb:'-2.5vw',
                 }}
             >
                 <Box
@@ -58,7 +58,7 @@ const Allinonecard = ({ data }) => {
                     flexWrap="wrap"
                     justifyContent="center"
                     sx={{ gap: '1.8vw',
-                        maxWidth: '80vw',
+                        maxWidth: '70vw',
                 }}
                 >
                     {data.map((box, index) => (
