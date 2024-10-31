@@ -80,7 +80,7 @@ const AuthForm = ({email: initialEmail = null, onForgotPassword, onLoginSuccess,
                 const registerData = await registerResponse.json();
 
                 if (registerResponse.status === 201) {
-                    onSendResetLink(email);
+                    onSendResetLink(email, password);
                     showSnackbar('Registration successful!', 'success');
                 } else {
                     showSnackbar(registerData.message || 'Registration failed. Please try again.', 'error');

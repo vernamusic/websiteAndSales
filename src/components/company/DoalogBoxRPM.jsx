@@ -11,8 +11,11 @@ import {
   Box,
   ThemeProvider,
   createTheme,
+  Snackbar,
+  Alert,
 } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
+import { useAuth } from '../../AuthContext.jsx';
 
 const theme = createTheme({
   typography: {
@@ -77,9 +80,13 @@ const theme = createTheme({
 });
 
 const FeaturesDialog = () => {
+  const { authToken } = useAuth();
+  const Token = localStorage.getItem('authToken') || authToken;
   const [open, setOpen] = useState(false);
   const [features, setFeatures] = useState([]);
   const [selectedFeatures, setSelectedFeatures] = useState(["Geo tracking"]);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
 
   useEffect(() => {
     setFeatures([
@@ -97,140 +104,153 @@ const FeaturesDialog = () => {
 
   const handleFeatureToggle = (feature) => {
     setSelectedFeatures((prev) =>
-      prev.includes(feature) ? prev.filter((f) => f !== feature) : [...prev, feature]
+        prev.includes(feature) ? prev.filter((f) => f !== feature) : [...prev, feature]
     );
   };
 
   const handleSelectAll = () => {
     setSelectedFeatures(
-      selectedFeatures.length === features.length - 1 ? [] : features.slice(1)
+        selectedFeatures.length === features.length - 1 ? [] : features.slice(1)
     );
   };
 
-  const handleSubmit = () => {
+  const handleCloseSnackbar = () => {
+    setSnackbarOpen(false);
+  };
+
+  const handleSubmit = async () => {
     const payload = {
-      geo_tracking: selectedFeatures.includes("ECG"),
-      remote_patient_monitoring: selectedFeatures.includes("Emergency call"),
-      staff_management: selectedFeatures.includes("Geo tracking"),
-      electronic_document_management: selectedFeatures.includes("Video consultation"),
-      feedback: selectedFeatures.includes("Adverse event reporting"),
-      adverse_event_reporting: selectedFeatures.includes("e-Consent"),
-      video_consultation: selectedFeatures.includes("Vital signs"),
-      site_management: selectedFeatures.includes("Electronic data management"),
+      geo_tracking: selectedFeatures.includes("Geo tracking"),
+      remote_patient_monitoring: selectedFeatures.includes("Remote patient monitoring"),
+      staff_management: selectedFeatures.includes("Staff management"),
+      electronic_document_management: selectedFeatures.includes("Electronic document management"),
+      feedback: selectedFeatures.includes("Feedback"),
+      adverse_event_reporting: selectedFeatures.includes("Adverse event reporting"),
+      video_consultation: selectedFeatures.includes("Video consultation"),
+      site_management: selectedFeatures.includes("Site management"),
     };
 
-    axios
-      .post('https://site.vitruvianshield.com/api/v1/feature-req', payload)
-      .then((response) => {
-        console.log("Features submitted successfully:", response.data);
-        setOpen(false);
-      })
-      .catch((error) => {
-        console.error("Error submitting features:", error);
+    try {
+      await axios.post('https://site.vitruvianshield.com/api/v1/feature-req', payload, {
+        headers: {
+          'Authorization': `Bearer ${Token}`
+        }
       });
+      setSnackbarMessage('Your purchase request has been successfully submitted.');
+      setSnackbarOpen(true);
+      setOpen(false);
+    } catch (error) {
+      console.error('Error purchase:', error);
+    }
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Button
-        sx={{
-          backgroundColor: theme.palette.primary.main,
-          color: theme.palette.text.primary,
-        }}
-        variant="outlined"
-        onClick={() => setOpen(true)}
-      >
-        Buy
-      </Button>
-
-      <Dialog open={open} onClose={() => setOpen(false)} maxWidth="sm" fullWidth>
-        <DialogContent
-          dividers
-          sx={{
-            backgroundColor: theme.palette.background.paper,
-            overflow: 'hidden',
-            maxHeight: '100vh',
-          }}
-        >
-          <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
-            <IconButton
-              aria-label="close"
-              onClick={() => setOpen(false)}
-              sx={{
-                color: '#FFFFFF',
-              }}
-            >
-              <CloseIcon />
-            </IconButton>
-          </Box>
-
-          <Box sx={{ padding: 1.5 }}>
-            <Box component="span" sx={{ typography: 'h6' }}>
-              Features
-            </Box>
-
-            <Box sx={{ typography: 'body1', marginBottom: 2, marginTop: 2 }}>
-              Select the features you want
-            </Box>
-            {features.map((feature, index) => (
-              <React.Fragment key={feature}>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={
-                        feature === "Select all"
-                          ? selectedFeatures.length === features.length - 1
-                          : selectedFeatures.includes(feature)
-                      }
-                      onChange={() =>
-                        feature === "Select all" ? handleSelectAll() : handleFeatureToggle(feature)
-                      }
-                      sx={{
-                        color: theme.palette.text.secondary,
-                        '&.Mui-checked': {
-                          color: theme.palette.primary.main,
-                        },
-                        '&:hover': {
-                          backgroundColor: 'transparent',
-                        },
-                      }}
-                    />
-                  }
-                  label={feature}
-                  sx={{
-                    display: 'block',
-                    marginBottom: 1,
-                    '& .MuiFormControlLabel-label': {
-                      typography: 'featureText',
-                    },
-                  }}
-                />
-                {index < features.length - 1 && (
-                  <hr style={{ borderColor: theme.palette.text.divider, margin: '8px 0' }} />
-                )}
-              </React.Fragment>
-            ))}
-          </Box>
-        </DialogContent>
-
-        <DialogActions sx={{ justifyContent: 'center' }}>
-          <Button 
-            onClick={handleSubmit} 
-            variant="contained" 
-            color="primary"
+      <ThemeProvider theme={theme}>
+        <Button
             sx={{
-              width: '90%',
-              minHeight: '50.82px',
-              textTransform: 'none',
-              gap: '8px',
-              mb: 4,
+              backgroundColor: theme.palette.primary.main,
+              color: theme.palette.text.primary,
             }}
+            variant="outlined"
+            onClick={() => setOpen(true)}
+        >
+          Buy
+        </Button>
+
+        <Dialog open={open} onClose={() => setOpen(false)} maxWidth="sm" fullWidth>
+          <DialogContent
+              dividers
+              sx={{
+                backgroundColor: theme.palette.background.paper,
+                overflow: 'hidden',
+                maxHeight: '100vh',
+              }}
           >
-            Submit
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </ThemeProvider>
+            <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
+              <IconButton
+                  aria-label="close"
+                  onClick={() => setOpen(false)}
+                  sx={{
+                    color: '#FFFFFF',
+                  }}
+              >
+                <CloseIcon />
+              </IconButton>
+            </Box>
+
+            <Box sx={{ padding: 1.5 }}>
+              <Box component="span" sx={{ typography: 'h6' }}>
+                Features
+              </Box>
+
+              <Box sx={{ typography: 'body1', marginBottom: 2, marginTop: 2 }}>
+                Select the features you want
+              </Box>
+              {features.map((feature, index) => (
+                  <React.Fragment key={feature}>
+                    <FormControlLabel
+                        control={
+                          <Checkbox
+                              checked={
+                                feature === "Select all"
+                                    ? selectedFeatures.length === features.length - 1
+                                    : selectedFeatures.includes(feature)
+                              }
+                              onChange={() =>
+                                  feature === "Select all" ? handleSelectAll() : handleFeatureToggle(feature)
+                              }
+                              sx={{
+                                color: theme.palette.text.secondary,
+                                '&.Mui-checked': {
+                                  color: theme.palette.primary.main,
+                                },
+                                '&:hover': {
+                                  backgroundColor: 'transparent',
+                                },
+                              }}
+                          />
+                        }
+                        label={feature}
+                        sx={{
+                          display: 'block',
+                          marginBottom: 1,
+                          '& .MuiFormControlLabel-label': {
+                            typography: 'featureText',
+                          },
+                        }}
+                    />
+                    {index < features.length - 1 && (
+                        <hr style={{ borderColor: theme.palette.text.divider, margin: '8px 0' }} />
+                    )}
+                  </React.Fragment>
+              ))}
+            </Box>
+          </DialogContent>
+
+          <DialogActions sx={{ justifyContent: 'center' }}>
+            <Button
+                onClick={handleSubmit}
+                variant="contained"
+                color="primary"
+                sx={{
+                  width: '90%',
+                  minHeight: '50.82px',
+                  textTransform: 'none',
+                  gap: '8px',
+                  mb: 4,
+                }}
+            >
+              Submit
+            </Button>
+          </DialogActions>
+        </Dialog>
+
+        <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleCloseSnackbar}>
+          <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
+            {snackbarMessage}
+          </Alert>
+        </Snackbar>
+      </ThemeProvider>
   );
 };
 
