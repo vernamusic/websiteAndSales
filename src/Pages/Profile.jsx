@@ -12,8 +12,8 @@ import {
 } from '@mui/material';
 import { Person, CreditCard, Apps } from '@mui/icons-material';
 import ProfilePage from '../components/Proflie/ProfilePage';
-import BillingPage from '../components/Proflie/BillingPage';
-import AppsPage from '../components/Proflie/AppsPage';
+// import BillingPage from '../components/Proflie/BillingPage';
+// import AppsPage from '../components/Proflie/AppsPage';
 
 // Create a dark theme
 const darkTheme = createTheme({
@@ -53,8 +53,8 @@ const Sidebar = ({ activePage, setActivePage }) => (
         >
             {[
                 { text: 'My profile', icon: <Person />, page: 'profile' },
-                { text: 'Billing and payments', icon: <CreditCard />, page: 'billing' },
-                { text: 'My apps', icon: <Apps />, page: 'apps' },
+                //{ text: 'Billing and payments', icon: <CreditCard />, page: 'billing' },
+               // { text: 'My apps', icon: <Apps />, page: 'apps' },
             ].map((item) => (
                 <ListItem
                     key={item.text}
@@ -80,7 +80,7 @@ const Profile = () => {
     return (
         <ThemeProvider theme={darkTheme}>
             <CssBaseline />
-            <Box sx={{ display: 'flex', minHeight: '600px' }}>
+            <Box sx={{ display: 'flex', minHeight: '600px',backgroundColor:'#292929' }}>
                 <Sidebar activePage={activePage} setActivePage={setActivePage} />
                 <Box component="main">
                     {activePage === 'profile' && <ProfilePage />}

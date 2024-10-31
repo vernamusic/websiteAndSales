@@ -9,6 +9,7 @@ import {useNavigate} from "react-router-dom";
 const SignUpDialog = ({ open, onClose, email: initialEmail = null }) => {
     const [dialogMode, setDialogMode] = useState('login');
     const [email, setEmail] = useState(initialEmail);
+    const [password, setPassword] = useState('');
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [snackbarSeverity, setSnackbarSeverity] = useState('success');
@@ -29,9 +30,11 @@ const SignUpDialog = ({ open, onClose, email: initialEmail = null }) => {
     const handleForgotPassword = () => setDialogMode('forgotPassword');
     const handleBackToLogin = () => setDialogMode('login');
 
-    const handleVerificationEmail = (email) => {
+
+    const handleVerificationEmail = (email, password) => {
         setEmail(email);
-        handleResendVerificationEmail(email);
+        setPassword(password)
+        handleResendVerificationEmail(email,);
         setDialogMode('verificationEmail');
     };
 
@@ -72,9 +75,10 @@ const SignUpDialog = ({ open, onClose, email: initialEmail = null }) => {
                 return (
                     <VerificationEmailDialog
                         email={email}
+                        password={password}
                         onResend={handleResendVerificationEmail}
                         onBack={handleBackToLogin}
-                        onSubmit={handleBackToLogin}
+                        onSubmit={handleLoginSuccess}
                     />
                 );
             case 'login':
