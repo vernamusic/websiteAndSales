@@ -3,30 +3,33 @@ import { Box, Typography, createTheme, ThemeProvider } from '@mui/material';
 import phonehow1 from '../../assets/phonehow1.png';
 import phonehow2 from '../../assets/phonehow2.png';
 import phonehow3 from '../../assets/phonehow3.png';
+import phonehow4 from '../../assets/phonehow4.png';
 import Design from '../../assets/mobileapp/Design.png';
 import Easy from '../../assets/mobileapp/Easy.png';
-import Support from '../../assets/mobileapp/Support.png';
+import Time from '../../assets/mobileapp/Time.png';
+import Place from '../../assets/mobileapp/Place.png';
 
 const theme = createTheme({
     typography: {
         h6: {
             fontFamily: 'Lato',
-            fontSize:'1.23vw',
+            fontSize:'16px',
             fontWeight: 600,
-            color: "#F1F1F1",
+            color: "#FFFFFF",
             letterSpacing: '0.4px',
             lineHeight: 'normal',
         },
         h3: {
-            fontFamily: 'sen',
+            fontFamily: 'Lato',
             fontWeight: 400,
-            fontSize:'1.294vw',
-            color: "#FFFFFF",
+            fontSize:'16px',
+            color: "#F1F1F1",
             letterSpacing: '0.4px',
         },
         caption: {
             fontFamily: 'Lato',
-            fontSize:'0.98vw',
+            fontSize:'12px',
+            fontWeight: 400,
             lineHeight:'1.35',
             textTransform: 'none',
             color: 'rgba(255, 255, 255, 1)',
@@ -35,7 +38,7 @@ const theme = createTheme({
         h1: {
             fontFamily: 'Lato',
             fontWeight: 600,
-            fontSize:'1.354vw',
+            fontSize:'24px',
             color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
@@ -43,15 +46,22 @@ const theme = createTheme({
 });
 
 const howData = [
-    { title: 'Awesome design', description: "Stunning templates that captivate", image: phonehow1, icon: Design },
-    { title: 'Easy to customize', description: "Tailor designs to fit your unique style.", image: phonehow2, icon: Easy },
-    { title: 'Any time support', description: "We're here for you whenever you need assistance!", image: phonehow3, icon: Support },
+    { title: 'Awesome Design', description: "Stunning templates that captivate", image: phonehow1, icon: Design },
+    { title: 'Easy to Use', description: "Effortless Navigation for Everyone", image: phonehow2, icon: Easy },
+    { title: 'Any Time', description: "24/7 assistance in emergency situations", image: phonehow3, icon: Time },
+    { title: 'Any Place', description: "Outpatient medical follow-up", image: phonehow4, icon: Place },
 ];
 
 const HowBox = () => {
     return (
         <ThemeProvider theme={theme}>
-            <Box>
+            <Box sx={{
+                background: 'radial-gradient(97.15% 97.15% at 50% 2.85%, #323232 0%, #1F1F1F 100%)',
+                width: '100%',
+                height: '100vh',
+                position: 'relative',
+                pt: '88px'
+                }}>
                 <Box
                     display="flex"
                     flexDirection="column"
@@ -84,21 +94,21 @@ const HowBox = () => {
                     flexWrap="wrap"
                     justifyContent="center"
                     gap="2.5vw"
-                    pt="1.5vw"
                 >
                     {howData.map((box, index) => (
                         <Box
                             key={index}
                             sx={{
-                                width: '17.5vw',
-                                height: '22.57vw',
-                                borderRadius: '1.39vw',
+                                width: '18.5vw',
+                                height: '21vw',
+                                borderRadius: '16px',
                                 display: 'flex',
                                 flexDirection: 'column',
                                 justifyContent: 'center',
                                 alignItems: 'center',
                                 backgroundColor: '#0A0A0A',
-                                border: '1px solid #FFFFFF33',
+                                border: '1px solid #262626',
+                                boxShadow: '0px 2px 8px 0px rgba(0, 0, 0, 0.50)',
                                 position: 'relative',
                             }}
                         >
@@ -109,9 +119,9 @@ const HowBox = () => {
                                     top: '-2vw',
                                     left: '50%',
                                     transform: 'translateX(-50%)',
-                                    width: '4vw',
-                                    height: '4vw',
-
+                                    width: '40px',
+                                    height: '40px',
+                                    padding: '8px',
 
                                     backgroundColor: '#B50304',
                                     borderRadius: '50%',
@@ -144,7 +154,7 @@ const HowBox = () => {
                                     mt:'3.8vw',
                                     gap: '0.5vw',
                                     textAlign: 'center',
-                                    width:'12vw'
+                                    width:'100%'
                                 }}
                             >
                                 <Typography
@@ -166,7 +176,7 @@ const HowBox = () => {
                                 alt={box.title}
                                 sx={{
                                     width: '100%',
-                                    height: '45%',
+                                    height: '55%',
                                     objectFit: 'cover',
                                     borderRadius: '0 0 1.39vw 1.39vw',
                                     mt: 'auto',
