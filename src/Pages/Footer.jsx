@@ -8,6 +8,7 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Divider
 } from '@mui/material';
 import FacebookCircled from '../assets/Facebook.png'
 import LinkedInCircled from '../assets/LinkedInCircled.png'
@@ -17,40 +18,40 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import pci from '../assets/pci.png';
 import biopole from '../assets/biopole.png';
 import astrolab from '../assets/astrolab.png';
-import footerloc from '../assets/footerloc.png';
+import footerloc from '../assets/footerloc.svg';
 
 const theme = createTheme({
   typography: {
     h3: {
       fontFamily: 'Lato',
       fontWeight: 600,
-      fontSize: '18px',
-      lineHeight: '18px',
+      fontSize: '16px',
+      lineHeight: '16px',
       letterSpacing: '0.5px',
       color: '#FFFFFF',
     },
     h6: {
       fontFamily: 'Lato',
       fontWeight: 700,
-      fontSize: '0.85vw',
-      lineHeight: '16px',
+      fontSize: '14px',
+      lineHeight: '14px',
       letterSpacing: '0.5px',
       color: '#FFFFFF',
     },
     body3: {
       fontFamily: 'Lato',
-      fontWeight: 700,
-      fontSize: '0.85vw',
-      lineHeight: '19.2px',
+      fontWeight: 400,
+      fontSize: '13px',
+      lineHeight: '18.98px',
       letterSpacing: '0.5px',
-      color: '#D9D9D970',
+      color: '#BFBFBF',
     },
     body9: {
       fontFamily: 'Lato',
-      fontWeight: 500,
-      fontSize: '16px',
-      lineHeight: '28.8px',
-      color: '#FFFFFFE5',
+      fontWeight: 400,
+      fontSize: '14px',
+      lineHeight: '25.2px',
+      color: '#EEEEEE',
       
     },
   },
@@ -91,29 +92,31 @@ const Footer = () => (
       }}
     >
       <Box sx={{ width: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1.66vw' }}>
-        <Box>
-          {/* OUR SOLUTIONS Box */}
-          <Box sx={commonBoxStyles}>
-            <Typography gutterBottom variant="h3" marginTop="16px" marginBottom="16px">OUR SOLUTIONS</Typography>
-            {['The problem', 'Concept', 'The Smartwatch', 'Mobile App', 'Research API', 'Data & Research', 'Certifications'].map((text, index) => (
-              <Typography variant="body9" marginTop="0.5px" key={index}>{text}</Typography>
-            ))}
-          </Box>
-
-          {/* ABOUT US Box */}
-          <Box sx={commonBoxStyles}>
-            <Typography gutterBottom variant="h3" marginTop="64px" marginBottom="16px">ABOUT US</Typography>
+        {/* ABOUT US Box */}
+        <Box sx={{...commonBoxStyles, width: '13vw'}}>
+            <Typography gutterBottom variant="h3" marginTop="16px" marginBottom="24px">ABOUT US</Typography>
             {['Our Vision', 'Our Team', 'Our Partners', 'Become a Partner', 'Donations', 'Contact Us', 'Gallery'].map((text, index) => (
-              <Typography variant="body9" marginTop="0.5px" key={index}>{text}</Typography>
+              <Typography variant="body9" marginTop="5px" key={index}>{text}</Typography>
             ))}
-          </Box>
         </Box>
 
+        <Divider orientation='vertical' sx={{borderColor: '#262626', height: '360px', marginTop: '32px', borderStyle: 'dashed'}} />
+
+          {/* OUR SOLUTIONS Box */}
+          <Box sx={{...commonBoxStyles, width: '13vw'}}>
+            <Typography gutterBottom variant="h3" marginTop="16px" marginBottom="24px">OUR SOLUTIONS</Typography>
+            {['The problem', 'Concept', 'The Smartwatch', 'Mobile App', 'Research API', 'Data & Research', 'Certifications'].map((text, index) => (
+              <Typography variant="body9" marginTop="5px" key={index}>{text}</Typography>
+            ))}
+          </Box>
+
+        <Divider orientation='vertical' sx={{borderColor: '#262626', height: '360px', marginTop: '32px', borderStyle: 'dashed'}} />
+
         {/* Visit us Section */}
-        <Box sx={commonBoxStyles}>
+        <Box sx={{...commonBoxStyles, width: '26vw'}}>
           <Typography variant="h3" marginTop="16px">VISIT US</Typography>
           {locations.map((location, index) => (
-            <Box marginTop={7} key={index} >
+            <Box marginTop="32px" key={index}>
               <img src={location.image} alt={location.name} style={{ width: '103px', height: 'auto', marginRight: '8px',display:'flex', justifyContent:'flex-start' }} />
               <Box marginTop="16px">
                 <Box display="flex" alignItems="center" justifyContent="flex-start">
@@ -129,12 +132,15 @@ const Footer = () => (
           ))}
         </Box>
 
+        <Divider orientation='vertical' sx={{borderColor: '#262626', height: '360px', marginTop: '32px', borderStyle: 'dashed'}} />
+
         {/* Video Section */}
         <Box
           sx={{
             ...commonBoxStyles,
             justifyContent: 'center',
-            gap: '64px',
+            gap: '56px',
+            marginTop: '12px'
           }}
         >
           {videoIds.map((id, index) => (
@@ -298,9 +304,7 @@ const Footer = () => (
 
 // Common styles for the boxes
 const commonBoxStyles = {
-  backgroundColor: '#14141415',
   padding:2,
-  borderRadius: '8px',
   width: '17.656vw',
   height: 'auto',
   display: 'flex',
