@@ -1,100 +1,60 @@
-import React, {useEffect, useState} from 'react';
 import { Box, Typography, Button, createTheme } from '@mui/material';
-import background from '../../assets/Artboard 1.png';
-import iphonescreen from '../../assets/iphonescreen.png';
-import mini from '../../assets/miniphone.png';
+import background from '../../assets/Mobile-BG1.png';
 import { ThemeProvider } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 
 const theme = createTheme({
     typography: {
         h6: {
-            fontFamily: 'sen',
-            fontSize: '1.15vw', // تغییر به vw با نسبت 1920
-            color: "#F1F1F1",
+            fontFamily: 'Lato',
+            fontSize: '16px', 
+            fontWeight: 400,
+            color: "#EEEEEE",
             letterSpacing: '0.4px',
-            lineHeight: 'normal',
+            lineHeight: '24px',
         },
         h3: {
             fontFamily: 'Lato',
-            fontWeight: 700,
-            fontSize: '1.67vw', // تغییر به vw با نسبت 1920
+            fontWeight: 600,
+            fontSize: '24px', 
             color: "#FFFFFF",
             letterSpacing: '0.4px',
+            lineHeight: '24px'
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: '0.83vw', // تغییر به vw با نسبت 1920
-            color: "#FFFFFF",
+            fontSize: '14px',
+            fontWeight: 600,
+            lineHeight: '14px', 
+            color: "#FCFCFC",
         },
     },
 });
 
 
 const Home = () => {
-    const [clipPath, setClipPath] = useState('');
-
-    const updateClipPath = () => {
-        const vw = window.innerWidth;
-
-        // محاسبه مقادیر clip-path با استفاده از vw
-        const calculatedClipPath = `path("M 0 0 L 0 ${vw * 0.45} C ${vw * 0.5} ${vw * 0.3} ${vw * 0.6} ${vw * 0.5} ${vw} ${vw * 0.4} L ${vw} 0 L 0 0")`;
-        setClipPath(calculatedClipPath);
-    };
-
-    useEffect(() => {
-        updateClipPath(); // به‌روزرسانی clip-path در زمان بارگذاری
-        window.addEventListener('resize', updateClipPath); // اضافه کردن لیسنر برای تغییر اندازه پنجره
-
-        return () => {
-            window.removeEventListener('resize', updateClipPath); // پاک کردن لیسنر هنگام Unmount
-        };
-    }, []);
+    
 
     return (
         <ThemeProvider theme={theme}>
             {/* Parent Box that contains everything */}
-            <Box sx={{ position: 'relative', width: '100%' }}>
-                <Box
-                    component="img"
-                    src={mini}
-                    alt="Circular Image"
-                    sx={{
-                        position: 'absolute',
-                        bottom: '-1.5vw', // تغییر به vw
-                        right: '15vw', // تغییر به vw
-                        transform: 'translate(-50%, -50%)',
-                        width: '11vw', // تغییر به vw
-                        height: '11vw', // تغییر به vw
-                        borderRadius: '50%',
-                        zIndex: 3,
-                    }}
-                />
-
-                {/* Box with dynamic clip-path */}
                 <Box
                     sx={{
                         position: 'relative',
-                        height: '50vw',
+                        height: '100vh',
                         width: '100%',
                         backgroundImage: `url(${background})`,
                         backgroundRepeat: 'no-repeat',
                         backgroundSize: '100%',
-
-                        clipPath: clipPath, // استفاده از clipPath دینامیک
                     }}
                 >
-
-
-
-
                 <Box
                     sx={{
                         position: 'absolute',
                         zIndex: 1,
-                        ml: '15vw',
-                        mt: '14vw',
-                        maxWidth:'26.04vw',
+                        ml: '11vw',
+                        mt: '16vw',
+                        maxWidth:'40vw',
                     }}
                 >
                     <Typography
@@ -105,7 +65,7 @@ const Home = () => {
                             ...theme.typography.h3,
                         }}
                     >
-                        The Mobile App
+                        The Mobile Application
                     </Typography>
                     <Typography
                         variant="h6"
@@ -113,7 +73,7 @@ const Home = () => {
                             ...theme.typography.h6,
                         }}
                     >
-                        View your health signal data collected by the Vitruvian Watch and share it with your medical professionals
+                        Introducing an innovative mobile app that empowers health management! With the Vitruvian Watch, users can track their health data, manage medication schedules, log seizures, and schedule online appointments with healthcare professionals anytime, anywhere.
                     </Typography>
 
                     <Box sx={{ display: 'flex', gap: '0.78vw', marginTop: '1.56vw',}}>
@@ -125,9 +85,9 @@ const Home = () => {
                                 padding:0,
                                 minWidth:0,
                                 display: 'flex',
-                                borderRadius: '0.21vw',
-                                width: '6.82vw',
-                                height: '2.08vw',
+                                borderRadius: '4px',
+                                width: '138px',
+                                height: '42px',
                                 ...theme.typography.button,
                                 borderColor: 'white',
                                 color: 'white',
@@ -136,7 +96,7 @@ const Home = () => {
                             }}
                             disableRipple
                         >
-                            Chat with us
+                            Contact Us
                         </Button>
 
                         <Button
@@ -147,9 +107,9 @@ const Home = () => {
                                 padding:0,
                                 minWidth:0,
                                 display: 'flex',
-                                borderRadius: '0.21vw',
-                                width: '6.82vw',
-                                height: '2.08vw',
+                                borderRadius: '4px',
+                                width: '138px',
+                                height: '42px',
                                 ...theme.typography.button,
 
                                 backgroundColor: '#B50304',
@@ -165,27 +125,7 @@ const Home = () => {
                     </Box>
                 </Box>
 
-                {/* Phone Screenshot */}
-                    <Box
-                        component="img"
-                        src={iphonescreen}
-                        alt="Phone app screenshot"
-                        sx={{
-                            position: 'absolute',
-                            right: '1vw', // تغییر به vw
-                            top: '5vw', // تغییر به vw
-                            maxWidth: '45vw', // تغییر به vw
-                            height: 'auto',
-                            zIndex: 1, // لایه پایین‌تر از همه
-                            transition: 'transform 0.3s ease-in-out',
-                            '&:hover': {
-                                transform: 'scale(1.05)',
-                            },
-                        }}
-                    />
-
                 </Box>
-            </Box>
         </ThemeProvider>
     );
 };
