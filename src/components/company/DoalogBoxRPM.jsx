@@ -156,109 +156,88 @@ const FeaturesDialog = () => {
         Buy
       </Button>
 
-      <Dialog open={open} onClose={() => setOpen(false)}>
+      <Dialog open={open} onClose={() => setOpen(false)} maxWidth="sm" fullWidth>
         <DialogContent
           dividers
           sx={{
-            width:{sm:'410px',md:'420px',lg:'440px',xl:'460px'},
-            height:{sm:'600px',md:'600px',lg:'600px',xl:'620px'},
+            width: { sm: '410px', md: '420px', lg: '440px', xl: '460px' },
+            height: { sm: '600px', md: '600px', lg: '600px', xl: '620px' },
             backgroundColor: theme.palette.background.paper,
             overflow: 'hidden',
           }}
         >
-          Buy
-        </Button>
-
-        <Dialog open={open} onClose={() => setOpen(false)} maxWidth="sm" fullWidth>
-          <DialogContent
-              dividers
-              sx={{
-                backgroundColor: theme.palette.background.paper,
-                overflow: 'hidden',
-                maxHeight: '100vh',
-              }}
-          >
-            <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
-              <IconButton
-                  aria-label="close"
-                  onClick={() => setOpen(false)}
-                  sx={{
-                    color: '#FFFFFF',
-                  }}
-              >
-                <CloseIcon />
-              </IconButton>
-            </Box>
-
-            <Box sx={{ typography: 'body1', marginBottom: 2, marginTop: 2 }}>
-              Select the features you want
-            </Box>
-            {features.map((feature, index) => (
-  <React.Fragment key={feature}>
-    <FormControlLabel
-      control={
-        <Checkbox
-          checked={
-            feature === "Select all"
-              ? selectedFeatures.length === features.length - 1
-              : selectedFeatures.includes(feature)
-          }
-          onChange={() =>
-            feature === "Select all" ? handleSelectAll() : handleFeatureToggle(feature)
-          }
-          sx={{
-            color: theme.palette.text.secondary,
-            '&.Mui-checked': {
-              color: theme.palette.primary.main,
-            },
-            '&:hover': {
-              backgroundColor: 'transparent',
-            },
-          }}
-        />
-      }
-      label={feature}
-      sx={{
-        display: 'flex',
-        marginBottom: 0, // Reduced spacing between checkboxes
-        '& .MuiFormControlLabel-label': {
-          typography: 'featureText',
-        },
-      }}
-    />
-    {index < features.length - 1 && (
-      <hr style={{ borderColor: theme.palette.text.divider, margin: '4px 0' }} /> // Reduced margin for <hr>
-    )}
-  </React.Fragment>
-))}
+          <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
+            <IconButton
+              aria-label="close"
+              onClick={() => setOpen(false)}
+              sx={{ color: '#FFFFFF' }}
+            >
+              <CloseIcon />
+            </IconButton>
           </Box>
+
+          <Box sx={{ typography: 'body1', marginBottom: 2, marginTop: 2 }}>
+            Select the features you want
+          </Box>
+          
+          {features.map((feature, index) => (
+            <React.Fragment key={feature}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={
+                      feature === 'Select all'
+                        ? selectedFeatures.length === features.length - 1
+                        : selectedFeatures.includes(feature)
+                    }
+                    onChange={() =>
+                      feature === 'Select all' ? handleSelectAll() : handleFeatureToggle(feature)
+                    }
+                    sx={{
+                      color: theme.palette.text.secondary,
+                      '&.Mui-checked': { color: theme.palette.primary.main },
+                      '&:hover': { backgroundColor: 'transparent' },
+                    }}
+                  />
+                }
+                label={feature}
+                sx={{
+                  display: 'flex',
+                  marginBottom: 0,
+                  '& .MuiFormControlLabel-label': { typography: 'featureText' },
+                }}
+              />
+              {index < features.length - 1 && (
+                <hr style={{ borderColor: theme.palette.text.divider, margin: '4px 0' }} />
+              )}
+            </React.Fragment>
+          ))}
         </DialogContent>
 
+        <DialogActions sx={{ justifyContent: 'center' }}>
+          <Button
+            onClick={handleSubmit}
+            variant="contained"
+            color="primary"
+            sx={{
+              width: '90%',
+              minHeight: '50.82px',
+              textTransform: 'none',
+              gap: '8px',
+              mb: 4,
+            }}
+          >
+            Submit
+          </Button>
+        </DialogActions>
+      </Dialog>
 
-          <DialogActions sx={{ justifyContent: 'center' }}>
-            <Button
-                onClick={handleSubmit}
-                variant="contained"
-                color="primary"
-                sx={{
-                  width: '90%',
-                  minHeight: '50.82px',
-                  textTransform: 'none',
-                  gap: '8px',
-                  mb: 4,
-                }}
-            >
-              Submit
-            </Button>
-          </DialogActions>
-        </Dialog>
-
-        <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleCloseSnackbar}>
-          <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
-            {snackbarMessage}
-          </Alert>
-        </Snackbar>
-      </ThemeProvider>
+      <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleCloseSnackbar}>
+        <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
+    </ThemeProvider>
   );
 };
 
