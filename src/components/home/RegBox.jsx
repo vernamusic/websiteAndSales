@@ -102,36 +102,47 @@ const RegBox = () => {
                         }}
                     >
                         <FormControl variant="outlined" fullWidth sx={{ height: '100%' }}>
-                            <InputLabel
-                                htmlFor="email-input"
-                                sx={{
-                                    top: '50%',
-                                    transform: 'translateY(-50%)',
-                                    position: 'absolute',
-                                    left: '16px',
-                                    color: '#000',
-                                }}
-                                shrink={email.length > 0}
-                            >
-                                Email address
-                            </InputLabel>
-                            <OutlinedInput
-                                id="email-input"
-                                autoComplete="off"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                sx={{
-                                    width: '18.7vw',
-                                    height: '2.7vw',
-                                    backgroundColor: '#FFFFFF',
-                                    borderRadius: '6px',
-                                    ...theme.typography.form,
-                                    paddingTop: '16px',
-                                    paddingBottom: '16px',
-                                    paddingLeft: '16px',
-                                }}
-                            />
-                        </FormControl>
+    <InputLabel
+        htmlFor="email-input"
+        sx={{
+            top: '50%',
+            transform: 'translateY(-50%)',
+            left: '16px',
+            color: '#000',
+            padding: 0,
+            position: 'absolute',
+            backgroundColor: '#FFFFFF',
+            px: 1, // Add padding for better alignment
+            fontSize: {
+                xs: '12px', // Small screens
+                sm: '14px', // Medium screens
+                md: '16px', // Large screens
+                lg: '18px', // Extra large screens
+            },
+        }}
+        shrink={email.length > 0}
+    >
+        Email address
+    </InputLabel>
+    <OutlinedInput
+        id="email-input"
+        autoComplete="off"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        notched // Ensures the outline is adjusted for the label
+        label="Email address" // Sets the label for OutlinedInput
+        sx={{
+            width: '18.7vw',
+            height: '2.7vw',
+            backgroundColor: '#FFFFFF',
+            borderRadius: '6px',
+            ...theme.typography.form,
+            paddingLeft: '16px',
+        }}
+    />
+</FormControl>
+
+
 
 
                         <Button

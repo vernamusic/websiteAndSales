@@ -120,7 +120,7 @@ const Footer = () => (
               <img src={location.image} alt={location.name} style={{ width: '103px', height: 'auto', marginRight: '8px',display:'flex', justifyContent:'flex-start' }} />
               <Box marginTop="16px">
                 <Box display="flex" alignItems="center" justifyContent="flex-start">
-                  <img src={footerloc} alt="locationLogo" style={{ width: '22px', height: 'auto', marginRight: '8px' }} />
+                  <img src={footerloc} alt="locationLogo" style={{ width: '1.15vw', height: 'auto', marginRight: '8px' }} />
                   <Typography variant="h6" gutterBottom>{location.name}</Typography>
                 </Box>
                 <Typography variant="body3" sx={{ mt: '12px',display:'flex', textAlign: 'left' }}>
