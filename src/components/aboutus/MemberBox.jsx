@@ -81,9 +81,6 @@ const TeamMembers = () => {
                 >
                     {teams.map(({ team_name, members }) => (
                         <Box key={team_name} sx={{ width: '100%' }}>
-                            <Typography gutterBottom sx={{ ...theme.typography.h3, mb: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 }, textAlign: 'left', ml:'0.5vw'}}>
-                                {team_name}
-                            </Typography>
                             <Allinonecard data={members} />
                         </Box>
                     ))}

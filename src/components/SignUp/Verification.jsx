@@ -33,13 +33,37 @@ const theme = createTheme({
     },
 });
 
-const EmailVerification = ({ email, onSubmit, onResend, onBack }) => {
+const EmailVerification = ({ email,password, onSubmit, onResend, onBack }) => {
     const [code, setCode] = useState(Array(6).fill(''));
     const [timeLeft, setTimeLeft] = useState(150); // 2:30 in seconds
     const inputRefs = useRef([]);
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+    const loginAgain = async (email, password) => {
+        try {
+            const loginResponse = await fetch('https://site.vitruvianshield.com/api/v1/token/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password })
+            });
+
+            if (loginResponse.status === 200) {
+                const loginData = await loginResponse.json();
+                localStorage.setItem('authToken', loginData.access);
+                localStorage.setItem('refreshToken', loginData.refresh);
+                showSnackbar('Login successful!', 'success');
+                onSubmit(loginData);
+            } else {
+                showSnackbar('Try again later...', 'error');
+            }
+        } catch (error) {
+            console.error("Error during login:", error);
+            showSnackbar('An error occurred. Please try again later.', 'error');
+        }
+    };
 
     useEffect(() => {
         if (timeLeft > 0) {
@@ -87,8 +111,8 @@ const EmailVerification = ({ email, onSubmit, onResend, onBack }) => {
 
                 if (response.ok) {
                     const result = await response.json();
-                    onSubmit(result); // ارسال نتیجه به تابع onSubmit
-                    showSnackbar('Verification successful!', 'success'); // نمایش پیام موفقیت
+                    showSnackbar('Verification successful!', 'success');
+                    loginAgain(email, password);
                 } else {
                     showSnackbar('Verification failed. Please try again.', 'error'); // نمایش پیام خطا
                 }
@@ -203,7 +227,7 @@ const EmailVerification = ({ email, onSubmit, onResend, onBack }) => {
                     open={snackbarOpen}
                     autoHideDuration={6000}
                     onClose={() => setSnackbarOpen(false)}
-                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // تغییر موقعیت
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
                 >
                     <Alert onClose={() => setSnackbarOpen(false)} severity={snackbarSeverity} sx={{ backgroundColor: theme.palette[snackbarSeverity].main, color: '#fff' }}>
                         {snackbarMessage}

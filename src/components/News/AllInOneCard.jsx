@@ -6,166 +6,124 @@ import {
     ThemeProvider,
     Button,
 } from "@mui/material";
-import {useNavigate} from "react-router-dom";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import VisibilityIcon from "@mui/icons-material/Visibility";
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme({
     typography: {
         h6: {
-            fontFamily:'sen',
-            fontSize: { xs: '6px', sm: '10px', md: '12px', lg: '16px', xl: '20px' },
-            lineHeight: 'normal',
+            fontFamily: 'sen',
+            fontSize:'0.8333vw',
+            color: "#F1F1F1",
             letterSpacing: '0.4px',
-            color: "#F1F1F1",
-            textTransform: 'none',
+            lineHeight: 'normal',
         },
-
         h3: {
-            fontFamily: "Lato",
-            fontWeight:700,
-            fontSize: {xs: '8px', sm: '13px', md: '20px', lg: '25px', xl: '29px'},
-            color: "#F1F1F1",
-            textTransform: 'none',
+            fontFamily: 'Lato',
+            fontWeight: 700,
+            fontSize:'1.09375vw',
+            color: "#FFFFFF",
+            letterSpacing: '0.4px',
         },
         button: {
-            fontFamily: 'Inter',
-            fontSize: { xs: '6px', sm: '6px', md: '9px', lg: '13px', xl: '16px' },
+            fontFamily: 'Lato',
+            fontSize:'0.7vw',
             textTransform: 'none',
+            color: "#FFFFFF",
         },
-        caption: {
-            fontFamily: 'sen',
-            fontSize: { xs: '7px', sm: '8px', md: '15px', lg: '18px', xl: '21px' },
-            lineHeight: 'normal',
+        h1: {
+            fontFamily: 'Lato',
+            fontWeight: 700,
+            fontSize:'1.458vw',
+            color: "#FFFFFF",
             letterSpacing: '0.4px',
-            color: "#F1F1F1",
-            textTransform: 'none',
         },
     },
 });
 
 const Allinonecard = ({ data }) => {
     const navigate = useNavigate();
+    const isMobile = window.innerWidth <= 600;
 
     const handleClick = (slug) => {
         navigate(`/news/${slug}`);
     };
-    const formatViews = (views) => {
-        if (views >= 1000000) {
-            return `${(views / 1000000).toFixed(1)}m`;
-        } else if (views >= 1000) {
-            return `${(views / 1000).toFixed(1)}k`;}
-        return views;
-    };
+
     return (
         <ThemeProvider theme={theme}>
             <Box
                 display="flex"
                 flexDirection="column"
+                alignItems="center"
                 sx={{
-                    maxWidth: {
-                        xs: "400px",
-                        sm: "600px",
-                        md: "800px",
-                        lg: "1000px",
-                        xl: "1400px",
-                    },
-                    alignItems: 'center',
+                    maxWidth: '100vw',
+                    mt:'2.5vw'
                 }}
             >
                 <Box
                     display="flex"
                     flexWrap="wrap"
                     justifyContent="center"
-                    sx={{gap:{xs: 1, sm: 1.5, md: 2, lg: 3, xl: 6,},
-                    
-                        maxWidth: {
-                            xs: "400px",
-                            sm: "600px",
-                            md: "800px",
-                            lg: "1000px",
-                            xl: "1400px",
-                        },
+                    sx={{
+                        gap: '3.8vw',
+                        maxWidth: '70vw',
                     }}
                 >
                     {data.map((box, index) => (
                         <Box
-                            display="flex"
                             key={index}
                             sx={{
-                                width: {
-                                    xs: "390px",
-                                    sm: "600px",
-                                    md: "800px",
-                                    lg: "1000px",
-                                    xl: "1400px",
-                                },
-                                height: { xs: '200px', sm: '265px', md: '390px', lg: '488px', xl: '600px' },
+                                display: 'flex',
+                                flexDirection: 'column',
+                                width: '17vw',
+                                height: '24vw',
                                 position: "relative",
-                                borderRadius: "20px",
+                                borderRadius: "16px",
                                 color: "white",
                                 overflow: "hidden",
-                                backgroundImage: `linear-gradient(90deg, rgba(0, 0, 0, 0.738) 14.54%, rgba(0, 0, 0, 0.686) 23.41%, rgba(0, 0, 0, 0.584) 40.86%, rgba(0, 0, 0, 0.164) 100%), url(${box.picture})`,
+                                backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.01) 40.5%, rgba(0, 0, 0, 0.8) 71%, rgba(0, 0, 0, 0.9) 100%), url(${box.picture})`,
                                 backgroundSize: "cover",
                                 backgroundPosition: "center",
-                                backgroundRepeat: "no-repeat",
-                                
+                                cursor: isMobile ? 'pointer' : 'default',
+                                justifyContent: 'flex-end',
+                                textAlign: 'start',
+                                alignItems: 'center',
                             }}
                         >
-                            <Box
-                                sx={{
-                                    position: "absolute",
-                                    display:'flex',
-                                    top: "40%",
-                                    left: "8%",
-                                    width: "50%",
-                                    borderRadius: "10px",
-                                    flexDirection: 'column',
-                                    gap:{xs:1,sm:1,md:2,lg:2,xl:2},
-                                }}
-                            >
-                                {/* Box for Text (Top Aligned) */}
-                                <Typography sx={{ ...theme.typography.h3 }}>
+                            <Box sx={{ width: '85%', height: '68%', display: "flex", flexDirection: "column", justifyContent: 'flex-end' }} />
+
+                            <Box sx={{ width: '85%', mb: 3 }}>
+                                <Typography variant="h3" sx={{ width: '100%' }}>
                                     {box.title}
                                 </Typography>
-                                <Typography sx={{maxWidth: 500, ...theme.typography.h6,ml:{xs:1,sm:1,md:2,lg:2,xl:2} }}>
-                                    {box.details.length > 200
-                                        ? `${box.details.substring(0, 200)}...`
-                                        : box.details}
+                                <Typography variant="h6" sx={{ width: '100%', mt: 0.5 }}>
+                                    {box.details.length > 50 ? `${box.details.substring(0, 80)}...` : box.details}
                                 </Typography>
+                            </Box>
 
-                                <Box display="flex" alignItems="center" sx={{ml:{xs:1,sm:1,md:2,lg:2,xl:2}}}>
-                                    <AccessTimeIcon sx={{ fontSize: 18, mr: 1,...theme.typography.caption }} />
-                                    <Typography variant="caption" sx={{ mr: 2 ,...theme.typography.caption}}>
-                                        {box.read_time}m
-                                    </Typography>
-                                    <VisibilityIcon sx={{ fontSize: 18, mr: 1,...theme.typography.caption }} />
-                                    <Typography variant="caption" sx={{ ...theme.typography.caption }}>
-                                        {formatViews(box.views)}
-                                    </Typography>
-                                </Box>
-
-                                {/* Box for Button (Bottom Aligned) */}
-                                    <Button
-                                        variant="contained"
-                                        onClick={() => handleClick(box.slug)}
-                                        sx={{
-                                            borderRadius: "6px",
-                                            backgroundColor: "transparent",
-                                            textTransform: "none",
-                                            ml:{xs:1,sm:1,md:2,lg:2,xl:2},
-                                            width: { xs: '20px',sm: '55px', md: '80px', lg: '100px', xl: '125px' },
-                                            height: { xs: '20px', sm: '20px', md: '30px', lg: '35px', xl: '45px' },
-                                            ...theme.typography.button,
-                                            border: "1px solid rgba(255, 255, 255, 0.8)", // Border around the button
-                                            "&:hover": {
-                                                backgroundColor: "#000000", // Background color on hover
-                                                opacity: 0.8, // Optional: slightly reduce opacity on hover
-                                            },
-                                        }}
-                                    >
-                                        See more
-                                    </Button>
+                            <Box
+                                sx={{
+                                    width: '85%',
+                                    display: { xs: 'none', sm: 'flex' },
+                                    justifyContent: "flex-start",
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <Button
+                                    onClick={() => handleClick(box.slug)}
+                                    sx={{
+                                        ...theme.typography.button,
+                                        borderRadius: '4px',
+                                        border: '1px solid white',
+                                        width: '5vw',
+                                        height: '2vw',
+                                        backgroundColor: 'transparent',
+                                        '&:hover': { backgroundColor: 'transparent' },
+                                    }}
+                                    disableRipple
+                                    aria-label="See more"
+                                >
+                                    See more
+                                </Button>
                             </Box>
                         </Box>
                     ))}
@@ -176,4 +134,3 @@ const Allinonecard = ({ data }) => {
 };
 
 export default Allinonecard;
-

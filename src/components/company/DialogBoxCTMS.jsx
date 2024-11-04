@@ -10,9 +10,10 @@ import {
   IconButton,
   Box,
   ThemeProvider,
-  createTheme,
+  createTheme, Snackbar, Alert,
 } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
+import {useAuth} from "../../AuthContext.jsx";
 
 const theme = createTheme({
   typography: {
@@ -76,9 +77,13 @@ const theme = createTheme({
 });
 
 const FeaturesDialog = () => {
+  const { authToken } = useAuth();
+  const Token = localStorage.getItem('authToken') || authToken;
   const [open, setOpen] = useState(false);
   const [features, setFeatures] = useState([]);
   const [selectedFeatures, setSelectedFeatures] = useState(["Geo tracking"]);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
 
   useEffect(() => {
     setFeatures([
@@ -93,6 +98,10 @@ const FeaturesDialog = () => {
       "Site management",
     ]);
   }, []);
+  const handleCloseSnackbar = () => {
+    setSnackbarOpen(false);
+  };
+
 
   const handleFeatureToggle = (feature) => {
     setSelectedFeatures((prev) =>
@@ -106,7 +115,7 @@ const FeaturesDialog = () => {
     );
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const payload = {
       geo_tracking: selectedFeatures.includes("Geo tracking"),
       remote_patient_monitoring: selectedFeatures.includes("Remote patient monitoring"),
@@ -118,16 +127,20 @@ const FeaturesDialog = () => {
       site_management: selectedFeatures.includes("Site management"),
     };
 
-    axios
-      .post('https://site.vitruvianshield.com/api/v1/feature-req', payload)
-      .then((response) => {
-        console.log("Features submitted successfully:", response.data);
-        setOpen(false);
-      })
-      .catch((error) => {
-        console.error("Error submitting features:", error);
+    try {
+      await axios.post('https://site.vitruvianshield.com/api/v1/feature-req', payload, {
+        headers: {
+          'Authorization': `Bearer ${Token}`
+        }
       });
+      setSnackbarMessage('Your purchase request has been successfully submitted.');
+      setSnackbarOpen(true);
+      setOpen(false);
+    } catch (error) {
+      console.error('Error purchase:', error);
+    }
   };
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -231,6 +244,11 @@ const FeaturesDialog = () => {
           </Button>
         </DialogActions>
       </Dialog>
+      <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleCloseSnackbar}>
+        <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </ThemeProvider>
   );
 };
