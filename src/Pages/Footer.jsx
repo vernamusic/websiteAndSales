@@ -32,7 +32,7 @@ const theme = createTheme({
     h6: {
       fontFamily: 'Lato',
       fontWeight: 700,
-      fontSize: '16px',
+      fontSize: '0.85vw',
       lineHeight: '16px',
       letterSpacing: '0.5px',
       color: '#FFFFFF',
@@ -40,7 +40,7 @@ const theme = createTheme({
     body3: {
       fontFamily: 'Lato',
       fontWeight: 700,
-      fontSize: '16px',
+      fontSize: '0.85vw',
       lineHeight: '19.2px',
       letterSpacing: '0.5px',
       color: '#D9D9D970',
@@ -113,11 +113,11 @@ const Footer = () => (
         <Box sx={commonBoxStyles}>
           <Typography variant="h3" marginTop="16px">VISIT US</Typography>
           {locations.map((location, index) => (
-            <Box marginTop={7} key={index}>
+            <Box marginTop={7} key={index} >
               <img src={location.image} alt={location.name} style={{ width: '103px', height: 'auto', marginRight: '8px',display:'flex', justifyContent:'flex-start' }} />
               <Box marginTop="16px">
                 <Box display="flex" alignItems="center" justifyContent="flex-start">
-                  <img src={footerloc} alt="locationLogo" style={{ width: '22px', height: 'auto', marginRight: '8px' }} />
+                  <img src={footerloc} alt="locationLogo" style={{ width: '1.15vw', height: 'auto', marginRight: '8px' }} />
                   <Typography variant="h6" gutterBottom>{location.name}</Typography>
                 </Box>
                 <Typography variant="body3" sx={{ mt: '12px',display:'flex', textAlign: 'left' }}>

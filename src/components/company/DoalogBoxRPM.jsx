@@ -58,7 +58,6 @@ const theme = createTheme({
       styleOverrides: {
         paper: {
           borderRadius: '15px',
-          maxWidth: '528px',
           overflow: 'hidden',
         },
       },
@@ -145,14 +144,27 @@ const FeaturesDialog = () => {
   };
 
   return (
-      <ThemeProvider theme={theme}>
-        <Button
-            sx={{
-              backgroundColor: theme.palette.primary.main,
-              color: theme.palette.text.primary,
-            }}
-            variant="outlined"
-            onClick={() => setOpen(true)}
+    <ThemeProvider theme={theme}>
+      <Button
+        sx={{
+          backgroundColor: theme.palette.primary.main,
+          color: theme.palette.text.primary,
+        }}
+        variant="outlined"
+        onClick={() => setOpen(true)}
+      >
+        Buy
+      </Button>
+
+      <Dialog open={open} onClose={() => setOpen(false)}>
+        <DialogContent
+          dividers
+          sx={{
+            width:{sm:'410px',md:'420px',lg:'440px',xl:'460px'},
+            height:{sm:'600px',md:'600px',lg:'600px',xl:'620px'},
+            backgroundColor: theme.palette.background.paper,
+            overflow: 'hidden',
+          }}
         >
           Buy
         </Button>
@@ -178,54 +190,50 @@ const FeaturesDialog = () => {
               </IconButton>
             </Box>
 
-            <Box sx={{ padding: 1.5 }}>
-              <Box component="span" sx={{ typography: 'h6' }}>
-                Features
-              </Box>
-
-              <Box sx={{ typography: 'body1', marginBottom: 2, marginTop: 2 }}>
-                Select the features you want
-              </Box>
-              {features.map((feature, index) => (
-                  <React.Fragment key={feature}>
-                    <FormControlLabel
-                        control={
-                          <Checkbox
-                              checked={
-                                feature === "Select all"
-                                    ? selectedFeatures.length === features.length - 1
-                                    : selectedFeatures.includes(feature)
-                              }
-                              onChange={() =>
-                                  feature === "Select all" ? handleSelectAll() : handleFeatureToggle(feature)
-                              }
-                              sx={{
-                                color: theme.palette.text.secondary,
-                                '&.Mui-checked': {
-                                  color: theme.palette.primary.main,
-                                },
-                                '&:hover': {
-                                  backgroundColor: 'transparent',
-                                },
-                              }}
-                          />
-                        }
-                        label={feature}
-                        sx={{
-                          display: 'block',
-                          marginBottom: 1,
-                          '& .MuiFormControlLabel-label': {
-                            typography: 'featureText',
-                          },
-                        }}
-                    />
-                    {index < features.length - 1 && (
-                        <hr style={{ borderColor: theme.palette.text.divider, margin: '8px 0' }} />
-                    )}
-                  </React.Fragment>
-              ))}
+            <Box sx={{ typography: 'body1', marginBottom: 2, marginTop: 2 }}>
+              Select the features you want
             </Box>
-          </DialogContent>
+            {features.map((feature, index) => (
+  <React.Fragment key={feature}>
+    <FormControlLabel
+      control={
+        <Checkbox
+          checked={
+            feature === "Select all"
+              ? selectedFeatures.length === features.length - 1
+              : selectedFeatures.includes(feature)
+          }
+          onChange={() =>
+            feature === "Select all" ? handleSelectAll() : handleFeatureToggle(feature)
+          }
+          sx={{
+            color: theme.palette.text.secondary,
+            '&.Mui-checked': {
+              color: theme.palette.primary.main,
+            },
+            '&:hover': {
+              backgroundColor: 'transparent',
+            },
+          }}
+        />
+      }
+      label={feature}
+      sx={{
+        display: 'flex',
+        marginBottom: 0, // Reduced spacing between checkboxes
+        '& .MuiFormControlLabel-label': {
+          typography: 'featureText',
+        },
+      }}
+    />
+    {index < features.length - 1 && (
+      <hr style={{ borderColor: theme.palette.text.divider, margin: '4px 0' }} /> // Reduced margin for <hr>
+    )}
+  </React.Fragment>
+))}
+          </Box>
+        </DialogContent>
+
 
           <DialogActions sx={{ justifyContent: 'center' }}>
             <Button
