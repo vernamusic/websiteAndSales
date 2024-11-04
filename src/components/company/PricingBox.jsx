@@ -8,7 +8,7 @@ const theme = createTheme({
     h6: {
       fontFamily: 'Lato',
       fontWeight: 700,
-      fontSize: { sm: '16px', md: '18px', lg: '20px', xl: '23px' },
+      fontSize: { sm: '16px', md: '18px', lg: '1.2vw' },
       color: '#FFFFFF',
       letterSpacing: '0.4px',
       lineHeight: 'normal',
@@ -24,28 +24,28 @@ const theme = createTheme({
       fontFamily: 'Lato',
       fontWeight: 700,
       lineHeight: '20.4px',
-      fontSize: { sm: '11px', md: '12px', lg: '14px', xl: '17px' },
+      fontSize: { sm: '11px', md: '12px', lg: '0.9vw' },
       color: '#FFFFFF',
     },
     body1: {
       fontFamily: 'Lato',
       fontWeight: 400,
       lineHeight: '19.2px',
-      fontSize: { sm: '11px', md: '13px', lg: '14px', xl: '16px' },
+      fontSize: { sm: '11px', md: '13px', lg: '0.83vw'},
       color: '#FFFFFF',
     },
     body2: {
       fontFamily: 'Lato',
       fontWeight: 500,
       lineHeight: '15px',
-      fontSize: { sm: '11px', md: '12px', lg: '13px', xl: '15px' },
+      fontSize: { sm: '11px', md: '12px', lg: '0.78vw' },
       color: '#FFFFFF',
     },
     body3: {
       fontFamily: 'Sen',
       fontWeight: 400,
       lineHeight: '21.66px',
-      fontSize: { sm: '11px', md: '13px', lg: '15px', xl: '18px' },
+      fontSize: { sm: '11px', md: '13px', lg: '0.93vw' },
       color: '#F1F1F1',
     },
   },
@@ -117,7 +117,8 @@ const PricingBox = () => {
           display="flex"
           flexDirection={{ sm: 'row' }}
           justifyContent="center"
-          gap={10}
+          marginBottom={10}
+          sx={{gap:{sm:5,md:10}}}
         >
           {/* CTMS Card */}
           <Box
@@ -130,20 +131,18 @@ const PricingBox = () => {
               flexDirection: 'column',
               border: '1px solid #FFFFFF33',
               flex: '1 1',
-              mb: '100px',
-              width: '21.093vw',
-              height: { sm: '520px', md: '530px', lg: '560px', xl: '590px' },
-              gap: { sm: 0, md: 0.1, lg: 0.5, xl: 1 },
+              width: {sm:'330px',md:'350px',lg:'380px',xl:'405px'},
+              height: { sm: '490px', md: '530px', lg: '560px', xl: '590px' },
             }}
           >
             <Box>
               <Typography sx={{ ...theme.typography.h6 }}>CTMS</Typography>
-              <Typography sx={{ ...theme.typography.body1, mt: 1 }}>
+              <Typography sx={{ ...theme.typography.body1, mt: 1, padding:0 }}>
                 Cutting-edge clinical trials management
               </Typography>
             </Box>
             <Typography sx={{ ...theme.typography.h9, mt: 2 }}>FEATURES</Typography>
-            <Box component="ul" sx={{ paddingLeft: '1rem', display: 'flex', flexDirection: 'column', margin: 0, gap: 1 }}>
+            <Box component="ul" sx={{ paddingLeft: '1rem', display: 'flex', flexDirection: 'column', gap: {sm:0,md:0.5,lg:1} }}>
               <FeatureItem text="Remote patient monitoring" />
               <FeatureItem text="Geo tracking" />
               <FeatureItem text="Site management" />
@@ -153,7 +152,8 @@ const PricingBox = () => {
               <FeatureItem text="Video consultation" />
               <FeatureItem text="Emergency call" />
             </Box>
-            <Box display="flex" flexDirection="column" gap={2} mt={4}>
+            <Box display="flex" flexDirection="column" gap={2} height="100%">
+              <Box flexGrow={1} /> {/* Spacer to push buttons to the bottom */}
               <Button
                 variant="outlined"
                 fullWidth
@@ -180,6 +180,7 @@ const PricingBox = () => {
                 </Button>
               </DialogBoxCTMS>
             </Box>
+
           </Box>
 
           {/* RPM Card */}
@@ -193,10 +194,8 @@ const PricingBox = () => {
               flexDirection: 'column',
               border: '1px solid #FFFFFF33',
               flex: '1 1',
-              mb: '100px',
-              width: '21.093vw',
-              height: { sm: '520px', md: '530px', lg: '560px', xl: '590px' },
-              gap: { sm: 0.1, md: 0.1, lg: 0.5, xl: 1 },
+              width: {sm:'330px',md:'350px',lg:'380px',xl:'405px'},
+              height: { sm: '490px', md: '530px', lg: '560px', xl: '590px' },
             }}
           >
             <Box>
@@ -206,7 +205,7 @@ const PricingBox = () => {
               </Typography>
             </Box>
             <Typography sx={{ ...theme.typography.h9, mt: 2 }}>FEATURES</Typography>
-            <Box component="ul" sx={{ paddingLeft: '1rem', display: 'flex', flexDirection: 'column', margin: 0, gap: 1 }}>
+            <Box component="ul" sx={{ paddingLeft: '1rem', display: 'flex', flexDirection: 'column', gap: {sm:0,md:0.5,lg:1} }}>
               <FeatureItem text="Electronic data management" />
               <FeatureItem text="ECG" />
               <FeatureItem text="Emergency call" />
@@ -216,7 +215,8 @@ const PricingBox = () => {
               <FeatureItem text="e-Consent" />
               <FeatureItem text="Vital signs" />
             </Box>
-            <Box display="flex" flexDirection="column" gap={2} mt={4}>
+            <Box display="flex" flexDirection="column" gap={2} height="100%">
+              <Box flexGrow={1} /> {/* Spacer to push buttons to the bottom */}
               <Button
                 variant="outlined"
                 fullWidth
