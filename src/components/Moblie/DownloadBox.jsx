@@ -41,20 +41,21 @@ const Home = () => {
                 <Box
                     sx={{
                         position: 'relative',
-                        height: '100vh',
+                        maxHeight: '746px',
+                        minHeight: { xs: '500px', sm: '600px', md: '700px', lg: '746px' },
                         width: '100%',
                         backgroundImage: `url(${background})`,
                         backgroundRepeat: 'no-repeat',
-                        backgroundSize: '100%',
+                        backgroundSize: 'cover',
                     }}
                 >
                 <Box
                     sx={{
                         position: 'absolute',
                         zIndex: 1,
-                        ml: '11vw',
-                        mt: '16vw',
-                        maxWidth:'40vw',
+                        ml: '11%',
+                        mt: '16%',
+                        maxWidth:'40%',
                     }}
                 >
                     <Typography

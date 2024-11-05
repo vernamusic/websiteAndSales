@@ -1,12 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
 import { Box, Typography, createTheme, ThemeProvider, IconButton } from '@mui/material';
-import phoneImage1 from '../../assets/1.svg';
-import phoneImage2 from '../../assets/2.svg';
-import phoneImage3 from '../../assets/3.svg';
-import phoneImage4 from '../../assets/4.svg';
-import phoneImage5 from '../../assets/5.svg';
-import phoneImage6 from '../../assets/6.svg';
+import phoneImage1 from '../../assets/1.jpg';
+import phoneImage2 from '../../assets/2.jpg';
+import phoneImage3 from '../../assets/3.jpg';
+import phoneImage4 from '../../assets/4.jpg';
+import phoneImage5 from '../../assets/5.jpg';
+import phoneImage6 from '../../assets/6.jpg';
 import Geo from '../../assets/mobileapp/Geo.svg';
 import Call from '../../assets/mobileapp/Call.svg';
 import Report from '../../assets/mobileapp/Report.svg';
@@ -65,12 +65,12 @@ const FeaturesBox = () => {
         <ThemeProvider theme={themes}>
             <Box sx={{
                 backgroundImage: `url(${background})`,
-                height: '100vh',
+                maxHeight: '746px',
+                minHeight: { xs: '500px', sm: '600px', md: '700px', lg: '746px' },
                 width: '100%',
-                position: 'relative',
-                backgroundSize: '100%',
+                backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
-                padding: '32px',
+                padding: '64px',
                 }}>
                 <Box
                     display="flex"
@@ -84,7 +84,8 @@ const FeaturesBox = () => {
                             ...themes.typography.h1,
                             lineHeight: '1.5',
                             width: '600',
-                            mb: '8px'
+                            mb: '8px',
+                            mt: '1em'
                         }}
                     >
                         ADVANCED FEATURES
@@ -92,7 +93,7 @@ const FeaturesBox = () => {
                     <Typography
                         sx={{
                             ...themes.typography.h3,
-                            mb: '40px'
+                            mb: '3em'
                         }}
                     >
                         Integrate advanced features to improve user experience
@@ -104,14 +105,14 @@ const FeaturesBox = () => {
                 flexWrap="wrap"
                 justifyContent="center"
                 alignItems="center"
-                gap='4vw'
+                gap='4'
 
             >
                 <Box
                     display="flex"
                     flexDirection="column"
-                    maxWidth='25vw'
-                    gap='3.8vw'
+                    maxWidth='22em'
+                    gap='3em'
                 >
                     {featureData.slice(0, 3).map((feature, i) => (
                         <Box
@@ -127,7 +128,7 @@ const FeaturesBox = () => {
                                     height: '40px',
                                     backgroundColor: `${i==index?'#910203':'#B50304'}`,
                                     position:'absolute',
-                                    top:'0vw',
+                                    top:'0em',
                                     clipPath: 'circle(45%)',
                                     display: 'flex',
                                     justifyContent: 'center',
@@ -144,7 +145,7 @@ const FeaturesBox = () => {
                                 />
                             </Box>
                             <Box
-                                sx={{pl:'4vw',}}
+                                sx={{pl:'3.5em',}}
                             >
                                 <Typography
                                     sx={{...themes.typography.h6, width: 'fit-content', pb: '2px', borderBottom: `${index == i?'1px solid white':'none'}`}}
@@ -153,7 +154,7 @@ const FeaturesBox = () => {
                                 </Typography>
 
                                 <Typography
-                                    pt='0.5vw'
+                                    pt='0.5em'
                                     sx={{...themes.typography.caption,}}
                                 >
                                     {feature.description}
@@ -163,22 +164,36 @@ const FeaturesBox = () => {
                     ))}
                 </Box>
                 
-                <Box sx={{alignItems: 'center', display: 'flex'}}>
+                <Box sx={{alignItems: 'center', display: 'flex', margin: '0 3em'}}>
                     <IconButton sx={{height: '48px', width: '48px'}} children={
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                             <rect x="0.875" width="24" height="24" rx="12" fill="black" fill-opacity="0.2"/>
                             <path d="M15 7L10 12L15 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     } onClick={()=>setIndex(index==0?5:index-1)} />
-                    <Box
-                        component="img"
-                        src={phoneImages[index]}
-                        sx={{
-                            width: 'auto',
-                            height: '400px',
-                            objectFit: 'cover',
-                        }}
-                    />
+                    <Box sx={{display: 'flex', flexDirection: 'column'}}>
+                        <Box
+                            component="img"
+                            src={phoneImages[index]}
+                            sx={{
+                                width: 'auto',
+                                height: '400px',
+                                objectFit: 'cover',
+                            }}
+                        />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="192" height="28" viewBox="0 0 192 28" fill="none">
+                          <g filter="url(#filter0_f_4415_417)">
+                            <ellipse cx="96" cy="14" rx="88" ry="6" fill="#2C2C2C" fill-opacity="0.6"/>
+                          </g>
+                          <defs>
+                            <filter id="filter0_f_4415_417" x="0" y="0" width="192" height="28" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                              <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                              <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                              <feGaussianBlur stdDeviation="4" result="effect1_foregroundBlur_4415_417"/>
+                            </filter>
+                          </defs>
+                        </svg>
+                    </Box>
                     <IconButton sx={{height: '48px', width: '48px'}} children={
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                             <rect x="24.125" y="24" width="24" height="24" rx="12" transform="rotate(-180 24.125 24)" fill="black" fill-opacity="0.2"/>
@@ -189,8 +204,8 @@ const FeaturesBox = () => {
                 <Box
                     display="flex"
                     flexDirection="column"
-                    maxWidth='25vw'
-                    gap='3.8vw'
+                    maxWidth='22em'
+                    gap='3em'
                 >
                     {featureData.slice(3, 6).map((feature, i) => (
                         <Box
@@ -206,7 +221,7 @@ const FeaturesBox = () => {
                                     height: '40px',
                                     backgroundColor: `${i+3==index?'#910203':'#B50304'}`,
                                     position:'absolute',
-                                    top:'0vw',
+                                    top:'0em',
                                     clipPath: 'circle(45%)',
                                     display: 'flex',
                                     justifyContent: 'center',
@@ -224,7 +239,7 @@ const FeaturesBox = () => {
                                 />
                             </Box>
                             <Box
-                                sx={{pl:'4vw',}}
+                                sx={{pl:'3.5em',}}
                             >
                                 <Typography
                                     sx={{...themes.typography.h6, width: 'fit-content', pb: '2px', borderBottom: `${index == i+3?'1px solid white':'none'}`}}
@@ -233,7 +248,7 @@ const FeaturesBox = () => {
                                 </Typography>
 
                                 <Typography
-                                    pt='0.5vw'
+                                    pt='0.5em'
                                     sx={{...themes.typography.caption,}}
                                 >
                                     {feature.description}

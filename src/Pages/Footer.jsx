@@ -91,9 +91,9 @@ const Footer = () => (
         alignItems: 'center',
       }}
     >
-      <Box sx={{ width: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1.66vw' }}>
+      <Box sx={{ width: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1.5em' }}>
         {/* ABOUT US Box */}
-        <Box sx={{...commonBoxStyles, width: '13vw'}}>
+        <Box sx={{...commonBoxStyles, width: '11em'}}>
             <Typography gutterBottom variant="h3" marginTop="16px" marginBottom="24px">ABOUT US</Typography>
             {['Our Vision', 'Our Team', 'Our Partners', 'Become a Partner', 'Donations', 'Contact Us', 'Gallery'].map((text, index) => (
               <Typography variant="body9" marginTop="5px" key={index}>{text}</Typography>
@@ -103,7 +103,7 @@ const Footer = () => (
         <Divider orientation='vertical' sx={{borderColor: '#262626', height: '360px', marginTop: '32px', borderStyle: 'dashed'}} />
 
           {/* OUR SOLUTIONS Box */}
-          <Box sx={{...commonBoxStyles, width: '13vw'}}>
+          <Box sx={{...commonBoxStyles, width: '11em'}}>
             <Typography gutterBottom variant="h3" marginTop="16px" marginBottom="24px">OUR SOLUTIONS</Typography>
             {['The problem', 'Concept', 'The Smartwatch', 'Mobile App', 'Research API', 'Data & Research', 'Certifications'].map((text, index) => (
               <Typography variant="body9" marginTop="5px" key={index}>{text}</Typography>
@@ -113,14 +113,14 @@ const Footer = () => (
         <Divider orientation='vertical' sx={{borderColor: '#262626', height: '360px', marginTop: '32px', borderStyle: 'dashed'}} />
 
         {/* Visit us Section */}
-        <Box sx={{...commonBoxStyles, width: '26vw'}}>
+        <Box sx={{...commonBoxStyles, width: '22em'}}>
           <Typography variant="h3" marginTop="16px">VISIT US</Typography>
           {locations.map((location, index) => (
             <Box marginTop="32px" key={index}>
               <img src={location.image} alt={location.name} style={{ width: '103px', height: 'auto', marginRight: '8px',display:'flex', justifyContent:'flex-start' }} />
               <Box marginTop="16px">
                 <Box display="flex" alignItems="center" justifyContent="flex-start">
-                  <img src={footerloc} alt="locationLogo" style={{ width: '1.15vw', height: 'auto', marginRight: '8px' }} />
+                  <img src={footerloc} alt="locationLogo" style={{ width: '1em', height: 'auto', marginRight: '8px' }} />
                   <Typography variant="h6" gutterBottom>{location.name}</Typography>
                 </Box>
                 <Typography variant="body3" sx={{ mt: '12px',display:'flex', textAlign: 'left' }}>
