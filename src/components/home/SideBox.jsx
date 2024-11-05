@@ -19,7 +19,6 @@ const navItemStyle = {
 const SideBox = () => {
     return (
         <Box sx={{
-            // width: '100vw',
             minHeight: { xs: '484px' },
             display: 'flex',
             flexDirection: { xs: 'column-reverse', md: 'row' },
@@ -28,11 +27,13 @@ const SideBox = () => {
             position: 'relative',
             backgroundImage: `url(${bg})`,
             backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
             boxShadow: ' 0px 4px 12px 0px rgba(0, 0, 0, 0.14)',
             px: { xs: '40px', sm: '100px', md: '90px', lg: '136px' },
             boxSizing: 'border-box',
         }}>
+            
             <Box
                 sx={{
                     mt:{xs:'70px',sm:'100px',md:'0'},

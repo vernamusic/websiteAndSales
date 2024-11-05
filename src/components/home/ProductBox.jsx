@@ -178,6 +178,7 @@ const ProductBox = () => {
                             height: { xs: '42px' },
                             '&:hover': {
                                 backgroundColor: '#B50304',
+                                opacity: '0.8'
                             },
                         }}
                         disableRipple
@@ -234,7 +235,9 @@ const ProductBox = () => {
                             <IconButton
                                 onClick={handlePrev}
                                 sx={{
-                                    '&:hover': { backgroundColor: 'transparent' },
+                                    '&:hover': {
+                                        backgroundColor: 'transparent',
+                                    },
 
                                 }}
                             >
