@@ -4,7 +4,7 @@ import { Close } from '@mui/icons-material';
 import LoginDialog from './Login.jsx';
 import ForgotPasswordDialog from './ForgetPassword.jsx';
 import VerificationEmailDialog from './Verification.jsx';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SignUpDialog = ({ open, onClose, email: initialEmail = null }) => {
     const [dialogMode, setDialogMode] = useState('login');
@@ -105,18 +105,29 @@ const SignUpDialog = ({ open, onClose, email: initialEmail = null }) => {
                     borderRadius: '15px',
                     backgroundColor: '#262626',
                     color: '#FFFFFF',
-                    maxWidth: '528px',
+                    maxWidth: '480px',
                     overflow: 'hidden',
+                    px: '48px',
+                    maxHeight: '672px',
+                    boxSizing: 'border-box',
+                    pb: { xs: '20px', sm: '30px', md: '40px', lg: '50px' },
+                    position:'relative'
                 },
             }}
         >
-            <DialogTitle>
-                <Box display="flex" justifyContent="flex-end">
-                    <IconButton edge="end" color="inherit" onClick={onClose} aria-label="close">
-                        <Close />
-                    </IconButton>
-                </Box>
-            </DialogTitle>
+            <Box
+                sx={{
+                    width: 'fit-content',
+                    position: 'absolute',
+                    top: '10px',
+                    right: '15px'
+                }}
+            >
+                <IconButton edge="end" color="inherit" onClick={onClose} aria-label="close">
+                    <Close />
+                </IconButton>
+            </Box>
+
             <Slide direction="up" in={open} mountOnEnter unmountOnExit>
                 <Box display="flex" flexDirection="column" alignItems="center" width="100%">
                     <Fade in={open} timeout={{ enter: 800, exit: 800 }} style={{ transitionDelay: '200ms' }}>
@@ -126,16 +137,20 @@ const SignUpDialog = ({ open, onClose, email: initialEmail = null }) => {
                     </Fade>
                 </Box>
             </Slide>
-            <Snackbar
-                open={snackbarOpen}
-                autoHideDuration={6000}
-                onClose={() => setSnackbarOpen(false)}
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-            >
-                <Alert onClose={() => setSnackbarOpen(false)} severity={snackbarSeverity}>
-                    {snackbarMessage}
-                </Alert>
-            </Snackbar>
+            {
+                snackbarOpen &&
+                <Snackbar
+                    open={snackbarOpen}
+                    autoHideDuration={6000}
+                    onClose={() => setSnackbarOpen(false)}
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+                >
+                    <Alert onClose={() => setSnackbarOpen(false)} severity={snackbarSeverity}>
+                        {snackbarMessage}
+                    </Alert>
+                </Snackbar>
+            }
+
         </Dialog>
     );
 };

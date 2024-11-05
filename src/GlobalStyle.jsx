@@ -17,7 +17,7 @@ const GlobalStyle = () => {
                 },
                 '#root': {
                     height: '100%',
-                    maxWidth:'2500px'
+                    maxWidth:'2000px'
                 },
             }}
         />

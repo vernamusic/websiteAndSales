@@ -7,7 +7,15 @@ import google from '../../assets/Google.png';
 import apple from '../../assets/Apple.png';
 import LoginForm from './LoginForm';
 
-const LoginDialog = ({email, onForgotPassword, onClose, onLoginSuccess, onSendResetLink, }) => {
+const navItemStyle = {
+    fontFamily: 'Lato',
+    fontSize: { xs: '14.22px', lg: '16px' },
+    color: '#fff',
+    fontStyle: 'normal',
+    lineHeight: '100%',
+    textTransform: 'none'
+}
+const LoginDialog = ({ email, onForgotPassword, onClose, onLoginSuccess, onSendResetLink, }) => {
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [snackbarSeverity, setSnackbarSeverity] = useState('error');
@@ -15,18 +23,67 @@ const LoginDialog = ({email, onForgotPassword, onClose, onLoginSuccess, onSendRe
     const handleCloseSnackbar = () => setOpenSnackbar(false);
 
     return (
-        <Fade in={true} timeout={1000}>
-            <Box display="flex" flexDirection="column" alignItems="center" width="100%">
-                <Box display="flex" flexDirection="column" alignItems="center" mb={2}>
-                    <img src={logo} alt="Site Logo" style={{ marginBottom: 13, width: '12%' }} />
-                    <Typography variant="h5" style={{ marginBottom: 10 }}>Get Started</Typography>
-                    <Typography variant="h6" style={{ marginBottom: 10, color: '#9f9b9b' }}>Welcome to Vitruvian Shield</Typography>
+        <Fade
+            in={true}
+            timeout={1000}
+        >
+            <Box
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
+                width="100%"
+                sx={{
+                    pt: '45px'
+                }}
+            >
+                <Box
+                    display="flex"
+                    flexDirection="column"
+                    alignItems="center"
+                    mb={2}
+                >
+                    <Box
+                        sx={{
+                            width: { xs: '53px' },
+                            height: { xs: '59.19px' }
+                        }}
+                    >
+                        <img
+                            src={logo}
+                            alt="Site Logo"
+                            style={{ marginBottom: 13, width: '100%', height: '100%' }}
+                        />
+                    </Box>
+                    <Typography
+                        sx={{
+                            ...navItemStyle,
+                            fontSize: { xs: '16px', sm: '18px', md: '20px', lg: '23px' },
+                            fontWeight: 600,
+                            mt: '8px'
+                        }}
+                    >
+                        Get Started
+                    </Typography>
+                    <Typography
+                        sx={{
+                            ...navItemStyle,
+                            color: 'rgba(255, 255, 255, 0.65)',
+                            lineHeight: 'normal',
+                            mt: '12px',
+                        }}>
+                        Welcome to Vitruvian Shield
+                    </Typography>
                 </Box>
                 <LoginForm email={email} onForgotPassword={onForgotPassword} onLoginSuccess={onLoginSuccess} onSendResetLink={onSendResetLink} />
 
-                <Box display="flex" alignItems="center" width="100%" maxWidth="380px" mb={2}>
+                <Box display="flex" alignItems="center" width="100%" maxWidth="380px" mb='28px'>
                     <Box flexGrow={1} height="1px" bgcolor="#9f9b9b" />
-                    <Typography variant="h6" sx={{ mx: 1.3, color: '#9f9b9b' }}>Or</Typography>
+                    <Typography sx={{
+                        mx: 1.3,
+                        color: '#9f9b9b',
+                        fontSize:'14px',
+                        fontFamily:'Lato'
+                    }}>Or</Typography>
                     <Box flexGrow={1} height="1px" bgcolor="#9f9b9b" />
                 </Box>
 
@@ -38,8 +95,11 @@ const LoginDialog = ({email, onForgotPassword, onClose, onLoginSuccess, onSendRe
                             color: '#FFFFFF',
                             maxWidth: '380px',
                             width: '100%',
-                            height: '50px',
+                            height: '44px',
                             textTransform: 'none',
+                            fontFamily:'Lato',
+                            fontWeight:500,
+                            fontSize:'14px'
                         }}
                         startIcon={<img src={google} alt="Google Logo" style={{ width: 24, height: 24 }} />}
                         aria-label="Sign in with Google"
@@ -56,8 +116,11 @@ const LoginDialog = ({email, onForgotPassword, onClose, onLoginSuccess, onSendRe
                             color: '#FFFFFF',
                             maxWidth: '380px',
                             width: '100%',
-                            height: '50px',
+                            height: '44px',
                             textTransform: 'none',
+                            fontFamily:'Lato',
+                            fontWeight:500,
+                            fontSize:'14px'
                         }}
                         startIcon={<img src={apple} alt="Apple Logo" style={{ width: 24, height: 24 }} />}
                         aria-label="Sign in with Apple Id"

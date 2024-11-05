@@ -4,17 +4,21 @@ const FormInput = ({
     lable,
     value,
     fucused,
+    borderRadius,
+    height,
     setValue,
     placeholder,
     inputname,
     type,
     requierd,
     stuckRight,
-    disabled
+    disabled,
+    hiddenError
 }) => {
     const c545454 = '#454545'
     const c595959 = '#595959'
     const c8c8c8c = '#8c8c8c'
+    const c262626 = '#262626'
     const cfcfcfc = '#fcfcfc'
     const cbebebe = '#bebebe'
     const cbfbfbf = '#bfbfbf'
@@ -56,15 +60,16 @@ const FormInput = ({
                 InputProps={inputname === 'weight' ? { endAdornment: <Box sx={{ fontFamily: 'Inter', fontSize: '14px' }}>kg</Box> } : inputname === 'height' ? { endAdornment: <Box sx={{ fontFamily: 'Inter', fontSize: '14px' }}>cm</Box>, } : null}
                 autoComplete="organization"
                 disabled={disabled}
-                helperText={helper}
+                helperText={!hiddenError && helper}
                 error={helper !== '' ? true : false}
                 // focused={fucused}
                 sx={{
                     width: '100%',
                     boxSizing: 'border-box',
+                    height: height ? height : '50px',
                     '& fieldset': {
                         overflow: 'hidden',
-                        borderRadius: { xs: '5px', sm: '8px' },
+                        borderRadius: { xs: borderRadius ? borderRadius : '5px', sm: borderRadius ? borderRadius : '8px' },
                         borderTopRightRadius: { xs: `${stuckRight ? '0px!important' : '5px'}`, sm: `${stuckRight ? '0px!important' : '8!important'}` },
                         borderBottomRightRadius: { xs: `${stuckRight ? '0px!important' : '5px'}`, sm: `${stuckRight ? '0px!important' : '8!important'}` },
                         boxSizing: 'border-box',
@@ -73,8 +78,8 @@ const FormInput = ({
 
                     },
                     '&:focus-within fieldset, &:focus-visible fieldset': {
-                        border: { xs: `1px solid ${c5ea5d4}!important`, md: `1px solid ${c5ea5d4}!important` },
-                        borderRadius: { xs: '5px', sm: '8px' },
+                        border: { xs: `1px solid ${helper ? 'red' : c5ea5d4}!important`, md: `1px solid ${helper ? 'red' : c5ea5d4}!important` },
+                        borderRadius: { xs: borderRadius ? borderRadius : '5px', sm: borderRadius ? borderRadius : '8px' },
                         borderTopRightRadius: { xs: `${stuckRight ? '0px!important' : '5px'}`, sm: `${stuckRight ? '0px!important' : '8!important'}` },
                         borderBottomRightRadius: { xs: `${stuckRight ? '0px!important' : '5px'}`, sm: `${stuckRight ? '0px!important' : '8!important'}` },
 
@@ -87,12 +92,12 @@ const FormInput = ({
                         px: '24px!important',
                         background: `${disabled ? cf5f5f5 : cffffff}`,
                         fontSize: `${f14}`,
-                        borderRadius: { xs: '5px!important', sm: '8px!important' },
+                        borderRadius: { xs: borderRadius ? borderRadius : '5px', sm: borderRadius ? borderRadius : '8px' },
                         borderTopRightRadius: { xs: `${stuckRight ? '0px!important' : '5px'}`, sm: `${stuckRight ? '0px!important' : '8!important'}` },
                         borderBottomRightRadius: { xs: `${stuckRight ? '0px!important' : '5px'}`, sm: `${stuckRight ? '0px!important' : '8!important'}` },
 
                     },
-                    '& input::placeHolder': { fontFamily: `${fontFamily}`, color: `${c545454}`, fontSize:{xs:'12.64px',md:`${f16}`}, fontWeight: 400 },
+                    '& input::placeHolder': { fontFamily: `${fontFamily}`, color: `${c262626}`, fontSize: { xs: '12.64px', md: `${f14}` }, fontWeight: 400 },
                     '& label': {
                         marginTop: (them) => them.spacing(-0.5),
                         color: `${c595959}!important`,

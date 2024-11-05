@@ -72,7 +72,7 @@ const ProductBox = () => {
                 boxSizing: 'border-box',
                 height: { xs: '500px', sm: '500px', md: '536px' },
                 pb: { xs: '20px', md: '56px' },
-                px: { xs: '20px', sm: '30px', md: '100px', lg: '156px' },
+                px: { xs: '20px', sm: '30px', md: '100px', lg: '156px', xl: '180px' },
                 display: { xs: 'none', sm: 'flex' },
                 flexDirection: 'row',
                 justifyContent: 'space-between',
@@ -328,7 +328,7 @@ const ProductBox = () => {
     }
   `}
             </style>
-        </Box>
+        </Box >
     );
 };
 

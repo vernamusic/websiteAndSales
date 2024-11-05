@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography, Button } from '@mui/material';
 import Box from "@mui/material/Box";
-import bg from '../../assets/sideBoxBG.svg'
+import bg from '../../assets/newBG2.svg'
 import Vname from '../../assets/Vname.svg';
 import Vname2 from '../../assets/Vname2.svg';
 import logo from '../../assets/redvslogo.svg';
@@ -19,7 +19,7 @@ const navItemStyle = {
 const SideBox = () => {
     return (
         <Box sx={{
-            minHeight: { xs: '484px' },
+            minHeight: { xs: '584px' },
             display: 'flex',
             flexDirection: { xs: 'column-reverse', md: 'row' },
             justifyContent: {xs:'start',md:'space-between'},
@@ -29,7 +29,7 @@ const SideBox = () => {
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
-            boxShadow: ' 0px 4px 12px 0px rgba(0, 0, 0, 0.14)',
+            // boxShadow: ' 0px 4px 12px 0px rgba(0, 0, 0, 0.14)',
             px: { xs: '40px', sm: '100px', md: '90px', lg: '136px' },
             boxSizing: 'border-box',
         }}>
@@ -82,7 +82,7 @@ const SideBox = () => {
                     component={Link}
                     to={'/company'}
                     sx={{
-                        mt: '22px',
+                        mt: '32px',
                         display: 'flex',
                         borderRadius: '4px',
                         textAlign: 'center',
