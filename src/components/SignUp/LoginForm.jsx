@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     FormControl, InputLabel, OutlinedInput, Box, Button, Link,
     InputAdornment, IconButton, Snackbar, Alert
@@ -6,12 +6,13 @@ import {
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import PropTypes from 'prop-types';
 import { createTheme } from '@mui/material/styles';
+import FormInput from '../custom/FormInput';
 
 const theme = createTheme({
     typography: {},
 });
 
-const AuthForm = ({email: initialEmail = null, onForgotPassword, onLoginSuccess, onSendResetLink,}) => {
+const AuthForm = ({ email: initialEmail = null, onForgotPassword, onLoginSuccess, onSendResetLink, }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState(initialEmail);
     const [password, setPassword] = useState('');
@@ -98,70 +99,44 @@ const AuthForm = ({email: initialEmail = null, onForgotPassword, onLoginSuccess,
     return (
         <Box sx={{ width: 380 }}>
             <form onSubmit={handleSubmit}>
-                <FormControl variant="outlined" fullWidth sx={{ mb: 4 }}>
-                    <InputLabel
-                        htmlFor="email-input"
-                        sx={{
-                            ...theme.typography.text06,
-                            color: '#000000',
-                            '&.MuiInputLabel-shrink': {
-                                transform: 'translate(10px, 1px) scale(0.75)',
-                                transition: 'transform 0.2s ease-in-out, color 0.2s ease-in-out',
-                                color: '#ec0000',
-                            },
-                        }}
-                    >
-                        Enter your email
-                    </InputLabel>
-                    <OutlinedInput
-                        id="email-input"
+                <FormControl variant="outlined" fullWidth sx={{ mb: '18px' }}>
+                    <FormInput
+                        placeholder='Enter your email'
                         value={email}
-                        onChange={handleEmailChange}
-                        sx={{
-                            backgroundColor: '#FFFFFF',
-                            borderRadius: '4px',
-                            '&:hover .MuiOutlinedInput-notchedOutline': {
-                                borderColor: '#a80d0d',
-                            },
-                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                borderColor: '#a80d0d',
-                                borderWidth: '2px',
-                            },
-                        }}
+                        setValue={setEmail}
+                        borderRadius='4px'
+                        height='48px'
                         aria-label="Email address"
+                        inputname='email'
+                        hiddenError={true}
                     />
                 </FormControl>
-
-                <FormControl variant="outlined" fullWidth sx={{ mb: 4 }}>
-                    <InputLabel
-                        htmlFor="password-input"
-                        sx={{
-                            ...theme.typography.text06,
-                            color: '#000000',
-                            '&.MuiInputLabel-shrink': {
-                                transform: 'translate(10px, 1px) scale(0.75)',
-                                transition: 'transform 0.2s ease-in-out, color 0.2s ease-in-out',
-                                color: '#ec0000',
-                            },
-                        }}
-                    >
-                        Enter your password
-                    </InputLabel>
+                <FormControl variant="outlined" fullWidth sx={{}}>
                     <OutlinedInput
+                        placeholder='Enter your password'
                         id="password-input"
                         type={showPassword ? 'text' : 'password'}
                         value={password}
                         onChange={handlePasswordChange}
                         sx={{
+                            height: '48px',
                             backgroundColor: '#FFFFFF',
                             borderRadius: '4px',
                             '&:hover .MuiOutlinedInput-notchedOutline': {
-                                borderColor: '#a80d0d',
+                                borderColor: '#5ea5d4',
                             },
                             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                borderColor: '#a80d0d',
+                                borderColor: '#c5ea5d4',
                                 borderWidth: '2px',
                             },
+                            '& input::placeHolder':{
+                                fontSize:'14.22px',
+                                fontWeight:400,
+                                fontFamily:'Lato'
+                            },
+                            '& input':{
+                                pl:'25px'
+                            }
                         }}
                         endAdornment={
                             <InputAdornment position="end">
@@ -178,7 +153,14 @@ const AuthForm = ({email: initialEmail = null, onForgotPassword, onLoginSuccess,
                     />
                 </FormControl>
 
-                <Box display="flex" justifyContent="left" width="380px">
+                <Box
+                    display="flex"
+                    justifyContent="left"
+                    width="380px"
+                    sx={{
+                        mt: '16px'
+                    }}
+                >
                     <Link
                         href="#"
                         variant="h6"
@@ -195,10 +177,16 @@ const AuthForm = ({email: initialEmail = null, onForgotPassword, onLoginSuccess,
                     type="submit"
                     fullWidth
                     sx={{
-                        mt: 2,
-                        backgroundColor: '#a80d0d',
+                        my: '24px',
+                        backgroundColor: '#B50304',
+                        height:'44px',
+                        textTransform:'none',
+                        fontFamily:'Lato',
+                        fontWeight:600,
+                        fontSize:'16px',
+                        fontStyle:'normal',
                         '&:hover': {
-                            backgroundColor: '#ec0000',
+                            backgroundColor: '#B50304',
                         },
                     }}
                 >

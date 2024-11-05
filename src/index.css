@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    max-width: 2000px;
 }
 
 body, html {
@@ -7,21 +8,15 @@ body, html {
     padding: 0;
     height: 100%;
     overflow-x: hidden;
+    max-width: 2000px;
+
 }
 
 body {
-    background: whitesmoke;
+  background-color: #1F1F1F;
     display: flex;
     flex-direction: column;
-}
-
-
-header {
-}
-
-
-footer {
-
+    max-width: 2000px;
 }
 
 nav ul {
@@ -64,4 +59,6 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    max-width: 2000px;
+
 }

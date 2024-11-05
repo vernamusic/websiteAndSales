@@ -1,115 +1,153 @@
 import React from 'react';
-import { Typography, Button, createTheme } from '@mui/material';
+import { Typography, Button } from '@mui/material';
 import Box from "@mui/material/Box";
-import Vname from '../../assets/metallogo.svg';
+import bg from '../../assets/newBG2.svg'
+import Vname from '../../assets/Vname.svg';
+import Vname2 from '../../assets/Vname2.svg';
 import logo from '../../assets/redvslogo.svg';
 import { Link } from "react-router-dom";
 
-const theme = createTheme({
-    typography: {
-        h6: {
-            fontFamily: 'sen',
-            fontSize: {xs: '11px', sm: '11px', md: '13px', lg: '16px', xl: '21px'},
-            color: "#F1F1F1",
-            letterSpacing: '0.4px',
-            lineHeight: 'normal',
-        },
-        h3: {
-            fontFamily: 'Lato',
-            fontWeight: 700,
-            fontSize: {xs: '18px', sm: '22px', md: '24px', lg: '28px', xl: '35px'},
-            color: "#FFFFFF",
-            letterSpacing: '0.4px',
-        },
-        button: {
-            fontFamily: 'Lato',
-            fontSize: {xs: '10px', sm: '10px', md: '14px', lg: '16px', xl: '18px'},
-            color: "#FFFFFF",
-        },
-    },
-});
+const navItemStyle = {
+    fontFamily: 'Lato',
+    fontSize: { xs: '14.22px', lg: '16px' },
+    color: '#eee',
+    fontStyle: 'normal',
+    lineHeight: '100%',
+    textTransform: 'none'
+}
 
 const SideBox = () => {
     return (
         <Box sx={{
-            width: '90%',
+            minHeight: { xs: '584px' },
             display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-around',
+            flexDirection: { xs: 'column-reverse', md: 'row' },
+            justifyContent: {xs:'start',md:'space-between'},
             alignItems: 'center',
             position: 'relative',
-
-
+            backgroundImage: `url(${bg})`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            // boxShadow: ' 0px 4px 12px 0px rgba(0, 0, 0, 0.14)',
+            px: { xs: '40px', sm: '100px', md: '90px', lg: '136px' },
+            boxSizing: 'border-box',
         }}>
+            
             <Box
                 sx={{
-                    position:'relative',
+                    mt:{xs:'70px',sm:'100px',md:'0'},
+                    position: 'relative',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'flex-start',
-                    justifyContent: {xs:'center',sm:'flex-start'},
+                    justifyContent: { xs: 'center', sm: 'flex-start' },
                     textAlign: 'left',
-                    gap: { xs: 1, sm: 1, md: 1.5, lg: 2, xl: 3 },
-                    width: { xs: '240px', sm: '300px', md: '430px', lg: '480px', xl: '580px' },
+                    // gap: { xs: 1, sm: 1, md: 1.5, lg: 2, xl: 3 },
+                    width: { xs: '100%', md: '55%', lg: '55%', xl: '50%' },
                 }}
             >
-                <img
-                    src={Vname}
-                    alt="Vname"
-                    style={{ width: '17.7vw' }}
-                />
+                <Box
+                    sx={{
+
+                    }}
+                >
+                    <img
+                        src={Vname}
+                        alt="Vname"
+
+                    />
+                    <img
+                        src={Vname2}
+                        alt="Vname"
+
+                    />
+                </Box>
                 <Typography
                     color="white"
                     sx={{
-                        display:{xs:'none',sm:'block'},
-                        ...theme.typography.h6,
-                        width: { xs: '240px', sm: '260px', md: '300px', lg: '380px', xl: '480px' },
+                        ...navItemStyle,
+                        color: '#eee',
+                        fontWeight: 400,
+                        fontStyle: 'normal',
+                        lineHeight: '24px',
+                        // display: { xs: 'none', sm: 'block' },
+                        width: { sm: '100%', md: '100%', xl: '80%' },
                     }}
                 >
-                    Vitruvian Shield is one of the progressive digital health companies whose headquarters office resides in the Biopole of Lausanne, Switzerland. Vitruvian Shield promotes a comprehensive digital health platform.
+                    Vitruvian Shield is a progressive digital health company offering a comprehensive platform that integrates advanced sensors, cloud computing, and AI analytics. It collects vital signs data from wearables and a mobile app, empowering physicians, caregivers, and researchers to enhance health and quality of life.
                 </Typography>
                 <Button
                     variant="contained"
                     component={Link}
                     to={'/company'}
                     sx={{
-                        ...theme.typography.button,
-                        display:'flex',
+                        mt: '32px',
+                        display: 'flex',
                         borderRadius: '4px',
-                        textAlign:'center',
-                        textJustify:'center',
+                        textAlign: 'center',
+                        textJustify: 'center',
                         backgroundColor: '#B50304',
+                        color: '#fcfcfc',
+                        fontWeight: 600,
+                        fontSize: '14px',
+                        fontFamily: 'Lato',
                         textTransform: 'none',
-                        width:{ xs: '100px', sm: '100px', md: '120px', lg: '140px', xl: '170px' },
-                        height: { xs: '25px', sm: '30px', md: '37px', lg: '43px', xl: '47px' },
+                        width: { xs: '134px' },
+                        height: { xs: '42px' },
                         '&:hover': {
                             backgroundColor: '#B50304',
+                            opacity: '0.8'
                         },
                     }}
                     disableRipple
                 >
-                    Visit our plan
+                    Visit Our Plan
                 </Button>
             </Box>
-
             <Box
                 sx={{
-                    display: 'flex',
-                    position:'relative',
-                    justifyContent: 'flex-end',
+                    display: { xs: 'none', md: 'flex' },
+                    position: 'relative',
                     alignItems: 'center',
-                    width: { xs: '120px', sm: '220px', md: '300px', lg: '400px', xl: '470px' },
-                    height: { xs: '120px', sm: '220px', md: '500px', lg: '650px', xl: '820px' },
+                    // width: { xs: '120px', sm: '220px', md: '300px', lg: '400px', xl: '470px' },
+                    // height: { xs: '120px', sm: '220px', md: '500px', lg: '650px', xl: '820px' },
                 }}
             >
-                <img
-                    src={logo}
-                    alt="Logo"
-                    style={{
-                        width: '100%',
-                        height: '100%',
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center'
                     }}
-                />
+                >
+                    <Box
+                        sx={{
+                            width: { xs: '200px', md: '232px' },
+                            height: { xs: '272px', md: '304px' },
+                        }}
+                    >
+
+                        <img
+                            src={logo}
+                            style={{
+                                width: '100%',
+                                height: '100%',
+                            }}
+                        />
+                    </Box>
+                    <Box
+                        sx={{
+                            width: '180px',
+                            height: '19px',
+                            background: 'rgba(25, 25, 25, 0.40)',
+                            filter: 'blur(4.949999809265137px)',
+                            borderRadius: '100%'
+                        }}
+                    >
+
+                    </Box>
+                </Box>
             </Box>
         </Box>
     );
