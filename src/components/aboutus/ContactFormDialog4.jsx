@@ -76,7 +76,7 @@ const ContactFormDialog4 = ({ open, onClose }) => {
         body: JSON.stringify(formData),
       });
       if (response.ok) {
-        setFormData({ first_name: '', last_name: '', email: '', phone_number: null, subject: '', message: '', type: 12 });
+        setFormData({ first_name: '', last_name: '', email: '', phone_number: '', subject: '', message: '', type: 12 });
         onClose();
       } else {
         console.error('Error submitting the form:', response.statusText);
@@ -122,12 +122,7 @@ const ContactFormDialog4 = ({ open, onClose }) => {
         </DialogTitle>
 
         <DialogContent
-          sx={{
-            padding: '24px 70px',
-            maxHeight: '500px',
-              overflowY: 'auto',
-              '&::-webkit-scrollbar': { display: 'none' },
-          }}
+          sx={{ padding: '24px 70px', overflow: 'hidden' }}
         >
           <Typography variant="subtitle2" align="center" gutterBottom sx={{ mb: 4 }}>
             Please fill this form in a decent manner
@@ -170,6 +165,7 @@ const ContactFormDialog4 = ({ open, onClose }) => {
               InputProps={{
                 style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
               }}
+              required
             />
           </Box>
           <Box mt={2}>
@@ -179,11 +175,12 @@ const ContactFormDialog4 = ({ open, onClose }) => {
               placeholder="Enter your number"
               variant="outlined"
               margin="dense"
-              value={formData.phone_number || ''}
+              value={formData.phone_number}
               onChange={handleInputChange}
               InputProps={{
                 style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
               }}
+              required
             />
           </Box>
           <Box mt={2}>
@@ -198,6 +195,7 @@ const ContactFormDialog4 = ({ open, onClose }) => {
               InputProps={{
                 style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
               }}
+              required
             />
           </Box>
           <Box mt={2}>
@@ -214,9 +212,11 @@ const ContactFormDialog4 = ({ open, onClose }) => {
               InputProps={{
                 style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626', fontFamily: theme.typography.fontFamily },
               }}
+              required
             />
           </Box>
         </DialogContent>
+        
         <DialogActions sx={{ justifyContent: 'center', pb: 2, padding: '0 24px' }}>
           <Button
             fullWidth
@@ -228,11 +228,7 @@ const ContactFormDialog4 = ({ open, onClose }) => {
               mb: 4,
               backgroundColor: theme.palette.primary.main,
               '&:hover': { backgroundColor: theme.palette.primary.main },
-              fontFamily: theme.typography.fontFamily,
-              fontSize: theme.typography.button.fontSize,
-              fontWeight: theme.typography.button.fontWeight,
-              lineHeight: theme.typography.button.lineHeight,
-              textAlign: theme.typography.button.textAlign,
+              borderRadius: '4px',
             }}
           >
             Submit

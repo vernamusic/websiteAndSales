@@ -90,7 +90,7 @@ const RegBox = () => {
                         display: { xs: 'flex' },
                         justifyContent: 'space-between',
                         mt: '44px',
-                        width:{xs:'300px',sm:'420px',md:'500px'}
+                        width: { xs: '300px', sm: '420px', md: '500px' }
                     }}
                 >
                     <FormInput
@@ -107,13 +107,13 @@ const RegBox = () => {
                             whiteSpace: 'nowrap',
                             textTransform: 'none',
                             background: 'linear-gradient(180deg, #930001 0%, #B50304 15.4%, #B50304 84.9%, #930001 100%)',
-                            px:'32px',
-                            color:'#fcfcfc',
-                            width:'149px',
-                            fontFamily:'Lato',
-                            borderRadius:'8px',
-                            borderBottomLeftRadius:'0!important',
-                            borderTopLeftRadius:'0!important'
+                            px: '32px',
+                            color: '#fcfcfc',
+                            width: '149px',
+                            fontFamily: 'Lato',
+                            borderRadius: '8px',
+                            borderBottomLeftRadius: '0!important',
+                            borderTopLeftRadius: '0!important'
                         }}
                     >
                         Get Started
