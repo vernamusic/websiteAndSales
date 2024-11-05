@@ -17,6 +17,7 @@ function Moblie() {
             <DownloadBox />
             <HowBox />
             <FeaturesBox />
+            <UseBox />
 
         </Box>
             

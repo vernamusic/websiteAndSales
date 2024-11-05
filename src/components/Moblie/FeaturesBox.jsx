@@ -148,7 +148,7 @@ const FeaturesBox = () => {
                                 sx={{pl:'3.5em',}}
                             >
                                 <Typography
-                                    sx={{...themes.typography.h6, width: 'fit-content', pb: '2px', borderBottom: `${index == i?'1px solid white':'none'}`}}
+                                    sx={{...themes.typography.h6, width: 'fit-content', pb: '2px', borderBottom: `1px solid ${index == i?'white':'transparent'}`, cursor: 'pointer'}}
                                 >
                                     {feature.title}
                                 </Typography>
@@ -242,7 +242,7 @@ const FeaturesBox = () => {
                                 sx={{pl:'3.5em',}}
                             >
                                 <Typography
-                                    sx={{...themes.typography.h6, width: 'fit-content', pb: '2px', borderBottom: `${index == i+3?'1px solid white':'none'}`}}
+                                    sx={{...themes.typography.h6, width: 'fit-content', pb: '2px', borderBottom: `1px solid ${index == i+3?'white':'transparent'}`, cursor: 'pointer'}}
                                 >
                                     {feature.title}
                                 </Typography>
