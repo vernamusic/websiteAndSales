@@ -58,9 +58,9 @@ const HowBox = () => {
             <Box sx={{
                 background: 'radial-gradient(97.15% 97.15% at 50% 2.85%, #323232 0%, #1F1F1F 100%)',
                 width: '100%',
-                height: '100vh',
+                height: '579px',
                 position: 'relative',
-                pt: '88px'
+                padding: '88px'
                 }}>
                 <Box
                     display="flex"
@@ -72,7 +72,7 @@ const HowBox = () => {
                     <Typography
                         sx={{
                             ...theme.typography.h1,
-                            mb: '1vw',
+                            mb: '0.5em',
                             lineHeight: '1.5',
                             width: '600',
                         }}
@@ -82,7 +82,7 @@ const HowBox = () => {
                     <Typography
                         sx={{
                             ...theme.typography.h3,
-                            mb: '6vw',
+                            mb: '4em',
                         }}
                     >
                         Powerful tools designed to enhance your experience and simplify your tasks.
@@ -93,14 +93,14 @@ const HowBox = () => {
                     display="flex"
                     flexWrap="wrap"
                     justifyContent="center"
-                    gap="2.5vw"
+                    gap="2.5em"
                 >
                     {howData.map((box, index) => (
                         <Box
                             key={index}
                             sx={{
-                                width: '18.5vw',
-                                height: '21vw',
+                                width: '18.5%',
+                                height: '250px',
                                 borderRadius: '16px',
                                 display: 'flex',
                                 flexDirection: 'column',
@@ -116,7 +116,7 @@ const HowBox = () => {
                         <Box
                                 sx={{
                                     position: 'absolute',
-                                    top: '-2vw',
+                                    top: '-1.3em',
                                     left: '50%',
                                     transform: 'translateX(-50%)',
                                     width: '40px',
@@ -136,7 +136,7 @@ const HowBox = () => {
                                         src={box.icon}
                                         alt="Design"
                                         sx={{
-                                            width: '2vw'
+                                            width: '2em'
                                         }}
                                     />
                                 ) : (
@@ -151,8 +151,8 @@ const HowBox = () => {
                                     justifyContent: 'center',
                                     justifyItems: 'center',
                                     alignItems: 'center',
-                                    mt:'3.8vw',
-                                    gap: '0.5vw',
+                                    mt:'2em',
+                                    gap: '0.5em',
                                     textAlign: 'center',
                                     width:'100%'
                                 }}
@@ -176,9 +176,9 @@ const HowBox = () => {
                                 alt={box.title}
                                 sx={{
                                     width: '100%',
-                                    height: '55%',
+                                    height: '60%',
                                     objectFit: 'cover',
-                                    borderRadius: '0 0 1.39vw 1.39vw',
+                                    borderRadius: '0 0 16px 16px',
                                     mt: 'auto',
                                 }}
                             /> 

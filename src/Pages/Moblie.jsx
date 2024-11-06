@@ -11,43 +11,13 @@ function Moblie() {
             sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                width: '100vw',
-                minHeight: '100vh',
-                position: 'relative',
-                top: '-64px',
-                mb: '-80px'
+                width: '100%'
             }}
         >
-            <Box
-                sx={{
-                    width: '100vw',
-                    minHeight: '40vw',
-                }}
-            >
-                <DownloadBox />
-            </Box>
-
-            <Box
-                sx={{
-                    width: '100vw',
-                    minHeight: '50vw',
-                    display: 'flex',
-                    justifyContent: 'center',
-                }}
-            >
-                <HowBox />
-            </Box>
-
-            <Box
-                sx={{
-                    width: '100%',
-                    minHeight: '50vw',
-                    display: 'flex',
-                    justifyContent: 'center',
-                }}
-            >
-                <FeaturesBox />
-            </Box>
+            <DownloadBox />
+            <HowBox />
+            <FeaturesBox />
+            <UseBox />
 
         </Box>
             
