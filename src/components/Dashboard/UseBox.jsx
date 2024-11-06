@@ -1,18 +1,17 @@
 import React, { useState, useCallback, useMemo,} from 'react';
 import { Box, Button, Typography, createTheme, ThemeProvider } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import phone1 from "../../assets/usedash1.png";
-import phone2 from "../../assets/usedash2.png";
-import phone3 from "../../assets/usedash3.png";
-import black from "../../assets/laptopblackpage.png";
+import pc1 from "../../assets/usedash1.jpg";
+import pc2 from "../../assets/usedash2.jpg";
+import pc3 from "../../assets/usedash3.jpg";
 
 const theme = createTheme({
     typography: {
         h1: {
             fontFamily:'Lato',
-            fontSize: '1.39vw',
+            fontSize: '24px',
             fontWeight: 600,
-            color: "#F1F1F1",
+            color: "#FFFFFF",
         },
         h3: {
             fontFamily: 'sen',
@@ -22,20 +21,21 @@ const theme = createTheme({
         },
         h6: {
             fontFamily: 'Lato',
-            fontWeight: 600,
-            fontSize: '1.25vw',
+            fontWeight: 700,
+            fontSize: '18px',
             color: "#FFFFFF",
         },
         h9: {
-            fontFamily: 'sen',
+            fontFamily: 'Lato',
             fontWeight: 400,
-            fontSize: '1.0vw',
-            lineHeight:'1.3vw',
-            color: "rgba(241, 241, 241, 1)",
+            fontSize: '14px',
+            lineHeight:'110%',
+            color: "#D9D9D9",
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: '0.83vw',
+            fontSize: '12.64px', 
+            fontWeight: '600',
             textTransform: "none",
             color: "#FFFFFF",
         },
@@ -43,35 +43,35 @@ const theme = createTheme({
 });
 
 const features = [
-    { title: "Download and Install", description: "Go to your device's app store (Google Play Store for Android or Apple App Store for iOS), search for the app, and tap \"Download\" or \"Install.\"" },
-    { title: "Set Up an Account", description: "Open the app after installation. You may need to create an account or log in using existing credentials. Follow any on-screen instructions to complete the setup." },
-    { title: "Explore and Use", description: "Once set up, navigate through the app’s features. Familiarize yourself with its functions, settings, and any tutorials provided to make the most of it." }
+    { title: "Register on the Vitruvian Shield Website", description: "Visit the Vitruvian Shield website to create your account. Fill in your details and set up your user profile." },
+    { title: "Activate Your Account and Subscribe", description: "After your account is approved, log in to your email for your credentials. Next, purchase a subscription for access to the platform." },
+    { title: "Log In and Explore", description: "Log in to your dashboard using your credentials. Explore the various features designed to optimize your experience and achieve your goals." }
 ];
 
 const StepCircle = styled(Box)(({ active }) => ({
     position: 'absolute',
-    top: '1.5vw',
-    left: '0vw',
-    width: '3.7vw',
-    height: '3.7vw',
+    top: '1.2em',
+    width: '40px',
+    height: '40px',
     backgroundColor: active ? '#B50304' : 'transparent',
-    border: `0.15vw solid ${active ? 'transparent' : '#B50304'}`,
+    border: `1px solid ${active ? 'transparent' : '#B50304'}`,
     borderRadius: '50%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     cursor: 'pointer',
+    boxShadow: '0px 1px 8px 0px rgba(0, 0, 0, 0.24)'
 }));
 
 const RedLine = ({ top }) => (
     <Box
         sx={{
             position: 'absolute',
-            top: top || '1vw',
-            left: '1.85vw',
-            width: '0.09vw',
-            height: '5.5vw',
-            backgroundColor: '#B50304',
+            top: '3.75em',
+            left: '2.25em',
+            width: 0,
+            height: '3.5em',
+            borderRight: '1px dashed #B50304',
             transform: 'translateX(-50%)',
         }}
     />
@@ -117,82 +117,42 @@ const Stepper = () => {
 
     const memoizedFeatures = useMemo(() => features, []);
 
-    const images = [phone1, phone2, phone3]; // Images array for steps
+    const images = [pc1, pc2, pc3]; // Images array for steps
 
     return (
         <ThemeProvider theme={theme}>
             <Box
                 sx={{
                     display: 'flex',
-                    flexDirection: 'row',
-                    alignItems: 'flex-start',
-                    justifyContent: 'center',
-
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'left',
+                    background: '#1F1F1F',
+                    width: '100%',
+                    height: '668px',
+                    padding: '4em'
                 }}
             >
-                <Box
-                    sx={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        alignContent: 'flex-start',
-                        justifyContent: 'flex-start',
-                        position: 'relative',
-                        width: '23vw',
-                    }}
-                >
-                    <img
-                        src={black} // Black background image
-                        alt="Background"
-                        style={{
-                            width: '28vw',
-                            top: '5vw',
-                            position: 'absolute',
-                            zIndex: 1, // Ensure it is behind other images
-                        }}
-                    />
-                    <img
-                        src={images[step - 1]}
-                        alt={`Step ${step}`}
-                        style={{
-                            width: '28vw',
-                            top: '5vw',
-                            opacity: fade ? 1 : 0,
-                            transition: 'opacity 0.2s ease-in-out',
-                            position: 'absolute',
-                            zIndex: 2,
-                        }}
-                    />
-                </Box>
-                <Box>
+                <Typography variant="h1" mb="1em" mt="1em">
+                    HOW CAN WE USE IT?
+                </Typography>
+
+                <Box sx={{display: 'flex', flexDirection: 'row', gap: '4em', mt: '2em', mr: '2em'}}>
                     <Box
                         sx={{
                             display: 'flex',
                             flexDirection: 'column',
                             justifyContent: 'left',
-                            ml: '10vw',
                         }}
                     >
-                        <Box
-                            display="flex"
-                            flexDirection="column"
-                        >
-                            <Typography
-                                sx={{
-                                    mb: '0.7vw',
-                                    ...theme.typography.h1,
-                                }}
-                            >
-                                HOW CAN WE USE IT?
-                            </Typography>
-                        </Box>
                         {memoizedFeatures.map((feature, index) => (
                             <Box
                                 key={index}
                                 display="flex"
                                 flexDirection="row"
                                 alignItems="center"
-                                gap='1vw'
-                                p='1.3vw'
+                                gap='1em'
+                                p='1em'
                                 sx={{ position: 'relative' }}
                             >
                                 <StepCircle
@@ -206,29 +166,29 @@ const Stepper = () => {
                                     <RedLine top={'5.1vw'} />
                                 )}
 
-                                <Box ml='3.8vw' maxWidth='28vw'>
+                                <Box  ml='3.5em' width='32em'>
                                     <Typography sx={{...theme.typography.h6,}}>
                                         {feature.title}
                                     </Typography>
 
-                                    <Typography sx={{...theme.typography.h9,}} pt='0.6vw'>
+                                    <Typography sx={{...theme.typography.h9,}} pt='0.5em'>
                                         {feature.description}
                                     </Typography>
                                 </Box>
                             </Box>
                         ))}
-                        <Box display="flex" flexDirection="row" gap='1vw' mt='1vw'>
+                        <Box display="flex" flexDirection="row" gap='1em' mt='1em' ml="4.5em">
                             <Button
                                 variant="contained"
                                 onClick={handlePrevious}
                                 disabled={step === 1}
                                 sx={{
-                                    padding:0,
+                                    padding:'12px 24px',
                                     minWidth:0,
                                     display: 'flex',
-                                    borderRadius: '0.21vw',
-                                    width: '6.82vw',
-                                    height: '2.08vw',
+                                    borderRadius: '4px',
+                                    width: '104px',
+                                    height: '37px',
                                     ...theme.typography.button,
                                     border:'1px solid #fff',
                                     backgroundColor: 'transparent',
@@ -252,12 +212,12 @@ const Stepper = () => {
                                 onClick={handleNext}
                                 disabled={step === 3}
                                 sx={{
-                                    padding:0,
+                                    padding:'12px 24px',
                                     minWidth:0,
                                     display: 'flex',
-                                    borderRadius: '0.21vw',
-                                    width: '6.82vw',
-                                    height: '2.08vw',
+                                    borderRadius: '4px',
+                                    width: '104px',
+                                    height: '37px',
                                     ...theme.typography.button,
                                     backgroundColor: '#B50304',
                                     color: '#fff',
@@ -277,6 +237,12 @@ const Stepper = () => {
                             </Button>
                         </Box>
                     </Box>
+                    <Box component="img" src={images[step-1]}
+                        sx={{
+                            width: '494.202px',
+                            height: '420px',
+                            objectFit: 'cover',
+                        }} />
                 </Box>
             </Box>
         </ThemeProvider>
