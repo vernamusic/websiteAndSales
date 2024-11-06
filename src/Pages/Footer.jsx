@@ -82,7 +82,7 @@ const Footer = () => (
     {/* Desktop version */}
     <Box
       sx={{
-        backgroundColor: 'black',
+        backgroundColor: '#141414',
         py: 8,
         width: '100%',
         minHeight: '800px',
