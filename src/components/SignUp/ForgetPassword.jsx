@@ -3,6 +3,17 @@ import {
     FormControl, InputLabel, OutlinedInput, Box, Typography, Button, Fade
 } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import FormInput from '../custom/FormInput';
+
+
+const navItemStyle = {
+    fontFamily: 'Lato',
+    fontSize: { xs: '14.22px', lg: '16px' },
+    color: '#fff',
+    fontStyle: 'normal',
+    lineHeight: '100%',
+    textTransform: 'none'
+}
 
 const theme = createTheme({
     typography: {
@@ -66,57 +77,67 @@ const ForgotPasswordDialog = ({ onBack, showSnackbar }) => {
     return (
         <ThemeProvider theme={theme}>
             <Fade in={true} timeout={1000}>
-                <Box display="flex" flexDirection="column" alignItems="center" width="100%">
+                <Box
+                    display="flex"
+                    flexDirection="column"
+                    alignItems="center"
+
+                    sx={{
+                        p: { xs: '30px', md: '40px' },
+                        width: { xs: '448px', },
+                        height: { xs: '337px', },
+                        boxSizing: 'border-box'
+
+                    }}
+                >
                     <Box display="flex" flexDirection="column" alignItems="center" mb={2}>
-                        <Typography variant="h23" style={{ marginBottom: 10 }}>
+                        <Typography
+                            sx={{
+                                ...navItemStyle,
+                                fontSize: '18px',
+                                fontWeight: 600,
+                                color: '#fff'
+                            }}>
                             Forget password?
                         </Typography>
-                        <Typography variant="h6" style={{ marginBottom: 10, color: '#9f9b9b' }}>
+                        <Typography
+                            sx={{
+                                ...navItemStyle,
+                                fontSize: '14px',
+                                color: '#bfbfbf',
+                                mt: '8px',
+                                lineHeight: '100%'
+                            }}
+                        >
                             No worries, we'll send you reset instructions
                         </Typography>
                     </Box>
                     <form style={{ width: '100%', maxWidth: '380px' }}>
-                        <FormControl variant="outlined" fullWidth sx={{ mb: 4 }}>
-                            <InputLabel
-                                htmlFor="email-input"
-                                sx={{
-                                    ...theme.typography.text06,
-                                    color: '#000000',
-                                    '&.MuiInputLabel-shrink': {
-                                        transform: 'translate(10px, 1px) scale(0.75)',
-                                        transition: 'transform 0.2s ease-in-out, color 0.2s ease-in-out',
-                                        color: '#ec0000',
-                                    },
-                                }}
-                            >
-                                Enter your email
-                            </InputLabel>
-                            <OutlinedInput
-                                id="email-input"
-                                value={email}
-                                onChange={handleEmailChange}
-                                sx={{
-                                    backgroundColor: '#FFFFFF',
-                                    borderRadius: '4px',
-                                    '&:hover .MuiOutlinedInput-notchedOutline': {
-                                        borderColor: '#a80d0d',
-                                    },
-                                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                        borderColor: '#a80d0d',
-                                        borderWidth: '2px',
-                                    },
-                                }}
-                            />
-                        </FormControl>
-                        <Box display="flex" justifyContent="center" width="100%" mb={2} mt={2.5}>
+                        <FormInput
+                            value={email}
+                            setValue={setEmail}
+                            inputname='email'
+                            placeholder='Enter your email'
+                            borderRadius='4px'
+                            height='45px'
+                        />
+                        <Box
+                            display="flex"
+                            justifyContent="center"
+                            width="100%"
+                            mb={2}
+                            mt='32px'
+                        >
                             <Button
                                 sx={{
-                                    ...theme.typography.h9,
                                     backgroundColor: '#B50304',
                                     color: '#FFFFFF',
                                     maxWidth: '380px',
                                     width: '100%',
-                                    height: '50px',
+                                    height: '44px',
+                                    fontSize:'16px',
+                                    fontWeight:600,
+                                    fontFamily:'Lato',
                                     textTransform: 'none',
                                 }}
                                 onClick={handleSendResetLink} // استفاده از handleSendResetLink
@@ -124,21 +145,23 @@ const ForgotPasswordDialog = ({ onBack, showSnackbar }) => {
                                 Send Reset Link
                             </Button>
                         </Box>
-                        <Box display="flex" justifyContent="center" width="100%" mb={8} mt={0}>
+                        <Box display="flex" justifyContent="center" width="100%" mt='16px'>
                             <Button
                                 variant="outlined"
                                 sx={{
-                                    ...theme.typography.h9,
                                     borderColor: 'white',
                                     color: '#FFFFFF',
                                     maxWidth: '380px',
                                     width: '100%',
-                                    height: '50px',
+                                    height: '44px',
                                     textTransform: 'none',
+                                    fontSize: '16px',
+                                    fontWeight: 600,
+                                    fontFamily: 'Lato',
                                 }}
                                 onClick={onBack}
                             >
-                                Back
+                                Cancel
                             </Button>
                         </Box>
                     </form>
