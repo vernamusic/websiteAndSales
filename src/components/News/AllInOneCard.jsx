@@ -8,6 +8,17 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
+const navItemStyle = {
+    fontFamily: 'Lato',
+    fontSize: { xs: '14.22px', lg: '16px' },
+    color: '#eee',
+    fontStyle: 'normal',
+    lineHeight: '100%',
+    textTransform: 'none',
+    fontWeight: 400
+}
+import blueArrowIcon from "../../assets/blueArrowIcon.svg";
+
 const theme = createTheme({
     typography: {
         h6: {
@@ -52,77 +63,101 @@ const Allinonecard = ({ data }) => {
         <ThemeProvider theme={theme}>
             <Box
                 display="flex"
-                flexDirection="column"
+                justifyContent="center"
                 alignItems="center"
-                sx={{
-                    maxWidth: '100vw',
-                    mt:'2.5vw'
-                }}
             >
                 <Box
-                    display="flex"
-                    flexWrap="wrap"
-                    justifyContent="center"
                     sx={{
-                        gap: '3.8vw',
-                        maxWidth: '70vw',
+                        width: '62%',
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'space-evenly',
+                        flexWrap: 'wrap',
+                        gap: '20px',
+
                     }}
                 >
                     {data.map((box, index) => (
                         <Box
                             key={index}
                             sx={{
+                                position: "relative",
                                 display: 'flex',
                                 flexDirection: 'column',
-                                width: '17vw',
-                                height: '24vw',
-                                position: "relative",
+                                height: '360px',
+                                width: '284px',
+                                boxSizing: 'border-box',
+                                p: '24px',
                                 borderRadius: "16px",
                                 color: "white",
                                 overflow: "hidden",
                                 backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.01) 40.5%, rgba(0, 0, 0, 0.8) 71%, rgba(0, 0, 0, 0.9) 100%), url(${box.picture})`,
                                 backgroundSize: "cover",
                                 backgroundPosition: "center",
-                                cursor: isMobile ? 'pointer' : 'default',
-                                justifyContent: 'flex-end',
+                                backgroundRepeat: "no-repeat",
+                                justifyContent: 'end',
+                                boxShadow: '0px 2px 16px 0px rgba(0, 0, 0, 0.32)',
                                 textAlign: 'start',
                                 alignItems: 'center',
+                                cursor: isMobile ? 'pointer' : 'default',
                             }}
+                            onClick={isMobile ? onClick : undefined}
                         >
-                            <Box sx={{ width: '85%', height: '68%', display: "flex", flexDirection: "column", justifyContent: 'flex-end' }} />
+                            <Box
+                                    sx={{
+                                        position: "relative",
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        justifyContent: 'flex-end',
+                                        overflow: 'hidden',
+                                    }} />
 
-                            <Box sx={{ width: '85%', mb: 3 }}>
-                                <Typography variant="h3" sx={{ width: '100%' }}>
+                                <Box sx={{ position: "relative"}}>
+                                <Typography sx={{
+                                        width: '100%',
+                                        ...navItemStyle,
+                                        fontSize: { xs: '12.64', md: '14.22px', lg: '16px' },
+                                        fontWeight: 600,
+                                        lineHeight: 'normal'
+                                    }}>
                                     {box.title}
                                 </Typography>
-                                <Typography variant="h6" sx={{ width: '100%', mt: 0.5 }}>
+                                <Typography sx={{
+                                                        width: '100%',
+                                                        ...navItemStyle,
+                                                        fontSize: { xs: '10px', md: '12px' },
+                                                        mt:'8px',
+                                                        lineHeight:'130%'
+                                                    }}>
                                     {box.details.length > 50 ? `${box.details.substring(0, 80)}...` : box.details}
                                 </Typography>
                             </Box>
 
                             <Box
                                 sx={{
-                                    width: '85%',
-                                    display: { xs: 'none', sm: 'flex' },
-                                    justifyContent: "flex-start",
-                                    alignItems: 'center',
+                                    mr:'100px',
+                                    mt:'35px',
                                 }}
                             >
                                 <Button
                                     onClick={() => handleClick(box.slug)}
                                     sx={{
-                                        ...theme.typography.button,
-                                        borderRadius: '4px',
-                                        border: '1px solid white',
-                                        width: '5vw',
-                                        height: '2vw',
-                                        backgroundColor: 'transparent',
-                                        '&:hover': { backgroundColor: 'transparent' },
+                                        textTransform: "none",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: '4px',
+                                        "&:hover": { backgroundColor: "transparent" },
+                                        ...navItemStyle,
+                                        lineHeight: '0',
+                                        fontWeight: 600,
+                                        color:'#B0EEE9',
+                                        fontSize: { xs: '12.64px', md: '14.22px', lg: '16px' }
                                     }}
                                     disableRipple
-                                    aria-label="See more"
                                 >
-                                    See more
+                                    View More
+                                    <img src={blueArrowIcon} alt="" style={{ width: '16px', height: '16px', color:'#B0EEE9' }} />
                                 </Button>
                             </Box>
                         </Box>

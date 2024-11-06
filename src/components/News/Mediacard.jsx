@@ -6,10 +6,20 @@ import {
     createTheme,
     ThemeProvider, Button, useMediaQuery,
 } from "@mui/material";
-
+import blueArrowIcon from "../../assets/blueArrowIcon.svg";
 import { useSwipeable } from "react-swipeable";
 import ArrowIcon from "../../assets/Arrow.png";
 import {useNavigate} from "react-router-dom";
+
+const navItemStyle = {
+    fontFamily: 'Lato',
+    fontSize: { xs: '14.22px', lg: '16px' },
+    color: '#eee',
+    fontStyle: 'normal',
+    lineHeight: '100%',
+    textTransform: 'none',
+    fontWeight: 400
+}
 
 const theme = createTheme({
     typography: {
@@ -119,11 +129,13 @@ const Mediacard = ({ data }) => {
                             <Box
                                 key={index}
                                 sx={{
+                                    position: "relative",
                                     display: 'flex',
                                     flexDirection: 'column',
-                                    width: '17vw',
-                                    height: '25vw',
-                                    position: "relative", // Position relative to allow absolute positioning of inner boxes
+                                    height: '360px',
+                                    width: '284px',
+                                    boxSizing: 'border-box',
+                                    p: '24px',
                                     borderRadius: "16px",
                                     flexBasis: '28%',
                                     color: "white",
@@ -132,37 +144,65 @@ const Mediacard = ({ data }) => {
                                     backgroundSize: "cover",
                                     backgroundPosition: "center",
                                     backgroundRepeat: "no-repeat",
-                                    cursor: isMobile ? 'pointer' : 'default',
-                                    justifyContent: 'flex-end',
+                                    justifyContent: 'end',
+                                    boxShadow: '0px 2px 16px 0px rgba(0, 0, 0, 0.32)',
                                     textAlign: 'start',
                                     alignItems: 'center',
+                                    cursor: isMobile ? 'pointer' : 'default',
                                 }}
+                                onClick={isMobile ? onClick : undefined}
                             >
-                                <Box sx={{ position: "relative", width: '85%', height: '68%', display: "flex", flexDirection: "column", justifyContent: 'flex-end',overflow:'hidden', }}/>
-                                <Box sx={{ position: "relative", width: '85%', height: '22%', display: "flex", flexDirection: "column", justifyContent: 'flex-start',mb:3, }}>
-                                    <Typography sx={{ width: '100%', ...theme.typography.h3 }}>{box.title}</Typography>
-                                    <Typography sx={{ width: '100%', mt: 0.5, ...theme.typography.h6 }}>
+                                <Box
+                                    sx={{
+                                        position: "relative",
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        justifyContent: 'flex-end',
+                                        overflow: 'hidden',
+                                    }} />
+                                    
+                                <Box sx={{ position: "relative"}}>
+                                    <Typography sx={{
+                                        width: '100%',
+                                        ...navItemStyle,
+                                        fontSize: { xs: '12.64', md: '14.22px', lg: '16px' },
+                                        fontWeight: 600,
+                                        lineHeight: 'normal'
+                                    }}>{box.title}</Typography>
+                                    <Typography sx={{
+                                                        width: '100%',
+                                                        ...navItemStyle,
+                                                        fontSize: { xs: '10px', md: '12px' },
+                                                        mt:'8px',
+                                                        lineHeight:'130%'
+                                                    }}>
                                         {box.details.length > 50 ? `${box.details.substring(0, 80)}...` : box.details}
                                     </Typography>
                                 </Box>
 
-                                <Box sx={{ position: "relative", width: '85%', height: '15%', display: { xs: 'none', sm: 'flex' }, justifyContent: "flex-start",alignItems: 'center' }}>
+                                <Box
+                                    sx={{
+                                        mt:'35px'
+                                    }}
+                                    >
                                     <Button
                                         onClick={() => handleClick(box.slug)}
                                         sx={{
-                                            ...theme.typography.button,
-                                            borderRadius: '4px',
-                                            border: '1px solid white',
-                                            backgroundColor: 'transparent',
-                                            width: '5vw',
-                                            height: '2vw',
-                                            paddingX: 0,
-                                            minWidth: 0,
-                                            '&:hover': { backgroundColor: 'transparent' },
+                                            textTransform: "none",
+                                            display: "flex",
+                                            alignItems: "center",
+                                            gap: '4px',
+                                            "&:hover": { backgroundColor: "transparent" },
+                                            ...navItemStyle,
+                                            lineHeight: '0',
+                                            fontWeight: 600,
+                                            color:'#B0EEE9',
+                                            fontSize: { xs: '12.64px', md: '14.22px', lg: '16px' }
                                         }}
                                         disableRipple
                                     >
-                                        See more
+                                        View More
+                                        <img src={blueArrowIcon} alt="" style={{ width: '16px', height: '16px', color:'#B0EEE9' }} />
                                     </Button>
                                 </Box>
 
