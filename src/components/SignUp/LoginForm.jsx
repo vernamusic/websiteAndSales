@@ -188,6 +188,7 @@ const AuthForm = ({ email: initialEmail = null, onForgotPassword, onLoginSuccess
                         '&:hover': {
                             backgroundColor: '#B50304',
                         },
+                        
                     }}
                 >
                     Get started
