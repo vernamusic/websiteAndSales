@@ -1,40 +1,48 @@
 import React from 'react';
-import { Box, Typography, createTheme, ThemeProvider } from '@mui/material';
-import DashboardImage from '../../assets/laptopdash .png';
-import Responsive from '../../assets/mobileapp/Location.png';
-import AirportSecurity from '../../assets/Video Chat.png';
-import Call from '../../assets/Security Shield.png';
-import Treatment from '../../assets/Treatment.png';
-import AppointmentScheduling from '../../assets/Chat Room.png';
-import Tracking from '../../assets/Alarm.png';
+import { useState } from 'react';
+import { Box, Typography, createTheme, ThemeProvider, IconButton } from '@mui/material';
+import desktop1 from '../../assets/desktop1.png';
+import desktop2 from '../../assets/desktop2.png';
+import desktop3 from '../../assets/desktop3.png';
+import desktop4 from '../../assets/desktop4.png';
+import desktop5 from '../../assets/desktop5.png';
+import desktop6 from '../../assets/desktop6.png';
+import icon1 from '../../assets/icon1.svg';
+import icon2 from '../../assets/icon2.svg';
+import icon3 from '../../assets/icon3.svg';
+import icon4 from '../../assets/icon4.svg';
+import icon5 from '../../assets/icon5.svg';
+import icon6 from '../../assets/icon6.svg';
+import background from '../../assets/Mobile-BG2.png'
+
 
 const themes = createTheme({
     typography: {
         h1: {
             fontFamily:'Lato',
-            fontSize: '1.39vw',
+            fontSize: '24px',
             fontWeight: 600,
-            color: "#F1F1F1",
+            color: "#FFFFFF",
         },
         h3: {
-            fontFamily: 'sen',
+            fontFamily: 'Lato',
             fontWeight: 400,
-            fontSize: '1.25vw',
-            color: "rgba(241, 241, 241, 1)",
+            fontSize: '16px',
+            color: "#F1F1F1",
         },
         h6: {
             fontFamily: 'Lato',
-            fontWeight: 600,
-            lineHeight:'1.4vw',
-            fontSize: '1.15vw',
+            fontWeight: 700,
+            lineHeight:'16px',
+            fontSize: '16px',
             color: "#FFFFFF",
         },
         caption: {
-            fontFamily: 'sen',
+            fontFamily: 'Lato',
             fontWeight: 400,
-            lineHeight:'1.20vw',
-            fontSize: '0.95vw',
-            color: "rgba(241, 241, 241, 1)",
+            lineHeight:'14px',
+            fontSize: '12.64px',
+            color: "#D9D9D9",
         },
 
     },
@@ -42,19 +50,31 @@ const themes = createTheme({
 
 
 const featureData = [
-    { title: 'Geo tracking', description: "Uses GPS to determine user location. Monitors real-time location data for users. ", icon: Responsive },
-    { title: 'Video consultation', description: "Video consultation allows patients to connect with healthcare professionals remotely", icon: AirportSecurity },
-    { title: 'Data security', description: "Data security is essential for protecting sensitive information from unauthorized access and breaches.", icon: Call },
-    { title: 'Electronic document management', description: "Stores documents digitally for easy retrieval. Enhances organization and compliance.", icon: Treatment },
-    { title: 'Emergency call', description: "Connects users to caregiver. Ensures quick response in critical situations.", icon: AppointmentScheduling },
-    { title: 'Medicine reminder', description: "Alerts users about important actions. Keeps everyone informed in real-time.", icon: Tracking },
+    { title: 'Remote patient monitoring', description: "Track patient health data in real-time for timely interventions.", icon: icon1 },
+    { title: 'Adverse event reporting', description: "Document and analyze unexpected medical events for safety.", icon: icon2 },
+    { title: 'Geo tracking', description: "Monitors patient locations and data sites for effective planning.", icon: icon3 },
+    { title: 'Medication Tracking', description: "Monitors medication adherence and ensures timely refills.", icon: icon4 },
+    { title: 'Role Management', description: "Assigns permissions and responsibilities to team members for better management and security.", icon: icon5 },
+    { title: 'EDMS', description: "Manages documents electronically for improved accessibility and compliance.", icon: icon6 },
 ];
+
+const images = [desktop1, desktop2, desktop3, desktop4, desktop5, desktop6]
 
 
 const FeaturesGrid = () => {
+    const [index, setIndex] = useState(0)
+
     return (
         <ThemeProvider theme={themes}>
-            <Box>
+            <Box sx={{
+                backgroundImage: `url(${background})`,
+                maxHeight: '617px',
+                minHeight: { xs: '500px', sm: '600px', md: '617px', lg: '617px' },
+                width: '100%',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                padding: '64px',
+                }}>
                 <Box
                     display="flex"
                     flexDirection="column"
@@ -65,17 +85,18 @@ const FeaturesGrid = () => {
                     <Typography
                         sx={{
                             ...themes.typography.h1,
-                            mb: '1vw',
                             lineHeight: '1.5',
                             width: '600',
+                            mb: '8px',
+                            mt: '1em'
                         }}
                     >
-                        ADVANCE FEATURES
+                        ADVANCED FEATURES
                     </Typography>
                     <Typography
                         sx={{
                             ...themes.typography.h3,
-                            mb: '6vw',
+                            mb: '5em'
                         }}
                     >
                         Integrate advanced features to improve user experience
@@ -87,29 +108,30 @@ const FeaturesGrid = () => {
                     flexWrap="wrap"
                     justifyContent="center"
                     alignItems="center"
-                    gap='1vw'
+                    gap='4'
 
                 >
                     <Box
                         display="flex"
                         flexDirection="column"
-                        maxWidth='22vw'
-                        gap='3.8vw'
+                        maxWidth='22em'
+                        gap='3em'
                     >
-                        {featureData.slice(0, 3).map((feature, index) => (
+                        {featureData.slice(0, 3).map((feature, i) => (
                             <Box
-                                key={index}
+                                key={i}
                                 position="relative"
                                 display="flex"
                                 flexDirection="row"
+                                onClick={()=>setIndex(i)}
                             >
                                 <Box
                                     sx={{
-                                        width: '4vw',
-                                        height: '4vw',
-                                        backgroundColor: '#B50304',
+                                        width: '40px',
+                                        height: '40px',
+                                        backgroundColor: `${i==index?'#910203':'#B50304'}`,
                                         position:'absolute',
-                                        top:'0vw',
+                                        top:'0em',
                                         clipPath: 'circle(45%)',
                                         display: 'flex',
                                         justifyContent: 'center',
@@ -121,21 +143,21 @@ const FeaturesGrid = () => {
                                         src={feature.icon}
                                         alt={feature.title}
                                         sx={{
-                                            width: '2vw',
+                                            width: '24px',
                                         }}
                                     />
                                 </Box>
                                 <Box
-                                    sx={{pl:'5.5vw',}}
+                                    sx={{pl:'3.5em',}}
                                 >
                                     <Typography
-                                        sx={{...themes.typography.h6,}}
+                                        sx={{...themes.typography.h6, width: 'fit-content', pb: '2px', borderBottom: `1px solid ${index == i?'white':'transparent'}`, cursor: 'pointer'}}
                                     >
                                         {feature.title}
                                     </Typography>
 
                                     <Typography
-                                        pt='0.5vw'
+                                        pt='0.5em'
                                         sx={{...themes.typography.caption,}}
                                     >
                                         {feature.description}
@@ -145,37 +167,51 @@ const FeaturesGrid = () => {
                         ))}
                     </Box>
 
-                    <Box
-                        component="img"
-                        src={DashboardImage}
-                        sx={{
-                            width: '30vw',
-                            height: 'auto',
-                            objectFit: 'cover',
-                            top:'-3.2vw',
-                            position: 'relative',
-                        }}
-                    />
+                    <Box sx={{alignItems: 'center', display: 'flex'}}>
+                    <IconButton sx={{height: '48px', width: '48px', position: 'relative', left: '1em'}} children={
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                            <rect x="0.875" width="24" height="24" rx="12" fill="black" fill-opacity="0.2"/>
+                            <path d="M15 7L10 12L15 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    } onClick={()=>setIndex(index==0?5:index-1)} />
+                    <Box sx={{display: 'flex', flexDirection: 'column'}}>
+                        <Box
+                            component="img"
+                            src={images[index]}
+                            sx={{
+                                width: 'auto',
+                                height: '320px',
+                            }}
+                        />
+                    </Box>
+                    <IconButton sx={{height: '48px', width: '48px',  position: 'relative', right: '1em'}} children={
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                            <rect x="24.125" y="24" width="24" height="24" rx="12" transform="rotate(-180 24.125 24)" fill="black" fill-opacity="0.2"/>
+                            <path d="M10 17L15 12L10 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    } onClick={()=>setIndex((index+1)%6)} />
+                </Box>
                     <Box
                         display="flex"
                         flexDirection="column"
-                        maxWidth='21vw'
-                        gap='3.8vw'
+                        maxWidth='22em'
+                        gap='3em'
                     >
-                        {featureData.slice(3, 6).map((feature, index) => (
+                        {featureData.slice(3, 6).map((feature, i) => (
                             <Box
-                                key={index}
+                                key={i}
                                 position="relative"
                                 display="flex"
                                 flexDirection="row"
+                                onClick={()=>setIndex(i+3)}
                             >
                                 <Box
                                     sx={{
-                                        width: '4vw',
-                                        height: '4vw',
-                                        backgroundColor: '#B50304',
+                                        width: '40px',
+                                        height: '40px',
+                                        backgroundColor: `${i+3==index?'#910203':'#B50304'}`,
                                         position:'absolute',
-                                        top:'0vw',
+                                        top:'0em',
                                         clipPath: 'circle(45%)',
                                         display: 'flex',
                                         justifyContent: 'center',
@@ -188,21 +224,21 @@ const FeaturesGrid = () => {
                                         src={feature.icon}
                                         alt={feature.title}
                                         sx={{
-                                            width: '2vw',
+                                            width: '24px',
                                         }}
                                     />
                                 </Box>
                                 <Box
-                                    sx={{pl:'5.5vw',}}
+                                    sx={{pl:'3.5em',}}
                                 >
                                     <Typography
-                                        sx={{...themes.typography.h6,}}
+                                        sx={{...themes.typography.h6, width: 'fit-content', pb: '2px', borderBottom: `1px solid ${index == i+3?'white':'transparent'}`, cursor: 'pointer'}}
                                     >
                                         {feature.title}
                                     </Typography>
 
                                     <Typography
-                                        pt='0.5vw'
+                                        pt='0.5em'
                                         sx={{...themes.typography.caption}}
                                     >
                                         {feature.description}
