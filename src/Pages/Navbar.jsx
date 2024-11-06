@@ -26,7 +26,7 @@ const navItemStyle = {
     fontSize: { xs: '14.22px', lg: '16px' },
     color: '#eee',
     fontStyle: 'normal',
-    lineHeight: '100%',
+    lineHeight: '130%',
     textTransform: 'none'
 }
 
@@ -122,7 +122,7 @@ const Navbar = React.memo((props) => {
 
     const productItems = [
         { name: 'Mobile App', path: '/products/mobile-app' },
-        { name: 'Dashboard', path: '/products/dashboard' },
+        { name: 'Web App', path: '/products/dashboard' },
         { name: 'Smart Watch', path: '/products/smart-watch' },
     ];
 
@@ -259,7 +259,7 @@ const Navbar = React.memo((props) => {
                                         key={page.name}
                                         component={Link}
                                         color="inherit"
-                                        onMouseOver={handleProductMenuOpen}
+                                        onClick={handleProductMenuOpen}
                                         sx={{
                                             color: '#ffffff',
                                             display: 'flex',
@@ -279,10 +279,9 @@ const Navbar = React.memo((props) => {
                                         onClose={handleMenuClose}
                                         PaperProps={{
                                             sx: {
-                                                bgcolor: '#141414',
+                                                bgcolor: 'rgba(31, 31, 31, 0.95)',
                                                 color: 'white',
-                                                border: '1px solid rgba(255, 255, 255, 0.2)',
-                                                minWidth: 100,
+                                                minWidth: '130px',
                                                 justifyContent: 'space-between',
                                                 textAlign: 'center',
                                             },
@@ -297,7 +296,11 @@ const Navbar = React.memo((props) => {
                                                 sx={{
                                                     color: '#ffffff',
                                                     textTransform: 'none',
-                                                    ...navItemStyle
+                                                    ...navItemStyle,
+                                                    "&:hover":{
+                                                        backgroundColor: 'rgba(38, 38, 38, 0.95)',
+                                                        fontSize: '16.5px'
+                                                    }
                                                 }}
                                             >
                                                 {item.name}
