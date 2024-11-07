@@ -142,10 +142,10 @@ const PartnerData = [
             {detail}
           </Typography>
   
-          <Typography variant="email" sx={{ width: '100%', marginTop: '20px' }}>
+        </Box>
+          <Typography variant="email" sx={{ textAlign: 'center',width: '100%',marginBottom:'24px', marginTop: '16px' }}>
             {email}
           </Typography>
-        </Box>
   
         <Box
           sx={{
