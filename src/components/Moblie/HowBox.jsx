@@ -1,10 +1,10 @@
 import React from 'react';
 import { Box, Typography, createTheme, ThemeProvider } from '@mui/material';
-import phonehow1 from '../../assets/phonehow1.png';
+import phonehow1 from '../../assets/phonehow1.jpg';
 import phonehow2 from '../../assets/phonehow2.png';
 import phonehow3 from '../../assets/phonehow3.png';
 import phonehow4 from '../../assets/phonehow4.png';
-import Design from '../../assets/mobileapp/Design.png';
+import Platform from '../../assets/mobileapp/platform.svg';
 import Easy from '../../assets/mobileapp/Easy.png';
 import Time from '../../assets/mobileapp/Time.png';
 import Place from '../../assets/mobileapp/Place.png';
@@ -46,7 +46,7 @@ const theme = createTheme({
 });
 
 const howData = [
-    { title: 'Awesome Design', description: "Stunning templates that captivate", image: phonehow1, icon: Design },
+    { title: 'Cross-Platform', description: "Available on both Android and iOS", image: phonehow1, icon: Platform },
     { title: 'Easy to Use', description: "Effortless Navigation for Everyone", image: phonehow2, icon: Easy },
     { title: 'Any Time', description: "24/7 assistance in emergency situations", image: phonehow3, icon: Time },
     { title: 'Any Place', description: "Outpatient medical follow-up", image: phonehow4, icon: Place },
