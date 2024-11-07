@@ -117,6 +117,7 @@ const Navbar = React.memo((props) => {
         { name: 'Company', path: '/company', disabled: false },
         { name: 'Partnership', path: '/partnership', disabled: false },
         { name: 'News', path: '/news', disabled: false },
+        { name: 'Event', path: '/event', disabled: true },
         { name: 'About Us', path: '/about', disabled: false }
     ];
 
