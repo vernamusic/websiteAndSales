@@ -75,7 +75,6 @@ const ContactBox = () => {
     last_name: "",
     email: "",
     phone_number: "",
-    subject: "",
     message: "",
     type: 13,
   });
@@ -103,9 +102,8 @@ const ContactBox = () => {
           last_name: "",
           email: "",
           phone_number: "",
-          subject: "",
           message: "",
-          type: 10,
+          type: 13,
         });
       } else {
         setErrorMessage("Error submitting form, please try again.");
