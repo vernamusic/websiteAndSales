@@ -77,7 +77,7 @@ const ContactBox = () => {
     phone_number: "",
     subject: "",
     message: "",
-    type: 10,
+    type: 13,
   });
   const [errorMessage, setErrorMessage] = useState("");
 
