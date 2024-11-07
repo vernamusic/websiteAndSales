@@ -1,41 +1,44 @@
 import React from 'react';
 import { Box, Typography, createTheme, ThemeProvider } from '@mui/material';
-import howwatch1 from '../../assets/howwatch1.png';
-import howwatch2 from '../../assets/howwatch2.png';
-import howwatch3 from '../../assets/howwatch3.png';
-import Monitor from '../../assets/watch/Monitor.png';
-import Protect from '../../assets/watch/Protect.png';
-import Share from '../../assets/watch/Share.png';
+import howwatch1 from '../../assets/howwatch1.jpg';
+import howwatch2 from '../../assets/howwatch2.jpg';
+import howwatch3 from '../../assets/howwatch3.jpg';
+import howwatch4 from '../../assets/howwatch4.jpg';
+import icon1 from '../../assets/watch/watch-icon1.svg';
+import icon2 from '../../assets/watch/watch-icon2.svg';
+import icon3 from '../../assets/watch/watch-icon3.svg';
+import icon4 from '../../assets/watch/watch-icon4.svg';
 
 const theme = createTheme({
     typography: {
         h6: {
             fontFamily: 'Lato',
-            fontSize:'1.23vw',
-            color: "#F1F1F1",
+            fontSize:'16px',
             fontWeight: 600,
+            color: "#FFFFFF",
             letterSpacing: '0.4px',
             lineHeight: 'normal',
         },
         h3: {
-            fontFamily: 'sen',
+            fontFamily: 'Lato',
             fontWeight: 400,
-            fontSize:'1.294vw',
-            color: "#FFFFFF",
+            fontSize:'16px',
+            color: "#F1F1F1",
             letterSpacing: '0.4px',
         },
         caption: {
             fontFamily: 'Lato',
-            fontSize:'0.98vw',
+            fontSize:'12px',
+            fontWeight: 400,
             lineHeight:'1.35',
             textTransform: 'none',
-            color: 'rgba(255, 255, 255, 1)',
+            color: '#EEEEEE',
 
         },
         h1: {
             fontFamily: 'Lato',
             fontWeight: 600,
-            fontSize:'1.354vw',
+            fontSize:'24px',
             color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
@@ -44,15 +47,21 @@ const theme = createTheme({
 
 
 const howData = [
-    { title: 'Monitor', description: "View information about your vital signs in real time.", image: howwatch1, icon: Monitor },
-    { title: 'Prevent', description: "Feel protected knowing that emergency responders", image: howwatch2, icon: Protect },
-    { title: 'Share', description: "Help your health care providers personalize your treatments by sharing", image: howwatch3, icon: Share },
+    { title: 'Continuous Monitoring', description: "Track your vital signs in real-time for accurate data collection. ", image: howwatch1, icon: icon1 },
+    { title: 'On-Demand Spot Check', description: "Instantly check your health metrics anytime, anywhere with just a tap!", image: howwatch2, icon: icon2 },
+    { title: 'Data Synchronization', description: "Seamlessly store and sync multiparameter data for convenient access and analysis.", image: howwatch3, icon: icon3 },
+    { title: 'Versatile Compatibility', description: "Compatible with Windows, Android, and iOS for flexible monitoring options.", image: howwatch4, icon: icon4 },
 ];
 
 const HowBox = () => {
     return (
         <ThemeProvider theme={theme}>
-            <Box>
+            <Box sx={{
+                background: 'radial-gradient(97.15% 97.15% at 50% 2.85%, #323232 0%, #1F1F1F 100%)',
+                width: '100%',
+                height: '579px',
+                padding: '80px',
+            }}>
                 <Box
                     display="flex"
                     flexDirection="column"
@@ -63,7 +72,7 @@ const HowBox = () => {
                     <Typography
                         sx={{
                             ...theme.typography.h1,
-                            mb: '1vw',
+                            mb: '0.5em',
                             lineHeight: '1.5',
                             width: '600',
                         }}
@@ -73,7 +82,7 @@ const HowBox = () => {
                     <Typography
                         sx={{
                             ...theme.typography.h3,
-                            mb: '6vw',
+                            mb: '4em',
                         }}
                     >
                         Powerful tools designed to enhance your experience and simplify your tasks.
@@ -84,22 +93,22 @@ const HowBox = () => {
                     display="flex"
                     flexWrap="wrap"
                     justifyContent="center"
-                    gap="2.5vw"
-                    pt="1.5vw"
+                    gap="2.5em"
                 >
                     {howData.map((box, index) => (
                         <Box
                             key={index}
                             sx={{
-                                width: '17.5vw',
-                                height: '22.57vw',
-                                borderRadius: '1.39vw',
+                                width: '21%',
+                                height: '270px',
+                                borderRadius: '16px',
                                 display: 'flex',
                                 flexDirection: 'column',
                                 justifyContent: 'center',
                                 alignItems: 'center',
                                 backgroundColor: '#0A0A0A',
-                                border: '1px solid #FFFFFF33',
+                                border: '1px solid #262626',
+                                boxShadow: '0px 2px 8px 0px rgba(0, 0, 0, 0.50)',
                                 position: 'relative',
                             }}
                         >
@@ -107,12 +116,12 @@ const HowBox = () => {
                             <Box
                                 sx={{
                                     position: 'absolute',
-                                    top: '-2vw',
+                                    top: '-1.3em',
                                     left: '50%',
                                     transform: 'translateX(-50%)',
-                                    width: '4vw',
-                                    height: '4vw',
-
+                                    width: '40px',
+                                    height: '40px',
+                                    padding: '8px',
 
                                     backgroundColor: '#B50304',
                                     borderRadius: '50%',
@@ -127,7 +136,7 @@ const HowBox = () => {
                                         src={box.icon}
                                         alt="Design"
                                         sx={{
-                                            width: '2vw'
+                                            width: '2em'
                                         }}
                                     />
                                 ) : (
@@ -142,10 +151,10 @@ const HowBox = () => {
                                     justifyContent: 'center',
                                     justifyItems: 'center',
                                     alignItems: 'center',
-                                    mt:'3.8vw',
-                                    gap: '0.5vw',
+                                    mt:'2em',
+                                    gap: '0.5em',
                                     textAlign: 'center',
-                                    width:'12.5vw'
+                                    width:'95%'
                                 }}
                             >
                                 <Typography
@@ -167,9 +176,9 @@ const HowBox = () => {
                                 alt={box.title}
                                 sx={{
                                     width: '100%',
-                                    height: '45%',
+                                    height: '55%',
                                     objectFit: 'cover',
-                                    borderRadius: '0 0 1.39vw 1.39vw',
+                                    borderRadius: '0 0 16px 16px',
                                     mt: 'auto',
                                 }}
                             />
