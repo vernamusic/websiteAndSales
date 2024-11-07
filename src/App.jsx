@@ -21,9 +21,7 @@ const App = () => {
                     <Box>
                         <AppRoutes />
                     </Box>
-                    <Box className="Footer">
-                        <Footer />
-                    </Box>
+                    <Footer />
                 </Box>
             </AuthProvider>
         </Router>

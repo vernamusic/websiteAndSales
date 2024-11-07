@@ -2606,25 +2606,12 @@ react-router-dom@^6.27.0:
     "@remix-run/router" "1.20.0"
     react-router "6.27.0"
 
-react-router-scroll-top@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.npmjs.org/react-router-scroll-top/-/react-router-scroll-top-0.3.1.tgz"
-  integrity sha512-sdIYw7SVAqWNcH/WhNHIPsOrIVUEUUHYuddGj7aMNjRCTwAfZo2B/CHqXElAnDdSd9MMCfVFfWxtroi1ozTb8Q==
-
 react-router@6.27.0:
   version "6.27.0"
   resolved "https://registry.npmjs.org/react-router/-/react-router-6.27.0.tgz"
   integrity sha512-YA+HGZXz4jaAkVoYBE98VQl+nVzI+cVI2Oj/06F5ZM+0u3TgedN9Y9kmMRo2mnkSK2nCpNQn0DVob4HCsY/WLw==
   dependencies:
     "@remix-run/router" "1.20.0"
-
-react-scroll@^1.9.0:
-  version "1.9.0"
-  resolved "https://registry.npmjs.org/react-scroll/-/react-scroll-1.9.0.tgz"
-  integrity sha512-mamNcaX9Ng+JeSbBu97nWwRhYvL2oba+xR2GxvyXsbDeGP+gkYIKZ+aDMMj/n20TbV9SCWm/H7nyuNTSiXA6yA==
-  dependencies:
-    lodash.throttle "^4.1.1"
-    prop-types "^15.7.2"
 
 react-slick@^0.30.2:
   version "0.30.2"

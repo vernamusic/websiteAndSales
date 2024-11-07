@@ -13,6 +13,7 @@ import Partnership from './Pages/Partnership';
 import NewsMore from './components/News/NewsMore';
 import Profile from './Pages/Profile';
 import Test from './components/SignUp/Login.jsx'
+import Event from './Pages/Event.jsx';
 import ResetPassword from './components/home/ResetPassword.jsx';
 import Certification from './components/Dashboard/Certification.jsx';
 import Certifications from './Pages/Certifications.jsx';
@@ -21,7 +22,6 @@ const AppRoutes = () => {
         return (
             <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/learning" element={<Learning />} />
                     <Route path="/products/mobile-app" element={<Moblie />} />
                     <Route path="/products/dashboard" element={<Dashboard />} />
                     <Route path="/products/smart-watch" element={<Watch />} />
@@ -33,6 +33,8 @@ const AppRoutes = () => {
                     <Route path="/news/:slug" element={<NewsMore />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/reset-password/:token" element={<Home />} />
+                    <Route path="/event" element={<Event />} />
+
                     <Route path="/Test" element={<Test />} />
                     <Route path="/Certifications" element={<Certifications/>} />
             </Routes>

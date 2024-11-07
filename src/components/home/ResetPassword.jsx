@@ -11,9 +11,18 @@ import {
     Alert,
     InputAdornment,
     IconButton,
-    Typography,
+    Typography, Box,
 } from '@mui/material';
 import { Visibility, VisibilityOff, Close } from '@mui/icons-material';
+
+const navItemStyle = {
+    fontFamily: 'Lato',
+    fontSize: { xs: '14.22px', lg: '16px' },
+    color: '#fff',
+    fontStyle: 'normal',
+    lineHeight: '100%',
+    textTransform: 'none'
+};
 
 const ResetPasswordDialog = ({ open, onClose, token }) => {
     const [password, setPassword] = useState('');
@@ -23,8 +32,6 @@ const ResetPasswordDialog = ({ open, onClose, token }) => {
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [snackbarSeverity, setSnackbarSeverity] = useState('error');
-
-    // حالت فوکوس برای هر فیلد ورودی
     const [passwordFocused, setPasswordFocused] = useState(false);
     const [confirmPasswordFocused, setConfirmPasswordFocused] = useState(false);
 
@@ -71,56 +78,65 @@ const ResetPasswordDialog = ({ open, onClose, token }) => {
         <Dialog
             open={open}
             onClose={(event, reason) => {
-                // اجازه بستن فقط با دکمه ضربدر
                 if (reason !== 'backdropClick' && reason !== 'escapeKeyDown') {
                     onClose();
                 }
             }}
             disableEscapeKeyDown
             PaperProps={{
-                sx: {
-                    backgroundColor: '#1e1e1e',
-                    color: 'white',
-                    width: '100%',
-                    maxWidth: '528px',
-                    borderRadius: '8px',
-                    padding: 4,
+                style: {
+                    borderRadius: '15px',
+                    backgroundColor: '#262626',
+                    color: '#FFFFFF',
+                    maxWidth: '480px',
+                    overflow: 'hidden',
+                    px: '48px',
+                    maxHeight: '672px',
+                    boxSizing: 'border-box',
+                    pb: { xs: '20px', sm: '30px', md: '40px', lg: '50px' },
+                    position:'relative'
                 },
             }}
         >
-            <DialogTitle
+            <Box
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
                 sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    fontSize: '24px',
-                    fontWeight: 'bold',
-                    pb: 0,
+                    p: { xs: '30px', md: '40px' },
+                    width: { xs: '448px', },
+                    height: { xs: '337px', },
+                    boxSizing: 'border-box'
                 }}
             >
-                Reset Password
-                <IconButton onClick={onClose} aria-label="close" sx={{ color: 'white' }}>
-                    <Close />
-                </IconButton>
-            </DialogTitle>
-            <DialogContent>
-                <Typography
-                    variant="subtitle1"
-                    sx={{
-                        textAlign: 'left',
-                        color: 'rgba(255, 255, 255, 0.7)',
-                        mb: 2,
-                    }}
-                >
-                    Enter a new password to update your password
-                </Typography>
+                <Box display="flex" flexDirection="column" alignItems="center" mb={3}>
+                    <Typography
+                        sx={{
+                            ...navItemStyle,
+                            fontSize: '18px',
+                            fontWeight: 600,
+                            color: '#fff'
+                        }}>
+                        Reset password
+                    </Typography>
+                    <Typography
+                        sx={{
+                            ...navItemStyle,
+                            fontSize: '14px',
+                            color: '#bfbfbf',
+                            mt: '8px',
+                            lineHeight: '100%'
+                        }}
+                    >
+                        Enter a new password to update your password
+                    </Typography>
+                </Box>
 
                 <FormControl variant="outlined" fullWidth sx={{ mb: 2 }}>
                     <InputLabel
                         htmlFor="password-input"
                         sx={{
-                            color: passwordFocused ? '#ec0000' : '#ec0000',
-                            transition: 'all 0.3s ease',
+                            color: confirmPasswordFocused ? 'rgba(38, 38, 38, 1)' : 'rgba(38, 38, 38, 1)',
                             opacity: passwordFocused || password ? 0 : 1,
                         }}
                     >
@@ -162,8 +178,7 @@ const ResetPasswordDialog = ({ open, onClose, token }) => {
                     <InputLabel
                         htmlFor="confirm-password-input"
                         sx={{
-                            color: confirmPasswordFocused ? '#ec0000' : '#ec0000',
-                            transition: 'all 0.3s ease',
+                            color: confirmPasswordFocused ? 'rgba(38, 38, 38, 1)' : 'rgba(38, 38, 38, 1)',
                             opacity: confirmPasswordFocused || confirmPassword ? 0 : 1,
                         }}
                     >
@@ -200,13 +215,13 @@ const ResetPasswordDialog = ({ open, onClose, token }) => {
                         aria-label="Confirm Password"
                     />
                 </FormControl>
-
                 <Button
                     variant="contained"
                     onClick={handleConfirm}
                     fullWidth
                     sx={{
-                        py: 1.5,
+                        textTransform: 'none',
+                        py: 1.2,
                         mt: 1,
                         backgroundColor: '#a80d0d',
                         '&:hover': {
@@ -216,8 +231,7 @@ const ResetPasswordDialog = ({ open, onClose, token }) => {
                 >
                     Reset Password
                 </Button>
-            </DialogContent>
-
+            </Box>
             <Snackbar
                 open={openSnackbar}
                 autoHideDuration={6000}

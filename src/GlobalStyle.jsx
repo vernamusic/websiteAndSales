@@ -6,8 +6,6 @@ const GlobalStyle = () => {
             styles={{
                 'html, body': {
                     height: '100%',
-                    overflowY: 'scroll',
-                    scrollbarWidth: 'none',
                     msOverflowStyle: 'none',
                     margin: 0,
                     padding: 0,
