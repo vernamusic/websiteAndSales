@@ -75,9 +75,8 @@ const ContactBox = () => {
     last_name: "",
     email: "",
     phone_number: "",
-    subject: "",
     message: "",
-    type: 10,
+    type: 13,
   });
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -103,9 +102,8 @@ const ContactBox = () => {
           last_name: "",
           email: "",
           phone_number: "",
-          subject: "",
           message: "",
-          type: 10,
+          type: 13,
         });
       } else {
         setErrorMessage("Error submitting form, please try again.");
@@ -171,7 +169,7 @@ const ContactBox = () => {
               Please fill this form in a decent manner
             </Typography>
           </Box>
-          <Box sx={{ padding: "32px" }}>
+          <Box sx={{ padding: "32px 32px 0px 32px" }}>
             <Box sx={{ display: "flex", gap: 1 }}>
               <TextField
                 name="first_name"
@@ -213,7 +211,7 @@ const ContactBox = () => {
               </Box>
             ))}
           </Box>
-          <Box sx={{ display: "flex", justifyContent: "center", pb: 2 }}>
+          <Box sx={{ display: "flex", justifyContent: "center", pb: 4,mt:'24px' }}>
             <Button
               fullWidth
               onClick={handleSubmit}

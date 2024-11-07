@@ -44,7 +44,7 @@ const PartnerData = [
       picture: paulo,
       name: 'Paulo Martins',
       detail: 'Management, sales, marketing, design, R&D',
-      email: 'XXXXXXX@gmail.com',
+      email: 'paulo.martins@vitruvianshield.com',
       linkedinUrl: 'https://www.linkedin.com/in/vitruvianshield/',
       instagramUrl: 'https://instagram.com',
       twitterUrl: 'https://x.com',
@@ -53,8 +53,8 @@ const PartnerData = [
       picture: bruno,
       name: 'Bruno Carrilho',
       detail: 'General Manager',
-      email: 'XXXXXXX@gmail.com',
-      linkedinUrl: 'https://www.linkedin.com/',
+      email: 'bruno.carrilho@vitruvianshield.com',
+      linkedinUrl: 'https://www.linkedin.com/in/bruno-c-9a398926b/',
       instagramUrl: 'https://instagram.com',
       twitterUrl: 'https://x.com',
     },
@@ -62,7 +62,7 @@ const PartnerData = [
       picture: tayo,
       name: 'Mogboluwaga Otegbayo',
       detail: 'QA',
-      email: 'XXXXXXX@gmail.com',
+      email: 'tayo@vitruvianshield.com',
       linkedinUrl: 'https://www.linkedin.com/in/mogboluwaga-otegbayo/',
       instagramUrl: 'https://instagram.com',
       twitterUrl: 'https://x.com',
@@ -71,7 +71,7 @@ const PartnerData = [
       picture: vahid,
       name: 'Vahid Khazaei Nezhad',
       detail: 'CTO',
-      email: 'XXXXXXX@gmail.com',
+      email: 'vahid@vitruvianshield.com',
       linkedinUrl: 'https://www.linkedin.com/in/vahid-khazaei-nezhad-a4074595/',
       instagramUrl: 'https://instagram.com',
       twitterUrl: 'https://x.com',
@@ -142,10 +142,10 @@ const PartnerData = [
             {detail}
           </Typography>
   
-          <Typography variant="email" sx={{ width: '100%', marginTop: '20px' }}>
+        </Box>
+          <Typography variant="email" sx={{ textAlign: 'center',width: '100%',marginBottom:'24px', marginTop: '16px' }}>
             {email}
           </Typography>
-        </Box>
   
         <Box
           sx={{
