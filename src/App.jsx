@@ -12,19 +12,19 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const App = () => {
     return (
-            <Router>
-                <AuthProvider>
+        <Router>
+            <AuthProvider>
+                <Box>
                     <Box>
-                        <Box>
-                            <Navbar />
-                        </Box>
-                            <Box>
-                                <AppRoutes />
-                            </Box>
-                        <Footer />
+                        <Navbar />
                     </Box>
-                </AuthProvider>
-            </Router>
+                    <Box>
+                        <AppRoutes />
+                    </Box>
+                    <Footer />
+                </Box>
+            </AuthProvider>
+        </Router>
     );
 };
 
