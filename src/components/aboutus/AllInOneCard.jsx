@@ -47,7 +47,6 @@ const Allinonecard = ({ data }) => {
                 display="flex"
                 flexDirection="column"
                 sx={{
-                    border:'1px solid #FFF',
                     maxWidth: '60vw',
                     justifyContent:'start',
                     padding:1,
