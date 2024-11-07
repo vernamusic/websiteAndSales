@@ -14,6 +14,8 @@ import NewsMore from './components/News/NewsMore';
 import Profile from './Pages/Profile';
 import Test from './components/SignUp/Login.jsx'
 import ResetPassword from './components/home/ResetPassword.jsx';
+import Certification from './components/Dashboard/Certification.jsx';
+import Certifications from './Pages/Certifications.jsx';
 
 const AppRoutes = () => {
         return (
@@ -32,6 +34,7 @@ const AppRoutes = () => {
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/reset-password/:token" element={<Home />} />
                     <Route path="/Test" element={<Test />} />
+                    <Route path="/Certifications" element={<Certifications/>} />
             </Routes>
         );
 }

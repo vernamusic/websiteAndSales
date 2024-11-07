@@ -12,21 +12,21 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const App = () => {
     return (
-            <Router>
-                <AuthProvider>
+        <Router>
+            <AuthProvider>
+                <Box>
                     <Box>
-                        <Box>
-                            <Navbar />
-                        </Box>
-                            <Box>
-                                <AppRoutes />
-                            </Box>
-                        <Box className="Footer">
-                            <Footer />
-                        </Box>
+                        <Navbar />
                     </Box>
-                </AuthProvider>
-            </Router>
+                    <Box>
+                        <AppRoutes />
+                    </Box>
+                    <Box className="Footer">
+                        <Footer />
+                    </Box>
+                </Box>
+            </AuthProvider>
+        </Router>
     );
 };
 

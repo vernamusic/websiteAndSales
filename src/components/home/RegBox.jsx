@@ -68,7 +68,7 @@ const RegBox = () => {
                         fontStyle: 'normal'
                     }}
                 >
-                    Vitruvian Shield aims to significantly improve the quality of life of patients in their daily life outside of the hospital by offering a solution which monitors your health signals with medically certified precision.
+                    Vitruvian Shield aims to significantly enhance the quality of life for patients outside of the hospital by providing a solution that monitors health signals with medically certified precision. 
                 </Typography>
                 <Typography
                     sx={{
