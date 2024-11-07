@@ -40,20 +40,45 @@ const theme = createTheme({
 });
 
 const PartnerData = [
-    { picture: paulo,name: 'Paulo Martins', detail:'Management, sales, marketing, design, R&D', email:'XXXXXXX@gmail.com',
-        linkedinUrl:'https://www.linkedin.com/in/vitruvianshield/',instagramUrl:'instagram.com', twitterUrl:'x.com'},
+    {
+      picture: paulo,
+      name: 'Paulo Martins',
+      detail: 'Management, sales, marketing, design, R&D',
+      email: 'XXXXXXX@gmail.com',
+      linkedinUrl: 'https://www.linkedin.com/in/vitruvianshield/',
+      instagramUrl: 'https://instagram.com',
+      twitterUrl: 'https://x.com',
+    },
+    {
+      picture: bruno,
+      name: 'Bruno Carrilho',
+      detail: 'General Manager',
+      email: 'XXXXXXX@gmail.com',
+      linkedinUrl: 'https://www.linkedin.com/',
+      instagramUrl: 'https://instagram.com',
+      twitterUrl: 'https://x.com',
+    },
+    {
+      picture: tayo,
+      name: 'Mogboluwaga Otegbayo',
+      detail: 'QA',
+      email: 'XXXXXXX@gmail.com',
+      linkedinUrl: 'https://www.linkedin.com/in/mogboluwaga-otegbayo/',
+      instagramUrl: 'https://instagram.com',
+      twitterUrl: 'https://x.com',
+    },
+    {
+      picture: vahid,
+      name: 'Vahid Khazaei Nezhad',
+      detail: 'CTO',
+      email: 'XXXXXXX@gmail.com',
+      linkedinUrl: 'https://www.linkedin.com/in/vahid-khazaei-nezhad-a4074595/',
+      instagramUrl: 'https://instagram.com',
+      twitterUrl: 'https://x.com',
+    },
+  ];
 
-    { picture: bruno,name: 'Bruno Carrilho', detail:'General Manager', email:'XXXXXXX@gmail.com',
-        linkedinUrl:'https://www.linkedin.com/',instagramUrl:'instagram.com', twitterUrl:'x.com'},
-
-    { picture: tayo,name: 'Mogboluwaga Otegbayo', detail:'QA', email:'XXXXXXX@gmail.com',
-        linkedinUrl:'https://www.linkedin.com/in/mogboluwaga-otegbayo/',instagramUrl:'instagram.com', twitterUrl:'x.com'},
-
-    { picture: vahid,name: 'Vahid Khazaei Nezhad', detail:'CTO', email:'XXXXXXX@gmail.com',
-        linkedinUrl:'https://www.linkedin.com/in/vahid-khazaei-nezhad-a4074595/',instagramUrl:'instagram.com', twitterUrl:'x.com'},
-];
-
-const PartnerCard = ({ picture, name, detail, email, linkedinUrl, instagramUrl, twitterUrl }) => {
+  const PartnerCard = ({ picture, name, detail, email, linkedinUrl, instagramUrl, twitterUrl }) => {
     return (
       <Box
         sx={{
@@ -73,42 +98,54 @@ const PartnerCard = ({ picture, name, detail, email, linkedinUrl, instagramUrl, 
         }}
       >
         <Box
-          sx={{
+        sx={{
             position: 'absolute',
             top: '48px',
-          }}
+            width: '120px',
+            height: '120px',
+            overflow: 'hidden',
+        }}
         >
-          <img src={picture} alt="" />
+        <img
+            src={picture}
+            alt={name}
+            style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            }}
+        />
         </Box>
+
   
         <Box
-  sx={{
-    position: 'relative',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    marginTop: '165px',
-    textAlign: 'center',
-    border:'1px solid #FFF'
-  }}
->
-  <Typography
-    variant="name"
-    sx={{
-      width: '100%',
-    }}
-  >
-    {name}
-  </Typography>
-  <Typography variant="detail" sx={{ width: '100%', marginTop: '10px' }}>
-    {detail}
-  </Typography>
-
-  <Typography variant="email" sx={{ width: '100%', marginTop: '20px' }}>
-    {email}
-  </Typography>
-</Box>
-
+          sx={{
+            position: 'relative',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            marginTop: '165px',
+            textAlign: 'center',
+            flexGrow: 1,
+            width: '100%',
+          }}
+        >
+          <Typography
+            variant="name"
+            sx={{
+              width: '100%',
+            }}
+          >
+            {name}
+          </Typography>
+          <Typography variant="detail" sx={{ width: '100%', marginTop: '10px' }}>
+            {detail}
+          </Typography>
+  
+          <Typography variant="email" sx={{ width: '100%', marginTop: '20px' }}>
+            {email}
+          </Typography>
+        </Box>
   
         <Box
           sx={{
@@ -122,32 +159,35 @@ const PartnerCard = ({ picture, name, detail, email, linkedinUrl, instagramUrl, 
             { icon: linkedin, url: linkedinUrl },
             { icon: Instagram, url: instagramUrl },
             { icon: Twitter, url: twitterUrl },
-          ].map((social, index) => (
-            <a
-              key={index}
-              href={social.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ textDecoration: 'none' }}
-            >
-              <Box
-                component="img"
-                src={social.icon}
-                alt={`social-icon-${index}`}
-                sx={{
-                  width: '20px',
-                  height: '20px',
-                  borderRadius: '50%',
-                  backgroundColor: 'rgba(217, 217, 217, 1)', // زمینه خاکستری
-                  padding: 0.5,
-                }}
-              />
-            </a>
-          ))}
+          ]
+            .filter((social) => social.url)
+            .map((social, index) => (
+              <a
+                key={index}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: 'none' }}
+              >
+                <Box
+                  component="img"
+                  src={social.icon}
+                  alt={`social-icon-${index}`}
+                  sx={{
+                    width: '20px',
+                    height: '20px',
+                    borderRadius: '50%',
+                    backgroundColor: 'rgba(217, 217, 217, 1)',
+                    padding: 0.25,
+                  }}
+                />
+              </a>
+            ))}
         </Box>
       </Box>
     );
   };
+
   
 
 
@@ -158,9 +198,10 @@ const PartnerBox = () =>{
             sx={{
                 height: '100%',
                 justifyItems: "center",
-                background: `linear-gradient(360deg, rgba(50, 50, 50, 1) 0%, rgba(31, 31, 31, 0.6) 100%)`,
+                background: `linear-gradient(360deg, #323232 100%, #1F1F1F 60%)`,
+
                 backgroundSize: "cover",
-                backgroundPosition: "center",
+                backgroundPosition:"center",
                 backgroundRepeat: "no-repeat",
                 px: { xs: '40px', sm: '70px', md: '60px', lg: '80px', xl: '100px' },
                 pb: { xs: '30px', sm: '40px', md: '80px', lg: '70px' },
@@ -184,6 +225,9 @@ const PartnerBox = () =>{
                             name={box.name}
                             detail={box.detail}
                             email={box.email}
+                            linkedinUrl={box.linkedinUrl}
+                            instagramUrl={box.instagramUrl}
+                            twitterUrl={box.twitterUrl}
                         />
                     ))}
                 </Box>
