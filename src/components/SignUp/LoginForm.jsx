@@ -167,7 +167,8 @@ const AuthForm = ({ email: initialEmail = null, onForgotPassword, onLoginSuccess
                     justifyContent="left"
                     width="380px"
                     sx={{
-                        mt: '16px'
+                        mb: '24px',
+                        ml:1,
                     }}
                 >
                     <Link
@@ -186,12 +187,12 @@ const AuthForm = ({ email: initialEmail = null, onForgotPassword, onLoginSuccess
                     type="submit"
                     fullWidth
                     sx={{
-                        my: '24px',
+                        mb: '20px',
                         backgroundColor: '#B50304',
                         height:'44px',
                         textTransform:'none',
                         fontFamily:'Lato',
-                        fontWeight:600,
+                        fontWeight:500,
                         fontSize:'16px',
                         fontStyle:'normal',
                         '&:hover': {
