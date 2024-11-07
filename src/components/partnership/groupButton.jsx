@@ -141,7 +141,16 @@ const GroupButton = () => {
                     </ToggleButtonGroup>
                 </Box>
                 <Box display="flex" justifyContent="center">
-                    <Box width="75vw" display="flex" flexWrap="wrap" justifyContent="center" gap="2.5vw" pt="3vw">
+                    <Box 
+                    sx={{
+                        width:'60vw',
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        justifyContent:'start',
+                        padding:1,
+                        gap:'2.5vw',
+                        pt:'3vw',
+                    }}>
                         {filteredData.map((box, index) => (
                             <Box
                                 key={index}

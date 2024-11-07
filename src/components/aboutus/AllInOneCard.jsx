@@ -47,16 +47,17 @@ const Allinonecard = ({ data }) => {
                 display="flex"
                 flexDirection="column"
                 sx={{
-                    maxWidth: '100vw',
-                    justifyItems:'center',
-                    alignItems: 'center',
-                    mb:'-2.5vw',
+                    border:'1px solid #FFF',
+                    maxWidth: '60vw',
+                    justifyContent:'start',
+                    padding:1,
+                    display:'flex',
+                    flexWrap:'wrap',
                 }}
             >
                 <Box
                     display="flex"
                     flexWrap="wrap"
-                    justifyContent="center"
                     sx={{ gap: '1.8vw',
                         maxWidth: '70vw',
                 }}
