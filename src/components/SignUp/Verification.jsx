@@ -18,13 +18,16 @@ const theme = createTheme({
         },
     },
     typography: {
-        h6: {
-            fontSize: '16px',
-            fontWeight: 400,
-            lineHeight: '19.25px',
-            textAlign: 'center',
+        caption: {
+            fontFamily: 'Lato',
+            fontSize: { xs: '14.22px', lg: '16px' },
+            color: 'black',
+            fontStyle: 'normal',
+            lineHeight: '100%',
+            textTransform: 'none'
         },
         h5: {
+            fontFamily: 'Lato',
             fontSize: '23px',
             fontWeight: 600,
             lineHeight: '23px',
@@ -33,13 +36,25 @@ const theme = createTheme({
     },
 });
 
-const EmailVerification = ({ email,password, onSubmit, onResend, onBack }) => {
-    const [code, setCode] = useState(Array(6).fill(''));
+const navItemStyle = {
+    fontFamily: 'Lato',
+    fontSize: { xs: '14.22px', lg: '16px' },
+    color: '#fff',
+    fontStyle: 'normal',
+    lineHeight: '100%',
+    textTransform: 'none'
+};
+
+const EmailVerification = ({ email, password, onSubmit, onResend, onBack }) => {
+    const [code, setCode] = useState('');
     const [timeLeft, setTimeLeft] = useState(150); // 2:30 in seconds
     const inputRefs = useRef([]);
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+
+    const VERIFICATION_TIME_KEY = `verificationRequestTime_${email}`;
+
     const loginAgain = async (email, password) => {
         try {
             const loginResponse = await fetch('https://site.vitruvianshield.com/api/v1/token/', {
@@ -66,6 +81,21 @@ const EmailVerification = ({ email,password, onSubmit, onResend, onBack }) => {
     };
 
     useEffect(() => {
+        const storedTime = localStorage.getItem(VERIFICATION_TIME_KEY);
+        if (storedTime) {
+            const elapsed = Math.floor((Date.now() - parseInt(storedTime, 10)) / 1000);
+            if (elapsed < 150) {
+                setTimeLeft(150 - elapsed);
+            } else {
+                setTimeLeft(0);
+            }
+        } else {
+            localStorage.setItem(VERIFICATION_TIME_KEY, Date.now().toString());
+            setTimeLeft(150);
+        }
+    }, [VERIFICATION_TIME_KEY]);
+
+    useEffect(() => {
         if (timeLeft > 0) {
             const timerId = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
             return () => clearTimeout(timerId);
@@ -81,47 +111,64 @@ const EmailVerification = ({ email,password, onSubmit, onResend, onBack }) => {
     const handleChange = (e, index) => {
         const { value } = e.target;
         if (/^\d$/.test(value)) {
-            const newCode = [...code];
+            const newCode = code.split('');
             newCode[index] = value;
-            setCode(newCode);
-            if (index < 5) inputRefs.current[index + 1].focus();
+            setCode(newCode.join(''));
+            if (index < 5 && inputRefs.current[index + 1]) {
+                inputRefs.current[index + 1].focus();
+            }
         }
     };
 
     const handleKeyDown = (e, index) => {
-        if (e.key === 'Backspace' && !code[index] && index > 0) {
-            const newCode = [...code];
-            newCode[index - 1] = '';
-            setCode(newCode);
-            inputRefs.current[index - 1].focus();
+        if (e.key === 'Backspace') {
+            if (code[index]) {
+                const newCode = code.split('');
+                newCode[index] = '';
+                setCode(newCode.join(''));
+            } else if (index > 0) {
+                const newCode = code.split('');
+                newCode[index - 1] = '';
+                setCode(newCode.join(''));
+                if (inputRefs.current[index - 1]) {
+                    inputRefs.current[index - 1].focus();
+                }
+            }
         }
+    };
+    const handlePaste = (e) => {
+        const pasteData = e.clipboardData.getData('text').slice(0, 6);
+        if (/^\d{6}$/.test(pasteData)) {
+            setCode(pasteData.split(''));
+            inputRefs.current[5].focus();
+        }
+        e.preventDefault();
     };
 
     const handleSubmit = async () => {
-        const verificationCode = code.join('');
-        if (verificationCode.length === 6) {
+        if (code.length === 6) {
             try {
                 const response = await fetch('https://site.vitruvianshield.com/api/v1/verify-email/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ verification_code: verificationCode, email: email }),
+                    body: JSON.stringify({ verification_code: code, email: email }),
                 });
 
                 if (response.ok) {
                     const result = await response.json();
                     showSnackbar('Verification successful!', 'success');
-                    loginAgain(email, password);
+                    await loginAgain(email, password);
                 } else {
-                    showSnackbar('Verification failed. Please try again.', 'error'); // نمایش پیام خطا
+                    showSnackbar('Verification failed. Please try again.', 'error');
                 }
             } catch (error) {
                 console.error('Error verifying code:', error);
-                showSnackbar('An error occurred. Please try again later.', 'error'); // نمایش پیام خطا
+                showSnackbar('An error occurred. Please try again later.', 'error');
             }
         } else {
-            showSnackbar('Please enter all 6 digits', 'warning'); // نمایش پیام هشدار
+            showSnackbar('Please enter all 6 digits', 'warning');
         }
     };
 
@@ -132,53 +179,83 @@ const EmailVerification = ({ email,password, onSubmit, onResend, onBack }) => {
     };
 
     const handleResend = () => {
+        localStorage.setItem(VERIFICATION_TIME_KEY, Date.now().toString());
         setTimeLeft(150);
-        setCode(Array(6).fill(''));
+        setCode('');
         inputRefs.current[0].focus();
         if (onResend) {
             onResend();
-            showSnackbar('Verification code resent!', 'info'); // نمایش پیام اطلاعات
+            showSnackbar('Verification code resent!', 'info');
         }
     };
 
     return (
         <ThemeProvider theme={theme}>
             <Box
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
                 sx={{
-                    color: 'text.primary',
-                    minHeight: '20vw',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    maxWidth: '400px',
-                    pb: 2,
+                    p: { xs: '30px', md: '40px' },
+                    width: { xs: '100%', sm: '448px' },
+                    boxSizing: 'border-box'
                 }}
             >
-                <Typography variant="h5" gutterBottom>
-                    Verify your email address
-                </Typography>
-                <Typography variant="body1" gutterBottom sx={{ textAlign: 'center' }}>
-                    Enter verification code we sent to:<br /> {email}
-                </Typography>
+                <Box display="flex" flexDirection="column" alignItems="center" mb={2}>
+                    <Typography
+                        sx={{
+                            ...navItemStyle,
+                            fontSize: '18px',
+                            fontWeight: 600,
+                            color: '#fff'
+                        }}>
+                        Forget password?
+                    </Typography>
+                    <Typography
+                        sx={{
+                            ...navItemStyle,
+                            fontSize: '14px',
+                            color: '#bfbfbf',
+                            mt: '8px',
+                            lineHeight: '100%'
+                        }}
+                    >
+                        No worries, we'll send you reset instructions
+                    </Typography>
+                </Box>
 
-                <Box display="flex" justifyContent="center" gap={1} mt={2} mb={2}>
-                    {code.map((value, index) => (
+                <Box display="flex" justifyContent="center" gap={1.5} mt={2} mb={2}>
+                    {Array.from({ length: 6 }).map((_, index) => (
                         <TextField
                             key={index}
-                            value={value}
+                            value={code[index] || ''}
                             onChange={(e) => handleChange(e, index)}
                             onKeyDown={(e) => handleKeyDown(e, index)}
                             inputRef={(el) => (inputRefs.current[index] = el)}
+                            onPaste={handlePaste}
                             inputProps={{
                                 maxLength: 1,
-                                style: { textAlign: 'center', fontSize: '18px', width: '27px' },
+                                style: {
+                                    fontFamily: 'Lato',
+                                    fontSize: '23px',
+                                    fontWeight: 500,
+                                    textAlign: 'center',
+                                    width: '25px',
+                                    height: '25px',
+                                    backgroundColor: 'white',
+                                    color: '#262626',
+                                    borderRadius: '4px',
+                                    border: '1px solid rgba(0, 201, 183, 1)'
+                                },
+                                inputMode: 'numeric',
+                                pattern: '[0-9]*',
                             }}
                             variant="outlined"
                         />
                     ))}
                 </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2, maxWidth: '350px' }}>
+
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, maxWidth: '350px' }}>
                     <Typography variant="body2" sx={{ textAlign: 'center' }}>
                         Your verification code may take a few moments to arrive. Didn't receive a verification code? {timeLeft > 0 ? formatTime(timeLeft) : (
                         <Link
@@ -199,29 +276,49 @@ const EmailVerification = ({ email,password, onSubmit, onResend, onBack }) => {
                     )}
                     </Typography>
                 </Box>
-                <Button
-                    onClick={handleSubmit}
-                    variant="contained"
-                    color="error"
-                    fullWidth
-                    sx={{
-                        mt: 2,
-                        py: 1.5,
-                        fontSize: '1.1rem',
-                        textTransform: 'none'
-                    }}
+                <Box
+                    display="flex"
+                    justifyContent="center"
+                    width="100%"
+                    mb={1.5}
+                    mt='32px'
                 >
-                    Confirm
-                </Button>
-                <Button
-                    onClick={onBack}
-                    variant="text"
-                    color="primary"
-                    fullWidth
-                    sx={{ mt: 1, textTransform: 'none' }}
-                >
-                    Back
-                </Button>
+                    <Button
+                        sx={{
+                            backgroundColor: '#B50304',
+                            color: '#FFFFFF',
+                            maxWidth: '380px',
+                            width: '100%',
+                            height: '48px',
+                            fontSize:'16px',
+                            fontWeight:600,
+                            fontFamily:'Lato',
+                            textTransform: 'none',
+                        }}
+                        onClick={handleSubmit}
+                    >
+                        Confirm
+                    </Button>
+                </Box>
+                <Box display="flex" justifyContent="center" width="100%">
+                    <Button
+                        variant="outlined"
+                        sx={{
+                            borderColor: 'white',
+                            color: '#FFFFFF',
+                            maxWidth: '380px',
+                            width: '100%',
+                            height: '44px',
+                            textTransform: 'none',
+                            fontSize: '16px',
+                            fontWeight: 400,
+                            fontFamily: 'Lato',
+                        }}
+                        onClick={onBack}
+                    >
+                        Back
+                    </Button>
+                </Box>
 
                 <Snackbar
                     open={snackbarOpen}

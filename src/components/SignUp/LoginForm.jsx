@@ -13,12 +13,16 @@ const theme = createTheme({
 });
 
 const AuthForm = ({ email: initialEmail = null, onForgotPassword, onLoginSuccess, onSendResetLink, }) => {
-    const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState(initialEmail);
-    const [password, setPassword] = useState('');
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [snackbarSeverity, setSnackbarSeverity] = useState('error');
+    const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+    const [passwordFocused, setPasswordFocused] = useState(false);
+    const handleEmailChange = (event) => setEmail(event.target.value);
+    const handlePasswordChange = (event) => setPassword(event.target.value);
+    const validateEmail = (email) => /\S+@\S+\.\S+/.test(email);
 
     useEffect(() => {
         if (initialEmail) {
@@ -26,13 +30,8 @@ const AuthForm = ({ email: initialEmail = null, onForgotPassword, onLoginSuccess
         }
     }, [initialEmail]);
 
-    const handleClickShowPassword = () => setShowPassword(!showPassword);
-    const handleMouseDownPassword = (event) => event.preventDefault();
 
-    const handleEmailChange = (event) => setEmail(event.target.value);
-    const handlePasswordChange = (event) => setPassword(event.target.value);
 
-    const validateEmail = (email) => /\S+@\S+\.\S+/.test(email);
 
     const showSnackbar = (message, severity) => {
         setSnackbarMessage(message);
@@ -111,38 +110,46 @@ const AuthForm = ({ email: initialEmail = null, onForgotPassword, onLoginSuccess
                         hiddenError={true}
                     />
                 </FormControl>
-                <FormControl variant="outlined" fullWidth sx={{}}>
+                <FormControl variant="outlined" fullWidth sx={{ mb: 2 }}>
+                    <InputLabel
+                        htmlFor="password-input"
+                        sx={{
+                            color: passwordFocused ? 'rgba(38, 38, 38, 1)' : 'rgba(38, 38, 38, 1)',
+                            opacity: passwordFocused || password ? 0 : 1,
+                        }}
+                    >
+                        Enter your password
+                    </InputLabel>
                     <OutlinedInput
-                        placeholder='Enter your password'
                         id="password-input"
                         type={showPassword ? 'text' : 'password'}
                         value={password}
-                        onChange={handlePasswordChange}
+                        onFocus={() => setPasswordFocused(true)}
+                        onBlur={() => setPasswordFocused(false)}
+                        onChange={(e) => setPassword(e.target.value)}
+                        autoComplete="off"
                         sx={{
                             height: '48px',
+                            boxSizing: 'border-box',
                             backgroundColor: '#FFFFFF',
-                            borderRadius: '4px',
+                            '& .MuiOutlinedInput-notchedOutline': {
+                                borderColor: passwordFocused ? '#a80d0d' : 'rgba(0, 0, 0, 0.23)',
+                            },
                             '&:hover .MuiOutlinedInput-notchedOutline': {
-                                borderColor: '#5ea5d4',
+                                borderColor: '#a80d0d',
                             },
                             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                borderColor: '#c5ea5d4',
+                                borderColor: '#a80d0d',
                                 borderWidth: '2px',
                             },
-                            '& input::placeHolder':{
-                                fontSize:'14.22px',
-                                fontWeight:400,
-                                fontFamily:'Lato'
+                            '& .MuiOutlinedInput-input': {
+                                padding: '12px 14px',
                             },
-                            '& input':{
-                                pl:'25px'
-                            }
                         }}
                         endAdornment={
                             <InputAdornment position="end">
                                 <IconButton
-                                    onClick={handleClickShowPassword}
-                                    onMouseDown={handleMouseDownPassword}
+                                    onClick={() => setShowPassword(!showPassword)}
                                     edge="end"
                                 >
                                     {showPassword ? <VisibilityOff /> : <Visibility />}
@@ -152,6 +159,8 @@ const AuthForm = ({ email: initialEmail = null, onForgotPassword, onLoginSuccess
                         aria-label="Password"
                     />
                 </FormControl>
+
+
 
                 <Box
                     display="flex"

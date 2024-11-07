@@ -29,11 +29,11 @@ const ResetPasswordDialog = ({ open, onClose, token }) => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [passwordFocused, setPasswordFocused] = useState(false);
+    const [confirmPasswordFocused, setConfirmPasswordFocused] = useState(false);
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [snackbarSeverity, setSnackbarSeverity] = useState('error');
-    const [passwordFocused, setPasswordFocused] = useState(false);
-    const [confirmPasswordFocused, setConfirmPasswordFocused] = useState(false);
 
     const handleConfirm = () => {
         if (password !== confirmPassword) {
