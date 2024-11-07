@@ -130,7 +130,8 @@ const Stepper = () => {
                 background: '#1F1F1F',
                 width: '100%',
                 height: '725px',
-                padding: '4em'
+                padding: '4em',
+                overflow: 'hidden'
             }}
         >
                 <Typography variant="h1" mb="1em" mt="1em">
@@ -243,7 +244,8 @@ const Stepper = () => {
                             height: 'auto',
                             objectFit: 'cover',
                             position: 'relative',
-                            left: '6em'
+                            left: '6em',
+                            bottom: '0.5em'
                         }} />
                     </Box>
                 </Box>
