@@ -51,11 +51,11 @@ const SignUpDialog = ({ open, onClose, email: initialEmail = null }) => {
                 return response.json();
             })
             .then(data => {
-                showSnackbar('Verification email resent successfully!'); // نمایش پیام
+                showSnackbar('Verification email resent successfully!');
             })
             .catch(error => {
                 console.error('Error resending verification email:', error);
-                showSnackbar('Error resending verification email.', 'error'); // نمایش خطا
+                showSnackbar('Error resending verification email.', 'error');
             });
     };
 
@@ -115,18 +115,6 @@ const SignUpDialog = ({ open, onClose, email: initialEmail = null }) => {
                 },
             }}
         >
-            <Box
-                sx={{
-                    width: 'fit-content',
-                    position: 'absolute',
-                    top: '10px',
-                    right: '15px'
-                }}
-            >
-                <IconButton edge="end" color="inherit" onClick={onClose} aria-label="close">
-                    <Close />
-                </IconButton>
-            </Box>
 
             <Slide direction="up" in={open} mountOnEnter unmountOnExit>
                 <Box display="flex" flexDirection="column" alignItems="center" width="100%">
