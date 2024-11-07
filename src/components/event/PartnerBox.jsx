@@ -160,7 +160,7 @@ const PartnerData = [
             { icon: Instagram, url: instagramUrl },
             { icon: Twitter, url: twitterUrl },
           ]
-            .filter((social) => social.url) // Filter out any social media link that is not provided
+            .filter((social) => social.url)
             .map((social, index) => (
               <a
                 key={index}

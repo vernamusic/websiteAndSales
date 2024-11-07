@@ -1,6 +1,7 @@
 import React from 'react';
 import {Box} from '@mui/material';
 import PartnerBox from '../components/event/PartnerBox.jsx';
+import ContactBox from '../components/event/ContactBox.jsx';
 
 function Event () {
     return (
@@ -11,6 +12,8 @@ function Event () {
             width:'100%'
         }}>
             <PartnerBox />
+            
+            <ContactBox />
         </Box>
     );
 };
