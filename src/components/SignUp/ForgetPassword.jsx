@@ -5,6 +5,11 @@ import {
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import FormInput from '../custom/FormInput';
 
+// Validation function for email
+const validateEmail = (email) => {
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return regex.test(email);
+};
 
 const navItemStyle = {
     fontFamily: 'Lato',
@@ -13,7 +18,7 @@ const navItemStyle = {
     fontStyle: 'normal',
     lineHeight: '100%',
     textTransform: 'none'
-}
+};
 
 const theme = createTheme({
     typography: {
@@ -53,6 +58,11 @@ const ForgotPasswordDialog = ({ onBack, showSnackbar }) => {
     const handleEmailChange = (event) => setEmail(event.target.value);
 
     const handleSendResetLink = () => {
+        if (!validateEmail(email)) {
+            showSnackbar('Please enter a valid email address.', 'error');
+            return;
+        }
+
         fetch('https://site.vitruvianshield.com/api/v1/forgot-password/', {
             method: 'POST',
             headers: {
@@ -70,7 +80,7 @@ const ForgotPasswordDialog = ({ onBack, showSnackbar }) => {
             })
             .catch(error => {
                 console.error('Error sending reset link:', error);
-                showSnackbar('Error sending reset link.', 'error'); // نمایش خطا
+                showSnackbar('User with this email does not exist.', 'error');
             });
     };
 
@@ -81,13 +91,11 @@ const ForgotPasswordDialog = ({ onBack, showSnackbar }) => {
                     display="flex"
                     flexDirection="column"
                     alignItems="center"
-
                     sx={{
                         p: { xs: '30px', md: '40px' },
                         width: { xs: '448px', },
                         height: { xs: '337px', },
                         boxSizing: 'border-box'
-
                     }}
                 >
                     <Box display="flex" flexDirection="column" alignItems="center" mb={2}>
