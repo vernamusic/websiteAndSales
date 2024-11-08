@@ -32,9 +32,9 @@ const Slider = () => {
     useEffect(() => {
         const fetchSlides = async () => {
             try {
-                const response = await fetch('https://site.vitruvianshield.com/api/v1/top-news'); //api-needs-to-be-update
+                const response = await fetch('https://site.vitruvianshield.com/api/v1/events/websumit/'); //api-needs-to-be-update
                 const data = await response.json();
-                setSlides(data.results);
+                setSlides(data);
             } catch (error) {
                 console.error('Error fetching slides:', error);
             }
@@ -68,7 +68,7 @@ const Slider = () => {
                 sx={{
                     width: '100vw',
                     position: 'relative',
-                    backgroundImage: `linear-gradient(90deg, rgba(0, 0, 0, 0.738) 14.54%, rgba(0, 0, 0, 0.686) 23.41%, rgba(0, 0, 0, 0.584) 40.86%, rgba(0, 0, 0, 0.164) 100%), url(${slides[currentSlide].picture})`,
+                    backgroundImage: `linear-gradient(90deg, rgba(0, 0, 0, 0.738) 14.54%, rgba(0, 0, 0, 0.686) 23.41%, rgba(0, 0, 0, 0.584) 40.86%, rgba(0, 0, 0, 0.164) 100%), url(${slides[currentSlide].image})`,
 
                     backgroundSize: 'cover',
                     backgroundPosition: 'top right',
@@ -92,9 +92,9 @@ const Slider = () => {
                         {slides[currentSlide].title}
                     </Typography>
                     <Typography sx={{ maxWidth: '30vw', ...theme.typography.h6 }}>
-                        {slides[currentSlide].details.length > 240
-                            ? `${slides[currentSlide].details.substring(0, 240)}`
-                            : slides[currentSlide].details}
+                        {slides[currentSlide].description.length > 240
+                            ? `${slides[currentSlide].description.substring(0, 240)}`
+                            : slides[currentSlide].description}
                     </Typography>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 3, mt: 4 }}>
                         <Button
