@@ -38,7 +38,7 @@ const theme = createTheme({
         h23: {
             fontFamily: 'Lato',
             fontSize: '23px',
-            fontWeight: 600,
+            fontWeight: 500,
             lineHeight: '23px',
             textAlign: 'center',
         },
@@ -52,7 +52,7 @@ const theme = createTheme({
     },
 });
 
-const ForgotPasswordDialog = ({ onBack, showSnackbar }) => {
+const ForgotPasswordDialog = ({ onBack, showSnackbar, }) => {
     const [email, setEmail] = useState('');
 
     const handleEmailChange = (event) => setEmail(event.target.value);
@@ -75,8 +75,8 @@ const ForgotPasswordDialog = ({ onBack, showSnackbar }) => {
                 return response.json();
             })
             .then(data => {
-                showSnackbar('Reset link sent successfully!'); // نمایش پیام موفقیت
-                onBack(); // برگشت به صفحه ورود
+                showSnackbar('Reset link sent successfully!');
+                onBack()
             })
             .catch(error => {
                 console.error('Error sending reset link:', error);

@@ -152,7 +152,7 @@ const AuthForm = ({ email: initialEmail = null, onForgotPassword, onLoginSuccess
                                     onClick={() => setShowPassword(!showPassword)}
                                     edge="end"
                                 >
-                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                    {showPassword ? <Visibility /> : <VisibilityOff />}
                                 </IconButton>
                             </InputAdornment>
                         }

@@ -160,16 +160,7 @@ const ResetPasswordDialog = ({ open, onClose, token }) => {
                                 borderWidth: '2px',
                             },
                         }}
-                        endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                    onClick={() => setShowPassword(!showPassword)}
-                                    edge="end"
-                                >
-                                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                            </InputAdornment>
-                        }
+
                         aria-label="Password"
                     />
                 </FormControl>
@@ -202,16 +193,7 @@ const ResetPasswordDialog = ({ open, onClose, token }) => {
                                 borderWidth: '2px',
                             },
                         }}
-                        endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                                    edge="end"
-                                >
-                                    {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                            </InputAdornment>
-                        }
+
                         aria-label="Confirm Password"
                     />
                 </FormControl>
