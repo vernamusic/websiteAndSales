@@ -84,7 +84,7 @@ const MeetBox = () => {
                         alignItems: 'flex-start',
                         pb: { xs: 6, sm: 6 },
                         height: '100%',
-                        ml: { xs: 5, sm: 10, md: 15, lg: 25, xl: 38 },
+                        ml: { xs: 5, sm: 10, md: 15, lg: 25, xl: 26 },
                         width: {xs:'80%',sm:'60%',md:'50%',lg:'40%',xl:'30%'},
                     }}
                 >
