@@ -47,11 +47,11 @@ const Partnership = () => {
                 sx={{
                     width: '100%',
                     minHeight: {
-                        xs: '200px',
-                        sm: '450px',
-                        md: '540px',
-                        lg: '675px',
-                        xl: '900px',
+                        xs: '270px',
+                        sm: '300px',
+                        md: '380px',
+                        lg: '400px',
+                        xl: '464px',
                     },
                     display: 'flex',
                     justifyContent: 'center',
