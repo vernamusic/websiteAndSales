@@ -19,28 +19,28 @@ import {useNavigate} from "react-router-dom";
 const theme = createTheme({
     typography: {
         h6: {
-            fontFamily: 'sen',
-            fontSize: '1.04vw',
-            lineHeight: 'normal',
+            fontFamily: 'Lato',
+            fontSize: '1.25vw',
+            lineHeight: '1.6667vw',
             letterSpacing: '0.4px',
-            color: "#F1F1F1",
+            color: "#D9D9D9",
             textTransform: 'none',
         },
         h3: {
             fontFamily: "Lato",
             fontWeight: 700,
-            fontSize: '1.59vw',
-            color: "#F1F1F1",
+            fontSize: '2.2222vw',
+            color: "#FFFFFF",
             textTransform: 'none',
         },
         button: {
-            fontFamily: 'Inter',
-            fontSize: '0.94vw',
+            fontFamily: 'Lato',
+            fontSize: '0.9722vw',
             textTransform: 'none',
             color: "#F1F1F1",
         },
         caption: {
-            fontFamily: 'sen',
+            fontFamily: 'Lato',
             fontSize: '1.04vw',
             lineHeight: 'normal',
             letterSpacing: '0.4px',
@@ -158,34 +158,22 @@ const Mediacard = () => {
                             sx={{
                                 position: "absolute",
                                 display:'flex',
-                                top: {xs:'20%',sm:"35%"},
-                                left: "15%",
+                                top: {xs:'20%',sm:"42%"},
+                                left: "10%",
                                 width: "50%",
                                 borderRadius: "10px",
                                 flexDirection: 'column',
-                                gap:{xs:1,sm:1,md:2,lg:2,xl:2},
+                                gap:'1.4vw',
                             }}
                         >
                             <Typography sx={{ ...theme.typography.h3 }}>
                                 {currentData.title}
                             </Typography>
-                            <Typography sx={{maxWidth: '30vw', ...theme.typography.h6 }}>
+                            <Typography sx={{maxWidth: '50vw', ...theme.typography.h6 }}>
                                 {currentData.details.length > 200
                                     ? `${currentData.details.substring(0, 200)}...`
                                     : currentData.details}
                             </Typography>
-
-                            <Box display="flex" alignItems="center">
-                                <AccessTimeIcon sx={{mr: '0.5vw',...theme.typography.caption,  }} />
-                                <Typography variant="caption" sx={{mr: '1vw' ,...theme.typography.caption,}}>
-                                    {currentData.read_time}m
-                                </Typography>
-                                <VisibilityIcon sx={{mr: '0.5vw' ,...theme.typography.caption,}} />
-                                <Typography variant="caption" sx={{...theme.typography.caption,}}>
-                                    {currentData.views}
-                                </Typography>
-                            </Box>
-
                             <Button
                                 onClick={() => handleClick(currentData.slug)}
                                 sx={{
@@ -193,8 +181,8 @@ const Mediacard = () => {
                                     borderRadius: '4px',
                                     backgroundColor: '#B50304',
                                     textTransform: 'none',
-                                    width:'7.8125vw',
-                                    height: '2.6042vw',
+                                    width:'9.5833vw',
+                                    height: '2.9167vw',
                                     padding:0,
                                     '&:hover': {
                                         backgroundColor: '#B50304',
@@ -204,6 +192,18 @@ const Mediacard = () => {
                             >
                                 Read more
                             </Button>
+
+                            <Box display="flex" alignItems="center">
+                                <Typography variant="caption" sx={{mr: '1vw' ,...theme.typography.caption,}}>
+                                    {currentData.read_time} min read
+                                </Typography>
+                                <VisibilityIcon sx={{mr: '0.5vw' ,...theme.typography.caption,}} />
+                                <Typography variant="caption" sx={{...theme.typography.caption,}}>
+                                    {currentData.views}
+                                </Typography>
+                            </Box>
+
+
                         </Box>
                     </Fade>
                 </Box>
@@ -258,6 +258,7 @@ const Mediacard = () => {
                 <Box display="flex"
                      flexDirection="row"
                      alignItems="center"
+                     sx={{position:'absolute',top:'90%'}}
                 >
                     {data.map((_, index) => (
                         <ButtonBase
@@ -265,13 +266,11 @@ const Mediacard = () => {
                             onClick={() => handleCircleClick(index)}
                             sx={{
                                 position: 'relative',
-                                width: {xs:6,sm:7,md:8,lg:9,xl:10},
-                                height: {xs:6,sm:7,md:8,lg:9,xl:10},
+                                width: '0.7vw',
+                                height: '0.7vw',
                                 borderRadius: "50%",
                                 backgroundColor: currentIndex === index ? "#ca0000" : "rgba(255, 255, 255, 0.5)",
-                                mx: {xs:0.5,sm:0.8,md:1,lg:1,xl:1},
-                                mb:{xs:-1,sm:-2,md:-2,lg:-3,xl:-3},
-                                mt:{xs:1,sm:2,md:2,lg:3,xl:3},
+                                mx: {xs:0.2,sm:0.3,md:0.5,lg:0.8,xl:0.8},
                             }}
                         />
                     ))}

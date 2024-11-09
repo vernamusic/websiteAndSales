@@ -154,6 +154,7 @@ const TeamMembers = () => {
                     sx={{
                         display: 'flex',
                         justifyContent: 'center',
+                        alignItems:'center',
                         //                      mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
                         maxHeight: '40px',
 
@@ -240,7 +241,10 @@ const TeamMembers = () => {
                     </ToggleButtonGroup>
                 </Box>
 
-                <Box width={'100%'}>
+                <Box
+                    width="50%"
+                    margin="0 auto"
+                >
                     {renderContent()}
                 </Box>
                 <Box
