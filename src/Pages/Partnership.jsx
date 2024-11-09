@@ -22,7 +22,6 @@ const Partnership = () => {
                         sm: '450px',
                         md: '540px',
                         lg: '675px',
-                        xl: '900px',
                     },
                     display: 'flex',
                     justifyContent: 'center',

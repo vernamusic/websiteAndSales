@@ -378,7 +378,7 @@ const Navbar = React.memo((props) => {
                                 }}
                                 disableRipple
                             >
-                                Get started
+                                Sign Up/ Login
                             </Button>
                         )}
 
