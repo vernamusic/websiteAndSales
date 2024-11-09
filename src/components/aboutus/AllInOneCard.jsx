@@ -165,7 +165,6 @@ const Allinonecard = ({ data }) => {
                                             ":hover":{
                                                 transform:'scale(1.1)'
                                             }
-
                                         }}
                                     >
                                         <img
