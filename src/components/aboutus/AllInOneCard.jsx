@@ -127,18 +127,18 @@ const Allinonecard = ({ data }) => {
                                     style={{
                                         width: "36px",
                                         height: "36px",
-                                        filter: box.linked_in ? "none" : "grayscale(100%) brightness(0) invert(1)",
+                                        filter: box.linked_in ? "none" : "grayscale(100%) brightness(0) invert(1) ",
+                                        opacity: box.linked_in ? '100%' : '20%',
                                     }}
                                 />
                                 {!box.linked_in && (
                                     <Box
                                         sx={{
                                             position: "absolute",
-                                            width: "100%",
-                                            height: "100%",
-                                            backgroundColor: "#736f6f",
+                                            width: "36px",
+                                            height: "36px",
+                                            backgroundColor: "transparent",
                                             borderRadius: "50%",
-                                            opacity: 0.5,
                                         }}
                                     />
                                 )}
