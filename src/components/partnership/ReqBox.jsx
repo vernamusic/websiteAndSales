@@ -11,29 +11,24 @@ const theme = createTheme({
     typography: {
         h6: {
             fontFamily: 'Lato',
-            fontSize:'1.23vw',
-            color: "#F1F1F1",
+            fontWeight: 600,
+            fontSize:'16px',
+            color: "#FFFFFF",
             letterSpacing: '0.4px',
             lineHeight: 'normal',
         },
-        h3: {
-            fontFamily: 'sen',
-            fontWeight: 400,
-            fontSize:'1.294vw',
-            color: "#FFFFFF",
-            letterSpacing: '0.4px',
-        },
         h9: {
+            fontWeight: 400,
             fontFamily: 'Lato',
-            fontSize:'0.98vw',
+            fontSize:'12px',
             textTransform: 'none',
-            color: 'rgba(255, 255, 255, 1)',
+            color: '#EEEEEE',
 
         },
         h1: {
             fontFamily: 'Lato',
-            fontWeight: 700,
-            fontSize:'1.4583vw',
+            fontWeight: 600,
+            fontSize:'24px',
             color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
@@ -49,28 +44,28 @@ const howData = [
 const CertificationBox = () => {
     return (
         <ThemeProvider theme={theme}>
-            <Box>
+            <Box
+            sx={{
+                
+                background:'radial-gradient(97.15% 97.15% at 50% 2.85%, #323232 0%, #1F1F1F 100%)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+
+            }}
+            >
                 <Box
                     display="flex"
                     flexDirection="column"
                     justifyContent="center"
                     alignItems="center"
                     textAlign="center"
+                    paddingTop="56px"
+                    
                 >
                     <Typography
                         sx={{
                             ...theme.typography.h1,
-                            mb: '1vw',
-                            lineHeight: '1.5',
-                            width: '600',
-                        }}
-                    >
-                        BECOME A PARTNER
-                    </Typography>
-                    <Typography
-                        sx={{
-                            ...theme.typography.h6,
-                            mb: '6vw',
                         }}
                     >
                         We are especially looking for partners that are:
@@ -81,36 +76,36 @@ const CertificationBox = () => {
                     display="flex"
                     flexWrap="wrap"
                     justifyContent="center"
-                    gap="2.5vw"
+                    gap="48px"
                     pt="1.5vw"
                 >
                     {howData.map((box, index) => (
                         <Box
                             key={index}
                             sx={{
-                                width: '17.5vw',
-                                height: '22.57vw',
-                                borderRadius: '1.39vw',
+                                width: '248px',
+                                height: '272px',
+                                borderRadius: '16px',
                                 display: 'flex',
                                 flexDirection: 'column',
                                 justifyContent: 'center',
                                 alignItems: 'center',
-                                backgroundColor: '#0A0A0A',
-                                border: '1px solid #FFFFFF33',
+                                backgroundColor: '#141414',
+                                border: '1px solid #262626',
+                                boxShadow:'0px 2px 8px 0px #00000080',
                                 position: 'relative',
+                                mt:'48px',
                             }}
                         >
 
                             <Box
                                 sx={{
                                     position: 'absolute',
-                                    top: '-2vw',
+                                    top: -22.5,
                                     left: '50%',
                                     transform: 'translateX(-50%)',
-                                    width: '4vw',
-                                    height: '4vw',
-
-
+                                    width: '48px',
+                                    height: '48px',
                                     backgroundColor: '#B50304',
                                     borderRadius: '50%',
                                     display: 'flex',
@@ -139,10 +134,8 @@ const CertificationBox = () => {
                                     justifyContent: 'center',
                                     justifyItems: 'center',
                                     alignItems: 'center',
-                                    mt:'3.8vw',
-                                    gap: '0.7vw',
+                                    mt:'40px',
                                     textAlign: 'center',
-                                    width:'15vw'
                                 }}
                             >
                                 <Typography
@@ -164,7 +157,7 @@ const CertificationBox = () => {
                                 alt={box.title}
                                 sx={{
                                     width: '100%',
-                                    height: '45%',
+                                    height: '144px',
                                     objectFit: 'cover',
                                     borderRadius: '0 0 1.39vw 1.39vw',
                                     mt: 'auto',
