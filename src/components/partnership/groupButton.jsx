@@ -9,51 +9,62 @@ import vaud from "../../assets/vaud.png";
 import gilomen from "../../assets/partner4.png";
 import analogdevices from "../../assets/analogdevices.png";
 import azure from "../../assets/azure.png";
+import santamaria from "../../assets/santamaria.png";
 import { Box, createTheme, ThemeProvider, Typography } from "@mui/material";
 import { Category } from "@mui/icons-material";
+import partnerBG from '../../assets/partnerBG.png';
 
 const customTheme = createTheme({
     typography: {
-        h6: {
-            fontFamily: 'Lato',
-            fontSize: '0.98vw',
-            color: "#F1F1F1",
-            letterSpacing: '0.4px',
-            lineHeight: 'normal',
-        },
-        h3: {
-            fontFamily: 'sen',
-            fontWeight: 400,
-            fontSize: '1.294vw',
-            color: "#FFFFFF",
-            letterSpacing: '0.4px',
-        },
-        h1: {
+        h1: {//our partner
             fontFamily: 'Lato',
             fontWeight: 700,
-            fontSize:'1.4583vw',
+            fontSize:'24px',
             color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
-        button: {
+        h2: {//box detail
             fontFamily: 'Lato',
-            fontWeight: 500,
-            fontSize: '1vw',
-            lineHeight: '1.2vw',
-            textTransform: 'none',
-        }
+            fontWeight: 600,
+            fontSize:'16px',
+            color: "#EEEEEE",
+            letterSpacing: '0.4px',
+        },
+        h3: {//Description
+            fontFamily: 'Lato',
+            fontWeight: 700,
+            fontSize: '20px',
+            color: "#FFFFFF",
+            letterSpacing: '0.4px',
+        },
+        h4: {//title
+            fontFamily: 'Lato',
+            fontWeight: 400,
+            fontSize: '16px',
+            color: "#F1F1F1",
+            letterSpacing: '0.4px',
+        },
+        h5: {//website
+            fontFamily: 'Lato',
+            fontWeight: 400,
+            fontSize: '15px',
+            color: "#5EA5D4",
+            letterSpacing: '0.4px',
+        },
+        
     },
 });
 
 const howData = [
-    { title: 'ADSCC', description: "Development and Customer", image: Adscc ,Category: "Development" },
-    { title: 'CHUV', description: "Development and Customer", image: CHUV ,Category: "Development"},
-    { title: 'YAS', description: "Development and Customer", image: yas ,Category: "Development"},
-    { title: 'HUG', description: "Development and Customer", image: hug ,Category: "Development"},
-    { title: 'VAUD', description: "Government support", image: vaud ,Category: "Financial"},
-    { title: 'Gilomen', description: "Financial support", image: gilomen ,Category: "Financial"},
-    { title: 'Analog Devices', description: "Technological", image: analogdevices ,Category: "Technological"},
-    { title: 'Microsoft Azure', description: "Technological", image: azure ,Category: "Technological"},
+    { title: 'ADSCC', description: "Development and Customer", image: Adscc ,Category: "Development",link:'https://www.example.com/' },
+    { title: 'CHUV', description: "Development and Customer", image: CHUV ,Category: "Development",link:'https://www.example.com/'},
+    { title: 'YAS', description: "Development and Customer", image: yas ,Category: "Development",link:'https://www.example.com/'},
+    { title: 'HUG', description: "Development and Customer", image: hug ,Category: "Development",link:'https://www.example.com/'},
+    { title: 'Santa Maria Lisbon', description: "Development and Customer", image: santamaria ,Category: "Development",link:'https://www.example.com/'},
+    { title: 'VAUD', description: "Government support", image: vaud ,Category: "Financial",link:'https://www.example.com/'},
+    { title: 'Gilomen', description: "Financial support", image: gilomen ,Category: "Financial",link:'https://www.example.com/'},
+    { title: 'Analog Devices', description: "Technological", image: analogdevices ,Category: "Technological",link:'https://www.example.com/'},
+    { title: 'Microsoft Azure', description: "Technological", image: azure ,Category: "Technological",link:'https://www.example.com/'},
 ];
 
 const GroupButton = () => {
@@ -77,93 +88,55 @@ const GroupButton = () => {
 
     return (
         <ThemeProvider theme={customTheme}>
-            <Box>
+            <Box
+            sx={{
+                backgroundImage: `radial-gradient(97.15% 97.15% at 50% 2.85%, rgba(50, 50, 50, 0.5) 0%, rgba(31, 31, 31, 0.5) 100%), url(${partnerBG})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+            }}>
                 <Box
                     display="flex"
                     flexDirection="column"
                     justifyContent="center"
                     alignItems="center"
                     textAlign="center"
-                    mb="3vw" // Add bottom margin for spacing
+                    marginTop={5}
                 >
                     <Typography sx={{ ...customTheme.typography.h1, mb: '1vw' }}>
                         OUR PARTNERS
                     </Typography>
-                    <Typography sx={{ ...customTheme.typography.h3, mb: '2vw' }}>
+                    <Typography sx={{ ...customTheme.typography.h2, mb: '2vw' }}>
                         Explore our trusted partners who help us deliver exceptional experiences
                     </Typography>
                 </Box>
-                <Box display="flex" justifyContent="center" gap="2.5vw" mb="2.5vw">
-                    <ToggleButtonGroup
-                        value={selectedTeam}
-                        exclusive
-                        onChange={handleToggle}
-                        aria-label="Team selection"
-                        sx={{
-                            display: 'flex',
-                            gap: { xs: 0.8, sm: 1, md: 2, lg: 3, xl: 4 },
-                            justifyContent: 'center',
-                            width: '100%',
-                        }}
-                    >
-                        {["View All", "Financial", "Technological", "Development"].map((label, index) => (
-                            <ToggleButton
-                                key={index}
-                                value={label.toLowerCase().replace(" ", "_")}
-                                sx={{
-                                    padding: 0,
-                                    minWidth: '9.375vw',
-                                    color: '#ffffff',
-                                    height: '2.3958vw',
-                                    ...customTheme.typography.button,
-                                    '&.Mui-selected': {
-                                        borderRadius: '0.3125vw',
-                                        backgroundColor: '#B50304',
-                                        color: '#ffffff',
-                                        '&:hover': {
-                                            backgroundColor: '#B50304',
-                                        },
-                                    },
-                                    '&:not(.Mui-selected)': {
-                                        backgroundColor: '#0B0B0B',
-                                        borderRadius: '0.3125vw',
-                                        border: '0.01px solid rgba(255, 255, 255, 0.2)',
-                                        '&:hover': {
-                                            backgroundColor: '#0B0B0B',
-                                        },
-                                    },
-                                }}
-                                disableRipple
-                            >
-                                {label}
-                            </ToggleButton>
-                        ))}
-                    </ToggleButtonGroup>
-                </Box>
+                
                 <Box display="flex" justifyContent="center">
                     <Box 
                     sx={{
-                        width:'60vw',
+                        width:'70vw',
                         display: 'flex',
                         flexWrap: 'wrap',
-                        justifyContent:'start',
-                        padding:1,
+                        justifyContent:'space-between',
                         gap:'2.5vw',
                         pt:'3vw',
+                        pb:'5vw'
                     }}>
                         {filteredData.map((box, index) => (
                             <Box
                                 key={index}
                                 sx={{
-                                    width: '17.5vw',
-                                    height: '21vw',
-                                    borderRadius: '1.39vw',
+                                    width: '230px',
+                                    height: '271px',
+                                    borderRadius: '16px',
                                     display: 'flex',
                                     flexDirection: 'column',
                                     alignItems: 'center',
-                                    backgroundColor: '#0A0A0A',
-                                    border: '1px solid #FFFFFF33',
+                                    backgroundColor: '#1F1F1FE5',
+                                    border: '1px solid #1F1F1F',
                                     position: 'relative',
+                                    boxShadow: '0px 4px 4px 0px #00000040',
+
                                 }}
                             >
                                 <Box
@@ -171,31 +144,42 @@ const GroupButton = () => {
                                     src={box.image}
                                     alt={box.title}
                                     sx={{
-                                        width: '100%',
-                                        height: '50%',
+                                        width: '230px',
+                                        height: '129px',
                                         backgroundColor: '#FFFFFF',
                                         objectFit: 'contain',
-                                        borderRadius: '1.39vw 1.39vw 0 0',
+                                        borderRadius: '16px 16px 0 0',
                                         padding: 3
                                     }}
                                 />
                                 <Box
                                     sx={{
-                                        mt: '2vw',
+                                        
                                         display: 'flex',
                                         flexDirection: 'column',
                                         alignItems: 'center',
-                                        gap: '0.7vw',
                                         textAlign: 'center',
-                                        width: '12vw',
                                     }}
                                 >
-                                    <Typography sx={{ ...customTheme.typography.h3 }} gutterBottom>
+                                    <Typography sx={{ ...customTheme.typography.h3,mt:'32px' }} >
                                         {box.title}
                                     </Typography>
-                                    <Typography sx={{ ...customTheme.typography.h6 }}>
+                                    <Typography sx={{ ...customTheme.typography.h4,mt:'8px' }}>
                                         {box.description}
                                     </Typography>
+                                    <Typography 
+                                    onClick={box.link ? () => window.open(box.link, "_blank") : null}
+                                        
+                                        sx={{ ...customTheme.typography.h5, mt: '24px', textDecoration: 'none', 
+                                            cursor: box.linked_in ? "pointer" : "default",
+                                            transition: "background-color 0.3s, transform 0.3s",
+                                            '&:hover': {
+                                                transform: box.linked_in ? "scale(1.1)" : "none",
+                                            }, }}
+                                    >
+                                        Visit Website
+                                    </Typography>
+
                                 </Box>
                             </Box>
                         ))}
