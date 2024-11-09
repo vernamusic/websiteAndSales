@@ -111,7 +111,7 @@ const TeamMembers = () => {
                     <Allinonecard data={data} /> {/* Now passes only members data */}
                 </Box>
             );
-        } 
+        }  
     };   
 
     return (
