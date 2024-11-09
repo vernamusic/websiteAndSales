@@ -120,6 +120,7 @@ const TeamMembers = () => {
                 width: '100vw',
                 position: 'relative',
                 backgroundImage: `url(${bg})`,
+                backgroundAttachment:'fixed',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'repeat-y',
