@@ -1,8 +1,20 @@
 import React, { useState } from 'react';
 import { Typography, Box, Button } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import backgroundImage from '../../assets/about2.png';
+import backgroundImage from '../../assets/membersBG2.svg';
 import ContactFormDialog4 from './ContactFormDialog4';
+
+
+const typoStyle = {
+    fontFamily: 'Lato',
+    fontSize: { xs: '16px', sm: '18px', md: '20px', lg: '24px' },
+    color: '#fff',
+    fontStyle: 'normal',
+    fontWeight: 600,
+    lineHeight: '100%',
+    textTransform: 'none'
+}
+
 
 const theme = createTheme({
     typography: {
@@ -54,8 +66,10 @@ const MeetBox = () => {
             <Box
                 sx={{
                     width: '100vw',
+                    minHeight: { xs: '650px',md:'750px' },
+                    alignSelf: 'stretch',
                     position: 'relative',
-                    backgroundImage: `linear-gradient(90deg, rgba(0, 0, 0, 0.738) 14.54%, rgba(0, 0, 0, 0.686) 23.41%, rgba(0, 0, 0, 0.584) 40.86%, rgba(0, 0, 0, 0.164) 100%), url(${backgroundImage})`,
+                    backgroundImage: `url(${backgroundImage})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'bottom right',
                     backgroundRepeat: 'no-repeat',
@@ -68,42 +82,48 @@ const MeetBox = () => {
                         flexDirection: 'column',
                         justifyContent: 'center',
                         alignItems: 'flex-start',
-                        pb:{xs:6,sm:6},
-                        height:'100%',
+                        pb: { xs: 6, sm: 6 },
+                        height: '100%',
                         ml: { xs: 5, sm: 10, md: 15, lg: 25, xl: 38 },
-                        gap: '0.5vw',
-                        width: '25vw',
+                        width: {xs:'80%',sm:'60%',md:'50%',lg:'40%',xl:'30%'},
                     }}
                 >
                     <Typography
                         sx={{
-                            ...theme.typography.h3,
+                            ...typoStyle,
+                            fontSize: { xs: '24px', sm: '26px', md: '28px', lg: '32px' },
+
                         }}
                     >
-                        Let’s discuss together
+                        Let’s discus together
                     </Typography>
                     <Typography
                         sx={{
-                            ...theme.typography.h6,
-                            mb: {xs: 1, sm: 1, md: 1.5, lg: 2, xl: 2, },
+                            ...typoStyle,
+                            mt: '16px',
+                            fontSize: { xs: '12.64px', sm: '14.22px', md: '16px', lg: '18px' },
+                            fontWeight:500,
+                            color:'#d9d9d9',
+                            lineHeight:'24px'
                         }}
                     >
-                        We’d love to hear from you! Whether you have questions, feedback, or just want to chat, our team is here to help.
-                    </Typography>
+                        We’d love to hear from you! Whether you have questions, feedback, or just want to chat, our team is here to help.                    </Typography>
 
                     <Button
                         onClick={handleButtonClick}
                         sx={{
-                            ...theme.typography.button,
-                            padding:0,
-                            minWidth: 0,
+                            ...typoStyle,
+                            mt:'32px',
+                            fontSize: { xs: '12.64px', md: '14px' },
                             borderRadius: '4px',
                             backgroundColor: '#B50304',
+                            color: '#fcfcfc',
                             textTransform: 'none',
-                            width:'10.5656vw',
-                            height: '2.34375vw',
+                            width: '159px',
+                            height: '42px',
                             '&:hover': {
                                 backgroundColor: '#B50304',
+                                opacity: '0.8'
                             },
                         }}
                         disableRipple
