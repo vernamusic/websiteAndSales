@@ -161,7 +161,11 @@ const Allinonecard = ({ data }) => {
                                             p: '10px',
                                             display: 'flex',
                                             justifyContent: 'center',
-                                            alignItems: 'center'
+                                            alignItems: 'center',
+                                            transition:'ease-in 300ms',
+                                            ":hover":{
+                                                transform:'scale(1.1)'
+                                            }
 
                                         }}
                                     >
