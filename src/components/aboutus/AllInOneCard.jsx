@@ -169,7 +169,7 @@ const Allinonecard = ({ data }) => {
                                             src={box.photo}
                                             alt="circle"
                                             style={{
-                                                border: '2px solid #8AE6DE',
+                                                border: '1px solid #8AE6DE',
                                                 width: '124px',
                                                 height: '124px',
                                                 objectFit: 'cover',
