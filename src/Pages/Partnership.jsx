@@ -32,19 +32,8 @@ const Partnership = () => {
                 <MessageBox />
             </Box>
 
-
-
-
-            <Box
-                sx={{
-                    width: '100%',
-                    minHeight: '40vw',
-                    pt:'5vw',
-                    mb: '10vw',
-                }}
-            >
                 <Gb/>
-            </Box>
+            
 
             <Box
                 sx={{
