@@ -10,8 +10,8 @@ import Allinonecard from './Allinonecard';
 const theme = createTheme({
     typography: {
         h6: {
-            fontFamily:'sen',
-            fontSize: '1.0417vw',
+            fontFamily:'Lato',
+            fontSize: '1.1111vw',
             lineHeight: 'normal',
             letterSpacing: '0.4px',
             color: "#F1F1F1",
@@ -21,13 +21,13 @@ const theme = createTheme({
         h3: {
             fontFamily: "Lato",
             fontWeight:700,
-            fontSize:'1.4583vw',
+            fontSize:'1.6667vw',
             color: "#F1F1F1",
             textTransform: 'none',
         },
         button: {
-            fontFamily: 'Inter',
-            fontSize: '1.0417vw',
+            fontFamily: 'Lato',
+            fontSize: '1.1111vw',
             textTransform: 'none',
             color: "#F1F1F1",
         },
@@ -46,6 +46,7 @@ const fetchNewsData = async () => {
         const eventsNewsData = await eventsNewsResponse.json();
 
         return [
+            { team_name: "View All", members: latestNewsData.results },
             { team_name: "Top News", members: topNewsData.results },
             { team_name: "Latest News", members: latestNewsData.results },
             { team_name: "Events News", members: eventsNewsData.results },
@@ -56,8 +57,9 @@ const fetchNewsData = async () => {
     }
 };
 
+
 const TeamMembers = () => {
-    const [selectedTeam, setSelectedTeam] = useState('view_all');
+    const [selectedTeam, setSelectedTeam] = useState('View All');
     const [teamsData, setTeamsData] = useState([]);
 
     useEffect(() => {
@@ -76,34 +78,6 @@ const TeamMembers = () => {
     };
 
     const renderContent = () => {
-        if (selectedTeam === 'view_all') {
-            return (
-                <Box
-                    sx={{
-                        
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        gap: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
-                        mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
-                    }}
-                >
-                    {teamsData.map(({ team_name, members }) => (
-                        <Box key={team_name} sx={{ width: '80%' }}>
-                            <Typography
-                                gutterBottom
-                                sx={{ ...theme.typography.h3, mb: 3, textAlign: 'left',ml:'0.8vw' }}
-                            >
-                                {team_name}
-                            </Typography>
-                            <Mediacard data={members} />
-                        </Box>
-                    ))}
-                </Box>
-
-            );
-        } else {
             const selectedTeamData = teamsData.find(team => team.team_name === selectedTeam)?.members || [];
             return (
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },}}>
@@ -112,7 +86,6 @@ const TeamMembers = () => {
                     </Box>
                 </Box>
             );
-        }
     };
 
     return (
@@ -120,9 +93,9 @@ const TeamMembers = () => {
             <Box sx={{ textAlign: 'left',mb:15,}}>
                 <Box sx={{ mt: '40px', textAlign: 'center' }}>
                     <Typography sx={{ ...theme.typography.h3 }}>
-                        NEWS
+                        News
                     </Typography>
-                    <Typography sx={{ ...theme.typography.h6,mt: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 },}}>
+                    <Typography sx={{ ...theme.typography.h6,mt: { xs: 1, sm: 1, md: 2, lg: 2, xl: 2 },}}>
                         Meet our diverse team of world-class creators, designers, and problem solvers.
                     </Typography>
                 </Box>
@@ -131,7 +104,7 @@ const TeamMembers = () => {
                         
                         display: 'flex',
                         justifyContent: 'center',
-                        mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
+                        mt: { xs: 1, sm: 2, md: 4, lg: 6, xl:8 },
                         maxHeight: '40px',
 
                     }}
@@ -148,37 +121,6 @@ const TeamMembers = () => {
                             width: '100%',
                         }}
                     >
-                        <ToggleButton
-                            value="view_all"
-                            selected={selectedTeam === "view_all"}
-                            sx={{
-                                padding: 0,
-                                minWidth: 0,
-                                color: '#ffffff',
-                                width: '9.375vw',
-                                height: '2.3958vw',
-                                ...theme.typography.button,
-                                '&.Mui-selected': {
-                                    borderRadius: '0.3125vw',
-                                    backgroundColor: '#B50304',
-                                    color: '#ffffff',
-                                    '&:hover': {
-                                        backgroundColor: '#B50304',
-                                    },
-                                },
-                                '&:not(.Mui-selected)': {
-                                    backgroundColor: '#0B0B0B',
-                                    borderRadius: '0.3125vw',
-                                    border:'0.01px solid rgba(255, 255, 255, 0.2)',
-                                    '&:hover': {
-                                        backgroundColor: '#0B0B0B',
-                                    },
-                                },
-                            }}
-                            disableRipple
-                        >
-                            View All
-                        </ToggleButton>
 
 
                         {teamsData.map(({ team_name }) => (
@@ -190,8 +132,8 @@ const TeamMembers = () => {
                                     padding: 0,
                                     minWidth: 0,
                                     color: '#e0e0e0',
-                                    width: '9.375vw',
-                                    height: '2.3958vw',
+                                    width: '10.3472vw',
+                                    height: '2.7778vw',
                                     ...theme.typography.button,
                                     '&.Mui-selected': {
                                         borderRadius: '0.3125vw',
@@ -202,11 +144,11 @@ const TeamMembers = () => {
                                         },
                                     },
                                     '&:not(.Mui-selected)': {
-                                        backgroundColor: '#0B0B0B',
+                                        backgroundColor: 'rgba(31, 31, 31, 1)',
                                         borderRadius: '0.3125vw',
-                                        border:'0.01px solid rgba(255, 255, 255, 0.2)',
+                                        border:'0.5px solid rgba(38, 38, 38, 1)',
                                         '&:hover': {
-                                            backgroundColor: '#0B0B0B',
+                                            backgroundColor: 'rgba(31, 31, 31, 1)',
                                         },
                                     },
                                 }}

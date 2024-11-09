@@ -16,20 +16,10 @@ const About = () => {
             <Box
                 sx={{
                     width: '100vw',
-                    minHeight: {
-                        xs: '200px',
-                        sm: '450px',
-                        md: '540px',
-                        lg: '675px',
-                        xl: '900px',
-                    },
+                    minHeight: '49.48vw',
                     display: 'flex',
                     justifyContent: 'center',
-                    mb:{xs: 2,
-                        sm: 4,
-                        md: 5,
-                        lg: 6,
-                        xl: 9,}
+
                 }}
             >
                 <TopNews />
@@ -40,6 +30,9 @@ const About = () => {
                     minHeight: { xs: '500px', md: '850px' },
                     display: 'flex',
                     justifyContent: 'center',
+                    background: 'radial-gradient(97.15% 97.15% at 50% 2.85%, #323232 0%, #1F1F1F 100%)'
+
+
                 }}
             >
                 <MemberBox />

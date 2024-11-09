@@ -111,8 +111,8 @@ const TeamMembers = () => {
                     <Allinonecard data={data} /> {/* Now passes only members data */}
                 </Box>
             );
-        }
-    };
+        }  
+    };   
 
     return (
         <ThemeProvider theme={theme}>
@@ -120,6 +120,7 @@ const TeamMembers = () => {
                 width: '100vw',
                 position: 'relative',
                 backgroundImage: `url(${bg})`,
+                backgroundAttachment:'fixed',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'repeat-y',
@@ -153,6 +154,7 @@ const TeamMembers = () => {
                     sx={{
                         display: 'flex',
                         justifyContent: 'center',
+                        alignItems:'center',
                         //                      mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
                         maxHeight: '40px',
 
@@ -239,7 +241,10 @@ const TeamMembers = () => {
                     </ToggleButtonGroup>
                 </Box>
 
-                <Box width={'100%'}>
+                <Box
+                    width="50%"
+                    margin="0 auto"
+                >
                     {renderContent()}
                 </Box>
                 <Box

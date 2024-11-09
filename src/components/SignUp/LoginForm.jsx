@@ -115,7 +115,10 @@ const AuthForm = ({ email: initialEmail = null, onForgotPassword, onLoginSuccess
                         htmlFor="password-input"
                         sx={{
                             color: passwordFocused ? 'rgba(38, 38, 38, 1)' : 'rgba(38, 38, 38, 1)',
-                            opacity: passwordFocused || password ? 0 : 1,
+                            opacity: passwordFocused || password ? 0 : 0.4,
+                            fontSize:'13px',
+                            textJustify:'center',
+                            ml:1.3,
                         }}
                     >
                         Enter your password
@@ -129,6 +132,7 @@ const AuthForm = ({ email: initialEmail = null, onForgotPassword, onLoginSuccess
                         onChange={(e) => setPassword(e.target.value)}
                         autoComplete="off"
                         sx={{
+                            pl:1.3,
                             height: '48px',
                             boxSizing: 'border-box',
                             backgroundColor: '#FFFFFF',
@@ -136,11 +140,11 @@ const AuthForm = ({ email: initialEmail = null, onForgotPassword, onLoginSuccess
                                 borderColor: passwordFocused ? '#a80d0d' : 'rgba(0, 0, 0, 0.23)',
                             },
                             '&:hover .MuiOutlinedInput-notchedOutline': {
-                                borderColor: '#a80d0d',
+
                             },
                             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                borderColor: '#a80d0d',
-                                borderWidth: '2px',
+
+                                borderWidth: '1px',
                             },
                             '& .MuiOutlinedInput-input': {
                                 padding: '12px 14px',

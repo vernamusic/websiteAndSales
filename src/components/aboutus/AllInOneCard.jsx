@@ -109,11 +109,10 @@ const Allinonecard = ({ data }) => {
                                     position: "absolute",
                                     top: "12px",
                                     left: '12px',
-                                    borderRadius: "50%",
                                     display: "flex",
                                     justifyContent: "center",
                                     alignItems: "center",
-                                    zIndex: 2,
+                                    zIndex: 3,
                                     cursor: box.linked_in ? "pointer" : "default",
                                     transition: "background-color 0.3s, transform 0.3s",
                                     '&:hover': {
@@ -125,20 +124,20 @@ const Allinonecard = ({ data }) => {
                                     src={linkedin}
                                     alt="LinkedIn"
                                     style={{
-                                        width: "36px",
-                                        height: "36px",
-                                        filter: box.linked_in ? "none" : "grayscale(100%) brightness(0) invert(1)",
+                                        width: "100%",
+                                        height: "100%",
+                                        filter: box.linked_in ? "none" : "grayscale(100%) brightness(0) invert(1) ",
+                                        opacity: box.linked_in ? '100%' : '20%',
                                     }}
                                 />
                                 {!box.linked_in && (
                                     <Box
                                         sx={{
                                             position: "absolute",
-                                            width: "100%",
-                                            height: "100%",
-                                            backgroundColor: "#736f6f",
+                                            width: "36px",
+                                            height: "36px",
+                                            backgroundColor: "transparent",
                                             borderRadius: "50%",
-                                            opacity: 0.5,
                                         }}
                                     />
                                 )}
@@ -148,7 +147,7 @@ const Allinonecard = ({ data }) => {
                                     width: "100%",
                                     zIndex: 2,
                                     justifyItem: "center",
-                                }}
+                                }} 
                             >
                                 <Box
                                     sx={imageContainerStyle}
@@ -161,15 +160,18 @@ const Allinonecard = ({ data }) => {
                                             p: '10px',
                                             display: 'flex',
                                             justifyContent: 'center',
-                                            alignItems: 'center'
-
+                                            alignItems: 'center',
+                                            transition:'ease-in 300ms',
+                                            ":hover":{
+                                                transform:'scale(1.1)'
+                                            }
                                         }}
                                     >
                                         <img
                                             src={box.photo}
                                             alt="circle"
                                             style={{
-                                                border: '2px solid #8AE6DE',
+                                                border: '1px solid #8AE6DE',
                                                 width: '124px',
                                                 height: '124px',
                                                 objectFit: 'cover',
