@@ -8,6 +8,7 @@ const theme = createTheme({
     typography: {
         h6: {
             fontFamily: 'Lato',
+            fontWeight:'500',
             fontSize: { xs: '12.64px', sm: '14px', md: '14.22px', lg: '18px' },
             lineHeight: '24px',
             letterSpacing: '0.4px',
