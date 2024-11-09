@@ -109,11 +109,10 @@ const Allinonecard = ({ data }) => {
                                     position: "absolute",
                                     top: "12px",
                                     left: '12px',
-                                    borderRadius: "50%",
                                     display: "flex",
                                     justifyContent: "center",
                                     alignItems: "center",
-                                    zIndex: 2,
+                                    zIndex: 3,
                                     cursor: box.linked_in ? "pointer" : "default",
                                     transition: "background-color 0.3s, transform 0.3s",
                                     '&:hover': {
@@ -125,8 +124,8 @@ const Allinonecard = ({ data }) => {
                                     src={linkedin}
                                     alt="LinkedIn"
                                     style={{
-                                        width: "36px",
-                                        height: "36px",
+                                        width: "100%",
+                                        height: "100%",
                                         filter: box.linked_in ? "none" : "grayscale(100%) brightness(0) invert(1) ",
                                         opacity: box.linked_in ? '100%' : '20%',
                                     }}
