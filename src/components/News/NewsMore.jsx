@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Typography, IconButton, Divider } from '@mui/material';
-import { Share, Visibility, Facebook, Twitter } from '@mui/icons-material';
+import {Visibility} from '@mui/icons-material';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Mediacard from './Mediacard.jsx';
-
+import Newscard from './AllInOneCard.jsx';
+import Facebook from '../../assets/logos_facebook.png'
+import Share from '../../assets/logos_share.png'
+import Twitter from '../../assets/logos_Twitter.png'
 const theme = createTheme({
     typography: {
         h6: {
-            fontFamily: 'sen',
-            fontSize: '1.0417vw',
+            fontFamily: 'Lato',
+            fontSize: '1.25vw',
             lineHeight: 'normal',
             letterSpacing: '0.8px',
             fontWeight: 400,
@@ -20,18 +22,35 @@ const theme = createTheme({
         h3: {
             fontFamily: 'Lato',
             fontWeight: 700,
-            fontSize: '1.4583vw',
+            fontSize: '1.6667vw',
             color: '#F1F1F1',
             textTransform: 'none',
         },
         button: {
-            fontFamily: 'Inter',
-            fontSize: '1.1458vw',
+            fontFamily: 'Lato',
+            fontSize: '1.1111vw',
             textTransform: 'none',
             color: '#F1F1F1',
         },
     },
 });
+const calculateTimeAgo = (createdAt) => {
+    const now = moment();
+    const duration = moment.duration(now.diff(createdAt));
+    const days = duration.asDays();
+
+    if (days > 7) {
+        const weeks = Math.round(days / 7);
+        return `${weeks} week${weeks > 1 ? 's' : ''} ago`;
+    }
+
+    if (days < 1) {
+        const hours = Math.round(duration.asHours());
+        return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+    } else {
+        return `${Math.round(days)} day${days > 1 ? 's' : ''} ago`;
+    }
+};
 
 const NewsCard = () => {
     const { slug } = useParams();
@@ -71,61 +90,84 @@ const NewsCard = () => {
     };
 
     if (!newsData) return <div>Loading...</div>;
-
+    const timeCall = calculateTimeAgo(newsData.created_at);
     return (
         <ThemeProvider theme={theme}>
+            <Box
+                sx={{
+                    width: '100vw',
+                    height: '38vw',
+                    position: 'relative',
+                    backgroundImage: `url(${newsData.picture})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'top right',
+                    backgroundRepeat: 'no-repeat',
+                }}
+            />
             <Box
                 sx={{
                     color: 'white',
                     height: 'auto',
                     position: 'relative',
                     alignItems: 'center',
+                    background: 'radial-gradient(97.15% 97.15% at 50% 2.85%, #323232 0%, #1F1F1F 100%)'
                 }}
             >
-                <Box
-                    sx={{
-                        width: '100vw',
-                        height: '38vw',
-                        position: 'relative',
-                        backgroundImage: `url(${newsData.picture})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'top right',
-                        backgroundRepeat: 'no-repeat',
-                    }}
-                ></Box>
+
 
                 <Box
                     sx={{
                         position: 'relative',
-                        width: '60%',
+                        width: '85.56vw',
                         margin: '0 auto',
                         justifyItems: 'start',
                         pt: { xs: 1, sm: 1, md: 1.5, lg: 2, xl: 2 },
                     }}
                 >
-                    <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", mb: { xs: 1, sm: 1, md: 2, lg: 3, xl: 5 },mt: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 } }}>
+                    <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", }}>
                         <Typography variant="h4" sx={{
                                 ...theme.typography.h3,
-                                mt: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 },
+                                mt: '5vw',
                             }}>
                             {newsData.title}
                         </Typography>
 
-                        <Box sx={{ display: 'flex', gap: 0.5,
-                                mt: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 } }}>
-                            <Typography sx={{ ...theme.typography.h6, display: { sm: 'block', xs: 'none' } }}>
+                        <Box sx={{ display: 'flex', gap: 1, mt: '5vw', }}>
+                            <Visibility sx={{ fontSize: '1.8vw', color: 'white' }} />
+                            <Typography sx={{ ...theme.typography.button, color: 'white' }}>
+                                {newsData.views}
+                            </Typography>
+                            <Divider
+                                orientation="vertical"
+                                flexItem
+                                sx={{ mx:'0.5vw', borderColor: 'rgba(255, 255, 255, 0.2)', borderStyle: 'dashed',height:'2vw',}}
+                            />
+                            <Typography sx={{ ...theme.typography.button, display: { sm: 'block', xs: 'none' } }}>
                                 Share:
                             </Typography>
-                            <IconButton color="primary" aria-label="share on facebook" sx={{ p: 0 }} onClick={() => shareOnFacebook(`https://site.vitruvianshield.com/news/${slug}`)}>
-                                <Facebook sx={{ fontSize: { xs: '8px', sm: '10px', md: '16px', lg: '20px', xl: '24px' } }} />
+                            <IconButton sx={{ p: 0 }} onClick={() => shareOnFacebook(`https://site.vitruvianshield.com/news/${slug}`)}>
+                                <img
+                                    src={Facebook}
+                                    alt="Facebook"
+                                    style={{ width: 'auto', height: '1.6667vw' }}
+                                />
                             </IconButton>
-                            <IconButton color="primary" aria-label="share on twitter" sx={{ p: 0 }} onClick={() => shareOnTwitter(`https://site.vitruvianshield.com/news/${slug}`)}>
-                                <Twitter sx={{ fontSize: { xs: '8px', sm: '10px', md: '16px', lg: '20px', xl: '24px' } }} />
+                            <IconButton sx={{ p: 0 }} onClick={() => shareOnTwitter(`https://site.vitruvianshield.com/news/${slug}`)}>
+                                <img
+                                    src={Twitter}
+                                    alt="Twitter"
+                                    style={{ width: 'auto', height: '1.6667vw' }}
+                                />
                             </IconButton>
-                            <IconButton color="primary" aria-label="share" sx={{ p: 0 }} onClick={() => copyToClipboard(`https://site.vitruvianshield.com/news/${slug}`)}>
-                                <Share sx={{ fontSize: { xs: '8px', sm: '10px', md: '16px', lg: '20px', xl: '24px' } }} />
+                            <IconButton sx={{ p: 0 }} onClick={() => copyToClipboard(`https://site.vitruvianshield.com/news/${slug}`)}>
+                                <img
+                                    src={Share}
+                                    alt="Share"
+                                    style={{ width: 'auto', height: '1.6667vw' }}
+                                />
                             </IconButton>
                         </Box>
+
                     </Box>
 
                     <Box
@@ -133,16 +175,10 @@ const NewsCard = () => {
                             display: 'flex',
                             flexDirection: 'row',
                             justifyContent: 'flex-start',
-                            gap: 1,
-                            mt: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 },
-                            mb: 2,
                         }}
                     >
-                        <Visibility sx={{ fontSize: { xs: '8px', sm: '10px', md: '16px', lg: '20px', xl: '24px' }, ml: { sx: 0.5, sm: 1, md: 2 }, color: 'gray' }} />
-                        <Typography sx={{ ...theme.typography.h6, mr: { sx: 0.5, sm: 1, md: 2 }, color: 'gray' }}>
-                            {newsData.views}
-                        </Typography>
-                        <Typography variant="body2" sx={{ ...theme.typography.h6, color: '#a50202' }}>
+
+                        <Typography variant="body2" sx={{ ...theme.typography.button, color: 'rgba(144, 193, 226, 1)', mt:'0.5vw',mb:'2vw' }}>
                             {newsData.read_time} min read
                         </Typography>
                     </Box>
@@ -154,18 +190,17 @@ const NewsCard = () => {
                         </Typography>
                     ))}
 
-                    <Box sx={{ display: 'flex', alignItems: 'center', mt: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 }, }}>
-                        <Typography sx={{ ...theme.typography.h6, color: 'gray' }}>{timeAgo}</Typography>
-                        <Divider orientation="vertical" flexItem sx={{ mx: 2, borderColor: 'gray' }} />
-                        <Typography sx={{ ...theme.typography.h6, color: 'gray' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', mt: '2vw',gap:'2vw'}}>
+                        <Typography sx={{ ...theme.typography.button, color: '#BFBFBF' }}>{timeCall}</Typography>
+                        <Typography sx={{ ...theme.typography.button, color: '#BFBFBF' }}>
                             {moment(newsData.created_at).format('ddd MMMM D, YYYY')}
                         </Typography>
                     </Box>
                     <Box sx={{ mb: { xs: 9, sm: 10, md: 13, lg: 15, xl: 20 }, }}>
-                        <Typography gutterBottom sx={{ ...theme.typography.h3, pl: 1, mb: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 }, textAlign: 'left', mt: { xs: 3, sm: 4, md: 5, lg: 7, xl: 10 } }}>
+                        <Typography gutterBottom sx={{ ...theme.typography.h6, pl: 1, mb: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 }, textAlign: 'left', mt: { xs: 3, sm: 4, md: 5, lg: 7, xl: 10 } }}>
                             Related News:
                         </Typography>
-                        <Mediacard data={newsData.related_news} />
+                        <Newscard data={newsData.related_news} />
                     </Box>
                 </Box>
             </Box>

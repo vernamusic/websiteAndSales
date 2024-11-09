@@ -22,8 +22,9 @@ import blueArrowIcon from "../../assets/blueArrowIcon.svg";
 const theme = createTheme({
     typography: {
         h6: {
-            fontFamily: 'sen',
+            fontFamily: 'Lato',
             fontSize:'0.8333vw',
+            fontWeight: 400,
             color: "#F1F1F1",
             letterSpacing: '0.4px',
             lineHeight: 'normal',
@@ -31,15 +32,16 @@ const theme = createTheme({
         h3: {
             fontFamily: 'Lato',
             fontWeight: 700,
-            fontSize:'1.09375vw',
+            fontSize:'1.1111vw',
             color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
         button: {
             fontFamily: 'Lato',
-            fontSize:'0.7vw',
+            fontSize:'0.8333vw',
             textTransform: 'none',
-            color: "#FFFFFF",
+            fontWeight:700,
+            color: "rgba(176, 238, 233, 1)",
         },
         h1: {
             fontFamily: 'Lato',
@@ -65,16 +67,18 @@ const Allinonecard = ({ data }) => {
                 display="flex"
                 justifyContent="center"
                 alignItems="center"
+                width="85.5556vw"
+                margin="0 auto"
             >
                 <Box
                     sx={{
-                        width: '62%',
+                        width: '100%',
                         height: '100%',
                         display: 'flex',
                         flexDirection: 'row',
-                        justifyContent: 'space-evenly',
+                        justifyContent: 'start',
                         flexWrap: 'wrap',
-                        gap: '20px',
+                        gap: '40px',
 
                     }}
                 >
@@ -85,50 +89,45 @@ const Allinonecard = ({ data }) => {
                                 position: "relative",
                                 display: 'flex',
                                 flexDirection: 'column',
-                                height: '360px',
-                                width: '284px',
+                                height: '25vw',
+                                width: '19.7222vw',
                                 boxSizing: 'border-box',
-                                p: '24px',
-                                borderRadius: "16px",
+                                borderRadius: "1.1111vw",
                                 color: "white",
+                                alignItems: 'center',
                                 overflow: "hidden",
-                                backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.01) 40.5%, rgba(0, 0, 0, 0.8) 71%, rgba(0, 0, 0, 0.9) 100%), url(${box.picture})`,
+                                backgroundImage: `linear-gradient(360deg, rgba(31, 31, 31, 0.9) 0%, rgba(31, 31, 31, 0.81) 39.67%, rgba(31, 31, 31, 0) 55.83%), url(${box.picture})`,
                                 backgroundSize: "cover",
                                 backgroundPosition: "center",
                                 backgroundRepeat: "no-repeat",
-                                justifyContent: 'end',
                                 boxShadow: '0px 2px 16px 0px rgba(0, 0, 0, 0.32)',
-                                textAlign: 'start',
-                                alignItems: 'center',
                                 cursor: isMobile ? 'pointer' : 'default',
                             }}
                             onClick={isMobile ? onClick : undefined}
                         >
                             <Box
-                                    sx={{
-                                        position: "relative",
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        justifyContent: 'flex-end',
-                                        overflow: 'hidden',
-                                    }} />
+                                sx={{
+                                    position: "relative",
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    justifyContent: 'flex-end',   // قرار دادن در پایین محور Y
+                                    alignItems: 'center',         // مرکز چین کردن در محور X
+                                    overflow: 'hidden',
+                                    height: '15vw',
+                                    width: '80%',                // عرض کامل برای وسط چین کردن محتوای داخلی
+                                }}
+                            />
 
-                                <Box sx={{ position: "relative"}}>
+                                <Box sx={{ position: "relative",height:'6.5vw',width: '85%',}}>
                                 <Typography sx={{
-                                        width: '100%',
-                                        ...navItemStyle,
-                                        fontSize: { xs: '12.64', md: '14.22px', lg: '16px' },
-                                        fontWeight: 600,
-                                        lineHeight: 'normal'
+                                        mb:'0.7vw',
+                                        ...theme.typography.h3,
                                     }}>
                                     {box.title}
                                 </Typography>
                                 <Typography sx={{
-                                                        width: '100%',
-                                                        ...navItemStyle,
-                                                        fontSize: { xs: '10px', md: '12px' },
-                                                        mt:'8px',
-                                                        lineHeight:'130%'
+                                    width: '100%',
+                                    ...theme.typography.h6,
                                                     }}>
                                     {box.details.length > 50 ? `${box.details.substring(0, 80)}...` : box.details}
                                 </Typography>
@@ -136,8 +135,9 @@ const Allinonecard = ({ data }) => {
 
                             <Box
                                 sx={{
-                                    mr:'100px',
-                                    mt:'35px',
+                                    height:'2vw',
+                                    width:'85%',
+                                    justifyContent:'center',
                                 }}
                             >
                                 <Button
@@ -148,16 +148,12 @@ const Allinonecard = ({ data }) => {
                                         alignItems: "center",
                                         gap: '4px',
                                         "&:hover": { backgroundColor: "transparent" },
-                                        ...navItemStyle,
-                                        lineHeight: '0',
-                                        fontWeight: 600,
-                                        color:'#B0EEE9',
-                                        fontSize: { xs: '12.64px', md: '14.22px', lg: '16px' }
+                                        ...theme.typography.button,
                                     }}
                                     disableRipple
                                 >
                                     View More
-                                    <img src={blueArrowIcon} alt="" style={{ width: '16px', height: '16px', color:'#B0EEE9' }} />
+                                    <img src={blueArrowIcon} alt="" style={{ width: '1.1111vw', height: '1.1111vw', color:'#B0EEE9' }} />
                                 </Button>
                             </Box>
                         </Box>
