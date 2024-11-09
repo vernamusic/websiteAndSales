@@ -5,13 +5,13 @@ import {
     createTheme,
     ThemeProvider,
 } from "@mui/material";
-import linkedin from "../../assets/linkedin.png";
+import linkedin from "../../assets/inIcon.svg";
 
 const theme = createTheme({
     typography: {
         h6: {
             fontFamily: 'sen',
-            fontSize:'1.2vw',
+            fontSize: '1.2vw',
             color: "rgba(191, 191, 191, 1)",
             letterSpacing: '0.4px',
             lineHeight: 'normal',
@@ -19,197 +19,246 @@ const theme = createTheme({
         h3: {
             fontFamily: 'Lato',
             fontWeight: 700,
-            fontSize:'1.3889vw',
+            fontSize: '1.3889vw',
             color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
         button: {
             fontFamily: 'Lato',
-            fontSize:'0.677vw',
+            fontSize: '0.677vw',
             textTransform: 'none',
             color: "#FFFFFF",
         },
         h1: {
             fontFamily: 'Lato',
             fontWeight: 400,
-            fontSize:'1.0417vw',
+            fontSize: '1.0417vw',
             color: "rgba(191, 191, 191, 1)",
             letterSpacing: '0.4px',
         },
     },
 });
 
+const typoStyle = {
+    fontFamily: 'Lato',
+    fontSize: { xs: '16px', sm: '18px', md: '20px', lg: '24px' },
+    color: '#fff',
+    fontStyle: 'normal',
+    fontWeight: 600,
+    lineHeight: '100%',
+    textTransform: 'none'
+}
 
-const Allinonecard = ({ data }) => {
+
+const imageContainerStyle = {
+    position: 'relative',
+    mt: '32px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+}
+const Allinonecard = ({ data }) => { 
     return (
         <ThemeProvider theme={theme}>
             <Box
                 display="flex"
                 flexDirection="column"
                 sx={{
-                    maxWidth: '60vw',
-                    justifyContent:'start',
-                    padding:1,
-                    display:'flex',
-                    flexWrap:'wrap',
+
+                    maxWidth: '100vw',
+                    justifyItems: 'center',
+                    alignItems: 'center',
+                    mb: '-2.5vw',
+
                 }}
             >
                 <Box
                     display="flex"
                     flexWrap="wrap"
-                    sx={{ gap: '1.8vw',
+
+                    justifyContent="center"
+                    sx={{
+                        gap: '1.8vw',
+
                         maxWidth: '70vw',
-                }}
+                    }}
                 >
                     {data.map((box, index) => (
+
                         <Box
                             display="flex"
                             key={index}
                             sx={{
                                 flexDirection: "column",
-                                justifyContent: "space-between",
-                                width: '17.78vw',
-                                height: '31.5972vw',
+                                borderRadius: '16px',
+                                width: '280px',
+                                height: '380px',
+                                py: '0px',
+                                px: '24px',
+                                boxSizing: 'border-box',
+                                boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.45)',
                                 position: "relative",
-                                borderRadius: "1.5vw",
-                                color: "white",
                                 overflow: "hidden",
                                 alignItems: "center",
-                                border:'0.01px solid rgba(255, 255, 255, 0.2)',
-                                backgroundColor: "#0A0A0A",
+                                backgroundColor: "linear-gradient(180deg, rgba(74, 74, 74, 0.90) 0%, rgba(31, 31, 31, 0.90) 100%)"
                             }}
                         >
                             <Box
+                                onClick={box.linked_in ? () => window.open(box.linked_in, "_blank") : null}
                                 sx={{
                                     position: "absolute",
+                                    top: "12px",
+                                    left: '12px',
+                                    borderRadius: "50%",
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    zIndex: 2,
+                                    cursor: box.linked_in ? "pointer" : "default",
+                                    transition: "background-color 0.3s, transform 0.3s",
+                                    '&:hover': {
+                                        transform: box.linked_in ? "scale(1.1)" : "none",
+                                    },
+                                }}
+                            >
+                                <img
+                                    src={linkedin}
+                                    alt="LinkedIn"
+                                    style={{
+                                        width: "36px",
+                                        height: "36px",
+                                        filter: box.linked_in ? "none" : "grayscale(100%) brightness(0) invert(1)",
+                                    }}
+                                />
+                                {!box.linked_in && (
+                                    <Box
+                                        sx={{
+                                            position: "absolute",
+                                            width: "100%",
+                                            height: "100%",
+                                            backgroundColor: "#736f6f",
+                                            borderRadius: "50%",
+                                            opacity: 0.5,
+                                        }}
+                                    />
+                                )}
+                            </Box>
+                            <Box
+                                sx={{
                                     width: "100%",
-                                    height: '45%',
-                                    top:'0',
-                                    zIndex:2,
-                                    backgroundImage:`url(${box.photo})`,
-                                    backgroundSize: "cover",
-                                    backgroundRepeat: 'no-repeat',
-                                    backgroundPosition:'center top',
+                                    zIndex: 2,
                                     justifyItem: "center",
                                 }}
                             >
                                 <Box
-                                    width='20%'
-                                    height='25%'
-                                    onClick={box.linked_in ? () => window.open(box.linked_in, "_blank") : null}
-                                    sx={{
-                                        position: "absolute",
-                                        bottom: "-11%",
-                                        backgroundColor: box.linked_in ? "#B50304" : "#4c4c4c",
-                                        borderRadius: "50%",
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                        zIndex: 2,
-                                        cursor: box.linked_in ? "pointer" : "default",
-                                        transition: "background-color 0.3s, transform 0.3s",
-                                        right: "40%",
-                                        '&:hover': {
-                                            backgroundColor: box.linked_in ? "#A50203" : "#4c4c4c",
-                                            transform: box.linked_in ? "scale(1.1)" : "none",
-                                        },
-                                    }}
+                                    sx={imageContainerStyle}
                                 >
-                                    <img
-                                        src={linkedin}
-                                        alt="LinkedIn"
-                                        style={{
-                                            width: "60%",
-                                            filter: box.linked_in ? "none" : "grayscale(100%) brightness(0) invert(1)",
+                                    <Box
+                                        sx={{
+                                            borderTop: '1px solid red',
+                                            borderRadius: '100px',
+                                            border: '1px dashed #8AE6DE',
+                                            p: '10px',
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center'
+
                                         }}
-                                    />
-                                    {!box.linked_in && (
-                                        <Box
-                                            sx={{
-                                                position: "absolute",
-                                                width: "100%",
-                                                height: "100%",
-                                                backgroundColor: "#736f6f",
-                                                borderRadius: "50%",
-                                                opacity: 0.5,
+                                    >
+                                        <img
+                                            src={box.photo}
+                                            alt="circle"
+                                            style={{
+                                                border: '2px solid #8AE6DE',
+                                                width: '124px',
+                                                height: '124px',
+                                                objectFit: 'cover',
+                                                borderRadius: '50%'
                                             }}
                                         />
-                                    )}
+                                    </Box>
+
                                 </Box>
+
                             </Box>
                             <Box
                                 sx={{
-                                    position: "absolute",
                                     width: "100%",
-                                    height: '47.5%',
-                                    bottom: '0',
                                 }}
                             >
 
-                                    <Box
+                                <Box
+                                    sx={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        mt: '22px'
+                                    }}
+                                >
+                                    <Typography
                                         sx={{
-                                            display: "flex",
-                                            justifyContent: "center",
-                                            width: "100%",
+                                            ...typoStyle,
+                                            textAlign: "center",
+                                            fontSize: { xs: '14px', sm: '14.22px', md: '16px', lg: '18px' }
                                         }}
                                     >
-                                        <Typography
-                                            sx={{
-                                                ...theme.typography.h3,
-                                                textAlign: "center",
-                                                maxWidth: '90%',
-                                            }}
-                                        >
-                                            {box.full_name}
-                                        </Typography>
-                                    </Box>
+                                        {box.full_name}
+                                    </Typography>
+                                </Box>
 
-                                    {/* Job */}
-                                    <Box
+                                {/* Job */}
+                                <Box
+                                    sx={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        width: "100%",
+                                        mt: '0.7vw',
+                                    }}
+                                >
+                                    <Typography
                                         sx={{
-                                            display: "flex",
-                                            justifyContent: "center",
-                                            width: "100%",
-                                            mt: '0.7vw',
+                                            ...typoStyle,
+                                            color: '#8AE6DE',
+                                            fontSize: { xs: '12.64px', sm: '13px', md: '14.22px', lg: '16px' },
+                                            textAlign: "center",
+                                            fontweight: 500,
+                                            lineHeight: '140%',
                                         }}
                                     >
-                                        <Typography
-                                            sx={{
-                                                ...theme.typography.h1,
-                                                textAlign: "center",
-                                                maxWidth: '80%',
-                                            }}
-                                        >
-                                            {box._job}
-                                        </Typography>
-                                    </Box>
+                                        {box._job}
+                                    </Typography>
+                                </Box>
 
-                                    {/* Details */}
-                                    <Box
+                                {/* Details */}
+                                <Box
+                                    sx={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        width: "100%",
+                                        borderTop: '1px dashed rgba(255, 255, 255, 0.20)',
+                                        pt: '20px',
+                                        mt: '20px'
+                                    }}
+                                >
+                                    <Typography
                                         sx={{
-                                            display: "flex",
-                                            justifyContent: "center",
-                                            width: "100%",
-                                            mt: '1.5vw',
+                                            ...typoStyle,
+                                            fontSize: { xs: '12.64px', md: '14px' },
+                                            fontWeight: 400,
+                                            color: '#d9d9d9',
+                                            lineHeight: '20px',
+                                            textAlign: "center",
                                         }}
                                     >
-                                        <Typography
-                                            sx={{
-                                                ...theme.typography.h6,
-                                                textAlign: "center",
-                                                maxWidth: '80%',
-                                            }}
-                                        >
-                                            {box.details}
-                                        </Typography>
-                                    </Box>
+                                        {box.details}
+                                    </Typography>
+                                </Box>
 
                             </Box>
                         </Box>
                     ))}
                 </Box>
             </Box>
-        </ThemeProvider>
+        </ThemeProvider >
     );
 };
 

@@ -2,15 +2,27 @@ import React, { useState, useEffect } from 'react';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Box from '@mui/material/Box';
+import bg from '../../assets/membersBG1.svg'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Mediacard from './Mediacard';
 import { Typography } from "@mui/material";
 import Allinonecard from './Allinonecard';
 
+
+const typoStyle = {
+    fontFamily: 'Lato',
+    fontSize: { xs: '16px', sm: '18px', md: '20px', lg: '24px' },
+    color: '#fff',
+    fontStyle: 'normal',
+    fontWeight: 600,
+    lineHeight: '100%',
+    textTransform: 'none'
+}
+
 const theme = createTheme({
     typography: {
         h6: {
-            fontFamily:'sen',
+            fontFamily: 'sen',
             fontSize: '1.0417vw',
             lineHeight: 'normal',
             letterSpacing: '0.4px',
@@ -20,8 +32,8 @@ const theme = createTheme({
 
         h3: {
             fontFamily: "Lato",
-            fontWeight:700,
-            fontSize:'1.4583vw',
+            fontWeight: 700,
+            fontSize: '1.4583vw',
             color: "#F1F1F1",
             textTransform: 'none',
         },
@@ -38,15 +50,19 @@ const TeamMembers = () => {
     const [teams, setTeams] = useState([]);
     const [selectedTeam, setSelectedTeam] = useState('view_all');
     const [data, setData] = useState([]);
+    const [advisors, setAdvisors] = useState([]);
+    const [members, setMembers] = useState([]);
+
 
     useEffect(() => {
         const fetchTeams = async () => {
             const response = await fetch('https://site.vitruvianshield.com/api/v1/members');
             const teamsData = await response.json();
+            setAdvisors(teamsData.filter(team => team.team_name === "Advisors"))
+            setMembers(teamsData.filter(team => team.team_name !== "Advisors"))
             setTeams(teamsData);
             setData(teamsData); // Initialize data with all teams
         };
-
         fetchTeams();
     }, []);
 
@@ -75,21 +91,21 @@ const TeamMembers = () => {
                         justifyContent: 'center',
                         alignItems: 'center',
                         gap: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
-                        mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
-                        mb:{ xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
+                        mt: { xs: '50px', sm: '60px', md: '70px', lg: '80px' },
+                        mb: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
                     }}
                 >
-                    {teams.map(({ team_name, members }) => (
+                    {advisors.map(({ team_name, members }) => (
                         <Box key={team_name} sx={{ width: '100%' }}>
-                            <Allinonecard data={members} />
+                            <Allinonecard data={members} advisors={advisors} />
                         </Box>
                     ))}
                 </Box>
             );
         } else {
             return (
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0, mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },}}>
-                    <Typography gutterBottom sx={{ ...theme.typography.h3,  mb: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 }, textAlign: 'left', ml:'0.25vw' }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0, mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 }, }}>
+                    <Typography gutterBottom sx={{ ...theme.typography.h3, mb: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 }, textAlign: 'left', ml: '0.25vw' }}>
                         {selectedTeam}
                     </Typography>
                     <Allinonecard data={data} /> {/* Now passes only members data */}
@@ -100,20 +116,44 @@ const TeamMembers = () => {
 
     return (
         <ThemeProvider theme={theme}>
-            <Box sx={{ textAlign: 'left', }}>
-                <Box sx={{ mt: '2.0833vw', textAlign: 'center', }}>
-                    <Typography sx={{ ...theme.typography.h3 }}>
-                        MEET OUR TEAM
+            <Box sx={{
+                width: '100vw',
+                position: 'relative',
+                backgroundImage: `url(${bg})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'repeat-y',
+                pt: '80px',
+                pb: '80px'
+            }}>
+                <Box sx={{
+                    // mt: { xs: '50px', sm: '60px', md: '70px', lg: '80px' },
+                    textAlign: 'center',
+                }}>
+                    <Typography
+                        sx={{
+                            ...typoStyle,
+                            fontSize: { xs: '18px', sm: '20px', md: '22px', lg: '24px' }
+                        }}>
+                        OUR ADVISORS
                     </Typography>
-                    <Typography sx={{ ...theme.typography.h6, mt: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 } }}>
-                        Meet our diverse team of world-class creators, designers, and problem solvers.
+                    <Typography
+                        sx={{
+                            ...typoStyle,
+                            mt: { xs: '8px', md: '10px', lg: '10px' },
+                            fontSize: { xs: '12.64', sm: '14px', md: '14.22px', lg: '16px' },
+                            fontWeight: 400,
+                            color: '#f1f1f1',
+                            lineHeight: 'normal'
+                        }}>
+                        Meet our world-class advisors team
                     </Typography>
                 </Box>
                 <Box
                     sx={{
                         display: 'flex',
                         justifyContent: 'center',
-//                      mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
+                        //                      mt: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
                         maxHeight: '40px',
 
                     }}
@@ -201,6 +241,52 @@ const TeamMembers = () => {
 
                 <Box width={'100%'}>
                     {renderContent()}
+                </Box>
+                <Box
+                sx={{
+                    mt:'200px'
+                }}
+                >
+                    <Box sx={{
+                        // mt: { xs: '50px', sm: '60px', md: '70px', lg: '80px' },
+                        textAlign: 'center',
+                    }}>
+                        <Typography
+                            sx={{
+                                ...typoStyle,
+                                fontSize: { xs: '18px', sm: '20px', md: '22px', lg: '24px' }
+                            }}>
+                            OUR TEAM
+                        </Typography>
+                        <Typography
+                            sx={{
+                                ...typoStyle,
+                                mt: { xs: '8px', md: '10px', lg: '10px' },
+                                fontSize: { xs: '12.64', sm: '14px', md: '14.22px', lg: '16px' },
+                                fontWeight: 400,
+                                color: '#f1f1f1',
+                                lineHeight: 'normal'
+                            }}>
+                            Meet our world-class team members
+                        </Typography>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                gap: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
+                                mt: { xs: '50px', sm: '60px', md: '70px', lg: '80px' },
+                                mb: { xs: 2, sm: 4, md: 6, lg: 8, xl: 10 },
+                            }}
+                        >
+                            {members.map(({ team_name, members }) => (
+                                <Box key={team_name} sx={{ width: '100%' }}>
+                                    <Allinonecard data={members}  />
+                                </Box>
+                            ))}
+                        </Box>
+                    </Box>
                 </Box>
             </Box>
         </ThemeProvider>

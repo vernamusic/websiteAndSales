@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
 import { Typography, Box, Button } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import backgroundImage from '../../assets/about1.png';
+import backgroundImage from '../../assets/aboutUs1.svg';
 import ContactFormDialog3 from './ContactFormDialog3';
 
+const typoStyle = {
+    fontFamily: 'Lato',
+    fontSize: { xs: '16px', sm: '18px', md: '20px', lg: '24px' },
+    color: '#fff',
+    fontStyle: 'normal',
+    fontWeight: 600,
+    lineHeight: '100%',
+    textTransform: 'none'
+}
 const theme = createTheme({
     typography: {
         h6: {
@@ -54,8 +63,9 @@ const ContactBox = () => {
             <Box
                 sx={{
                     width: '100vw',
+                    height:{xs:'516px',lg:'750px'},
                     position: 'relative',
-                    backgroundImage: `linear-gradient(90deg, rgba(0, 0, 0, 0.738) 14.54%, rgba(0, 0, 0, 0.686) 23.41%, rgba(0, 0, 0, 0.584) 40.86%, rgba(0, 0, 0, 0.164) 100%), url(${backgroundImage})`,
+                    backgroundImage: `url(${backgroundImage})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
@@ -63,24 +73,27 @@ const ContactBox = () => {
             >
                 <Box
                     sx={{
+                        mt:{xs:'150px',sm:'200px',lg:'316px'},
                         position: 'relative',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        alignItems: 'flex-start',
                         height: '100%',
                         ml: { xs: 5, sm: 10, md: 15, lg: 25, xl: 38 },
-                        gap: '0.5vw',
-                        width: '25vw',
+                        width: {xs:'80%',sm:'70%',md:'60%',lg:'50%',xl:'40%'},
                     }}
                 >
-                    <Typography sx={{ ...theme.typography.h3 }}>
+                    <Typography sx={{
+                        ...typoStyle,
+                        fontSize: { xs: '20px', sm: '22px', md: '24px', lg: '32px' }
+                    }}>
                         About Us
                     </Typography>
                     <Typography
                         sx={{
-                            ...theme.typography.h6,
-                            mb: { xs: 1, sm: 1, md: 1.5, lg: 2, xl: 2 },
+                            ...typoStyle,
+                            mt:'16px',
+                            fontSize: { xs: '12.64px', sm: '14px', md: '14.22px', lg: '18px' },
+                            mb: { xs: '22px', sm: '26px', md: '30px', lg: '32px' },
+                            fontWeight:500,
+                            lineHeight:'150%'
                         }}
                     >
                         Vitruvian Shield is a comprehensive digital health platform that combines cutting-edge sensor technology, cloud computing, and AI-powered analytics to provide a holistic approach to medical research and remote patient monitoring.
@@ -90,20 +103,20 @@ const ContactBox = () => {
                         variant="contained"
                         onClick={handleOpenDialog}
                         sx={{
-                            ...theme.typography.button,
-                            padding: 0,
-                            minWidth: 0,
+                            ...typoStyle,
                             borderRadius: '4px',
                             backgroundColor: '#B50304',
-                            width: '8.0656vw',
-                            height: '2.34375vw',
+                            width: '138px',
+                            height: '42px',
+                            fontSize: { xs: '12.64px', md: '14px', lg: '14px' },
                             '&:hover': {
                                 backgroundColor: '#B50304',
+                                opacity: 0.8,
                             },
                         }}
                         disableRipple
                     >
-                        Chat with us
+                        Read More
                     </Button>
                     <ContactFormDialog3 open={openDialog} onClose={handleCloseDialog} />
                 </Box>

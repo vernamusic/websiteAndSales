@@ -19,13 +19,6 @@ const About = () => {
             <Box
                 sx={{
                     width: '100%',
-                    minHeight: {
-                        xs: '250px',
-                        sm: '350px',
-                        md: '500px',
-                        lg: '650px',
-                        xl: '100vh',
-                    },
                     display: 'flex',
                     justifyContent: 'center',
                 }}
@@ -53,13 +46,6 @@ const About = () => {
             <Box
                 sx={{
                     width: '100%',
-                    minHeight: {
-                        xs: '300px',
-                        sm: '350px',
-                        md: '500px',
-                        lg: '650px',
-                        xl: '100vh',
-                    },
                     display: 'flex',
                     justifyContent: 'center',
                 }}
