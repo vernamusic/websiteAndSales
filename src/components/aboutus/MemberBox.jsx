@@ -244,7 +244,7 @@ const TeamMembers = () => {
                 </Box>
                 <Box
                 sx={{
-                    mt:'100px'
+                    mt:'200px'
                 }}
                 >
                     <Box sx={{

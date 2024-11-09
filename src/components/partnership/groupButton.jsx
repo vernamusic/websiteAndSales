@@ -7,6 +7,8 @@ import yas from "../../assets/yas.png";
 import hug from "../../assets/hug.png";
 import vaud from "../../assets/vaud.png";
 import gilomen from "../../assets/partner4.png";
+import analogdevices from "../../assets/analogdevices.png";
+import azure from "../../assets/azure.png";
 import { Box, createTheme, ThemeProvider, Typography } from "@mui/material";
 import { Category } from "@mui/icons-material";
 
@@ -48,8 +50,10 @@ const howData = [
     { title: 'CHUV', description: "Development and Customer", image: CHUV ,Category: "Development"},
     { title: 'YAS', description: "Development and Customer", image: yas ,Category: "Development"},
     { title: 'HUG', description: "Development and Customer", image: hug ,Category: "Development"},
-    { title: 'VAUD', description: "Government support", image: vaud ,Category: "Technological"},
+    { title: 'VAUD', description: "Government support", image: vaud ,Category: "Financial"},
     { title: 'Gilomen', description: "Financial support", image: gilomen ,Category: "Financial"},
+    { title: 'Analog Devices', description: "Technological", image: analogdevices ,Category: "Technological"},
+    { title: 'Microsoft Azure', description: "Technological", image: azure ,Category: "Technological"},
 ];
 
 const GroupButton = () => {
@@ -137,7 +141,16 @@ const GroupButton = () => {
                     </ToggleButtonGroup>
                 </Box>
                 <Box display="flex" justifyContent="center">
-                    <Box width="75vw" display="flex" flexWrap="wrap" justifyContent="center" gap="2.5vw" pt="3vw">
+                    <Box 
+                    sx={{
+                        width:'60vw',
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        justifyContent:'start',
+                        padding:1,
+                        gap:'2.5vw',
+                        pt:'3vw',
+                    }}>
                         {filteredData.map((box, index) => (
                             <Box
                                 key={index}

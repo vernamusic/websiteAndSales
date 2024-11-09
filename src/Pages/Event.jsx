@@ -1,7 +1,8 @@
 import React from 'react';
 import {Box} from '@mui/material';
 import PartnerBox from '../components/event/PartnerBox.jsx';
-
+import ContactBox from '../components/event/ContactBox.jsx';
+import PicSlider from '../components/event/PicSlider.jsx';
 function Event () {
     return (
         <Box
@@ -11,6 +12,8 @@ function Event () {
             width:'100%'
         }}>
             <PartnerBox />
+            <PicSlider />
+            <ContactBox />
         </Box>
     );
 };

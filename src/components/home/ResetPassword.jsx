@@ -29,11 +29,11 @@ const ResetPasswordDialog = ({ open, onClose, token }) => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [passwordFocused, setPasswordFocused] = useState(false);
+    const [confirmPasswordFocused, setConfirmPasswordFocused] = useState(false);
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [snackbarSeverity, setSnackbarSeverity] = useState('error');
-    const [passwordFocused, setPasswordFocused] = useState(false);
-    const [confirmPasswordFocused, setConfirmPasswordFocused] = useState(false);
 
     const handleConfirm = () => {
         if (password !== confirmPassword) {
@@ -160,16 +160,7 @@ const ResetPasswordDialog = ({ open, onClose, token }) => {
                                 borderWidth: '2px',
                             },
                         }}
-                        endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                    onClick={() => setShowPassword(!showPassword)}
-                                    edge="end"
-                                >
-                                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                            </InputAdornment>
-                        }
+
                         aria-label="Password"
                     />
                 </FormControl>
@@ -202,16 +193,7 @@ const ResetPasswordDialog = ({ open, onClose, token }) => {
                                 borderWidth: '2px',
                             },
                         }}
-                        endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                                    edge="end"
-                                >
-                                    {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                            </InputAdornment>
-                        }
+
                         aria-label="Confirm Password"
                     />
                 </FormControl>

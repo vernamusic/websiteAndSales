@@ -57,27 +57,29 @@ const imageContainerStyle = {
     justifyContent: 'center',
     alignItems: 'center'
 }
-const Allinonecard = ({ data }) => {
-    console.log(data);
-
+const Allinonecard = ({ data }) => { 
     return (
         <ThemeProvider theme={theme}>
             <Box
                 display="flex"
                 flexDirection="column"
                 sx={{
+
                     maxWidth: '100vw',
                     justifyItems: 'center',
                     alignItems: 'center',
                     mb: '-2.5vw',
+
                 }}
             >
                 <Box
                     display="flex"
                     flexWrap="wrap"
+
                     justifyContent="center"
                     sx={{
                         gap: '1.8vw',
+
                         maxWidth: '70vw',
                     }}
                 >
@@ -156,10 +158,10 @@ const Allinonecard = ({ data }) => {
                                             borderTop: '1px solid red',
                                             borderRadius: '100px',
                                             border: '1px dashed #8AE6DE',
-                                            p:'10px',
-                                            display:'flex',
-                                            justifyContent:'center',
-                                            alignItems:'center'
+                                            p: '10px',
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center'
 
                                         }}
                                     >
