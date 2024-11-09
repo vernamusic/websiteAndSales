@@ -148,7 +148,7 @@ const Allinonecard = ({ data }) => {
                                     width: "100%",
                                     zIndex: 2,
                                     justifyItem: "center",
-                                }}
+                                }} 
                             >
                                 <Box
                                     sx={imageContainerStyle}
