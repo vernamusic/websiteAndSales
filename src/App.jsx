@@ -8,21 +8,16 @@ import { AuthProvider } from './AuthContext.jsx';
 import "@fontsource/lato";
 import './app.css';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import ScrollToTop from './ScrollToTop.jsx';
 
 const App = () => {
     return (
         <Router>
             <AuthProvider>
-                <Box>
-                    <Box>
-                        <Navbar />
-                    </Box>
-                    <Box>
-                        <AppRoutes />
-                    </Box>
+                    <ScrollToTop />
+                    <Navbar />
+                    <AppRoutes />
                     <Footer />
-                </Box>
             </AuthProvider>
         </Router>
     );
