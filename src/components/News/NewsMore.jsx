@@ -106,6 +106,7 @@ const NewsCard = () => {
             />
             <Box
                 sx={{
+                    mb:5,
                     color: 'white',
                     height: 'auto',
                     position: 'relative',
@@ -196,13 +197,14 @@ const NewsCard = () => {
                             {moment(newsData.created_at).format('ddd MMMM D, YYYY')}
                         </Typography>
                     </Box>
-                    <Box sx={{ mb: { xs: 9, sm: 10, md: 13, lg: 15, xl: 20 }, }}>
-                        <Typography gutterBottom sx={{ ...theme.typography.h6, pl: 1, mb: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 }, textAlign: 'left', mt: { xs: 3, sm: 4, md: 5, lg: 7, xl: 10 } }}>
+                    <Box sx={{ mb: { xs: 4, sm: 5, md: 6, lg: 8 }, }}>
+                        <Typography gutterBottom sx={{ ...theme.typography.h6, pl: 1, mb: { xs: 2, sm: 2, md: 3, lg: 4, xl: 6 }, textAlign: 'left', mt: { xs: 3, sm: 4, md: 5, lg: 7, xl: 10 } }}>
                             Related News:
                         </Typography>
-                        <Newscard data={newsData.related_news} />
                     </Box>
                 </Box>
+                <Newscard data={newsData.related_news.slice(0, 4)} />
+
             </Box>
         </ThemeProvider>
     );

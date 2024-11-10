@@ -3,6 +3,7 @@ import { Box, Typography, Button, createTheme } from '@mui/material';
 import background from '../../assets/Watch-BG1.jfif';
 import { ThemeProvider } from "@mui/material/styles";
 import { Link } from "react-router-dom";
+import ContactDialog from './ContactDialog';
 
 const theme = createTheme({
     typography: {
@@ -33,6 +34,15 @@ const theme = createTheme({
 });
 
 const Home = () => {
+    const [dialogOpen, setDialogOpen] = useState(false);
+
+    const handleOpenDialog = () => {
+        setDialogOpen(true);
+    };
+
+    const handleCloseDialog = () => {
+        setDialogOpen(false);
+    };
 
     return (
         <ThemeProvider theme={theme}>
@@ -76,8 +86,6 @@ const Home = () => {
                     <Box sx={{ display: 'flex', gap: '0.78vw', marginTop: '1.56vw',}}>
                         <Button
                             variant="outlined"
-                            component={Link}
-                            to="/signup"
                             sx={{
                                 padding:0,
                                 minWidth:0,
@@ -91,6 +99,7 @@ const Home = () => {
                                 textTransform: 'none',
                                 '&:hover': {},
                             }}
+                            onClick={handleOpenDialog}
                             disableRipple
                         >
                             Contact Us
@@ -118,6 +127,7 @@ const Home = () => {
                         >
                             Buy
                         </Button>
+                        <ContactDialog open={dialogOpen} onClose={handleCloseDialog} />
                     </Box>
                 </Box>
             </Box>

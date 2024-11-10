@@ -56,15 +56,15 @@ const customTheme = createTheme({
 });
 
 const howData = [
-    { title: 'ADSCC', description: "Development and Customer", image: Adscc ,Category: "Development",link:'https://www.example.com/' },
-    { title: 'CHUV', description: "Development and Customer", image: CHUV ,Category: "Development",link:'https://www.example.com/'},
-    { title: 'YAS', description: "Development and Customer", image: yas ,Category: "Development",link:'https://www.example.com/'},
-    { title: 'HUG', description: "Development and Customer", image: hug ,Category: "Development",link:'https://www.example.com/'},
-    { title: 'Santa Maria Lisbon', description: "Development and Customer", image: santamaria ,Category: "Development",link:'https://www.example.com/'},
-    { title: 'VAUD', description: "Government support", image: vaud ,Category: "Financial",link:'https://www.example.com/'},
-    { title: 'Gilomen', description: "Financial support", image: gilomen ,Category: "Financial",link:'https://www.example.com/'},
-    { title: 'Analog Devices', description: "Technological", image: analogdevices ,Category: "Technological",link:'https://www.example.com/'},
-    { title: 'Microsoft Azure', description: "Technological", image: azure ,Category: "Technological",link:'https://www.example.com/'},
+    { title: 'ADSCC', description: "Development and Customer", image: Adscc ,Category: "Development",link:'https://adscc.ae/' },
+    { title: 'CHUV', description: "Development and Customer", image: CHUV ,Category: "Development",link:'https://www.chuv.ch/fr/neurologie/nlg-home/'},
+    { title: 'YAS', description: "Development and Customer", image: yas ,Category: "Development",link:'https://yashealthcare.ae/services/'},
+    { title: 'HUG', description: "Development and Customer", image: hug ,Category: "Development",link:'https://www.hug.ch/'},
+    { title: 'Santa Maria Lisbon', description: "Development and Customer", image: santamaria ,Category: "Development",link:'https://www.ulssm.min-saude.pt/'},
+    { title: 'VAUD', description: "Financial support", image: vaud ,Category: "Financial",link:'https://www.myvaud.ch/en/'},
+    { title: 'Gilomen', description: "Financial support", image: gilomen ,Category: "Financial",link:'https://www.fiduciaire-gilomen.ch/'},
+    { title: 'Analog Devices', description: "Technological", image: analogdevices ,Category: "Technological",link:'https://www.analog.com/en/index.html'},
+    { title: 'Microsoft Azure', description: "Technological", image: azure ,Category: "Technological",link:'https://azure.microsoft.com/en-ca/'},
 ];
 
 const GroupButton = () => {

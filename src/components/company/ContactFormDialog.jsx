@@ -114,11 +114,11 @@ const ContactFormDialog = ({ open, onClose }) => {
                 fullWidth
                 PaperProps={{
                     style: {
-                        maxWidth: '528px',
+                        maxWidth: '481px',
                         backgroundColor: theme.palette.background.paper,
                         color: theme.palette.text.primary,
                         borderRadius: '15px',
-                        padding: 16,
+                        padding: 0,
                     },
                 }}
             >
@@ -135,7 +135,7 @@ const ContactFormDialog = ({ open, onClose }) => {
                     </IconButton>
                 </DialogTitle>
 
-                <DialogContent sx={{ padding: '24px 70px', overflow: 'hidden' }}>
+                <DialogContent sx={{ padding: '36px 50px', overflow: 'hidden' }}>
                     {errorMessage && <Typography color="error">{errorMessage}</Typography>}
                     <Typography variant="subtitle2" align="center" gutterBottom sx={{ mb: 4 }}>
                         Please fill this form in decent manner
@@ -147,7 +147,7 @@ const ContactFormDialog = ({ open, onClose }) => {
                                 name="first_name"
                                 placeholder="First name"
                                 variant="outlined"
-                                margin="dense"
+                                
                                 value={formData.first_name}
                                 onChange={handleInputChange}
                                 InputProps={{ style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626' } }}
@@ -158,7 +158,7 @@ const ContactFormDialog = ({ open, onClose }) => {
                                 name="last_name"
                                 placeholder="Last name"
                                 variant="outlined"
-                                margin="dense"
+                                
                                 value={formData.last_name}
                                 onChange={handleInputChange}
                                 InputProps={{ style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626' } }}
@@ -171,7 +171,7 @@ const ContactFormDialog = ({ open, onClose }) => {
                                 name="email"
                                 placeholder="Enter your email"
                                 variant="outlined"
-                                margin="dense"
+                                
                                 value={formData.email}
                                 onChange={handleInputChange}
                                 InputProps={{ style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626' } }}
@@ -184,7 +184,7 @@ const ContactFormDialog = ({ open, onClose }) => {
                                 name="phone_number"
                                 placeholder="Enter your number"
                                 variant="outlined"
-                                margin="dense"
+                                
                                 value={formData.phone_number}
                                 onChange={handleInputChange}
                                 InputProps={{ style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626' } }}
@@ -197,7 +197,7 @@ const ContactFormDialog = ({ open, onClose }) => {
                                 name="subject"
                                 placeholder="Enter the subject"
                                 variant="outlined"
-                                margin="dense"
+                                
                                 value={formData.subject}
                                 onChange={handleInputChange}
                                 InputProps={{ style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626' } }}
@@ -210,9 +210,8 @@ const ContactFormDialog = ({ open, onClose }) => {
                                 name="message"
                                 placeholder="Message"
                                 variant="outlined"
-                                margin="dense"
                                 multiline
-                                rows={4}
+                                rows={3.5}
                                 value={formData.message}
                                 onChange={handleInputChange}
                                 InputProps={{ style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626' } }}
@@ -228,9 +227,9 @@ const ContactFormDialog = ({ open, onClose }) => {
                         variant="contained"
                         onClick={handleSubmit}
                         sx={{
-                            width: '80%',
+                            width: '381px',
                             minHeight: '50.82px',
-                            mb: 4,
+                            mb: 6,
                             backgroundColor: theme.palette.primary.main,
                             '&:hover': { backgroundColor: theme.palette.primary.main },
                             borderRadius: '4px',
