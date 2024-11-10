@@ -99,7 +99,7 @@ const NewsCard = () => {
                     height: '740px',
                     position: 'relative',
                     backgroundImage: `url(${newsData.picture})`,
-                    backgroundSize: 'fit',
+                    backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
                 }}
