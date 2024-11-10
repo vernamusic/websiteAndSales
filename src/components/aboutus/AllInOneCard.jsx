@@ -11,17 +11,15 @@ const theme = createTheme({
     typography: {
         h6: {
             fontFamily: 'Lato',
-            fontSize: '0.94vw',
+            fontSize: '0.74vw',
             color: "rgba(191, 191, 191, 1)",
-            letterSpacing: '0.4px',
-            lineHeight: 'normal',
+            lineHeight: '1vw',
         },
         h3: {
             fontFamily: 'Lato',
             fontWeight: 700,
             fontSize: '1.2889vw',
             color: "#FFFFFF",
-            letterSpacing: '0.4px',
         },
         button: {
             fontFamily: 'Lato',
@@ -34,7 +32,6 @@ const theme = createTheme({
             fontWeight: 400,
             fontSize: '0.94vw',
             color: "#FFFFFF",
-            letterSpacing: '0.4px',
         },
     },
 });
@@ -87,7 +84,7 @@ const Allinonecard = ({ data }) => {
                                 flexDirection: "column",
                                 borderRadius: '0.83vw',
                                 width: '14.58vw',
-                                height: '19.79vw',
+                                height: '20vw',
                                 py: '0vw',
                                 px: '1.25vw',
                                 boxSizing: 'border-box',
@@ -186,7 +183,7 @@ const Allinonecard = ({ data }) => {
                                         sx={{
                                             ...theme.typography.h1,
                                             textAlign: "center",
-                                            fontSize: { xs: '14px', sm: '14.22px', md: '16px', lg: '18px' }
+
                                         }}
                                     >
                                         {box.full_name}
@@ -206,7 +203,7 @@ const Allinonecard = ({ data }) => {
                                         sx={{
                                             ...theme.typography.button,
                                             color: '#8AE6DE',
-                                            fontSize: { xs: '12.64px', sm: '13px', md: '14.22px', lg: '16px' },
+
                                             textAlign: "center",
                                             fontweight: 500,
                                             lineHeight: '140%',
@@ -230,7 +227,6 @@ const Allinonecard = ({ data }) => {
                                     <Typography
                                         sx={{
                                             ...theme.typography.h6,
-                                            fontSize: { xs: '12.64px', md: '14px' },
                                             fontWeight: 400,
                                             color: '#d9d9d9',
                                             lineHeight: '20px',
