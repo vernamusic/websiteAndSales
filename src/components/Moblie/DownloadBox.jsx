@@ -114,7 +114,7 @@ const Home = () => {
                         <Button
                             variant="contained"
                             component={Link}
-                            to="/signup"
+                            to="/media/applications/files/Vitruvian_Shield_Production_Release_1.1.6.apk"
                             sx={{
                                 padding:0,
                                 minWidth:0,
