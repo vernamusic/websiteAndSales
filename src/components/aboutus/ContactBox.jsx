@@ -116,7 +116,7 @@ const ContactBox = () => {
                         }}
                         disableRipple
                     >
-                        Read More
+                        Contact Us
                     </Button>
                     <ContactFormDialog3 open={openDialog} onClose={handleCloseDialog} />
                 </Box>
