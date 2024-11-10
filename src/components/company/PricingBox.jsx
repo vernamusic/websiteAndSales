@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import {React, useEffect, useState} from 'react';
 import {
     Box,
     Typography,
@@ -111,38 +111,47 @@ const PricingBox = () => {
         }));
     };
 
-    // Labels for checkboxes under CTMS and RPM plans
-    const labelsCTMS = [
-        "Geo tracking",
-        "Remote patient monitoring",
-        "Staff management",
-        "Electronic document management",
-        "Feedback",
-        "Adverse event reporting",
-        "Video consultation",
-        "Site management",
-    ];
+    const [labelsRPM, setLabelsRPM] = useState([]);
+    const [labelsCTMS, setLabelsCTMS] = useState([]);
 
-    const labelsRPM = [
-        "ECG",
-        "Emergency call",
-        "Geo tracking",
-        "Electronic data management",
-        "e-Consent",
-        "Adverse event reporting",
-        "Video consultation",
-        "Vital signs",
-    ];
+    useEffect(() => {
+        const fetchLabelsRPM = async () => {
+            try {
+                const response = await axios.get('https://site.vitruvianshield.com/api/v1/rpm-features');
+                const labels = response.data;
+                setLabelsRPM(labels);
+            } catch (error) {
+                console.error('Error fetching labelsRPM:', error);
+            }
+        };
 
-    // States to track checkbox selection and selected features
+        fetchLabelsRPM();
+    }, []);
+
+    useEffect(() => {
+        const fetchLabelsCTMS = async () => {
+            try {
+                const response = await axios.get('https://site.vitruvianshield.com/api/v1/ctms-features');
+                const labels = response.data;
+                setLabelsCTMS(labels);
+            } catch (error) {
+                console.error('Error fetching labelsCTMS:', error);
+            }
+        };
+
+        fetchLabelsCTMS();
+    }, []);
+
+
+    const { authToken } = useAuth();
+    const Token = localStorage.getItem("authToken") || authToken;
+
+
     const [checkedCTMS, setCheckedCTMS] = useState(new Array(labelsCTMS.length).fill(false));
     const [checkedRPM, setCheckedRPM] = useState(new Array(labelsRPM.length).fill(false));
     const [selectedFeaturesCTMS, setSelectedFeaturesCTMS] = useState([]);
     const [selectedFeaturesRPM, setSelectedFeaturesRPM] = useState([]);
-    const { authToken } = useAuth();
-    const Token = localStorage.getItem("authToken") || authToken;
 
-    // Handle checkbox changes
     const handleCheckboxChange = (index, label, type) => {
         const updatedChecked = type === "ctms" ? [...checkedCTMS] : [...checkedRPM];
         updatedChecked[index] = !updatedChecked[index];
@@ -150,27 +159,23 @@ const PricingBox = () => {
         if (type === "ctms") {
             setCheckedCTMS(updatedChecked);
             setSelectedFeaturesCTMS((prev) =>
-                updatedChecked[index] ? [...prev, label] : prev.filter((feature) => feature !== label)
+                updatedChecked[index]
+                    ? [...prev, index]
+                    : prev.filter((feature) => feature !== index )
             );
         } else {
             setCheckedRPM(updatedChecked);
             setSelectedFeaturesRPM((prev) =>
-                updatedChecked[index] ? [...prev, label] : prev.filter((feature) => feature !== label)
+                updatedChecked[index]
+                    ? [...prev, index ]
+                    : prev.filter((feature) => feature !== index )
             );
         }
     };
 
-    // Submit selected features for CTMS plan
     const handleSubmitForCTMS = async () => {
         const payload = {
-            geo_tracking: selectedFeaturesCTMS.includes("Geo tracking"),
-            remote_patient_monitoring: selectedFeaturesCTMS.includes("Remote patient monitoring"),
-            staff_management: selectedFeaturesCTMS.includes("Staff management"),
-            electronic_document_management: selectedFeaturesCTMS.includes("Electronic document management"),
-            feedback: selectedFeaturesCTMS.includes("Feedback"),
-            adverse_event_reporting: selectedFeaturesCTMS.includes("Adverse event reporting"),
-            video_consultation: selectedFeaturesCTMS.includes("Video consultation"),
-            site_management: selectedFeaturesCTMS.includes("Site management"),
+            fields: selectedFeaturesCTMS,
         };
 
         try {
@@ -187,15 +192,8 @@ const PricingBox = () => {
 
     // Submit selected features for RPM plan
     const handleSubmitForRPM = async () => {
-        const payload = {
-            geo_tracking: selectedFeaturesRPM.includes("Geo tracking"),
-            remote_patient_monitoring: selectedFeaturesRPM.includes("Remote patient monitoring"),
-            staff_management: selectedFeaturesRPM.includes("Staff management"),
-            electronic_document_management: selectedFeaturesRPM.includes("Electronic document management"),
-            feedback: selectedFeaturesRPM.includes("Feedback"),
-            adverse_event_reporting: selectedFeaturesRPM.includes("Adverse event reporting"),
-            video_consultation: selectedFeaturesRPM.includes("Video consultation"),
-            site_management: selectedFeaturesRPM.includes("Site management"),
+            const payload = {
+                fields: selectedFeaturesRPM,
         };
 
         try {
@@ -307,13 +305,13 @@ const PricingBox = () => {
                                                 },
                                             }}
                                         >
-                                            {labelsCTMS.map((label, index) => (
+                                            {labelsCTMS.map((label) => (
                                                 <FormControlLabel
-                                                    key={index}
+                                                    key={label.id}
                                                     control={
                                                         <Checkbox
-                                                            checked={checkedCTMS[index]}
-                                                            onChange={() => handleCheckboxChange(index, label, 'ctms')}
+                                                            checked={checkedCTMS[label.id]}
+                                                            onChange={() => handleCheckboxChange(label.id, label.name, 'ctms')}
                                                             sx={{
 
                                                                 color: '#BFBFBF',
@@ -327,7 +325,7 @@ const PricingBox = () => {
                                                             }}
                                                         />
                                                     }
-                                                    label={<Typography variant="body1">{label}</Typography>}
+                                                    label={<Typography variant="body1">{label.name}</Typography>}
                                                     sx={{
                                                         '& .MuiFormControlLabel-root': {
                                                             border: '1px solid #4CAF50',
@@ -464,13 +462,13 @@ const PricingBox = () => {
                                                 },
                                             }}
                                         >
-                                            {labelsRPM.map((label, index) => (
+                                            {labelsRPM.map((label) => (
                                                 <FormControlLabel
-                                                    key={index}
+                                                    key={label.id}
                                                     control={
                                                         <Checkbox
-                                                            checked={checkedRPM[index]}
-                                                            onChange={() => handleCheckboxChange(index, label, 'rpm')}
+                                                            checked={checkedRPM[label.id]}
+                                                            onChange={() => handleCheckboxChange(label.id, label.name, 'rpm')}
                                                             sx={{
 
                                                                 color: '#BFBFBF',
@@ -484,7 +482,7 @@ const PricingBox = () => {
                                                             }}
                                                         />
                                                     }
-                                                    label={<Typography variant="body1">{label}</Typography>}
+                                                    label={<Typography variant="body1">{label.name}</Typography>}
                                                     sx={{
                                                         '& .MuiFormControlLabel-root': {
                                                             border: '1px solid #4CAF50',
