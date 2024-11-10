@@ -76,7 +76,7 @@ const SignUpDialog = ({ open, onClose, email: initialEmail = null }) => {
                     <VerificationEmailDialog
                         email={email}
                         password={password}
-                        onResend={handleResendVerificationEmail}
+                        onResend={() => handleResendVerificationEmail(email)}
                         onBack={handleBackToLogin}
                         onSubmit={handleLoginSuccess}
                     />

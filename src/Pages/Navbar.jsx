@@ -312,8 +312,11 @@ const Navbar = React.memo((props) => {
                             ) : (
                                 <Button
                                     key={page.name}
-                                    component={Link}
-                                    to={page.path}
+                                    onClick={() => {
+                                        if (!page.disabled) {
+                                            window.location.href = page.path;
+                                        }
+                                    }}
                                     disabled={page.disabled}
                                     sx={{
                                         ...navItemStyle,
@@ -334,7 +337,7 @@ const Navbar = React.memo((props) => {
                                 <Avatar
                                     onClick={handleProfileMenuOpen}
                                     size='large'
-                                    sx={{ cursor: 'pointer', width: '3.5vw', height: '3.5vw', mr: '0.5vw' }}
+                                    sx={{ cursor: 'pointer', width: '3vw', height: '3vw', mr: '0.5vw' }}
                                 />
                                 <Menu
                                     anchorEl={anchorElProfile}
@@ -351,7 +354,7 @@ const Navbar = React.memo((props) => {
                                         },
                                     }}
                                 >
-                                    <MenuItem onClick={handleProfileClick}>Profile</MenuItem>
+                                  {/*<MenuItem onClick={handleProfileClick}>Profile</MenuItem>*/}
                                     <MenuItem onClick={handleLogout}>Logout</MenuItem>
                                 </Menu>
                             </>

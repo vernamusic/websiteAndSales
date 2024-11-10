@@ -23,7 +23,7 @@ const proItems = [
         title: "The Mobile Application",
         image: pro1,
         url: '/products/mobile-app',
-        description: "The App monitors the user's health in real time, offering many features that allow the user to configure his/her experience.",
+        description: "Experience a seamless and user-friendly way to share your health data with all the professionals responsible for your aftercare and medical follow-up.",
     },
     {
         id: '2',

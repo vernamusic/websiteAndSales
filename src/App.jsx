@@ -13,9 +13,10 @@ import ScrollToTop from './ScrollToTop.jsx';
 const App = () => {
     return (
         <Router>
+
             <AuthProvider>
-                    <ScrollToTop />
                     <Navbar />
+                <ScrollToTop />
                     <AppRoutes />
                     <Footer />
             </AuthProvider>

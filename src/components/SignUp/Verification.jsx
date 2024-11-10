@@ -136,14 +136,6 @@ const EmailVerification = ({ email, password, onSubmit, onResend, onBack }) => {
             }
         }
     };
-    const handlePaste = (e) => {
-        const pasteData = e.clipboardData.getData('text').slice(0, 6);
-        if (/^\d{6}$/.test(pasteData)) {
-            setCode(pasteData.split(''));
-            inputRefs.current[5].focus();
-        }
-        e.preventDefault();
-    };
 
     const handleSubmit = async () => {
         if (code.length === 6) {
@@ -232,7 +224,6 @@ const EmailVerification = ({ email, password, onSubmit, onResend, onBack }) => {
                             onChange={(e) => handleChange(e, index)}
                             onKeyDown={(e) => handleKeyDown(e, index)}
                             inputRef={(el) => (inputRefs.current[index] = el)}
-                            onPaste={handlePaste}
                             inputProps={{
                                 maxLength: 1,
                                 style: {

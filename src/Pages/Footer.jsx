@@ -92,30 +92,77 @@ const solutionsItems = [
   {
     id: 3,
     title: 'The Smartwatch',
+    link: '/products/smart-watch'
 
   },
   {
     id: 4,
-    title: 'Research API',
+    title: 'Mobile App',
+    link: '/products/mobile-app'
 
   },
   {
     id: 5,
-    title: 'Data & Research',
+    title: 'Research API',
 
   },
   {
     id: 6,
-    title: 'Certifications',
-    link: '/Certifications'
+    title: 'Data & Research',
 
   },
   {
     id: 7,
-    title: 'The problem',
+    title: 'Certifications',
+    link: '/Certifications'
 
   },
 ]//array for solutions data
+
+const aboutItems = [
+  {
+    id: 1,
+    title: 'Our Vision',
+
+  },
+  {
+    id: 2,
+    title: 'Our Team',
+    link: '/about'
+
+  },
+  {
+    id: 3,
+    title: 'Our Partners',
+    link: '/partnership'
+
+  },
+  {
+    id: 4,
+    title: 'Become a Partner',
+    link: '/partnership'
+
+  },
+  {
+    id: 5,
+    title: 'Donations',
+
+  },
+  {
+    id: 6,
+    title: 'Contact Us',
+    link: '/company'
+
+  },
+  {
+    id: 7,
+    title: 'Gallery',
+    link: '/Certifications'
+
+  },
+]//array for solutions data
+
+
 const Footer = () => {
   const navigate = useNavigate()
   return (
@@ -136,8 +183,18 @@ const Footer = () => {
           {/* ABOUT US Box */}
           <Box sx={{ ...commonBoxStyles, width: '11em' }}>
             <Typography gutterBottom variant="h3" marginTop="16px" marginBottom="24px">ABOUT US</Typography>
-            {['Our Vision', 'Our Team', 'Our Partners', 'Become a Partner', 'Donations', 'Contact Us', 'Gallery'].map((text, index) => (
-              <Typography variant="body9" marginTop="5px" key={index}>{text}</Typography>
+            {aboutItems.map((item, index) => (
+                <Typography
+                    variant="body9"
+                    marginTop="5px"
+                    sx={{
+                      cursor: `${item.link ? 'pointer' : 'default'}`
+                    }}
+                    key={index}
+                    onClick={item.link ? () => { window.location.href = item.link } : undefined}
+                >
+                  {item.title}
+                </Typography>
             ))}
           </Box>
 
@@ -154,7 +211,7 @@ const Footer = () => {
                   cursor: `${item.link ? 'pointer' : 'default'}`
                 }}
                 key={index}
-                onClick={item.link ? () => { navigate(`${item.link}`) } : () => { }}
+                onClick={item.link ? () => { window.location.href = item.link } : undefined}
               >
                 {item.title}
               </Typography>
