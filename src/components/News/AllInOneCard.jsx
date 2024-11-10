@@ -67,7 +67,6 @@ const Allinonecard = ({ data }) => {
                 display="flex"
                 justifyContent="center"
                 alignItems="center"
-                width="85.5556vw"
                 margin="0 auto"
             >
                 <Box
@@ -76,7 +75,7 @@ const Allinonecard = ({ data }) => {
                         height: '100%',
                         display: 'flex',
                         flexDirection: 'row',
-                        justifyContent: 'start',
+                        justifyContent: 'center',
                         flexWrap: 'wrap',
                         gap: '40px',
 
