@@ -61,7 +61,7 @@ const ContactFormDialog = ({ open, onClose }) => {
         phone_number: '',
         subject: '',
         message: '',
-        type: 11,
+        type: 14,
     });
     const [errorMessage, setErrorMessage] = useState('');
     const [dialogOpen, setDialogOpen] = useState(false);
@@ -91,7 +91,7 @@ const ContactFormDialog = ({ open, onClose }) => {
                         phone_number: '',
                         subject: '',
                         message: '',
-                        type: 11,
+                        type: 14,
                     });
                     onClose();
                 } else {

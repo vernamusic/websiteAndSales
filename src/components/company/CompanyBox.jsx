@@ -7,8 +7,8 @@ import ContactFormDialog from './ContactFormDialog';
 const theme = createTheme({
     typography: {
         h6: {
-            fontFamily: 'sen',
-            fontSize: '1.04vw',
+            fontFamily: 'Lato',
+            fontSize: { xs: '12.64px', sm: '14px', md: '14.22px', lg: '18px' },
             lineHeight: 'normal',
             letterSpacing: '0.4px',
             color: "#F1F1F1",
@@ -17,7 +17,7 @@ const theme = createTheme({
         h3: {
             fontFamily: 'Lato',
             fontWeight: 700,
-            fontSize: '1.59vw',
+            fontSize: { xs: '20px', sm: '22px', md: '26px', lg: '32px' },
             color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
