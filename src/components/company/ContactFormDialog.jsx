@@ -141,7 +141,7 @@ const ContactFormDialog = ({ open, onClose }) => {
                         Please fill this form in decent manner
                     </Typography>
                     <Box sx={{ maxHeight: '500px', overflowY: 'auto', '&::-webkit-scrollbar': { display: 'none' } }}>
-                        <Box sx={{ display: 'flex', gap: 2 }}>
+                        <Box sx={{ display: 'flex', gap: 1 }}>
                             <TextField
                                 fullWidth
                                 name="first_name"
@@ -165,7 +165,7 @@ const ContactFormDialog = ({ open, onClose }) => {
                                 required
                             />
                         </Box>
-                        <Box mt={2}>
+                        <Box mt={1}>
                             <TextField
                                 fullWidth
                                 name="email"
@@ -178,7 +178,7 @@ const ContactFormDialog = ({ open, onClose }) => {
                                 required
                             />
                         </Box>
-                        <Box mt={2}>
+                        <Box mt={1}>
                             <TextField
                                 fullWidth
                                 name="phone_number"
@@ -191,7 +191,7 @@ const ContactFormDialog = ({ open, onClose }) => {
                                 required
                             />
                         </Box>
-                        <Box mt={2}>
+                        <Box mt={1}>
                             <TextField
                                 fullWidth
                                 name="subject"
@@ -204,7 +204,7 @@ const ContactFormDialog = ({ open, onClose }) => {
                                 required
                             />
                         </Box>
-                        <Box mt={2}>
+                        <Box mt={1}>
                             <TextField
                                 fullWidth
                                 name="message"
