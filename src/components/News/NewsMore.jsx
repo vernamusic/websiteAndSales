@@ -96,11 +96,11 @@ const NewsCard = () => {
             <Box
                 sx={{
                     width: '100vw',
-                    height: '38vw',
+                    height: '740px',
                     position: 'relative',
                     backgroundImage: `url(${newsData.picture})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'top right',
+                    backgroundSize: 'fit',
+                    backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
                 }}
             />
