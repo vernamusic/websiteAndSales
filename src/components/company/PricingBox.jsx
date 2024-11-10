@@ -1,7 +1,18 @@
 import { React, useState } from 'react';
-import { Box, Typography, Button, createTheme, ThemeProvider } from '@mui/material';
+import {
+    Box,
+    Typography,
+    Button,
+    createTheme,
+    ThemeProvider,
+    FormControlLabel,
+    Checkbox,
+    IconButton, Divider
+} from '@mui/material';
 import pricingBG from '../../assets/pricingBG.png';
 import DialogBoxCTMS from './DialogBoxCTMS';
+import {useAuth} from "../../AuthContext.jsx";
+import {Close as CloseIcon} from "@mui/icons-material";
 
 const theme = createTheme({
   typography: {
@@ -80,11 +91,11 @@ const FeatureItem = ({ text }) => (
 );
 
 const PricingBox = () => {
-  const [showDialogBoxCTMS, setShowDialogBoxCTMS] = useState(false);
   const [expanded, setExpanded] = useState({
     ctms: false,
     rpm: false,
   });
+
 
   const handleViewMoreClick = (plan) => {
     setExpanded((prevState) => ({
@@ -99,8 +110,73 @@ const PricingBox = () => {
       [plan]: false,
     }));
   };
+    const labels = [
+        "Select all",
+        "Geo tracking",
+        "Remote patient monitoring",
+        "Staff management",
+        "Electronic document management",
+        "Feedback",
+        "Adverse event reporting",
+        "Video consultation",
+        "Site management"
+    ];
+    const labelsRPM = [
+        "Select all",
+        "Geo tracking",
+        "Remote patient monitoring",
+        "Staff management",
+        "Electronic document management",
+        "Feedback",
+        "Adverse event reporting",
+        "Video consultation",
+        "Site management"
+    ];
+    const [checked, setChecked] = useState(
+        new Array(labels.length).fill(false)
+    );
+    const [selectedFeatures, setSelectedFeatures] = useState([]);
 
-  return (
+    const handleCheckboxChange = (index, label) => {
+        const updatedChecked = [...checked];
+        updatedChecked[index] = !updatedChecked[index];
+        setChecked(updatedChecked);
+
+        if (updatedChecked[index]) {
+            setSelectedFeatures((prev) => [...prev, label]);
+        } else {
+            setSelectedFeatures((prev) => prev.filter((feature) => feature !== label));
+        }
+    };
+
+    const handleSubmit = async () => {
+        const payload = {
+            geo_tracking: selectedFeatures.includes("Geo tracking"),
+            remote_patient_monitoring: selectedFeatures.includes("Remote patient monitoring"),
+            staff_management: selectedFeatures.includes("Staff management"),
+            electronic_document_management: selectedFeatures.includes("Electronic document management"),
+            feedback: selectedFeatures.includes("Feedback"),
+            adverse_event_reporting: selectedFeatures.includes("Adverse event reporting"),
+            video_consultation: selectedFeatures.includes("Video consultation"),
+            site_management: selectedFeatures.includes("Site management"),
+        };
+
+        try {
+            await axios.post('https://site.vitruvianshield.com/api/v1/feature-req', payload, {
+                headers: {
+                    'Authorization': `Bearer ${Token}`
+                }
+            });
+            console.log('Request successfully submitted');
+        } catch (error) {
+            console.error('Error submitting request:', error);
+        }
+    };
+    const { authToken } = useAuth();
+    const Token = localStorage.getItem('authToken') || authToken;
+
+
+    return (
     <ThemeProvider theme={theme}>
       <Box
         mb={6}
@@ -166,27 +242,92 @@ const PricingBox = () => {
               height: { sm: '490px', md: '530px', lg: '560px', xl: '581px' },
             }}
           >
+
             {expanded.ctms ? (
-              // Content when "View More" is clicked for CTMS
-              <Box>
-                <Typography sx={{ ...theme.typography.h6 }}>Features</Typography>
-                <Typography sx={{ ...theme.typography.body1, mt: 1 }}>
-                Select the features you want
-                </Typography>
-                <Button
-                  variant="outlined"
-                  onClick={() => handleGoBackClick('ctms')} // Optional button to toggle back
-                  sx={{
-                    color: '#FFFFFF',
-                    borderColor: '#FFFFFF',
-                    textTransform: 'none',
-                    borderRadius: '5px',
-                    mt: 2,
-                  }}
-                >
-                  Go Back
-                </Button>
-              </Box>
+                <Box sx={{display: 'flex',flexDirection: 'column',mt:-5,ml:-1}}>
+                    <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end',width:'110%' }}>
+                        <IconButton aria-label="close" sx={{ color: '#FFFFFF' }} onClick={() => handleGoBackClick('ctms')}>
+                            <CloseIcon />
+                        </IconButton>
+                    </Box>
+                    <Box sx={{display: 'flex',flexDirection: 'column'}}>
+
+                        <Box>
+                            <Typography sx={{ ...theme.typography.h6,color:'#FFFFFF' }}>Features</Typography>
+                            <Typography sx={{ ...theme.typography.body1, mt: 1 }}>
+                                Select the features you want
+                            </Typography>
+                            <Divider
+                                orientation="horizontal"
+                                flexItem
+                                sx={{borderColor: 'rgba(255, 255, 255, 0.2)', borderStyle: 'dashed',width:'100%',mt:2,}}
+                            />
+                            <Box sx={{display: 'flex',flexDirection: 'row'}}>
+
+                                <Box
+                                    sx={{
+                                        borderRadius: '8px',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        gap: '5px',
+                                        overflow: 'auto',
+                                        maxHeight: '383px',
+                                        '&::-webkit-scrollbar': {
+                                            display: 'none',
+                                        },
+                                    }}
+                                >
+                                    {labels.map((label, index) => (
+                                        label !== "Select all" && (
+                                            <FormControlLabel
+                                                key={index}
+                                                control={
+                                                    <Checkbox
+                                                        checked={checked[index]}
+                                                        onChange={() => handleCheckboxChange(index, label)}
+                                                        sx={{
+
+                                                            color: '#BFBFBF',
+                                                            '&.Mui-checked': {
+                                                                color: '#00C9B7',
+
+                                                            },
+                                                            '&:hover': {
+                                                                backgroundColor: 'transparent',
+                                                            },
+                                                        }}
+                                                    />
+                                                }
+                                                label={<Typography variant="body1">{label}</Typography>}
+                                                sx={{
+                                                    '& .MuiFormControlLabel-root': {
+                                                        border: '1px solid #4CAF50',
+                                                        padding: '5px',
+                                                        borderRadius: '4px',
+                                                    },
+                                                }}
+                                            />
+                                        )
+                                    ))}
+                                </Box>
+                            </Box>
+
+                        </Box>
+                        <Button
+                            variant="contained"
+                            fullWidth
+                            onClick={handleSubmit}
+                            sx={{
+                                backgroundColor: '#B50304',
+                                textTransform: 'none',
+                                borderRadius: '5px',
+                            }}
+                        >
+                            Buy Plan
+                        </Button>
+                    </Box>
+                </Box>
+
             ) : (
               <>
                 <Box>
@@ -202,7 +343,7 @@ const PricingBox = () => {
                     paddingLeft: '1rem',
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: { sm: 0, md: 0.5, lg: 1 },
+                    gap: { sm: 0, md: 0.5, lg: 1.5 },
                   }}
                 >
                   <FeatureItem text="Remote patient monitoring" />
@@ -261,26 +402,89 @@ const PricingBox = () => {
             }}
           >
             {expanded.rpm ? (
-              // Content when "View More" is clicked for RPM
-              <Box>
-                <Typography sx={{ ...theme.typography.h6 }}>Expanded Content</Typography>
-                <Typography sx={{ ...theme.typography.body1, mt: 1 }}>
-                  Here you can add more detailed information or other components as needed.
-                </Typography>
-                <Button
-                  variant="outlined"
-                  onClick={() => handleGoBackClick('rpm')}
-                  sx={{
-                    color: '#FFFFFF',
-                    borderColor: '#FFFFFF',
-                    textTransform: 'none',
-                    borderRadius: '5px',
-                    mt: 2,
-                  }}
-                >
-                  Go Back
-                </Button>
-              </Box>
+                        <Box sx={{display: 'flex',flexDirection: 'column',mt:-5,ml:-1}}>
+                            <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end',width:'110%' }}>
+                                <IconButton aria-label="close" sx={{ color: '#FFFFFF' }} onClick={() => handleGoBackClick('rpm')}>
+                                    <CloseIcon />
+                                </IconButton>
+                            </Box>
+                        <Box sx={{display: 'flex',flexDirection: 'column'}}>
+
+                            <Box>
+                                <Typography sx={{ ...theme.typography.h6,color:'#FFFFFF'  }}>Features</Typography>
+                                <Typography sx={{ ...theme.typography.body1, mt: 1 }}>
+                                    Select the features you want
+                                </Typography>
+                                <Divider
+                                    orientation="horizontal"
+                                    flexItem
+                                    sx={{borderColor: 'rgba(255, 255, 255, 0.2)', borderStyle: 'dashed',width:'100%',mt:2,}}
+                                />
+                            <Box sx={{display: 'flex',flexDirection: 'row'}}>
+
+                                    <Box
+                                        sx={{
+                                            borderRadius: '8px',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            gap: '5px',
+                                            overflow: 'auto',
+                                            maxHeight: '383px',
+                                            '&::-webkit-scrollbar': {
+                                                display: 'none',
+                                            },
+                                        }}
+                                    >
+                                        {labels.map((label, index) => (
+                                            label !== "Select all" && (
+                                                <FormControlLabel
+                                                    key={index}
+                                                    control={
+                                                        <Checkbox
+                                                            checked={checked[index]}
+                                                            onChange={() => handleCheckboxChange(index, label)}
+                                                            sx={{
+
+                                                                color: '#BFBFBF',
+                                                                '&.Mui-checked': {
+                                                                    color: '#00C9B7',
+
+                                                                },
+                                                                '&:hover': {
+                                                                    backgroundColor: 'transparent',
+                                                                },
+                                                            }}
+                                                        />
+                                                    }
+                                                    label={<Typography variant="body1">{label}</Typography>}
+                                                    sx={{
+                                                        '& .MuiFormControlLabel-root': {
+                                                            border: '1px solid #4CAF50',
+                                                            padding: '5px',
+                                                            borderRadius: '4px',
+                                                        },
+                                                    }}
+                                                />
+                                            )
+                                        ))}
+                                    </Box>
+                                </Box>
+
+                            </Box>
+                            <Button
+                                variant="contained"
+                                fullWidth
+                                onClick={handleSubmit}
+                                sx={{
+                                    backgroundColor: '#B50304',
+                                    textTransform: 'none',
+                                    borderRadius: '5px',
+                                }}
+                            >
+                                Buy Plan
+                            </Button>
+                        </Box>
+                        </Box>
             ) : (
               <>
                 <Box>
@@ -296,7 +500,7 @@ const PricingBox = () => {
                     paddingLeft: '1rem',
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: { sm: 0, md: 0.5, lg: 1 },
+                    gap: { sm: 0, md: 0.5, lg: 1.5 },
                   }}
                 >
                   <FeatureItem text="Electronic data management" />
