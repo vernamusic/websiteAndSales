@@ -203,7 +203,8 @@ const NewsCard = () => {
                         </Typography>
                     </Box>
                 </Box>
-                        <Newscard data={newsData.related_news} />
+                <Newscard data={newsData.related_news.slice(0, 4)} />
+
             </Box>
         </ThemeProvider>
     );
