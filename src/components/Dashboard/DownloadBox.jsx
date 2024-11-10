@@ -110,7 +110,7 @@ const Home = () => {
                             <Button
                                 variant="contained"
                                 component={Link}
-                                to="https://dev.vitruvianshield.com/"
+                                to="https://researchers.vitruvianshield.com/"
                                 sx={{
                                     padding:0,
                                     minWidth:0,
