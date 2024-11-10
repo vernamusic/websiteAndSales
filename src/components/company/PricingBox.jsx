@@ -1,17 +1,16 @@
 import React from 'react';
 import { Box, Typography, Button, createTheme, ThemeProvider } from '@mui/material';
-import DialogBoxCTMS from './DialogBoxCTMS';
-import DialogBoxRPM from './DoalogBoxRPM';
+import pricingBG from '../../assets/pricingBG.png';
 
 const theme = createTheme({
   typography: {
     h6: {
       fontFamily: 'Lato',
       fontWeight: 700,
-      fontSize: { sm: '16px', md: '18px', lg: '1.2vw' },
-      color: '#FFFFFF',
+      fontSize: { sm: '16px', md: '18px', lg: '22px' },
+      color: '#B0EEE9',
       letterSpacing: '0.4px',
-      lineHeight: 'normal',
+      lineHeight: '22px',
     },
     h3: {
       fontFamily: 'Lato',
@@ -69,7 +68,7 @@ const FeatureItem = ({ text }) => (
         transform: 'translateY(-50%)',
         width: '8px',
         height: '8px',
-        backgroundColor: 'red',
+        backgroundColor: '#00C9B7',
         borderRadius: '50%',
       }}
     ></span>
@@ -80,9 +79,20 @@ const FeatureItem = ({ text }) => (
 );
 
 const PricingBox = () => {
+
+
   return (
     <ThemeProvider theme={theme}>
-      <Box mb={6}>
+      <Box mb={6}
+        sx={{
+          display:'flex',
+          flexDirection:'column',
+          justifyContent:'center',
+          alignItems:'center',
+          width:'100%',
+          backgroundImage: `linear-gradient(180deg, rgba(31, 31, 31, 0.9) 0%, rgba(31, 31, 31, 0.72) 100%), url(${pricingBG})`,
+          backgroundSize: 'cover',
+        }}>
         <Box
           display="flex"
           flexDirection="column"
@@ -114,25 +124,29 @@ const PricingBox = () => {
 
         {/* Pricing Cards */}
         <Box
-          display="flex"
-          flexDirection={{ sm: 'row' }}
-          justifyContent="center"
-          marginBottom={10}
-          sx={{gap:{sm:5,md:10}}}
+          sx={{
+            gap:{sm:5,md:5},
+            width:'848px',
+            height:'581px',
+            justifyContent:'center',
+            alignItems:'center',
+            mb:10,
+            display:'flex',
+            flexDirection:'row'}}
         >
           {/* CTMS Card */}
           <Box
             sx={{
-              backgroundColor: '#141414',
+              backgroundColor: 'rgba(38, 38, 38, 1)',
+              boxShadow: '0px 4px 28px 0px rgba(0, 0, 0, 0.18)',
               borderRadius: '15px',
               padding: 6,
-              boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.2)',
               display: 'flex',
               flexDirection: 'column',
               border: '1px solid #FFFFFF33',
               flex: '1 1',
-              width: {sm:'330px',md:'350px',lg:'380px',xl:'405px'},
-              height: { sm: '490px', md: '530px', lg: '560px', xl: '590px' },
+              width: {sm:'330px',md:'350px',lg:'380px',xl:'404px'},
+              height: { sm: '490px', md: '530px', lg: '560px', xl: '581px' },
             }}
           >
             <Box>
@@ -166,7 +180,6 @@ const PricingBox = () => {
               >
                 More
               </Button>
-              <DialogBoxCTMS>
                 <Button
                   variant="contained"
                   fullWidth
@@ -178,7 +191,6 @@ const PricingBox = () => {
                 >
                   Buy
                 </Button>
-              </DialogBoxCTMS>
             </Box>
 
           </Box>
@@ -186,16 +198,16 @@ const PricingBox = () => {
           {/* RPM Card */}
           <Box
             sx={{
-              backgroundColor: '#141414',
+              backgroundColor: 'rgba(38, 38, 38, 1)',
+              boxShadow: '0px 4px 28px 0px rgba(0, 0, 0, 0.18)',
               borderRadius: '15px',
               padding: 6,
-              boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.2)',
               display: 'flex',
               flexDirection: 'column',
               border: '1px solid #FFFFFF33',
               flex: '1 1',
-              width: {sm:'330px',md:'350px',lg:'380px',xl:'405px'},
-              height: { sm: '490px', md: '530px', lg: '560px', xl: '590px' },
+              width: {sm:'330px',md:'350px',lg:'380px',xl:'404px'},
+              height: { sm: '490px', md: '530px', lg: '560px', xl: '581px' },
             }}
           >
             <Box>
@@ -229,7 +241,6 @@ const PricingBox = () => {
               >
                 More
               </Button>
-              <DialogBoxRPM>
                 <Button
                   variant="contained"
                   fullWidth
@@ -241,9 +252,10 @@ const PricingBox = () => {
                 >
                   Buy
                 </Button>
-              </DialogBoxRPM>
             </Box>
           </Box>
+
+
         </Box>
       </Box>
     </ThemeProvider>
