@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Typography, Button, Box } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import backgroundImage from '/src/assets/companypic1.jpg';
 import ContactFormDialog from './ContactFormDialog';
+import backgroundImage2 from '/src/assets/companypic1.jpg';
+import backgroundImage1 from '/src/assets/companypic2.png';
+import backgroundImage3 from '/src/assets/companypic3.png';
 
 const theme = createTheme({
     typography: {
@@ -34,8 +36,18 @@ const theme = createTheme({
     },
 });
 
+const images = [backgroundImage1, backgroundImage2, backgroundImage3];
+
 const CompanyBox = () => {
     const [dialogOpen, setDialogOpen] = useState(false);
+    const [activeImage, setActiveImage] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setActiveImage((prev) => (prev + 1) % images.length);
+        }, 10000); // Change every 10 seconds
+        return () => clearInterval(interval);
+    }, []);
 
     const handleOpenDialog = () => {
         setDialogOpen(true);
@@ -45,15 +57,20 @@ const CompanyBox = () => {
         setDialogOpen(false);
     };
 
+    const handleCircleClick = (index) => {
+        setActiveImage(index);
+    };
+
     return (
         <ThemeProvider theme={theme}>
             <Box
                 sx={{
                     width: '100vw',
+                    height: '100vh',
                     position: 'relative',
-                    backgroundImage: `linear-gradient(90deg, rgba(0, 0, 0, 0.738) 14.54%, rgba(0, 0, 0, 0.686) 23.41%, rgba(0, 0, 0, 0.584) 40.86%, rgba(0, 0, 0, 0.164) 100%), url(${backgroundImage})`,
+                    backgroundImage: `linear-gradient(90deg, rgba(0, 0, 0, 0.738) 14.54%, rgba(0, 0, 0, 0.686) 23.41%, rgba(0, 0, 0, 0.584) 40.86%, rgba(0, 0, 0, 0.164) 100%), url(${images[activeImage]})`,
                     backgroundSize: 'cover',
-                    backgroundPosition: 'top right',
+                    backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
                 }}
             >
@@ -100,6 +117,23 @@ const CompanyBox = () => {
                     >
                         Contact Us
                     </Button>
+                </Box>
+
+                {/* Indicator Circles */}
+                <Box sx={{ position: 'absolute', bottom: 40, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 1 }}>
+                    {images.map((_, index) => (
+                        <Box
+                            key={index}
+                            onClick={() => handleCircleClick(index)}
+                            sx={{
+                                width: 10,
+                                height: 10,
+                                borderRadius: '50%',
+                                backgroundColor: activeImage === index ? 'red' : 'gray',
+                                cursor: 'pointer', // Cursor change for better UX
+                            }}
+                        />
+                    ))}
                 </Box>
 
                 {/* ContactFormDialog */}

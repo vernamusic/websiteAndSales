@@ -10,8 +10,8 @@ import linkedin from "../../assets/inIcon.svg";
 const theme = createTheme({
     typography: {
         h6: {
-            fontFamily: 'sen',
-            fontSize: '1.2vw',
+            fontFamily: 'Lato',
+            fontSize: '0.94vw',
             color: "rgba(191, 191, 191, 1)",
             letterSpacing: '0.4px',
             lineHeight: 'normal',
@@ -19,21 +19,21 @@ const theme = createTheme({
         h3: {
             fontFamily: 'Lato',
             fontWeight: 700,
-            fontSize: '1.3889vw',
+            fontSize: '1.2889vw',
             color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: '0.677vw',
+            fontSize: '0.83vw',
             textTransform: 'none',
             color: "#FFFFFF",
         },
         h1: {
             fontFamily: 'Lato',
             fontWeight: 400,
-            fontSize: '1.0417vw',
-            color: "rgba(191, 191, 191, 1)",
+            fontSize: '0.94vw',
+            color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
     },
@@ -64,39 +64,34 @@ const Allinonecard = ({ data }) => {
                 display="flex"
                 flexDirection="column"
                 sx={{
-
                     maxWidth: '100vw',
                     justifyItems: 'center',
                     alignItems: 'center',
                     mb: '-2.5vw',
-
                 }}
             >
                 <Box
                     display="flex"
                     flexWrap="wrap"
-
                     justifyContent="center"
                     sx={{
                         gap: '1.8vw',
-
                         maxWidth: '70vw',
                     }}
                 >
                     {data.map((box, index) => (
-
                         <Box
                             display="flex"
                             key={index}
                             sx={{
                                 flexDirection: "column",
-                                borderRadius: '16px',
-                                width: '280px',
-                                height: '380px',
-                                py: '0px',
-                                px: '24px',
+                                borderRadius: '0.83vw',
+                                width: '14.58vw',
+                                height: '19.79vw',
+                                py: '0vw',
+                                px: '1.25vw',
                                 boxSizing: 'border-box',
-                                boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.45)',
+                                boxShadow: '0vw 0.21vw 0.21vw 0vw rgba(0, 0, 0, 0.45)',
                                 position: "relative",
                                 overflow: "hidden",
                                 alignItems: "center",
@@ -107,8 +102,8 @@ const Allinonecard = ({ data }) => {
                                 onClick={box.linked_in ? () => window.open(box.linked_in, "_blank") : null}
                                 sx={{
                                     position: "absolute",
-                                    top: "12px",
-                                    left: '12px',
+                                    top: "0.625vw",
+                                    left: '0.625vw',
                                     display: "flex",
                                     justifyContent: "center",
                                     alignItems: "center",
@@ -126,7 +121,7 @@ const Allinonecard = ({ data }) => {
                                     style={{
                                         width: "100%",
                                         height: "100%",
-                                        filter: box.linked_in ? "none" : "grayscale(100%) brightness(0) invert(1) ",
+                                        filter: box.linked_in ? "none" : "grayscale(100%) brightness(0) invert(1)",
                                         opacity: box.linked_in ? '100%' : '20%',
                                     }}
                                 />
@@ -134,8 +129,8 @@ const Allinonecard = ({ data }) => {
                                     <Box
                                         sx={{
                                             position: "absolute",
-                                            width: "36px",
-                                            height: "36px",
+                                            width: "1.88vw",
+                                            height: "1.88vw",
                                             backgroundColor: "transparent",
                                             borderRadius: "50%",
                                         }}
@@ -147,23 +142,21 @@ const Allinonecard = ({ data }) => {
                                     width: "100%",
                                     zIndex: 2,
                                     justifyItem: "center",
-                                }} 
+                                }}
                             >
-                                <Box
-                                    sx={imageContainerStyle}
-                                >
+                                <Box sx={imageContainerStyle}>
                                     <Box
                                         sx={{
-                                            borderTop: '1px solid red',
-                                            borderRadius: '100px',
-                                            border: '1px dashed #8AE6DE',
-                                            p: '10px',
+                                            borderTop: '0.052vw solid red',
+                                            borderRadius: '5.21vw',
+                                            border: '0.052vw dashed #8AE6DE',
+                                            p: '0.52vw',
                                             display: 'flex',
                                             justifyContent: 'center',
                                             alignItems: 'center',
-                                            transition:'ease-in 300ms',
-                                            ":hover":{
-                                                transform:'scale(1.1)'
+                                            transition: 'ease-in 300ms',
+                                            ":hover": {
+                                                transform: 'scale(1.1)'
                                             }
                                         }}
                                     >
@@ -171,34 +164,27 @@ const Allinonecard = ({ data }) => {
                                             src={box.photo}
                                             alt="circle"
                                             style={{
-                                                border: '1px solid #8AE6DE',
-                                                width: '124px',
-                                                height: '124px',
+                                                border: '0.052vw solid #8AE6DE',
+                                                width: '6.46vw',
+                                                height: '6.46vw',
                                                 objectFit: 'cover',
                                                 borderRadius: '50%'
                                             }}
                                         />
                                     </Box>
-
                                 </Box>
-
                             </Box>
-                            <Box
-                                sx={{
-                                    width: "100%",
-                                }}
-                            >
-
+                            <Box sx={{ width: "100%" }}>
                                 <Box
                                     sx={{
                                         display: "flex",
                                         justifyContent: "center",
-                                        mt: '22px'
+                                        mt: '1.15vw'
                                     }}
                                 >
                                     <Typography
                                         sx={{
-                                            ...typoStyle,
+                                            ...theme.typography.h1,
                                             textAlign: "center",
                                             fontSize: { xs: '14px', sm: '14.22px', md: '16px', lg: '18px' }
                                         }}
@@ -218,7 +204,7 @@ const Allinonecard = ({ data }) => {
                                 >
                                     <Typography
                                         sx={{
-                                            ...typoStyle,
+                                            ...theme.typography.button,
                                             color: '#8AE6DE',
                                             fontSize: { xs: '12.64px', sm: '13px', md: '14.22px', lg: '16px' },
                                             textAlign: "center",
@@ -236,14 +222,14 @@ const Allinonecard = ({ data }) => {
                                         display: "flex",
                                         justifyContent: "center",
                                         width: "100%",
-                                        borderTop: '1px dashed rgba(255, 255, 255, 0.20)',
-                                        pt: '20px',
-                                        mt: '20px'
+                                        borderTop: '0.052vw dashed rgba(255, 255, 255, 0.20)',
+                                        pt: '1.04vw',
+                                        mt: '1.04vw'
                                     }}
                                 >
                                     <Typography
                                         sx={{
-                                            ...typoStyle,
+                                            ...theme.typography.h6,
                                             fontSize: { xs: '12.64px', md: '14px' },
                                             fontWeight: 400,
                                             color: '#d9d9d9',
@@ -254,12 +240,12 @@ const Allinonecard = ({ data }) => {
                                         {box.details}
                                     </Typography>
                                 </Box>
-
                             </Box>
                         </Box>
                     ))}
                 </Box>
             </Box>
+
         </ThemeProvider >
     );
 };
