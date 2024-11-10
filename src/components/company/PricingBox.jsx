@@ -188,6 +188,7 @@ const PricingBox = () => {
         } catch (error) {
             console.error("Error submitting CTMS request:", error);
         }
+        handleGoBackClick('ctms');
     };
 
     // Submit selected features for RPM plan
@@ -206,12 +207,12 @@ const PricingBox = () => {
         } catch (error) {
             console.error("Error submitting RPM request:", error);
         }
+        handleGoBackClick('rpm');
     };
 
     return (
         <ThemeProvider theme={theme}>
             <Box
-                mb={6}
                 sx={{
                     display: 'flex',
                     flexDirection: 'column',

@@ -76,7 +76,7 @@ const Company = () =>{
             <Box
                 sx={{
                     width: '100%',
-                    minHeight: { xs: '500px', md: '900px',},
+                    height:'100%',
                     display: {xs:'none',sm:'flex'},
                     justifyContent: 'center',
                 }}
