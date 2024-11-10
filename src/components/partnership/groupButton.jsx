@@ -114,11 +114,11 @@ const GroupButton = () => {
                 <Box display="flex" justifyContent="center">
                     <Box 
                     sx={{
-                        width:'70vw',
+                        width:'1024px',
                         display: 'flex',
                         flexWrap: 'wrap',
                         justifyContent:'space-between',
-                        gap:'2.5vw',
+                        gap:'32px',
                         pt:'3vw',
                         pb:'5vw'
                     }}>
