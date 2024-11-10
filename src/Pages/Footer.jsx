@@ -191,7 +191,7 @@ const Footer = () => {
                       cursor: `${item.link ? 'pointer' : 'default'}`
                     }}
                     key={index}
-                    onClick={item.link ? () => { navigate(`${item.link}`) } : () => { }}
+                    onClick={item.link ? () => { window.location.href = item.link } : undefined}
                 >
                   {item.title}
                 </Typography>
@@ -211,7 +211,7 @@ const Footer = () => {
                   cursor: `${item.link ? 'pointer' : 'default'}`
                 }}
                 key={index}
-                onClick={item.link ? () => { navigate(`${item.link}`) } : () => { }}
+                onClick={item.link ? () => { window.location.href = item.link } : undefined}
               >
                 {item.title}
               </Typography>
