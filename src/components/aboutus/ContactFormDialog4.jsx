@@ -95,11 +95,12 @@ const ContactFormDialog = ({ open, onClose }) => {
                     });
                     onClose();
                 } else {
-                    setErrorMessage('خطا در ارسال فرم. لطفاً دوباره امتحان کنید.');
+                    setErrorMessage('Error submitting the form. Please try again.');
                 }
             } catch (error) {
-                setErrorMessage('خطا در ارسال فرم. لطفاً دوباره امتحان کنید.');
+                setErrorMessage('Error submitting the form. Please try again.');
             }
+
         } else {
             setDialogOpen(true);
         }
