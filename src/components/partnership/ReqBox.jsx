@@ -37,7 +37,7 @@ const theme = createTheme({
 
 const howData = [
     { title: 'International stakeholders', description: "Swiss and International stakeholders in the epilepsy field", image: Req1, icon: BusinessDocumentation },
-    { title: 'Clinical trial ', description: "Clinical trial collaborators interested in implementing our solutions", image: Req2, icon: DoctorFemale },
+    { title: 'Clinical Research Contractors (CRO)', description: "Clinical trial collaborators interested in implementing our solutions", image: Req2, icon: DoctorFemale },
     { title: 'Collaborators', description: "Remote care monitoring collaborators interested in implementing our solutions", image: Req3, icon: SystemTask },
 ];
 
@@ -119,7 +119,7 @@ const CertificationBox = () => {
                                         src={box.icon}
                                         alt="Design"
                                         sx={{
-                                            width: '2vw'
+                                            width: '1.4vw'
                                         }}
                                     />
                                 ) : (
@@ -136,6 +136,7 @@ const CertificationBox = () => {
                                     alignItems: 'center',
                                     mt:'40px',
                                     textAlign: 'center',
+                                    maxWidth:'80%',
                                 }}
                             >
                                 <Typography

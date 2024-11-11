@@ -13,6 +13,7 @@ import pricingBG from '../../assets/pricingBG.png';
 import { useAuth } from "../../AuthContext.jsx";
 import { Close as CloseIcon } from "@mui/icons-material";
 import axios from "axios";
+import SignUpDialog from '../SignUp/SignUpDialog.jsx';
 
 // Custom MUI theme for typography
 const theme = createTheme({
@@ -117,12 +118,14 @@ const PricingBox = () => {
     useEffect(() => {
         const fetchLabelsRPM = async () => {
             try {
-                const response = await axios.get('https://site.vitruvianshield.com/api/v1/rpm-features');
+                const response = await axios.get('https://vitruvianshield.com/api/v1/rpm-features');
                 const labels = response.data;
                 setLabelsRPM(labels);
             } catch (error) {
+                setDialogOpen(true);
                 console.error('Error fetching labelsRPM:', error);
             }
+
         };
 
         fetchLabelsRPM();
@@ -131,10 +134,11 @@ const PricingBox = () => {
     useEffect(() => {
         const fetchLabelsCTMS = async () => {
             try {
-                const response = await axios.get('https://site.vitruvianshield.com/api/v1/ctms-features');
+                const response = await axios.get('https://vitruvianshield.com/api/v1/ctms-features');
                 const labels = response.data;
                 setLabelsCTMS(labels);
             } catch (error) {
+                setDialogOpen(true);
                 console.error('Error fetching labelsCTMS:', error);
             }
         };
@@ -146,7 +150,7 @@ const PricingBox = () => {
     const { authToken } = useAuth();
     const Token = localStorage.getItem("authToken") || authToken;
 
-
+    const [dialogOpen, setDialogOpen] = useState(false);
     const [checkedCTMS, setCheckedCTMS] = useState(new Array(labelsCTMS.length).fill(false));
     const [checkedRPM, setCheckedRPM] = useState(new Array(labelsRPM.length).fill(false));
     const [selectedFeaturesCTMS, setSelectedFeaturesCTMS] = useState([]);
@@ -177,9 +181,9 @@ const PricingBox = () => {
         const payload = {
             fields: selectedFeaturesCTMS,
         };
-
-        try {
-            await axios.post("https://site.vitruvianshield.com/api/v1/ctms-feature-req", payload, {
+        if (authToken) {
+            try {
+            await axios.post("https://vitruvianshield.com/api/v1/ctms-feature-req", payload, {
                 headers: {
                     Authorization: `Bearer ${Token}`,
                 },
@@ -188,6 +192,10 @@ const PricingBox = () => {
         } catch (error) {
             console.error("Error submitting CTMS request:", error);
         }
+        handleGoBackClick('ctms');
+        } else {
+            setDialogOpen(true);
+        }
     };
 
     // Submit selected features for RPM plan
@@ -195,9 +203,9 @@ const PricingBox = () => {
             const payload = {
                 fields: selectedFeaturesRPM,
         };
-
+        if (authToken) {
         try {
-            await axios.post("https://site.vitruvianshield.com/api/v1/rpm-feature-req", payload, {
+            await axios.post("https://vitruvianshield.com/api/v1/rpm-feature-req", payload, {
                 headers: {
                     Authorization: `Bearer ${Token}`,
                 },
@@ -206,12 +214,15 @@ const PricingBox = () => {
         } catch (error) {
             console.error("Error submitting RPM request:", error);
         }
+        handleGoBackClick('rpm');
+    } else {
+        setDialogOpen(true);
+    }
     };
 
     return (
         <ThemeProvider theme={theme}>
             <Box
-                mb={6}
                 sx={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -573,6 +584,7 @@ const PricingBox = () => {
                     </Box>
                 </Box>
             </Box>
+            <SignUpDialog open={dialogOpen} onClose={() => setDialogOpen(false)} />
         </ThemeProvider>
     );
 };

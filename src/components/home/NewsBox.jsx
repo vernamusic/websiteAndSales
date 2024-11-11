@@ -156,7 +156,7 @@ const NewsBox = () => {
     useEffect(() => {
         const fetchNews = async () => {
             try {
-                const response = await fetch(`https://site.vitruvianshield.com/api/v1/home-news`);
+                const response = await fetch(`https://vitruvianshield.com/api/v1/home-news`);
                 if (!response.ok) throw new Error("Network response was not ok");
                 const data = await response.json();
                 setNewsItems(data);

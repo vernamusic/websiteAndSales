@@ -115,7 +115,7 @@ const CompanyBox = () => {
                         }}
                         onClick={handleOpenDialog}
                     >
-                        Contact Us
+                        Contact us
                     </Button>
                 </Box>
 

@@ -39,7 +39,7 @@ const SignUpDialog = ({ open, onClose, email: initialEmail = null }) => {
     };
 
     const handleResendVerificationEmail = (email) => {
-        fetch('https://site.vitruvianshield.com/api/v1/request-verification-code/', {
+        fetch('https://vitruvianshield.com/api/v1/request-verification-code/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

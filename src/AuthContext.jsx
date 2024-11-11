@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }) => {
     const refreshAccessToken = async () => {
         if (!refreshToken) return;
         try {
-            const response = await fetch('https://site.vitruvianshield.com/api/v1/token/refresh/', {
+            const response = await fetch('https://vitruvianshield.com/api/v1/token/refresh/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

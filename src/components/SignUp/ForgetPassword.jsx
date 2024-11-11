@@ -63,7 +63,7 @@ const ForgotPasswordDialog = ({ onBack, showSnackbar, }) => {
             return;
         }
 
-        fetch('https://site.vitruvianshield.com/api/v1/forgot-password/', {
+        fetch('https://vitruvianshield.com/api/v1/forgot-password/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

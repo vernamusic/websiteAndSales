@@ -48,7 +48,7 @@ const AuthForm = ({ email: initialEmail = null, onForgotPassword, onLoginSuccess
         }
 
         try {
-            const loginResponse = await fetch('https://site.vitruvianshield.com/api/v1/token/', {
+            const loginResponse = await fetch('https://vitruvianshield.com/api/v1/token/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ const AuthForm = ({ email: initialEmail = null, onForgotPassword, onLoginSuccess
             } else if (loginResponse.status === 401) {
                 showSnackbar('User not found. Registering...', 'info');
 
-                const registerResponse = await fetch('https://site.vitruvianshield.com/api/v1/register/', {
+                const registerResponse = await fetch('https://vitruvianshield.com/api/v1/register/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
