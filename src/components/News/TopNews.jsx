@@ -59,7 +59,7 @@ const Mediacard = () => {
     useEffect(() => {
         const fetchTopNews = async () => {
             try {
-                const response = await fetch('https://site.vitruvianshield.com/api/v1/top-news');
+                const response = await fetch('https://vitruvianshield.com/api/v1/top-news');
                 const newsData = await response.json();
                 // Set only the first 3 results
                 setData(newsData.results.slice(0, 3));

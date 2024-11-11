@@ -118,7 +118,7 @@ const PricingBox = () => {
     useEffect(() => {
         const fetchLabelsRPM = async () => {
             try {
-                const response = await axios.get('https://site.vitruvianshield.com/api/v1/rpm-features');
+                const response = await axios.get('https://vitruvianshield.com/api/v1/rpm-features');
                 const labels = response.data;
                 setLabelsRPM(labels);
             } catch (error) {
@@ -134,7 +134,7 @@ const PricingBox = () => {
     useEffect(() => {
         const fetchLabelsCTMS = async () => {
             try {
-                const response = await axios.get('https://site.vitruvianshield.com/api/v1/ctms-features');
+                const response = await axios.get('https://vitruvianshield.com/api/v1/ctms-features');
                 const labels = response.data;
                 setLabelsCTMS(labels);
             } catch (error) {
@@ -183,7 +183,7 @@ const PricingBox = () => {
         };
         if (authToken) {
             try {
-            await axios.post("https://site.vitruvianshield.com/api/v1/ctms-feature-req", payload, {
+            await axios.post("https://vitruvianshield.com/api/v1/ctms-feature-req", payload, {
                 headers: {
                     Authorization: `Bearer ${Token}`,
                 },
@@ -205,7 +205,7 @@ const PricingBox = () => {
         };
         if (authToken) {
         try {
-            await axios.post("https://site.vitruvianshield.com/api/v1/rpm-feature-req", payload, {
+            await axios.post("https://vitruvianshield.com/api/v1/rpm-feature-req", payload, {
                 headers: {
                     Authorization: `Bearer ${Token}`,
                 },

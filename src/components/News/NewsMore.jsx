@@ -58,7 +58,7 @@ const NewsCard = () => {
     const [timeAgo, setTimeAgo] = useState('');
 
     useEffect(() => {
-        fetch(`https://site.vitruvianshield.com/api/v1/news/${slug}`)
+        fetch(`https://vitruvianshield.com/api/v1/news/${slug}`)
             .then((response) => response.json())
             .then((data) => {
                 setNewsData(data);
@@ -146,21 +146,21 @@ const NewsCard = () => {
                             <Typography sx={{ ...theme.typography.button, display: { sm: 'block', xs: 'none' } }}>
                                 Share:
                             </Typography>
-                            <IconButton sx={{ p: 0 }} onClick={() => shareOnFacebook(`https://site.vitruvianshield.com/news/${slug}`)}>
+                            <IconButton sx={{ p: 0 }} onClick={() => shareOnFacebook(`https://vitruvianshield.com/news/${slug}`)}>
                                 <img
                                     src={Facebook}
                                     alt="Facebook"
                                     style={{ width: 'auto', height: '1.6667vw' }}
                                 />
                             </IconButton>
-                            <IconButton sx={{ p: 0 }} onClick={() => shareOnTwitter(`https://site.vitruvianshield.com/news/${slug}`)}>
+                            <IconButton sx={{ p: 0 }} onClick={() => shareOnTwitter(`https://vitruvianshield.com/news/${slug}`)}>
                                 <img
                                     src={Twitter}
                                     alt="Twitter"
                                     style={{ width: 'auto', height: '1.6667vw' }}
                                 />
                             </IconButton>
-                            <IconButton sx={{ p: 0 }} onClick={() => copyToClipboard(`https://site.vitruvianshield.com/news/${slug}`)}>
+                            <IconButton sx={{ p: 0 }} onClick={() => copyToClipboard(`https://vitruvianshield.com/news/${slug}`)}>
                                 <img
                                     src={Share}
                                     alt="Share"

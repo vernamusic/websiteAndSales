@@ -36,13 +36,13 @@ const theme = createTheme({
 
 const fetchNewsData = async () => {
     try {
-        const topNewsResponse = await fetch('https://site.vitruvianshield.com/api/v1/top-news');
+        const topNewsResponse = await fetch('https://vitruvianshield.com/api/v1/top-news');
         const topNewsData = await topNewsResponse.json();
 
-        const latestNewsResponse = await fetch('https://site.vitruvianshield.com/api/v1/news');
+        const latestNewsResponse = await fetch('https://vitruvianshield.com/api/v1/news');
         const latestNewsData = await latestNewsResponse.json();
 
-        const eventsNewsResponse = await fetch('https://site.vitruvianshield.com/api/v1/event-news');
+        const eventsNewsResponse = await fetch('https://vitruvianshield.com/api/v1/event-news');
         const eventsNewsData = await eventsNewsResponse.json();
 
         return [

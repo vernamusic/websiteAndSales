@@ -325,7 +325,7 @@ const Footer = () => {
               {/* Add the arrow icon to the left side */}
               <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <ExpandMoreIcon sx={{ color: 'white' }} /> {/* Left arrow in white */}
-                <Typography variant="h3" sx={{ color: 'white' }}>About Us</Typography> {/* Text in white */}
+                <Typography variant="h3" sx={{ color: 'white' }}>About us</Typography> {/* Text in white */}
               </Box>
             </AccordionSummary>
             <AccordionDetails sx={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>

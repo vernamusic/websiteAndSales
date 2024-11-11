@@ -89,7 +89,7 @@ const ContactBox = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        "https://site.vitruvianshield.com/api/v1/contact-req",
+        "https://vitruvianshield.com/api/v1/contact-req",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

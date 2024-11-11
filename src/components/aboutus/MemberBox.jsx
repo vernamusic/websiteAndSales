@@ -56,7 +56,7 @@ const TeamMembers = () => {
 
     useEffect(() => {
         const fetchTeams = async () => {
-            const response = await fetch('https://site.vitruvianshield.com/api/v1/members');
+            const response = await fetch('https://vitruvianshield.com/api/v1/members');
             const teamsData = await response.json();
             setAdvisors(teamsData.filter(team => team.team_name === "Advisors"))
             setMembers(teamsData.filter(team => team.team_name !== "Advisors"))

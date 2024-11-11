@@ -30,7 +30,7 @@ const MemberCountBox = () => {
     useEffect(() => {
         const fetchMembers = async () => {
             try {
-                const response = await fetch('https://site.vitruvianshield.com/api/v1/members');
+                const response = await fetch('https://vitruvianshield.com/api/v1/members');
                 const apiData = await response.json();
 
                 const totalMembers = apiData.reduce((acc, team) => acc + team.members.length, 0);

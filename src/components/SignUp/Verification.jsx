@@ -57,7 +57,7 @@ const EmailVerification = ({ email, password, onSubmit, onResend, onBack }) => {
 
     const loginAgain = async (email, password) => {
         try {
-            const loginResponse = await fetch('https://site.vitruvianshield.com/api/v1/token/', {
+            const loginResponse = await fetch('https://vitruvianshield.com/api/v1/token/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -140,7 +140,7 @@ const EmailVerification = ({ email, password, onSubmit, onResend, onBack }) => {
     const handleSubmit = async () => {
         if (code.length === 6) {
             try {
-                const response = await fetch('https://site.vitruvianshield.com/api/v1/verify-email/', {
+                const response = await fetch('https://vitruvianshield.com/api/v1/verify-email/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

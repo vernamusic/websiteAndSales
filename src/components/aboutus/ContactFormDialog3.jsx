@@ -75,7 +75,7 @@ const ContactFormDialog = ({ open, onClose }) => {
         e.preventDefault();
         if (authToken) {
             try {
-                const response = await fetch('https://site.vitruvianshield.com/api/v1/contact-req', {
+                const response = await fetch('https://vitruvianshield.com/api/v1/contact-req', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
