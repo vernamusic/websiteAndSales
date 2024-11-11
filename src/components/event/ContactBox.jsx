@@ -75,6 +75,7 @@ const ContactBox = () => {
     last_name: "",
     email: "",
     phone_number: "",
+      subject:"event",
     message: "",
     type: 13,
   });
@@ -102,6 +103,7 @@ const ContactBox = () => {
           last_name: "",
           email: "",
           phone_number: "",
+            subject:"event",
           message: "",
           type: 13,
         });
@@ -163,7 +165,7 @@ const ContactBox = () => {
             }}
           >
             <Typography variant="h1" sx={{ mt: 4 }}>
-              Contact Us
+              Contact us
             </Typography>
             <Typography variant="body1" sx={{ mt: 1 }}>
               Please fill this form in a decent manner

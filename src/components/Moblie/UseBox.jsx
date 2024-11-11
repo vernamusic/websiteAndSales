@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import { Box, Button, Typography, createTheme, ThemeProvider } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import phone1 from "../../assets/usage1.jpg";
@@ -34,7 +34,7 @@ const theme = createTheme({
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: '12.64px', 
+            fontSize: '12.64px',
             fontWeight: '600',
             textTransform: "none",
             color: "#FFFFFF",
@@ -82,24 +82,20 @@ const Stepper = () => {
     const [fade, setFade] = useState(true);
 
     const handleNext = useCallback(() => {
-        if (step < 3) {
-            setFade(false);
-            setTimeout(() => {
-                setStep(step + 1);
-                setFade(true);
-            }, 200);
-        }
-    }, [step]);
+        setFade(false);
+        setTimeout(() => {
+            setStep((prevStep) => (prevStep < 3 ? prevStep + 1 : 1)); // Loop back to step 1
+            setFade(true);
+        }, 200);
+    }, []);
 
     const handlePrevious = useCallback(() => {
-        if (step > 1) {
-            setFade(false);
-            setTimeout(() => {
-                setStep(step - 1);
-                setFade(true);
-            }, 200);
-        }
-    }, [step]);
+        setFade(false);
+        setTimeout(() => {
+            setStep((prevStep) => (prevStep > 1 ? prevStep - 1 : 3)); // Go to the last step if at the beginning
+            setFade(true);
+        }, 200);
+    }, []);
 
     const handleStepClick = useCallback((index) => {
         setFade(false);
@@ -119,21 +115,30 @@ const Stepper = () => {
 
     const images = [phone1, phone2, phone3]; // Images array for steps
 
+    // Auto-advance timer every 10 seconds
+    useEffect(() => {
+        const timer = setInterval(() => {
+            handleNext();
+        }, 3000);
+
+        return () => clearInterval(timer); // Clear timer on component unmount
+    }, [handleNext]);
+
     return (
         <ThemeProvider theme={theme}>
-        <Box
-            sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'left',
-                background: '#1F1F1F',
-                width: '100%',
-                height: '725px',
-                padding: '4em',
-                overflow: 'hidden'
-            }}
-        >
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'left',
+                    background: '#1F1F1F',
+                    width: '100%',
+                    height: '725px',
+                    padding: '4em',
+                    overflow: 'hidden'
+                }}
+            >
                 <Typography variant="h1" mb="1em" mt="1em">
                     HOW CAN WE USE IT?
                 </Typography>
@@ -146,109 +151,110 @@ const Stepper = () => {
                             justifyContent: 'left',
                         }}
                     >
-                            {memoizedFeatures.map((feature, index) => (
-                                <Box
-                                    key={index}
-                                    display="flex"
-                                    flexDirection="row"
-                                    alignItems="center"
-                                    gap='1em'
-                                    p='1em'
-                                    sx={{ position: 'relative' }}
+                        {memoizedFeatures.map((feature, index) => (
+                            <Box
+                                key={index}
+                                display="flex"
+                                flexDirection="row"
+                                alignItems="center"
+                                gap='1em'
+                                p='1em'
+                                sx={{ position: 'relative' }}
+                            >
+                                <StepCircle
+                                    onClick={() => handleStepClick(index)}
+                                    active={step === index + 1}
                                 >
-                                    <StepCircle
-                                        onClick={() => handleStepClick(index)}
-                                        active={step === index + 1}
-                                    >
-                                        {getCircleContent(index)}
-                                    </StepCircle>
+                                    {getCircleContent(index)}
+                                </StepCircle>
 
-                                    {index < memoizedFeatures.length - 1 && (
-                                        <RedLine top={'4em'} />
-                                    )}
+                                {index < memoizedFeatures.length - 1 && (
+                                    <RedLine top={'4em'} />
+                                )}
 
-                                    <Box ml='3.5em' width='32em'>
-                                        <Typography sx={{...theme.typography.h6,}}>
-                                            {feature.title}
-                                        </Typography>
+                                <Box ml='3.5em' width='32em'>
+                                    <Typography sx={{...theme.typography.h6,}}>
+                                        {feature.title}
+                                    </Typography>
 
-                                        <Typography sx={{...theme.typography.h9,}} pt='0.5em'>
-                                            {feature.description}
-                                        </Typography>
-                                    </Box>
+                                    <Typography sx={{...theme.typography.h9,}} pt='0.5em'>
+                                        {feature.description}
+                                    </Typography>
                                 </Box>
-                            ))}
-                            <Box display="flex" flexDirection="row" gap='1em' mt='1em' ml="4.5em">
-                                <Button
-                                    variant="contained"
-                                    onClick={handlePrevious}
-                                    disabled={step === 1}
-                                    sx={{
-                                        padding:'12px 24px',
-                                        minWidth:0,
-                                        display: 'flex',
-                                        borderRadius: '4px',
-                                        width: '104px',
-                                        height: '37px',
-                                        ...theme.typography.button,
-                                        border:'1px solid #fff',
-                                        backgroundColor: 'transparent',
-                                        color: '#fff',
-                                        borderColor:  '#fff',
-                                        '&:hover': {
-                                            backgroundColor: 'transparent',
-                                        },
-                                        '&.Mui-disabled': {
-                                            color: '#787777',
-                                            border:'1px solid #787777',
-                                        }
-                                    }}
-                                    disableRipple
-                                >
-                                    Previous
-                                </Button>
-
-                                <Button
-                                    variant="contained"
-                                    onClick={handleNext}
-                                    disabled={step === 3}
-                                    sx={{
-                                        padding:'12px 24px',
-                                        minWidth:0,
-                                        display: 'flex',
-                                        borderRadius: '4px',
-                                        width: '104px',
-                                        height: '37px',
-                                        ...theme.typography.button,
-                                        backgroundColor: '#B50304',
-                                        color: '#fff',
-                                        borderColor:'transparent',
-                                        '&:hover': {
-                                            backgroundColor: '#B50304',
-                                        },
-                                        '&.Mui-disabled': {
-                                            color: 'rgba(255,255,255,0.50)',
-                                            borderColor: '#fff',
-                                            backgroundColor: '#C8030480',
-                                        }
-                                    }}
-                                    disableRipple
-                                >
-                                    Next
-                                </Button>
                             </Box>
-                        </Box>
-                        <Box component="img" src={images[step-1]}
-                        sx={{
-                            width: '508px',
-                            height: 'auto',
-                            objectFit: 'cover',
-                            position: 'relative',
-                            left: '6em',
-                            bottom: '0.5em'
-                        }} />
+                        ))}
+                        {/*<Box display="flex" flexDirection="row" gap='1em' mt='1em' ml="4.5em">*/}
+                        {/*    <Button*/}
+                        {/*        variant="contained"*/}
+                        {/*        onClick={handlePrevious}*/}
+                        {/*        disabled={step === 1}*/}
+                        {/*        sx={{*/}
+                        {/*            padding:'12px 24px',*/}
+                        {/*            minWidth:0,*/}
+                        {/*            display: 'flex',*/}
+                        {/*            borderRadius: '4px',*/}
+                        {/*            width: '104px',*/}
+                        {/*            height: '37px',*/}
+                        {/*            ...theme.typography.button,*/}
+                        {/*            border:'1px solid #fff',*/}
+                        {/*            backgroundColor: 'transparent',*/}
+                        {/*            color: '#fff',*/}
+                        {/*            borderColor:  '#fff',*/}
+                        {/*            '&:hover': {*/}
+                        {/*                backgroundColor: 'transparent',*/}
+                        {/*            },*/}
+                        {/*            '&.Mui-disabled': {*/}
+                        {/*                color: '#787777',*/}
+                        {/*                border:'1px solid #787777',*/}
+                        {/*            }*/}
+                        {/*        }}*/}
+                        {/*        disableRipple*/}
+                        {/*    >*/}
+                        {/*        Previous*/}
+                        {/*    </Button>*/}
+
+                        {/*    <Button*/}
+                        {/*        variant="contained"*/}
+                        {/*        onClick={handleNext}*/}
+                        {/*        disabled={step === 3}*/}
+                        {/*        sx={{*/}
+                        {/*            padding:'12px 24px',*/}
+                        {/*            minWidth:0,*/}
+                        {/*            display: 'flex',*/}
+                        {/*            borderRadius: '4px',*/}
+                        {/*            width: '104px',*/}
+                        {/*            height: '37px',*/}
+                        {/*            ...theme.typography.button,*/}
+                        {/*            backgroundColor: '#B50304',*/}
+                        {/*            color: '#fff',*/}
+                        {/*            borderColor:'transparent',*/}
+                        {/*            '&:hover': {*/}
+                        {/*                backgroundColor: '#B50304',*/}
+                        {/*            },*/}
+                        {/*            '&.Mui-disabled': {*/}
+                        {/*                color: 'rgba(255,255,255,0.50)',*/}
+                        {/*                borderColor: '#fff',*/}
+                        {/*                backgroundColor: '#C8030480',*/}
+                        {/*            }*/}
+                        {/*        }}*/}
+                        {/*        disableRipple*/}
+                        {/*    >*/}
+                        {/*        Next*/}
+                        {/*    </Button>*/}
+                        {/*</Box>*/}
                     </Box>
+                    <Box component="img" src={images[step-1]}
+                         sx={{
+                             width: '508px',
+                             height: 'auto',
+                             objectFit: 'cover',
+                             position: 'relative',
+                             left: '6em',
+                             bottom: '0.5em'
+                         }}
+                    />
                 </Box>
+            </Box>
         </ThemeProvider>
     );
 };

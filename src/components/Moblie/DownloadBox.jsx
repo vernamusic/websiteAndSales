@@ -108,7 +108,7 @@ const Home = () => {
                             onClick={handleOpenDialog}
                             disableRipple
                         >
-                            Contact Us
+                            Contact us
                         </Button>
 
                         <Button

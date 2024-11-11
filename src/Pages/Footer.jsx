@@ -79,16 +79,16 @@ const locations = [
 const videoIds = ['aWnbr8Aagbo', 'z2KFOvcP3IQ', 'YOpXuRqvpVU'];
 
 const solutionsItems = [
-  {
-    id: 1,
-    title: 'The problem',
-
-  },
-  {
-    id: 2,
-    title: 'Concept',
-
-  },
+  // {
+  //   id: 1,
+  //   title: 'The problem',
+  //
+  // },
+  // {
+  //   id: 2,
+  //   title: 'Concept',
+  //
+  // },
   {
     id: 3,
     title: 'The Smartwatch',
@@ -101,16 +101,16 @@ const solutionsItems = [
     link: '/products/mobile-app'
 
   },
-  {
-    id: 5,
-    title: 'Research API',
-
-  },
-  {
-    id: 6,
-    title: 'Data & Research',
-
-  },
+  // {
+  //   id: 5,
+  //   title: 'Research API',
+  //
+  // },
+  // {
+  //   id: 6,
+  //   title: 'Data & Research',
+  //
+  // },
   {
     id: 7,
     title: 'Certifications',
@@ -120,11 +120,11 @@ const solutionsItems = [
 ]//array for solutions data
 
 const aboutItems = [
-  {
-    id: 1,
-    title: 'Our Vision',
-
-  },
+  // {
+  //   id: 1,
+  //   title: 'Our Vision',
+  //
+  // },
   {
     id: 2,
     title: 'Our Team',
@@ -143,11 +143,11 @@ const aboutItems = [
     link: '/partnership'
 
   },
-  {
-    id: 5,
-    title: 'Donations',
-
-  },
+  // {
+  //   id: 5,
+  //   title: 'Donations',
+  //
+  // },
   {
     id: 6,
     title: 'Contact Us',
@@ -329,7 +329,7 @@ const Footer = () => {
               </Box>
             </AccordionSummary>
             <AccordionDetails sx={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              {['Our Vision', 'Our Team', 'Our Partners', 'Become a Partner', 'Donations', 'Contact Us', 'Gallery'].map((text, index) => (
+              {['Our Vision', 'Our Team', 'Our Partners', 'Become a Partner', 'Donations', 'Contact us', 'Gallery'].map((text, index) => (
                 <Typography variant="body9" key={index}>{text}</Typography>
               ))}
             </AccordionDetails>

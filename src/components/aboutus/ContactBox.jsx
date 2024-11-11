@@ -84,7 +84,7 @@ const ContactBox = () => {
                         ...typoStyle,
                         fontSize: { xs: '20px', sm: '22px', md: '24px', lg: '32px' }
                     }}>
-                        About Us
+                        About us
                     </Typography>
                     <Typography
                         sx={{
@@ -116,7 +116,7 @@ const ContactBox = () => {
                         }}
                         disableRipple
                     >
-                        Contact Us
+                        Contact us
                     </Button>
                     <ContactFormDialog3 open={openDialog} onClose={handleCloseDialog} />
                 </Box>
