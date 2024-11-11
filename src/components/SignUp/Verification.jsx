@@ -201,7 +201,18 @@ const EmailVerification = ({ email, password, onSubmit, onResend, onBack }) => {
                             fontWeight: 600,
                             color: '#fff'
                         }}>
-                        Forget password?
+                        Verify your email address
+                    </Typography>
+                    <Typography
+                        sx={{
+                            ...navItemStyle,
+                            fontSize: '14px',
+                            color: '#bfbfbf',
+                            mt: '14px',
+                            lineHeight: '100%'
+                        }}
+                    >
+                        Enter vitrification code we sent to
                     </Typography>
                     <Typography
                         sx={{
@@ -212,8 +223,9 @@ const EmailVerification = ({ email, password, onSubmit, onResend, onBack }) => {
                             lineHeight: '100%'
                         }}
                     >
-                        No worries, we'll send you reset instructions
+                        {email}
                     </Typography>
+
                 </Box>
 
                 <Box display="flex" justifyContent="center" gap={1.5} mt={2} mb={2}>

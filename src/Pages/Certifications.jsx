@@ -164,7 +164,8 @@ const Card = ({ src, title, desc }) => {
                 display: 'flex',
                 alignItems: 'center',
                 flexDirection: 'column',
-                boxSizing: 'border-box'
+                boxSizing: 'border-box',
+
 
             }}
         >
@@ -177,7 +178,7 @@ const Card = ({ src, title, desc }) => {
                     fontWeight: 'bolder',
                     fontSize: { xs: '14.22px', sm: '16px', md: '18px', lg: '20px' },
                     mt: '24px',
-
+                    textAlign:'center',
                 }}
             >
                 {title}
@@ -188,6 +189,7 @@ const Card = ({ src, title, desc }) => {
                     fontWeight: 'normal',
                     fontSize: { xs: '10px', sm: '12px', md: '12.64px', lg: '14px' },
                     mt: '8px',
+                    textAlign:'center',
 
                 }}
             >

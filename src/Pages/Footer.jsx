@@ -84,11 +84,11 @@ const solutionsItems = [
   //   title: 'The problem',
   //
   // },
-  // {
-  //   id: 2,
-  //   title: 'Concept',
-  //
-  // },
+   {
+     id: 2,
+    title: 'Web App',
+     link: '/products/dashboard'
+   },
   {
     id: 3,
     title: 'The Smartwatch',
@@ -154,12 +154,12 @@ const aboutItems = [
     link: '/company'
 
   },
-  {
-    id: 7,
-    title: 'Gallery',
-    link: '/Certifications'
-
-  },
+  // {
+  //   id: 7,
+  //   title: 'Gallery',
+  //
+  //
+  // },
 ]//array for solutions data
 
 
