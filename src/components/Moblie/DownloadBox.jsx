@@ -113,17 +113,20 @@ const Home = () => {
 
                         <Button
                             variant="contained"
-                            component={Link}
-                            to="/media/applications/files/Vitruvian_Shield_Production_Release_1.1.6.apk"
+                            onClick={() => {
+                                const newTab = window.open("/media/applications/files/Vitruvian_Shield_Production_Release_1.1.6.apk", "_blank");
+                                setTimeout(() => {
+                                    newTab.close();
+                                }, 2000);
+                            }}
                             sx={{
-                                padding:0,
-                                minWidth:0,
+                                padding: 0,
+                                minWidth: 0,
                                 display: 'flex',
                                 borderRadius: '4px',
                                 width: '138px',
                                 height: '42px',
                                 ...theme.typography.button,
-
                                 backgroundColor: '#B50304',
                                 textTransform: 'none',
                                 '&:hover': {
@@ -134,6 +137,8 @@ const Home = () => {
                         >
                             Download
                         </Button>
+
+
                         <ContactDialog open={dialogOpen} onClose={handleCloseDialog} />
                     </Box>
                 </Box>

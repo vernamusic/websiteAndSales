@@ -13,6 +13,7 @@ import pricingBG from '../../assets/pricingBG.png';
 import { useAuth } from "../../AuthContext.jsx";
 import { Close as CloseIcon } from "@mui/icons-material";
 import axios from "axios";
+import SignUpDialog from '../SignUp/SignUpDialog.jsx';
 
 // Custom MUI theme for typography
 const theme = createTheme({
@@ -121,8 +122,10 @@ const PricingBox = () => {
                 const labels = response.data;
                 setLabelsRPM(labels);
             } catch (error) {
+                setDialogOpen(true);
                 console.error('Error fetching labelsRPM:', error);
             }
+
         };
 
         fetchLabelsRPM();
@@ -135,6 +138,7 @@ const PricingBox = () => {
                 const labels = response.data;
                 setLabelsCTMS(labels);
             } catch (error) {
+                setDialogOpen(true);
                 console.error('Error fetching labelsCTMS:', error);
             }
         };
@@ -146,7 +150,7 @@ const PricingBox = () => {
     const { authToken } = useAuth();
     const Token = localStorage.getItem("authToken") || authToken;
 
-
+    const [dialogOpen, setDialogOpen] = useState(false);
     const [checkedCTMS, setCheckedCTMS] = useState(new Array(labelsCTMS.length).fill(false));
     const [checkedRPM, setCheckedRPM] = useState(new Array(labelsRPM.length).fill(false));
     const [selectedFeaturesCTMS, setSelectedFeaturesCTMS] = useState([]);
@@ -177,8 +181,8 @@ const PricingBox = () => {
         const payload = {
             fields: selectedFeaturesCTMS,
         };
-
-        try {
+        if (authToken) {
+            try {
             await axios.post("https://site.vitruvianshield.com/api/v1/ctms-feature-req", payload, {
                 headers: {
                     Authorization: `Bearer ${Token}`,
@@ -189,6 +193,9 @@ const PricingBox = () => {
             console.error("Error submitting CTMS request:", error);
         }
         handleGoBackClick('ctms');
+        } else {
+            setDialogOpen(true);
+        }
     };
 
     // Submit selected features for RPM plan
@@ -196,7 +203,7 @@ const PricingBox = () => {
             const payload = {
                 fields: selectedFeaturesRPM,
         };
-
+        if (authToken) {
         try {
             await axios.post("https://site.vitruvianshield.com/api/v1/rpm-feature-req", payload, {
                 headers: {
@@ -208,6 +215,9 @@ const PricingBox = () => {
             console.error("Error submitting RPM request:", error);
         }
         handleGoBackClick('rpm');
+    } else {
+        setDialogOpen(true);
+    }
     };
 
     return (
@@ -574,6 +584,7 @@ const PricingBox = () => {
                     </Box>
                 </Box>
             </Box>
+            <SignUpDialog open={dialogOpen} onClose={() => setDialogOpen(false)} />
         </ThemeProvider>
     );
 };
