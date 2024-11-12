@@ -66,7 +66,6 @@ const CompanyBox = () => {
             <Box
                 sx={{
                     width: '100vw',
-                    height: '100vh',
                     position: 'relative',
                     backgroundImage: `linear-gradient(90deg, rgba(0, 0, 0, 0.738) 14.54%, rgba(0, 0, 0, 0.686) 23.41%, rgba(0, 0, 0, 0.584) 40.86%, rgba(0, 0, 0, 0.164) 100%), url(${images[activeImage]})`,
                     backgroundSize: 'cover',

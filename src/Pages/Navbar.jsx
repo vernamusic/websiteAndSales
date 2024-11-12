@@ -117,7 +117,7 @@ const Navbar = React.memo((props) => {
         { name: 'Company', path: '/company', disabled: false },
         { name: 'Partnership', path: '/partnership', disabled: false },
         { name: 'News', path: '/news', disabled: false },
-        { name: 'Event', path: '/event', disabled: false },
+        { name: 'Websummit 2024', path: '/event', disabled: false },
         { name: 'About us', path: '/about', disabled: false }
     ];
 
@@ -291,22 +291,23 @@ const Navbar = React.memo((props) => {
                                         {productItems.map((item) => (
                                             <MenuItem
                                                 key={item.path}
-                                                component={Link}
-                                                to={item.path}
+                                                component="a"
+                                                href={item.path}
                                                 onClick={handleMenuClose}
                                                 sx={{
-                                                    color: '#ffffff',
-                                                    textTransform: 'none',
-                                                    ...navItemStyle,
-                                                    "&:hover":{
-                                                        backgroundColor: 'rgba(38, 38, 38, 0.95)',
-                                                        fontSize: '16.5px'
-                                                    }
+                                                color: '#ffffff',
+                                                textTransform: 'none',
+                                                ...navItemStyle,
+                                                "&:hover": {
+                                                    backgroundColor: 'rgba(38, 38, 38, 0.95)',
+                                                    fontSize: '16.5px'
+                                                }
                                                 }}
                                             >
                                                 {item.name}
                                             </MenuItem>
-                                        ))}
+                                            ))}
+
                                     </Menu>
                                 </>
                             ) : (

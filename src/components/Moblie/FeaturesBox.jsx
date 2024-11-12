@@ -49,7 +49,7 @@ const themes = createTheme({
 
 const featureData = [
     { title: 'Geo tracking', description: "Uses GPS to determine user location. Monitors real-time location data for users. ", icon: Geo },
-    { title: 'Emergency call', description: "Connects users to caregiver. Ensures quick response in critical situations..", icon: Call },
+    { title: 'Emergency call', description: "Connects users to caregiver. Ensures quick response in critical situations.", icon: Call },
     { title: 'Adverse event reporting', description: "Reports unexpected incidents in clinical trials for safety and compliance.", icon: Report },
     { title: 'AI chat bot', description: "Engages users with automated responses. Provides 24/7 support for inquiries.", icon: Chat },
     { title: 'Remote patient monitoring', description: "Track and monitor vital signs effectively using the Vitruvian Shield service. ", icon: Monitor },

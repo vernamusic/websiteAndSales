@@ -169,16 +169,20 @@ const GroupButton = () => {
                                     </Typography>
                                     <Typography 
                                     onClick={box.link ? () => window.open(box.link, "_blank") : null}
-                                        
-                                        sx={{ ...customTheme.typography.h5, mt: '24px', textDecoration: 'none', 
-                                            cursor: box.linked_in ? "pointer" : "default",
-                                            transition: "background-color 0.3s, transform 0.3s",
-                                            '&:hover': {
-                                                transform: box.linked_in ? "scale(1.1)" : "none",
-                                            }, }}
+                                    sx={{ 
+                                        ...customTheme.typography.h5, 
+                                        mt: '24px', 
+                                        textDecoration: 'none', 
+                                        cursor: box.link ? "pointer" : "default",
+                                        transition: "background-color 0.3s, transform 0.3s",
+                                        '&:hover': {
+                                        cursor: box.link ? "pointer" : "default",  // Ensure pointer on hover if a link is present
+                                        }, 
+                                    }}
                                     >
-                                        Visit Website
+                                    Visit Website
                                     </Typography>
+
 
                                 </Box>
                             </Box>
