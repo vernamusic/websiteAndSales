@@ -64,6 +64,7 @@ const ContactFormDialog = ({ open, onClose }) => {
         type: 9,
     });
     const [errorMessage, setErrorMessage] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
     const [dialogOpen, setDialogOpen] = useState(false);
 
     const handleInputChange = (e) => {
@@ -73,6 +74,9 @@ const ContactFormDialog = ({ open, onClose }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setErrorMessage(''); // Clear previous error message
+        setSuccessMessage(''); // Clear previous success message
+
         if (authToken) {
             try {
                 const response = await fetch('https://vitruvianshield.com/api/v1/contact-req', {
@@ -93,14 +97,13 @@ const ContactFormDialog = ({ open, onClose }) => {
                         message: '',
                         type: 9,
                     });
-                    onClose();
+                    setSuccessMessage('Form submitted successfully!'); // Show success message
                 } else {
                     setErrorMessage('Error submitting the form. Please try again.');
                 }
             } catch (error) {
                 setErrorMessage('Error submitting the form. Please try again.');
             }
-
         } else {
             setDialogOpen(true);
         }
@@ -137,18 +140,17 @@ const ContactFormDialog = ({ open, onClose }) => {
                 </DialogTitle>
 
                 <DialogContent sx={{ padding: '36px 50px', overflow: 'hidden' }}>
-                    {errorMessage && <Typography color="error">{errorMessage}</Typography>}
                     <Typography variant="subtitle2" align="center" gutterBottom sx={{ mb: 4 }}>
                         Please fill this form in decent manner
                     </Typography>
-                    <Box sx={{ maxHeight: '500px', overflowY: 'auto', '&::-webkit-scrollbar': { display: 'none' } }}>
+                    <Box sx={{ maxHeight: '428px', overflowY: 'auto', '&::-webkit-scrollbar': { display: 'none' } }}>
+                        {/* Form Fields */}
                         <Box sx={{ display: 'flex', gap: 1 }}>
                             <TextField
                                 fullWidth
                                 name="first_name"
                                 placeholder="First name"
                                 variant="outlined"
-                                
                                 value={formData.first_name}
                                 onChange={handleInputChange}
                                 InputProps={{ style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626' } }}
@@ -159,7 +161,6 @@ const ContactFormDialog = ({ open, onClose }) => {
                                 name="last_name"
                                 placeholder="Last name"
                                 variant="outlined"
-                                
                                 value={formData.last_name}
                                 onChange={handleInputChange}
                                 InputProps={{ style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626' } }}
@@ -172,7 +173,6 @@ const ContactFormDialog = ({ open, onClose }) => {
                                 name="email"
                                 placeholder="Enter your email"
                                 variant="outlined"
-                                
                                 value={formData.email}
                                 onChange={handleInputChange}
                                 InputProps={{ style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626' } }}
@@ -185,7 +185,6 @@ const ContactFormDialog = ({ open, onClose }) => {
                                 name="phone_number"
                                 placeholder="Enter your number"
                                 variant="outlined"
-                                
                                 value={formData.phone_number}
                                 onChange={handleInputChange}
                                 InputProps={{ style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626' } }}
@@ -198,7 +197,6 @@ const ContactFormDialog = ({ open, onClose }) => {
                                 name="subject"
                                 placeholder="Enter the subject"
                                 variant="outlined"
-                                
                                 value={formData.subject}
                                 onChange={handleInputChange}
                                 InputProps={{ style: { backgroundColor: '#fff', borderRadius: '4px', color: '#262626' } }}
@@ -221,8 +219,8 @@ const ContactFormDialog = ({ open, onClose }) => {
                         </Box>
                     </Box>
                 </DialogContent>
-                
-                <DialogActions sx={{ justifyContent: 'center', pb: 2, padding: '0 24px' }}>
+
+                <DialogActions sx={{mb:2, justifyContent: 'center', padding: '0 24px', flexDirection: 'column' }}>
                     <Button
                         fullWidth
                         variant="contained"
@@ -230,7 +228,7 @@ const ContactFormDialog = ({ open, onClose }) => {
                         sx={{
                             width: '381px',
                             minHeight: '50.82px',
-                            mb: 6,
+                            mb:1,
                             backgroundColor: theme.palette.primary.main,
                             '&:hover': { backgroundColor: theme.palette.primary.main },
                             borderRadius: '4px',
@@ -238,9 +236,19 @@ const ContactFormDialog = ({ open, onClose }) => {
                     >
                         Submit
                     </Button>
+                    {errorMessage && (
+                        <Typography color="error" sx={{ textAlign: 'center' }}>
+                            {errorMessage}
+                        </Typography>
+                    )}
+                    {successMessage && (
+                        <Typography color="success" sx={{bottom:0, textAlign: 'center'}}>
+                            {successMessage}
+                        </Typography>
+                    )}
                 </DialogActions>
             </Dialog>
-            
+
             <SignUpDialog open={dialogOpen} onClose={() => setDialogOpen(false)} />
         </ThemeProvider>
     );
