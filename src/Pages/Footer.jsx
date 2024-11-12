@@ -170,7 +170,7 @@ const Footer = () => {
       {/* Desktop version */}
       <Box
         sx={{
-          backgroundColor: 'black',
+          backgroundColor: '#141414',
           py: 8,
           width: '100%',
           minHeight: '800px',
@@ -290,9 +290,9 @@ const Footer = () => {
           zIndex: 1300,
         }}
       >
-        <Box sx={{ width: '100vw', backgroundColor: '#080808', display: 'flex', flexDirection: 'column', }}>
+        <Box sx={{ width: '100vw', backgroundColor: '#141414', display: 'flex', flexDirection: 'column', }}>
           {/* OUR SOLUTIONS Accordion */}
-          <Accordion sx={{ backgroundColor: '#080808' }}>
+          <Accordion sx={{ backgroundColor: '#141414' }}>
             <AccordionSummary
               aria-controls="panel1a-content"
               id="panel1a-header"
@@ -316,7 +316,7 @@ const Footer = () => {
 
 
           {/* ABOUT US Accordion */}
-          <Accordion sx={{ backgroundColor: '#080808' }}>
+          <Accordion sx={{ backgroundColor: '#141414' }}>
             <AccordionSummary
               aria-controls="panel1a-content"
               id="panel1a-header"
@@ -338,7 +338,7 @@ const Footer = () => {
           <Box sx={{ borderBottom: '1px solid #D9D9D912' }} />
 
           {/* Visit us Accordion */}
-          <Accordion sx={{ backgroundColor: '#080808' }}>
+          <Accordion sx={{ backgroundColor: '#141414' }}>
             <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel3a-content" id="panel3a-header">
               <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <ExpandMoreIcon sx={{ color: 'white' }} /> {/* Left arrow in white */}
@@ -367,7 +367,7 @@ const Footer = () => {
           </Accordion>
 
           <Box sx={{ borderBottom: '1px solid #D9D9D912' }} />
-          <Box sx={{ width: '100vw', backgroundColor: '#080808', display: 'flex', flexDirection: 'column' }}>
+          <Box sx={{ width: '100vw', backgroundColor: '#141414', display: 'flex', flexDirection: 'column' }}>
             {/* ... Existing accordions ... */}
 
             {/* Social Media Icons */}
