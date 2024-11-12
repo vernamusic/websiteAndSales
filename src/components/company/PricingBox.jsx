@@ -7,7 +7,8 @@ import {
     ThemeProvider,
     FormControlLabel,
     Checkbox,
-    IconButton, Divider
+    IconButton, Divider,
+    Snackbar, Alert,
 } from '@mui/material';
 import pricingBG from '../../assets/pricingBG.png';
 import { useAuth } from "../../AuthContext.jsx";
@@ -97,6 +98,9 @@ const PricingBox = () => {
         ctms: false,
         rpm: false,
     });
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+    const [snackbarMessage, setSnackbarMessage] = useState('');
 
     const handleViewMoreClick = (plan) => {
         setExpanded((prevState) => ({
@@ -183,41 +187,56 @@ const PricingBox = () => {
         };
         if (authToken) {
             try {
-            await axios.post("https://vitruvianshield.com/api/v1/ctms-feature-req", payload, {
-                headers: {
-                    Authorization: `Bearer ${Token}`,
-                },
-            });
-            console.log("CTMS request successfully submitted");
-        } catch (error) {
-            console.error("Error submitting CTMS request:", error);
-        }
-        handleGoBackClick('ctms');
+                await axios.post("https://vitruvianshield.com/api/v1/ctms-feature-req", payload, {
+                    headers: {
+                        Authorization: `Bearer ${Token}`,
+                    },
+                });
+                setSnackbarMessage("CTMS request submitted successfully!");
+                setSnackbarSeverity("success");
+                setSnackbarOpen(true);
+            } catch (error) {
+                console.error("Error submitting CTMS request:", error);
+                setSnackbarMessage("Failed to submit CTMS request.");
+                setSnackbarSeverity("error");
+                setSnackbarOpen(true);
+            }
+            handleGoBackClick('ctms');
         } else {
+            setSnackbarMessage("You need to log in.");
+            setSnackbarSeverity("error");
+            setSnackbarOpen(true);
             setDialogOpen(true);
         }
     };
 
-    // Submit selected features for RPM plan
     const handleSubmitForRPM = async () => {
-            const payload = {
-                fields: selectedFeaturesRPM,
+        const payload = {
+            fields: selectedFeaturesRPM,
         };
         if (authToken) {
-        try {
-            await axios.post("https://vitruvianshield.com/api/v1/rpm-feature-req", payload, {
-                headers: {
-                    Authorization: `Bearer ${Token}`,
-                },
-            });
-            console.log("RPM request successfully submitted");
-        } catch (error) {
-            console.error("Error submitting RPM request:", error);
+            try {
+                await axios.post("https://vitruvianshield.com/api/v1/rpm-feature-req", payload, {
+                    headers: {
+                        Authorization: `Bearer ${Token}`,
+                    },
+                });
+                setSnackbarMessage("RPM request submitted successfully!");
+                setSnackbarSeverity("success");
+                setSnackbarOpen(true);
+            } catch (error) {
+                console.error("Error submitting RPM request:", error);
+                setSnackbarMessage("Failed to submit RPM request.");
+                setSnackbarSeverity("error");
+                setSnackbarOpen(true);
+            }
+            handleGoBackClick('rpm');
+        } else {
+            setSnackbarMessage("You need to log in.");
+            setSnackbarSeverity("error");
+            setSnackbarOpen(true);
+            setDialogOpen(true);
         }
-        handleGoBackClick('rpm');
-    } else {
-        setDialogOpen(true);
-    }
     };
 
     return (
@@ -584,6 +603,16 @@ const PricingBox = () => {
                     </Box>
                 </Box>
             </Box>
+            <Snackbar
+                open={snackbarOpen}
+                autoHideDuration={6000}
+                onClose={() => setSnackbarOpen(false)}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+            >
+                <Alert onClose={() => setSnackbarOpen(false)} severity={snackbarSeverity}>
+                    {snackbarMessage}
+                </Alert>
+            </Snackbar>
             <SignUpDialog open={dialogOpen} onClose={() => setDialogOpen(false)} />
         </ThemeProvider>
     );

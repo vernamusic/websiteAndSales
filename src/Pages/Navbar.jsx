@@ -134,13 +134,13 @@ const Navbar = React.memo((props) => {
         <>
             <AppBar
                 sx={{
-                    position: "fixed",
+                    position: "relative",
                     left: '0',
                     background: 'rgba(31, 31, 31, 0.95)',
                     boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.30)',
                     width: '100%',
                     height: { xs: '80px', md: '96px' },
-                    py: { xs: '10px' },
+
                     boxSizing: 'border-box',
                     px: { xs: '24px', md: '30px', lg: '40px' }
                 }}>
@@ -313,11 +313,8 @@ const Navbar = React.memo((props) => {
                             ) : (
                                 <Button
                                     key={page.name}
-                                    onClick={() => {
-                                        if (!page.disabled) {
-                                            window.location.href = page.path;
-                                        }
-                                    }}
+                                    component={Link}
+                                    to={page.path}
                                     disabled={page.disabled}
                                     sx={{
                                         ...navItemStyle,

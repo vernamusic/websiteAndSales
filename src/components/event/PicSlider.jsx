@@ -85,10 +85,10 @@ const Slider = () => {
                 sx={{
                     width: '100vw',
                     position: 'relative',
-                    backgroundImage: `linear-gradient(90deg, rgba(0, 0, 0, 0.738) 14.54%, rgba(0, 0, 0, 0.686) 23.41%, rgba(0, 0, 0, 0.584) 40.86%, rgba(0, 0, 0, 0.164) 100%), url(${slides[currentSlide].image})`,
+                    backgroundImage: `url(${slides[currentSlide].image})`,
 
                     backgroundSize: 'cover',
-                    backgroundPosition: 'top right',
+                    backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
                     maxHeight: '746px',
                     minHeight: { xs: '500px', sm: '600px', md: '700px', lg: '900px' }
@@ -97,6 +97,7 @@ const Slider = () => {
                 <Box
                     sx={{
                         mt: { xs: '180px', sm: '220px', md: '270px', lg: '318px' },
+                        minHeight: { xs: '180px', sm: '220px', md: '270px', lg: '318px' },
                         position: 'relative',
                         display: 'flex',
                         flexDirection: 'column',
@@ -113,57 +114,57 @@ const Slider = () => {
                             ? `${slides[currentSlide].description.substring(0, 240)}`
                             : slides[currentSlide].description}
                     </Typography>
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 3, mt: 4 }}>
-                        <Button
-                            onClick={handlePreviousSlide}
-                            sx={{
-                                minWidth: '70px',
-                                minHeight: '70px',
-                                borderRadius: '50%',
-                                backgroundColor: 'rgba(217, 217, 217, 1)',
-                                color: '#000000',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                pl: 1.5,
-                            }}
-                        >
-                            <ArrowBackIosIcon sx={{ fontSize: '16px' }} />
-                        </Button>
-                        <Button
-                            onClick={handleNextSlide}
-                            sx={{
-                                minWidth: '70px',
-                                minHeight: '70px',
-                                borderRadius: '50%',
-                                backgroundColor: 'rgba(217, 217, 217, 1)',
-                                color: '#000000',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                            }}
-                        >
-                            <ArrowForwardIosIcon sx={{ fontSize: '16px' }} />
-                        </Button>
+                </Box>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 3, mt: 4,ml: { xs: 5, sm: 10, md: 19, lg: 24, xl: 28 }, }}>
+                    <Button
+                        onClick={handlePreviousSlide}
+                        sx={{
+                            minWidth: '70px',
+                            minHeight: '70px',
+                            borderRadius: '50%',
+                            backgroundColor: 'rgba(217, 217, 217, 1)',
+                            color: '#000000',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            pl: 1.5,
+                        }}
+                    >
+                        <ArrowBackIosIcon sx={{ fontSize: '16px' }} />
+                    </Button>
+                    <Button
+                        onClick={handleNextSlide}
+                        sx={{
+                            minWidth: '70px',
+                            minHeight: '70px',
+                            borderRadius: '50%',
+                            backgroundColor: 'rgba(217, 217, 217, 1)',
+                            color: '#000000',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        }}
+                    >
+                        <ArrowForwardIosIcon sx={{ fontSize: '16px' }} />
+                    </Button>
 
-                        <Box sx={{ display: 'flex', alignItems: 'center', ml: 2 }}>
-                            <LinearProgress
-                                variant="determinate"
-                                value={((currentSlide + 1) / slides.length) * 100}
-                                sx={{
-                                    width: '14vw',
-                                    height: 2,
-                                    borderRadius: 5,
-                                    backgroundColor: 'rgba(255, 255, 255, 1)',
-                                    '& .MuiLinearProgress-bar': {
-                                        backgroundColor: '#B50304',
-                                    },
-                                }}
-                            />
-                            <Typography  sx={{ ml: 2, color: '#FFF',...theme.typography.h3,fontSize:'1.67vw', }}>
-                                {String(currentSlide + 1).padStart(2, '0')}
-                            </Typography>
-                        </Box>
+                    <Box sx={{ display: 'flex', alignItems: 'center', ml: 2 }}>
+                        <LinearProgress
+                            variant="determinate"
+                            value={((currentSlide + 1) / slides.length) * 100}
+                            sx={{
+                                width: '14vw',
+                                height: 2,
+                                borderRadius: 5,
+                                backgroundColor: 'rgba(255, 255, 255, 1)',
+                                '& .MuiLinearProgress-bar': {
+                                    backgroundColor: '#B50304',
+                                },
+                            }}
+                        />
+                        <Typography  sx={{ ml: 2, color: '#FFF',...theme.typography.h3,fontSize:'1.67vw', }}>
+                            {String(currentSlide + 1).padStart(2, '0')}
+                        </Typography>
                     </Box>
                 </Box>
             </Box>
