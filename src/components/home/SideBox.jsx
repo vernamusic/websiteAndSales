@@ -79,8 +79,8 @@ const SideBox = () => {
                 </Typography>
                 <Button
                     variant="contained"
-                    component={Link}
-                    to={'/company'}
+                    component="a"
+                    href="/company"
                     sx={{
                         mt: '32px',
                         display: 'flex',
@@ -96,14 +96,15 @@ const SideBox = () => {
                         width: { xs: '134px' },
                         height: { xs: '42px' },
                         '&:hover': {
-                            backgroundColor: '#B50304',
-                            opacity: '0.8'
+                        backgroundColor: '#B50304',
+                        opacity: '0.8'
                         },
                     }}
                     disableRipple
-                >
+                    >
                     Visit Our Plan
-                </Button>
+                    </Button>
+
             </Box>
             <Box
                 sx={{

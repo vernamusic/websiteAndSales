@@ -291,22 +291,23 @@ const Navbar = React.memo((props) => {
                                         {productItems.map((item) => (
                                             <MenuItem
                                                 key={item.path}
-                                                component={Link}
-                                                to={item.path}
+                                                component="a"
+                                                href={item.path}
                                                 onClick={handleMenuClose}
                                                 sx={{
-                                                    color: '#ffffff',
-                                                    textTransform: 'none',
-                                                    ...navItemStyle,
-                                                    "&:hover":{
-                                                        backgroundColor: 'rgba(38, 38, 38, 0.95)',
-                                                        fontSize: '16.5px'
-                                                    }
+                                                color: '#ffffff',
+                                                textTransform: 'none',
+                                                ...navItemStyle,
+                                                "&:hover": {
+                                                    backgroundColor: 'rgba(38, 38, 38, 0.95)',
+                                                    fontSize: '16.5px'
+                                                }
                                                 }}
                                             >
                                                 {item.name}
                                             </MenuItem>
-                                        ))}
+                                            ))}
+
                                     </Menu>
                                 </>
                             ) : (
