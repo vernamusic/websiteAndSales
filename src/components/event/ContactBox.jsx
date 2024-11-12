@@ -8,7 +8,10 @@ import {
   useMediaQuery,
   Button,
 } from "@mui/material";
+import { useAuth } from '../../AuthContext.jsx';
 import BG from "../../assets/newsBoxBG.svg";
+import SignUpDialog from '../SignUp/SignUpDialog.jsx';
+
 
 const theme = createTheme({
   palette: {
@@ -70,16 +73,19 @@ const theme = createTheme({
 
 const ContactBox = () => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const { authToken } = useAuth();
+  const [dialogOpen, setDialogOpen] = useState(false);
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
     email: "",
     phone_number: "",
-      subject:"event",
+    subject:"event",
     message: "",
     type: 13,
   });
   const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState('');
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -88,33 +94,40 @@ const ContactBox = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch(
-        "https://vitruvianshield.com/api/v1/contact-req",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
+    setErrorMessage(''); // Clear previous error message
+    setSuccessMessage(''); // Clear previous success message
+
+    if (authToken) {
+        try {
+            const response = await fetch('https://vitruvianshield.com/api/v1/contact-req', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${authToken}`,
+                },
+                body: JSON.stringify(formData),
+            });
+            if (response.ok) {
+                setFormData({
+                    first_name: '',
+                    last_name: '',
+                    email: '',
+                    phone_number: '',
+                    subject: 'event',
+                    message: '',
+                    type: 13,
+                });
+                setSuccessMessage('Form submitted successfully!'); // Show success message
+            } else {
+                setErrorMessage('Error submitting the form. Please try again.');
+            }
+        } catch (error) {
+            setErrorMessage('Error submitting the form. Please try again.');
         }
-      );
-      if (response.ok) {
-        setFormData({
-          first_name: "",
-          last_name: "",
-          email: "",
-          phone_number: "",
-            subject:"event",
-          message: "",
-          type: 13,
-        });
-      } else {
-        setErrorMessage("Error submitting form, please try again.");
-      }
-    } catch (error) {
-      setErrorMessage("Error submitting form, please try again.");
-      console.error("Error submitting form:", error);
+    } else {
+        setDialogOpen(true);
     }
-  };
+};
 
   const textFieldStyle = {
     backgroundColor: "#EEEEEE",
@@ -213,7 +226,7 @@ const ContactBox = () => {
               </Box>
             ))}
           </Box>
-          <Box sx={{ display: "flex", justifyContent: "center", pb: 4,mt:'24px' }}>
+          <Box sx={{ display: "flex",alignItems:'center', justifyContent: "center", pb: 4,mt:'24px', flexDirection: 'column' }}>
             <Button
               fullWidth
               onClick={handleSubmit}
@@ -230,6 +243,17 @@ const ContactBox = () => {
             >
               Submit
             </Button>
+            {errorMessage && (
+                        <Typography color="error" sx={{ mt:1,textAlign: 'center' }}>
+                            {errorMessage}
+                        </Typography>
+                    )}
+                    {successMessage && (
+                        <Typography color="success" sx={{mt:1,bottom:0, textAlign: 'center'}}>
+                            {successMessage}
+                        </Typography>
+                    )}
+            <SignUpDialog open={dialogOpen} onClose={() => setDialogOpen(false)} />
           </Box>
         </Box>
       </Box>
