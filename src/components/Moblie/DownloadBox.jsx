@@ -57,8 +57,9 @@ const Home = () => {
                         minHeight: { xs: '500px', sm: '600px', md: '700px', lg: '746px' },
                         width: '100%',
                         backgroundImage: `url(${background})`,
-                        backgroundRepeat: 'no-repeat',
                         backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat',
                     }}
                 >
                 <Box
