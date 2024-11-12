@@ -108,17 +108,45 @@ const EmailVerification = ({ email, password, onSubmit, onResend, onBack }) => {
         setSnackbarOpen(true);
     };
 
+    const handlePaste = (e, index) => {
+        const pasteData = e.clipboardData.getData('Text');
+
+        if (/^\d+$/.test(pasteData)) {
+            const newCode = code.split('');
+
+
+            let lastFilledIndex = index;
+            for (let i = 0; i < pasteData.length && index + i < 6; i++) {
+                newCode[index + i] = pasteData[i];
+                lastFilledIndex = index + i;
+            }
+
+            setCode(newCode.join(''));
+
+            if (lastFilledIndex < 5) {
+                inputRefs.current[lastFilledIndex + 1].focus();
+            } else {
+                inputRefs.current[5].focus();
+            }
+
+            e.preventDefault();
+        }
+    };
+
     const handleChange = (e, index) => {
         const { value } = e.target;
+
         if (/^\d$/.test(value)) {
             const newCode = code.split('');
             newCode[index] = value;
             setCode(newCode.join(''));
+
             if (index < 5 && inputRefs.current[index + 1]) {
                 inputRefs.current[index + 1].focus();
             }
         }
     };
+
 
     const handleKeyDown = (e, index) => {
         if (e.key === 'Backspace') {
@@ -229,33 +257,37 @@ const EmailVerification = ({ email, password, onSubmit, onResend, onBack }) => {
                 </Box>
 
                 <Box display="flex" justifyContent="center" gap={1.5} mt={2} mb={2}>
-                    {Array.from({ length: 6 }).map((_, index) => (
-                        <TextField
-                            key={index}
-                            value={code[index] || ''}
-                            onChange={(e) => handleChange(e, index)}
-                            onKeyDown={(e) => handleKeyDown(e, index)}
-                            inputRef={(el) => (inputRefs.current[index] = el)}
-                            inputProps={{
-                                maxLength: 1,
-                                style: {
-                                    fontFamily: 'Lato',
-                                    fontSize: '23px',
-                                    fontWeight: 500,
-                                    textAlign: 'center',
-                                    width: '25px',
-                                    height: '25px',
-                                    backgroundColor: 'white',
-                                    color: '#262626',
-                                    borderRadius: '4px',
-                                    border: '1px solid rgba(0, 201, 183, 1)'
-                                },
-                                inputMode: 'numeric',
-                                pattern: '[0-9]*',
-                            }}
-                            variant="outlined"
-                        />
-                    ))}
+                    <Box display="flex" justifyContent="center" gap={1.5} mt={2} mb={2}>
+                        {Array.from({ length: 6 }).map((_, index) => (
+                            <TextField
+                                key={index}
+                                value={code[index] || ''}
+                                onChange={(e) => handleChange(e, index)}
+                                onKeyDown={(e) => handleKeyDown(e, index)}
+                                onPaste={(e) => handlePaste(e, index)}
+                                inputRef={(el) => (inputRefs.current[index] = el)}
+                                inputProps={{
+                                    maxLength: 1,
+                                    style: {
+                                        fontFamily: 'Lato',
+                                        fontSize: '23px',
+                                        fontWeight: 500,
+                                        textAlign: 'center',
+                                        width: '25px',
+                                        height: '25px',
+                                        backgroundColor: 'white',
+                                        color: '#262626',
+                                        borderRadius: '4px',
+                                        border: '1px solid rgba(0, 201, 183, 1)',
+                                    },
+                                    inputMode: 'numeric',
+                                    pattern: '[0-9]*',
+                                }}
+                                variant="outlined"
+                            />
+                        ))}
+                    </Box>
+
                 </Box>
 
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, maxWidth: '350px' }}>

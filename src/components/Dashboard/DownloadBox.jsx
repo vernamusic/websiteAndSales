@@ -54,7 +54,10 @@ const Home = () => {
                         maxHeight: '746px',
                         minHeight: { xs: '500px', sm: '600px', md: '700px', lg: '746px' },
                         width: '100%',
-                        background: `linear-gradient(253deg, rgba(31, 31, 31, 0.30) 26.9%, rgba(31, 31, 31, 0.62) 44.3%, rgba(31, 31, 31, 0.81) 74.59%, rgba(31, 31, 31, 0.90) 100%), url(${background}) lightgray 0px 58.869px / 114.028%  no-repeat`
+                        background: `linear-gradient(253deg, rgba(31, 31, 31, 0.30) 26.9%, rgba(31, 31, 31, 0.62) 44.3%, rgba(31, 31, 31, 0.81) 74.59%, rgba(31, 31, 31, 0.90) 100%), url(${background}) lightgray 0px 58.869px / 114.028%  no-repeat`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat',
                     }}
                 >
                     <Box
