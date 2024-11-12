@@ -63,7 +63,7 @@ const FeaturesContent = () => {
     };
 
     try {
-      await axios.post('https://site.vitruvianshield.com/api/v1/feature-req', payload, {
+      await axios.post('https://vitruvianshield.com/api/v1/feature-req', payload, {
         headers: {
           'Authorization': `Bearer ${Token}`
         }

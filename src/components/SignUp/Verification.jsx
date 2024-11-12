@@ -57,7 +57,7 @@ const EmailVerification = ({ email, password, onSubmit, onResend, onBack }) => {
 
     const loginAgain = async (email, password) => {
         try {
-            const loginResponse = await fetch('https://site.vitruvianshield.com/api/v1/token/', {
+            const loginResponse = await fetch('https://vitruvianshield.com/api/v1/token/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -140,7 +140,7 @@ const EmailVerification = ({ email, password, onSubmit, onResend, onBack }) => {
     const handleSubmit = async () => {
         if (code.length === 6) {
             try {
-                const response = await fetch('https://site.vitruvianshield.com/api/v1/verify-email/', {
+                const response = await fetch('https://vitruvianshield.com/api/v1/verify-email/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -201,7 +201,18 @@ const EmailVerification = ({ email, password, onSubmit, onResend, onBack }) => {
                             fontWeight: 600,
                             color: '#fff'
                         }}>
-                        Forget password?
+                        Verify your email address
+                    </Typography>
+                    <Typography
+                        sx={{
+                            ...navItemStyle,
+                            fontSize: '14px',
+                            color: '#bfbfbf',
+                            mt: '14px',
+                            lineHeight: '100%'
+                        }}
+                    >
+                        Enter vitrification code we sent to
                     </Typography>
                     <Typography
                         sx={{
@@ -212,8 +223,9 @@ const EmailVerification = ({ email, password, onSubmit, onResend, onBack }) => {
                             lineHeight: '100%'
                         }}
                     >
-                        No worries, we'll send you reset instructions
+                        {email}
                     </Typography>
+
                 </Box>
 
                 <Box display="flex" justifyContent="center" gap={1.5} mt={2} mb={2}>

@@ -32,11 +32,11 @@ const Slider = () => {
     useEffect(() => {
         const fetchSlides = async () => {
             try {
-                const response = await fetch('https://site.vitruvianshield.com/api/v1/events/websummit/today');
+                const response = await fetch('https://vitruvianshield.com/api/v1/events/websummit/today');
                 const data = await response.json();
 
                 if (!data || data.length === 0) {
-                    const fallbackResponse = await fetch('https://site.vitruvianshield.com/api/v1/events/websummit');
+                    const fallbackResponse = await fetch('https://vitruvianshield.com/api/v1/events/websummit');
                     const fallbackData = await fallbackResponse.json();
                     setSlides(fallbackData);
                 } else {

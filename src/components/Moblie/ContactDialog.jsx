@@ -75,7 +75,7 @@ const ContactFormDialog = ({ open, onClose }) => {
         e.preventDefault();
         if (authToken) {
             try {
-                const response = await fetch('https://site.vitruvianshield.com/api/v1/contact-req', {
+                const response = await fetch('https://vitruvianshield.com/api/v1/contact-req', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -95,11 +95,12 @@ const ContactFormDialog = ({ open, onClose }) => {
                     });
                     onClose();
                 } else {
-                    setErrorMessage('خطا در ارسال فرم. لطفاً دوباره امتحان کنید.');
+                    setErrorMessage('Error submitting the form. Please try again.');
                 }
             } catch (error) {
-                setErrorMessage('خطا در ارسال فرم. لطفاً دوباره امتحان کنید.');
+                setErrorMessage('Error submitting the form. Please try again.');
             }
+
         } else {
             setDialogOpen(true);
         }

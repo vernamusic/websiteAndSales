@@ -41,7 +41,7 @@ const ResetPasswordDialog = ({ open, onClose, token }) => {
             return;
         }
 
-        const apiUrl = `https://site.vitruvianshield.com/api/v1/reset-password/${token}`;
+        const apiUrl = `https://vitruvianshield.com/api/v1/reset-password/${token}`;
         const payload = { password };
 
         fetch(apiUrl, {

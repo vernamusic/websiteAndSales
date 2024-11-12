@@ -224,10 +224,21 @@ const PartnerBox = () =>{
                             picture={box.picture}
                             name={box.name}
                             detail={box.detail}
-                            email={box.email}
+                            email={
+                                <a
+                                    href={`mailto:${box.email}`}
+                                    style={{
+                                        color: 'white',
+                                        textDecoration: 'none',
+                                        cursor: 'pointer'
+                                    }}
+                                >
+                                    {box.email}
+                                </a>
+                            }
                             linkedinUrl={box.linkedinUrl}
-                            instagramUrl={box.instagramUrl}
-                            twitterUrl={box.twitterUrl}
+                          //  instagramUrl={box.instagramUrl}
+                          //  twitterUrl={box.twitterUrl}
                         />
                     ))}
                 </Box>

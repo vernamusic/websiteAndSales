@@ -56,7 +56,7 @@ const ProfilePage = () => {
 
         const fetchUserData = async () => {
             try {
-                const response = await axios.get('https://site.vitruvianshield.com/api/v1/user/settings', {
+                const response = await axios.get('https://vitruvianshield.com/api/v1/user/settings', {
                     headers: {
                         'Authorization': `Bearer ${Token}`
                     }
@@ -110,7 +110,7 @@ const ProfilePage = () => {
         const formattedPhone = formatPhoneNumber(phoneWithPrefix);
 
         try {
-            await axios.patch('https://site.vitruvianshield.com/api/v1/user/settings', {
+            await axios.patch('https://vitruvianshield.com/api/v1/user/settings', {
                 ...formData,
                 phone: formattedPhone,
             }, {
