@@ -108,7 +108,7 @@ const TeamMembers = () => {
                     <Typography gutterBottom sx={{ ...theme.typography.h3, mb: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 }, textAlign: 'left', ml: '0.25vw' }}>
                         {selectedTeam}
                     </Typography>
-                    <Allinonecard data={data} /> {/* Now passes only members data */}
+                    <Allinonecard data={data} />
                 </Box>
             );
         }  
@@ -147,7 +147,7 @@ const TeamMembers = () => {
                             color: '#f1f1f1',
                             lineHeight: 'normal'
                         }}>
-                        Meet our world-class advisors team
+                        Meet our world-class advisors
                     </Typography>
                 </Box>
                 <Box
