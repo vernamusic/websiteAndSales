@@ -9,7 +9,8 @@ function Event () {
         sx={{
             display:'flex',
             flexDirection:'column',
-            width:'100%'
+            width:'100%',
+            mt:'-5vw'
         }}>
             <PartnerBox />
             <PicSlider />

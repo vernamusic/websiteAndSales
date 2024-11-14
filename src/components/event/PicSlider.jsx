@@ -32,28 +32,21 @@ const Slider = () => {
     useEffect(() => {
         const fetchSlides = async () => {
             try {
-                const response = await fetch('https://vitruvianshield.com/api/v1/events/websummit/today');
-                const data = await response.json();
+                const fallbackResponse = await fetch('https://vitruvianshield.com/api/v1/events/websummit');
+                const fallbackData = await fallbackResponse.json();
 
-                if (!data || data.length === 0) {
-                    const fallbackResponse = await fetch('https://vitruvianshield.com/api/v1/events/websummit');
-                    const fallbackData = await fallbackResponse.json();
-                    setSlides(fallbackData);
-                } else {
-                    setSlides(data);
-                }
+                const sortedData = fallbackData.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
+                setSlides(sortedData);
             } catch (error) {
                 console.error('Error fetching slides:', error);
             }
         };
 
-        // فراخوانی اولین بار تابع
         fetchSlides();
 
-        // اجرای مجدد هر ۳۰ ثانیه
         const intervalId = setInterval(fetchSlides, 30000);
 
-        // پاک کردن تایمر وقتی که کامپوننت حذف می‌شود
         return () => clearInterval(intervalId);
     }, []);
 

@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import { Box, Typography, Button, createTheme } from '@mui/material';
 import background from '../../assets/Mobile-BG1.png';
 import { ThemeProvider } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import ContactDialog from './ContactDialog';
+import axios from "axios";
 
 
 const theme = createTheme({
@@ -45,7 +46,28 @@ const Home = () => {
     const handleCloseDialog = () => {
         setDialogOpen(false);
     };
-    
+
+    const [latestLink, setLatestLink] = useState('');
+
+    useEffect(() => {
+        const fetchLink = async () => {
+            try {
+                const response = await axios.get('https://vitruvianshield.com/api/v1/applications');
+                const data = response.data;
+
+                // پیدا کردن لینک با جدیدترین release_date
+                const latestRelease = data
+                    .sort((a, b) => new Date(b.release_date) - new Date(a.release_date))[0];
+
+                // قرار دادن لینک جدیدترین نسخه
+                setLatestLink(latestRelease.apk_file);
+            } catch (error) {
+                console.error('Error getting new link:', error);
+            }
+        };
+
+        fetchLink();
+    }, []);
 
     return (
         <ThemeProvider theme={theme}>
@@ -115,10 +137,14 @@ const Home = () => {
                         <Button
                             variant="contained"
                             onClick={() => {
-                                const newTab = window.open("/media/applications/files/Vitruvian_Shield_Production_Release_1.1.6.apk", "_blank");
-                                setTimeout(() => {
-                                    newTab.close();
-                                }, 2000);
+                                if (latestLink) {
+                                    const newTab = window.open(latestLink, "_blank");
+                                    setTimeout(() => {
+                                        if (newTab) newTab.close();
+                                    }, 2000);
+                                } else {
+                                    alert("No download link available.");
+                                }
                             }}
                             sx={{
                                 padding: 0,
@@ -127,7 +153,6 @@ const Home = () => {
                                 borderRadius: '4px',
                                 width: '138px',
                                 height: '42px',
-                                ...theme.typography.button,
                                 backgroundColor: '#B50304',
                                 textTransform: 'none',
                                 '&:hover': {

@@ -109,8 +109,7 @@ const Home = () => {
                         </Button>
                         <Button
                             variant="contained"
-                            component={Link}
-                            to="/signup"
+                            onClick={handleOpenDialog}
                             sx={{
                                 padding:0,
                                 minWidth:0,

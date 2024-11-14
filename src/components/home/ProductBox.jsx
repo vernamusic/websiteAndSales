@@ -24,22 +24,30 @@ const proItems = [
         image: pro1,
         url: '/products/mobile-app',
         description: "Experience a seamless and user-friendly way to share your health data with all the professionals responsible for your aftercare and medical follow-up.",
+        imageWidth: '120%',
+        right: '-9.5%',
+        bottom: '10%'
     },
     {
         id: '2',
         title: "Vitruvian Shield Smart Watch",
         image: pro2,
         url: '/products/smart-watch',
-        description: "Equipped with a vast range of state of the art sensors, the Vitruvian Shield Smartwatch collects biometric data from the wearer"
+        description: "Equipped with a vast range of state of the art sensors, the Vitruvian Shield Smartwatch collects biometric data from the wearer",
+        imageWidth: '90%',
+        right: '0%',
+        bottom: '15%'
     },
     {
         id: '3',
         title: "The Web Application",
         image: pro3,
         url: '/products/dashboard',
-        description: "This Web App allows healthcare providers and researchers to analyze, manage and monitor their patients' health data in real time.\n" +
-            "\n"
-    },
+        description: "This Web App allows healthcare providers and researchers to analyze, manage and monitor their patients' health data in real time.",
+        imageWidth: '120%',
+        right: '-9.5%',
+        bottom: '10%'
+    }
 ];
 
 const ProductBox = () => {
@@ -156,7 +164,8 @@ const ProductBox = () => {
                                     backgroundImage: `url(${item.image})`,
                                     width: '100%',
                                     height: '100%',
-                                    backgroundSize: 'cover',
+                                    backgroundSize: 'contain',
+                                    backgroundRepeat: 'no-repeat',
                                     backgroundPosition: 'center',
                                 }} />
                             </Box>
@@ -212,13 +221,14 @@ const ProductBox = () => {
                             src={proItems[currentIndex].image}
                             sx={{
                                 position: 'absolute',
-                                right: '-9.5%',
-                                bottom: '10%',
-                                width: '120%',
+                                right: proItems[currentIndex].right,
+                                bottom: proItems[currentIndex].bottom,
+                                width: proItems[currentIndex].imageWidth, 
                                 zIndex: 2,
                                 animation: `fadeLeft 0.7s ease`,
                             }}
                         />
+
                         <Box
                             sx={{
                                 display: "flex",
