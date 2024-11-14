@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Typography, IconButton, Divider } from '@mui/material';
-import {Visibility} from '@mui/icons-material';
+import { Visibility } from '@mui/icons-material';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Newscard from './AllInOneCard.jsx';
-import Facebook from '../../assets/logos_facebook.png'
-import Share from '../../assets/logos_share.png'
-import Twitter from '../../assets/logos_Twitter.png'
+import Facebook from '../../assets/logos_facebook.png';
+import Share from '../../assets/logos_share.png';
+import Twitter from '../../assets/logos_Twitter.png';
+
 const theme = createTheme({
     typography: {
         h6: {
@@ -34,6 +35,7 @@ const theme = createTheme({
         },
     },
 });
+
 const calculateTimeAgo = (createdAt) => {
     const now = moment();
     const duration = moment.duration(now.diff(createdAt));
@@ -68,6 +70,9 @@ const NewsCard = () => {
                 const duration = moment.duration(now.diff(publishedTime));
                 const hoursAgo = Math.floor(duration.asHours());
                 setTimeAgo(hoursAgo > 24 ? `${Math.floor(duration.asDays())} days ago` : `${hoursAgo} hours ago`);
+            })
+            .catch((error) => {
+                console.error('Error fetching news:', error);
             });
     }, [slug]);
 
@@ -89,8 +94,38 @@ const NewsCard = () => {
             });
     };
 
-    if (!newsData) return <div>Loading...</div>;
+    if (!newsData) {
+        return <div>Loading...</div>;
+    }
+
     const timeCall = calculateTimeAgo(newsData.created_at);
+
+    const formattedDetails = newsData.details.split('\n').map((paragraph, index) => {
+        const isLink = paragraph.startsWith('https');
+        return (
+            <Box key={index} sx={{ mb: 2 }}>
+                {isLink ? (
+                    <Typography
+                        variant="body1"
+                        sx={{
+                            color: 'blue',
+                            textDecoration: 'underline',
+                            cursor: 'pointer',
+                            fontSize: '1.25vw',
+                        }}
+                        onClick={() => window.open(paragraph, '_blank')}
+                    >
+                        {paragraph}
+                    </Typography>
+                ) : (
+                    <Typography variant="body1" sx={{ fontSize: '1.25vw' }}>
+                        {paragraph}
+                    </Typography>
+                )}
+            </Box>
+        );
+    });
+
     return (
         <ThemeProvider theme={theme}>
             <Box
@@ -106,16 +141,14 @@ const NewsCard = () => {
             />
             <Box
                 sx={{
-                    mb:5,
+                    mb: 5,
                     color: 'white',
                     height: 'auto',
                     position: 'relative',
                     alignItems: 'center',
-                    background: 'radial-gradient(97.15% 97.15% at 50% 2.85%, #323232 0%, #1F1F1F 100%)'
+                    background: 'radial-gradient(97.15% 97.15% at 50% 2.85%, #323232 0%, #1F1F1F 100%)',
                 }}
             >
-
-
                 <Box
                     sx={{
                         position: 'relative',
@@ -125,86 +158,52 @@ const NewsCard = () => {
                         pt: { xs: 1, sm: 1, md: 1.5, lg: 2, xl: 2 },
                     }}
                 >
-                    <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", }}>
-                        <Typography variant="h4" sx={{
-                                ...theme.typography.h3,
-                                mt: '5vw',
-                            }}>
+                    <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <Typography variant="h4" sx={{ ...theme.typography.h3, mt: '5vw' }}>
                             {newsData.title}
                         </Typography>
 
-                        <Box sx={{ display: 'flex', gap: 1, mt: '5vw', }}>
+                        <Box sx={{ display: 'flex', gap: 1, mt: '5vw' }}>
                             <Visibility sx={{ fontSize: '1.8vw', color: 'white' }} />
-                            <Typography sx={{ ...theme.typography.button, color: 'white' }}>
-                                {newsData.views}
-                            </Typography>
+                            <Typography sx={{ ...theme.typography.button, color: 'white' }}>{newsData.views}</Typography>
                             <Divider
                                 orientation="vertical"
                                 flexItem
-                                sx={{ mx:'0.5vw', borderColor: 'rgba(255, 255, 255, 0.2)', borderStyle: 'dashed',height:'2vw',}}
+                                sx={{
+                                    mx: '0.5vw',
+                                    borderColor: 'rgba(255, 255, 255, 0.2)',
+                                    borderStyle: 'dashed',
+                                    height: '2vw',
+                                }}
                             />
-                            <Typography sx={{ ...theme.typography.button, display: { sm: 'block', xs: 'none' } }}>
-                                Share:
-                            </Typography>
+                            <Typography sx={{ ...theme.typography.button, display: { sm: 'block', xs: 'none' } }}>Share:</Typography>
                             <IconButton sx={{ p: 0 }} onClick={() => shareOnFacebook(`https://vitruvianshield.com/news/${slug}`)}>
-                                <img
-                                    src={Facebook}
-                                    alt="Facebook"
-                                    style={{ width: 'auto', height: '1.6667vw' }}
-                                />
+                                <img src={Facebook} alt="Facebook" style={{ width: 'auto', height: '1.6667vw' }} />
                             </IconButton>
                             <IconButton sx={{ p: 0 }} onClick={() => shareOnTwitter(`https://vitruvianshield.com/news/${slug}`)}>
-                                <img
-                                    src={Twitter}
-                                    alt="Twitter"
-                                    style={{ width: 'auto', height: '1.6667vw' }}
-                                />
+                                <img src={Twitter} alt="Twitter" style={{ width: 'auto', height: '1.6667vw' }} />
                             </IconButton>
                             <IconButton sx={{ p: 0 }} onClick={() => copyToClipboard(`https://vitruvianshield.com/news/${slug}`)}>
-                                <img
-                                    src={Share}
-                                    alt="Share"
-                                    style={{ width: 'auto', height: '1.6667vw' }}
-                                />
+                                <img src={Share} alt="Share" style={{ width: 'auto', height: '1.6667vw' }} />
                             </IconButton>
                         </Box>
-
                     </Box>
 
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            justifyContent: 'flex-start',
-                        }}
-                    >
-
-                        <Typography variant="body2" sx={{ ...theme.typography.button, color: 'rgba(144, 193, 226, 1)', mt:'0.5vw',mb:'2vw' }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start' }}>
+                        <Typography variant="body2" sx={{ ...theme.typography.button, color: 'rgba(144, 193, 226, 1)', mt: '0.5vw', mb: '2vw' }}>
                             {newsData.read_time} min read
                         </Typography>
                     </Box>
 
-                    {newsData.details.split('\n').map((paragraph, index) => (
-                        <Typography key={index} variant="body1" sx={{
-                            mt: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 }, ...theme.typography.h6 }}>
-                            {paragraph}
-                        </Typography>
-                    ))}
+                    {formattedDetails}
 
-                    <Box sx={{ display: 'flex', alignItems: 'center', mt: '2vw',gap:'2vw'}}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', mt: '2vw', gap: '2vw' }}>
                         <Typography sx={{ ...theme.typography.button, color: '#BFBFBF' }}>{timeCall}</Typography>
                         <Typography sx={{ ...theme.typography.button, color: '#BFBFBF' }}>
-                            {moment(newsData.created_at).format('ddd MMMM D, YYYY')}
-                        </Typography>
-                    </Box>
-                    <Box sx={{ mb: { xs: 4, sm: 5, md: 6, lg: 8 }, }}>
-                        <Typography gutterBottom sx={{ ...theme.typography.h6, pl: 1, mb: { xs: 2, sm: 2, md: 3, lg: 4, xl: 6 }, textAlign: 'left', mt: { xs: 3, sm: 4, md: 5, lg: 7, xl: 10 } }}>
-                            Related News:
+                            {moment(newsData.created_at).format('MMMM DD, YYYY')}
                         </Typography>
                     </Box>
                 </Box>
-                <Newscard data={newsData.related_news.slice(0, 4)} />
-
             </Box>
         </ThemeProvider>
     );
