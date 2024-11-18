@@ -200,7 +200,7 @@ const ProfilePage = () => {
                         }}
                     >
                         {/* First Name */}
-                        <Box sx={{ flex: { xs: '100%', sm: 'calc(50% - 16px)' } }}>
+                        <Box sx={{width:'282px' }}>
                             <Typography variant="subtitle1" sx={{ marginBottom: 1 }}>First Name</Typography>
                             <TextField
                                 fullWidth
@@ -234,7 +234,7 @@ const ProfilePage = () => {
 
                         </Box>
                         {/* Last Name */}
-                        <Box sx={{ flex: { xs: '100%', sm: 'calc(50% - 16px)' } }}>
+                        <Box sx={{ width:'282px' }}>
                             <Typography variant="subtitle1" sx={{ marginBottom: 1 }}>Last Name</Typography>
                             <TextField
                                 fullWidth
@@ -266,7 +266,7 @@ const ProfilePage = () => {
                             />
                         </Box>
                         {/* Email */}
-                        <Box sx={{ flex: { xs: '100%', sm: 'calc(50% - 16px)' } }}>
+                        <Box sx={{ width:'282px' }}>
                             <Typography variant="subtitle1" sx={{ marginBottom: 1 }}>Email</Typography>
                             <TextField
                                 fullWidth
@@ -298,7 +298,7 @@ const ProfilePage = () => {
                             />
                         </Box>
                         {/* Phone */}
-                        <Box sx={{ flex: { xs: '100%', sm: 'calc(50% - 16px)' } }}>
+                        <Box sx={{ width:'282px' }}>
                                             <Typography variant="subtitle1" sx={{ marginBottom: 1 }}>Phone</Typography>
                                             <TextField
                                                 fullWidth
@@ -340,7 +340,7 @@ const ProfilePage = () => {
                                             />
                         </Box>
                         {/* Country */}
-                        <Box sx={{ flex: { xs: '100%', sm: 'calc(50% - 16px)' } }}>
+                        <Box sx={{ width:'282px' }}>
                             <Typography variant="subtitle1" sx={{ marginBottom: 1 }}>Country</Typography>
                             <Autocomplete
                                 freeSolo
@@ -388,7 +388,7 @@ const ProfilePage = () => {
                             />
                         </Box>
                         {/* City */}
-                        <Box sx={{ flex: { xs: '100%', sm: 'calc(50% - 16px)' } }}>
+                        <Box sx={{ width:'282px' }}>
                             <Typography variant="subtitle1" sx={{ marginBottom: 1 }}>City</Typography>
                             <Autocomplete
                                 freeSolo
