@@ -108,9 +108,9 @@ const Profile = () => {
 
     return (
         <ThemeProvider theme={theme}>
-            <Box sx={{ display: 'flex', minHeight: '600px', backgroundColor: '#292929' }}>
+            <Box sx={{ display: 'flex', minHeight: '600px', background: '#262626' }}>
                 <Sidebar activePage={activePage} setActivePage={setActivePage} />
-                <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+                <Box component="main">
                     {activePage === 'profile' && <ProfilePage />}
                     {activePage === 'billing' && <BillingPage />}
                     {activePage === 'apps' && <AppsPage />}
