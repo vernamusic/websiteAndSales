@@ -41,6 +41,7 @@ const theme = createTheme({
     },
 });
 
+
 const Sidebar = ({ activePage, setActivePage }) => (
     <Box
         component="nav"
