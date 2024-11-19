@@ -10,6 +10,8 @@ import watch1 from '../../assets/watch1.png';
 import watch2 from '../../assets/watch2.png';
 import watch3 from '../../assets/watch3.png';
 import watch4 from '../../assets/watch4.png';
+import watch5 from '../../assets/watch5.png';
+import watch6 from '../../assets/watch6.png';
 import background from '../../assets/Mobile-BG2.png'
 
 const themes = createTheme({
@@ -53,7 +55,7 @@ const featureData = [
     { title: 'Data Retrieval and Analysis', description: "Store data locally for offline analysis or live sync with devices.", icon: icon6 },
 ];
 
-const watchImage = [watch1,watch2,watch3,watch4]
+const watchImage = [watch1,watch2,watch3,watch4,watch5,watch6]
 
 const FeaturesGrid = () => {
     const [index, setIndex] = useState(0)
@@ -61,7 +63,7 @@ const FeaturesGrid = () => {
         <ThemeProvider theme={themes}>
             <Box sx={{
                 backgroundImage: `url(${background})`,
-                maxHeight: '617px',
+                maxHeight: '750px',
                 minHeight: { xs: '500px', sm: '600px', md: '617px', lg: '617px' },
                 width: '100%',
                 backgroundSize: 'cover',
@@ -110,18 +112,19 @@ const FeaturesGrid = () => {
                         maxWidth='22em'
                         gap='3em'
                     >
-                        {featureData.slice(0, 3).map((feature, index) => (
+                        {featureData.slice(0, 3).map((feature, i) => (
                             <Box
-                                key={index}
+                                key={i}
                                 position="relative"
                                 display="flex"
                                 flexDirection="row"
+                                onClick={()=>setIndex(i)}
                             >
                                 <Box
                                     sx={{
                                         width: '40px',
                                         height: '40px',
-                                        backgroundColor: '#B50304',
+                                        backgroundColor: `${i==index?'#910203':'#B50304'}`,
                                         position:'absolute',
                                         top:'0em',
                                         clipPath: 'circle(45%)',
@@ -143,7 +146,7 @@ const FeaturesGrid = () => {
                                     sx={{pl:'3.5em',}}
                                 >
                                     <Typography
-                                        sx={{...themes.typography.h6,}}
+                                        sx={{...themes.typography.h6, width: 'fit-content', pb: '2px', borderBottom: `1px solid ${index == i?'white':'transparent'}`, cursor: 'pointer'}}
                                     >
                                         {feature.title}
                                     </Typography>
@@ -158,24 +161,25 @@ const FeaturesGrid = () => {
                             </Box>
                         ))}
                     </Box>
+
                     <Box sx={{alignItems: 'center', display: 'flex', margin: '0 3em'}}>
                         <IconButton sx={{height: '48px', width: '48px'}} children={
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                                 <rect x="0.875" width="24" height="24" rx="12" fill="black" fill-opacity="0.2"/>
                                 <path d="M15 7L10 12L15 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                        } onClick={()=>setIndex(index==0?3:index-1)} />
+                        } onClick={()=>setIndex(index==0?5:index-1)} />
                         <Box sx={{display: 'flex', flexDirection: 'column'}}>
                             <Box
                                 component="img"
                                 src={watchImage[index]}
                                 sx={{
                                     width: 'auto',
-                                    height: '400px',
+                                    height: '300px',
                                     objectFit: 'cover',
                                 }}
                             />
-                            <svg xmlns="http://www.w3.org/2000/svg" width="192" height="28" viewBox="0 0 192 28" fill="none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="225" height="25" viewBox="0 0 160 25" fill="none">
                                 <g filter="url(#filter0_f_4415_417)">
                                     <ellipse cx="96" cy="14" rx="88" ry="6" fill="#2C2C2C" fill-opacity="0.6"/>
                                 </g>
@@ -193,7 +197,7 @@ const FeaturesGrid = () => {
                                 <rect x="24.125" y="24" width="24" height="24" rx="12" transform="rotate(-180 24.125 24)" fill="black" fill-opacity="0.2"/>
                                 <path d="M10 17L15 12L10 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                        } onClick={()=>setIndex((index+1)%4)} />
+                        } onClick={()=>setIndex((index+1)%6)} />
                     </Box>
                     <Box
                         display="flex"
@@ -201,18 +205,19 @@ const FeaturesGrid = () => {
                         maxWidth='22em'
                         gap='3em'
                     >
-                        {featureData.slice(3, 6).map((feature, index) => (
+                        {featureData.slice(3, 6).map((feature, i) => (
                             <Box
-                                key={index}
+                                key={i}
                                 position="relative"
                                 display="flex"
                                 flexDirection="row"
+                                onClick={()=>setIndex(i+3)}
                             >
                                 <Box
                                     sx={{
                                         width: '40px',
                                         height: '40px',
-                                        backgroundColor: '#B50304',
+                                        backgroundColor: `${i+3==index?'#910203':'#B50304'}`,
                                         position:'absolute',
                                         top:'0em',
                                         clipPath: 'circle(45%)',
@@ -235,7 +240,7 @@ const FeaturesGrid = () => {
                                     sx={{pl:'3.5em',}}
                                 >
                                     <Typography
-                                        sx={{...themes.typography.h6,}}
+                                        sx={{...themes.typography.h6, width: 'fit-content', pb: '2px', borderBottom: `1px solid ${index == i+3?'white':'transparent'}`, cursor: 'pointer'}}
                                     >
                                         {feature.title}
                                     </Typography>
