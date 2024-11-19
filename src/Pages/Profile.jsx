@@ -19,6 +19,7 @@ import paymenticon from '../assets/paymenticon.png';
 import ProfilePage from '../components/Proflie/ProfilePage';
 import BillingPage from '../components/Proflie/BillingPage';
 import AppsPage from '../components/Proflie/AppsPage';
+import Consultation from '../components/Proflie/Consultation';
 
 const theme = createTheme({
     typography: {
@@ -111,10 +112,11 @@ const Profile = () => {
         <ThemeProvider theme={theme}>
             <Box sx={{ display: 'flex', minHeight: '600px', background: '#262626' }}>
                 <Sidebar activePage={activePage} setActivePage={setActivePage} />
-                <Box component="main">
+                <Box sx={{width:'100%'}}>
                     {activePage === 'profile' && <ProfilePage />}
                     {activePage === 'billing' && <BillingPage />}
                     {activePage === 'apps' && <AppsPage />}
+                    {activePage === 'consultation' && <Consultation />}
                 </Box>
             </Box>
         </ThemeProvider>

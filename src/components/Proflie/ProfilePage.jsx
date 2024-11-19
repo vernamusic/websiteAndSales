@@ -165,8 +165,7 @@ const ProfilePage = () => {
     return (
         <ThemeProvider theme={theme}>
             <Box sx={{
-                m: '7px 128px 63px 64px',
-                width: '100%',
+                m: '71px 128px 63px 64px',
                 background: '#262626'
             }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', mb: '32px' }}>
