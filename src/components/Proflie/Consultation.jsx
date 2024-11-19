@@ -9,8 +9,8 @@ import {
   InputAdornment,
   TextField,
   Typography,
-  createTheme,
   ThemeProvider,
+  createTheme
 } from '@mui/material';
 import {
   ChevronLeft,
@@ -20,48 +20,59 @@ import {
   ShoppingCart,
   CreditCard,
   Build,
-  Add,
+  Add
 } from '@mui/icons-material';
 
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#00897b',
+// Create a custom theme for typography
+const theme = createTheme({
+  typography: {
+    subtitle1: {
+        fontFamily: 'Lato',
+        fontSize: '16px',
+        lineHeight: '21.6px',
+        fontWeight: 400,
+        color: "#FFF",
+        letterSpacing: '0.4px',
     },
-    background: {
-      default: '#1e1e1e',
-      paper: '#2d2d2d',
+    caption: {
+        fontFamily: 'Lato',
+        fontSize: { xs: '10px', sm: '11.1px', md: '12.2px', lg: '13px' },
+        lineHeight: '15.6px',
+        fontWeight: 400,
+        color: "#59BA63",
+        letterSpacing: '0.4px',
     },
-  },
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          textTransform: 'none',
-          borderRadius: 8,
-        },
-      },
+    h4: {
+      fontSize: '32px',
+      fontWeight: 600,
+      color: '#ffffff'
     },
-  },
+    body1: {
+      fontSize: '16px',
+      color: '#bbbbbb'
+    },
+    button: {
+      textTransform: 'none'
+    }
+  }
 });
 
 const SupportCategory = ({ icon, title }) => (
   <Button
     variant="outlined"
     startIcon={
-      <Box sx={{ bgcolor: 'background.paper', p: 1, borderRadius: '50%' }}>
+      <Box sx={{ backgroundColor: '#2d2d2d', p: 1, borderRadius: '50%' }}>
         {icon}
       </Box>
     }
     endIcon={<Add />}
     sx={{
       justifyContent: 'space-between',
-      bgcolor: 'background.paper',
-      color: 'text.primary',
+      backgroundColor: '#2d2d2d',
+      color: '#ffffff',
       p: 2,
       width: '100%',
-      '&:hover': { bgcolor: 'action.hover' },
+      '&:hover': { backgroundColor: '#3c3c3c' }
     }}
   >
     {title}
@@ -70,19 +81,47 @@ const SupportCategory = ({ icon, title }) => (
 
 const SupportChat = () => {
   return (
-    <ThemeProvider theme={darkTheme}>
-      <Box sx={{ border:'1px solid #FFF',width:'100%',minHeight: '100vh', bgcolor: 'background.default', display: 'flex', flexDirection: 'column' }}>
-        <Box sx={{ bgcolor: 'primary.main', p: 2, display: 'flex', alignItems: 'center' }}>
-          <Avatar sx={{ mr: 2 }} src="/placeholder.svg" alt="Support Team" />
+    <ThemeProvider theme={theme}>
+      <Box sx={{ width: '100%', minHeight: '100vh', backgroundColor: '#262626', display: 'flex', flexDirection: 'column' }}>
+        <Box sx={{ background: 'linear-gradient(0deg, #00544D 0%, #008F82 100%)', p: '16px 32px 16px 32px', display: 'flex', alignItems: 'center' }}>
+          <Avatar
+            sx={{
+              mr: '16px',
+              width: '50px',
+              height: '50px',
+              border: '2px solid #B0EEE9',
+              boxShadow: '0px 0px 5px 0px #8AE6DE99'
+            }}
+          />
           <Box sx={{ flexGrow: 1 }}>
-            <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>Support Team Name</Typography>
-            <Typography variant="caption" sx={{ color: '#4caf50' }}>
-              • Active
+            <Typography 
+            variant="subtitle1" 
+            sx={{ fontSize: { xs: '12.64px', sm: '16px', md: '17px', lg: '18px' },mb:1, }}
+            >
+            Support Team Name
             </Typography>
+
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Box
+                    sx={{
+                    width: '5px',
+                    height: '5px',
+                    borderRadius: '50%',
+                    backgroundColor: '#59BA63',
+                    mr: 1,
+                    }}
+                />
+                <Typography variant="caption">
+                    Active
+                </Typography>
+            </Box>
+
           </Box>
+
+          {/* Should become slider for support profile */}
           <Button
             startIcon={<ChevronLeft />}
-            sx={{ color: 'background.paper' }}
+            sx={{ color: '#EEEEEE', background:'#00544D8C',borderRadius:'30px' }}
           >
             Profile
           </Button>
@@ -90,10 +129,10 @@ const SupportChat = () => {
 
         <Container maxWidth="md" sx={{ flexGrow: 1, py: 4 }}>
           <Box textAlign="center" mb={4}>
-            <Typography variant="h4" gutterBottom sx={{ color: 'text.primary' }}>
+            <Typography variant="h4" gutterBottom>
               Welcome to Chat
             </Typography>
-            <Typography variant="body1" color="text.secondary">
+            <Typography variant="body1">
               Get started chat. Not sure where to start?
             </Typography>
           </Box>
@@ -114,41 +153,42 @@ const SupportChat = () => {
           </Grid>
         </Container>
 
-        <Box sx={{ p: 2, bgcolor: 'background.default' }}>
+        <Box sx={{ p: 2, backgroundColor: '#1e1e1e' }}>
           <TextField
             fullWidth
             variant="outlined"
             placeholder="Type here ..."
             sx={{
               '& .MuiOutlinedInput-root': {
-                bgcolor: 'background.paper',
+                backgroundColor: '#2d2d2d',
                 borderRadius: 50,
+                color: '#ffffff',
                 '& fieldset': {
-                  borderColor: 'transparent',
+                  borderColor: 'transparent'
                 },
                 '&:hover fieldset': {
-                  borderColor: 'transparent',
+                  borderColor: 'transparent'
                 },
                 '&.Mui-focused fieldset': {
-                  borderColor: 'transparent',
-                },
-              },
+                  borderColor: 'transparent'
+                }
+              }
             }}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
                   <IconButton edge="start">
-                    <EmojiEmotions />
+                    <EmojiEmotions sx={{ color: '#ffffff' }} />
                   </IconButton>
                 </InputAdornment>
               ),
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton edge="end">
-                    <AttachFile />
+                    <AttachFile sx={{ color: '#ffffff' }} />
                   </IconButton>
                 </InputAdornment>
-              ),
+              )
             }}
           />
         </Box>
