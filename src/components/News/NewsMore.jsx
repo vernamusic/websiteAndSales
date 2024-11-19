@@ -108,7 +108,7 @@ const NewsCard = () => {
                     <Typography
                         variant="body1"
                         sx={{
-                            color: 'blue',
+                            color: '#3E93CC',
                             textDecoration: 'underline',
                             cursor: 'pointer',
                             fontSize: '1.25vw',
