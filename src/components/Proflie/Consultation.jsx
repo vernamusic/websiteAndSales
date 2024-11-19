@@ -19,7 +19,7 @@ import {
 import CustomerSupport from '../../assets/CustomerSupport.png';
 import DoctorsBag from '../../assets/DoctorsBag.png';
 import CardPayment from '../../assets/CardPayment.png';
-import ShoppingCard from '../../assets/CardPayment.png';
+import ShoppingCard from '../../assets/ShoppingCart.png';
 // Create a custom theme for typography
 const theme = createTheme({
   typography: {
@@ -70,6 +70,7 @@ const SupportCategory = ({ icon, title }) => (
             width: '37px', 
             height: '37px',
             padding: '6px',
+            ml: 1,
             borderRadius: '40px',
             background: 'linear-gradient(180deg, #1F1F1F 0%, #303130 100%)'
           }}
@@ -77,22 +78,24 @@ const SupportCategory = ({ icon, title }) => (
           {icon}
         </Box>
       }
-      
       endIcon={<Add />}
       sx={{
-        width: '237px',
+        width: '240px',
         height: '49px',
         padding: '6px 16px 6px 8px',
-        gap: '42px',
+        justifyContent: 'space-between',
         borderRadius: '8px',
         background: 'linear-gradient(180deg, #1F1F1F 0%, #141414 100%)',
-        color: '#ffffff',   
-        borderColor: '#8AE3BE4D'
+        color: '#ffffff',
+        borderColor: '#8AE3BE4D',
       }}
     >
-      {title}
+      <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
+        {title}
+      </Box>
     </Button>
   );
+  
   
 
 const SupportChat = () => {
@@ -123,27 +126,27 @@ const SupportChat = () => {
                 <Box sx={{   }}>
                     <SupportCategory 
                     icon={<img src={CustomerSupport} alt="Website support" style={{ width: '25px', height: '25px' }} />} 
-                    title={<Typography sx={{ display: 'inline' }}>Website support</Typography>} 
+                    title={<Typography sx={{ display: 'flex', }}>Website support</Typography>} 
                     />
                 </Box>
                 <Box sx={{ }}>
                     <SupportCategory 
                     icon={<img src={DoctorsBag} alt="Service purchase" style={{ width: '25px', height: '25px' }} />} 
-                    title={<Typography sx={{ display: 'inline' }}>Service purchase</Typography>} 
+                    title={<Typography sx={{ display: 'flex' }}>Service purchase</Typography>} 
                     />
                 </Box>
                 <Box sx={{   }}>
                     <SupportCategory 
                     icon={<img src={CardPayment} alt="Medical and technical" style={{ width: '25px', height: '25px' }} />} 
-                    title={<Typography sx={{ display: 'inline' }}>Medical and technical</Typography>} 
+                    title={<Typography sx={{ display: 'flex' }}>Medical and technical</Typography>} 
                     />
                 </Box>
-                <Box sx={{   }}>
-                    <SupportCategory 
-                    icon={<img src={ShoppingCard} alt="Finance and payment" style={{ width: '25px', height: '25px' }} />} 
-                    title={<Typography sx={{ display: 'inline' }}>Finance and payment</Typography>} 
-                    />
-                </Box>
+                    <Box sx={{   }}>
+                        <SupportCategory 
+                        icon={<img src={ShoppingCard} alt="Finance and payment" style={{ width: '25px', height: '25px' }} />} 
+                        title={<Typography sx={{ display: 'flex' }}>Finance and payment</Typography>} 
+                        />
+                    </Box>
                 </Box>
 
 
