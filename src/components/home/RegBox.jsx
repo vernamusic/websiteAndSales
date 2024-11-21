@@ -29,7 +29,7 @@ const RegBox = () => {
                 backgroundPosition: 'top right',
                 backgroundRepeat: 'no-repeat',
                 maxHeight: '746px',
-                minHeight: { xs: '188px', sm: '250px', md: '650px', lg: '900px' }
+                minHeight: { xs: '188px', sm: '300px', md: '600px', lg: '750px' }
             }}
         >
             <Box
