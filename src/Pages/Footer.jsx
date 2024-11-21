@@ -371,7 +371,7 @@ const Footer = () => {
             {/* ... Existing accordions ... */}
 
             {/* Social Media Icons */}
-            <Box sx={{ display: 'flex', justifyContent: 'center', gap: '1rem', mt: 2 }}>
+            {/* <Box sx={{ display: 'flex', justifyContent: 'center', gap: '1rem', mt: 2 }}>
               <img
                 src={FacebookCircled}
                 alt="Facebook"
@@ -399,7 +399,7 @@ const Footer = () => {
                   opacity: 0.9,
                 }}
               />
-            </Box>
+            </Box> */}
           </Box>
 
 

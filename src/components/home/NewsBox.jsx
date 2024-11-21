@@ -58,10 +58,10 @@ const NewsCard = ({ picture, title, details, slug, onClick }) => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'start',
-                height: '360px',
-                width: '284px',
+                height: {xs:'114px',sm:'220px',md:'280px',lg:'360px'},
+                width: {xs:'90px',sm:'170px',md:'210px',lg:'284px'},
                 boxSizing: 'border-box',
-                p: '24px',
+                p: {xs:'12px',sm:'18px',md:'20px',lg:'24px'},
                 borderRadius: "16px",
                 backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.01) 40.5%, rgba(0, 0, 0, 0.8) 71%, rgba(0, 0, 0, 0.9) 100%), url(${picture})`,
                 backgroundSize: "cover",
@@ -76,6 +76,7 @@ const NewsCard = ({ picture, title, details, slug, onClick }) => {
         >
             <Box
                 sx={{
+                    display:{xs:'none',sm:'none',md:'block'},
                     position: 'absolute',
                     top: '-5px',
                     right: '-5px',
@@ -99,17 +100,18 @@ const NewsCard = ({ picture, title, details, slug, onClick }) => {
                     sx={{
                         width: '100%',
                         ...navItemStyle,
-                        fontSize: { xs: '12.64', md: '14.22px', lg: '16px' },
+                        fontSize: { xs: '8px', md: '14.22px', lg: '16px' },
                         fontWeight: 600,
-                        lineHeight: 'normal'
+                        lineHeight: 'normal',
                     }}>
                     {title}
                 </Typography>
                 <Typography
                     sx={{
+                        display:{xs:'none',sm:'block',md:'block'},
                         width: '100%',
                         ...navItemStyle,
-                        fontSize: { xs: '10px', md: '12px' },
+                        fontSize: { xs: '10px',sm:'11px', md: '12px' },
                         mt:'8px',
                         lineHeight:'130%'
                     }}>
@@ -119,7 +121,7 @@ const NewsCard = ({ picture, title, details, slug, onClick }) => {
 
             <Box
             sx={{
-                mt:'35px'
+                mt:{sm:'none',md:'35px'},
             }}
             >
                 <Button
@@ -129,7 +131,7 @@ const NewsCard = ({ picture, title, details, slug, onClick }) => {
                     }}
                     sx={{
                         textTransform: "none",
-                        display: "flex",
+                        display: {xs:'none',sm:'none',md:"flex"},
                         alignItems: "center",
                         gap: '4px',
                         "&:hover": { backgroundColor: "transparent" },

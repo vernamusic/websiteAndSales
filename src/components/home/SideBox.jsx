@@ -19,71 +19,95 @@ const navItemStyle = {
 const SideBox = () => {
     return (
         <Box sx={{
-            minHeight: { xs: '584px' },
+            minHeight: { xs:'146px',sm: '250px',md:'584px' },
             display: 'flex',
-            flexDirection: { xs: 'column-reverse', md: 'row' },
-            justifyContent: {xs:'start',md:'space-between'},
+            flexDirection: { md: 'row' },
             alignItems: 'center',
             position: 'relative',
+            justifyContent:'space-around',
             backgroundImage: `url(${bg})`,
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
             // boxShadow: ' 0px 4px 12px 0px rgba(0, 0, 0, 0.14)',
-            px: { xs: '40px', sm: '100px', md: '90px', lg: '136px' },
+            px: { xs: '40px', sm: '60px', md: '90px', lg: '136px' },
             boxSizing: 'border-box',
+            
         }}>
             
             <Box
                 sx={{
-                    mt:{xs:'70px',sm:'100px',md:'0'},
+                    mt:{xs:'39px',sm:'100px',md:'0'},
+                    mb:{xs:'39px',sm:'100px',md:'0'},
                     position: 'relative',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'flex-start',
                     justifyContent: { xs: 'center', sm: 'flex-start' },
                     textAlign: 'left',
-                    // gap: { xs: 1, sm: 1, md: 1.5, lg: 2, xl: 3 },
-                    width: { xs: '100%', md: '55%', lg: '55%', xl: '50%' },
+                    //gap: { xs: 1, sm: 1, md: 1.5, lg: 2, xl: 3 },
+                    width: { xs: '60%', md: '55%', lg: '55%', xl: '50%' },
                 }}
             >
                 <Box
                     sx={{
-
+                        width: '100%',
+                        display: 'flex',
+                        flexDirection: 'row',
+                        gap: 1,
                     }}
                 >
-                    <img
+                    <Box
+                        component="img"
                         src={Vname}
                         alt="Vname"
-
+                        sx={{
+                            width: { xs: '40%', sm: '50%', md: '100%' },
+                            height: 'auto',
+                            objectFit: 'contain',
+                        }}
                     />
-                    <img
+                    <Box
+                        component="img"
                         src={Vname2}
                         alt="Vname"
-
+                        sx={{
+                            width: { xs: '40%', sm: '50%', md: '100%' },
+                            height: 'auto',
+                            objectFit: 'contain',
+                        }}
                     />
                 </Box>
+
+
                 <Typography
                     color="white"
                     sx={{
                         ...navItemStyle,
+                        fontSize: { xs: '10px', lg: '16px' },
+                        letterSpacing:'0.8px',
                         color: '#eee',
                         fontWeight: 400,
                         fontStyle: 'normal',
-                        lineHeight: '24px',
-                        // display: { xs: 'none', sm: 'block' },
+                        lineHeight: {xs:'14px',sm:'14px',md:'24px'},
                         width: { sm: '100%', md: '100%', xl: '80%' },
+                        display: '-webkit-box',
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        WebkitLineClamp: {xs:3,sm:4,md:'7'}, // Limits text to 3 lines
                     }}
                 >
                     Vitruvian Shield is a progressive digital health company offering a comprehensive platform that integrates advanced sensors, cloud computing, and AI analytics. It collects vital signs data from wearables and a mobile app, empowering physicians, caregivers, and researchers to enhance health and quality of life.
                 </Typography>
+
                 <Button
                     variant="contained"
                     component="a"
                     href="/company"
                     sx={{
                         mt: '32px',
-                        display: 'flex',
+                        display: {xs:'none',sm:'none',md:'flex'},
                         borderRadius: '4px',
                         textAlign: 'center',
                         textJustify: 'center',
@@ -106,29 +130,26 @@ const SideBox = () => {
                     </Button>
 
             </Box>
+            {/* Right side */}
             <Box
                 sx={{
-                    display: { xs: 'none', md: 'flex' },
+                    display: 'flex',
                     position: 'relative',
                     alignItems: 'center',
-                    // width: { xs: '120px', sm: '220px', md: '300px', lg: '400px', xl: '470px' },
-                    // height: { xs: '120px', sm: '220px', md: '500px', lg: '650px', xl: '820px' },
+                    justifyContent:'end',
+                    width: { xs: '120px', sm: '220px', md: '300px', lg: '400px', xl: '470px' },
+                    height: { xs: '120px', sm: '220px', md: '500px', lg: '650px', xl: '820px' },
                 }}
             >
                 <Box
                     sx={{
                         display: 'flex',
                         flexDirection: 'column',
-                        alignItems: 'center'
+                        alignItems: 'center',
+                        width: { xs: '85px',sm:'150px', md: '400px' },
+                        height: { xs: '78px',sm:'200px', md: '304px' },
                     }}
                 >
-                    <Box
-                        sx={{
-                            width: { xs: '200px', md: '232px' },
-                            height: { xs: '272px', md: '304px' },
-                        }}
-                    >
-
                         <img
                             src={logo}
                             style={{
@@ -136,18 +157,6 @@ const SideBox = () => {
                                 height: '100%',
                             }}
                         />
-                    </Box>
-                    <Box
-                        sx={{
-                            width: '180px',
-                            height: '19px',
-                            background: 'rgba(25, 25, 25, 0.40)',
-                            filter: 'blur(4.949999809265137px)',
-                            borderRadius: '100%'
-                        }}
-                    >
-
-                    </Box>
                 </Box>
             </Box>
         </Box>
