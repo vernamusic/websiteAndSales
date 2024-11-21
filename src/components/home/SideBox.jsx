@@ -24,6 +24,7 @@ const SideBox = () => {
             flexDirection: { md: 'row' },
             alignItems: 'center',
             position: 'relative',
+            justifyContent:'space-around',
             backgroundImage: `url(${bg})`,
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
@@ -31,6 +32,7 @@ const SideBox = () => {
             // boxShadow: ' 0px 4px 12px 0px rgba(0, 0, 0, 0.14)',
             px: { xs: '40px', sm: '60px', md: '90px', lg: '136px' },
             boxSizing: 'border-box',
+            
         }}>
             
             <Box
