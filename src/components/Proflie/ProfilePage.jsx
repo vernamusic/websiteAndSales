@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, Typography, TextField, Avatar, Paper, ThemeProvider, createTheme, Autocomplete, Button, Dialog } from '@mui/material';
 import axios from 'axios';
 import { useAuth } from '../../AuthContext.jsx';
-import ChangeEmail from './ChangeEmail';  // ایمپورت کردن کامپوننت ChangeEmail
+import ChangeEmail from './ChangeEmail';
 
 const theme = createTheme({
     typography: {
@@ -31,7 +31,8 @@ const ProfilePage = () => {
     const [initialFormData, setInitialFormData] = useState({ first_name: '', last_name: '', email: '', phone: '', country: '', city: '' });
     const [countryList, setCountryList] = useState([]);
     const [phonePrefix, setPhonePrefix] = useState('');
-    const [openEmailDialog, setOpenEmailDialog] = useState(false);  // وضعیت دایالوگ ایمیل
+    const [dialogOpen, setDialogOpen] = useState(false);
+
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -86,14 +87,6 @@ const ProfilePage = () => {
         setFormData(initialFormData);
     };
 
-    const handleOpenEmailDialog = () => {
-        setOpenEmailDialog(true);  // باز کردن دایالوگ
-    };
-
-    const handleCloseEmailDialog = () => {
-        setOpenEmailDialog(false);  // بستن دایالوگ
-    };
-
     return (
         <ThemeProvider theme={theme}>
             <Box sx={{ m: '7px 128px 63px 64px', width: '100%', background: '#262626' }}>
@@ -131,7 +124,7 @@ const ProfilePage = () => {
                                             textTransform: 'none',
                                         }}
                                         disabled={!isEditing}
-                                        onClick={handleOpenEmailDialog}
+                                        onClick={() => setDialogOpen(true)}
                                         disableRipple
                                     >
                                         {formData[field]}
@@ -192,7 +185,7 @@ const ProfilePage = () => {
                 </Paper>
             </Box>
 
-            <ChangeEmail open={openEmailDialog} handleClose={handleCloseEmailDialog} />
+            <ChangeEmail open={dialogOpen} onClose={() => setDialogOpen(false)} />
         </ThemeProvider>
     );
 };

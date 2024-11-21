@@ -1,225 +1,396 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
     Dialog,
-    FormControl,
-    InputLabel,
-    OutlinedInput,
+    DialogContent,
+    DialogActions,
+    Typography,
+    TextField,
     Button,
     Snackbar,
     Alert,
-    Typography, Box,
-} from '@mui/material';
+    Box,
+    Link,
+} from "@mui/material";
+import { useAuth } from '../../AuthContext.jsx';
+import { createTheme } from "@mui/material/styles";
 
-const navItemStyle = {
-    fontFamily: 'Lato',
-    fontSize: { xs: '14.22px', lg: '16px' },
-    color: '#fff',
-    fontStyle: 'normal',
-    lineHeight: '100%',
-    textTransform: 'none'
-};
+const theme = createTheme({
+    typography: {
+        h1: {
+            fontFamily: "Lato",
+            fontSize: "24px",
+            fontWeight: 500,
+            lineHeight: "24px",
+            textAlign: "center",
+        },
+        caption: {
+            fontFamily: "Lato",
+            fontSize: "14px",
+            fontWeight: 400,
+            lineHeight: "16.8px",
+            textAlign: "center",
+        },
+        h3: {
+            fontFamily: "Lato",
+            fontSize: "16px",
+            fontWeight: 500,
+            lineHeight: "16px",
+            textAlign: "left",
+        },
+    },
+});
 
-const ResetPasswordDialog = ({ open, onClose, token }) => {
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [showPassword, setShowPassword] = useState(false);
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const [passwordFocused, setPasswordFocused] = useState(false);
-    const [confirmPasswordFocused, setConfirmPasswordFocused] = useState(false);
-    const [openSnackbar, setOpenSnackbar] = useState(false);
-    const [snackbarMessage, setSnackbarMessage] = useState('');
-    const [snackbarSeverity, setSnackbarSeverity] = useState('error');
+const ChangeEmailDialog = ({ open, onClose }) => {
+    const { authToken } = useAuth();
+    const [email, setEmail] = useState("");
+    const [code, setCode] = useState([]);
+    const [step, setStep] = useState(1); // 1 for change email, 2 for submit code
+    const [snackbar, setSnackbar] = useState({ open: false, message: "", severity: "success" });
+    const [timeLeft, setTimeLeft] = useState(0);
 
-    const handleConfirm = () => {
-        if (password !== confirmPassword) {
-            showSnackbar('Passwords do not match.', 'error');
-            return;
-        }
+    const inputRefs = React.useRef([]);
+    const VERIFICATION_TIME_KEY = `verificationRequestTime_${email}`;
 
-        const apiUrl = `https://vitruvianshield.com/api/v1/reset-password/${token}`;
-        const payload = { password };
-
-        fetch(apiUrl, {
+    const onResend = () => {
+        fetch('https://vitruvianshield.com/api/v1/request-verification-code/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(payload),
+            body: JSON.stringify({ email })
         })
-            .then((response) => {
-                if (response.ok) {
-                    onClose();
-                    showSnackbar('Password reset successful!', 'success');
-                } else {
-                    console.error('Failed to reset password');
-                    showSnackbar('Failed to reset password', 'error');
-                }
+            .then(response => {
+                if (!response.ok) throw new Error('Failed to resend verification email');
+                return response.json();
             })
-            .catch((error) => {
-                console.error('Error:', error);
-                showSnackbar('An unexpected error occurred. Please try again.', 'error');
+            .then(data => {
+                showSnackbar('Verification email resent successfully!');
+            })
+            .catch(error => {
+                console.error('Error resending verification email:', error);
+                showSnackbar('Error resending verification email.', 'error');
             });
     };
 
-    const showSnackbar = (message, severity) => {
-        setSnackbarMessage(message);
-        setSnackbarSeverity(severity);
-        setOpenSnackbar(true);
+    useEffect(() => {
+        const storedTime = localStorage.getItem(VERIFICATION_TIME_KEY);
+        if (storedTime) {
+            const elapsed = Math.floor((Date.now() - parseInt(storedTime, 10)) / 1000);
+            if (elapsed < 150) {
+                setTimeLeft(150 - elapsed);
+            } else {
+                setTimeLeft(0);
+            }
+        } else {
+            localStorage.setItem(VERIFICATION_TIME_KEY, Date.now().toString());
+            setTimeLeft(150);
+        }
+    }, [VERIFICATION_TIME_KEY]);
+
+    useEffect(() => {
+        if (timeLeft > 0) {
+            const timerId = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
+            return () => clearTimeout(timerId);
+        }
+    }, [timeLeft]);
+
+    const handleResend = () => {
+        localStorage.setItem(VERIFICATION_TIME_KEY, Date.now().toString());
+        setTimeLeft(150);
+        setCode('');
+        inputRefs.current[0].focus();
+        onResend();
+        showSnackbar('Verification code resent!', 'info');
     };
 
-    const handleCloseSnackbar = () => setOpenSnackbar(false);
+    const handleSendCode = async () => {
+        try {
+            const response = await fetch("https://vitruvianshield.com/api/v1/user/new-email/", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${authToken}`,
+                },
+                body: JSON.stringify({ email }),
+            });
+
+            if (response.ok) {
+                setStep(2);
+                setSnackbar({ open: true, message: "Verification code sent!", severity: "success" });
+            } else {
+                throw new Error("Failed to send verification code.");
+            }
+        } catch (error) {
+            setSnackbar({ open: true, message: error.message, severity: "error" });
+        }
+    };
+
+    const handleSubmitCode = async () => {
+        try {
+            const response = await fetch("https://vitruvianshield.com/api/v1/user/new-email/submit-code/", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${authToken}`,
+                },
+                body: JSON.stringify({ email, verification_code: code.join("") }),
+            });
+
+            if (response.ok) {
+                setSnackbar({ open: true, message: "Email successfully changed!", severity: "success" });
+
+                setTimeout(() => {
+                    onClose();
+                }, 4000);
+            } else {
+                throw new Error("Verification failed.");
+            }
+        } catch (error) {
+            setSnackbar({ open: true, message: error.message, severity: "error" });
+        }
+    };
+
+    const handleCloseSnackbar = () => setSnackbar({ ...snackbar, open: false });
+
+    const handleChange = (e, index) => {
+        const value = e.target.value.replace(/[^0-9]/g, "");
+        if (value.length > 1) return;
+
+        const newCode = [...code];
+        newCode[index] = value;
+        setCode(newCode);
+
+        if (value && index < 5) {
+            inputRefs.current[index + 1]?.focus();
+        }
+    };
+
+    const handleKeyDown = (e, index) => {
+        if (e.key === "Backspace" && !code[index] && index > 0) {
+            inputRefs.current[index - 1]?.focus();
+        }
+    };
+
+    const handlePaste = (e) => {
+        e.preventDefault();
+        const pasteData = e.clipboardData.getData("text").replace(/[^0-9]/g, "");
+
+        if (pasteData.length <= 6) {
+            const newCode = [...code];
+            pasteData.split("").forEach((digit, index) => {
+                if (index < 6) newCode[index] = digit;
+            });
+            setCode(newCode);
+
+            const lastFilledIndex = pasteData.length - 1;
+            if (lastFilledIndex < inputRefs.current.length) {
+                inputRefs.current[lastFilledIndex]?.focus();
+            }
+        }
+    };
+    const formatTime = (time) => {
+        const minutes = Math.floor(time / 60);
+        const seconds = time % 60;
+        return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    };
 
     return (
-        <Dialog
-            open={open}
-            onClose={(event, reason) => {
-                if (reason !== 'backdropClick' && reason !== 'escapeKeyDown') {
-                    onClose();
-                }
-            }}
-            disableEscapeKeyDown
-            PaperProps={{
-                style: {
-                    borderRadius: '15px',
-                    backgroundColor: '#262626',
-                    color: '#FFFFFF',
-                    maxWidth: '480px',
-                    overflow: 'hidden',
-                    px: '48px',
-                    maxHeight: '672px',
-                    boxSizing: 'border-box',
-                    pb: { xs: '20px', sm: '30px', md: '40px', lg: '50px' },
-                    position:'relative'
-                },
-            }}
-        >
-            <Box
-                display="flex"
-                flexDirection="column"
-                alignItems="center"
-                sx={{
-                    p: { xs: '30px', md: '40px' },
-                    width: { xs: '448px', },
-                    height: { xs: '337px', },
-                    boxSizing: 'border-box'
+        <>
+            <Dialog
+                open={open}
+                onClose={onClose}
+                maxWidth="sm"
+                fullWidth
+                PaperProps={{
+                    style: {
+                        borderRadius: '15px',
+                        backgroundColor: '#262626',
+                        color: '#FFFFFF',
+                        maxWidth: '480px',
+                        overflow: 'hidden',
+                        px: '48px',
+                        maxHeight: '672px',
+                        boxSizing: 'border-box',
+                        pb: { xs: '20px', sm: '30px', md: '40px', lg: '50px' },
+                        position:'relative'
+                    },
                 }}
             >
-                <Box display="flex" flexDirection="column" alignItems="center" mb={3}>
-                    <Typography
-                        sx={{
-                            ...navItemStyle,
-                            fontSize: '18px',
-                            fontWeight: 600,
-                            color: '#fff'
-                        }}>
-                        Reset password
-                    </Typography>
-                    <Typography
-                        sx={{
-                            ...navItemStyle,
-                            fontSize: '14px',
-                            color: '#bfbfbf',
-                            mt: '8px',
-                            lineHeight: '100%'
-                        }}
-                    >
-                        Enter a new password to update your password
-                    </Typography>
-                </Box>
+                <DialogContent>
+                    {step === 1 ? (
+                        <>
+                            <Typography sx={{ textAlign: "center", mt: '16px', ...theme.typography.h1, color: '#FFFFFF' }}>
+                                Change your email
+                            </Typography>
+                            <Typography sx={{ mt: 1, textAlign: "center", display: "block", ...theme.typography.caption, Color: '#BFBFBF' }}>
+                                Enter a new email to change your email
+                            </Typography>
+                            <TextField
+                                fullWidth
+                                placeholder="Enter your email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                sx={{
+                                    mt: 3,
+                                    backgroundColor: 'white',
+                                    borderRadius: "4px",
+                                    border: "1px solid rgba(0, 201, 183, 1)",
+                                    ...theme.typography.h3
+                                }}
+                            />
+                            <Box display="flex" justifyContent="space-between" mt={4} gap={1} height='45px' mb={2}>
+                                <Button variant="outlined" color="inherit" onClick={onClose} fullWidth disableRipple sx={{ textTransform: 'none', ...theme.typography.h3 }}>
+                                    Cancel
+                                </Button>
+                                <Button
+                                    disableRipple
+                                    fullWidth
+                                    variant="contained"
+                                    sx={{ backgroundColor: "#B50304", color: "#FFFFFF", textTransform: 'none', ...theme.typography.h3 }}
+                                    onClick={handleSendCode}
+                                >
+                                    Send code
+                                </Button>
+                            </Box>
+                        </>
+                    ) : (
+                        <Box display="flex" flexDirection="column" alignItems="center" sx={{ p: { xs: "30px", md: "40px" }, boxSizing: "border-box" }}>
+                            <Box display="flex" flexDirection="column" alignItems="center" mb={2}>
+                                <Typography
+                                    sx={{
+                                        ...theme.typography.h1,
+                                        color: '#fff'
+                                    }}>
+                                    Verify your email address
+                                </Typography>
+                                <Typography
+                                    sx={{
+                                        textAlign: "center", display: "block", ...theme.typography.caption, Color: '#BFBFBF',mt: '21px',
+                                    }}
+                                >
+                                    Enter vitrification code we sent to
+                                </Typography>
+                                <Typography
+                                    sx={{
+                                        textAlign: "center", display: "block", ...theme.typography.caption, Color: '#BFBFBF',
+                                        mt: '4px',
 
-                <FormControl variant="outlined" fullWidth sx={{ mb: 2 }}>
-                    <InputLabel
-                        htmlFor="password-input"
-                        sx={{
-                            color: confirmPasswordFocused ? 'rgba(38, 38, 38, 1)' : 'rgba(38, 38, 38, 1)',
-                            opacity: passwordFocused || password ? 0 : 1,
-                        }}
-                    >
-                        Enter your password
-                    </InputLabel>
-                    <OutlinedInput
-                        id="password-input"
-                        type={showPassword ? 'text' : 'password'}
-                        value={password}
-                        onFocus={() => setPasswordFocused(true)}
-                        onBlur={() => setPasswordFocused(false)}
-                        onChange={(e) => setPassword(e.target.value)}
-                        autoComplete="off"
-                        sx={{
-                            backgroundColor: '#FFFFFF',
-                            '&:hover .MuiOutlinedInput-notchedOutline': {
-                                borderColor: '#a80d0d',
-                            },
-                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                borderColor: '#a80d0d',
-                                borderWidth: '2px',
-                            },
-                        }}
+                                    }}
+                                >
+                                    {email}
+                                </Typography>
 
-                        aria-label="Password"
-                    />
-                </FormControl>
+                            </Box>
+                            <Box display="flex" gap={2}>
+                                {[0, 1, 2, 3, 4, 5].map((index) => (
+                                    <TextField
+                                        key={index}
+                                        value={code[index]}
+                                        inputRef={(el) => (inputRefs.current[index] = el)}
+                                        onChange={(e) => handleChange(e, index)}
+                                        onKeyDown={(e) => handleKeyDown(e, index)}
+                                        onPaste={handlePaste}
+                                        inputProps={{
+                                            maxLength: 1,
+                                            style: {
+                                                fontFamily: 'Lato',
+                                                fontSize: '23px',
+                                                fontWeight: 500,
+                                                textAlign: 'center',
+                                                width: '25px',
+                                                height: '25px',
+                                                backgroundColor: 'white',
+                                                color: '#262626',
+                                                borderRadius: '4px',
+                                                border: '1px solid rgba(0, 201, 183, 1)',
+                                            },
+                                            inputMode: 'numeric',
+                                            pattern: '[0-9]*',
+                                        }}
+                                    />
+                                ))}
+                            </Box>
 
-                <FormControl variant="outlined" fullWidth sx={{ mb: 2 }}>
-                    <InputLabel
-                        htmlFor="confirm-password-input"
-                        sx={{
-                            color: confirmPasswordFocused ? 'rgba(38, 38, 38, 1)' : 'rgba(38, 38, 38, 1)',
-                            opacity: confirmPasswordFocused || confirmPassword ? 0 : 1,
-                        }}
-                    >
-                        Confirm your password
-                    </InputLabel>
-                    <OutlinedInput
-                        id="confirm-password-input"
-                        type={showConfirmPassword ? 'text' : 'password'}
-                        value={confirmPassword}
-                        onFocus={() => setConfirmPasswordFocused(true)}
-                        onBlur={() => setConfirmPasswordFocused(false)}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        autoComplete="off"
-                        sx={{
-                            backgroundColor: '#FFFFFF',
-                            '&:hover': {
-                                borderColor: '#a80d0d',
-                            },
-                            '&.Mui-focused': {
-                                borderColor: '#a80d0d',
-                                borderWidth: '2px',
-                            },
-                        }}
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, maxWidth: '350px' }}>
+                                <Typography  sx={{ textAlign: 'center' ,...theme.typography.caption,Color: '#BFBFBF', mt:2,}}>
+                                    Your verification code may take a few moments to arrive. Didn't receive a verification code? {timeLeft > 0 ? formatTime(timeLeft) : (
+                                    <Link
+                                        component="button"
+                                        onClick={handleResend}
+                                        sx={{
+                                            ...theme.typography.caption,
+                                            mb: 0.5,
+                                            color: 'inherit',
+                                            '&:hover': {
+                                                color: 'primary.main',
+                                                textDecoration: 'underline',
+                                            },
+                                        }}
+                                    >
+                                        Resend
+                                    </Link>
+                                )}
+                                </Typography>
+                            </Box>
+                            <Box
+                                display="flex"
+                                justifyContent="center"
+                                width="100%"
+                                mb={1.5}
+                                mt='24px'
+                            >
+                                <Button
+                                    sx={{
+                                        backgroundColor: '#B50304',
+                                        color: '#FFFFFF',
+                                        maxWidth: '380px',
+                                        width: '100%',
+                                        height: '48px',
+                                        fontSize:'16px',
+                                        fontWeight:600,
+                                        fontFamily:'Lato',
+                                        textTransform: 'none',
+                                    }}
+                                    onClick={handleSubmitCode}
+                                >
+                                    Confirm
+                                </Button>
+                            </Box>
+                            <Box display="flex" justifyContent="center" width="100%">
+                                <Button
+                                    variant="outlined"
+                                    sx={{
+                                        borderColor: 'white',
+                                        color: '#FFFFFF',
+                                        maxWidth: '380px',
+                                        width: '100%',
+                                        height: '44px',
+                                        textTransform: 'none',
+                                        fontSize: '16px',
+                                        fontWeight: 400,
+                                        fontFamily: 'Lato',
+                                    }}
+                                    onClick={onClose}
+                                >
+                                    Back
+                                </Button>
+                            </Box>
 
-                        aria-label="Confirm Password"
-                    />
-                </FormControl>
-                <Button
-                    variant="contained"
-                    onClick={handleConfirm}
-                    fullWidth
-                    sx={{
-                        textTransform: 'none',
-                        py: 1.2,
-                        mt: 1,
-                        backgroundColor: '#a80d0d',
-                        '&:hover': {
-                            backgroundColor: '#ec0000',
-                        },
-                    }}
-                >
-                    Reset Password
-                </Button>
-            </Box>
+                        </Box>
+                    )}
+                </DialogContent>
+            </Dialog>
             <Snackbar
-                open={openSnackbar}
+                open={snackbar.open}
                 autoHideDuration={6000}
                 onClose={handleCloseSnackbar}
             >
-                <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity}>
-                    {snackbarMessage}
+                <Alert severity={snackbar.severity} sx={{ width: "100%" }}>
+                    {snackbar.message}
                 </Alert>
             </Snackbar>
-        </Dialog>
+        </>
     );
 };
 
-export default ResetPasswordDialog;
+export default ChangeEmailDialog;
