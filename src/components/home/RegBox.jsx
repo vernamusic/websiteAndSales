@@ -29,12 +29,12 @@ const RegBox = () => {
                 backgroundPosition: 'top right',
                 backgroundRepeat: 'no-repeat',
                 maxHeight: '746px',
-                minHeight: { xs: '500px', sm: '600px', md: '700px', lg: '900px' }
+                minHeight: { xs: '188px', sm: '250px', md: '650px', lg: '900px' }
             }}
         >
             <Box
                 sx={{
-                    mt: { xs: '180px', sm: '220px', md: '270px', lg: '318px' },
+                    mt: { xs: '51px', sm: '100px', md: '270px', lg: '318px' },
                     position: 'relative',
                     display: 'flex',
                     flexDirection: 'column',
@@ -47,7 +47,7 @@ const RegBox = () => {
                     sx={{
                         ...navItemStyle,
                         fontWeight: 600,
-                        fontSize: { xs: '20px', sm: '22px', md: '26px', lg: '32px' },
+                        fontSize: { xs: '14px', sm: '18px', md: '26px', lg: '32px' },
                         pl: 0,
                         color: '#fff'
 
@@ -58,36 +58,23 @@ const RegBox = () => {
                 <Typography
                     sx={{
                         ...navItemStyle,
-                        display: { xs: 'none', sm: 'block' },
-                        width: { xs: '300px', sm: '400px', md: '410px', lg: '505px', xl: '600px' },
+                        display: 'block',
+                        width: { xs: '250px', sm: '325px', md: '410px', lg: '505px', xl: '600px' },
                         mt: { xs: '10px', sm: '12px', md: '16px' },
-                        fontWeight: 500,
-                        fontSize: { xs: '12.64px', sm: '14px', md: '14.22px', lg: '18px' },
-                        color: '#d9d9d9',
-                        lineHeight: '26px',
-                        fontStyle: 'normal'
+                        fontWeight: 400,
+                        fontSize: { xs: '10px', sm: '12.64px', md: '14.22px', lg: '18px' },
+                        color: '#D9D9D9',
+                        lineHeight: {xs:'14px',md:'20px',lg:'26px'},
+                        fontStyle: 'normal',
+                        letterSpacing:'0.4px',
                     }}
                 >
                     Vitruvian Shield aims to significantly enhance the quality of life for patients outside of the hospital by providing a solution that monitors health signals with medically certified precision. 
                 </Typography>
-                <Typography
-                    sx={{
-                        display: { xs: 'block', sm: 'none' },
-                        width: '250px',
-                        ...navItemStyle,
-                        mt: { xs: '10px', sm: '12px', md: '16px' },
-                        fontWeight: 500,
-                        fontSize: { xs: '12.64px', sm: '14px', md: '14.22px', lg: '18px' },
-                        color: '#d9d9d9',
-                        lineHeight: '20px'
-                    }}
-                >
-                    Vitruvian Shield aims to significantly improve the quality of life of patients.
-                </Typography>
 
                 <Box
                     sx={{
-                        display: { xs: 'flex' },
+                        display: { xs: 'none',md:'flex' },
                         justifyContent: 'space-between',
                         mt: '44px',
                         width: { xs: '300px', sm: '420px', md: '500px' }
