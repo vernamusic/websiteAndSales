@@ -270,36 +270,33 @@ const ProductBox = () => {
                 </Box>
 
             </Box>
+            {/* Mobile */}
             <Box sx={{
                 width: '100%',
                 display: { xs: 'flex', sm: 'none' },
                 justifyContent: 'center',
-                flexDirection: 'column',
-                gap: 2,
+                alignItems:'center',
+                flexDirection: 'row',
+                gap: '16px',
             }}>
-                <Typography sx={{
-                    // ...theme.typography.h3,
-                    textJustify: 'start',
-                    pl: 2,
-                }}>
-                    Products
-                </Typography>
 
                 <Box sx={{
                     display: 'flex',
                     flexDirection: 'row',
                     justifyContent: 'space-around',
-                    alignItems: 'center',
-                    width: '100%',
+                    width: '90%',
                 }}>
-                    asdsadsd
                     {proItems.map((item) => (
                         <Box key={item.id} sx={{
-                            width: '28%',
+                            width: '100px',
+                            height: '100px',
+                            m:'16px 0px 16px 0px',
                             textAlign: 'center',
-                            background: 'linear-gradient(360deg, rgba(20, 20, 20, 0.05) 0%, rgba(255, 255, 255, 0.25) 100%)', // پس‌زمینه
-                            borderRadius: '10px 10px 0 0',
+                            background: 'linear-gradient(180deg, #232323 0%, #343434 100%)',
+                            borderRadius: '8px',
                             overflow: 'hidden',
+                            justifyContent:'center',
+                            alignItems:'center',
                         }}>
                             <a href={item.url} style={{ textDecoration: 'none' }}>
                                 <Box
@@ -307,15 +304,11 @@ const ProductBox = () => {
                                     src={item.image}
                                     alt={item.title}
                                     sx={{
-                                        width: '90%',
+                                        mt:0.75,
+                                        width: '80%',
                                         height: 'auto',
                                     }}
                                 />
-                                <Typography sx={{
-                                    // ...theme.typography.h3,
-                                }}>
-                                    {item.title}
-                                </Typography>
                             </a>
                         </Box>
                     ))}
