@@ -3,7 +3,7 @@ import { Box, Typography, TextField, Avatar, Paper, ThemeProvider, createTheme, 
 import axios from 'axios';
 import { useAuth } from '../../AuthContext.jsx';
 import ChangeEmail from './ChangeEmail';
-
+import ChangePhone from './ChangePhone';
 const theme = createTheme({
     typography: {
         h1: { fontFamily: 'Lato', fontWeight: 600, color: "#FFF" },
@@ -32,6 +32,8 @@ const ProfilePage = () => {
     const [countryList, setCountryList] = useState([]);
     const [phonePrefix, setPhonePrefix] = useState('');
     const [dialogOpen, setDialogOpen] = useState(false);
+    const [PhoneDialogOpen, setPhoneDialogOpen] = useState(false);
+
 
 
     useEffect(() => {
@@ -110,7 +112,7 @@ const ProfilePage = () => {
                                     {field.replace('_', ' ').toUpperCase()}
                                 </Typography>
 
-                                {field === 'email' ? (
+                                {field === 'email' || field === 'phone' ? (
                                     <Button
                                         fullWidth
                                         sx={{
@@ -124,36 +126,54 @@ const ProfilePage = () => {
                                             textTransform: 'none',
                                         }}
                                         disabled={!isEditing}
-                                        onClick={() => setDialogOpen(true)}
+                                        onClick={() => {
+                                            if (field === 'email') {
+                                                setDialogOpen(true); // دیالوگ برای email
+                                            } else if (field === 'phone') {
+                                                setPhoneDialogOpen(true); // دیالوگ برای phone
+                                            }
+                                        }}
                                         disableRipple
                                     >
                                         {formData[field]}
                                     </Button>
-
-
+                                ) : field === 'country' ? (
+                                    <Autocomplete
+                                        freeSolo
+                                        disabled={!isEditing}
+                                        value={countryList.find((country) => country.id === formData.country) || null}
+                                        options={countryList}
+                                        getOptionLabel={(option) => option.name}
+                                        onChange={handleCountryChange}
+                                        renderInput={(params) => (
+                                            <TextField
+                                                {...params}
+                                                name="country"
+                                                variant="outlined"
+                                                sx={{
+                                                    backgroundColor: '#262626',
+                                                    border: '1px solid #F5F5F5',
+                                                    borderRadius: '4px',
+                                                }}
+                                            />
+                                        )}
+                                    />
                                 ) : (
-                                    field === 'country' ? (
-                                        <Autocomplete
-                                            freeSolo
-                                            disabled={!isEditing}
-                                            value={countryList.find(country => country.id === formData.country) || null}
-                                            options={countryList}
-                                            getOptionLabel={(option) => option.name}
-                                            onChange={handleCountryChange}
-                                            renderInput={(params) => <TextField {...params} name="country" variant="outlined" sx={{ backgroundColor: '#262626', border: '1px solid #F5F5F5', borderRadius: '4px' }} />}
-                                        />
-                                    ) : (
-                                        <TextField
-                                            fullWidth
-                                            name={field}
-                                            value={formData[field]}
-                                            onChange={handleInputChange}
-                                            disabled={field === 'phone' || !isEditing}
-                                            variant="outlined"
-                                            sx={{ backgroundColor: '#262626', border: '1px solid #F5F5F5', borderRadius: '4px' }}
-                                        />
-                                    )
+                                    <TextField
+                                        fullWidth
+                                        name={field}
+                                        value={formData[field]}
+                                        onChange={handleInputChange}
+                                        disabled={!isEditing}
+                                        variant="outlined"
+                                        sx={{
+                                            backgroundColor: '#262626',
+                                            border: '1px solid #F5F5F5',
+                                            borderRadius: '4px',
+                                        }}
+                                    />
                                 )}
+
                             </Box>
                         ))}
                     </Box>
@@ -186,6 +206,7 @@ const ProfilePage = () => {
             </Box>
 
             <ChangeEmail open={dialogOpen} onClose={() => setDialogOpen(false)} />
+            <ChangePhone open={PhoneDialogOpen} onClose={() => setPhoneDialogOpen(false)} />
         </ThemeProvider>
     );
 };
