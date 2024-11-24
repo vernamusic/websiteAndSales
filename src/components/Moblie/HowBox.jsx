@@ -120,13 +120,12 @@ const HowBox = () => {
                         <Box
                                 sx={{
                                     position: 'absolute',
-                                    top: '-1.3em',
+                                    top: {xs:'-0.7em',md:'-1.3em'},
                                     left: '50%',
                                     transform: 'translateX(-50%)',
                                     width: {xs:'25px',sm:'25px',md:'40px'},
                                     height: {xs:'25px',sm:'25px',md:'40px'},
                                     padding: '8px',
-
                                     backgroundColor: '#B50304',
                                     borderRadius: '50%',
                                     display: 'flex',
@@ -140,8 +139,8 @@ const HowBox = () => {
                                         src={box.icon}
                                         alt="Design"
                                         sx={{
-                                            width: {xs:'16px',sm:'16px',md:'2em'},
-                                            height: {xs:'16px',sm:'16px',md:'2em'},
+                                            width: {xs:'16px',sm:'16px',md:'24px'},
+                                            height: {xs:'16px',sm:'16px',md:'24px'},
                                         }}
                                     />
                                 ) : (
