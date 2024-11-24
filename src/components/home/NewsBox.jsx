@@ -59,7 +59,7 @@ const NewsCard = ({ picture, title, details, slug, onClick }) => {
                 flexDirection: 'column',
                 alignItems: 'start',
                 height: {xs:'114px',sm:'220px',md:'280px',lg:'360px'},
-                width: {xs:'90px',sm:'170px',md:'210px',lg:'284px'},
+                width: {xs:'85px',sm:'170px',md:'210px',lg:'284px'},
                 boxSizing: 'border-box',
                 p: {xs:'12px',sm:'18px',md:'20px',lg:'24px'},
                 borderRadius: "16px",
@@ -213,14 +213,13 @@ const NewsBox = () => {
 
                 <Box
                     sx={{
-                        border:'2px solid #fff',
                         width: '100%',
                         height: '100%',
                         display: 'flex',
                         flexDirection: 'row',
-                        justifyContent: 'space-evenly',
+                        justifyContent: 'center',
                         flexWrap: 'wrap',
-                        gap: '20px'
+                        gap: {xs:'10px',sm:'12px',md:'20px'}
 
                     }}>
                     {newsItems.map((box, index) => (
