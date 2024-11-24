@@ -19,17 +19,18 @@ const theme = createTheme({
             fontSize: '1.25vw',
             color: "rgba(241, 241, 241, 1)",
         },
-        h6: {
+        h6: {//title
             fontFamily: 'Lato',
             fontWeight: 700,
-            fontSize: '18px',
+            fontSize: {xs:'12px',sm:'16px',md:'18px'},
+            lineHeight: {xs:'12px',sm:'16px',md:'18px'},
             color: "#FFFFFF",
         },
-        h9: {
+        h9: {//description
             fontFamily: 'Lato',
             fontWeight: 400,
-            fontSize: '14px',
-            lineHeight:'110%',
+            fontSize: {xs:'10px',sm:'12px',md:'14px'},
+            lineHeight:{xs:'10px',sm:'12px',md:'14px'},
             color: "#D9D9D9",
         },
         button: {
@@ -70,7 +71,7 @@ const RedLine = ({ top }) => (
             top: '3.75em',
             left: '2.25em',
             width: 0,
-            height: '3.5em',
+            height: {xs:'2.3em',md:'3.5em',lg:'2.8em'},
             borderRight: '1px dashed #B50304',
             transform: 'translateX(-50%)',
         }}
@@ -134,21 +135,23 @@ const Stepper = () => {
                     justifyContent: 'left',
                     background: '#1F1F1F',
                     width: '100%',
-                    height: '725px',
-                    padding: '4em',
-                    overflow: 'hidden'
+                    pt: '32px',
+                    pr:'32px',
+                    pb: '-8px',
+                    pl:'32px',
+                    mb:{xs:'32px',sm:'32px',md:'0px'},
+                    overflow: 'hidden',
                 }}
             >
-                <Typography variant="h1" mb="1em" mt="1em">
+                <Typography variant="h1" mb="1em" mt="1em" sx={{display:{xs:'none',sm:'none',md:'block'}}}>
                     HOW CAN WE USE IT?
                 </Typography>
 
-                <Box sx={{display: 'flex', flexDirection: 'row', gap: '4em', mt: '2em'}}>
+                <Box sx={{display: 'flex', flexDirection: 'row', gap: '4em', mt: '2em',justifyContent:'left'}}>
                     <Box
                         sx={{
                             display: 'flex',
                             flexDirection: 'column',
-                            justifyContent: 'left',
                         }}
                     >
                         {memoizedFeatures.map((feature, index) => (
@@ -172,12 +175,16 @@ const Stepper = () => {
                                     <RedLine top={'4em'} />
                                 )}
 
-                                <Box ml='3.5em' width='32em'>
+                                <Box
+                                sx={{
+                                    width:{md:'20em',lg:'32em'},
+                                    ml: '3.5em',
+                                }}>
                                     <Typography sx={{...theme.typography.h6,}}>
                                         {feature.title}
                                     </Typography>
 
-                                    <Typography sx={{...theme.typography.h9,}} pt='0.5em'>
+                                    <Typography sx={{...theme.typography.h9,width:{xs:'110%',sm:'90%',md:'130%',lg:'100%'},}} pt='0.5em'>
                                         {feature.description}
                                     </Typography>
                                 </Box>
@@ -245,12 +252,12 @@ const Stepper = () => {
                     </Box>
                     <Box component="img" src={images[step-1]}
                          sx={{
+                            display:{xs:'none',sm:'none',md:'block'},
                              width: '508px',
                              height: 'auto',
                              objectFit: 'cover',
                              position: 'relative',
-                             left: '6em',
-                             bottom: '0.5em'
+                             left: {md:'6em',lg:'12em'},
                          }}
                     />
                 </Box>

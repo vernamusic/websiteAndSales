@@ -81,6 +81,7 @@ const FeaturesBox = () => {
                 >
                     <Typography
                         sx={{
+                            display:{xs:'none',sm:'none',md:'block'},
                             ...themes.typography.h1,
                             lineHeight: '1.5',
                             width: '600',
@@ -93,7 +94,8 @@ const FeaturesBox = () => {
                     <Typography
                         sx={{
                             ...themes.typography.h3,
-                            mb: '3em'
+                            mb: '3em',
+                            display:{xs:'none',sm:'none',md:'block'},
                         }}
                     >
                         Integrate advanced features to improve user experience
@@ -111,15 +113,19 @@ const FeaturesBox = () => {
                 <Box
                     display="flex"
                     flexDirection="column"
-                    maxWidth='22em'
                     gap='3em'
+                    sx={{
+                        maxWidth:{md:'15em',lg:'23em'}
+                    }}
                 >
                     {featureData.slice(0, 3).map((feature, i) => (
                         <Box
                             key={i}
                             position="relative"
-                            display="flex"
                             flexDirection="row"
+                            sx={{
+                                display:{xs:'none',sm:'none',md:'block'},
+                            }}
                             onClick={()=>setIndex(i)}
                         >
                             <Box
@@ -202,10 +208,10 @@ const FeaturesBox = () => {
                     } onClick={()=>setIndex((index+1)%6)} />
                 </Box>
                 <Box
-                    display="flex"
                     flexDirection="column"
                     maxWidth='22em'
                     gap='3em'
+                    sx={{display:{xs:'none',sm:'none',md:'flex'},}}
                 >
                     {featureData.slice(3, 6).map((feature, i) => (
                         <Box
@@ -214,6 +220,9 @@ const FeaturesBox = () => {
                             display="flex"
                             flexDirection="row"
                             onClick={()=>setIndex(i+3)}
+                            sx={{
+                                maxWidth:{md:'15em',lg:'23em'}
+                            }}
                         >
                             <Box
                                 sx={{
@@ -257,7 +266,58 @@ const FeaturesBox = () => {
                         </Box>
                     ))}
                 </Box>
+                {/* Details for mobile */}
+            <Box
+                    flexDirection="column"
+                    maxWidth='22em'
+                    gap='3em'
+                    sx={{display:{xs:'flex',sm:'flex',md:'none'},}}
+                >
+                    {featureData.slice(0, 6).map((feature, i) => (
+                        index === i && (
+                            <Box
+                                key={i}
+                                position="relative"
+                                flexDirection="row"
+                                onClick={() => setIndex(i)}
+                                sx={{ display: 'flex' }}                            
+                            >
+                                <Box
+                                    sx={{
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                    }}
+                                >
+                                    <Typography
+                                        sx={{
+                                            ...themes.typography.h6,
+                                            width: 'fit-content',
+                                            pb: '2px',
+                                            cursor: 'pointer'
+                                        }}
+                                    >
+                                        {feature.title}
+                                    </Typography>
+
+                                    <Typography
+                                        pt='0.5em'
+                                        sx={{ ...themes.typography.caption,
+                                            textAlign:'center',
+                                         }}
+                                    >
+                                        {feature.description}
+                                    </Typography>
+                                </Box>
+                            </Box>
+                        )
+                    ))}
+
+                </Box>
             </Box>
+
+            
         </Box>
         </ThemeProvider>
     );
