@@ -128,9 +128,9 @@ const ProfilePage = () => {
                                         disabled={!isEditing}
                                         onClick={() => {
                                             if (field === 'email') {
-                                                setDialogOpen(true); // دیالوگ برای email
+                                                setDialogOpen(true);
                                             } else if (field === 'phone') {
-                                                setPhoneDialogOpen(true); // دیالوگ برای phone
+                                                setPhoneDialogOpen(true);
                                             }
                                         }}
                                         disableRipple
