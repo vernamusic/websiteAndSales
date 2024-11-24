@@ -87,14 +87,6 @@ const NewsCard = ({ picture, title, details, slug, onClick }) => {
             <Box
                 sx={{
                     position: "relative",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: 'flex-end',
-                    overflow: 'hidden',
-                }} />
-            <Box
-                sx={{
-                    position: "relative",
                 }}>
                 <Typography
                     sx={{
@@ -181,7 +173,7 @@ const NewsBox = () => {
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
-                    px: { xs: '40px', sm: '70px', md: '60px', lg: '80px', xl: '100px' },
+                    px: { xs: '0px', sm: '10px', md: '60px', lg: '80px', xl: '100px' },
                     pb: { xs: '30px', sm: '40px', md: '80px', lg: '70px' },
                     pt: { xs: '30px', sm: '40px', md: '70px' }
                 }}>
@@ -221,6 +213,7 @@ const NewsBox = () => {
 
                 <Box
                     sx={{
+                        border:'2px solid #fff',
                         width: '100%',
                         height: '100%',
                         display: 'flex',
