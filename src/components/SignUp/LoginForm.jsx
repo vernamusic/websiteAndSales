@@ -7,6 +7,7 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import PropTypes from 'prop-types';
 import { createTheme } from '@mui/material/styles';
 import FormInput from '../custom/FormInput';
+import GoogleSignInButton from './GoogleSignInButton';
 
 const theme = createTheme({
     typography: {},
@@ -94,6 +95,30 @@ const AuthForm = ({ email: initialEmail = null, onForgotPassword, onLoginSuccess
     };
 
     const handleCloseSnackbar = () => setOpenSnackbar(false);
+
+    const handleSuccess = async (response) => {
+        try {
+            const res = await fetch('https://vitruvianshield.com/api/v1/auth/google/callback/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ code: response.code }),
+            });
+            const data = await res.json();
+            if (res.ok) {
+                localStorage.setItem('access_token', data.access);
+                localStorage.setItem('refresh_token', data.refresh);
+                showSnackbar('Login successful!', 'success');
+            } else {
+                showSnackbar(loginData.message);
+            }
+        } catch (error) {
+            showSnackbar('An unexpected error occurred. Please try again.', 'error');
+        }
+    };
+    const handleFailure = (error) => {
+        showSnackbar('google login failed.', 'error');
+    };
+
 
     return (
         <Box sx={{ width: 380 }}>
@@ -207,6 +232,7 @@ const AuthForm = ({ email: initialEmail = null, onForgotPassword, onLoginSuccess
                 >
                     Get started
                 </Button>
+                <GoogleSignInButton onSuccess={handleSuccess} onFailure={handleFailure} />
             </form>
 
             <Snackbar
