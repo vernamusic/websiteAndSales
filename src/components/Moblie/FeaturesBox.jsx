@@ -181,9 +181,8 @@ const FeaturesBox = () => {
                             component="img"
                             src={phoneImages[index]}
                             sx={{
-                                width: 'auto',
-                                height: '400px',
-                                objectFit: 'cover',
+                                width: {xs:'190px',sm:'220px',md:'200px',lg:'250px'},
+                                height: 'auto',
                             }}
                         />
                         <svg xmlns="http://www.w3.org/2000/svg" width="192" height="28" viewBox="0 0 192 28" fill="none">
