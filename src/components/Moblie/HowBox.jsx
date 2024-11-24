@@ -96,6 +96,8 @@ const HowBox = () => {
                     flexWrap="wrap"
                     justifyContent="center"
                     gap="2.5em"
+                    marginTop="32px"
+                    marginBottom="32px"
                 >
                     {howData.map((box, index) => (
                         <Box
