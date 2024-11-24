@@ -60,7 +60,6 @@ const HowBox = () => {
                 width: '100%',
                 position: 'relative',
                 padding: {xs:'32px',sm:'32px',md:'88px'},
-
                 }}>
                 <Box
                     flexDirection="column"
