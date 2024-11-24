@@ -2029,10 +2029,10 @@ levn@^0.4.1:
     prelude-ls "^1.2.1"
     type-check "~0.4.0"
 
-libphonenumber-js@^1.11.14:
-  version "1.11.14"
-  resolved "https://registry.npmjs.org/libphonenumber-js/-/libphonenumber-js-1.11.14.tgz"
-  integrity sha512-sexvAfwcW1Lqws4zFp8heAtAEXbEDnvkYCEGzvOoMgZR7JhXo/IkE9MkkGACgBed5fWqh3ShBGnJBdDnU9N8EQ==
+libphonenumber-js@^1.11.15:
+  version "1.11.15"
+  resolved "https://registry.npmjs.org/libphonenumber-js/-/libphonenumber-js-1.11.15.tgz"
+  integrity sha512-M7+rtYi9l5RvMmHyjyoF3BHHUpXTYdJ0PezZGHNs0GyW1lO+K7jxlXpbdIb7a56h0nqLYdjIw+E+z0ciGaJP7g==
 
 limit-it@^3.0.0:
   version "3.2.10"
@@ -3016,6 +3016,7 @@ swiper@^11.1.14:
     prop-types "^15.8.1"
     react "^18.3.1"
     react-dom "^18.3.1"
+    react-google-login "^5.2.2"
     react-input-mask "^2.0.4"
     react-phone-input-2 "^2.15.1"
     react-router-dom "^6.27.0"

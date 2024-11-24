@@ -28,11 +28,11 @@ const theme = createTheme({
         },
         caption: {
             fontFamily: 'Lato',
-            fontSize:'12px',
+            fontSize:{xs:'9px',sm:'10.7px',md:'12px'},
             fontWeight: 400,
             lineHeight:'1.35',
             textTransform: 'none',
-            color: 'rgba(255, 255, 255, 1)',
+            color: '#EEEEEE',
 
         },
         h1: {
@@ -155,20 +155,19 @@ const HowBox = () => {
                                     justifyContent: 'center',
                                     justifyItems: 'center',
                                     alignItems: 'center',
-                                    mt:'2em',
-                                    gap: '0.5em',
+                                    mt:{xs:'24px',md:'2em'},
                                     textAlign: 'center',
                                     width:'100%'
                                 }}
                             >
                                 <Typography
-                                    sx={{...theme.typography.h6,}}
+                                    sx={{...theme.typography.h6,mb:'8px'}}
                                     gutterBottom
                                 >
                                     {box.title}
                                 </Typography>
                                 <Typography
-                                    sx={{...theme.typography.caption,}}
+                                    sx={{...theme.typography.caption,mb:'10px'}}
                                 >
                                     {box.description}
                                 </Typography>
