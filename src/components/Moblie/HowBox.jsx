@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography, createTheme, ThemeProvider } from '@mui/material';
-import phonehow1 from '../../assets/phonehow1.jpg';
+import phonehow1 from '../../assets/phonehow1.png';
 import phonehow2 from '../../assets/phonehow2.png';
 import phonehow3 from '../../assets/phonehow3.png';
 import phonehow4 from '../../assets/phonehow4.png';
