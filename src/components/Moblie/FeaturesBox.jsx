@@ -65,8 +65,7 @@ const FeaturesBox = () => {
         <ThemeProvider theme={themes}>
             <Box sx={{
                 backgroundImage: `url(${background})`,
-                maxHeight: '746px',
-                minHeight: { xs: '500px', sm: '600px', md: '700px', lg: '746px' },
+                minHeight: 'auto',
                 width: '100%',
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',

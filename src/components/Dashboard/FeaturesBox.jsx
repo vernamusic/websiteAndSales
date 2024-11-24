@@ -68,8 +68,7 @@ const FeaturesGrid = () => {
         <ThemeProvider theme={themes}>
             <Box sx={{
                 backgroundImage: `url(${background})`,
-                maxHeight: '617px',
-                minHeight: { xs: '500px', sm: '600px', md: '617px', lg: '617px' },
+                minHeight: 'auto',
                 width: '100%',
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
@@ -118,7 +117,7 @@ const FeaturesGrid = () => {
                     flexDirection="column"
                     gap='3em'
                     sx={{
-                        maxWidth:{md:'15em',lg:'23em'}
+                        maxWidth: { md: '250px', lg: '22vw' }
                     }}
                 >
                         {featureData.slice(0, 3).map((feature, i) => (
@@ -185,8 +184,8 @@ const FeaturesGrid = () => {
                             component="img"
                             src={images[index]}
                             sx={{
-                                width: 'auto',
-                                height: '320px',
+                                width: {xs:'230px',sm:'400px',md:'300px',lg:'420px'},
+                                height: 'auto',
                             }}
                         />
                     </Box>
@@ -211,7 +210,7 @@ const FeaturesGrid = () => {
                             flexDirection="row"
                             onClick={()=>setIndex(i+3)}
                             sx={{
-                                maxWidth:{md:'15em',lg:'23em'}
+                                maxWidth: { md: '250px', lg: '22vw' }
                             }}
                         >
                                 <Box
