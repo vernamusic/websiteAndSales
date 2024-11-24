@@ -7,12 +7,40 @@ import pc3 from "../../assets/usedash3.jpg";
 
 const theme = createTheme({
     typography: {
-        h1: { fontFamily: 'Lato', fontSize: '24px', fontWeight: 600, color: "#FFFFFF" },
-        h3: { fontFamily: 'sen', fontWeight: 400, fontSize: '1.25vw', color: "rgba(241, 241, 241, 1)" },
-        h6: { fontFamily: 'Lato', fontWeight: 700, fontSize: '18px', color: "#FFFFFF" },
-        h9: { fontFamily: 'Lato', fontWeight: 400, fontSize: '14px', lineHeight: '110%', color: "#D9D9D9" },
-        button: { fontFamily: 'Lato', fontSize: '12.64px', fontWeight: '600', textTransform: "none", color: "#FFFFFF" }
-    }
+        h1: {
+            fontFamily:'Lato',
+            fontSize: '24px',
+            fontWeight: 600,
+            color: "#FFFFFF",
+        },
+        h3: {
+            fontFamily: 'sen',
+            fontWeight: 400,
+            fontSize: '1.25vw',
+            color: "rgba(241, 241, 241, 1)",
+        },
+        h6: {//title
+            fontFamily: 'Lato',
+            fontWeight: 700,
+            fontSize: {xs:'12px',sm:'16px',md:'18px'},
+            lineHeight: {xs:'12px',sm:'16px',md:'18px'},
+            color: "#FFFFFF",
+        },
+        h9: {//description
+            fontFamily: 'Lato',
+            fontWeight: 400,
+            fontSize: {xs:'10px',sm:'12px',md:'14px'},
+            lineHeight:{xs:'10px',sm:'12px',md:'14px'},
+            color: "#D9D9D9",
+        },
+        button: {
+            fontFamily: 'Lato',
+            fontSize: '12.64px',
+            fontWeight: '600',
+            textTransform: "none",
+            color: "#FFFFFF",
+        },
+    },
 });
 
 const features = [
@@ -42,9 +70,9 @@ const RedLine = ({ top }) => (
         top: '3.75em',
         left: '2.25em',
         width: 0,
-        height: '3.5em',
+        height: {xs:'2.3em',md:'3.5em',lg:'2.8em'},
         borderRight: '1px dashed #B50304',
-        transform: 'translateX(-50%)'
+        transform: 'translateX(-50%)',
     }} />
 );
 
@@ -94,32 +122,69 @@ const Stepper = () => {
     return (
         <ThemeProvider theme={theme}>
             <Box sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'left',
-                background: '#1F1F1F',
-                width: '100%',
-                height: '668px',
-                padding: '4em'
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'left',
+                    background: '#1F1F1F',
+                    width: '100%',
+                    pt: '32px',
+                    pr:'32px',
+                    pb: '-8px',
+                    pl:'32px',
+                    mb:{xs:'32px',sm:'32px',md:'0px'},
+                    overflow: 'hidden',
             }}>
-                <Typography variant="h1" mb="1em" mt="1em">HOW CAN WE USE IT?</Typography>
-                <Box sx={{ display: 'flex', flexDirection: 'row', gap: '4em', mt: '2em', mr: '2em' }}>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'left' }}>
+                <Typography variant="h1" mb="1em" mt="1em" sx={{display:{xs:'none',sm:'none',md:'block'}}}>
+                    HOW CAN WE USE IT?
+                </Typography>
+
+                <Box sx={{display: 'flex', flexDirection: 'row', gap: '4em', mt: '2em',justifyContent:'left'}}>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                        }}>
                         {memoizedFeatures.map((feature, index) => (
-                            <Box key={index} display="flex" flexDirection="row" alignItems="center" gap='1em' p='1em' sx={{ position: 'relative' }}>
+                            <Box
+                            key={index}
+                            display="flex"
+                            flexDirection="row"
+                            alignItems="center"
+                            gap='1em'
+                            p='1em'
+                            sx={{ position: 'relative' }}
+                        >
                                 <StepCircle onClick={() => handleStepClick(index)} active={step === index + 1}>
                                     {getCircleContent(index)}
                                 </StepCircle>
-                                {index < memoizedFeatures.length - 1 && <RedLine top={'5.1vw'} />}
-                                <Box ml='3.5em' width='32em'>
-                                    <Typography sx={{ ...theme.typography.h6 }}>{feature.title}</Typography>
-                                    <Typography sx={{ ...theme.typography.h9 }} pt='0.5em'>{feature.description}</Typography>
+                                {index < memoizedFeatures.length - 1 && <RedLine top={'4em'} />}
+                                <Box
+                                sx={{
+                                    width:{md:'20em',lg:'32em'},
+                                    ml: '3.5em',
+                                }}>
+                                    <Typography sx={{...theme.typography.h6,}}>
+                                        {feature.title}
+                                    </Typography>
+
+                                    <Typography sx={{...theme.typography.h9,width:{xs:'110%',sm:'90%',md:'130%',lg:'100%'},}} pt='0.5em'>
+                                        {feature.description}
+                                    </Typography>
                                 </Box>
                             </Box>
                         ))}
                     </Box>
-                    <Box component="img" src={images[step - 1]} sx={{ width: '494.202px', height: '420px', objectFit: 'cover' }} />
+                    <Box component="img" src={images[step-1]}
+                         sx={{
+                            display:{xs:'none',sm:'none',md:'block'},
+                             width: '508px',
+                             height: 'auto',
+                             objectFit: 'cover',
+                             position: 'relative',
+                             left: {md:'6em',lg:'12em'},
+                         }}
+                    />
                 </Box>
             </Box>
         </ThemeProvider>
