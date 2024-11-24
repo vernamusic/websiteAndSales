@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import { useAuth } from '../../AuthContext.jsx';
 import { createTheme } from "@mui/material/styles";
+import {useNavigate} from "react-router-dom";
 
 const theme = createTheme({
     typography: {
@@ -47,6 +48,8 @@ const ChangeEmailDialog = ({ open, onClose }) => {
     const [step, setStep] = useState(1); // 1 for change email, 2 for submit code
     const [snackbar, setSnackbar] = useState({ open: false, message: "", severity: "success" });
     const [timeLeft, setTimeLeft] = useState(0);
+    const navigate = useNavigate();
+
 
     const inputRefs = React.useRef([]);
     const VERIFICATION_TIME_KEY = `verificationRequestTime_${email}`;
@@ -59,16 +62,14 @@ const ChangeEmailDialog = ({ open, onClose }) => {
             },
             body: JSON.stringify({ email })
         })
-            .then(response => {
-                if (!response.ok) throw new Error('Failed to resend verification email');
-                return response.json();
-            })
-            .then(data => {
-                showSnackbar('Verification email resent successfully!');
+            .then(async response => {
+                const data = await response.json();
+                if (!response.ok) throw new Error(data.detail || 'Failed to resend verification email');
+                showSnackbar(data.detail || 'Verification email resent successfully!', 'success');
             })
             .catch(error => {
                 console.error('Error resending verification email:', error);
-                showSnackbar('Error resending verification email.', 'error');
+                showSnackbar(error.message || 'Error resending verification email.', 'error');
             });
     };
 
@@ -114,11 +115,12 @@ const ChangeEmailDialog = ({ open, onClose }) => {
                 body: JSON.stringify({ email }),
             });
 
+            const data = await response.json();
             if (response.ok) {
                 setStep(2);
-                setSnackbar({ open: true, message: "Verification code sent!", severity: "success" });
+                setSnackbar({ open: true, message: data.detail || "Verification code sent!", severity: "success" });
             } else {
-                throw new Error("Failed to send verification code.");
+                throw new Error(data.detail || "Failed to send verification code.");
             }
         } catch (error) {
             setSnackbar({ open: true, message: error.message, severity: "error" });
@@ -136,14 +138,15 @@ const ChangeEmailDialog = ({ open, onClose }) => {
                 body: JSON.stringify({ email, verification_code: code.join("") }),
             });
 
+            const data = await response.json();
             if (response.ok) {
-                setSnackbar({ open: true, message: "Email successfully changed!", severity: "success" });
+                setSnackbar({ open: true, message: data.message || "Email successfully changed!", severity: "success" });
 
                 setTimeout(() => {
-                    onClose();
-                }, 4000);
+                    window.location.href = '/profile';
+                }, 2000);
             } else {
-                throw new Error("Verification failed.");
+                throw new Error(data.message || "Verification failed.");
             }
         } catch (error) {
             setSnackbar({ open: true, message: error.message, severity: "error" });
