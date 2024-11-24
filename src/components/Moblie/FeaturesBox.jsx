@@ -266,7 +266,7 @@ const FeaturesBox = () => {
                         </Box>
                     ))}
                 </Box>
-                {/* Details for mobile */}
+            {/* Details for mobile */}
             <Box
                     flexDirection="column"
                     maxWidth='22em'
@@ -314,7 +314,7 @@ const FeaturesBox = () => {
                         )
                     ))}
 
-                </Box>
+            </Box>
             </Box>
 
             
