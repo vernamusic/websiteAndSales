@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography, createTheme, ThemeProvider } from '@mui/material';
-import phonehow1 from '../../assets/phonehow1.jpg';
+import phonehow1 from '../../assets/phonehow1.png';
 import phonehow2 from '../../assets/phonehow2.png';
 import phonehow3 from '../../assets/phonehow3.png';
 import phonehow4 from '../../assets/phonehow4.png';
@@ -13,7 +13,7 @@ const theme = createTheme({
     typography: {
         h6: {
             fontFamily: 'Lato',
-            fontSize:'16px',
+            fontSize:{xs:'10px',md:'12px',lg:'16px'},
             fontWeight: 600,
             color: "#FFFFFF",
             letterSpacing: '0.4px',
@@ -58,16 +58,18 @@ const HowBox = () => {
             <Box sx={{
                 background: 'radial-gradient(97.15% 97.15% at 50% 2.85%, #323232 0%, #1F1F1F 100%)',
                 width: '100%',
-                height: '579px',
                 position: 'relative',
-                padding: '88px'
+                padding: {xs:'32px',sm:'32px',md:'88px'},
+
                 }}>
                 <Box
-                    display="flex"
                     flexDirection="column"
                     justifyContent="center"
                     alignItems="center"
                     textAlign="center"
+                    sx={{
+                        display:{xs:'none',sm:'none',md:'flex'},
+                    }}
                 >
                     <Typography
                         sx={{
@@ -94,13 +96,15 @@ const HowBox = () => {
                     flexWrap="wrap"
                     justifyContent="center"
                     gap="2.5em"
+                    marginTop="32px"
+                    marginBottom="32px"
                 >
                     {howData.map((box, index) => (
                         <Box
                             key={index}
                             sx={{
-                                width: '18.5%',
-                                height: '250px',
+                                width: {xs:'140px',md:'170px',lg:'18.5%'},
+                                height: {xs:'153px',md:'180px',lg:'250px'},
                                 borderRadius: '16px',
                                 display: 'flex',
                                 flexDirection: 'column',
@@ -116,13 +120,12 @@ const HowBox = () => {
                         <Box
                                 sx={{
                                     position: 'absolute',
-                                    top: '-1.3em',
+                                    top: {xs:'-0.7em',md:'-1.3em'},
                                     left: '50%',
                                     transform: 'translateX(-50%)',
-                                    width: '40px',
-                                    height: '40px',
+                                    width: {xs:'25px',sm:'25px',md:'40px'},
+                                    height: {xs:'25px',sm:'25px',md:'40px'},
                                     padding: '8px',
-
                                     backgroundColor: '#B50304',
                                     borderRadius: '50%',
                                     display: 'flex',
@@ -136,7 +139,8 @@ const HowBox = () => {
                                         src={box.icon}
                                         alt="Design"
                                         sx={{
-                                            width: '2em'
+                                            width: {xs:'16px',sm:'16px',md:'24px'},
+                                            height: {xs:'16px',sm:'16px',md:'24px'},
                                         }}
                                     />
                                 ) : (
