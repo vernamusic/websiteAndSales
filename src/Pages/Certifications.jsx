@@ -10,12 +10,41 @@ import isocertification6 from '../assets/isocertification6.svg'
 import isocertification7 from '../assets/isocertification7.svg'
 import isocertification8 from '../assets/isocertification8.svg'
 
+
 const typoStyle = {
     fontFamily: 'Lato',
-    fontSize: { xs: '16px', sm: '18px', md: '20px', lg: '24px' },
+    fontSize: { xs: '12px', sm: '15px', md: '18px', lg: '24px' },
     color: '#fff',
     fontStyle: 'normal',
+    fontWeight: 700,
+    lineHeight: '100%',
+    textTransform: 'none'
+}
+
+const typoStyle2 = {
+    fontFamily: 'Lato',
+    fontSize: { xs: '10px', sm: '13px', md: '18px', lg: '20px' },
+    color: '#B4D5EB',
+    fontStyle: 'normal',
     fontWeight: 600,
+    lineHeight: '100%',
+    textTransform: 'none'
+}
+const typoStyle3 = {
+    fontFamily: 'Lato',
+    fontSize: { xs: '14px', sm: '15px', md: '20px', lg: '24px' },
+    color: '#FFFFFF',
+    fontStyle: 'normal',
+    fontWeight: 600,
+    lineHeight: '100%',
+    textTransform: 'none'
+}
+const typoStyle4 = {
+    fontFamily: 'Lato',
+    fontSize: { xs: '10px', sm: '13px', md: '18px', lg: '20px' },
+    color: '#F1F1F1',
+    fontStyle: 'normal',
+    fontWeight: 400,
     lineHeight: '100%',
     textTransform: 'none'
 }
@@ -84,27 +113,24 @@ const Certifications = () => {
                 backgroundSize: 'cover',
                 backgroundPosition: 'top right',
                 backgroundRepeat: 'no-repeat',
-                pt: { xs: '120px', sm: '130px', md: '130px', lg: '168px' },
+                pt: { xs: '24px', sm: '130px', md: '130px', lg: '168px' },
                 pb: { xs: '80px', sm: '90px', md: '100px', lg: '112px' },
                 boxSizing: 'border-box'
             }}
         >
             <Typography
                 sx={{
-                    ...typoStyle,
+                    ...typoStyle3,
                     textAlign: 'center'
                 }}
             >
-                OUR CERTIFICATIONS
+                OUR CERTIFICATIONS
             </Typography>
             <Typography
                 sx={{
-                    ...typoStyle,
+                    ...typoStyle4,
                     textAlign: 'center',
-                    color: '#f1f1f1',
-                    fontSize: { xs: '12.64px', md: '14.22px', lg: '16px' },
-                    fontWeight: 'normal',
-                    mt: '12px',
+                    mt: '8px',
 
                 }}
             >
@@ -118,17 +144,17 @@ const Certifications = () => {
             >
                 <Box
                     sx={{
-                        mt: '56px',
+                        mt: {xs:'24px',sm:'56px'},
                         display: 'grid',
-                        gridTemplateColumns: { xs: 'repeat(1,1fr)', sm: 'repeat(2,1fr)', md: 'repeat(3,1fr)', lg: 'repeat(4,1fr)' },
+                        gridTemplateColumns: { xs: 'repeat(2, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)' },
                         justifyItems: 'center',
                         alignItems: 'center',
-                        rowGap: '16px',
-                        columnGap: '16px',
+                        rowGap: '32px', // Keeping the original row gap
                         gridTemplateRows: 'auto',
-                        gap: 'clamp(8px, 2vw, 16px)',
-                        maxWidth: '1088px' /* Adjusts the gap within 8px to 16px */
+                        width: {xs:'90%',sm:'100%'},
+                        maxWidth: '100%'
                     }}
+                    
                 >
                     {
                         certifications.map((item, index) => {
@@ -157,10 +183,9 @@ const Card = ({ src, title, desc }) => {
                 background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.30) 0%, rgba(31, 31, 31, 0.30) 100%)',
                 boxShadow: '0px 4px 16px 0px rgba(0, 0, 0, 0.32)',
                 borderRadius: '16px',
-                py: { xs: '22px', sm: '26px', md: '28px', lg: '32px' },
+                py: { xs: '16px', sm: '26px', md: '28px', lg: '32px' },
                 px: { xs: '10px', sm: '18px', md: '20px', lg: '24px' },
-                width: { xs: '247px' },
-                height: { xs: '286px' },
+                width: { xs:'142px',sm: '247px' },
                 display: 'flex',
                 alignItems: 'center',
                 flexDirection: 'column',
@@ -169,15 +194,16 @@ const Card = ({ src, title, desc }) => {
 
             }}
         >
-            <Box>
-                <img src={src} alt="" />
+            <Box sx={{ width: {xs:'85px',sm:'140px'}, height: {xs:'85px',sm:'140px'} }}>
+                <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </Box>
+
             <Typography
                 sx={{
                     ...typoStyle,
                     fontWeight: 'bolder',
                     fontSize: { xs: '14.22px', sm: '16px', md: '18px', lg: '20px' },
-                    mt: '24px',
+                    mt: {xs:'16px',sm:'24px'},
                     textAlign:'center',
                 }}
             >
@@ -185,7 +211,7 @@ const Card = ({ src, title, desc }) => {
             </Typography>
             <Typography
                 sx={{
-                    ...typoStyle,
+                    ...typoStyle2,
                     fontWeight: 'normal',
                     fontSize: { xs: '10px', sm: '12px', md: '12.64px', lg: '14px' },
                     mt: '8px',

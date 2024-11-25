@@ -78,7 +78,7 @@ const Home = () => {
                         maxHeight: '746px',
                         minHeight: { xs: '188px', sm: '300px', md: '600px', lg: '750px' },
                         width: '100%',
-                        backgroundImage: `url(${background})`,
+                        background: `linear-gradient(253.12deg, rgba(31, 31, 31, 0.2) 26.9%, rgba(31, 31, 31, 0.42) 33.48%, rgba(31, 31, 31, 0.56) 40.79%, rgba(31, 31, 31, 0.707727) 51.75%, rgba(31, 31, 31, 0.9) 91.23%), url(${background})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         backgroundRepeat: 'no-repeat',
@@ -95,6 +95,7 @@ const Home = () => {
                 >
                     <Typography
                         sx={{
+                            width:'100%',
                             mb: '0.4vw',
                             ml: '-0.2vw',
                             lineHeight: '1.5',
@@ -123,7 +124,7 @@ const Home = () => {
                         Introducing an innovative mobile app that empowers health management! With the Vitruvian Watch, users can track their health data
                     </Typography>
 
-                    <Box sx={{ display: 'flex', gap: {xs:'1.5vw',sm:'1.5vw',md:'0.78vw'}, marginTop: '1.56vw',}}>
+                    <Box sx={{ display: 'flex', gap: {xs:'1.5vw',sm:'1.5vw',md:'0.78vw'}, marginTop: {xs:'16px',sm:'16px',md:'1.56vw'},}}>
                         <Button
                             variant="outlined"
                             sx={{

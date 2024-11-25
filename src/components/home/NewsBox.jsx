@@ -177,7 +177,7 @@ const NewsBox = () => {
                     pb: { xs: '30px', sm: '40px', md: '80px', lg: '70px' },
                     pt: { xs: '30px', sm: '40px', md: '70px' }
                 }}>
-                <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", mb: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 }, px: "3%" }}>
+                <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", mb: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 }, px: "10px" }}>
                     <Typography
                         sx={{
                             "&:hover": { backgroundColor: "transparent" },
@@ -196,7 +196,6 @@ const NewsBox = () => {
                             textTransform: "none",
                             display: "flex",
                             alignItems: "center",
-                            gap: '4px',
                             "&:hover": { backgroundColor: "transparent" },
                             ...navItemStyle,
                             lineHeight: '0',
@@ -219,7 +218,7 @@ const NewsBox = () => {
                         flexDirection: 'row',
                         justifyContent: 'center',
                         flexWrap: 'wrap',
-                        gap: {xs:'10px',sm:'12px',md:'20px'}
+                        gap: {xs:'5px',sm:'12px',md:'20px'}
 
                     }}>
                     {newsItems.map((box, index) => (

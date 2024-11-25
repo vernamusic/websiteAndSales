@@ -68,8 +68,7 @@ const FeaturesGrid = () => {
         <ThemeProvider theme={themes}>
             <Box sx={{
                 backgroundImage: `url(${background})`,
-                maxHeight: '617px',
-                minHeight: { xs: '500px', sm: '600px', md: '617px', lg: '617px' },
+                minHeight: 'auto',
                 width: '100%',
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
@@ -84,6 +83,7 @@ const FeaturesGrid = () => {
                 >
                     <Typography
                         sx={{
+                            display:{xs:'none',sm:'none',md:'block'},
                             ...themes.typography.h1,
                             lineHeight: '1.5',
                             width: '600',
@@ -96,7 +96,8 @@ const FeaturesGrid = () => {
                     <Typography
                         sx={{
                             ...themes.typography.h3,
-                            mb: '5em'
+                            mb: '5em',
+                            display:{xs:'none',sm:'none',md:'block'},
                         }}
                     >
                         Integrate advanced features to improve user experience
@@ -112,19 +113,23 @@ const FeaturesGrid = () => {
 
                 >
                     <Box
-                        display="flex"
-                        flexDirection="column"
-                        maxWidth='22em'
-                        gap='3em'
-                    >
+                    display="flex"
+                    flexDirection="column"
+                    gap='3em'
+                    sx={{
+                        maxWidth: { md: '250px', lg: '22vw' }
+                    }}
+                >
                         {featureData.slice(0, 3).map((feature, i) => (
                             <Box
-                                key={i}
-                                position="relative"
-                                display="flex"
-                                flexDirection="row"
-                                onClick={()=>setIndex(i)}
-                            >
+                            key={i}
+                            position="relative"
+                            flexDirection="row"
+                            sx={{
+                                display:{xs:'none',sm:'none',md:'block'},
+                            }}
+                            onClick={()=>setIndex(i)}
+                        >
                                 <Box
                                     sx={{
                                         width: '40px',
@@ -174,13 +179,13 @@ const FeaturesGrid = () => {
                             <path d="M15 7L10 12L15 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     } onClick={()=>setIndex(index==0?5:index-1)} />
-                    <Box sx={{display: 'flex', flexDirection: 'column'}}>
+                    <Box sx={{display: 'flex', flexDirection: 'column',justifyContent:'center',alignItems:'center'}}>
                         <Box
                             component="img"
                             src={images[index]}
                             sx={{
-                                width: 'auto',
-                                height: '320px',
+                                width: {xs:'170px',sm:'200px',md:'200px',lg:'250px'},
+                                height: 'auto',
                             }}
                         />
                     </Box>
@@ -192,19 +197,22 @@ const FeaturesGrid = () => {
                     } onClick={()=>setIndex((index+1)%6)} />
                 </Box>
                     <Box
-                        display="flex"
-                        flexDirection="column"
-                        maxWidth='22em'
-                        gap='3em'
-                    >
+                    flexDirection="column"
+                    maxWidth='22em'
+                    gap='3em'
+                    sx={{display:{xs:'none',sm:'none',md:'flex'},}}
+                >
                         {featureData.slice(3, 6).map((feature, i) => (
                             <Box
-                                key={i}
-                                position="relative"
-                                display="flex"
-                                flexDirection="row"
-                                onClick={()=>setIndex(i+3)}
-                            >
+                            key={i}
+                            position="relative"
+                            display="flex"
+                            flexDirection="row"
+                            onClick={()=>setIndex(i+3)}
+                            sx={{
+                                maxWidth: { md: '250px', lg: '22vw' }
+                            }}
+                        >
                                 <Box
                                     sx={{
                                         width: '40px',
@@ -246,6 +254,56 @@ const FeaturesGrid = () => {
                                 </Box>
                             </Box>
                         ))}
+                    </Box>
+                    {/* Details for mobile */}
+                    <Box
+                            flexDirection="column"
+                            maxWidth='22em'
+                            gap='3em'
+                            sx={{display:{xs:'flex',sm:'flex',md:'none'},}}
+                        >
+                            {featureData.slice(0, 6).map((feature, i) => (
+                                index === i && (
+                                    <Box
+                                        key={i}
+                                        position="relative"
+                                        flexDirection="row"
+                                        onClick={() => setIndex(i)}
+                                        sx={{ display: 'flex' }}                            
+                                    >
+                                        <Box
+                                            sx={{
+                                                display: 'flex',
+                                                flexDirection: 'column',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                mt:'8px',
+                                            }}
+                                        >
+                                            <Typography
+                                                sx={{
+                                                    ...themes.typography.h6,
+                                                    width: 'fit-content',
+                                                    pb: '2px',
+                                                    cursor: 'pointer'
+                                                }}
+                                            >
+                                                {feature.title}
+                                            </Typography>
+
+                                            <Typography
+                                                pt='0.5em'
+                                                sx={{ ...themes.typography.caption,
+                                                    textAlign:'center',
+                                                }}
+                                            >
+                                                {feature.description}
+                                            </Typography>
+                                        </Box>
+                                    </Box>
+                                )
+                            ))}
+
                     </Box>
                 </Box>
             </Box>

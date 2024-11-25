@@ -22,7 +22,7 @@ const theme = createTheme({
         h6: {
             fontFamily: 'Lato',
             fontWeight: 700,
-            fontSize: { sm: '16px', md: '18px', lg: '22px' },
+            fontSize: { xs:'14px',sm: '16px', md: '18px', lg: '22px' },
             color: '#B0EEE9',
             letterSpacing: '0.4px',
             lineHeight: '22px',
@@ -37,21 +37,21 @@ const theme = createTheme({
         h9: {
             fontFamily: 'Lato',
             fontWeight: 700,
-            lineHeight: '20.4px',
-            fontSize: { sm: '11px', md: '12px', lg: '0.9vw' },
+            lineHeight: {xs:'14.4px',sm:'14.4px',md:'20.4px'},
+            fontSize: { xs:'12px',sm: '13px', md: '14px', lg: '0.9vw' },
             color: '#FFFFFF',
         },
         body1: {
             fontFamily: 'Lato',
             fontWeight: 400,
-            lineHeight: '19.2px',
-            fontSize: { sm: '11px', md: '13px', lg: '0.83vw' },
+            lineHeight: {xs:'14.4px',sm:'14.4px',md:'19.2px'},
+            fontSize: { sm: '12px', md: '13px', lg: '0.83vw' },
             color: '#FFFFFF',
         },
         body2: {
             fontFamily: 'Lato',
             fontWeight: 500,
-            lineHeight: '15px',
+            lineHeight: {xs:'11px',sm:'12px',md:'15px'},
             fontSize: { sm: '11px', md: '12px', lg: '0.78vw' },
             color: '#FFFFFF',
         },
@@ -87,7 +87,7 @@ const FeatureItem = ({ text }) => (
             borderRadius: '50%',
         }}
     ></span>
-        <Typography sx={{ ...theme.typography.body2, display: 'inline', color: '#FFFFFF' }}>
+        <Typography sx={{ ...theme.typography.body2, display: 'inline' }}>
             {text}
         </Typography>
     </li>
@@ -253,13 +253,15 @@ const PricingBox = () => {
                 }}
             >
                 <Box
-                    display="flex"
                     flexDirection="column"
                     justifyContent="center"
                     alignItems="center"
                     textAlign="center"
                     mt={6}
                     mb={6}
+                    sx={{
+                        display:{xs:'none',sm:'none',md:'flex'},
+                    }}
                 >
                     <Typography
                         sx={{
@@ -278,14 +280,14 @@ const PricingBox = () => {
 
                 <Box
                     sx={{
-                        gap: { sm: 5, md: 5 },
+                        gap: { xs:'24px',sm: 5, md: 5 },
                         width: '848px',
-                        height: '581px',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        mb: 10,
+                        mt:2,
+                        mb: {xs:2,sm:2,md:10},
                         display: 'flex',
-                        flexDirection: 'row',
+                        flexDirection: {xs:'column',sm:'column',md:'row'},
                     }}
                 >
 
@@ -293,25 +295,29 @@ const PricingBox = () => {
                         sx={{
                             backgroundColor: 'rgba(38, 38, 38, 1)',
                             boxShadow: '0px 4px 28px 0px rgba(0, 0, 0, 0.18)',
-                            borderRadius: '15px',
-                            padding: 6,
+                            borderRadius: '16px',
+                            padding: {xs:4,md:6},
                             display: 'flex',
                             flexDirection: 'column',
                             border: '1px solid #FFFFFF33',
                             flex: '1 1',
-                            width: { sm: '330px', md: '350px', lg: '380px', xl: '404px' },
-                            height: { sm: '490px', md: '530px', lg: '560px', xl: '581px' },
+                            width: { sm: '296px', md: '350px', lg: '380px', xl: '404px' },
+                            height: { sm: '469px', md: '530px', lg: '560px', xl: '581px' },
                         }}
                     >
                         {expanded.ctms ? (
                             <>
-                                <Box sx={{display: 'flex',flexDirection: 'column',mt:-5,ml:-1}}>
+                                <Box sx={{display: 'flex',flexDirection: 'column',mt:{xs:-2,md:-5},ml:-1}}>
                                     <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end',width:'110%' }}>
-                                        <IconButton aria-label="close" sx={{ color: '#FFFFFF' }} onClick={() => handleGoBackClick('ctms')}>
+                                        <IconButton aria-label="close" sx={{ color: '#8C8C8C' }} onClick={() => handleGoBackClick('ctms')}>
                                             <CloseIcon />
                                         </IconButton>
                                     </Box>
-                                    <Box>
+                                    <Box
+                                    sx={{
+                                        mt:-3,
+                                    }}
+                                    >
                                         <Typography sx={{ ...theme.typography.h6,color:'#FFFFFF'  }}>Features</Typography>
                                         <Typography sx={{ ...theme.typography.body1, mt: 1 }}>
                                             Select the features you want
@@ -324,12 +330,12 @@ const PricingBox = () => {
 
                                         <Box
                                             sx={{
-                                                borderRadius: '8px',
                                                 display: 'flex',
                                                 flexDirection: 'column',
                                                 gap: '5px',
                                                 overflow: 'auto',
-                                                maxHeight: '383px',
+                                                maxWidth:{ xs:'248px',sm: '255px', md: '350px', lg: '380px', xl: '404px' },
+                                                maxHeight: {xs:'293px',sm:'360px',md:'383px'},
                                                 '&::-webkit-scrollbar': {
                                                     display: 'none',
                                                 },
@@ -374,9 +380,10 @@ const PricingBox = () => {
                                                 backgroundColor: '#B50304',
                                                 textTransform: 'none',
                                                 borderRadius: '5px',
+                                                color:'#FCFCFC'
                                             }}
                                         >
-                                            Buy Plan
+                                            Submit
                                         </Button>
                                     </Box>
                                 </Box>
@@ -450,25 +457,28 @@ const PricingBox = () => {
                         sx={{
                             backgroundColor: 'rgba(38, 38, 38, 1)',
                             boxShadow: '0px 4px 28px 0px rgba(0, 0, 0, 0.18)',
-                            borderRadius: '15px',
-                            padding: 6,
+                            borderRadius: '16px',
+                            padding: {xs:4,md:6},
                             display: 'flex',
                             flexDirection: 'column',
                             border: '1px solid #FFFFFF33',
                             flex: '1 1',
-                            width: { sm: '330px', md: '350px', lg: '380px', xl: '404px' },
-                            height: { sm: '490px', md: '530px', lg: '560px', xl: '581px' },
+                            width: { sm: '296px', md: '350px', lg: '380px', xl: '404px' },
+                            height: { sm: '469px', md: '530px', lg: '560px', xl: '581px' },
                         }}
                     >
                         {expanded.rpm ? (
                             <>
-                                <Box sx={{display: 'flex',flexDirection: 'column',mt:-5,ml:-1}}>
+                                <Box sx={{display: 'flex',flexDirection: 'column',mt:{xs:-2,md:-5},ml:-1}}>
                                     <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end',width:'110%' }}>
-                                        <IconButton aria-label="close" sx={{ color: '#FFFFFF' }} onClick={() => handleGoBackClick('rpm')}>
+                                        <IconButton aria-label="close" sx={{ color: '#8C8C8C' }} onClick={() => handleGoBackClick('rpm')}>
                                             <CloseIcon />
                                         </IconButton>
                                     </Box>
-                                    <Box>
+                                    <Box
+                                    sx={{
+                                        mt:-3,
+                                    }}>
                                         <Typography sx={{ ...theme.typography.h6,color:'#FFFFFF'  }}>Features</Typography>
                                         <Typography sx={{ ...theme.typography.body1, mt: 1 }}>
                                             Select the features you want
@@ -481,12 +491,12 @@ const PricingBox = () => {
 
                                         <Box
                                             sx={{
-                                                borderRadius: '8px',
                                                 display: 'flex',
                                                 flexDirection: 'column',
                                                 gap: '5px',
                                                 overflow: 'auto',
-                                                maxHeight: '383px',
+                                                maxWidth:{ xs:'248px',sm: '255px', md: '350px', lg: '380px', xl: '404px' },
+                                                maxHeight: {xs:'293px',sm:'360px',md:'383px'},
                                                 '&::-webkit-scrollbar': {
                                                     display: 'none',
                                                 },
