@@ -284,6 +284,7 @@ const FeaturesGrid = () => {
                                         flexDirection: 'column',
                                         alignItems: 'center',
                                         justifyContent: 'center',
+                                        mt:'8px',
                                     }}
                                 >
                                     <Typography
