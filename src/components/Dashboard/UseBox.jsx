@@ -61,7 +61,7 @@ const StepCircle = styled(Box)(({ active }) => ({
     justifyContent: 'center',
     alignItems: 'center',
     cursor: 'pointer',
-    boxShadow: '0px 1px 8px 0px rgba(0, 0, 0, 0.24)'
+    boxShadow: '0px 1px 8px 0px rgba(0, 0, 0, 0.24)',
 }));
 
 const RedLine = ({ top }) => (
@@ -70,7 +70,7 @@ const RedLine = ({ top }) => (
         top: '3.75em',
         left: '2.25em',
         width: 0,
-        height: {xs:'2.3em',md:'3.5em',lg:'2.8em'},
+        height: {xs:'2.5em',md:'3.5em',lg:'2.8em'},
         borderRight: '1px dashed #B50304',
         transform: 'translateX(-50%)',
     }} />
@@ -144,6 +144,7 @@ const Stepper = () => {
                         sx={{
                             display: 'flex',
                             flexDirection: 'column',
+                            ml:{xs:'-32px'}
                         }}>
                         {memoizedFeatures.map((feature, index) => (
                             <Box
@@ -168,7 +169,7 @@ const Stepper = () => {
                                         {feature.title}
                                     </Typography>
 
-                                    <Typography sx={{...theme.typography.h9,width:{xs:'110%',sm:'90%',md:'130%',lg:'100%'},}} pt='0.5em'>
+                                    <Typography sx={{...theme.typography.h9,width:{xs:'110%',sm:'90%',md:'130%',lg:'100%'},mt:'8px'}} pt='0.5em'>
                                         {feature.description}
                                     </Typography>
                                 </Box>
