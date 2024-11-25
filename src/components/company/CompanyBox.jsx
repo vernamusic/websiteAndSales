@@ -25,7 +25,7 @@ const theme = createTheme({
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: {xs:'8px',sm:'10px',md:'0.94vw'},
+            fontSize: {xs:'9px',sm:'10px',md:'0.94vw'},
             color: "#FCFCFC",
         },
         form: {
@@ -65,9 +65,9 @@ const CompanyBox = () => {
         <ThemeProvider theme={theme}>
             <Box
                 sx={{
-                    width: '100vw',
+                    width: '100%',
                     position: 'relative',
-                    backgroundImage: `linear-gradient(90deg, rgba(0, 0, 0, 0.738) 14.54%, rgba(0, 0, 0, 0.686) 23.41%, rgba(0, 0, 0, 0.584) 40.86%, rgba(0, 0, 0, 0.164) 100%), url(${images[activeImage]})`,
+                    backgroundImage: `linear-gradient(257.48deg, rgba(28, 28, 28, 0.2) 0%, rgba(28, 28, 28, 0.42) 8.92%, rgba(28, 28, 28, 0.56) 18.83%, rgba(28, 28, 28, 0.71) 33.69%, rgba(28, 28, 28, 0.774989) 51.99%, rgba(28, 28, 28, 0.9) 87.2%), url(${images[activeImage]})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
@@ -81,7 +81,7 @@ const CompanyBox = () => {
                         justifyContent: 'center',
                         alignItems: 'flex-start',
                         gap: { xs: 0.5, sm: 1, md: 1.5, lg: 1.5, xl: 1.5 },
-                        ml: { xs: '24px', sm: '80px', md: 19, lg: 24, xl: 28 },
+                        ml: { xs: '26px', sm: '80px', md: 19, lg: 24, xl: 28 },
                         mt: { xs: '39px', sm: '100px', md: '170px', lg: '250px' },
                         width:{xs:'332px'}
                     }}
@@ -103,8 +103,8 @@ const CompanyBox = () => {
                             borderRadius: '6px',
                             backgroundColor: '#B50304',
                             textTransform: 'none',
-                            width:{xs:'55px',sm:'65px',md:'7.8125vw'},
-                            height: {xs:'20px',sm:'30px',md:'2.6042vw'},
+                            width:{xs:'65px',sm:'75px',md:'7.8125vw'},
+                            height: {xs:'25px',sm:'30px',md:'2.6042vw'},
                             mt:{xs:'16px',sm:'8px',md:'0px'},
                             padding:0,
                             alignItems: 'center',
