@@ -18,14 +18,14 @@ const theme = createTheme({
         },
         h3: {
             fontFamily: 'Lato',
-            fontWeight: 700,
+            fontWeight: 600,
             fontSize: { xs: '14px', sm: '18px', md: '26px', lg: '32px' },
             color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: {xs:'9px',sm:'10px',md:'0.94vw'},
+            fontSize: { xs: '9px', sm: '10px', md: '0.94vw' },
             color: "#FCFCFC",
         },
         form: {
@@ -37,6 +37,11 @@ const theme = createTheme({
 });
 
 const images = [backgroundImage1, backgroundImage2, backgroundImage3];
+const companyNames = [
+    "Vitruvian Shield SA",
+    "Vitruvian Shield DMCC",
+    "Vitruvian Shield PT",
+];
 
 const CompanyBox = () => {
     const [dialogOpen, setDialogOpen] = useState(false);
@@ -81,19 +86,20 @@ const CompanyBox = () => {
                         justifyContent: 'center',
                         alignItems: 'flex-start',
                         gap: { xs: 0.5, sm: 1, md: 1.5, lg: 1.5, xl: 1.5 },
-                        ml: { xs: '26px', sm: '80px', md: 19, lg: 24, xl: 28 },
+                        ml: { xs: '32px', sm: '80px', md: 19, lg: 24, xl: 28 },
                         mt: { xs: '39px', sm: '100px', md: '170px', lg: '250px' },
-                        width:{xs:'332px'}
+                        width: { xs: '332px' },
                     }}
                 >
-                    <Typography sx={{ ...theme.typography.h3 }}>Vitruvian Shield</Typography>
-                    <Typography
-                        sx={{
-                            ...theme.typography.h6,
-                        }}
-                    >
-                        Vitruvian Shield is an e-Health Software as a Service (Saas), integrating cutting-edge Clinical Trials Management Systems  (CTMS)
-                        and Remote Patient Monitoring (RPM) with state-of-the-art wearable technology
+                    {/* Company name */}
+                    <Typography sx={{ ...theme.typography.h3 }}>
+                        {companyNames[activeImage]}
+                    </Typography>
+
+                    <Typography sx={{ ...theme.typography.h6 }}>
+                        Vitruvian Shield is an e-Health Software as a Service (SaaS), integrating
+                        cutting-edge Clinical Trials Management Systems (CTMS) and Remote Patient
+                        Monitoring (RPM) with state-of-the-art wearable technology.
                     </Typography>
                     <Button
                         variant="contained"
@@ -103,10 +109,10 @@ const CompanyBox = () => {
                             borderRadius: '6px',
                             backgroundColor: '#B50304',
                             textTransform: 'none',
-                            width:{xs:'65px',sm:'75px',md:'7.8125vw'},
-                            height: {xs:'25px',sm:'30px',md:'2.6042vw'},
-                            mt:{xs:'16px',sm:'8px',md:'0px'},
-                            padding:0,
+                            width: { xs: '65px', sm: '75px', md: '7.8125vw' },
+                            height: { xs: '25px', sm: '30px', md: '2.6042vw' },
+                            mt: { xs: '16px', sm: '8px', md: '0px' },
+                            padding: 0,
                             alignItems: 'center',
                             '&:hover': {
                                 backgroundColor: '#B50304',
@@ -119,17 +125,26 @@ const CompanyBox = () => {
                 </Box>
 
                 {/* Indicator Circles */}
-                <Box sx={{ position: 'absolute', bottom: {xs:20,sm:30,md:40}, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 1 }}>
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        bottom: { xs: 20, sm: 30, md: 40 },
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        display: 'flex',
+                        gap: 1,
+                    }}
+                >
                     {images.map((_, index) => (
                         <Box
                             key={index}
                             onClick={() => handleCircleClick(index)}
                             sx={{
-                                width: {xs:6,md:10},
-                                height: {xs:6,md:10},
+                                width: { xs: 6, md: 10 },
+                                height: { xs: 6, md: 10 },
                                 borderRadius: '50%',
                                 backgroundColor: activeImage === index ? 'red' : 'gray',
-                                cursor: 'pointer', // Cursor change for better UX
+                                cursor: 'pointer',
                             }}
                         />
                     ))}
