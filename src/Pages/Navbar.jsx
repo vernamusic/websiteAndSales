@@ -134,24 +134,25 @@ const Navbar = React.memo((props) => {
         <>
             <AppBar
                 sx={{
+                    position:'relative',
                     background: 'rgba(31, 31, 31, 0.95)',
                     boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.30)',
                     width: '100%',
-                    height: { xs: '38px',sm:'52px', md: '96px' },
+                    height: { xs: '42px',sm:'52px', md: '96px' },
                     px: { xs: '24px', md: '30px', lg: '40px' },
                     justifyContent: 'center',
                 }}>
                 <Toolbar
                     sx={{
                         px: '0!important',
-                        height: { xs: '38px', md: '96px' },
+                        height: { xs: '42px',sm:'52px', md: '96px' },
                         boxSizing: 'border-box',
                         display: 'flex',
                         justifyContent: 'space-between',
                     }}>
 
-  {/* Nav for mobile */}
-  <Box sx={{ display: { xs: 'flex', md: 'none' }, justifyContent: 'flex-start' }}>
+                        {/* Nav for mobile */}
+                        <Box sx={{ display: { xs: 'flex', md: 'none' }, justifyContent: 'flex-start' }}>
                         <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>
                             <MenuIcon sx={{ color: 'white', fontSize: { xs: '32px',sm:'40px' }, mt: '2px' }} />
                         </IconButton>
