@@ -98,7 +98,7 @@ const Home = () => {
                     >
                     The Vitruvian Shield smart watch provides a versatile and comprehensive solution for vital signs monitoring
                     </Typography>
-                    <Box sx={{ display: 'flex', gap: {xs:'1.5vw',sm:'1.5vw',md:'0.78vw'}, marginTop: '1.56vw',}}>
+                    <Box sx={{ display: 'flex', gap: {xs:'1.5vw',sm:'1.5vw',md:'0.78vw'}, marginTop: {xs:'16px',sm:'16px',md:'1.56vw'},}}>
                         <Button
                             variant="outlined"
                             sx={{
