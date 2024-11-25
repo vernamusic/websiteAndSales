@@ -95,7 +95,7 @@ const ContactFormDialog = ({ open, onClose }) => {
                         phone_number: '',
                         subject: '',
                         message: '',
-                        type: 12,
+                        type: 11,
                     });
                     setSuccessMessage('Form submitted successfully!'); // Show success message
                 } else {
@@ -222,11 +222,11 @@ const ContactFormDialog = ({ open, onClose }) => {
 
                 <DialogActions sx={{mb:2, justifyContent: 'center', padding: '0 24px', flexDirection: 'column' }}>
                     <Button
-                        fullWidth
+
                         variant="contained"
                         onClick={handleSubmit}
                         sx={{
-                            width: '381px',
+                            width:'88%',
                             minHeight: '50.82px',
                             mb:1,
                             backgroundColor: theme.palette.primary.main,
