@@ -174,12 +174,12 @@ const FeaturesGrid = () => {
                                 <path d="M15 7L10 12L15 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         } onClick={()=>setIndex(index==0?5:index-1)} />
-                        <Box sx={{display: 'flex', flexDirection: 'column'}}>
+                        <Box sx={{display: 'flex', flexDirection: 'column',justifyContent:'center',alignItems:'center'}}>
                             <Box
                                 component="img"
                                 src={watchImage[index]}
                                 sx={{
-                                    width: {xs:'230px',sm:'280px',md:'250px',lg:'330px'},
+                                    width: {xs:'150px',sm:'200px',md:'250px',lg:'330px'},
                                     height: 'auto',
                                 }}
                             />

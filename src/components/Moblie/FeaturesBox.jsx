@@ -176,12 +176,12 @@ const FeaturesBox = () => {
                             <path d="M15 7L10 12L15 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     } onClick={()=>setIndex(index==0?5:index-1)} />
-                    <Box sx={{display: 'flex', flexDirection: 'column'}}>
+                    <Box sx={{display: 'flex', flexDirection: 'column',justifyContent:'center',alignItems:'center'}}>
                         <Box
                             component="img"
                             src={phoneImages[index]}
                             sx={{
-                                width: {xs:'190px',sm:'220px',md:'200px',lg:'250px'},
+                                width: {xs:'100px',sm:'150px',md:'200px',lg:'250px'},
                                 height: 'auto',
                             }}
                         />
