@@ -12,7 +12,7 @@ const theme = createTheme({
     typography: {
         h3: {
             fontFamily: 'Lato',
-            fontWeight: 600,
+            fontWeight: {xs:500,sm:600},
             fontSize: {xs:'2.58vw',sm:'1.25vw'},
             color: "#FFFFFF",
         },
@@ -20,14 +20,14 @@ const theme = createTheme({
             fontFamily: 'Lato',
             fontSize: {xs:'2.4vw',sm:'1.11vw'},
             color: "rgba(191, 191, 191, 1)",
-            fontWeight: 500,
-            lineHeight: '1.3vw',
+            fontWeight: {xs:400,sm:500},
+            lineHeight: {xs:'3.4vw',sm:'1.3vw'},
         },
         caption: {
             fontFamily: 'Lato',
             fontSize: {xs:'2.22vw',sm:'0.97vw'},
             textTransform: 'none',
-            lineHeight: '1.5vw',
+            lineHeight: {xs:'3.5vw',sm:'1.5vw'},
             fontWeight: 400,
             color: "#FFFFFF",
         },
@@ -59,8 +59,8 @@ const Allinonecard = ({ data }) => {
                     flexWrap="wrap"
                     justifyContent="center"
                     sx={{
-                        gap: '1.86vw',
-                        width: '85vw',
+                        gap: {xs:'5vw',sm:'1.86vw'},
+                        width: {xs:'87vw',sm:'85vw'},
                     }}
                 >
                     {data.map((box, index) => (
@@ -69,12 +69,12 @@ const Allinonecard = ({ data }) => {
                             key={index}
                             sx={{
                                 flexDirection: "column",
-                                borderRadius: '1.11vw',
-                                width: '18vw',
-                                height: '26vw',
+                                borderRadius: {xs:'2.22vw',sm:'1.11vw'},
+                                width: {xs:'35vw',sm:'18vw'},
+                                height: {xs:'52.6vw',sm:'26vw'},
                                 py: '0vw',
                                 boxSizing: 'border-box',
-                                boxShadow: '0vw 0.21vw 0.21vw 0vw rgba(0, 0, 0, 0.45)',
+                                boxShadow: '0vw 0.61vw 0.61vw 0vw rgba(0, 0, 0, 0.45)',
                                 position: "relative",
                                 overflow: "hidden",
                                 alignItems: "center",
@@ -89,11 +89,11 @@ const Allinonecard = ({ data }) => {
                                 onClick={box.linked_in ? () => window.open(box.linked_in, "_blank") : null}
                                 alt="LinkedIn"
                                 sx={{
-                                    width: '2.5vw',
-                                    height: '2.5vw',
+                                    width: {xs:'5.5vw',sm:'2.5vw'},
+                                    height: {xs:'5.5vw',sm:'2.5vw'},
                                     position: "absolute",
-                                    top: "0.625vw",
-                                    left: '0.625vw',
+                                    top: {xs:'2vw',sm:"0.625vw"},
+                                    left: {xs:'2vw',sm:'0.625vw'},
                                     display: "flex",
                                     justifyContent: "center",
                                     alignItems: "center",
@@ -122,26 +122,28 @@ const Allinonecard = ({ data }) => {
                                 <Box sx={imageContainerStyle}>
                                     <Box
                                         sx={{
-                                            borderTop: '0.052vw solid red',
-                                            borderRadius: '5.21vw',
+                                            borderRadius: { xs: '20vw', sm: '5.21vw'},
                                             border: '0.052vw dashed #8AE6DE',
-                                            p: '0.52vw',
+                                            p: { xs: '1vw', sm: '0.52vw'},
+                                            width: { xs: '17.33vw', sm: '7.44vw' },
+                                            height: { xs: '17.33vw', sm: '7.44vw' },
                                             display: 'flex',
                                             justifyContent: 'center',
                                             alignItems: 'center',
                                             transition: 'ease-in 300ms',
                                             ":hover": {
                                                 transform: 'scale(1.1)'
-                                            }
+                                            },
+
                                         }}
                                     >
-                                        <img
+                                    <img
                                             src={box.photo}
                                             alt="circle"
                                             style={{
                                                 border: '0.052vw solid #8AE6DE',
-                                                width: '7.44vw',
-                                                height: '7.44vw',
+                                                width:'100%',
+                                                height:'100%',
                                                 objectFit: 'cover',
                                                 borderRadius: '50%'
                                             }}
