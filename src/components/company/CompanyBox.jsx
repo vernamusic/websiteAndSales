@@ -10,23 +10,23 @@ const theme = createTheme({
     typography: {
         h6: {
             fontFamily: 'Lato',
-            fontSize: { xs: '12.64px', sm: '14px', md: '14.22px', lg: '18px' },
+            fontSize: { xs: '10px', sm: '13.8px', md: '14.22px', lg: '18px' },
             lineHeight: 'normal',
             letterSpacing: '0.4px',
-            color: "#F1F1F1",
+            color: "#D9D9D9",
             textTransform: 'none',
         },
         h3: {
             fontFamily: 'Lato',
             fontWeight: 700,
-            fontSize: { xs: '20px', sm: '22px', md: '26px', lg: '32px' },
+            fontSize: { xs: '14px', sm: '18px', md: '26px', lg: '32px' },
             color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: '0.94vw',
-            color: "#FFFFFF",
+            fontSize: {xs:'8px',sm:'10px',md:'0.94vw'},
+            color: "#FCFCFC",
         },
         form: {
             fontFamily: 'Inter',
@@ -81,16 +81,15 @@ const CompanyBox = () => {
                         justifyContent: 'center',
                         alignItems: 'flex-start',
                         gap: { xs: 0.5, sm: 1, md: 1.5, lg: 1.5, xl: 1.5 },
-                        height: '100%',
-                        pl: { xs: 5, sm: 10, md: 20, lg: 25, xl: 38 },
+                        ml: { xs: '24px', sm: '80px', md: 19, lg: 24, xl: 28 },
+                        mt: { xs: '39px', sm: '100px', md: '170px', lg: '250px' },
+                        width:{xs:'332px'}
                     }}
                 >
                     <Typography sx={{ ...theme.typography.h3 }}>Vitruvian Shield</Typography>
                     <Typography
                         sx={{
                             ...theme.typography.h6,
-                            mb: 1,
-                            width: '30vw',
                         }}
                     >
                         Vitruvian Shield is an e-Health Software as a Service (Saas), integrating cutting-edge Clinical Trials Management Systems  (CTMS)
@@ -100,12 +99,13 @@ const CompanyBox = () => {
                         variant="contained"
                         sx={{
                             ...theme.typography.button,
-                            display: { xs: 'none', sm: 'flex' },
+                            display: 'flex',
                             borderRadius: '6px',
                             backgroundColor: '#B50304',
                             textTransform: 'none',
-                            width:'7.8125vw',
-                            height: '2.6042vw',
+                            width:{xs:'55px',sm:'65px',md:'7.8125vw'},
+                            height: {xs:'20px',sm:'30px',md:'2.6042vw'},
+                            mt:{xs:'16px',sm:'8px',md:'0px'},
                             padding:0,
                             alignItems: 'center',
                             '&:hover': {
@@ -119,14 +119,14 @@ const CompanyBox = () => {
                 </Box>
 
                 {/* Indicator Circles */}
-                <Box sx={{ position: 'absolute', bottom: 40, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 1 }}>
+                <Box sx={{ position: 'absolute', bottom: {xs:20,sm:30,md:40}, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 1 }}>
                     {images.map((_, index) => (
                         <Box
                             key={index}
                             onClick={() => handleCircleClick(index)}
                             sx={{
-                                width: 10,
-                                height: 10,
+                                width: {xs:6,md:10},
+                                height: {xs:6,md:10},
                                 borderRadius: '50%',
                                 backgroundColor: activeImage === index ? 'red' : 'gray',
                                 cursor: 'pointer', // Cursor change for better UX

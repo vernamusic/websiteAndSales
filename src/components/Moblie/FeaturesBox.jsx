@@ -65,8 +65,7 @@ const FeaturesBox = () => {
         <ThemeProvider theme={themes}>
             <Box sx={{
                 backgroundImage: `url(${background})`,
-                maxHeight: '746px',
-                minHeight: { xs: '500px', sm: '600px', md: '700px', lg: '746px' },
+                minHeight: 'auto',
                 width: '100%',
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
@@ -177,14 +176,13 @@ const FeaturesBox = () => {
                             <path d="M15 7L10 12L15 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     } onClick={()=>setIndex(index==0?5:index-1)} />
-                    <Box sx={{display: 'flex', flexDirection: 'column'}}>
+                    <Box sx={{display: 'flex', flexDirection: 'column',justifyContent:'center',alignItems:'center'}}>
                         <Box
                             component="img"
                             src={phoneImages[index]}
                             sx={{
-                                width: 'auto',
-                                height: '400px',
-                                objectFit: 'cover',
+                                width: {xs:'100px',sm:'150px',md:'200px',lg:'250px'},
+                                height: 'auto',
                             }}
                         />
                         <svg xmlns="http://www.w3.org/2000/svg" width="192" height="28" viewBox="0 0 192 28" fill="none">
@@ -266,7 +264,7 @@ const FeaturesBox = () => {
                         </Box>
                     ))}
                 </Box>
-                {/* Details for mobile */}
+            {/* Details for mobile */}
             <Box
                     flexDirection="column"
                     maxWidth='22em'
@@ -288,6 +286,7 @@ const FeaturesBox = () => {
                                         flexDirection: 'column',
                                         alignItems: 'center',
                                         justifyContent: 'center',
+                                        mt:'8px',
                                     }}
                                 >
                                     <Typography
@@ -314,7 +313,7 @@ const FeaturesBox = () => {
                         )
                     ))}
 
-                </Box>
+            </Box>
             </Box>
 
             

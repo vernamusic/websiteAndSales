@@ -28,11 +28,11 @@ const theme = createTheme({
         },
         caption: {
             fontFamily: 'Lato',
-            fontSize:'12px',
+            fontSize:{xs:'9px',sm:'10.7px',md:'12px'},
             fontWeight: 400,
             lineHeight:'1.35',
             textTransform: 'none',
-            color: 'rgba(255, 255, 255, 1)',
+            color: '#EEEEEE',
 
         },
         h1: {
@@ -59,8 +59,7 @@ const HowBox = () => {
                 background: 'radial-gradient(97.15% 97.15% at 50% 2.85%, #323232 0%, #1F1F1F 100%)',
                 width: '100%',
                 position: 'relative',
-                padding: {xs:'32px',sm:'32px',md:'88px'},
-
+                padding: {xs:'8px',sm:'16px',md:'88px'},
                 }}>
                 <Box
                     flexDirection="column"
@@ -95,7 +94,8 @@ const HowBox = () => {
                     display="flex"
                     flexWrap="wrap"
                     justifyContent="center"
-                    gap="2.5em"
+                    columnGap="2.5em"
+                    rowGap="4em"
                     marginTop="32px"
                     marginBottom="32px"
                 >
@@ -103,7 +103,7 @@ const HowBox = () => {
                         <Box
                             key={index}
                             sx={{
-                                width: {xs:'140px',md:'170px',lg:'18.5%'},
+                                width: {xs:'145px',md:'170px',lg:'18.5%'},
                                 height: {xs:'153px',md:'180px',lg:'250px'},
                                 borderRadius: '16px',
                                 display: 'flex',
@@ -155,20 +155,19 @@ const HowBox = () => {
                                     justifyContent: 'center',
                                     justifyItems: 'center',
                                     alignItems: 'center',
-                                    mt:'2em',
-                                    gap: '0.5em',
+                                    mt:{xs:'24px',md:'2em'},
                                     textAlign: 'center',
                                     width:'100%'
                                 }}
                             >
                                 <Typography
-                                    sx={{...theme.typography.h6,}}
+                                    sx={{...theme.typography.h6,mb:'8px',mt:'24px'}}
                                     gutterBottom
                                 >
                                     {box.title}
                                 </Typography>
                                 <Typography
-                                    sx={{...theme.typography.caption,}}
+                                    sx={{...theme.typography.caption,mb:'10px'}}
                                 >
                                     {box.description}
                                 </Typography>

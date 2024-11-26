@@ -134,43 +134,27 @@ const Navbar = React.memo((props) => {
         <>
             <AppBar
                 sx={{
-                    position: "relative",
-                    left: '0',
+                    position:'relative',
                     background: 'rgba(31, 31, 31, 0.95)',
                     boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.30)',
                     width: '100%',
-                    height: { xs: '80px', md: '96px' },
-
-                    boxSizing: 'border-box',
-                    px: { xs: '24px', md: '30px', lg: '40px' }
+                    height: { xs: '42px',sm:'52px', md: '96px' },
+                    px: { xs: '24px', md: '30px', lg: '40px' },
+                    justifyContent: 'center',
                 }}>
                 <Toolbar
                     sx={{
                         px: '0!important',
-                        height: { xs: '80px', md: '96px' },
+                        height: { xs: '42px',sm:'52px', md: '96px' },
                         boxSizing: 'border-box',
                         display: 'flex',
                         justifyContent: 'space-between',
                     }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Button
-                            component={Link}
-                            to="/"
-                            sx={{
-                                // mx: { xs: '0.5vw' },
-                                display: 'flex',
-                                alignItems: 'center',
-                                '&:hover': { backgroundColor: 'transparent' },
-                            }}
 
-                            disableRipple
-                        >
-                            <img src={logo} alt="logo" style={{ width: '50.14px', height: '56px' }} />
-                        </Button>
-                    </Box>
-                    <Box sx={{ display: { xs: 'flex', md: 'none' }, ml: 'auto' }}>
+                        {/* Nav for mobile */}
+                        <Box sx={{ display: { xs: 'flex', md: 'none' }, justifyContent: 'flex-start' }}>
                         <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>
-                            <MenuIcon sx={{ color: 'white', fontSize: { xs: '40px' }, mt: '2px' }} />
+                            <MenuIcon sx={{ color: 'white', fontSize: { xs: '32px',sm:'40px' }, mt: '2px' }} />
                         </IconButton>
                         <Drawer anchor="top" open={drawerOpen} onClose={toggleDrawer(false)}>
                             <Box sx={{ p: 2, backgroundColor: '#141414' }}>
@@ -239,13 +223,43 @@ const Navbar = React.memo((props) => {
                                             fullWidth
                                             sx={{ color: '#ffffff', borderColor: '#B50304', fontSize: '15px' }}
                                         >
-                                            Get started
+                                            Sign Up/Login
                                         </Button>
                                     )}
                                 </MenuItem>
                             </Box>
                         </Drawer>
                     </Box>
+
+
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+    <Button
+        component={Link}
+        to="/"
+        sx={{
+            display: 'flex',
+            alignItems: 'center',
+            '&:hover': { backgroundColor: 'transparent' },
+        }}
+        disableRipple
+    >
+        <Box
+            component="img"
+            src={logo}
+            alt="logo"
+            sx={{
+                width: { xs: '22px',sm:'32px' ,md: '50.14px' },
+                height: { xs: '32px',sm:'40px' ,md: '56px' }, // Adjusted for correct height
+            }}
+        />
+    </Button>
+</Box>
+
+
+                  
+
+
+                    {/* Nav for Desktop */}
                     <Box sx={{
                         display: { xs: 'none', md: 'flex' },
                         flexGrow: 1,
@@ -329,7 +343,10 @@ const Navbar = React.memo((props) => {
                             )
                         )}
                     </Box>
-                    <Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end', }}>
+
+                        {/* Profile and Sign in */}
+
+                    <Box sx={{ display: 'flex', justifyContent: 'flex-end', }}>
                         {authToken ? (
                             <>
                                 <Avatar
@@ -367,9 +384,9 @@ const Navbar = React.memo((props) => {
                                     minWidth: 0,
                                     borderRadius: '4px',
                                     textTransform: 'none',
-                                    width: '139px',
-                                    height: '38px',
-                                    fontSize: { xs: '12.64px', md: '14px', lg: '14.22px' },
+                                    width: {xs:'78px',sm:'100px',md:'139px'},
+                                    height: {xs:'22px',sm:'29px',md:'38px'},
+                                    fontSize: { xs: '8px',sm:'11px', md: '14px', lg: '14.22px' },
                                     fontWeight: 600,
                                     fontFamily: 'Lato',
                                     '&:hover': {
@@ -384,6 +401,8 @@ const Navbar = React.memo((props) => {
                         )}
 
                     </Box>
+
+
                 </Toolbar>
             </AppBar>
             {

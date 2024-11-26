@@ -286,32 +286,33 @@ const ProductBox = () => {
                     justifyContent: 'space-around',
                     width: '90%',
                 }}>
-                    {proItems.map((item) => (
-                        <Box key={item.id} sx={{
-                            width: '100px',
-                            height: '100px',
-                            m:'16px 0px 16px 0px',
-                            textAlign: 'center',
-                            background: 'linear-gradient(180deg, #232323 0%, #343434 100%)',
-                            borderRadius: '8px',
-                            overflow: 'hidden',
-                            justifyContent:'center',
-                            alignItems:'center',
-                        }}>
-                            <a href={item.url} style={{ textDecoration: 'none' }}>
-                                <Box
-                                    component="img"
-                                    src={item.image}
-                                    alt={item.title}
-                                    sx={{
-                                        mt:0.75,
-                                        width: '80%',
-                                        height: 'auto',
-                                    }}
-                                />
-                            </a>
-                        </Box>
-                    ))}
+                    {proItems.map((item, index) => (
+                    <Box key={item.id} sx={{
+                        width: '100px',
+                        height: '100px',
+                        m: '16px 0px 16px 0px',
+                        textAlign: 'center',
+                        background: 'linear-gradient(180deg, #232323 0%, #343434 100%)',
+                        borderRadius: '8px',
+                        overflow: 'hidden',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}>
+                        <a href={item.url} style={{ textDecoration: 'none' }}>
+                            <Box
+                                component="img"
+                                src={item.image}
+                                alt={item.title}
+                                sx={{
+                                    mt: index === 0 || index === 2 ? 1 : 1.5,
+                                    width: index === 0 || index === 2 ? '90%' : '70%',
+                                    height: 'auto',
+                                }}
+                            />
+                        </a>
+                    </Box>
+                ))}
+
                 </Box>
             </Box>
 

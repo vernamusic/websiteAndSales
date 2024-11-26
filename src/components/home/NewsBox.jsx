@@ -59,7 +59,7 @@ const NewsCard = ({ picture, title, details, slug, onClick }) => {
                 flexDirection: 'column',
                 alignItems: 'start',
                 height: {xs:'114px',sm:'220px',md:'280px',lg:'360px'},
-                width: {xs:'90px',sm:'170px',md:'210px',lg:'284px'},
+                width: {xs:'85px',sm:'170px',md:'210px',lg:'284px'},
                 boxSizing: 'border-box',
                 p: {xs:'12px',sm:'18px',md:'20px',lg:'24px'},
                 borderRadius: "16px",
@@ -177,7 +177,7 @@ const NewsBox = () => {
                     pb: { xs: '30px', sm: '40px', md: '80px', lg: '70px' },
                     pt: { xs: '30px', sm: '40px', md: '70px' }
                 }}>
-                <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", mb: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 }, px: "3%" }}>
+                <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", mb: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 }, px: "10px" }}>
                     <Typography
                         sx={{
                             "&:hover": { backgroundColor: "transparent" },
@@ -196,7 +196,6 @@ const NewsBox = () => {
                             textTransform: "none",
                             display: "flex",
                             alignItems: "center",
-                            gap: '4px',
                             "&:hover": { backgroundColor: "transparent" },
                             ...navItemStyle,
                             lineHeight: '0',
@@ -213,14 +212,13 @@ const NewsBox = () => {
 
                 <Box
                     sx={{
-                        border:'2px solid #fff',
                         width: '100%',
                         height: '100%',
                         display: 'flex',
                         flexDirection: 'row',
-                        justifyContent: 'space-evenly',
+                        justifyContent: 'center',
                         flexWrap: 'wrap',
-                        gap: '20px'
+                        gap: {xs:'5px',sm:'12px',md:'20px'}
 
                     }}>
                     {newsItems.map((box, index) => (
