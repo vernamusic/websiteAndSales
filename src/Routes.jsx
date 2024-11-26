@@ -12,11 +12,12 @@ import Company from './Pages/Company';
 import Partnership from './Pages/Partnership';
 import NewsMore from './components/News/NewsMore';
 import Profile from './Pages/Profile';
-import Test from './components/SignUp/Login.jsx'
+import Test from './components/SignUp/Login.jsx';
 import Event from './Pages/Event.jsx';
 import ResetPassword from './components/home/ResetPassword.jsx';
 import Certification from './components/Dashboard/Certification.jsx';
 import Certifications from './Pages/Certifications.jsx';
+import GoogleLogin from "./pages/GoogleLogin.jsx";
 
 const AppRoutes = () => {
         return (
@@ -34,7 +35,7 @@ const AppRoutes = () => {
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/reset-password/:token" element={<Home />} />
                     <Route path="/event" element={<Event />} />
-
+                    <Route path='/google/callback' element={<GoogleLogin />} />
                     <Route path="/Test" element={<Test />} />
                     <Route path="/Certifications" element={<Certifications/>} />
             </Routes>

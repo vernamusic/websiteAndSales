@@ -6,45 +6,33 @@ import {
     ThemeProvider,
 } from "@mui/material";
 import linkedin from "../../assets/inIcon.svg";
+import backgroundImage from "../../assets/aboutUs1.svg";
 
 const theme = createTheme({
     typography: {
-        h6: {
-            fontFamily: 'Lato',
-            fontSize: '0.74vw',
-            color: "rgba(191, 191, 191, 1)",
-            lineHeight: '1vw',
-        },
         h3: {
             fontFamily: 'Lato',
-            fontWeight: 700,
-            fontSize: '1.2889vw',
+            fontWeight: {xs:500,sm:600},
+            fontSize: {xs:'2.58vw',sm:'1.25vw'},
             color: "#FFFFFF",
         },
-        button: {
+        h6: {
             fontFamily: 'Lato',
-            fontSize: '0.83vw',
+            fontSize: {xs:'2.4vw',sm:'1.11vw'},
+            color: "rgba(191, 191, 191, 1)",
+            fontWeight: {xs:400,sm:500},
+            lineHeight: {xs:'3.4vw',sm:'1.3vw'},
+        },
+        caption: {
+            fontFamily: 'Lato',
+            fontSize: {xs:'2.22vw',sm:'0.97vw'},
             textTransform: 'none',
-            color: "#FFFFFF",
-        },
-        h1: {
-            fontFamily: 'Lato',
+            lineHeight: {xs:'3.5vw',sm:'1.5vw'},
             fontWeight: 400,
-            fontSize: '0.94vw',
             color: "#FFFFFF",
         },
     },
 });
-
-const typoStyle = {
-    fontFamily: 'Lato',
-    fontSize: { xs: '16px', sm: '18px', md: '20px', lg: '24px' },
-    color: '#fff',
-    fontStyle: 'normal',
-    fontWeight: 600,
-    lineHeight: '100%',
-    textTransform: 'none'
-}
 
 
 const imageContainerStyle = {
@@ -58,13 +46,12 @@ const Allinonecard = ({ data }) => {
     return (
         <ThemeProvider theme={theme}>
             <Box
+                fullWidth
                 display="flex"
                 flexDirection="column"
                 sx={{
-                    maxWidth: '100vw',
                     justifyItems: 'center',
                     alignItems: 'center',
-                    mb: '-2.5vw',
                 }}
             >
                 <Box
@@ -72,8 +59,8 @@ const Allinonecard = ({ data }) => {
                     flexWrap="wrap"
                     justifyContent="center"
                     sx={{
-                        gap: '1.8vw',
-                        maxWidth: '70vw',
+                        gap: {xs:'5vw',sm:'1.86vw'},
+                        width: {xs:'87vw',sm:'85vw'},
                     }}
                 >
                     {data.map((box, index) => (
@@ -82,57 +69,48 @@ const Allinonecard = ({ data }) => {
                             key={index}
                             sx={{
                                 flexDirection: "column",
-                                borderRadius: '0.83vw',
-                                width: '14.58vw',
-                                height: '20vw',
+                                borderRadius: {xs:'2.22vw',sm:'1.11vw'},
+                                width: {xs:'35vw',sm:'18vw'},
+                                height: {xs:'52.6vw',sm:'26vw'},
                                 py: '0vw',
-                                px: '1.25vw',
                                 boxSizing: 'border-box',
-                                boxShadow: '0vw 0.21vw 0.21vw 0vw rgba(0, 0, 0, 0.45)',
+                                boxShadow: '0vw 0.61vw 0.61vw 0vw rgba(0, 0, 0, 0.45)',
                                 position: "relative",
                                 overflow: "hidden",
                                 alignItems: "center",
-                                backgroundColor: "linear-gradient(180deg, rgba(74, 74, 74, 0.90) 0%, rgba(31, 31, 31, 0.90) 100%)"
+                                background: "linear-gradient(180deg, rgba(74, 74, 74, 0.9) 0%, rgba(31, 31, 31, 0.9) 100%)",
+                                transition: 'ease-in 200ms',
+                                ":hover": {
+                                    transform: 'scale(1.05)'
+                                }
                             }}
                         >
                             <Box
                                 onClick={box.linked_in ? () => window.open(box.linked_in, "_blank") : null}
+                                alt="LinkedIn"
                                 sx={{
+                                    width: {xs:'5.5vw',sm:'2.5vw'},
+                                    height: {xs:'5.5vw',sm:'2.5vw'},
                                     position: "absolute",
-                                    top: "0.625vw",
-                                    left: '0.625vw',
+                                    top: {xs:'2vw',sm:"0.625vw"},
+                                    left: {xs:'2vw',sm:'0.625vw'},
                                     display: "flex",
                                     justifyContent: "center",
                                     alignItems: "center",
                                     zIndex: 3,
+                                    backgroundImage: `url(${linkedin})`,
+                                    backgroundSize: 'cover',
+                                    backgroundPosition: 'center',
+                                    backgroundRepeat: 'no-repeat',
+                                    filter: box.linked_in ? "none" : "grayscale(100%) brightness(0) invert(1)",
                                     cursor: box.linked_in ? "pointer" : "default",
+                                    opacity: box.linked_in ? '100%' : '20%',
                                     transition: "background-color 0.3s, transform 0.3s",
                                     '&:hover': {
                                         transform: box.linked_in ? "scale(1.1)" : "none",
                                     },
                                 }}
                             >
-                                <img
-                                    src={linkedin}
-                                    alt="LinkedIn"
-                                    style={{
-                                        width: "100%",
-                                        height: "100%",
-                                        filter: box.linked_in ? "none" : "grayscale(100%) brightness(0) invert(1)",
-                                        opacity: box.linked_in ? '100%' : '20%',
-                                    }}
-                                />
-                                {!box.linked_in && (
-                                    <Box
-                                        sx={{
-                                            position: "absolute",
-                                            width: "1.88vw",
-                                            height: "1.88vw",
-                                            backgroundColor: "transparent",
-                                            borderRadius: "50%",
-                                        }}
-                                    />
-                                )}
                             </Box>
                             <Box
                                 sx={{
@@ -144,26 +122,28 @@ const Allinonecard = ({ data }) => {
                                 <Box sx={imageContainerStyle}>
                                     <Box
                                         sx={{
-                                            borderTop: '0.052vw solid red',
-                                            borderRadius: '5.21vw',
+                                            borderRadius: { xs: '20vw', sm: '5.21vw'},
                                             border: '0.052vw dashed #8AE6DE',
-                                            p: '0.52vw',
+                                            p: { xs: '1vw', sm: '0.52vw'},
+                                            width: { xs: '17.33vw', sm: '7.44vw' },
+                                            height: { xs: '17.33vw', sm: '7.44vw' },
                                             display: 'flex',
                                             justifyContent: 'center',
                                             alignItems: 'center',
                                             transition: 'ease-in 300ms',
                                             ":hover": {
                                                 transform: 'scale(1.1)'
-                                            }
+                                            },
+
                                         }}
                                     >
-                                        <img
+                                    <img
                                             src={box.photo}
                                             alt="circle"
                                             style={{
                                                 border: '0.052vw solid #8AE6DE',
-                                                width: '6.46vw',
-                                                height: '6.46vw',
+                                                width:'100%',
+                                                height:'100%',
                                                 objectFit: 'cover',
                                                 borderRadius: '50%'
                                             }}
@@ -171,17 +151,17 @@ const Allinonecard = ({ data }) => {
                                     </Box>
                                 </Box>
                             </Box>
-                            <Box sx={{ width: "100%" }}>
+                            <Box sx={{ width: "85%" }}>
                                 <Box
                                     sx={{
                                         display: "flex",
                                         justifyContent: "center",
-                                        mt: '1.15vw'
+                                        mt: '2.15vw'
                                     }}
                                 >
                                     <Typography
                                         sx={{
-                                            ...theme.typography.h1,
+                                            ...theme.typography.h3,
                                             textAlign: "center",
 
                                         }}
@@ -201,12 +181,9 @@ const Allinonecard = ({ data }) => {
                                 >
                                     <Typography
                                         sx={{
-                                            ...theme.typography.button,
+                                            ...theme.typography.h6,
                                             color: '#8AE6DE',
 
-                                            textAlign: "center",
-                                            fontweight: 500,
-                                            lineHeight: '140%',
                                         }}
                                     >
                                         {box._job}
@@ -219,18 +196,18 @@ const Allinonecard = ({ data }) => {
                                         display: "flex",
                                         justifyContent: "center",
                                         width: "100%",
-                                        borderTop: '0.052vw dashed rgba(255, 255, 255, 0.20)',
-                                        pt: '1.04vw',
-                                        mt: '1.04vw'
+                                        borderTop: box.details ? '0.052vw dashed rgba(255, 255, 255, 0.20)' : 'none',
+                                        pt: '1.34vw',
+                                        mt: '1.34vw',
+
                                     }}
                                 >
                                     <Typography
                                         sx={{
-                                            ...theme.typography.h6,
+
+                                            ...theme.typography.caption,
                                             fontWeight: 400,
                                             color: '#d9d9d9',
-                                            lineHeight: '20px',
-                                            textAlign: "center",
                                         }}
                                     >
                                         {box.details}
