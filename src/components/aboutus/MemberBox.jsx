@@ -10,15 +10,15 @@ const theme = createTheme({
         h6: {
             fontFamily: "Lato",
             fontWeight: 400,
-            fontSize: '1.11vw',
+            fontSize: {xs:'2.78vw',sm:'1.11vw'},
             textAlign: 'center',
 
             color: '#F1F1F1',
         },
         h3: {
             fontFamily: "Lato",
-            fontWeight: 600,
-            fontSize: '1.67vw',
+            fontWeight: {xs:500,sm:600},
+            fontSize: {xs:'3.89vw',sm:'1.67vw'},
             textAlign: 'center',
             color: '#FFFFFF',
         },
