@@ -46,7 +46,7 @@ const About = () => {
             <Box
                 sx={{
                     width: '100%',
-                    display: 'flex',
+                    display: {xs:'none',sm:'flex'},
                     justifyContent: 'center',
                 }}
             >
