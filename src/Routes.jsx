@@ -12,7 +12,7 @@ import Company from './Pages/Company';
 import Partnership from './Pages/Partnership';
 import NewsMore from './components/News/NewsMore';
 import Profile from './Pages/Profile';
-import Test from './components/SignUp/Login.jsx'
+import Test from './components/SignUp/Login.jsx';
 import Event from './Pages/Event.jsx';
 import ResetPassword from './components/home/ResetPassword.jsx';
 import Certification from './components/Dashboard/Certification.jsx';
