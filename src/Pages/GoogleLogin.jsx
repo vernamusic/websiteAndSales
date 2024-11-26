@@ -34,8 +34,8 @@ const GoogleLogin = () => {
         }
 
         const data = await response.json();
-        localStorage.setItem("access_token", data.access_token);
-        localStorage.setItem("refresh_token", data.refresh_token);
+        localStorage.setItem("authToken", data.access_token);
+        localStorage.setItem("refreshToken", data.refresh_token);
         console.log("access:",data.access_token)
         console.log("refresh:",data.refresh_token)
 
