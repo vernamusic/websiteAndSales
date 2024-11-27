@@ -294,8 +294,8 @@ const Navbar = React.memo((props) => {
                                 src={logo}
                                 alt="logo"
                                 sx={{
-                                    width: { xs: '26px',sm:'36px' ,md: '48px' },
-                                    height: { xs: '36px',sm:'48px' ,md: '64px' }, // Adjusted for correct height
+                                    width: { xs: '32px',sm:'36px' ,md: '48px' },
+                                    height: { xs: '41px',sm:'48px' ,md: '64px' }, // Adjusted for correct height
                                 }}
                             />
                         </Button>

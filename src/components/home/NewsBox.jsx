@@ -184,9 +184,9 @@ const NewsBox = () => {
                         sx={{
                             "&:hover": { backgroundColor: "transparent" },
                             ...navItemStyle,
-                            lineHeight: '0',
                             fontWeight: 600,
-                            fontSize: { xs: '14.22px', md: '18px', lg: '20px' }
+                            fontSize: { xs: '12px', md: '18px', lg: '20px' },
+                            lineHeight:{xs:'14.4px', md:'18px'}
                         }}>
                         News
                     </Typography>
@@ -201,9 +201,9 @@ const NewsBox = () => {
                             alignItems: "center",
                             "&:hover": { backgroundColor: "transparent" },
                             ...navItemStyle,
-                            lineHeight: '0',
+                            lineHeight: { xs: '10px', md: '14.22px', lg: '16px' },
                             fontWeight: 600,
-                            fontSize: { xs: '12.64px', md: '14.22px', lg: '16px' }
+                            fontSize: { xs: '10px', md: '14.22px', lg: '16px' }
                         }}
                     >
 

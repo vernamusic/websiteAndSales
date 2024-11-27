@@ -62,9 +62,9 @@ const RegBox = () => {
                         width: { xs: '250px', sm: '325px', md: '410px', lg: '505px', xl: '600px' },
                         mt: { xs: '10px', sm: '12px', md: '16px' },
                         fontWeight: 400,
-                        fontSize: { xs: '10px', sm: '12.64px', md: '14.22px', lg: '18px' },
+                        fontSize: { xs: '12px', sm: '12.64px', md: '14.22px', lg: '18px' },
                         color: '#D9D9D9',
-                        lineHeight: {xs:'14px',md:'20px',lg:'26px'},
+                        lineHeight: {xs:'15px',md:'20px',lg:'26px'},
                         fontStyle: 'normal',
                         letterSpacing:'0.4px',
                     }}
