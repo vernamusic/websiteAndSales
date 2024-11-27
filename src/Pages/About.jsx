@@ -6,7 +6,6 @@ import MeetBox from '../components/aboutus/MeetBox.jsx';
 import MemberBox from '../components/aboutus/MemberBox.jsx';
 import MemberCountBox from '../components/aboutus/MemberCountBox.jsx'
 
-
 const About = () => {
     return (
         <Box
