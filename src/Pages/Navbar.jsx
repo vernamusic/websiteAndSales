@@ -128,7 +128,7 @@ const Navbar = React.memo((props) => {
 
     const pages = [
         { name: 'Home', path: '/', icon:navhome},
-        { name: 'Products', path: '/products', icon:navproducts},
+        { name: 'Products', icon:navproducts},
         { name: 'Company', path: '/company', icon:navcompany},
         { name: 'Partnership', path: '/partnership', icon:navpartnership},
         { name: 'News', path: '/news', icon:navnews},
@@ -182,7 +182,7 @@ const Navbar = React.memo((props) => {
                                 alt="logo"
                                 sx={{
                                     width: { xs: '24px',sm:'32px' ,md: '50.14px' },
-                                    height: { xs: '34px',sm:'40px' ,md: '56px' }, // Adjusted for correct height
+                                    height: { xs: '34px',sm:'40px' ,md: '56px' },
                                 }}
                             />  
                             <Typography sx={{ display:'flex',ml:1, alignItems:'center', fontFamily:'Lato', fontWeight:400,fontSize:'12px',lineHeight:'12px',color:'#FFF'}}>
