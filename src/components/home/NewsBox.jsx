@@ -58,8 +58,8 @@ const NewsCard = ({ picture, title, details, slug, onClick }) => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'start',
-                height: {xs:'114px',sm:'220px',md:'280px',lg:'360px'},
-                width: {xs:'90px',sm:'170px',md:'210px',lg:'284px'},
+                height: {xs:'130px',sm:'220px',md:'280px',lg:'360px'},
+                width: {xs:'104px',sm:'170px',md:'210px',lg:'284px'},
                 boxSizing: 'border-box',
                 p: {xs:'12px',sm:'18px',md:'20px',lg:'24px'},
                 borderRadius: "16px",
@@ -91,10 +91,12 @@ const NewsCard = ({ picture, title, details, slug, onClick }) => {
                 <Typography
                     sx={{
                         width: '100%',
-                        ...navItemStyle,
-                        fontSize: { xs: '8px', md: '14.22px', lg: '16px' },
-                        fontWeight: 600,
-                        lineHeight: 'normal',
+                        //...navItemStyle,
+                        color:'white', 
+                        fontWeight:{xs:500,sm:600},
+                        fontFamily:'Lato',
+                        fontSize: { xs: '10px', md: '14.22px', lg: '16px' },
+                        lineHeight: { xs: '12px', md: '14.22px', lg: '16px' },
                     }}>
                     {title}
                 </Typography>
@@ -177,14 +179,14 @@ const NewsBox = () => {
                     pb: { xs: '30px', sm: '40px', md: '80px', lg: '70px' },
                     pt: { xs: '30px', sm: '40px', md: '70px' }
                 }}>
-                <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", mb: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 }, px: "10px" }}>
+                <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", mb: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 }, p: {xs:'0px 8px 0px 24px ',md:'0px 0px 0px 8px',lg:'0px 32px 0px 54px'} }}>
                     <Typography
                         sx={{
                             "&:hover": { backgroundColor: "transparent" },
                             ...navItemStyle,
-                            lineHeight: '0',
                             fontWeight: 600,
-                            fontSize: { xs: '14.22px', md: '18px', lg: '20px' }
+                            fontSize: { xs: '12px', md: '18px', lg: '20px' },
+                            lineHeight:{xs:'14.4px', md:'18px'}
                         }}>
                         News
                     </Typography>
@@ -193,20 +195,21 @@ const NewsBox = () => {
                         component={Link}
                         to="/news"
                         sx={{
+                            gap:{xs:0.5,sm:0.75,md:1},
                             textTransform: "none",
                             display: "flex",
                             alignItems: "center",
                             "&:hover": { backgroundColor: "transparent" },
                             ...navItemStyle,
-                            lineHeight: '0',
+                            lineHeight: { xs: '10px', md: '14.22px', lg: '16px' },
                             fontWeight: 600,
-                            fontSize: { xs: '12.64px', md: '14.22px', lg: '16px' }
+                            fontSize: { xs: '10px', md: '14.22px', lg: '16px' }
                         }}
                     >
 
                         View All
 
-                        <img src={moreicn} alt="" style={{ width: '16px', height: '16px' }} />
+                        <img src={moreicn} alt="" style={{ width: '16px', height: '16px'}} />
                     </Button>
                 </Box>
 

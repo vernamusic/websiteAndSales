@@ -16,7 +16,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import logo from '../assets/redvslogo.svg';
+import logo from '../assets/redvslogo.png';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import SignUpDialog from '../components/SignUp/SignUpDialog.jsx';
 import { useAuth } from '../AuthContext.jsx';
@@ -153,14 +153,14 @@ const Navbar = React.memo((props) => {
                     background: 'rgba(31, 31, 31, 0.95)',
                     boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.30)',
                     width: '100%',
-                    height: { xs: '42px',sm:'52px', md: '96px' },
+                    height: { xs: '56px',sm:'72px', md: '96px' },
                     px: { xs: '24px', md: '30px', lg: '40px' },
                     justifyContent: 'center',
                 }}>
                 <Toolbar
                     sx={{
                         px: '0!important',
-                        height: { xs: '42px',sm:'52px', md: '96px' },
+                        height: { xs: '56px',sm:'72px', md: '96px' },
                         boxSizing: 'border-box',
                         display: 'flex',
                         justifyContent: 'space-between',
@@ -185,13 +185,13 @@ const Navbar = React.memo((props) => {
                                     height: { xs: '34px',sm:'40px' ,md: '56px' },
                                 }}
                             />  
-                            <Typography sx={{ display:'flex',ml:1, alignItems:'center', fontFamily:'Lato', fontWeight:400,fontSize:'12px',lineHeight:'12px',color:'#FFF'}}>
+                            <Typography sx={{ display:'flex',ml:2, alignItems:'center', fontFamily:'Lato', fontWeight:400,fontSize:'16px',color:'#FFF'}}>
                                 Vitruvian Shield
                             </Typography>
                             </Box>
-                            <Box sx={{ display: 'flex',mt:0.5, justifyContent: 'center',width:'24px',height:'24px',background:'#B503041A',borderRadius:'50%' }}>
+                            <Box sx={{ display: 'flex',mt:0.5, justifyContent: 'center',width:'32px',height:'32px',background:'#B503041A',borderRadius:'50%' }}>
                                 <IconButton onClick={toggleDrawer(false)}>
-                                    <CloseRoundedIcon sx={{ color: 'white', fontSize: 25, width:'16px',height:'16px' }} />
+                                    <CloseRoundedIcon sx={{ color: 'white', fontSize: 25, width:'20px',height:'20px' }} />
                                 </IconButton>
                             </Box>
                             </Box>
@@ -294,8 +294,8 @@ const Navbar = React.memo((props) => {
                                 src={logo}
                                 alt="logo"
                                 sx={{
-                                    width: { xs: '22px',sm:'32px' ,md: '50.14px' },
-                                    height: { xs: '32px',sm:'40px' ,md: '56px' }, // Adjusted for correct height
+                                    width: { xs: '32px',sm:'36px' ,md: '48px' },
+                                    height: { xs: '41px',sm:'48px' ,md: '64px' }, // Adjusted for correct height
                                 }}
                             />
                         </Button>
@@ -393,7 +393,7 @@ const Navbar = React.memo((props) => {
                                 <Avatar
                                     onClick={handleProfileMenuOpen}
                                     size='large'
-                                    sx={{ cursor: 'pointer', width: {xs:'25px',sm:'35px',md:'50px'}, height: {xs:'25px',sm:'35px',md:'50px'}, mr: '0.5vw',border: '2px solid #B0EEE9',boxShadow: '0px 0px 5px 0px #8AE6DE99', }}
+                                    sx={{ cursor: 'pointer', width: {xs:'30px',sm:'40px',md:'50px'}, height: {xs:'30px',sm:'40px',md:'50px'}, mr: '0.5vw',border: '2px solid #B0EEE9',boxShadow: '0px 0px 5px 0px #8AE6DE99', }}
                                 />
                                 <Menu
                                     anchorEl={anchorElProfile}

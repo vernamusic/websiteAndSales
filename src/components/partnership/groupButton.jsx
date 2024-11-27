@@ -157,7 +157,7 @@ const GroupButton = () => {
                                         backgroundColor: '#FFFFFF',
                                         objectFit: 'contain',
                                         borderRadius: '16px 16px 0 0',
-                                        padding: 3
+                                        padding: {xs:1.5,sm:3}
                                     }}
                                 />
                                 <Box

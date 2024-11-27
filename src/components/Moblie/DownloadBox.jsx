@@ -11,11 +11,11 @@ const theme = createTheme({
     typography: {
         h6: {
             fontFamily: 'Lato',
-            fontSize: { xs: '10px', sm: '12.64px', md: '14.22px', lg: '18px' },
+            fontSize: { xs: '12px', sm: '12.64px', md: '14.22px', lg: '18px' },
             fontWeight: 400,
             color: "#EEEEEE",
             letterSpacing: '0.4px',
-            lineHeight: {xs:'14px',md:'18px',lg:'24px'},
+            lineHeight: {xs:'15px',md:'18px',lg:'24px'},
         },
         h3: {
             fontFamily: 'Lato',
@@ -23,13 +23,13 @@ const theme = createTheme({
             fontSize: { xs: '14px', sm: '18px', md: '26px', lg: '32px' },
             color: "#FFFFFF",
             letterSpacing: '0.4px',
-            lineHeight: '24px'
+            lineHeight: {xs:'12px',md:'24px'}
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: {xs:'8px',md:'10px',lg:'14px'},
-            fontWeight: 600,
-            lineHeight: {xs:'8px',md:'10px',lg:'14px'}, 
+            fontSize: {xs:'11px',md:'12.5px',lg:'14px'},
+            fontWeight: 700,
+            lineHeight: {xs:'11px',md:'12.5px',lg:'14px'}, 
             color: "#FCFCFC",
         },
     },
@@ -78,7 +78,7 @@ const Home = () => {
                         maxHeight: '746px',
                         minHeight: { xs: '188px', sm: '300px', md: '600px', lg: '750px' },
                         width: '100%',
-                        background: `linear-gradient(253.12deg, rgba(31, 31, 31, 0.2) 26.9%, rgba(31, 31, 31, 0.42) 33.48%, rgba(31, 31, 31, 0.56) 40.79%, rgba(31, 31, 31, 0.707727) 51.75%, rgba(31, 31, 31, 0.9) 91.23%), url(${background})`,
+                        background: `linear-gradient(253.12deg, rgba(31, 31, 31, 0.2) 26.9%, rgba(31, 31, 31, 0.42) 33.25%, rgba(31, 31, 31, 0.563864) 40.56%, rgba(31, 31, 31, 0.707727) 51.89%, rgba(31, 31, 31, 0.9) 91.37%), url(${background})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         backgroundRepeat: 'no-repeat',
@@ -95,7 +95,7 @@ const Home = () => {
                 >
                     <Typography
                         sx={{
-                            width:'100%',
+                            width:'150%',
                             mb: '0.4vw',
                             ml: '-0.2vw',
                             lineHeight: '1.5',
@@ -119,20 +119,21 @@ const Home = () => {
                             ...theme.typography.h6,
                             display:{xs:'block',sm:'block',md:'none'},
                             width:{xs:'250px',sm:'325px'},
+                            mt:1
                         }}
                     >
                         Introducing an innovative mobile app that empowers health management! With the Vitruvian Watch, users can track their health data
                     </Typography>
 
-                    <Box sx={{ display: 'flex', gap: {xs:'1.5vw',sm:'1.5vw',md:'0.78vw'}, marginTop: {xs:'16px',sm:'16px',md:'1.56vw'},}}>
+                    <Box sx={{ display: 'flex', gap: {xs:'8px',sm:'1.5vw',md:'0.78vw'}, marginTop: {xs:'18px',sm:'16px',md:'1.56vw'},}}>
                         <Button
                             variant="outlined"
                             sx={{
                                 padding:0,
                                 display: 'flex',
                                 borderRadius: '4px',
-                                width: {xs:'55px',md:'90px',lg:'138px'},
-                                height: {xs:'20px',md:'28px',lg:'42px'},
+                                width: {xs:'80px',md:'90px',lg:'138px'},
+                                height: {xs:'30px',md:'28px',lg:'42px'},
                                 ...theme.typography.button,
                                 borderColor: 'white',
                                 color: 'white',
@@ -162,8 +163,8 @@ const Home = () => {
                                 padding: 0,
                                 display: 'flex',
                                 borderRadius: '4px',
-                                width: {xs:'55px',md:'90px',lg:'138px'},
-                                height: {xs:'20px',md:'28px',lg:'42px'},
+                                width: {xs:'80px',md:'90px',lg:'138px'},
+                                height: {xs:'30px',md:'28px',lg:'42px'},
                                 backgroundColor: '#B50304',
                                 textTransform: 'none',
                                 '&:hover': {

@@ -41,11 +41,10 @@ const typoStyle3 = {
 }
 const typoStyle4 = {
     fontFamily: 'Lato',
-    fontSize: { xs: '10px', sm: '13px', md: '18px', lg: '20px' },
+    fontSize: { xs: '12px', sm: '15px', md: '18px', lg: '20px' },
     color: '#F1F1F1',
-    fontStyle: 'normal',
     fontWeight: 400,
-    lineHeight: '100%',
+    lineHeight: {xs:'14.4px',sm:'100%'},
     textTransform: 'none'
 }
 const Certifications = () => {
@@ -131,6 +130,7 @@ const Certifications = () => {
                     ...typoStyle4,
                     textAlign: 'center',
                     mt: '8px',
+                    px:4,
 
                 }}
             >

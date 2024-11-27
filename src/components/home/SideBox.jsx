@@ -84,12 +84,12 @@ const SideBox = () => {
                     color="white"
                     sx={{
                         ...navItemStyle,
-                        fontSize: { xs: '10px', lg: '16px' },
+                        fontSize: { xs: '12px', lg: '16px' },
                         letterSpacing:'0.8px',
                         color: '#eee',
                         fontWeight: 400,
                         fontStyle: 'normal',
-                        lineHeight: {xs:'14px',sm:'14px',md:'24px'},
+                        lineHeight: {xs:'15px',sm:'14px',md:'24px'},
                         width: { sm: '100%', md: '100%', xl: '80%' },
                         display: '-webkit-box',
                         WebkitBoxOrient: 'vertical',
