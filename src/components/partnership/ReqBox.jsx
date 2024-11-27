@@ -12,15 +12,16 @@ const theme = createTheme({
         h6: {
             fontFamily: 'Lato',
             fontWeight: 600,
-            fontSize:'16px',
+            fontSize:{xs:'10px',sm:'16px'},
             color: "#FFFFFF",
             letterSpacing: '0.4px',
-            lineHeight: 'normal',
+            lineHeight: {xs:'12px',sm:'16px'},
         },
         h9: {
             fontWeight: 400,
             fontFamily: 'Lato',
-            fontSize:'12px',
+            fontSize:{xs:'9px',sm:'12px'},
+            lineHeight: {xs:'11.7px',sm:'12px'},
             textTransform: 'none',
             color: '#EEEEEE',
 
@@ -46,7 +47,6 @@ const CertificationBox = () => {
         <ThemeProvider theme={theme}>
             <Box
             sx={{
-                
                 background:'radial-gradient(97.15% 97.15% at 50% 2.85%, #323232 0%, #1F1F1F 100%)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
@@ -55,13 +55,14 @@ const CertificationBox = () => {
             }}
             >
                 <Box
-                    display="flex"
                     flexDirection="column"
                     justifyContent="center"
                     alignItems="center"
                     textAlign="center"
                     paddingTop="56px"
-                    
+                    sx={{
+                        display:{xs:'none',sm:'flex'}
+                    }}
                 >
                     <Typography
                         sx={{
@@ -72,19 +73,24 @@ const CertificationBox = () => {
                     </Typography>
                 </Box>
 
-                <Box
-                    display="flex"
-                    flexWrap="wrap"
-                    justifyContent="center"
-                    gap="48px"
-                    pt="1.5vw"
+               <Box display="flex" justifyContent="center">
+               <Box
+                    sx={{
+                        my:{xs:4,sm:6},
+                        display:'flex',
+                        flexWrap: 'wrap',
+                        justifyContent:{xs:'start',sm:'center'},
+                        width:{xs:'300px',sm:'1024px'},
+                        gap:{xs:'16px',sm:'48px'},
+
+                    }}
                 >
                     {howData.map((box, index) => (
                         <Box
                             key={index}
                             sx={{
-                                width: '248px',
-                                height: '272px',
+                                width: {xs:'140px',sm:'248px'},
+                                height: {xs:'165px',sm:'272px'},
                                 borderRadius: '16px',
                                 display: 'flex',
                                 flexDirection: 'column',
@@ -101,11 +107,11 @@ const CertificationBox = () => {
                             <Box
                                 sx={{
                                     position: 'absolute',
-                                    top: -22.5,
+                                    top: {xs:-12.5,sm:-22.5},
                                     left: '50%',
                                     transform: 'translateX(-50%)',
-                                    width: '48px',
-                                    height: '48px',
+                                    width: {xs:'24px',sm:'48px'},
+                                    height: {xs:'24px',sm:'48px'},
                                     backgroundColor: '#B50304',
                                     borderRadius: '50%',
                                     display: 'flex',
@@ -119,7 +125,7 @@ const CertificationBox = () => {
                                         src={box.icon}
                                         alt="Design"
                                         sx={{
-                                            width: '1.4vw'
+                                            width: {xs:'16px',sm:'1.4vw'}
                                         }}
                                     />
                                 ) : (
@@ -134,9 +140,10 @@ const CertificationBox = () => {
                                     justifyContent: 'center',
                                     justifyItems: 'center',
                                     alignItems: 'center',
-                                    mt:'40px',
+                                    mt:{xs:'24px',sm:'40px'},
                                     textAlign: 'center',
-                                    maxWidth:'80%',
+                                    maxWidth:'90%',
+                                    gap:1
                                 }}
                             >
                                 <Typography
@@ -158,7 +165,7 @@ const CertificationBox = () => {
                                 alt={box.title}
                                 sx={{
                                     width: '100%',
-                                    height: '144px',
+                                    height: {xs:'63px',sm:'144px'},
                                     objectFit: 'cover',
                                     borderRadius: '0 0 1.39vw 1.39vw',
                                     mt: 'auto',
@@ -167,6 +174,7 @@ const CertificationBox = () => {
                         </Box>
                     ))}
                 </Box>
+               </Box>
             </Box>
         </ThemeProvider>
     );
