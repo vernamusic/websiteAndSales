@@ -74,7 +74,7 @@ const Home = () => {
                     >
                         <Typography
                             sx={{
-                                width:'100%',
+                                width:'150%',
                                 mb: '0.4vw',
                                 ml: '-0.2vw',
                                 lineHeight: '1.5',
