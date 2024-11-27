@@ -8,9 +8,9 @@ const theme = createTheme({
     typography: {
         h6: {
             fontFamily: 'Lato',
-            fontWeight:'500',
-            fontSize: { xs: '10px', sm: '13.8px', md: '14.22px', lg: '18px' },
-            lineHeight: 'normal',
+            fontWeight:'400',
+            fontSize: { xs: '12px', sm: '13.8px', md: '14.22px', lg: '18px' },
+            lineHeight: {xs:'15px',md:'normal'},
             letterSpacing: '0.4px',
             color: "#D9D9D9",
             textTransform: 'none',
@@ -19,13 +19,13 @@ const theme = createTheme({
             fontFamily: "Lato",
             fontWeight: 600,
             fontSize: { xs: '14px', sm: '18px', md: '26px', lg: '32px' },
-            lineHeight: '32px',
+            lineHeight: {xs:'14px',md:'32px'},
             color: "#FFFFFF",
             textTransform: 'none',
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: { xs: '9px', sm: '10px', md: '0.94vw' },
+            fontSize: { xs: '11px', sm: '13.5px', md: '0.94vw' },
             color: "#FCFCFC",
         },
         
@@ -63,17 +63,20 @@ const NewPartner = () => {
                         flexDirection: 'column',
                         justifyContent: 'center',
                         alignItems: 'flex-start',
-                        gap: { xs: 0.5, sm: 1, md: 1.5, lg: 1.5, xl: 1.5 },
+                        gap: { xs: 1, sm: 1, md: 1.5, lg: 1.5, xl: 1.5 },
                         ml: { xs: '32px', sm: '80px', md: 19, lg: 24, xl: 28 },
                         mt: { xs: '39px', sm: '100px', md: '170px', lg: '250px' },
-                        width: { xs: '332px',md:'400px' },
+                        width: { xs: '220px',md:'400px' },
                     }}
                 >
                     <Typography sx={{ ...theme.typography.h3 }}>
                     Vitruvian Shield Partners
                     </Typography>
-                    <Typography sx={{ ...theme.typography.h6, mb: { xs: 1, sm: 1, md: 1.5, lg: 2, xl: 2 } }}>
+                    <Typography sx={{ ...theme.typography.h6,display:{xs:'none',md:'block'}, mb: { xs: 1, sm: 1, md: 1.5, lg: 2, xl: 2 } }}>
                     Our team consists of highly skilled professionals and resourceful partners. With our partners we are able to create the state of the art product we wish to deliver.
+                    </Typography>
+                    <Typography sx={{ ...theme.typography.h6,display:{xs:'block',md:'none'}, mb: { xs: 0, sm: 1, md: 1.5, lg: 2, xl: 2 } }}>
+                    Our team consists of highly skilled professionals and resourceful partners.
                     </Typography>
 
                     <Button
@@ -84,8 +87,8 @@ const NewPartner = () => {
                             borderRadius: '6px',
                             backgroundColor: '#B50304',
                             textTransform: 'none',
-                            width: { xs: '65px', sm: '75px', md: '7.8125vw' },
-                            height: { xs: '25px', sm: '30px', md: '2.6042vw' },
+                            width: {xs:'80px',md:'90px',lg:'138px'},
+                            height: {xs:'30px',md:'28px',lg:'42px'},
                             mt: { xs: '16px', sm: '8px', md: '0px' },
                             padding: 0,
                             alignItems: 'center',

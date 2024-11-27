@@ -10,8 +10,8 @@ const theme = createTheme({
     typography: {
         h6: {
             fontFamily: 'Lato',
-            fontSize: { xs: '10px', sm: '13.8px', md: '14.22px', lg: '18px' },
-            lineHeight: 'normal',
+            fontSize: { xs: '12px', sm: '13.8px', md: '14.22px', lg: '18px' },
+            lineHeight: {xs:'15px',md:'17'},
             letterSpacing: '0.4px',
             color: "#D9D9D9",
             textTransform: 'none',
@@ -25,7 +25,8 @@ const theme = createTheme({
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: { xs: '9px', sm: '10px', md: '0.94vw' },
+            fontSize: { xs: '11px', sm: '12px', md: '0.94vw' },
+            lineHeight:'11px',
             color: "#FCFCFC",
         },
         form: {
@@ -96,10 +97,13 @@ const CompanyBox = () => {
                         {companyNames[activeImage]}
                     </Typography>
 
-                    <Typography sx={{ ...theme.typography.h6 }}>
+                    <Typography sx={{ ...theme.typography.h6, display:{xs:'none',md:'block'} }}>
                         Vitruvian Shield is an e-Health Software as a Service (SaaS), integrating
                         cutting-edge Clinical Trials Management Systems (CTMS) and Remote Patient
                         Monitoring (RPM) with state-of-the-art wearable technology.
+                    </Typography>
+                    <Typography sx={{ ...theme.typography.h6, display:{xs:'block',md:'none'},width:'80%' }}>
+                    Vitruvian Shield is an e-Health Software as a Service (Saas), integrating  CTMS and  RPM with state-of-the-art wearable technology
                     </Typography>
                     <Button
                         variant="contained"
@@ -109,8 +113,8 @@ const CompanyBox = () => {
                             borderRadius: '6px',
                             backgroundColor: '#B50304',
                             textTransform: 'none',
-                            width: { xs: '65px', sm: '75px', md: '7.8125vw' },
-                            height: { xs: '25px', sm: '30px', md: '2.6042vw' },
+                            width: { xs: '80px', sm: '75px', md: '7.8125vw' },
+                            height: { xs: '30px', sm: '30px', md: '2.6042vw' },
                             mt: { xs: '16px', sm: '8px', md: '0px' },
                             padding: 0,
                             alignItems: 'center',
