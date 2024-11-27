@@ -98,12 +98,12 @@ const Home = () => {
                         sx={{
                             ...theme.typography.h6,
                             display:{xs:'block',sm:'block',md:'none'},
-                            width:{xs:'250px',sm:'325px'},
+                            width:{xs:'270px',sm:'325px'},
                             mt:1
                         }}
                     >
-                        Access your patients' data anywhere, at any time.
-                        Our dashboard empowers organizations and individuals to effectively monitor patient health in real time.
+                        
+                    Our dashboard empowers organizations and individuals to effectively monitor patient health in real time.
                     </Typography>
 
                     <Box sx={{ display: 'flex', gap: {xs:'8px',sm:'1.5vw',md:'0.78vw'}, marginTop: {xs:'16px',sm:'16px',md:'1.56vw'},}}>
