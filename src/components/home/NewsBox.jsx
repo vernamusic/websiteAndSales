@@ -58,8 +58,8 @@ const NewsCard = ({ picture, title, details, slug, onClick }) => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'start',
-                height: {xs:'114px',sm:'220px',md:'280px',lg:'360px'},
-                width: {xs:'90px',sm:'170px',md:'210px',lg:'284px'},
+                height: {xs:'130px',sm:'220px',md:'280px',lg:'360px'},
+                width: {xs:'104px',sm:'170px',md:'210px',lg:'284px'},
                 boxSizing: 'border-box',
                 p: {xs:'12px',sm:'18px',md:'20px',lg:'24px'},
                 borderRadius: "16px",
@@ -91,10 +91,12 @@ const NewsCard = ({ picture, title, details, slug, onClick }) => {
                 <Typography
                     sx={{
                         width: '100%',
-                        ...navItemStyle,
-                        fontSize: { xs: '8px', md: '14.22px', lg: '16px' },
-                        fontWeight: 600,
-                        lineHeight: 'normal',
+                        //...navItemStyle,
+                        color:'white', 
+                        fontWeight:{xs:500,sm:600},
+                        fontFamily:'Lato',
+                        fontSize: { xs: '10px', md: '14.22px', lg: '16px' },
+                        lineHeight: { xs: '12px', md: '14.22px', lg: '16px' },
                     }}>
                     {title}
                 </Typography>
