@@ -162,10 +162,11 @@ const Stepper = () => {
                                 {index < memoizedFeatures.length - 1 && <RedLine top={'4em'} />}
                                 <Box
                                 sx={{
+                                    border:'1px solid #fff',
                                     width:{md:'20em',lg:'32em'},
                                     ml: '3.5em',
                                 }}>
-                                    <Typography sx={{...theme.typography.h6,}}>
+                                    <Typography sx={{...theme.typography.h6,width:'120%'}}>
                                         {feature.title}
                                     </Typography>
 

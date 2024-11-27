@@ -71,7 +71,7 @@ const RedLine = ({ top }) => (
             top: '3.75em',
             left: '2.25em',
             width: 0,
-            height: {xs:'4em',sm:'3.3em',md:'4.3em',lg:'3.4em'},
+            height: {xs:'4.8em',sm:'3.3em',md:'4.3em',lg:'3.4em'},
             borderRight: '1px dashed #B50304',
             transform: 'translateX(-50%)',
         }}
