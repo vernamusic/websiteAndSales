@@ -185,7 +185,7 @@ const Stepper = () => {
                                         {feature.title}
                                     </Typography>
 
-                                    <Typography sx={{...theme.typography.h9,width:{xs:'80%',sm:'90%',md:'130%',lg:'100%'},mt:'8px'}} pt='0.5em'>
+                                    <Typography sx={{...theme.typography.h9,width:{xs:'90%',sm:'90%',md:'130%',lg:'100%'},mt:'8px'}} pt='0.5em'>
                                         {feature.description}
                                     </Typography>
                                 </Box>
