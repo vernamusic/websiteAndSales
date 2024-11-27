@@ -171,7 +171,7 @@ const Navbar = React.memo((props) => {
                     <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>
                         <MenuIcon sx={{ color: 'white', fontSize: { xs: '32px',sm:'40px' }, mt: '2px' }} />
                     </IconButton>
-                    <Drawer anchor="top" open={drawerOpen} onClose={toggleDrawer(false)}>
+                    <Drawer anchor="top" open={drawerOpen} onClose={toggleDrawer(false)} sx={{display:{xs:'block',sm:'block',md:'none'}}}>
                         <Box sx={{ backgroundColor: '#1F1F1F' }}>
                             <Box sx={{width:'100%',display:'flex',p:'12.5px 22px 12.5px 24px' }}>
                             <Box
