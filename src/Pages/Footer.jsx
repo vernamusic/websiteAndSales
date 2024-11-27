@@ -301,7 +301,7 @@ const Footer = () => {
               {/* Add the arrow icon to the left side */}
               <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <ExpandMoreIcon sx={{ color: 'white' }} /> {/* Left arrow in white */}
-                <Typography variant="h3" sx={{ color: 'white' }}>Our solution</Typography> {/* Text in white */}
+                <Typography variant="h3" sx={{ color: 'white',fontSize:'10px',lineHeight:'10px' }}>Our solution</Typography> {/* Text in white */}
               </Box>
             </AccordionSummary>
             <AccordionDetails sx={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
@@ -325,7 +325,7 @@ const Footer = () => {
               {/* Add the arrow icon to the left side */}
               <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <ExpandMoreIcon sx={{ color: 'white' }} /> {/* Left arrow in white */}
-                <Typography variant="h3" sx={{ color: 'white' }}>About us</Typography> {/* Text in white */}
+                <Typography variant="h3" sx={{ color: 'white',fontSize:'10px',lineHeight:'10px' }}>About us</Typography> {/* Text in white */}
               </Box>
             </AccordionSummary>
             <AccordionDetails sx={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
@@ -339,10 +339,14 @@ const Footer = () => {
 
           {/* Visit us Accordion */}
           <Accordion sx={{ backgroundColor: '#141414' }}>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel3a-content" id="panel3a-header">
+          <AccordionSummary
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+              sx={{ display: 'flex', alignItems: 'center' }}
+            >
               <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <ExpandMoreIcon sx={{ color: 'white' }} /> {/* Left arrow in white */}
-                <Typography variant="h3" sx={{ color: 'white' }}>Visit Us</Typography> {/* Text in white */}
+                <Typography variant="h3" sx={{ color: 'white',fontSize:'10px',lineHeight:'10px' }}>Visit Us</Typography> {/* Text in white */}
               </Box>
             </AccordionSummary>
             <AccordionDetails>
