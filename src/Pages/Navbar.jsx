@@ -237,7 +237,7 @@ const Navbar = React.memo((props) => {
                                         </Box>
                                     )}
 
-                                    {/* Add divider after each page except the last one */}
+                                    
                                     {index < pages.length - 1 && (
                                         <Divider sx={{ marginLeft: 2, width: '90%', mt: 1.5, height: '1px', backgroundColor: '#4545454D' }} />
                                     )}
