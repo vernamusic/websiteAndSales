@@ -393,7 +393,7 @@ const Navbar = React.memo((props) => {
                                 <Avatar
                                     onClick={handleProfileMenuOpen}
                                     size='large'
-                                    sx={{ cursor: 'pointer', width: '50px', height: '50px', mr: '0.5vw',border: '2px solid #B0EEE9',boxShadow: '0px 0px 5px 0px #8AE6DE99', }}
+                                    sx={{ cursor: 'pointer', width: {xs:'25px',sm:'35px',md:'50px'}, height: {xs:'25px',sm:'35px',md:'50px'}, mr: '0.5vw',border: '2px solid #B0EEE9',boxShadow: '0px 0px 5px 0px #8AE6DE99', }}
                                 />
                                 <Menu
                                     anchorEl={anchorElProfile}
