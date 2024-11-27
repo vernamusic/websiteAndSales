@@ -7,16 +7,6 @@ import {
     Button,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-
-const navItemStyle = {
-    fontFamily: 'Lato',
-    fontSize: { xs: '14.22px', lg: '16px' },
-    color: '#eee',
-    fontStyle: 'normal',
-    lineHeight: '100%',
-    textTransform: 'none',
-    fontWeight: 400
-}
 import blueArrowIcon from "../../assets/blueArrowIcon.svg";
 
 const theme = createTheme({
@@ -102,18 +92,18 @@ const Allinonecard = ({ data }) => {
                                 boxShadow: '0px 2px 16px 0px rgba(0, 0, 0, 0.32)',
                                 cursor: isMobile ? 'pointer' : 'default',
                             }}
-                            onClick={isMobile ? onClick : undefined}
+                            onClick={handleClick}
                         >
                             <Box
                                 sx={{
                                     position: "relative",
                                     display: "flex",
                                     flexDirection: "column",
-                                    justifyContent: 'flex-end',   // قرار دادن در پایین محور Y
-                                    alignItems: 'center',         // مرکز چین کردن در محور X
+                                    justifyContent: 'flex-end',
+                                    alignItems: 'center',
                                     overflow: 'hidden',
                                     height: '15vw',
-                                    width: '80%',                // عرض کامل برای وسط چین کردن محتوای داخلی
+                                    width: '80%',
                                 }}
                             />
 

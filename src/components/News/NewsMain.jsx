@@ -20,8 +20,8 @@ const theme = createTheme({
 
         h3: {
             fontFamily: "Lato",
-            fontWeight:700,
-            fontSize:'1.6667vw',
+            fontWeight:{xs:500,sm:700},
+            fontSize:{xs:'2.78vw',sm:'1.6667vw'},
             color: "#F1F1F1",
             textTransform: 'none',
         },
@@ -90,7 +90,7 @@ const TeamMembers = () => {
 
     return (
         <ThemeProvider theme={theme}>
-            <Box sx={{ textAlign: 'left',mb:15,}}>
+            <Box sx={{ display: {xs:'none',sm:"block"},textAlign: 'left',mb:15,}}>
                 <Box sx={{ mt: '40px', textAlign: 'center' }}>
                     <Typography sx={{ ...theme.typography.h3 }}>
                         News
@@ -101,7 +101,7 @@ const TeamMembers = () => {
                 </Box>
                 <Box
                     sx={{
-                        
+
                         display: 'flex',
                         justifyContent: 'center',
                         mt: { xs: 1, sm: 2, md: 4, lg: 6, xl:8 },
@@ -163,6 +163,25 @@ const TeamMembers = () => {
                 <Box width={'100%'}>
                     {renderContent()}
                 </Box>
+            </Box>
+
+
+
+            <Box sx={{display:{xs:'flex',sm:'none'},flexDirection: 'column',gap:'4vw',my:'4vw'}}>
+                {teamsData.map((team, index) => (
+                    <Box key={index}>
+                        <Typography
+                            sx={{ ...theme.typography.h3,ml:'8vw',mb:'4vw'}}
+                        >
+                            {team.team_name}
+                        </Typography>
+
+                        <Box sx={{ display: 'flex',ml:'8vw'}}>
+                            <Mediacard data={team.members}/>
+                        </Box>
+                    </Box>
+                ))}
+
             </Box>
         </ThemeProvider>
     );

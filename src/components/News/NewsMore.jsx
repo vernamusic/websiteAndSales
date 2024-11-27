@@ -13,7 +13,7 @@ const theme = createTheme({
     typography: {
         h6: {
             fontFamily: 'Lato',
-            fontSize: '1.25vw',
+            fontSize: {xs:'2.78vw',sm:'1.25vw'},
             lineHeight: 'normal',
             letterSpacing: '0.8px',
             fontWeight: 400,
@@ -22,14 +22,14 @@ const theme = createTheme({
         },
         h3: {
             fontFamily: 'Lato',
-            fontWeight: 700,
-            fontSize: '1.6667vw',
+            fontWeight: {xs:600,sm:700},
+            fontSize: {xs:'3.33vw',sm:'1.6667vw'},
             color: '#F1F1F1',
             textTransform: 'none',
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: '1.1111vw',
+            fontSize: {xs:'2.78vw',sm:'1.1111vw'},
             textTransform: 'none',
             color: '#F1F1F1',
         },
@@ -103,22 +103,22 @@ const NewsCard = () => {
     const formattedDetails = newsData.details.split('\n').map((paragraph, index) => {
         const isLink = paragraph.startsWith('https');
         return (
-            <Box key={index} sx={{ mb: 2 }}>
+            <Box key={index} sx={{ mb: '2vw' }}>
                 {isLink ? (
                     <Typography
-                        variant="body1"
+
                         sx={{
+                            ...theme.typography.h6,
                             color: '#3E93CC',
                             textDecoration: 'underline',
                             cursor: 'pointer',
-                            fontSize: '1.25vw',
                         }}
                         onClick={() => window.open(paragraph, '_blank')}
                     >
                         {paragraph}
                     </Typography>
                 ) : (
-                    <Typography variant="body1" sx={{ fontSize: '1.25vw' }}>
+                    <Typography  sx={{ ...theme.typography.h6, }}>
                         {paragraph}
                     </Typography>
                 )}
@@ -131,7 +131,7 @@ const NewsCard = () => {
             <Box
                 sx={{
                     width: '100vw',
-                    height: '740px',
+                    minHeight: '50vw',
                     position: 'relative',
                     backgroundImage: `url(${newsData.picture})`,
                     backgroundSize: 'cover',
@@ -164,12 +164,13 @@ const NewsCard = () => {
                         </Typography>
 
                         <Box sx={{ display: 'flex', gap: 1, mt: '5vw' }}>
-                            <Visibility sx={{ fontSize: '1.8vw', color: 'white' }} />
-                            <Typography sx={{ ...theme.typography.button, color: 'white' }}>{newsData.views}</Typography>
+                            <Visibility sx={{display: { sm: 'block', xs: 'none' }, fontSize: '1.8vw', color: 'white' }} />
+                            <Typography sx={{  display: { sm: 'block', xs: 'none' },...theme.typography.button, color: 'white' }}>{newsData.views}</Typography>
                             <Divider
                                 orientation="vertical"
                                 flexItem
                                 sx={{
+                                    display: { sm: 'block', xs: 'none' },
                                     mx: '0.5vw',
                                     borderColor: 'rgba(255, 255, 255, 0.2)',
                                     borderStyle: 'dashed',
@@ -178,21 +179,62 @@ const NewsCard = () => {
                             />
                             <Typography sx={{ ...theme.typography.button, display: { sm: 'block', xs: 'none' } }}>Share:</Typography>
                             <IconButton sx={{ p: 0 }} onClick={() => shareOnFacebook(`https://vitruvianshield.com/news/${slug}`)}>
-                                <img src={Facebook} alt="Facebook" style={{ width: 'auto', height: '1.6667vw' }} />
+                                <img
+                                    src={Facebook}
+                                    alt="Facebook"
+                                    style={{
+                                        width: 'auto',
+                                        height: '3vw',
+                                        '@media (min-width:600px)': { height: '1.6667vw' }
+                                    }}
+                                />
                             </IconButton>
                             <IconButton sx={{ p: 0 }} onClick={() => shareOnTwitter(`https://vitruvianshield.com/news/${slug}`)}>
-                                <img src={Twitter} alt="Twitter" style={{ width: 'auto', height: '1.6667vw' }} />
+                                <img
+                                    src={Twitter}
+                                    alt="Twitter"
+                                    style={{
+                                        width: 'auto',
+                                        height: '3vw',
+                                        '@media (min-width:600px)': { height: '1.6667vw' }
+                                    }}
+                                />
                             </IconButton>
                             <IconButton sx={{ p: 0 }} onClick={() => copyToClipboard(`https://vitruvianshield.com/news/${slug}`)}>
-                                <img src={Share} alt="Share" style={{ width: 'auto', height: '1.6667vw' }} />
+                                <img
+                                    src={Share}
+                                    alt="Share"
+                                    style={{
+                                        width: 'auto',
+                                        height: '3vw',
+                                        '@media (min-width:600px)': { height: '1.6667vw' }
+                                    }}
+                                />
                             </IconButton>
+
                         </Box>
                     </Box>
 
-                    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start' }}>
-                        <Typography variant="body2" sx={{ ...theme.typography.button, color: 'rgba(144, 193, 226, 1)', mt: '0.5vw', mb: '2vw' }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start',mt: {xs:'2vw',sm:'0.5vw'} }}>
+
+
+                        <Typography variant="body2" sx={{ ...theme.typography.button, color: 'rgba(144, 193, 226, 1)', mt: '0vw', mb: '2vw' }}>
                             {newsData.read_time} min read
                         </Typography>
+                        <Divider
+                            orientation="vertical"
+                            flexItem
+                            sx={{
+                                display: { sm: 'none', xs: 'block' },
+                                mx: '3vw',
+                                borderColor: 'rgba(255, 255, 255, 0.2)',
+                                borderStyle: 'dashed',
+                                height: '5vw',
+                            }}
+                        />
+                        <Visibility sx={{display: { sm: 'none', xs: 'block' }, fontSize: '3.5vw', color: 'white',mt: '0.7vw' }} />
+
+                        <Typography sx={{display: { sm: 'none', xs: 'block' }, ...theme.typography.button, color: 'white',ml:'1vw' }}>{newsData.views}</Typography>
                     </Box>
 
                     {formattedDetails}
