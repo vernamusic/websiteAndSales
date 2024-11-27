@@ -20,21 +20,21 @@ const theme = createTheme({
     typography: {
         h6: {
             fontFamily: 'Lato',
-            fontSize: {xs:'2.78vw',sm:'1.25vw'},
-            lineHeight: {xs:'3.89vw',sm:'1.6667vw'},
+            fontSize: {xs:'12px',sm:'1.25vw'},
+            lineHeight: {xs:'15px',sm:'1.6667vw'},
             color: "#D9D9D9",
             textTransform: 'none',
         },
         h3: {
             fontFamily: "Lato",
             fontWeight: {xs:600,sm:700},
-            fontSize: {xs:'3.89vw',sm:'2.2222vw'},
+            fontSize: {xs:'14px',sm:'2.2222vw'},
             color: "#FFFFFF",
             textTransform: 'none',
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: {xs:'2.22vw',sm:'0.9722vw'},
+            fontSize: {xs:'11px',sm:'0.9722vw'},
             textTransform: 'none',
             color: "#F1F1F1",
         },
@@ -158,7 +158,7 @@ const Mediacard = () => {
                                 display:'flex',
                                 top: {xs:'15%',sm:"42%"},
                                 left: "10%",
-                                width: "75%",
+                                width: "55%",
                                 borderRadius: "10px",
                                 flexDirection: 'column',
                                 gap:{xs:'3.3vw',sm:'1.4vw'},
@@ -168,7 +168,15 @@ const Mediacard = () => {
                                 {currentData.title}
                             </Typography>
                             <Typography
-                                sx={{ maxWidth: {xs:'75vw',sm:'50vw'}, ...theme.typography.h6 }}
+                                sx={{
+                                    maxWidth: { xs: '75vw', sm: '50vw' },
+                                    ...theme.typography.h6,
+                                    display: '-webkit-box',
+                                    WebkitBoxOrient: 'vertical',
+                                    overflow: 'hidden',
+                                    WebkitLineClamp: {xs:2,sm:4},
+                                    mt:{xs:'-8px',sm:0}
+                                }}
                             >
                                 {currentData.details.length > maxLength
                                     ? `${currentData.details.substring(0, maxLength)}...`
@@ -181,8 +189,8 @@ const Mediacard = () => {
                                     borderRadius: '4px',
                                     backgroundColor: '#B50304',
                                     textTransform: 'none',
-                                    width:{xs:'15.28vw',sm:'9.5833vw'},
-                                    height: {xs:'5.56vw',sm:'2.9167vw'},
+                                    width:{xs:'80px',sm:'9.5833vw'},
+                                    height: {xs:'30px',sm:'2.9167vw'},
                                     padding:0,
                                     '&:hover': {
                                         backgroundColor: '#B50304',
@@ -193,7 +201,7 @@ const Mediacard = () => {
                                 Read more
                             </Button>
 
-                            <Box display="flex" alignItems="center">
+                            <Box alignItems="center" sx={{display:{xs:'none',sm:'flex'}}}>
                                 <Typography variant="caption" sx={{mr: '4vw' ,...theme.typography.caption,}}>
                                     {currentData.read_time} min read
                                 </Typography>
