@@ -408,7 +408,7 @@ const PricingBox = () => {
                                         paddingLeft: '1rem',
                                         display: 'flex',
                                         flexDirection: 'column',
-                                        gap: { sm: 0, md: 0.5, lg: 1.5 },
+                                        gap: { xs: 0.5,sm:0.5, md: 0.5, lg: 1.5 },
                                     }}
                                 >
                                     <FeatureItem text="Remote patient monitoring" />
@@ -568,7 +568,7 @@ const PricingBox = () => {
                                         paddingLeft: '1rem',
                                         display: 'flex',
                                         flexDirection: 'column',
-                                        gap: { sm: 0, md: 0.5, lg: 1.5 },
+                                        gap: { xs: 0.5,sm:0.5, md: 0.5, lg: 1.5 },
                                     }}
                                 >
                                     <FeatureItem text="Electronic data management" />
