@@ -85,7 +85,7 @@ const NewPartner = () => {
                             borderRadius: '6px',
                             backgroundColor: '#B50304',
                             textTransform: 'none',
-                            width: { xs: '71px', sm: '75px', md: '7.8125vw' },
+                            width: { xs: '71px', sm: '85px', md: '7.8125vw' },
                             height: { xs: '25px', sm: '30px', md: '2.6042vw' },
                             mt: { xs: '16px', sm: '8px', md: '0px' },
                             padding: 0,
