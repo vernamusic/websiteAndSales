@@ -22,15 +22,15 @@ const theme = createTheme({
         h6: {//title
             fontFamily: 'Lato',
             fontWeight: 700,
-            fontSize: {xs:'12px',sm:'16px',md:'18px'},
-            lineHeight: {xs:'12px',sm:'16px',md:'18px'},
+            fontSize: {xs:'14px',sm:'16px',md:'18px'},
+            lineHeight: {xs:'14px',sm:'16px',md:'18px'},
             color: "#FFFFFF",
         },
         h9: {//description
             fontFamily: 'Lato',
             fontWeight: 400,
-            fontSize: {xs:'10px',sm:'12px',md:'14px'},
-            lineHeight:{xs:'10px',sm:'12px',md:'14px'},
+            fontSize: {xs:'12px',sm:'13px',md:'14px'},
+            lineHeight:{xs:'15px',sm:'15px',md:'15px'},
             color: "#D9D9D9",
         },
         button: {
@@ -70,7 +70,7 @@ const RedLine = ({ top }) => (
         top: '3.75em',
         left: '2.25em',
         width: 0,
-        height: {xs:'2.5em',md:'3.5em',lg:'2.8em'},
+        height: {xs:'4em',md:'4.5em',lg:'4em'},
         borderRight: '1px dashed #B50304',
         transform: 'translateX(-50%)',
     }} />
@@ -169,7 +169,7 @@ const Stepper = () => {
                                         {feature.title}
                                     </Typography>
 
-                                    <Typography sx={{...theme.typography.h9,width:{xs:'110%',sm:'90%',md:'130%',lg:'100%'},mt:'8px'}} pt='0.5em'>
+                                    <Typography sx={{...theme.typography.h9,width:{xs:'95%',sm:'90%',md:'130%',lg:'100%'},mt:'8px'}} pt='0.5em'>
                                         {feature.description}
                                     </Typography>
                                 </Box>
