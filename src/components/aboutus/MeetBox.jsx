@@ -67,7 +67,7 @@ const MeetBox = () => {
                     <Typography sx={{
                         ...theme.typography.h3,
                     }}>
-                        Let’s discus together
+                        Let’s discuss together
                     </Typography>
                     <Typography
                         sx={{
