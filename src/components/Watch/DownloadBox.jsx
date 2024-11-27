@@ -93,7 +93,7 @@ const Home = () => {
                         sx={{
                             ...theme.typography.h6,
                             display:{xs:'block',sm:'block',md:'none'},
-                            width:{xs:'250px',sm:'325px'},
+                            width:{xs:'230px',sm:'325px'},
                             mt:1
                         }}
                     >
