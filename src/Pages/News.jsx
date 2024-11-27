@@ -16,7 +16,7 @@ const About = () => {
             <Box
                 sx={{
                     width: '100vw',
-                    minHeight: '49.48vw',
+                    minHeight: '50vw',
                     display: 'flex',
                     justifyContent: 'center',
 

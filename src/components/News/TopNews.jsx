@@ -7,7 +7,7 @@ import {
     ButtonBase,
     Fade,
     createTheme,
-    ThemeProvider
+    ThemeProvider, useMediaQuery
 } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -20,30 +20,28 @@ const theme = createTheme({
     typography: {
         h6: {
             fontFamily: 'Lato',
-            fontSize: '1.25vw',
-            lineHeight: '1.6667vw',
-            letterSpacing: '0.4px',
+            fontSize: {xs:'2.78vw',sm:'1.25vw'},
+            lineHeight: {xs:'3.89vw',sm:'1.6667vw'},
             color: "#D9D9D9",
             textTransform: 'none',
         },
         h3: {
             fontFamily: "Lato",
-            fontWeight: 700,
-            fontSize: '2.2222vw',
+            fontWeight: {xs:600,sm:700},
+            fontSize: {xs:'3.89vw',sm:'2.2222vw'},
             color: "#FFFFFF",
             textTransform: 'none',
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: '0.9722vw',
+            fontSize: {xs:'2.22vw',sm:'0.9722vw'},
             textTransform: 'none',
             color: "#F1F1F1",
         },
         caption: {
             fontFamily: 'Lato',
-            fontSize: '1.04vw',
+            fontSize: {xs:'2.22vw',sm:'1.04vw'},
             lineHeight: 'normal',
-            letterSpacing: '0.4px',
             color: "#F1F1F1",
             textTransform: 'none',
         },
@@ -55,13 +53,14 @@ const Mediacard = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [fade, setFade] = useState(true);
     const [progress, setProgress] = useState(0);
+    const isXs = useMediaQuery(theme.breakpoints.only('xs'));
+    const maxLength = isXs ? 150 : 250;
 
     useEffect(() => {
         const fetchTopNews = async () => {
             try {
                 const response = await fetch('https://vitruvianshield.com/api/v1/top-news');
                 const newsData = await response.json();
-                // Set only the first 3 results
                 setData(newsData.results.slice(0, 3));
             } catch (error) {
                 console.error("Error fetching top news data: ", error);
@@ -110,7 +109,6 @@ const Mediacard = () => {
         trackMouse: true,
     });
 
-    // Auto-slide logic
     useEffect(() => {
         const interval = setInterval(() => {
             setProgress((oldProgress) => {
@@ -158,20 +156,22 @@ const Mediacard = () => {
                             sx={{
                                 position: "absolute",
                                 display:'flex',
-                                top: {xs:'20%',sm:"42%"},
+                                top: {xs:'15%',sm:"42%"},
                                 left: "10%",
-                                width: "50%",
+                                width: "75%",
                                 borderRadius: "10px",
                                 flexDirection: 'column',
-                                gap:'1.4vw',
+                                gap:{xs:'3.3vw',sm:'1.4vw'},
                             }}
                         >
                             <Typography sx={{ ...theme.typography.h3 }}>
                                 {currentData.title}
                             </Typography>
-                            <Typography sx={{maxWidth: '50vw', ...theme.typography.h6 }}>
-                                {currentData.details.length > 200
-                                    ? `${currentData.details.substring(0, 200)}...`
+                            <Typography
+                                sx={{ maxWidth: {xs:'75vw',sm:'50vw'}, ...theme.typography.h6 }}
+                            >
+                                {currentData.details.length > maxLength
+                                    ? `${currentData.details.substring(0, maxLength)}...`
                                     : currentData.details}
                             </Typography>
                             <Button
@@ -181,8 +181,8 @@ const Mediacard = () => {
                                     borderRadius: '4px',
                                     backgroundColor: '#B50304',
                                     textTransform: 'none',
-                                    width:'9.5833vw',
-                                    height: '2.9167vw',
+                                    width:{xs:'15.28vw',sm:'9.5833vw'},
+                                    height: {xs:'5.56vw',sm:'2.9167vw'},
                                     padding:0,
                                     '&:hover': {
                                         backgroundColor: '#B50304',
@@ -194,7 +194,7 @@ const Mediacard = () => {
                             </Button>
 
                             <Box display="flex" alignItems="center">
-                                <Typography variant="caption" sx={{mr: '1vw' ,...theme.typography.caption,}}>
+                                <Typography variant="caption" sx={{mr: '4vw' ,...theme.typography.caption,}}>
                                     {currentData.read_time} min read
                                 </Typography>
                                 <VisibilityIcon sx={{mr: '0.5vw' ,...theme.typography.caption,}} />
@@ -218,7 +218,7 @@ const Mediacard = () => {
                         color: "#fff",
                     }}
                 >
-                    <ArrowBackIosIcon sx={{...theme.typography.caption}}/>
+                    <ArrowBackIosIcon sx={{...theme.typography.h6}}/>
                 </IconButton>
 
                 <IconButton
@@ -230,7 +230,7 @@ const Mediacard = () => {
                         color: "#fff",
                     }}
                 >
-                    <ArrowForwardIosIcon sx={{...theme.typography.caption}}/>
+                    <ArrowForwardIosIcon sx={{...theme.typography.h6}}/>
                 </IconButton>
 
                 <Box display="flex" justifyContent="center">
@@ -255,10 +255,10 @@ const Mediacard = () => {
                     </Box> */}
 
                 </Box>
-                <Box display="flex"
+                <Box
                      flexDirection="row"
                      alignItems="center"
-                     sx={{position:'absolute',top:'90%'}}
+                     sx={{position:'absolute',top:'90%',display:{xs:'none',sm:'flex'}}}
                 >
                     {data.map((_, index) => (
                         <ButtonBase
