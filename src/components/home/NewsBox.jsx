@@ -59,7 +59,7 @@ const NewsCard = ({ picture, title, details, slug, onClick }) => {
                 flexDirection: 'column',
                 alignItems: 'start',
                 height: {xs:'114px',sm:'220px',md:'280px',lg:'360px'},
-                width: {xs:'85px',sm:'170px',md:'210px',lg:'284px'},
+                width: {xs:'90px',sm:'170px',md:'210px',lg:'284px'},
                 boxSizing: 'border-box',
                 p: {xs:'12px',sm:'18px',md:'20px',lg:'24px'},
                 borderRadius: "16px",
@@ -173,7 +173,7 @@ const NewsBox = () => {
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
-                    px: { xs: '0px', sm: '10px', md: '60px', lg: '80px', xl: '100px' },
+                    px: { xs: '0px', sm: '10px', md: '60px', lg: '75px', xl: '100px' },
                     pb: { xs: '30px', sm: '40px', md: '80px', lg: '70px' },
                     pt: { xs: '30px', sm: '40px', md: '70px' }
                 }}>
@@ -212,26 +212,48 @@ const NewsBox = () => {
 
                 <Box
                     sx={{
+                        paddingX:{xs:2,sm:0},
                         width: '100%',
                         height: '100%',
                         display: 'flex',
                         flexDirection: 'row',
                         justifyContent: 'center',
-                        flexWrap: 'wrap',
-                        gap: {xs:'5px',sm:'12px',md:'20px'}
-
-                    }}>
-                    {newsItems.map((box, index) => (
-                        <NewsCard
+                        flexWrap: 'nowrap',
+                        overflowX: 'hidden',
+                        scrollSnapType: 'x mandatory',
+                        gap: { xs: '8px', sm: '12px', md: '20px' }
+                    }}
+                    >
+                    <Box
+                        sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        gap: { xs: '8px', sm: '12px', md: '20px' },
+                        overflowX: 'scroll',
+                        scrollSnapType: 'x mandatory',
+                        WebkitOverflowScrolling: 'touch',
+                        '::-webkit-scrollbar': { display: 'none' }
+                        }}
+                    >
+                        {newsItems.map((box, index) => (
+                        <Box
                             key={index}
+                            sx={{
+                            scrollSnapAlign: 'start' // Align the snapping to the start of each card
+                            }}
+                        >
+                            <NewsCard
                             picture={box.picture}
                             title={box.title}
                             details={box.details}
                             slug={box.slug}
                             onClick={() => handleClick(box.slug)}
-                        />
-                    ))}
-                </Box>
+                            />
+                        </Box>
+                        ))}
+                    </Box>
+                    </Box>
+
             </Box>
         </ThemeProvider>
     );

@@ -184,7 +184,7 @@ const FeaturesGrid = () => {
                             component="img"
                             src={images[index]}
                             sx={{
-                                width: {xs:'170px',sm:'200px',md:'200px',lg:'250px'},
+                                width: {xs:'220px',sm:'260px',md:'240px',lg:'260px'},
                                 height: 'auto',
                             }}
                         />

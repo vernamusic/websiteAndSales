@@ -104,7 +104,7 @@ const HowBox = () => {
                             key={index}
                             sx={{
                                 width: {xs:'145px',md:'170px',lg:'18.5%'},
-                                height: {xs:'153px',md:'180px',lg:'250px'},
+                                height: {xs:'180px',md:'180px',lg:'250px'},
                                 borderRadius: '16px',
                                 display: 'flex',
                                 flexDirection: 'column',
@@ -155,7 +155,7 @@ const HowBox = () => {
                                     justifyContent: 'center',
                                     justifyItems: 'center',
                                     alignItems: 'center',
-                                    mt:{xs:'24px',md:'2em'},
+                                    mt:{xs:'0px',md:'2em'},
                                     textAlign: 'center',
                                     width:'100%'
                                 }}
@@ -167,7 +167,7 @@ const HowBox = () => {
                                     {box.title}
                                 </Typography>
                                 <Typography
-                                    sx={{...theme.typography.caption,mb:'10px'}}
+                                    sx={{...theme.typography.caption,mt:'4px',mb:{xs:'0px',sm:'10px',md:'16px'}}}
                                 >
                                     {box.description}
                                 </Typography>
@@ -179,7 +179,7 @@ const HowBox = () => {
                                 alt={box.title}
                                 sx={{
                                     width: '100%',
-                                    height: '60%',
+                                    height: '55%',
                                     objectFit: 'cover',
                                     borderRadius: '0 0 16px 16px',
                                     mt: 'auto',
