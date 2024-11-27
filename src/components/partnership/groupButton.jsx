@@ -13,6 +13,7 @@ import santamaria from "../../assets/santamaria.png";
 import { Box, createTheme, ThemeProvider, Typography } from "@mui/material";
 import { Category } from "@mui/icons-material";
 import partnerBG from '../../assets/partnerBG.png';
+import { Boxes } from "lucide-react";
 
 const customTheme = createTheme({
     typography: {
@@ -30,24 +31,27 @@ const customTheme = createTheme({
             color: "#EEEEEE",
             letterSpacing: '0.4px',
         },
-        h3: {//Description
+        h3: {//title
             fontFamily: 'Lato',
             fontWeight: 700,
-            fontSize: '20px',
+            fontSize: {xs:'12px',sm:'20px'},
+            lineHeight: {xs:'12px',sm:'20px'},
             color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
-        h4: {//title
+        h4: {//description
             fontFamily: 'Lato',
             fontWeight: 400,
-            fontSize: '16px',
+            fontSize: {xs:'10px',sm:'16px'},
+            lineHeight: {xs:'10px',sm:'16px'},
             color: "#F1F1F1",
             letterSpacing: '0.4px',
         },
         h5: {//website
             fontFamily: 'Lato',
             fontWeight: 400,
-            fontSize: '15px',
+            fontSize: {xs:'10px',sm:'15px'},
+            lineHeight: {xs:'12px',sm:'15px'},
             color: "#5EA5D4",
             letterSpacing: '0.4px',
         },
@@ -96,12 +100,14 @@ const GroupButton = () => {
                 backgroundRepeat: 'no-repeat',
             }}>
                 <Box
-                    display="flex"
                     flexDirection="column"
                     justifyContent="center"
                     alignItems="center"
                     textAlign="center"
                     marginTop={5}
+                    sx={{
+                        display:{xs:'none',sm:'flex'}
+                    }}
                 >
                     <Typography sx={{ ...customTheme.typography.h1, mb: '1vw' }}>
                         OUR PARTNERS
@@ -114,20 +120,22 @@ const GroupButton = () => {
                 <Box display="flex" justifyContent="center">
                     <Box 
                     sx={{
-                        width:'1024px',
+                        width:{xs:'300px',sm:'1024px'},
                         display: 'flex',
                         flexWrap: 'wrap',
-                        justifyContent:'space-between',
-                        gap:'32px',
+                        justifyContent:{xs:'start',sm:'center'},
+                        gap:{xs:'16px',sm:'64px'},
+                        px:{xs:'0px',sm:'3vw'},
                         pt:'3vw',
-                        pb:'5vw'
+                        pb:'5vw',
+                        my:{xs:'32px',sm:3,md:0}
                     }}>
                         {filteredData.map((box, index) => (
                             <Box
                                 key={index}
                                 sx={{
-                                    width: '230px',
-                                    height: '271px',
+                                    width: {xs:'142px',sm:'230px'},
+                                    height: {xs:'164px',sm:'271px'},
                                     borderRadius: '16px',
                                     display: 'flex',
                                     flexDirection: 'column',
@@ -144,8 +152,8 @@ const GroupButton = () => {
                                     src={box.image}
                                     alt={box.title}
                                     sx={{
-                                        width: '230px',
-                                        height: '129px',
+                                        width: {xs:'142px',sm:'230px'},
+                                        height: {xs:'80px',sm:'129px'},
                                         backgroundColor: '#FFFFFF',
                                         objectFit: 'contain',
                                         borderRadius: '16px 16px 0 0',
@@ -161,7 +169,7 @@ const GroupButton = () => {
                                         textAlign: 'center',
                                     }}
                                 >
-                                    <Typography sx={{ ...customTheme.typography.h3,mt:'32px' }} >
+                                    <Typography sx={{ ...customTheme.typography.h3,mt:{xs:'16px',sm:'32px'} }} >
                                         {box.title}
                                     </Typography>
                                     <Typography sx={{ ...customTheme.typography.h4,mt:'8px' }}>
@@ -171,7 +179,7 @@ const GroupButton = () => {
                                     onClick={box.link ? () => window.open(box.link, "_blank") : null}
                                     sx={{ 
                                         ...customTheme.typography.h5, 
-                                        mt: '24px', 
+                                        mt: {xs:'12px',sm:'24px'}, 
                                         textDecoration: 'none', 
                                         cursor: box.link ? "pointer" : "default",
                                         transition: "background-color 0.3s, transform 0.3s",

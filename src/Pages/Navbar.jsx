@@ -9,7 +9,8 @@ import {
     Drawer,
     Divider,
     Menu,
-    Avatar
+    Avatar,
+    Typography
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
@@ -19,6 +20,15 @@ import logo from '../assets/redvslogo.svg';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import SignUpDialog from '../components/SignUp/SignUpDialog.jsx';
 import { useAuth } from '../AuthContext.jsx';
+import navhome from '../assets/navhome.png';
+import navproducts from '../assets/navproducts.png';
+import navcompany from '../assets/navcompany.png';
+import navpartnership from '../assets/navpartnership.png';
+import navnews from '../assets/navnews.png';
+import navevent from '../assets/navevent.png';
+import navabout from '../assets/navabout.png';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 
 
 const navItemStyle = {
@@ -85,7 +95,12 @@ const Navbar = React.memo((props) => {
     const [anchorElProfile, setAnchorElProfile] = useState(null);
     const openProductMenu = Boolean(anchorElProduct);
     const openProfileMenu = Boolean(anchorElProfile);
-
+    const [isProductsOpen, setIsProductsOpen] = useState(false); // State to manage Products menu
+    
+    const toggleProductsMenu = () => {
+        setIsProductsOpen((prev) => !prev); // Toggle the Products menu
+    };
+    
     const handleProductMenuOpen = (event) => {
         setAnchorElProduct(event.currentTarget);
         setAnchorElProfile(null); // بستن منوی پروفایل
@@ -112,13 +127,13 @@ const Navbar = React.memo((props) => {
     };
 
     const pages = [
-        { name: 'Home', path: '/', disabled: false },
-        { name: 'Products', path: '/products', disabled: false },
-        { name: 'Company', path: '/company', disabled: false },
-        { name: 'Partnership', path: '/partnership', disabled: false },
-        { name: 'News', path: '/news', disabled: false },
-        { name: 'Websummit 2024', path: '/event', disabled: false },
-        { name: 'About us', path: '/about', disabled: false }
+        { name: 'Home', path: '/', icon:navhome},
+        { name: 'Products', icon:navproducts},
+        { name: 'Company', path: '/company', icon:navcompany},
+        { name: 'Partnership', path: '/partnership', icon:navpartnership},
+        { name: 'News', path: '/news', icon:navnews},
+        { name: 'Websummit 2024', path: '/event', icon:navevent},
+        { name: 'About us', path: '/about', icon:navabout}
     ];
 
     const productItems = [
@@ -151,113 +166,140 @@ const Navbar = React.memo((props) => {
                         justifyContent: 'space-between',
                     }}>
 
-                        {/* Nav for mobile */}
-                        <Box sx={{ display: { xs: 'flex', md: 'none' }, justifyContent: 'flex-start' }}>
-                        <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>
-                            <MenuIcon sx={{ color: 'white', fontSize: { xs: '32px',sm:'40px' }, mt: '2px' }} />
-                        </IconButton>
-                        <Drawer anchor="top" open={drawerOpen} onClose={toggleDrawer(false)}>
-                            <Box sx={{ p: 2, backgroundColor: '#141414' }}>
-                                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                    <IconButton onClick={toggleDrawer(false)}>
-                                        <CloseRoundedIcon sx={{ color: 'white', fontSize: 25, my: -1 }} />
-                                    </IconButton>
-                                </Box>
-                                <Divider sx={{ mt: 1.5, height: '1px', backgroundColor: '#B50304' }} />
-                                {pages.map((page) =>
-                                    page.name === 'Products' ? (
-                                        productItems.map((item) => (
-                                            <MenuItem
-                                                key={item.path}
-                                                component={Link}
-                                                to={item.path}
-                                                onClick={toggleDrawer(false)}
-                                                sx={{
-                                                    color: '#ffffff',
-                                                    textTransform: 'none'
-                                                }}
-                                            >
-                                                {item.name}
-                                            </MenuItem>
-                                        ))
-                                    ) : (
-                                        <MenuItem
-                                            key={page.name}
-                                            component={Link}
-                                            to={page.path}
-                                            disabled={page.disabled}
-                                            onClick={toggleDrawer(false)}
-                                            sx={{
-                                                ...navItemStyle,
-                                                color: page.disabled ? 'rgba(255,255,255,0.40)' : '#fff',
-
-                                            }}
-
-                                        >
+                    {/* Nav for mobile */}
+                    <Box sx={{ display: { xs: 'flex', md: 'none' }, justifyContent: 'flex-start' }}>
+                    <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>
+                        <MenuIcon sx={{ color: 'white', fontSize: { xs: '32px',sm:'40px' }, mt: '2px' }} />
+                    </IconButton>
+                    <Drawer anchor="top" open={drawerOpen} onClose={toggleDrawer(false)} sx={{display:{xs:'block',sm:'block',md:'none'}}}>
+                        <Box sx={{ backgroundColor: '#1F1F1F' }}>
+                            <Box sx={{width:'100%',display:'flex',p:'12.5px 22px 12.5px 24px' }}>
+                            <Box
+                            sx={{width:'100%',display:'flex'}}>
+                            <Box
+                                component="img"
+                                src={logo}
+                                alt="logo"
+                                sx={{
+                                    width: { xs: '24px',sm:'32px' ,md: '50.14px' },
+                                    height: { xs: '34px',sm:'40px' ,md: '56px' },
+                                }}
+                            />  
+                            <Typography sx={{ display:'flex',ml:1, alignItems:'center', fontFamily:'Lato', fontWeight:400,fontSize:'12px',lineHeight:'12px',color:'#FFF'}}>
+                                Vitruvian Shield
+                            </Typography>
+                            </Box>
+                            <Box sx={{ display: 'flex',mt:0.5, justifyContent: 'center',width:'24px',height:'24px',background:'#B503041A',borderRadius:'50%' }}>
+                                <IconButton onClick={toggleDrawer(false)}>
+                                    <CloseRoundedIcon sx={{ color: 'white', fontSize: 25, width:'16px',height:'16px' }} />
+                                </IconButton>
+                            </Box>
+                            </Box>
+                            <Box sx={{ backgroundColor: '#141414', p: "8px 0px 8px 8px", borderRadius: '0px 0px 16px 16px' }}>
+                            {pages.map((page, index) => (
+                                <React.Fragment key={page.path}>
+                                    <MenuItem
+                                        component={Link}
+                                        to={page.path}
+                                        onClick={page.name === 'Products' ? toggleProductsMenu : toggleDrawer(false)}
+                                        sx={{
+                                            color: '#ffffff',
+                                            textTransform: 'none',
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                            alignItems: 'center',
+                                        }}
+                                    >
+                                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                            <img src={page.icon} alt={`${page.name} icon`} style={{ marginRight: 8 }} />
                                             {page.name}
-                                        </MenuItem>
-                                    )
-                                )}
-                                <MenuItem>
-                                    {authToken ? (
-                                        <>
-                                            <Button
-                                                variant="outlined"
-                                                onClick={handleProfileClick}
-                                                sx={{ color: '#ffffff', borderColor: '#B50304', fontSize: '15px' }}
-                                            >
-                                                Profile
-                                            </Button>
-                                            <Button
-                                                variant="outlined"
-                                                onClick={handleLogout}
-                                                sx={{ color: '#ffffff', borderColor: '#B50304', fontSize: '15px' }}
-                                            >
-                                                Log out
-                                            </Button>
-                                        </>
-                                    ) : (
+                                        </Box>
+                                        {page.name === 'Products' && <ExpandMoreIcon sx={{ color: '#ffffff' }} />} {/* Down arrow */}
+                                    </MenuItem>
+
+                                    {page.name === 'Products' && isProductsOpen && (
+                                        <Box sx={{ maxHeight: '150px', transition: 'max-height 0.3s ease-in-out', overflow: 'hidden' }}>
+                                            {productItems.map((item) => (
+                                                <MenuItem
+                                                    key={item.path}
+                                                    component={Link}
+                                                    to={item.path}
+                                                    onClick={() => handleProductSelect(item.path)} // Close drawer and navigate when a product is selected
+                                                    sx={{
+                                                        color: '#ffffff',
+                                                        textTransform: 'none',
+                                                        pl: 4 // Indent product items
+                                                    }}
+                                                >
+                                                    {item.name}
+                                                </MenuItem>
+                                            ))}
+                                        </Box>
+                                    )}
+
+                                    {/* Add divider after each page except the last one */}
+                                    {index < pages.length - 1 && (
+                                        <Divider sx={{ marginLeft: 2, width: '90%', mt: 1.5, height: '1px', backgroundColor: '#4545454D' }} />
+                                    )}
+                                </React.Fragment>
+                            ))}
+                            </Box>
+                            {/* <MenuItem>
+                                {authToken ? (
+                                    <>
                                         <Button
                                             variant="outlined"
-                                            onClick={() => setDialogOpen(true)}
-                                            fullWidth
+                                            onClick={handleProfileClick}
                                             sx={{ color: '#ffffff', borderColor: '#B50304', fontSize: '15px' }}
                                         >
-                                            Sign Up/Login
+                                            Profile
                                         </Button>
-                                    )}
-                                </MenuItem>
-                            </Box>
-                        </Drawer>
+                                        <Button
+                                            variant="outlined"
+                                            onClick={handleLogout}
+                                            sx={{ color: '#ffffff', borderColor: '#B50304', fontSize: '15px' }}
+                                        >
+                                            Log out
+                                        </Button>
+                                    </>
+                                ) : (
+                                    <Button
+                                        variant="outlined"
+                                        onClick={() => setDialogOpen(true)}
+                                        fullWidth
+                                        sx={{ color: '#ffffff', borderColor: '#B50304', fontSize: '15px' }}
+                                    >
+                                        Sign Up/Login
+                                    </Button>
+                                )}
+                            </MenuItem> */}
+                        </Box>
+                    </Drawer>
                     </Box>
 
-
+                    {/* Logo */}
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-    <Button
-        component={Link}
-        to="/"
-        sx={{
-            display: 'flex',
-            alignItems: 'center',
-            '&:hover': { backgroundColor: 'transparent' },
-        }}
-        disableRipple
-    >
-        <Box
-            component="img"
-            src={logo}
-            alt="logo"
-            sx={{
-                width: { xs: '22px',sm:'32px' ,md: '50.14px' },
-                height: { xs: '32px',sm:'40px' ,md: '56px' }, // Adjusted for correct height
-            }}
-        />
-    </Button>
-</Box>
-
-
-                  
-
+                        <Button
+                            component={Link}
+                            to="/"
+                            sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                '&:hover': { backgroundColor: 'transparent' },
+                            }}
+                            disableRipple
+                        >
+                            <Box
+                                component="img"
+                                src={logo}
+                                alt="logo"
+                                sx={{
+                                    width: { xs: '22px',sm:'32px' ,md: '50.14px' },
+                                    height: { xs: '32px',sm:'40px' ,md: '56px' }, // Adjusted for correct height
+                                }}
+                            />
+                        </Button>
+                    </Box>
 
                     {/* Nav for Desktop */}
                     <Box sx={{
@@ -344,15 +386,14 @@ const Navbar = React.memo((props) => {
                         )}
                     </Box>
 
-                        {/* Profile and Sign in */}
-
+                    {/* Profile and Sign in */}
                     <Box sx={{ display: 'flex', justifyContent: 'flex-end', }}>
                         {authToken ? (
                             <>
                                 <Avatar
                                     onClick={handleProfileMenuOpen}
                                     size='large'
-                                    sx={{ cursor: 'pointer', width: '50px', height: '50px', mr: '0.5vw',border: '2px solid #B0EEE9',boxShadow: '0px 0px 5px 0px #8AE6DE99', }}
+                                    sx={{ cursor: 'pointer', width: {xs:'25px',sm:'35px',md:'50px'}, height: {xs:'25px',sm:'35px',md:'50px'}, mr: '0.5vw',border: '2px solid #B0EEE9',boxShadow: '0px 0px 5px 0px #8AE6DE99', }}
                                 />
                                 <Menu
                                     anchorEl={anchorElProfile}
