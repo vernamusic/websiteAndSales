@@ -177,7 +177,7 @@ const NewsBox = () => {
                     pb: { xs: '30px', sm: '40px', md: '80px', lg: '70px' },
                     pt: { xs: '30px', sm: '40px', md: '70px' }
                 }}>
-                <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", mb: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 }, px: "10px" }}>
+                <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", mb: { xs: 1, sm: 1, md: 2, lg: 3, xl: 4 }, p: {xs:'0px 8px 0px 24px ',md:'0px 0px 0px 8px',lg:'0px 32px 0px 54px'} }}>
                     <Typography
                         sx={{
                             "&:hover": { backgroundColor: "transparent" },
@@ -193,6 +193,7 @@ const NewsBox = () => {
                         component={Link}
                         to="/news"
                         sx={{
+                            gap:{xs:0.5,sm:0.75,md:1},
                             textTransform: "none",
                             display: "flex",
                             alignItems: "center",
@@ -206,7 +207,7 @@ const NewsBox = () => {
 
                         View All
 
-                        <img src={moreicn} alt="" style={{ width: '16px', height: '16px' }} />
+                        <img src={moreicn} alt="" style={{ width: '16px', height: '16px'}} />
                     </Button>
                 </Box>
 
