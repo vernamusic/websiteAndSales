@@ -218,7 +218,7 @@ const Navbar = React.memo((props) => {
                                     </MenuItem>
 
                                     {page.name === 'Products' && isProductsOpen && (
-                                        <Box sx={{ maxHeight: '200px', transition: 'max-height 0.3s ease-in-out', overflow: 'hidden' }}>
+                                        <Box sx={{ maxHeight: '150px', transition: 'max-height 0.3s ease-in-out', overflow: 'hidden' }}>
                                             {productItems.map((item) => (
                                                 <MenuItem
                                                     key={item.path}
@@ -237,7 +237,7 @@ const Navbar = React.memo((props) => {
                                         </Box>
                                     )}
 
-                                    
+                                    {/* Add divider after each page except the last one */}
                                     {index < pages.length - 1 && (
                                         <Divider sx={{ marginLeft: 2, width: '90%', mt: 1.5, height: '1px', backgroundColor: '#4545454D' }} />
                                     )}
