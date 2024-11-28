@@ -11,7 +11,7 @@ const theme = createTheme({
         h6: {
             fontFamily: 'Lato',
             fontSize: { xs: '12px', sm: '13.8px', md: '14.22px', lg: '18px' },
-            lineHeight: {xs:'15px',md:'17'},
+            lineHeight: {xs:'15px',md:'27px'},
             letterSpacing: '0.4px',
             color: "#D9D9D9",
             textTransform: 'none',
@@ -89,7 +89,7 @@ const CompanyBox = () => {
                         gap: { xs: 0.5, sm: 1, md: 1.5, lg: 1.5, xl: 1.5 },
                         ml: { xs: '32px', sm: '80px', md: 19, lg: 24, xl: 28 },
                         mt: { xs: '39px', sm: '100px', md: '170px', lg: '250px' },
-                        width: { xs: '332px' },
+                        width: { xs: '332px',sm:'32vw' },
                     }}
                 >
                     {/* Company name */}
@@ -110,7 +110,7 @@ const CompanyBox = () => {
                         sx={{
                             ...theme.typography.button,
                             display: 'flex',
-                            borderRadius: '6px',
+                            borderRadius: '0.35vw',
                             backgroundColor: '#B50304',
                             textTransform: 'none',
                             width: { xs: '80px', sm: '75px', md: '7.8125vw' },

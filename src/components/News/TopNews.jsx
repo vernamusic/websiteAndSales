@@ -138,7 +138,7 @@ const Mediacard = () => {
                 justifyContent="center"
                 position="relative"
                 {...swipeHandlers}
-                sx={{ width: '100%', backgroundColor: "transparent" }}
+                sx={{ width: '100%', backgroundColor: "transparent", }}
             >
                 <Box
                     sx={{
@@ -162,6 +162,7 @@ const Mediacard = () => {
                                 borderRadius: "10px",
                                 flexDirection: 'column',
                                 gap:{xs:'3.3vw',sm:'1.4vw'},
+                                mt:{xs:'5vw',sm:'0'}
                             }}
                         >
                             <Typography sx={{ ...theme.typography.h3 }}>
