@@ -15,8 +15,8 @@ const theme = createTheme({
         h3: {
             fontFamily: "Lato",
             fontWeight: 500,
-            fontSize: "2.22vw",
-            lineHeight: "2.5vw",
+            fontSize: "2.52vw",
+            lineHeight: "3vw",
             color: "#FFFFFF",
         },
         button: {

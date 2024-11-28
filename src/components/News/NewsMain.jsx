@@ -21,7 +21,7 @@ const theme = createTheme({
         h3: {
             fontFamily: "Lato",
             fontWeight:{xs:500,sm:700},
-            fontSize:{xs:'2.78vw',sm:'1.6667vw'},
+            fontSize:{xs:'3.2vw',sm:'1.6667vw'},
             color: "#F1F1F1",
             textTransform: 'none',
         },
@@ -167,11 +167,11 @@ const TeamMembers = () => {
 
 
 
-            <Box sx={{display:{xs:'flex',sm:'none'},flexDirection: 'column',gap:'4vw',my:'4vw'}}>
+            <Box sx={{display:{xs:'flex',sm:'none'},flexDirection: 'column',gap:'10vw',my:'4vw'}}>
                 {teamsData.map((team, index) => (
                     <Box key={index}>
                         <Typography
-                            sx={{ ...theme.typography.h3,ml:'8vw',mb:'4vw'}}
+                            sx={{ ...theme.typography.h3,ml:'8vw',mb:'2vw'}}
                         >
                             {team.team_name}
                         </Typography>
