@@ -154,7 +154,7 @@ const GroupButton = () => {
                                     src={box.image}
                                     alt={box.title}
                                     sx={{
-                                        width: {xs:'142px',sm:'230px'},
+                                        width: {xs:'156px',sm:'230px'},
                                         height: {xs:'80px',sm:'129px'},
                                         backgroundColor: '#FFFFFF',
                                         objectFit: 'contain',
