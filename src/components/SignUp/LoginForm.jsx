@@ -96,7 +96,7 @@ const AuthForm = ({ email: initialEmail = null, onForgotPassword, onLoginSuccess
 
     const handleCloseSnackbar = () => setOpenSnackbar(false);
 
-    const handleSuccess = async (response) => {
+    const handleSuccessGoogle = async (response) => {
         try {
             const res = await fetch('https://vitruvianshield.com/api/v1/auth/google/callback/', {
                 method: 'POST',
@@ -115,13 +115,13 @@ const AuthForm = ({ email: initialEmail = null, onForgotPassword, onLoginSuccess
             showSnackbar('An unexpected error occurred. Please try again.', 'error');
         }
     };
-    const handleFailure = (error) => {
+    const handleFailureGoogle = (error) => {
         showSnackbar('google login failed.', 'error');
     };
 
 
     return (
-        <Box sx={{ width: 380 }}>
+        <Box sx={{width:'80%'}}>
             <form onSubmit={handleSubmit}>
                 <FormControl variant="outlined" fullWidth sx={{ mb: '18px' }}>
                     <FormInput
@@ -232,9 +232,8 @@ const AuthForm = ({ email: initialEmail = null, onForgotPassword, onLoginSuccess
                 >
                     Get started
                 </Button>
-                <GoogleSignInButton onSuccess={handleSuccess} onFailure={handleFailure} />
             </form>
-
+            <GoogleSignInButton onSuccess={handleSuccessGoogle} onFailure={handleFailureGoogle} />
             <Snackbar
                 open={openSnackbar}
                 autoHideDuration={6000}

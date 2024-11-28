@@ -99,7 +99,6 @@ const SignUpDialog = ({ open, onClose, email: initialEmail = null }) => {
             open={open}
             onClose={onClose}
             maxWidth="sm"
-            fullWidth
             PaperProps={{
                 style: {
                     borderRadius: '15px',
@@ -107,11 +106,12 @@ const SignUpDialog = ({ open, onClose, email: initialEmail = null }) => {
                     color: '#FFFFFF',
                     maxWidth: '480px',
                     overflow: 'hidden',
-                    px: '48px',
+                    px: '60px',
                     maxHeight: '672px',
                     boxSizing: 'border-box',
                     pb: { xs: '20px', sm: '30px', md: '40px', lg: '50px' },
-                    position:'relative'
+                    position:'relative',
+                    mb:'5px',
                 },
             }}
         >

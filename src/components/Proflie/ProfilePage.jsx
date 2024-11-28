@@ -1,185 +1,343 @@
-import React, { useState, useEffect } from 'react';
-import { Box, Typography, TextField, Avatar, Paper, ThemeProvider, createTheme, Autocomplete, Button, Dialog } from '@mui/material';
-import axios from 'axios';
-import { useAuth } from '../../AuthContext.jsx';
-import ChangeEmail from './ChangeEmail';
-import ChangePhone from './ChangePhone';
-const theme = createTheme({
-    typography: {
-        h1: { fontFamily: 'Lato', fontWeight: 600, color: "#FFF" },
-        body1: { fontFamily: 'Lato', color: "#8C8C8C" },
-        subtitle1: { fontFamily: 'Lato', color: "#FFF" },
-    },
-});
-
-const getPhonePrefix = (countryCode) => {
-    const country = countriesData.find(country => country.code === countryCode);
-    return country ? country.phonePrefix : '';
-};
-
-const formatPhoneNumber = (phone) => {
-    const cleaned = ('' + phone).replace(/\D/g, '');
-    const match = cleaned.match(/^(\d{1,4})(\d{1,4})(\d{1,4})$/);
-    return match ? `${match[1]}-${match[2]}-${match[3]}` : phone;
-};
-
-const ProfilePage = () => {
-    const { authToken } = useAuth();
-    const Token = localStorage.getItem('authToken') || authToken;
-    const [isEditing, setIsEditing] = useState(false);
-    const [formData, setFormData] = useState({ first_name: '', last_name: '', email: '', phone: '', country: '', city: '' });
-    const [initialFormData, setInitialFormData] = useState({ first_name: '', last_name: '', email: '', phone: '', country: '', city: '' });
-    const [countryList, setCountryList] = useState([]);
-    const [phonePrefix, setPhonePrefix] = useState('');
-    const [dialogOpen, setDialogOpen] = useState(false);
-    const [PhoneDialogOpen, setPhoneDialogOpen] = useState(false);
+    import React, { useState, useEffect } from 'react';
+    import { Box, Typography, TextField, Avatar, Paper, ThemeProvider, createTheme, Autocomplete, Button, Dialog } from '@mui/material';
+    import axios from 'axios';
+    import { useAuth } from '../../AuthContext.jsx';
+    import ChangeEmail from './ChangeEmail';
+    import ChangePhone from './ChangePhone';
 
 
+    const theme = createTheme({
+        typography: {
+            h6: {
+                fontFamily: 'Lato',
+                fontSize: { xs: '12px', sm: '18px' },
+                lineHeight: 'normal',
+                color: '#8C8C8C',
+                textTransform: 'none',
+            },
+            h3: {
+                fontFamily: "Lato",
+                fontWeight: { xs: 600, sm: 700 },
+                fontSize: { xs: '14px', sm: '35px' },
+                color: "#FFFFFF",
+                textTransform: 'none',
+            },
+            button: {
+                fontFamily: 'Lato',
+                fontSize: { xs: '10px', sm: '16px' },
+                color: "#F1F1F1",
+                textTransform: 'none',
+                textAlign: 'left',
+            },
+        },
+        palette: {
+            text: {
+                primary: "#F1F1F1",
+                disabled: "#A5A5A5",
+            },
+        },
+    });
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-            try {
-                const { data } = await axios.get('https://vitruvianshield.com/api/v1/user/settings', { headers: { 'Authorization': `Bearer ${Token}` } });
-                setFormData(data);
-                setInitialFormData(data);
-                const countriesResponse = await axios.get('https://vitruvianshield.com/api/v1/countries');
-                setCountryList(countriesResponse.data);
-                if (data.country) {
-                    setPhonePrefix(await getPhonePrefix(data.country));
+
+    const getPhonePrefix = (countryCode) => {
+        const country = countriesData.find(country => country.code === countryCode);
+        return country ? country.phonePrefix : '';
+    };
+
+    const formatPhoneNumber = (phone) => {
+        const cleaned = ('' + phone).replace(/\D/g, '');
+        const match = cleaned.match(/^(\d{1,4})(\d{1,4})(\d{1,4})$/);
+        return match ? `${match[1]}-${match[2]}-${match[3]}` : phone;
+    };
+
+    const ProfilePage = () => {
+        const { authToken } = useAuth();
+        const Token = localStorage.getItem('authToken') || authToken;
+        const [isEditing, setIsEditing] = useState(false);
+        const [formData, setFormData] = useState({ first_name: '', last_name: '', email: '', phone: '', country: '', city: '' });
+        const [initialFormData, setInitialFormData] = useState({ first_name: '', last_name: '', email: '', phone: '', country: '', city: '' });
+        const [countryList, setCountryList] = useState([]);
+        const [phonePrefix, setPhonePrefix] = useState('');
+        const [dialogOpen, setDialogOpen] = useState(false);
+        const [PhoneDialogOpen, setPhoneDialogOpen] = useState(false);
+        const [focused, setFocused] = useState(false);
+
+
+
+        useEffect(() => {
+            const fetchUserData = async () => {
+                try {
+                    const { data } = await axios.get('https://vitruvianshield.com/api/v1/user/settings', { headers: { 'Authorization': `Bearer ${Token}` } });
+                    setFormData(data);
+                    setInitialFormData(data);
+                    const countriesResponse = await axios.get('https://vitruvianshield.com/api/v1/countries');
+                    setCountryList(countriesResponse.data);
+                    if (data.country) {
+                        setPhonePrefix(await getPhonePrefix(data.country));
+                    }
+                } catch (error) {
+                    console.error('Error fetching user data or countries:', error);
                 }
-            } catch (error) {
-                console.error('Error fetching user data or countries:', error);
+            };
+            fetchUserData();
+        }, [Token]);
+
+        const handleCountryChange = async (event, newValue) => {
+            const countryId = newValue ? newValue.id : '';
+            setFormData(prev => ({ ...prev, country: countryId }));
+            if (countryId) {
+                const selectedCountry = countryList.find(country => country.id === countryId);
+                if (selectedCountry) {
+                    setPhonePrefix(selectedCountry.phone_prefix);
+                }
+            } else {
+                setPhonePrefix('');
             }
         };
-        fetchUserData();
-    }, [Token]);
 
-    const handleCountryChange = async (event, newValue) => {
-        const countryId = newValue ? newValue.id : '';
-        setFormData(prev => ({ ...prev, country: countryId }));
-        if (countryId) {
-            const selectedCountry = countryList.find(country => country.id === countryId);
-            if (selectedCountry) {
-                setPhonePrefix(selectedCountry.phone_prefix);
+        const handleInputChange = (e) => {
+            const { name, value } = e.target;
+            setFormData(prev => ({ ...prev, [name]: value }));
+        };
+
+        const handleSubmit = async (e) => {
+            if (e) e.preventDefault();
+            const phoneWithPrefix = `${phonePrefix}${formData.phone}`;
+            try {
+                await axios.patch('https://vitruvianshield.com/api/v1/user/settings', { ...formData, phone: formatPhoneNumber(phoneWithPrefix) }, { headers: { 'Authorization': `Bearer ${Token}` } });
+                console.log('Profile updated');
+                setIsEditing(false);
+            } catch (error) {
+                console.error('Error updating profile:', error);
             }
-        } else {
-            setPhonePrefix('');
-        }
-    };
+        };
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
-    };
-
-    const handleSubmit = async (e) => {
-        if (e) e.preventDefault();
-        const phoneWithPrefix = `${phonePrefix}${formData.phone}`;
-        try {
-            await axios.patch('https://vitruvianshield.com/api/v1/user/settings', { ...formData, phone: formatPhoneNumber(phoneWithPrefix) }, { headers: { 'Authorization': `Bearer ${Token}` } });
-            console.log('Profile updated');
+        const handleCancel = () => {
             setIsEditing(false);
-        } catch (error) {
-            console.error('Error updating profile:', error);
-        }
-    };
+            setFormData(initialFormData);
+        };
 
-    const handleCancel = () => {
-        setIsEditing(false);
-        setFormData(initialFormData);
-    };
-
-    return (
-        <ThemeProvider theme={theme}>
-            <Box sx={{ m: '7px 128px 63px 64px', width: '100%', background: '#262626' }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', mb: '32px' }}>
-                    <Avatar sx={{ width: '80px', height: '80px', border: '2px solid #B0EEE9', boxShadow: '0px 0px 5px 0px #8AE6DE99' }} />
-                    <Box sx={{ ml: '24px' }}>
-                        <Typography variant="h1">{`${formData.first_name} ${formData.last_name}`}</Typography>
-                        <Typography
-                            variant="body1"
-                            sx={{ mt: 1, cursor: 'pointer', color: '#F5F5F5' }}
+        return (
+            <ThemeProvider theme={theme}>
+                <Box sx={{ width: '100%', background: '#262626',alignContent:'center',height: '40vw',ml:{ sm: '5vw', xs: '0' },mt:'10px',mb:{ sm: '0', xs: '130vw' } }}>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            mb: '32px',
+                            flexDirection: { xs: 'column', sm: 'row' },
+                        }}
+                    >
+                        <Avatar
+                            sx={{
+                                width: '86.4px',
+                                height: '86.4px',
+                                border: '2px solid #B0EEE9',
+                                boxShadow: '0px 0px 5px 0px #8AE6DE99',
+                            }}
+                        />
+                        <Box
+                            sx={{
+                                ml: { sm: '24px', xs: '0' },
+                                mt: { xs: '16px', sm: '0' },
+                            }}
                         >
-                            {formData.email}
-                        </Typography>
-                    </Box>
-                </Box>
-                <Paper component="form" onSubmit={handleSubmit} sx={{ p: '42px 240px 42px 42px', borderRadius: '16px', gap: '56px', background: '#262626', border: '1px solid', borderImageSource: 'linear-gradient(180deg, rgba(31, 31, 31, 0.3) 0%, rgba(20, 20, 20, 0.3) 100%)', boxShadow: '0px 2px 8px 0px #0000001A' }}>
-                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '32px' }}>
-                        {['first_name', 'last_name', 'email', 'phone', 'country', 'city'].map((field, idx) => (
-                            <Box sx={{ width: '282px' }} key={idx}>
-                                <Typography variant="subtitle1" sx={{ marginBottom: 1 }}>
-                                    {field.replace('_', ' ').toUpperCase()}
-                                </Typography>
+                            <Typography
+                                sx={{
+                                    ...theme.typography.h3,
+                                    textAlign: { xs: 'center', sm: 'left' }, // Center on xs, left on sm and above
+                                }}
+                            >
+                                {`${formData.first_name} ${formData.last_name}`}
+                            </Typography>
+                            <Typography
+                                sx={{
+                                    mt: '0.5vw',
+                                    ...theme.typography.h6,
+                                    textAlign: { xs: 'center', sm: 'left' }, // Center on xs, left on sm and above
+                                }}
+                            >
+                                {formData.email}
+                            </Typography>
+                        </Box>
 
-                                {field === 'email' || field === 'phone' ? (
-                                    <Button
-                                        fullWidth
-                                        sx={{
-                                            backgroundColor: '#262626',
-                                            border: '1px solid #F5F5F5',
-                                            borderRadius: '4px',
-                                            color: '#FFF',
-                                            textAlign: 'left',
-                                            paddingRight: '80px',
-                                            height: '58px',
-                                            textTransform: 'none',
-                                        }}
-                                        disabled={!isEditing}
-                                        onClick={() => {
-                                            if (field === 'email') {
-                                                setDialogOpen(true);
-                                            } else if (field === 'phone') {
-                                                setPhoneDialogOpen(true);
-                                            }
-                                        }}
-                                        disableRipple
-                                    >
-                                        {formData[field]}
-                                    </Button>
-                                ) : field === 'country' ? (
-                                    <Autocomplete
-                                        freeSolo
-                                        disabled={!isEditing}
-                                        value={countryList.find((country) => country.id === formData.country) || null}
-                                        options={countryList}
-                                        getOptionLabel={(option) => option.name}
-                                        onChange={handleCountryChange}
-                                        renderInput={(params) => (
-                                            <TextField
-                                                {...params}
-                                                name="country"
-                                                variant="outlined"
-                                                sx={{
+                    </Box>
+
+                    <Paper component="form" onSubmit={handleSubmit} sx={{ml:{xs:'12vw',sm:'0px'},width:'60vw',pb:'3vw', borderRadius: '16px',background: '#262626', border: '1px solid', borderImageSource: 'linear-gradient(180deg, rgba(31, 31, 31, 0.3) 0%, rgba(20, 20, 20, 0.3) 100%)', boxShadow: '0px 2px 8px 0px #0000001A' }}>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                flexWrap: 'wrap',
+                                gap: '2vw',
+                                ml: '-2vw',
+                                flexDirection: { xs: 'column', sm: 'row' }, // تعیین جهت بچه‌ها بر اساس اندازه صفحه
+                            }}
+                        >
+                            {['first_name', 'last_name', 'email', 'phone', 'country', 'city'].map((field, idx) => (
+                                <Box sx={{ width: {xs:'80vw',sm:'19.58vw'},mx:'1vw' }} key={idx}>
+                                    <Typography sx={{ mb: '0.5vw', ...theme.typography.button }}>
+                                        {field.charAt(0).toUpperCase() + field.slice(1).replace('_', ' ')}
+                                    </Typography>
+
+                                    {field === 'email' || field === 'phone' ? (
+                                        <Button
+                                            fullWidth
+                                            sx={{
+                                                overflow: 'hidden',
+                                                backgroundColor: '#262626',
+                                                border: '1px solid #F5F5F5',
+                                                borderRadius: '4px',
+                                                ...theme.typography.button,
+                                                height: '48px',
+                                                display: 'flex',
+                                                justifyContent: 'flex-start',
+                                                alignItems: 'center',
+                                                paddingLeft: '10px',
+                                                color: !isEditing ? theme.palette.text.disabled : theme.typography.h6.color,
+                                                "&:hover": {
+                                                    backgroundColor: !isEditing ? '#262626' : '#333',
+                                                    cursor: !isEditing ? 'not-allowed' : 'pointer',
+                                                },
+                                                "&.Mui-disabled": {
                                                     backgroundColor: '#262626',
-                                                    border: '1px solid #F5F5F5',
-                                                    borderRadius: '4px',
-                                                }}
-                                            />
-                                        )}
-                                    />
-                                ) : (
-                                    <TextField
-                                        fullWidth
-                                        name={field}
-                                        value={formData[field]}
-                                        onChange={handleInputChange}
-                                        disabled={!isEditing}
-                                        variant="outlined"
-                                        sx={{
-                                            backgroundColor: '#262626',
-                                            border: '1px solid #F5F5F5',
-                                            borderRadius: '4px',
-                                        }}
-                                    />
-                                )}
+                                                    borderColor: '#ccc',
+                                                    color: theme.palette.text.disabled,
+                                                    cursor: 'not-allowed',
+                                                },
+                                            }}
+                                            disabled={field === 'email' ? !isEditing : field === 'phone' ? true : false}
+                                            onClick={() => {
+                                                if (field === 'email') {
+                                                    setDialogOpen(true);
+                                                } else if (field === 'phone') {
+                                                    setPhoneDialogOpen(true);
+                                                }
+                                            }}
+                                            disableRipple
+                                        >
+                                            {formData[field]}
+                                        </Button>
 
-                            </Box>
-                        ))}
-                    </Box>
+                                    ) : field === 'country' ? (
+                                        <Autocomplete
+                                            fullWidth
+                                            freeSolo
+                                            disabled={!isEditing}
+                                            value={countryList.find((country) => country.id === formData.country) || null}
+                                            options={countryList}
+                                            getOptionLabel={(option) => option.name}
+                                            onChange={handleCountryChange}
+                                            ListboxComponent={(props) => (
+                                                <ul
+                                                    {...props}
+                                                    style={{
+                                                        maxHeight: '200px',
+                                                        overflowY: 'auto',
+                                                        backgroundColor: '#262626',
+                                                        color: '#F5F5F5',
+                                                        maxWidth:'60vw',
+                                                        ...theme.typography.button,
+                                                    }}
+                                                />
+                                            )}
+                                            renderInput={(params) => (
+                                                <TextField
+
+                                                    {...params}
+                                                    name="country"
+                                                    sx={{
+                                                        height: '48px',
+                                                        ...theme.typography.button,
+                                                        backgroundColor: '#262626',
+                                                        border: '0.8x solid #F5F5F5',
+                                                        borderRadius: '4px',
+                                                        "& .MuiOutlinedInput-root": {
+                                                            height: '48px',
+
+                                                            "& fieldset": {
+                                                                ...theme.typography.button,
+                                                                borderColor: isEditing ? "#fff" : "#ccc",
+                                                            },
+                                                            ...(isEditing && {
+
+                                                                "&:hover fieldset": {
+                                                                    borderColor: "#ccc",
+                                                                },
+                                                                "&.Mui-focused fieldset": {
+                                                                    borderColor: "#B0EEE9",
+                                                                },
+                                                            }),
+                                                        },
+                                                        "& .Mui-disabled": {
+                                                            ...theme.typography.button,
+                                                            "& .MuiOutlinedInput-notchedOutline": {
+                                                                borderColor: "#ccc",
+                                                            },
+                                                            "& input": {
+                                                                color: "#fff",
+                                                            },
+                                                        },
+                                                        "& input": {
+                                                            color: "#ccc !important",
+                                                        }
+
+                                                    }}
+                                                />
+                                            )}
+                                            getOptionLimit={(options) => options.slice(0, 5)}
+                                        />
+
+                                    ) : (
+                                        <TextField
+                                            fullWidth
+                                            variant="outlined"
+                                            disabled={!isEditing}
+                                            name={field}
+                                            value={formData[field]}
+                                            onChange={handleInputChange}
+                                            autoComplete="off"
+                                            InputProps={{
+                                                style: {
+                                                    color: "#fff",
+                                                    ...theme.typography.button,
+                                                },
+                                            }}
+                                            sx={{
+                                                height: '48px',
+                                                "& .MuiOutlinedInput-root": {
+                                                    height: '48px',
+                                                    "& fieldset": {
+                                                        borderColor: isEditing ? "#fff" : "#ccc",
+                                                    },
+                                                    ...(isEditing && {
+                                                        "&:hover fieldset": {
+                                                            borderColor: "#ccc",
+                                                        },
+                                                        "&.Mui-focused fieldset": {
+                                                            borderColor: "#B0EEE9",
+                                                        },
+                                                    }),
+                                                },
+                                                "& .Mui-disabled": {
+                                                    "& .MuiOutlinedInput-notchedOutline": {
+                                                        borderColor: "#ccc !important",
+                                                    },
+                                                    "& input": {
+                                                        color: "#fff",
+                                                        backgroundColor: "transparent",
+                                                    },
+                                                },
+                                            }}
+                                        />
 
 
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 4 }}>
+                                    )}
+
+                                </Box>
+                            ))}
+                        </Box>
+                    </Paper>
+                    <Box sx={{ display: 'flex', justifyContent: 'start', mt:'0.2vw',ml:{sm:'0',xs:'15vw'} }}>
                         {isEditing && (
                             <Button
                                 variant="contained"
@@ -202,13 +360,12 @@ const ProfilePage = () => {
                             {isEditing ? 'Save' : 'Edit'}
                         </Button>
                     </Box>
-                </Paper>
-            </Box>
+                </Box>
 
-            <ChangeEmail open={dialogOpen} onClose={() => setDialogOpen(false)} />
-            <ChangePhone open={PhoneDialogOpen} onClose={() => setPhoneDialogOpen(false)} />
-        </ThemeProvider>
-    );
-};
+                <ChangeEmail open={dialogOpen} onClose={() => setDialogOpen(false)} />
+                <ChangePhone open={PhoneDialogOpen} onClose={() => setPhoneDialogOpen(false)} />
+            </ThemeProvider>
+        );
+    };
 
-export default ProfilePage;
+    export default ProfilePage;

@@ -217,7 +217,7 @@ const EmailVerification = ({ email, password, onSubmit, onResend, onBack }) => {
                 alignItems="center"
                 sx={{
                     p: { xs: '30px', md: '40px' },
-                    width: { xs: '100%', sm: '448px' },
+                    width:'100%',
                     boxSizing: 'border-box'
                 }}
             >
@@ -269,12 +269,13 @@ const EmailVerification = ({ email, password, onSubmit, onResend, onBack }) => {
                                 inputProps={{
                                     maxLength: 1,
                                     style: {
+                                        padding:'0',
                                         fontFamily: 'Lato',
                                         fontSize: '23px',
                                         fontWeight: 500,
                                         textAlign: 'center',
-                                        width: '25px',
-                                        height: '25px',
+                                        width: '100%',
+                                        height: '50px',
                                         backgroundColor: 'white',
                                         color: '#262626',
                                         borderRadius: '4px',

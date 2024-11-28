@@ -93,7 +93,7 @@ const ForgotPasswordDialog = ({ onBack, showSnackbar, }) => {
                     alignItems="center"
                     sx={{
                         p: { xs: '30px', md: '40px' },
-                        width: { xs: '448px', },
+                        width: { xs: '340px', md:'450px'},
                         height: { xs: '337px', },
                         boxSizing: 'border-box'
                     }}
