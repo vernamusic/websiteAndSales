@@ -88,7 +88,7 @@ const ResetPasswordDialog = ({ open, onClose, token }) => {
                     borderRadius: '15px',
                     backgroundColor: '#262626',
                     color: '#FFFFFF',
-                    maxWidth: '480px',
+                    maxWidth: '380px',
                     overflow: 'hidden',
                     px: '48px',
                     maxHeight: '672px',
@@ -104,7 +104,7 @@ const ResetPasswordDialog = ({ open, onClose, token }) => {
                 alignItems="center"
                 sx={{
                     p: { xs: '30px', md: '40px' },
-                    width: { xs: '448px', },
+                    width: '100%',
                     height: { xs: '337px', },
                     boxSizing: 'border-box'
                 }}

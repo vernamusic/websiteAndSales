@@ -269,12 +269,13 @@ const EmailVerification = ({ email, password, onSubmit, onResend, onBack }) => {
                                 inputProps={{
                                     maxLength: 1,
                                     style: {
+                                        padding:'0',
                                         fontFamily: 'Lato',
                                         fontSize: '23px',
                                         fontWeight: 500,
                                         textAlign: 'center',
                                         width: '100%',
-                                        height: '25px',
+                                        height: '50px',
                                         backgroundColor: 'white',
                                         color: '#262626',
                                         borderRadius: '4px',
