@@ -410,8 +410,8 @@ const Navbar = React.memo((props) => {
                                         },
                                     }}
                                 >
-                                  {/*<MenuItem onClick={handleProfileClick}>Profile</MenuItem>*/}
-                                    <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                                <MenuItem onClick={handleProfileClick}>Profile</MenuItem>
+                                <MenuItem onClick={handleLogout}>Logout</MenuItem>
                                 </Menu>
                             </>
                         ) : (

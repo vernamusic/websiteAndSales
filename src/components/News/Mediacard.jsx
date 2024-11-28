@@ -70,9 +70,8 @@ const Mediacard = ({ data }) => {
                             position: "relative",
                             display: "flex",
                             flexDirection: "column",
-                            height: "31.67vw",
-                            width: "25vw",
-
+                            height: {xs:"36.11vw",sm:"31.67vw"},
+                            width: {xs:"28.88vw",sm:"25vw"},
                             borderRadius: "2.22vw",
                             flexShrink: 0,
                             color: "white",

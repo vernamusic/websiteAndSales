@@ -119,7 +119,7 @@
 
         return (
             <ThemeProvider theme={theme}>
-                <Box sx={{ width: '100%', background: '#262626',alignContent:'center',height: '40vw',ml:{ sm: '5vw', xs: '0' },mt:'10px',mb:{ sm: '0', xs: '130vw' } }}>
+                <Box sx={{ width: '100%', background: '#262626',alignContent:'center',height: '100%',ml:{ sm: '5vw', xs: '0' },mt:'10px',mb:{ sm: '0vw', xs: '13vw' } }}>
                     <Box
                         sx={{
                             display: 'flex',
@@ -154,7 +154,7 @@
                                 sx={{
                                     mt: '0.5vw',
                                     ...theme.typography.h6,
-                                    textAlign: { xs: 'center', sm: 'left' }, // Center on xs, left on sm and above
+                                    textAlign: { xs: 'center', sm: 'left' },
                                 }}
                             >
                                 {formData.email}
@@ -163,18 +163,18 @@
 
                     </Box>
 
-                    <Paper component="form" onSubmit={handleSubmit} sx={{ml:{xs:'12vw',sm:'0px'},width:'60vw',pb:'3vw', borderRadius: '16px',background: '#262626', border: '1px solid', borderImageSource: 'linear-gradient(180deg, rgba(31, 31, 31, 0.3) 0%, rgba(20, 20, 20, 0.3) 100%)', boxShadow: '0px 2px 8px 0px #0000001A' }}>
+                    <Paper component="form" onSubmit={handleSubmit} sx={{ml:{xs:'12vw',sm:'0px'},width:{xs:'0vw',sm:'60vw'},pb:'3vw', borderRadius: '16px',background: '#262626', border: '1px solid', borderImageSource: 'linear-gradient(180deg, rgba(31, 31, 31, 0.3) 0%, rgba(20, 20, 20, 0.3) 100%)', boxShadow: '0px 2px 8px 0px #0000001A' }}>
                         <Box
                             sx={{
                                 display: 'flex',
                                 flexWrap: 'wrap',
                                 gap: '2vw',
                                 ml: '-2vw',
-                                flexDirection: { xs: 'column', sm: 'row' }, // تعیین جهت بچه‌ها بر اساس اندازه صفحه
+                                flexDirection: { xs: 'column', sm: 'row' },
                             }}
                         >
                             {['first_name', 'last_name', 'email', 'phone', 'country', 'city'].map((field, idx) => (
-                                <Box sx={{ width: {xs:'80vw',sm:'19.58vw'},mx:'1vw' }} key={idx}>
+                                <Box sx={{ width: {xs:'72vw',sm:'19.58vw'},mx:{xs:'4vw',sm:'1vw'} }} key={idx}>
                                     <Typography sx={{ mb: '0.5vw', ...theme.typography.button }}>
                                         {field.charAt(0).toUpperCase() + field.slice(1).replace('_', ' ')}
                                     </Typography>
@@ -337,11 +337,11 @@
                             ))}
                         </Box>
                     </Paper>
-                    <Box sx={{ display: 'flex', justifyContent: 'start', mt:'0.2vw',ml:{sm:'0',xs:'15vw'} }}>
+                    <Box sx={{ display: 'flex',flexDirection:{xs:'column',sm:'row'},width:{xs:'72vw',sm:'120px'}, justifyContent: {xs:'center',sm:'start'}, mt:'0.2vw',ml:{sm:'0',xs:'14vw'} }}>
                         {isEditing && (
                             <Button
                                 variant="contained"
-                                sx={{ mt: '24px', minWidth: '120px', minHeight: '40px', mr: 2, border: '1px solid #FFFFFF', background: 'transparent' }}
+                                sx={{ mt: '24px', minWidth: {xs:'72vw',sm:'120px'}, minHeight: '40px', mr: {sm:2}, border: '1px solid #FFFFFF', background: 'transparent' }}
                                 onClick={handleCancel}
                             >
                                 Cancel
@@ -349,7 +349,7 @@
                         )}
                         <Button
                             variant="contained"
-                            sx={{ mt: '24px', minWidth: '120px', minHeight: '40px', background: '#B50304' }}
+                            sx={{ mt: '24px', minWidth: {xs:'72vw',sm:'120px'}, minHeight: '40px', background: '#B50304' }}
                             onClick={() => {
                                 if (isEditing) {
                                     handleSubmit();
