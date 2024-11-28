@@ -10,27 +10,34 @@
         typography: {
             h6: {
                 fontFamily: 'Lato',
-                fontSize: {xs:'2.78vw',sm:'1.15vw'},
+                fontSize: { xs: '12px', sm: '18px' },
                 lineHeight: 'normal',
                 color: '#8C8C8C',
                 textTransform: 'none',
             },
             h3: {
                 fontFamily: "Lato",
-                fontWeight: {xs:600,sm:700},
-                fontSize: {xs:'3.89vw',sm:'2.2222vw'},
+                fontWeight: { xs: 600, sm: 700 },
+                fontSize: { xs: '14px', sm: '35px' },
                 color: "#FFFFFF",
                 textTransform: 'none',
             },
             button: {
                 fontFamily: 'Lato',
-                fontSize: {xs:'2.22vw',sm:'1vw'},
+                fontSize: { xs: '10px', sm: '16px' },
                 color: "#F1F1F1",
                 textTransform: 'none',
                 textAlign: 'left',
             },
         },
+        palette: {
+            text: {
+                primary: "#F1F1F1",
+                disabled: "#A5A5A5",
+            },
+        },
     });
+
 
     const getPhonePrefix = (countryCode) => {
         const country = countriesData.find(country => country.code === countryCode);
@@ -112,23 +119,62 @@
 
         return (
             <ThemeProvider theme={theme}>
-                <Box sx={{ width: '100%', background: '#262626',alignContent:'center',height: '40vw',ml:'5vw' }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: '32px' }}>
-                        <Avatar sx={{ width: '6vw', height: '6vw', border: '2px solid #B0EEE9', boxShadow: '0px 0px 5px 0px #8AE6DE99' }} />
-                        <Box sx={{ ml: '24px' }}>
-                            <Typography sx={{ ...theme.typography.h3 }}>{`${formData.first_name} ${formData.last_name}`}</Typography>
+                <Box sx={{ width: '100%', background: '#262626',alignContent:'center',height: '40vw',ml:{ sm: '5vw', xs: '0' },mt:'10px',mb:{ sm: '0', xs: '130vw' } }}>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            mb: '32px',
+                            flexDirection: { xs: 'column', sm: 'row' },
+                        }}
+                    >
+                        <Avatar
+                            sx={{
+                                width: '86.4px',
+                                height: '86.4px',
+                                border: '2px solid #B0EEE9',
+                                boxShadow: '0px 0px 5px 0px #8AE6DE99',
+                            }}
+                        />
+                        <Box
+                            sx={{
+                                ml: { sm: '24px', xs: '0' },
+                                mt: { xs: '16px', sm: '0' },
+                            }}
+                        >
                             <Typography
-
-                                sx={{ mt: '0.5vw',...theme.typography.h6 }}
+                                sx={{
+                                    ...theme.typography.h3,
+                                    textAlign: { xs: 'center', sm: 'left' }, // Center on xs, left on sm and above
+                                }}
+                            >
+                                {`${formData.first_name} ${formData.last_name}`}
+                            </Typography>
+                            <Typography
+                                sx={{
+                                    mt: '0.5vw',
+                                    ...theme.typography.h6,
+                                    textAlign: { xs: 'center', sm: 'left' }, // Center on xs, left on sm and above
+                                }}
                             >
                                 {formData.email}
                             </Typography>
                         </Box>
+
                     </Box>
-                    <Paper component="form" onSubmit={handleSubmit} sx={{width:'60vw',pb:'3vw', borderRadius: '16px',background: '#262626', border: '1px solid', borderImageSource: 'linear-gradient(180deg, rgba(31, 31, 31, 0.3) 0%, rgba(20, 20, 20, 0.3) 100%)', boxShadow: '0px 2px 8px 0px #0000001A' }}>
-                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '2vw',ml:'-2vw' }}>
+
+                    <Paper component="form" onSubmit={handleSubmit} sx={{ml:{xs:'12vw',sm:'0px'},width:'60vw',pb:'3vw', borderRadius: '16px',background: '#262626', border: '1px solid', borderImageSource: 'linear-gradient(180deg, rgba(31, 31, 31, 0.3) 0%, rgba(20, 20, 20, 0.3) 100%)', boxShadow: '0px 2px 8px 0px #0000001A' }}>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                flexWrap: 'wrap',
+                                gap: '2vw',
+                                ml: '-2vw',
+                                flexDirection: { xs: 'column', sm: 'row' }, // تعیین جهت بچه‌ها بر اساس اندازه صفحه
+                            }}
+                        >
                             {['first_name', 'last_name', 'email', 'phone', 'country', 'city'].map((field, idx) => (
-                                <Box sx={{ width: '19.58vw',mx:'1vw' }} key={idx}>
+                                <Box sx={{ width: {xs:'80vw',sm:'19.58vw'},mx:'1vw' }} key={idx}>
                                     <Typography sx={{ mb: '0.5vw', ...theme.typography.button }}>
                                         {field.charAt(0).toUpperCase() + field.slice(1).replace('_', ' ')}
                                     </Typography>
@@ -137,17 +183,29 @@
                                         <Button
                                             fullWidth
                                             sx={{
+                                                overflow: 'hidden',
                                                 backgroundColor: '#262626',
                                                 border: '1px solid #F5F5F5',
                                                 borderRadius: '4px',
                                                 ...theme.typography.button,
-                                                height: '58px',
+                                                height: '48px',
                                                 display: 'flex',
                                                 justifyContent: 'flex-start',
                                                 alignItems: 'center',
                                                 paddingLeft: '10px',
+                                                color: !isEditing ? theme.palette.text.disabled : theme.typography.h6.color,
+                                                "&:hover": {
+                                                    backgroundColor: !isEditing ? '#262626' : '#333',
+                                                    cursor: !isEditing ? 'not-allowed' : 'pointer',
+                                                },
+                                                "&.Mui-disabled": {
+                                                    backgroundColor: '#262626',
+                                                    borderColor: '#ccc',
+                                                    color: theme.palette.text.disabled,
+                                                    cursor: 'not-allowed',
+                                                },
                                             }}
-                                            disabled={!isEditing}
+                                            disabled={field === 'email' ? !isEditing : field === 'phone' ? true : false}
                                             onClick={() => {
                                                 if (field === 'email') {
                                                     setDialogOpen(true);
@@ -162,6 +220,7 @@
 
                                     ) : field === 'country' ? (
                                         <Autocomplete
+                                            fullWidth
                                             freeSolo
                                             disabled={!isEditing}
                                             value={countryList.find((country) => country.id === formData.country) || null}
@@ -177,18 +236,51 @@
                                                         backgroundColor: '#262626',
                                                         color: '#F5F5F5',
                                                         maxWidth:'60vw',
+                                                        ...theme.typography.button,
                                                     }}
                                                 />
                                             )}
                                             renderInput={(params) => (
                                                 <TextField
+
                                                     {...params}
                                                     name="country"
                                                     sx={{
-                                                        backgroundColor: '#262626',
-                                                        border: '1px solid #F5F5F5',
-                                                        borderRadius: '4px',
+                                                        height: '48px',
                                                         ...theme.typography.button,
+                                                        backgroundColor: '#262626',
+                                                        border: '0.8x solid #F5F5F5',
+                                                        borderRadius: '4px',
+                                                        "& .MuiOutlinedInput-root": {
+                                                            height: '48px',
+
+                                                            "& fieldset": {
+                                                                ...theme.typography.button,
+                                                                borderColor: isEditing ? "#fff" : "#ccc",
+                                                            },
+                                                            ...(isEditing && {
+
+                                                                "&:hover fieldset": {
+                                                                    borderColor: "#ccc",
+                                                                },
+                                                                "&.Mui-focused fieldset": {
+                                                                    borderColor: "#B0EEE9",
+                                                                },
+                                                            }),
+                                                        },
+                                                        "& .Mui-disabled": {
+                                                            ...theme.typography.button,
+                                                            "& .MuiOutlinedInput-notchedOutline": {
+                                                                borderColor: "#ccc",
+                                                            },
+                                                            "& input": {
+                                                                color: "#fff",
+                                                            },
+                                                        },
+                                                        "& input": {
+                                                            color: "#ccc !important",
+                                                        }
+
                                                     }}
                                                 />
                                             )}
@@ -198,27 +290,54 @@
                                     ) : (
                                         <TextField
                                             fullWidth
+                                            variant="outlined"
+                                            disabled={!isEditing}
                                             name={field}
                                             value={formData[field]}
                                             onChange={handleInputChange}
-                                            disabled={!isEditing}
-                                            variant="outlined"
+                                            autoComplete="off"
+                                            InputProps={{
+                                                style: {
+                                                    color: "#fff",
+                                                    ...theme.typography.button,
+                                                },
+                                            }}
                                             sx={{
-                                                // حالت پیش‌نمایش
-                                                backgroundColor: 'transparent',
-                                                border:'0.05vw solid #fff',
-                                                borderRadius:'0.2vw',
-                                                color: '#888',
-                                                maxHeight:'3vw',
+                                                height: '48px',
+                                                "& .MuiOutlinedInput-root": {
+                                                    height: '48px',
+                                                    "& fieldset": {
+                                                        borderColor: isEditing ? "#fff" : "#ccc",
+                                                    },
+                                                    ...(isEditing && {
+                                                        "&:hover fieldset": {
+                                                            borderColor: "#ccc",
+                                                        },
+                                                        "&.Mui-focused fieldset": {
+                                                            borderColor: "#B0EEE9",
+                                                        },
+                                                    }),
+                                                },
+                                                "& .Mui-disabled": {
+                                                    "& .MuiOutlinedInput-notchedOutline": {
+                                                        borderColor: "#ccc !important",
+                                                    },
+                                                    "& input": {
+                                                        color: "#fff",
+                                                        backgroundColor: "transparent",
+                                                    },
+                                                },
                                             }}
                                         />
+
+
                                     )}
 
                                 </Box>
                             ))}
                         </Box>
                     </Paper>
-                    <Box sx={{ display: 'flex', justifyContent: 'start', mt:'0.2vw' }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'start', mt:'0.2vw',ml:{sm:'0',xs:'15vw'} }}>
                         {isEditing && (
                             <Button
                                 variant="contained"

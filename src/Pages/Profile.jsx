@@ -47,6 +47,7 @@ const Sidebar = ({ activePage, setActivePage }) => (
     <Box
         component="nav"
         sx={{
+            display:{xs:'none',sm:'block'},
             width: '329px',
             flexShrink: 0,
             background: 'linear-gradient(180deg, #1F1F1F 0%, #141414 100%)',
