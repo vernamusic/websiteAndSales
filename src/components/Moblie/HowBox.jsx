@@ -163,13 +163,13 @@ const HowBox = () => {
                                 }}
                             >
                                 <Typography
-                                    sx={{...theme.typography.h6,mb:'8px',mt:'30px'}}
+                                    sx={{...theme.typography.h6,mb:'0px',mt:'42px'}}
                                     gutterBottom
                                 >
                                     {box.title}
                                 </Typography>
                                 <Typography
-                                    sx={{...theme.typography.caption,mt:'8px',mb:{xs:'13px',sm:'10px',md:'16px'}}}
+                                    sx={{...theme.typography.caption,px:1,mt:'8px',mb:{xs:'13px',sm:'10px',md:'16px'}}}
                                 >
                                     {box.description}
                                 </Typography>

@@ -164,7 +164,7 @@ const HowBox = () => {
                                 }}
                             >
                                 <Typography
-                                    sx={{...theme.typography.h6,mb:'8px',mt:'30px'}}
+                                    sx={{...theme.typography.h6,mb:'0px',mt:'46px'}}
                                     gutterBottom
                                 >
                                     {box.title}
