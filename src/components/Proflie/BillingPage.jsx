@@ -49,11 +49,11 @@ const billingData = [
 const BillingPage = () => {
     return (
         <Box sx={{ p: { xs: 2, sm: 4 },mb:10,mt:0,width:'100%',background:'#262626'}}>
-            <Typography variant="h3" sx={{ mb: 4 }}>
+            <Typography variant="h3" sx={{ mb: 4,color:'#fff' }}>
                 Billing and Payments
             </Typography>
 
-            <Paper sx={{ p: 3, mb: 4, borderRadius: 2 }}>
+            <Paper sx={{ p: 3, mb: 4, borderRadius: 2,background:'#262626' }}>
                 <Box
                     sx={{
                         display: 'flex',
@@ -78,7 +78,7 @@ const BillingPage = () => {
                         <Typography sx={{...theme.typography.h3}}>
                             Next renewal 29 Sept 2024
                         </Typography>
-                        <Button variant="contained" sx={{ ...theme.typography.button, mt: 2 }}>
+                        <Button variant="contained" sx={{ ...theme.typography.button, mt: 2,backgroundColor:'#a80d0d' }}>
                             Explore plans
                         </Button>
                     </Box>
@@ -87,10 +87,10 @@ const BillingPage = () => {
 
             </Paper>
 
-            <Paper sx={{ p: 5, borderRadius: 2,width:'100%' }}>
+            <Paper sx={{ p: 5, borderRadius: 2,width:'100%',background:'#262626' }}>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
                     <Typography sx={{textAlign:'start', ...theme.typography.h3}}>Billing history</Typography>
-                    <Button variant="contained" startIcon={<Download />} sx={{ ...theme.typography.button }}>
+                    <Button variant="contained" startIcon={<Download />} sx={{ ...theme.typography.button,backgroundColor:'#a80d0d' }}>
                         Download all
                     </Button>
                 </Box>
@@ -147,7 +147,7 @@ const BillingPage = () => {
                                         </Typography>
                                     </TableCell>
                                     <TableCell sx={{textAlign:'center', ...theme.typography.h3}}>
-                                        <Button startIcon={<Download />} sx={{ ...theme.typography.button }}>
+                                        <Button startIcon={<Download />} sx={{ ...theme.typography.button, }}>
                                             Download
                                         </Button>
                                     </TableCell>
