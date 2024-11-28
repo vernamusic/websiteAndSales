@@ -13,7 +13,7 @@ const theme = createTheme({
     typography: {
         h6: {
             fontFamily: 'Lato',
-            fontSize:{xs:'10px',md:'12px',lg:'16px'},
+            fontSize:{xs:'12px',md:'14px',lg:'16px'},
             fontWeight: 600,
             color: "#FFFFFF",
             letterSpacing: '0.4px',
@@ -28,9 +28,9 @@ const theme = createTheme({
         },
         caption: {
             fontFamily: 'Lato',
-            fontSize:{xs:'9px',sm:'10.7px',md:'12px'},
+            fontSize:{xs:'10px',sm:'11px',md:'12px'},
             fontWeight: 400,
-            lineHeight:'1.35',
+            lineHeight:'13px',
             textTransform: 'none',
             color: '#EEEEEE',
 
@@ -97,16 +97,16 @@ const HowBox = () => {
                         display:'flex',
                         flexWrap:'wrap',
                         justifyContent:'center',
-                        columnGap:{xs:'2em',sm:'2.5em'},
-                        rowGap:{xs:'2em',sm:'4em'}
+                        columnGap:{xs:'1em',sm:'2.5em'},
+                        rowGap:{xs:'3em',sm:'4em'}
                     }}
                 >
                     {howData.map((box, index) => (
                         <Box
                             key={index}
                             sx={{
-                                width: {xs:'160px',md:'170px',lg:'18.5%'},
-                                height: {xs:'180px',md:'180px',lg:'250px'},
+                                width: {xs:'156px',md:'170px',lg:'18.5%'},
+                                height: {xs:'170px',md:'180px',lg:'250px'},
                                 borderRadius: '16px',
                                 display: 'flex',
                                 flexDirection: 'column',
@@ -125,8 +125,8 @@ const HowBox = () => {
                                     top: {xs:'-0.7em',md:'-1.3em'},
                                     left: '50%',
                                     transform: 'translateX(-50%)',
-                                    width: {xs:'25px',sm:'25px',md:'40px'},
-                                    height: {xs:'25px',sm:'25px',md:'40px'},
+                                    width: {xs:'32px',sm:'36px',md:'40px'},
+                                    height: {xs:'32px',sm:'36px',md:'40px'},
                                     padding: '8px',
                                     backgroundColor: '#B50304',
                                     borderRadius: '50%',
@@ -141,8 +141,8 @@ const HowBox = () => {
                                         src={box.icon}
                                         alt="Design"
                                         sx={{
-                                            width: {xs:'16px',sm:'16px',md:'24px'},
-                                            height: {xs:'16px',sm:'16px',md:'24px'},
+                                            width: {xs:'22px',sm:'23px',md:'24px'},
+                                            height: {xs:'22px',sm:'23px',md:'24px'},
                                         }}
                                     />
                                 ) : (
@@ -163,13 +163,13 @@ const HowBox = () => {
                                 }}
                             >
                                 <Typography
-                                    sx={{...theme.typography.h6,mb:'8px',mt:'24px'}}
+                                    sx={{...theme.typography.h6,mb:'0px',mt:'42px'}}
                                     gutterBottom
                                 >
                                     {box.title}
                                 </Typography>
                                 <Typography
-                                    sx={{...theme.typography.caption,mt:'px',mb:{xs:'6px',sm:'10px',md:'16px'}}}
+                                    sx={{...theme.typography.caption,px:0.5,mt:'8px',mb:{xs:'13px',sm:'10px',md:'16px'}}}
                                 >
                                     {box.description}
                                 </Typography>
@@ -181,7 +181,7 @@ const HowBox = () => {
                                 alt={box.title}
                                 sx={{
                                     width: '100%',
-                                    height: '55%',
+                                    height: {xs:'82px',sm:'55%'},
                                     objectFit: 'cover',
                                     borderRadius: '0 0 16px 16px',
                                     mt: 'auto',
