@@ -79,12 +79,11 @@ const Slider = () => {
                     width: '100vw',
                     position: 'relative',
                     backgroundImage: `url(${slides[currentSlide].image})`,
-
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
                     maxHeight: '746px',
-                    minHeight: { xs: '500px', sm: '600px', md: '700px', lg: '900px' }
+                    minHeight: { xs: '360px', sm: '480px', md: '720px', lg: '900px' }
                 }}
             >
                 <Box
@@ -92,7 +91,7 @@ const Slider = () => {
                         mt: { xs: '180px', sm: '220px', md: '270px', lg: '318px' },
                         minHeight: { xs: '180px', sm: '220px', md: '270px', lg: '318px' },
                         position: 'relative',
-                        display: 'flex',
+                        display: {xs:'none',sm:'flex'},
                         flexDirection: 'column',
                         justifyContent: 'center',
                         alignItems: 'flex-start',
@@ -117,7 +116,7 @@ const Slider = () => {
                             borderRadius: '50%',
                             backgroundColor: 'rgba(217, 217, 217, 1)',
                             color: '#000000',
-                            display: 'flex',
+                            display: {xs:'none',sm:'flex'},
                             alignItems: 'center',
                             justifyContent: 'center',
                             pl: 1.5,
@@ -133,7 +132,7 @@ const Slider = () => {
                             borderRadius: '50%',
                             backgroundColor: 'rgba(217, 217, 217, 1)',
                             color: '#000000',
-                            display: 'flex',
+                            display: {xs:'none',sm:'flex'},
                             alignItems: 'center',
                             justifyContent: 'center',
                         }}
@@ -141,7 +140,7 @@ const Slider = () => {
                         <ArrowForwardIosIcon sx={{ fontSize: '16px' }} />
                     </Button>
 
-                    <Box sx={{ display: 'flex', alignItems: 'center', ml: 2 }}>
+                    <Box sx={{display: {xs:'none',sm:'flex'}, alignItems: 'center', ml: 2 }}>
                         <LinearProgress
                             variant="determinate"
                             value={((currentSlide + 1) / slides.length) * 100}

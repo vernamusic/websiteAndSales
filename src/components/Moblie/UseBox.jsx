@@ -107,7 +107,7 @@ const Stepper = () => {
     }, []);
 
     const getCircleContent = useCallback((index) => (
-        <Typography variant="h6" sx={{ color: '#fff',}}>
+        <Typography variant="h6" sx={{ color: '#fff',fontSize:'16px'}}>
             {index + 1}
         </Typography>
     ), []);

@@ -301,7 +301,9 @@ const Footer = () => {
               {/* Add the arrow icon to the left side */}
               <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <ExpandMoreIcon sx={{ color: 'white' }} /> {/* Left arrow in white */}
-                <Typography variant="h3" sx={{ color: 'white',fontSize:'10px',lineHeight:'10px' }}>Our solution</Typography> {/* Text in white */}
+                <Typography variant="h3" sx={{ 
+                    fontSize: {xs:'12px',sm:'16px'},
+                    lineHeight: {xs:'12px',sm:'16px'}, }}>Our solution</Typography> {/* Text in white */}
               </Box>
             </AccordionSummary>
             <AccordionDetails sx={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
@@ -325,7 +327,9 @@ const Footer = () => {
               {/* Add the arrow icon to the left side */}
               <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <ExpandMoreIcon sx={{ color: 'white' }} /> {/* Left arrow in white */}
-                <Typography variant="h3" sx={{ color: 'white',fontSize:'10px',lineHeight:'10px' }}>About us</Typography> {/* Text in white */}
+                <Typography variant="h3" sx={{ 
+                    fontSize: {xs:'12px',sm:'16px'},
+                    lineHeight: {xs:'12px',sm:'16px'},}}>About us</Typography> {/* Text in white */}
               </Box>
             </AccordionSummary>
             <AccordionDetails sx={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
@@ -346,7 +350,9 @@ const Footer = () => {
             >
               <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <ExpandMoreIcon sx={{ color: 'white' }} /> {/* Left arrow in white */}
-                <Typography variant="h3" sx={{ color: 'white',fontSize:'10px',lineHeight:'10px' }}>Visit Us</Typography> {/* Text in white */}
+                <Typography variant="h3" sx={{
+                    fontSize: {xs:'12px',sm:'16px'},
+                    lineHeight: {xs:'12px',sm:'16px'},}}>Visit Us</Typography> {/* Text in white */}
               </Box>
             </AccordionSummary>
             <AccordionDetails>

@@ -437,6 +437,7 @@ const PricingBox = () => {
                                         View More
                                     </Button>
                                     <Button
+                                        onClick={() => handleViewMoreClick('ctms')}
                                         variant="contained"
                                         fullWidth
                                         sx={{
@@ -597,6 +598,7 @@ const PricingBox = () => {
                                         View More
                                     </Button>
                                     <Button
+                                        onClick={() => handleViewMoreClick('rpm')}
                                         variant="contained"
                                         fullWidth
                                         sx={{
