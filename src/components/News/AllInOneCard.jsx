@@ -92,7 +92,7 @@ const Allinonecard = ({ data }) => {
                                 boxShadow: '0px 2px 16px 0px rgba(0, 0, 0, 0.32)',
                                 cursor: isMobile ? 'pointer' : 'default',
                             }}
-                            onClick={handleClick}
+                            onClick={() => handleClick(box.slug)}
                         >
                             <Box
                                 sx={{
