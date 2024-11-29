@@ -153,13 +153,14 @@ const PartnerBox = () => {
         <ThemeProvider theme={theme}>
             <Box
             sx={{
+                width:'100%',
                 height: '100%',
                 justifyItems: "center",
                 background: `url(${BG})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
-                px: { xs: '40px', sm: '70px', md: '60px', lg: '80px', xl: '100px' },
+                px: { xs: '10px', sm: '70px', md: '60px', lg: '80px', xl: '100px' },
                 pb: { xs: '30px', sm: '40px', md: '80px', lg: '70px' },
                 pt: { xs: '64px', sm: '140px', md: '170px' }
             }}>
@@ -171,7 +172,7 @@ const PartnerBox = () => {
                         flexDirection: 'row',
                         justifyContent: 'space-evenly',
                         flexWrap: 'wrap',
-                        gap: '20px'
+                        gap: {xs:'5px',sm:'20px'}
                     }}>
                     {PartnerData.map((box, index) => (
                         <PartnerCard
