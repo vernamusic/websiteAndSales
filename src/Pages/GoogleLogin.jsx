@@ -18,8 +18,8 @@ const GoogleLogin = () => {
     }, [searchParams]);
 
     const handleGoogleCallback = async (code) => {
-        console.log(code)
-        const response = await fetch("http://127.0.0.1:8000/api/v1/auth/google/callback/", {
+        // console.log(code)
+        const response = await fetch("https://vitruvianshield.com/api/v1/auth/google/callback/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -27,7 +27,7 @@ const GoogleLogin = () => {
             credentials: "include",
             body: JSON.stringify({ code }),
         });
-        console.log(response.code)
+        // console.log(response.code)
 
         if (!response.ok) {
             throw new Error("Failed to exchange code for tokens");
@@ -36,8 +36,8 @@ const GoogleLogin = () => {
         const data = await response.json();
         localStorage.setItem("authToken", data.access_token);
         localStorage.setItem("refreshToken", data.refresh_token);
-        console.log("access:",data.access_token)
-        console.log("refresh:",data.refresh_token)
+        // console.log("access:",data.access_token)
+        // console.log("refresh:",data.refresh_token)
 
         window.location.href = "/";
     };
