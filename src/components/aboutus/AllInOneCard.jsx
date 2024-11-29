@@ -12,16 +12,16 @@ const theme = createTheme({
     typography: {
         h3: {
             fontFamily: 'Lato',
-            fontWeight: {xs:500,sm:600},
-            fontSize: {xs:'2.58vw',sm:'1.25vw'},
+            fontWeight: {xs:700,sm:600},
+            fontSize: {xs:'3.33vw',sm:'1.25vw'},
             color: "#FFFFFF",
         },
         h6: {
             fontFamily: 'Lato',
-            fontSize: {xs:'2.4vw',sm:'1.11vw'},
+            fontSize: {xs:'2.77vw',sm:'1.11vw'},
             color: "rgba(191, 191, 191, 1)",
-            fontWeight: {xs:400,sm:500},
-            lineHeight: {xs:'3.4vw',sm:'1.3vw'},
+            fontWeight: 500,
+            lineHeight: {xs:'14px',sm:'1.3vw'},
         },
         caption: {
             fontFamily: 'Lato',
@@ -60,7 +60,7 @@ const Allinonecard = ({ data }) => {
                     justifyContent="center"
                     sx={{
                         gap: {xs:'5vw',sm:'1.86vw'},
-                        width: {xs:'87vw',sm:'85vw'},
+                        width: {xs:'90vw',sm:'85vw'},
                     }}
                 >
                     {data.map((box, index) => (
@@ -70,9 +70,8 @@ const Allinonecard = ({ data }) => {
                             sx={{
                                 flexDirection: "column",
                                 borderRadius: {xs:'2.22vw',sm:'1.11vw'},
-                                width: {xs:'35vw',sm:'18vw'},
-                                height: {xs:'52.6vw',sm:'26vw'},
-                                py: '0vw',
+                                width: {xs:'41.11vw',sm:'18vw'},
+                                height: {xs:'61.11vw',sm:'26vw'},
                                 boxSizing: 'border-box',
                                 boxShadow: '0vw 0.61vw 0.61vw 0vw rgba(0, 0, 0, 0.45)',
                                 position: "relative",
@@ -125,8 +124,8 @@ const Allinonecard = ({ data }) => {
                                             borderRadius: { xs: '20vw', sm: '5.21vw'},
                                             border: '0.052vw dashed #8AE6DE',
                                             p: { xs: '1vw', sm: '0.52vw'},
-                                            width: { xs: '17.33vw', sm: '7.44vw' },
-                                            height: { xs: '17.33vw', sm: '7.44vw' },
+                                            width: { xs: '19.44vw', sm: '7.44vw' },
+                                            height: { xs: '19.44vw', sm: '7.44vw' },
                                             display: 'flex',
                                             justifyContent: 'center',
                                             alignItems: 'center',

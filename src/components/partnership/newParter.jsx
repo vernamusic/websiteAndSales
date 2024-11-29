@@ -84,7 +84,7 @@ const NewPartner = () => {
                         sx={{
                             ...theme.typography.button,
                             display: 'flex',
-                            borderRadius: '6px',
+                            borderRadius: {xs:'4px',sm:'6px'},
                             backgroundColor: '#B50304',
                             textTransform: 'none',
                             width: {xs:'80px',md:'90px',lg:'138px'},

@@ -12,16 +12,16 @@ const theme = createTheme({
         h6: {
             fontFamily: 'Lato',
             fontWeight: 600,
-            fontSize:{xs:'10px',sm:'16px'},
+            fontSize:{xs:'12px',sm:'16px'},
             color: "#FFFFFF",
             letterSpacing: '0.4px',
-            lineHeight: {xs:'12px',sm:'16px'},
+            lineHeight: {xs:'14.4px',sm:'16px'},
         },
         h9: {
             fontWeight: 400,
             fontFamily: 'Lato',
-            fontSize:{xs:'9px',sm:'12px'},
-            lineHeight: {xs:'11.7px',sm:'12px'},
+            fontSize:{xs:'10px',sm:'12px'},
+            lineHeight: {xs:'13px',sm:'12px'},
             textTransform: 'none',
             color: '#EEEEEE',
 
@@ -80,8 +80,8 @@ const CertificationBox = () => {
                         display:'flex',
                         flexWrap: 'wrap',
                         justifyContent:{xs:'start',sm:'center'},
-                        width:{xs:'300px',sm:'1024px'},
-                        gap:{xs:'16px',sm:'48px'},
+                        width:{xs:'330px',sm:'1024px'},
+                        gap:{xs:'8px',sm:'48px'},
 
                     }}
                 >
@@ -89,8 +89,8 @@ const CertificationBox = () => {
                         <Box
                             key={index}
                             sx={{
-                                width: {xs:'140px',sm:'248px'},
-                                height: {xs:'165px',sm:'272px'},
+                                width: {xs:'156px',sm:'248px'},
+                                height: {xs:'178px',sm:'272px'},
                                 borderRadius: '16px',
                                 display: 'flex',
                                 flexDirection: 'column',

@@ -43,15 +43,15 @@ const customTheme = createTheme({
             fontFamily: 'Lato',
             fontWeight: 400,
             fontSize: {xs:'10px',sm:'16px'},
-            lineHeight: {xs:'10px',sm:'16px'},
+            lineHeight: {xs:'15px',sm:'16px'},
             color: "#F1F1F1",
             letterSpacing: '0.4px',
         },
         h5: {//website
             fontFamily: 'Lato',
             fontWeight: 400,
-            fontSize: {xs:'10px',sm:'15px'},
-            lineHeight: {xs:'12px',sm:'15px'},
+            fontSize: {xs:'12px',sm:'15px'},
+            lineHeight: {xs:'14.4px',sm:'15px'},
             color: "#5EA5D4",
             letterSpacing: '0.4px',
         },
@@ -120,11 +120,13 @@ const GroupButton = () => {
                 <Box display="flex" justifyContent="center">
                     <Box 
                     sx={{
-                        width:{xs:'300px',sm:'1024px'},
+                        width:{xs:'330px',sm:'1024px'},
                         display: 'flex',
                         flexWrap: 'wrap',
                         justifyContent:{xs:'start',sm:'center'},
-                        gap:{xs:'16px',sm:'64px'},
+                        
+                        columnGap:{xs:'1em',sm:'2.5em'},
+                        rowGap:{xs:'3em',sm:'4em'},
                         px:{xs:'0px',sm:'3vw'},
                         pt:'3vw',
                         pb:'5vw',
@@ -134,8 +136,8 @@ const GroupButton = () => {
                             <Box
                                 key={index}
                                 sx={{
-                                    width: {xs:'142px',sm:'230px'},
-                                    height: {xs:'164px',sm:'271px'},
+                                    width: {xs:'156px',sm:'230px'},
+                                    height: {xs:'178px',sm:'271px'},
                                     borderRadius: '16px',
                                     display: 'flex',
                                     flexDirection: 'column',
@@ -152,7 +154,7 @@ const GroupButton = () => {
                                     src={box.image}
                                     alt={box.title}
                                     sx={{
-                                        width: {xs:'142px',sm:'230px'},
+                                        width: {xs:'156px',sm:'230px'},
                                         height: {xs:'80px',sm:'129px'},
                                         backgroundColor: '#FFFFFF',
                                         objectFit: 'contain',
