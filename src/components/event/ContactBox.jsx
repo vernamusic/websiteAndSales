@@ -147,25 +147,26 @@ const ContactBox = () => {
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          px: { xs: "40px", sm: "70px", md: "60px", lg: "80px", xl: "100px" },
+          px: { xs: "20px", sm: "70px", md: "60px", lg: "80px", xl: "100px" },
           pb: { xs: "30px", sm: "40px", md: "80px", lg: "70px" },
           pt: { xs: "30px", sm: "40px", md: "70px" },
         }}
       >
         <Box>
-            <Typography variant="h2">
+      
+      <Typography variant="h2" sx={{ fontSize: {xs:'14px',sm:"24px"}, }}>
             CONTACT US
             </Typography>
-            <Typography variant="body2" marginTop="10px">
+            <Typography variant="body2" marginTop="10px" sx={{ fontSize: {xs:'12px',sm:"16px"}, }}>
             Integrate advanced features to improve user experience
             </Typography>
         </Box>
         <Box
           sx={{
-            width: "368px",
+            width: {xs:'88.88vw',sm:"368px"},
             borderRadius: "16px",
             background: "#262626",
-            mt:'48px',
+            mt:{xs:'24px',sm:'48px'},
           }}
         >
           <Box
@@ -177,10 +178,10 @@ const ContactBox = () => {
               top: 0,
             }}
           >
-            <Typography variant="h1" sx={{ mt: 4 }}>
+            <Typography variant="h1" sx={{ mt: 4,fontSize: {xs:'14px',sm:"18px"}, }}>
               Contact us
             </Typography>
-            <Typography variant="body1" sx={{ mt: 1 }}>
+            <Typography variant="body1" sx={{ mt: 1,fontSize: {xs:'12px',sm:"14px"}, }}>
               Please fill this form in a decent manner
             </Typography>
           </Box>
