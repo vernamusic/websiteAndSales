@@ -140,6 +140,7 @@ const Navbar = React.memo((props) => {
         { name: 'Mobile App', path: '/products/mobile-app' },
         { name: 'Web App', path: '/products/dashboard' },
         { name: 'Smart Watch', path: '/products/smart-watch' },
+        { name: 'Certifications', path: '/certifications' },
     ];
 
     const toggleDrawer = useCallback((open) => () => setDrawerOpen(open), []);
@@ -167,7 +168,7 @@ const Navbar = React.memo((props) => {
                     }}>
 
                     {/* Nav for mobile */}
-                    <Box sx={{ display: { xs: 'flex', md: 'none' }, justifyContent: 'flex-start' }}>
+                    <Box sx={{ display: { xs: 'flex', sm: 'none' }, justifyContent: 'flex-start' }}>
                     <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>
                         <MenuIcon sx={{ color: 'white', fontSize: { xs: '32px',sm:'40px' }, mt: '2px' }} />
                     </IconButton>
@@ -218,7 +219,7 @@ const Navbar = React.memo((props) => {
                                     </MenuItem>
 
                                     {page.name === 'Products' && isProductsOpen && (
-                                        <Box sx={{ maxHeight: '150px', transition: 'max-height 0.3s ease-in-out', overflow: 'hidden' }}>
+                                        <Box sx={{ maxHeight: '200px', transition: 'max-height 0.3s ease-in-out', overflow: 'hidden' }}>
                                             {productItems.map((item) => (
                                                 <MenuItem
                                                     key={item.path}
@@ -226,7 +227,7 @@ const Navbar = React.memo((props) => {
                                                     to={item.path}
                                                     onClick={() => handleProductSelect(item.path)} // Close drawer and navigate when a product is selected
                                                     sx={{
-                                                        color: '#ffffff',
+                                                        color: '#FFFFFFB2',
                                                         textTransform: 'none',
                                                         pl: 4 // Indent product items
                                                     }}
@@ -243,8 +244,7 @@ const Navbar = React.memo((props) => {
                                     )}
                                 </React.Fragment>
                             ))}
-                            </Box>
-                            {/* <MenuItem>
+                            <MenuItem>
                                 {authToken ? (
                                     <>
                                         <Button
@@ -267,18 +267,19 @@ const Navbar = React.memo((props) => {
                                         variant="outlined"
                                         onClick={() => setDialogOpen(true)}
                                         fullWidth
-                                        sx={{ color: '#ffffff', borderColor: '#B50304', fontSize: '15px' }}
+                                        sx={{ ml:{xs:'0px',sm:'9vw'},width:{xs:'86vw',sm:'75vw'},height:{xs:'9vw',sm:'6vw'},textTransform:'none' ,color: '#ffffff', borderColor: '#B50304',background:'#B50304', fontSize: '11px',borderRadius:'4px' }}
                                     >
                                         Sign Up/Login
                                     </Button>
                                 )}
-                            </MenuItem> */}
+                            </MenuItem>
+                            </Box>
                         </Box>
                     </Drawer>
                     </Box>
 
                     {/* Logo */}
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center',mr:{xs:'34vw',sm:0} }}>
                         <Button
                             component={Link}
                             to="/"
@@ -303,7 +304,7 @@ const Navbar = React.memo((props) => {
 
                     {/* Nav for Desktop */}
                     <Box sx={{
-                        display: { xs: 'none', md: 'flex' },
+                        display: { xs: 'none', sm: 'flex' },
                         flexGrow: 1,
                         justifyContent: 'start',
                         ml: { xs: '10px', md: '15px', lg: '30px' },
@@ -387,7 +388,7 @@ const Navbar = React.memo((props) => {
                     </Box>
 
                     {/* Profile and Sign in */}
-                    <Box sx={{ display: 'flex', justifyContent: 'flex-end', }}>
+                    <Box sx={{ display: {xs:'none',sm:'flex'}, justifyContent: 'flex-end', }}>
                         {authToken ? (
                             <>
                                 <Avatar
