@@ -4,7 +4,7 @@ import background from '../../assets/background.jfif';
 import laptop from '../../assets/laptopdash .png';
 import { ThemeProvider } from "@mui/material/styles";
 import { Link } from "react-router-dom";
-import ContactDialog from './ContactDialog';
+import ContactFormDialog from '../custom/ContactFormDialog.jsx';
 
 
 const theme = createTheme({
@@ -148,7 +148,7 @@ const Home = () => {
                             >
                             Open
                         </Button>
-                        <ContactDialog open={dialogOpen} onClose={handleCloseDialog} />
+                        <ContactFormDialog open={dialogOpen} onClose={handleCloseDialog} type={15} />
 
                         </Box>
                     </Box>

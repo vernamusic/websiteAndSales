@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Typography, Button, Box } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import backgroundImage from '/src/assets/partner.png'; // Ensure this path is correct
-import ContactFormDialog2 from './ContactFormDialog2'; // Ensure this component is correctly implemented
+import backgroundImage from '/src/assets/partner.png';
+import ContactFormDialog from '../custom/ContactFormDialog.jsx';
 
 const theme = createTheme({
     typography: {
@@ -101,7 +101,7 @@ const NewPartner = () => {
                 </Box>
 
                 {/* Dialog component */}
-                <ContactFormDialog2 open={openDialog} onClose={handleCloseDialog} />
+                <ContactFormDialog open={openDialog} onClose={handleCloseDialog} type={10}/>
             </Box>
         </ThemeProvider>
     );
