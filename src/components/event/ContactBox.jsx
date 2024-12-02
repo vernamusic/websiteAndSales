@@ -239,12 +239,11 @@ const ContactBox = () => {
               </Box>
             ))}
           </Box>
-          <Box sx={{ display: "flex",alignItems:'center', justifyContent: "center", pb: 4,mt:'24px', flexDirection: 'column' }}>
+          <Box sx={{ display: "flex",paddingX:'32px',alignItems:'center', justifyContent: "center", pb: 4,mt:'24px', flexDirection: 'column' }}>
             <Button
               fullWidth
               onClick={handleSubmit}
               sx={{
-                width: {xs:'71.11vw',sm:"82.5%"},
                 minHeight: "44px",
                 color:'#FCFCFC',
                 backgroundColor: theme.palette.primary.main,
