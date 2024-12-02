@@ -83,7 +83,7 @@ const Slider = () => {
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
                     maxHeight: '746px',
-                    minHeight: { xs: '360px', sm: '480px', md: '720px', lg: '900px' }
+                    minHeight: { xs: '179px', sm: '480px', md: '720px', lg: '900px' }
                 }}
             >
                 <Box

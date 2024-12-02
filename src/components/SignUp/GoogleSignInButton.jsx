@@ -1,7 +1,7 @@
 import React from "react";
 
 const GoogleSignInButton = () => {
-  const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+  const googleClientId = "1037115696115-5cvfcpvi40n6fhk2hepv8450vn712qud.apps.googleusercontent.com"
   const redirectUri = "https://vitruvianshield.com/google/callback";
 
   const handleSignIn = () => {
