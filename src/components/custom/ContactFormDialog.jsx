@@ -51,9 +51,10 @@ const theme = createTheme({
     },
 });
 
-const ContactFormDialog = ({ open, onClose }) => {
+const ContactFormDialog = ({ open, onClose, type }) => {
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
     const { authToken } = useAuth();
+
     const [formData, setFormData] = useState({
         first_name: '',
         last_name: '',
@@ -61,8 +62,9 @@ const ContactFormDialog = ({ open, onClose }) => {
         phone_number: '',
         subject: '',
         message: '',
-        type: 16,
+        type: type,
     });
+
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const [dialogOpen, setDialogOpen] = useState(false);
@@ -95,7 +97,7 @@ const ContactFormDialog = ({ open, onClose }) => {
                         phone_number: '',
                         subject: '',
                         message: '',
-                        type: 16,
+                        type: type,
                     });
                     setSuccessMessage('Form submitted successfully!'); // Show success message
                 } else {

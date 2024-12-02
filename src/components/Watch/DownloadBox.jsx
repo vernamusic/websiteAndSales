@@ -3,7 +3,7 @@ import { Box, Typography, Button, createTheme } from '@mui/material';
 import background from '../../assets/Watch-BG1.jfif';
 import { ThemeProvider } from "@mui/material/styles";
 import { Link } from "react-router-dom";
-import ContactDialog from './ContactDialog';
+import ContactFormDialog from '../custom/ContactFormDialog.jsx';
 
 const theme = createTheme({
     typography: {
@@ -140,7 +140,7 @@ const Home = () => {
                         >
                             Buy
                         </Button>
-                        <ContactDialog open={dialogOpen} onClose={handleCloseDialog} />
+                        <ContactFormDialog open={dialogOpen} onClose={handleCloseDialog} type={16}/>
                     </Box>
                 </Box>
             </Box>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Typography, Button, Box } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import ContactFormDialog from './ContactFormDialog';
+import ContactFormDialog from '../custom/ContactFormDialog.jsx';
 import backgroundImage2 from '/src/assets/companypic1.jpg';
 import backgroundImage1 from '/src/assets/companypic2.png';
 import backgroundImage3 from '/src/assets/companypic3.png';
@@ -155,7 +155,7 @@ const CompanyBox = () => {
                 </Box>
 
                 {/* ContactFormDialog */}
-                <ContactFormDialog open={dialogOpen} onClose={handleCloseDialog} />
+                <ContactFormDialog open={dialogOpen} onClose={handleCloseDialog} type={9}/>
             </Box>
         </ThemeProvider>
     );

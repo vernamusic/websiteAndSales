@@ -350,8 +350,8 @@ const NewsCard = () => {
                             {moment(newsData.created_at).format('MMMM DD, YYYY')}
                         </Typography>
                     </Box>
-                    <Box sx={{ mb: { xs: 9, sm: 10, md: 13, lg: 15, xl: 20 },display:{xs:'block',sm:'none'}, }}>
-                        <Typography gutterBottom sx={{ ...theme.typography.h6, pl: 1, mb: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 }, textAlign: 'left', mt: { xs: 3, sm: 4, md: 5, lg: 7, xl: 10 } }}>
+                    <Box sx={{mb:'-3vw' ,display:{xs:'block',sm:'none'}, }}>
+                        <Typography gutterBottom sx={{mb:'3vw', ...theme.typography.h6,fontSize:'3.5vw',fontWeight:500, pl: '0.8vw', textAlign: 'left', mt: { xs: 3, sm: 4, md: 5, lg: 7, xl: 10 } }}>
                             Related News:
                         </Typography>
                         <Mediacard data={newsData.related_news} />

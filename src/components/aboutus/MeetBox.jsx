@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Typography, Box, Button } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import backgroundImage from '../../assets/membersBG2.svg';
-import ContactFormDialog4 from './ContactFormDialog4';
+import ContactFormDialog from '../custom/ContactFormDialog.jsx';
 
 const theme = createTheme({
     typography: {
@@ -99,7 +99,7 @@ const MeetBox = () => {
                     </Button>
                 </Box>
 
-                <ContactFormDialog4 open={openDialog} onClose={handleDialogClose} />
+                <ContactFormDialog open={openDialog} onClose={handleDialogClose} type={12}/>
             </Box>
         </ThemeProvider>
     );
