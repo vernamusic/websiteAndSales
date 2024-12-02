@@ -15,7 +15,7 @@ const theme = createTheme({
         h3: {
             fontFamily: "Lato",
             fontWeight: 500,
-            fontSize: {xs:'2.22vw',sm:"2.52vw"},
+            fontSize: {xs:'2.6vw',sm:"2.52vw"},
             lineHeight: "3vw",
             color: "#FFFFFF",
         },
@@ -89,10 +89,10 @@ const Mediacard = ({ data }) => {
                     >
                         <Typography
                             sx={{
-                                width: "95%",
+                                width: "90%",
                                 ...theme.typography.h3,
-                                mb:'3vw',
                                 ml:'1vw',
+                                height:'12vw'
                             }}
                         >
                             {box.title}
