@@ -136,6 +136,7 @@ const ContactBox = () => {
     border: "1px solid #8C8C8C",
     opacity: 1,
   };
+  const textFieldSize = isSmallScreen ? "small" : "normal";
 
   return (
     <ThemeProvider theme={theme}>
@@ -186,8 +187,12 @@ const ContactBox = () => {
             </Typography>
           </Box>
           <Box sx={{ padding: "32px 32px 0px 32px" }}>
-            <Box sx={{ display: "flex", gap: 1 }}>
+            <Box sx={{ display: "flex", gap: 1,justifyContent:'center' }}>
               <TextField
+                fullWidth
+                id="outlined-size-small"
+                defaultValue="Small"
+                size={textFieldSize}
                 name="first_name"
                 placeholder="First name"
                 variant="outlined"
@@ -198,6 +203,10 @@ const ContactBox = () => {
                 required
               />
               <TextField
+                fullWidth
+                id="outlined-size-small"
+                defaultValue="Small"
+                size={textFieldSize}
                 name="last_name"
                 placeholder="Last name"
                 variant="outlined"
@@ -212,9 +221,12 @@ const ContactBox = () => {
             {["email", "phone_number", "message"].map((field) => (
               <Box key={field} sx={{ mt: 1.75 }}>
                 <TextField
+                  id="outlined-size-small"
+                  defaultValue="Small"
+                  size={textFieldSize}
                   fullWidth
                   name={field}
-                  placeholder={`Enter your ${field.replace("_", " ")}`}
+                  placeholder={field === "message" ? "Type here..." : `Enter your ${field.replace("_", " ")}`}
                   variant="outlined"
                   value={formData[field]}
                   onChange={handleInputChange}
@@ -222,17 +234,16 @@ const ContactBox = () => {
                   sx={textFieldStyle}
                   required
                   multiline={field === "message"}
-                  rows={field === "message" ? 3 : 1}
+                  rows={field === "message" ? 4 : 1}
                 />
               </Box>
             ))}
           </Box>
-          <Box sx={{ display: "flex",alignItems:'center', justifyContent: "center", pb: 4,mt:'24px', flexDirection: 'column' }}>
+          <Box sx={{ display: "flex",paddingX:'32px',alignItems:'center', justifyContent: "center", pb: 4,mt:'24px', flexDirection: 'column' }}>
             <Button
               fullWidth
               onClick={handleSubmit}
               sx={{
-                width: "80%",
                 minHeight: "44px",
                 color:'#FCFCFC',
                 backgroundColor: theme.palette.primary.main,
