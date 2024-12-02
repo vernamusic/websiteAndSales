@@ -3,7 +3,7 @@ import {
     Box,
     Typography,
     createTheme,
-    ThemeProvider,
+    ThemeProvider, Divider,
 } from "@mui/material";
 import linkedin from "../../assets/inIcon.svg";
 import backgroundImage from "../../assets/aboutUs1.svg";
@@ -15,17 +15,18 @@ const theme = createTheme({
             fontWeight: {xs:700,sm:600},
             fontSize: {xs:'3.33vw',sm:'1.25vw'},
             color: "#FFFFFF",
+            lineHeight: {xs:'4.2vw',sm:'1.3vw'},
         },
         h6: {
             fontFamily: 'Lato',
-            fontSize: {xs:'2.77vw',sm:'1.11vw'},
+            fontSize: {xs:'3vw',sm:'1.11vw'},
             color: "rgba(191, 191, 191, 1)",
             fontWeight: 500,
-            lineHeight: {xs:'14px',sm:'1.3vw'},
+            lineHeight: {xs:'4.2vw',sm:'1.3vw'},
         },
         caption: {
             fontFamily: 'Lato',
-            fontSize: {xs:'2.22vw',sm:'0.97vw'},
+            fontSize: {xs:'2.82vw',sm:'0.97vw'},
             textTransform: 'none',
             lineHeight: {xs:'3.5vw',sm:'1.5vw'},
             fontWeight: 400,
@@ -188,16 +189,24 @@ const Allinonecard = ({ data }) => {
                                         {box._job}
                                     </Typography>
                                 </Box>
-
+                                <Divider
+                                    orientation="horizontal"
+                                    flexItem
+                                    sx={{
+                                        width: '100%',
+                                        mt: '2vw',
+                                        display: box.details ? 'block' : 'none',
+                                        borderColor: 'rgba(255, 255, 255, 0.2)',
+                                        borderStyle: 'dashed',
+                                    }}
+                                />
                                 {/* Details */}
                                 <Box
                                     sx={{
                                         display: "flex",
                                         justifyContent: "center",
                                         width: "100%",
-                                        borderTop: box.details ? '0.052vw dashed rgba(255, 255, 255, 0.20)' : 'none',
-                                        pt: '1.34vw',
-                                        mt: '1.34vw',
+                                        mt: '2vw',
 
                                     }}
                                 >

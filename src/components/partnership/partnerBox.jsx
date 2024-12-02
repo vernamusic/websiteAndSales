@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Typography, Button, Box } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import backgroundImage from '/src/assets/partner.png'; // Ensure this path is correct
-import ContactFormDialog2 from './ContactFormDialog2'; // Ensure this component is correctly implemented
+import backgroundImage from '/src/assets/partner.png';
+import ContactFormDialog from '../custom/ContactFormDialog.jsx';
 
 const theme = createTheme({
     typography: {
@@ -19,7 +19,7 @@ const theme = createTheme({
             fontFamily: "Lato",
             fontWeight: 600,
             fontSize: { xs: '14px', sm: '18px', md: '26px', lg: '32px' },
-            lineHeight: '32px',
+            lineHeight: '26px',
             color: "#FFFFFF",
             textTransform: 'none',
         },
@@ -64,7 +64,7 @@ const NewPartner = () => {
                         flexDirection: 'column',
                         justifyContent: 'center',
                         alignItems: 'flex-start',
-                        gap: { xs: 0.5, sm: 1, md: 1.5, lg: 1.5, xl: 1.5 },
+                        gap: { xs: 0, sm: 1, md: 1.5, lg: 1.5, xl: 1.5 },
                         ml: { xs: '32px', sm: '80px', md: 19, lg: 24, xl: 28 },
                         mt: { xs: '39px', sm: '100px', md: '170px', lg: '250px' },
                         width: { xs: '332px',md:'400px' },
@@ -85,9 +85,9 @@ const NewPartner = () => {
                             borderRadius: '6px',
                             backgroundColor: '#B50304',
                             textTransform: 'none',
-                            width: { xs: '71px', sm: '85px', md: '7.8125vw' },
+                            width: { xs: '86px', sm: '105px', md: '10vw' },
                             height: { xs: '25px', sm: '30px', md: '2.6042vw' },
-                            mt: { xs: '16px', sm: '8px', md: '0px' },
+                            mt: { xs: '10px', sm: '8px', md: '0px' },
                             padding: 0,
                             alignItems: 'center',
                             '&:hover': {
@@ -101,7 +101,7 @@ const NewPartner = () => {
                 </Box>
 
                 {/* Dialog component */}
-                <ContactFormDialog2 open={openDialog} onClose={handleCloseDialog} />
+                <ContactFormDialog open={openDialog} onClose={handleCloseDialog} type={10}/>
             </Box>
         </ThemeProvider>
     );

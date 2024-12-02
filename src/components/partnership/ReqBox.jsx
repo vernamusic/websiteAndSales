@@ -12,16 +12,15 @@ const theme = createTheme({
         h6: {
             fontFamily: 'Lato',
             fontWeight: 600,
-            fontSize:{xs:'12px',sm:'16px'},
+            fontSize:{xs:'3.34vw',sm:'1.11vw'},
+            lineHeight: 'normal',
             color: "#FFFFFF",
-            letterSpacing: '0.4px',
-            lineHeight: {xs:'14.4px',sm:'16px'},
         },
-        h9: {
+        caption: {
             fontWeight: 400,
             fontFamily: 'Lato',
-            fontSize:{xs:'10px',sm:'12px'},
-            lineHeight: {xs:'13px',sm:'12px'},
+            fontSize:{xs:'2.5vw',sm:'0.83vw'},
+            lineHeight: {xs:'3.61vw',sm:'1.08vw'},
             textTransform: 'none',
             color: '#EEEEEE',
 
@@ -29,7 +28,7 @@ const theme = createTheme({
         h1: {
             fontFamily: 'Lato',
             fontWeight: 600,
-            fontSize:'24px',
+            fontSize:'1.67vw',
             color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
@@ -59,7 +58,7 @@ const CertificationBox = () => {
                     justifyContent="center"
                     alignItems="center"
                     textAlign="center"
-                    paddingTop="56px"
+                    paddingTop="2vw"
                     sx={{
                         display:{xs:'none',sm:'flex'}
                     }}
@@ -76,12 +75,12 @@ const CertificationBox = () => {
                <Box display="flex" justifyContent="center">
                <Box
                     sx={{
-                        my:{xs:4,sm:6},
+                        my:{xs:'6vw',sm:'2vw'},
                         display:'flex',
                         flexWrap: 'wrap',
                         justifyContent:{xs:'start',sm:'center'},
-                        width:{xs:'330px',sm:'1024px'},
-                        gap:{xs:'8px',sm:'48px'},
+                        width:{xs:'90vw',sm:'70vw'},
+                        gap:{xs:'2vw',sm:'4vw'},
 
                     }}
                 >
@@ -89,8 +88,8 @@ const CertificationBox = () => {
                         <Box
                             key={index}
                             sx={{
-                                width: {xs:'156px',sm:'248px'},
-                                height: {xs:'178px',sm:'272px'},
+                                width: {xs:'43.33vw',sm:'17.22vw'},
+                                height: {xs:'49.44vw',sm:'18.89vw'},
                                 borderRadius: '16px',
                                 display: 'flex',
                                 flexDirection: 'column',
@@ -100,18 +99,18 @@ const CertificationBox = () => {
                                 border: '1px solid #262626',
                                 boxShadow:'0px 2px 8px 0px #00000080',
                                 position: 'relative',
-                                mt:{xs:'16px',sm:'64px'},
+                                mt:{xs:'16px',sm:'3.8vw'},
                             }}
                         >
 
                             <Box
                                 sx={{
                                     position: 'absolute',
-                                    top: {xs:-12.5,sm:-22.5},
+                                    top: {xs:'-3vw',sm:'-1.5vw'},
                                     left: '50%',
                                     transform: 'translateX(-50%)',
-                                    width: {xs:'24px',sm:'48px'},
-                                    height: {xs:'24px',sm:'48px'},
+                                    width: {xs:'7.89vw',sm:'3.1vw'},
+                                    height: {xs:'7.89vw',sm:'3.1vw'},
                                     backgroundColor: '#B50304',
                                     borderRadius: '50%',
                                     display: 'flex',
@@ -125,7 +124,8 @@ const CertificationBox = () => {
                                         src={box.icon}
                                         alt="Design"
                                         sx={{
-                                            width: {xs:'16px',sm:'24px'}
+                                            width: {xs:'4.89vw',sm:'1.5vw'},
+                                            height: {xs:'4.89vw',sm:'1.5vw'},
                                         }}
                                     />
                                 ) : (
@@ -140,20 +140,20 @@ const CertificationBox = () => {
                                     justifyContent: 'center',
                                     justifyItems: 'center',
                                     alignItems: 'center',
-                                    mt:{xs:'24px',sm:'40px'},
+                                    mt:{xs:'5.5vw',sm:'2vw'},
                                     textAlign: 'center',
-                                    maxWidth:'90%',
-                                    gap:1
+
+                                    gap:'0vw'
                                 }}
                             >
                                 <Typography
-                                    sx={{...theme.typography.h6,}}
+                                    sx={{...theme.typography.h6,maxWidth:'80%',}}
                                     gutterBottom
                                 >
                                     {box.title}
                                 </Typography>
                                 <Typography
-                                    sx={{...theme.typography.h9,}}
+                                    sx={{...theme.typography.caption,maxWidth:'90%',}}
                                 >
                                     {box.description}
                                 </Typography>
@@ -165,7 +165,7 @@ const CertificationBox = () => {
                                 alt={box.title}
                                 sx={{
                                     width: '100%',
-                                    height: {xs:'63px',sm:'144px'},
+                                    height: {xs:'24vw',sm:'10vw'},
                                     objectFit: 'cover',
                                     borderRadius: '0 0 1.39vw 1.39vw',
                                     mt: 'auto',

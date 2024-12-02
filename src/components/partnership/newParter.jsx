@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Typography, Button, Box } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import backgroundImage from '/src/assets/partnerpic.png';
-import ContactFormDialog2 from './ContactFormDialog2';
+import ContactFormDialog from '../custom/ContactFormDialog.jsx';
 
 const theme = createTheme({
     typography: {
@@ -103,8 +103,8 @@ const NewPartner = () => {
                     </Button>
                 </Box>
 
-                {/* Dialog component */}
-                <ContactFormDialog2 open={openDialog} onClose={handleCloseDialog} />
+
+                <ContactFormDialog open={openDialog} onClose={handleCloseDialog} type={10} />
             </Box>
         </ThemeProvider>
     );
