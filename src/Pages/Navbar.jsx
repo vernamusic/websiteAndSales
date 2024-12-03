@@ -28,6 +28,7 @@ import navnews from '../assets/navnews.png';
 import navevent from '../assets/navevent.png';
 import navabout from '../assets/navabout.png';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
 
 
@@ -103,7 +104,8 @@ const Navbar = React.memo((props) => {
     
     const handleProductMenuOpen = (event) => {
         setAnchorElProduct(event.currentTarget);
-        setAnchorElProfile(null); // بستن منوی پروفایل
+        setAnchorElProfile(null); // Close profile menu
+        toggleProductsMenu(); // Toggle products menu state
     };
 
     const handleProfileMenuOpen = (event) => {
@@ -114,6 +116,12 @@ const Navbar = React.memo((props) => {
     const handleMenuClose = () => {
         setAnchorElProduct(null);
         setAnchorElProfile(null);
+        setIsProductsOpen(false); // Close products menu
+    };
+
+    const handleProductSelect = (path) => {
+        navigate(path);
+        handleMenuClose(); // Close menu and reset state
     };
 
     const handleProfileClick = () => {
@@ -145,6 +153,10 @@ const Navbar = React.memo((props) => {
 
     const toggleDrawer = useCallback((open) => () => setDrawerOpen(open), []);
     const { authToken, logout } = useAuth(); // Using the useAuth hook
+
+    
+
+    
 
     return (
         <>
@@ -215,11 +227,25 @@ const Navbar = React.memo((props) => {
                                             <img src={page.icon} alt={`${page.name} icon`} style={{ marginRight: 8 }} />
                                             {page.name}
                                         </Box>
-                                        {page.name === 'Products' && <ExpandMoreIcon sx={{ color: '#ffffff' }} />} {/* Down arrow */}
+                                        {page.name === 'Products' && (
+                                            <ExpandMoreIcon
+                                                sx={{
+                                                    color: '#ffffff',
+                                                    transition: 'transform 0.3s ease',
+                                                    transform: isProductsOpen ? 'rotate(180deg)' : 'rotate(0deg)', // Rotate icon
+                                                }}
+                                            />
+                                        )}
                                     </MenuItem>
 
                                     {page.name === 'Products' && isProductsOpen && (
-                                        <Box sx={{ maxHeight: '200px', transition: 'max-height 0.3s ease-in-out', overflow: 'hidden' }}>
+                                        <Box
+                                            sx={{
+                                                maxHeight: '200px',
+                                                transition: 'max-height 0.3s ease-in-out',
+                                                overflow: 'hidden',
+                                            }}
+                                        >
                                             {productItems.map((item) => (
                                                 <MenuItem
                                                     key={item.path}
@@ -229,7 +255,7 @@ const Navbar = React.memo((props) => {
                                                     sx={{
                                                         color: '#FFFFFFB2',
                                                         textTransform: 'none',
-                                                        pl: 4 // Indent product items
+                                                        pl: 4, // Indent product items
                                                     }}
                                                 >
                                                     {item.name}
@@ -240,10 +266,20 @@ const Navbar = React.memo((props) => {
 
                                     {/* Add divider after each page except the last one */}
                                     {index < pages.length - 1 && (
-                                        <Divider sx={{ marginLeft: 2, width: '90%', mt: 1.5, height: '1px', backgroundColor: '#4545454D' }} />
+                                        <Divider
+                                            sx={{
+                                                marginLeft: 2,
+                                                width: '90%',
+                                                mt: 1.5,
+                                                height: '1px',
+                                                backgroundColor: '#4545454D',
+                                            }}
+                                        />
                                     )}
                                 </React.Fragment>
                             ))}
+
+
                             <MenuItem>
                                 {authToken ? (
                                     <>
@@ -329,7 +365,11 @@ const Navbar = React.memo((props) => {
                                         disableRipple
                                     >
                                         {page.name}
-                                        <ArrowDropDownIcon sx={{ ml: 0.5 }} />
+                                        <ArrowDropDownIcon sx={{ ml: 0.5,
+                                                    color: '#ffffff',
+                                                    transition: 'transform 0.3s ease',
+                                                    transform: isProductsOpen ? 'rotate(180deg)' : 'rotate(0deg)', // Rotate icon
+                                                }} />
                                     </Button>
                                     <Menu
                                         anchorEl={anchorElProduct}
