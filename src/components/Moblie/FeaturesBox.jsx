@@ -7,12 +7,12 @@ import phoneImage3 from '../../assets/3.jpg';
 import phoneImage4 from '../../assets/4.jpg';
 import phoneImage5 from '../../assets/5.jpg';
 import phoneImage6 from '../../assets/6.jpg';
-import Geo from '../../assets/mobileapp/Geo.svg';
-import Call from '../../assets/mobileapp/Call.svg';
-import Report from '../../assets/mobileapp/Report.svg';
-import Chat from '../../assets/mobileapp/Chat.svg';
-import Monitor from '../../assets/mobileapp/Monitor.svg';
-import ECG from '../../assets/mobileapp/ECG.svg';
+import Geo from '../../assets/watch/Geo.svg';
+import Call from '../../assets/watch/Call.svg';
+import Report from '../../assets/watch/Report.svg';
+import Chat from '../../assets/watch/Chat.svg';
+import Monitor from '../../assets/watch/Monitor.svg';
+import ECG from '../../assets/watch/ECG.svg';
 import background from '../../assets/Mobile-BG2.png'
 
 const themes = createTheme({
