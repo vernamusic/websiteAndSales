@@ -62,7 +62,7 @@ const LoginDialog = ({ email, onForgotPassword, onClose, onLoginSuccess, onSendR
                             mt: '8px'
                         }}
                     >
-                        Get Started
+                        Welcome back!
                     </Typography>
                     <Typography
                         sx={{
@@ -71,22 +71,15 @@ const LoginDialog = ({ email, onForgotPassword, onClose, onLoginSuccess, onSendR
                             lineHeight: 'normal',
                             mt: '12px',
                         }}>
-                        Welcome to Vitruvian Shield
+                        Please enter your details
                     </Typography>
                 </Box>
+                
                 <LoginForm email={email} onForgotPassword={onForgotPassword} onLoginSuccess={onLoginSuccess} onSendResetLink={onSendResetLink} />
+                
                 <Box mb='16px'></Box>
 
-                {/*<Box display="flex" alignItems="center" width="100%" maxWidth="380px" mb='28px'>*/}
-                {/*    <Box flexGrow={1} height="1px" bgcolor="#9f9b9b" />*/}
-                {/*    <Typography sx={{*/}
-                {/*        mx: 1.3,*/}
-                {/*        color: '#9f9b9b',*/}
-                {/*        fontSize:'14px',*/}
-                {/*        fontFamily:'Lato'*/}
-                {/*    }}>Or</Typography>*/}
-                {/*    <Box flexGrow={1} height="1px" bgcolor="#9f9b9b" />*/}
-                {/*</Box>*/}
+                
 
                 {/*<Box display="flex" justifyContent="center" width="100%" mb={2}>*/}
                 {/*    <Button*/}

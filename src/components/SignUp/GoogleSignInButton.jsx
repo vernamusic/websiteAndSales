@@ -1,7 +1,9 @@
 import React from "react";
+import google from "../../assets/Google.png";
 
 const GoogleSignInButton = () => {
-  const googleClientId = "1037115696115-5cvfcpvi40n6fhk2hepv8450vn712qud.apps.googleusercontent.com"
+  const googleClientId =
+    "1037115696115-5cvfcpvi40n6fhk2hepv8450vn712qud.apps.googleusercontent.com";
   const redirectUri = "https://vitruvianshield.com/google/callback";
 
   const handleSignIn = () => {
@@ -11,8 +13,39 @@ const GoogleSignInButton = () => {
   };
 
   return (
-    <button onClick={handleSignIn} style={{ padding: '10px 20px', fontSize: '16px' }}>
-      Sign in with Google
+    <button
+      onClick={handleSignIn}
+      style={{
+        padding: "10px 20px",
+        border: "1px solid #FCFCFC", // Fixed `borderColor`
+        borderRadius:'4px',
+        background: "transparent",
+        maxWidth: "380px",
+        width: "100%",
+        height: "44px",
+        textTransform: "none",
+        color:'#FFFFFF',
+        fontFamily: "Lato",
+        fontWeight: 500,
+        fontSize: "14px",
+        display: "flex", // Added flexbox for alignment
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "10px", // Space between logo and text
+        cursor: "pointer",
+      }}
+      aria-label="Sign in with Google"
+    >
+      <img
+        src={google}
+        alt="Google Logo"
+        style={{
+          width: "24px",
+          height: "24px",
+          display: "block", // Ensures proper rendering
+        }}
+      />
+      Log in with Google
     </button>
   );
 };
