@@ -9,7 +9,7 @@ const theme = createTheme({
         h6: {
             fontFamily: 'Lato',
             fontWeight:'400',
-            fontSize: { xs: '12px', sm: '13.8px', md: '14.22px', lg: '18px' },
+            fontSize: { xs: '12px', sm: '12px', md: '14.22px', lg: '18px' },
             lineHeight: {xs:'15px',md:'normal'},
             letterSpacing: '0.4px',
             color: "#D9D9D9",
@@ -18,14 +18,14 @@ const theme = createTheme({
         h3: {
             fontFamily: "Lato",
             fontWeight: 600,
-            fontSize: { xs: '14px', sm: '18px', md: '26px', lg: '32px' },
+            fontSize: { xs: '14px', sm: '16px', md: '26px', lg: '32px' },
             lineHeight: {xs:'14px',md:'32px'},
             color: "#FFFFFF",
             textTransform: 'none',
         },
         button: {
             fontFamily: 'Lato',
-            fontSize: { xs: '11px', sm: '13.5px', md: '0.94vw' },
+            fontSize: { xs: '11px', sm: '12px', md: '0.94vw' },
             color: "#FCFCFC",
         },
     },
