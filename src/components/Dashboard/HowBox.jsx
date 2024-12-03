@@ -23,7 +23,7 @@ const theme = createTheme({
         h3: {
             fontFamily: 'Lato',
             fontWeight: 400,
-            fontSize:'16px',
+            fontSize:{md:'14px',lg:'16px'},
             color: "#F1F1F1",
             letterSpacing: '0.4px',
         },
@@ -39,7 +39,7 @@ const theme = createTheme({
         h1: {
             fontFamily: 'Lato',
             fontWeight: 600,
-            fontSize:'24px',
+            fontSize:{md:'18px',lg:'24px'},
             color: "#FFFFFF",
             letterSpacing: '0.4px',
         },
@@ -93,12 +93,12 @@ const HowBox = () => {
 
                 <Box
                     sx={{
-                        m:'32px 20px 32px 20px',
+                        my:'32px',
                         display:'flex',
                         flexWrap:'wrap',
                         justifyContent:'center',
-                        columnGap:{xs:'1em',sm:'2.5em'},
-                        rowGap:{xs:'3em',sm:'4em'}
+                        columnGap:{xs:'1em',sm:'1.75em',md:'2.5em'},
+                        rowGap:{xs:'3em',sm:'3.5em',md:'4em'}
                     }}
                 >
                     {howData.map((box, index) => (

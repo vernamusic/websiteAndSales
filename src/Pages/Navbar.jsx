@@ -33,7 +33,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const navItemStyle = {
     fontFamily: 'Lato',
-    fontSize: { xs: '14.22px', lg: '16px' },
+    fontSize: { sm:'10px',md:'13.8px', lg: '16px' },
     color: '#eee',
     fontStyle: 'normal',
     lineHeight: '130%',
@@ -295,8 +295,8 @@ const Navbar = React.memo((props) => {
                                 src={logo}
                                 alt="logo"
                                 sx={{
-                                    width: { xs: '32px',sm:'36px' ,md: '48px' },
-                                    height: { xs: '41px',sm:'48px' ,md: '64px' }, // Adjusted for correct height
+                                    width: { xs: '32px',sm:'36px' ,md: '42px',lg: '48px' },
+                                    height: { xs: '41px',sm:'48px' ,md: '56px',lg: '64px' }, // Adjusted for correct height
                                 }}
                             />
                         </Button>
@@ -308,7 +308,7 @@ const Navbar = React.memo((props) => {
                         flexGrow: 1,
                         justifyContent: 'start',
                         ml: { xs: '10px', md: '15px', lg: '30px' },
-                        gap: { xs: '10px', md: '25px', lg: '35px' },
+                        gap: { xs: '0px', md: '20px', lg: '35px' },
                     }}>
                         {pages.map((page) =>
                             page.name === 'Products' ? (
@@ -342,6 +342,7 @@ const Navbar = React.memo((props) => {
                                                 minWidth: '130px',
                                                 justifyContent: 'space-between',
                                                 textAlign: 'center',
+                                                
                                             },
                                         }}
                                     >
@@ -357,7 +358,6 @@ const Navbar = React.memo((props) => {
                                                 ...navItemStyle,
                                                 "&:hover": {
                                                     backgroundColor: 'rgba(38, 38, 38, 0.95)',
-                                                    fontSize: '16.5px'
                                                 }
                                                 }}
                                             >
