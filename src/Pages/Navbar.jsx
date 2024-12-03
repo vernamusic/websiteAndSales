@@ -358,7 +358,6 @@ const Navbar = React.memo((props) => {
                                                 ...navItemStyle,
                                                 "&:hover": {
                                                     backgroundColor: 'rgba(38, 38, 38, 0.95)',
-                                                    fontSize: '16.5px'
                                                 }
                                                 }}
                                             >
