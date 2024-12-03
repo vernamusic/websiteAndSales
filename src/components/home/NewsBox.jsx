@@ -50,6 +50,7 @@ const theme = createTheme({
 
 const NewsCard = ({ picture, title, details, slug, onClick }) => {
     const isMobile = useMediaQuery((theme) => theme.breakpoints.down('sm'));
+    const isTablet = useMediaQuery('(min-width:601px) and (max-width:900px)');
 
     return (
         <Box
@@ -72,7 +73,7 @@ const NewsCard = ({ picture, title, details, slug, onClick }) => {
                 textAlign: 'start',
                 cursor: isMobile ? 'pointer' : 'default', // Pointer cursor only on mobile,
             }}
-            onClick={isMobile ? onClick : undefined} // Only enable onClick for mobile
+            onClick={isMobile || isTablet ? onClick : undefined} // Only enable onClick for mobile
         >
             <Box
                 sx={{
@@ -95,8 +96,8 @@ const NewsCard = ({ picture, title, details, slug, onClick }) => {
                         color:'white', 
                         fontWeight:{xs:500,sm:600},
                         fontFamily:'Lato',
-                        fontSize: { xs: '10px', md: '14.22px', lg: '16px' },
-                        lineHeight: { xs: '12px', md: '14.22px', lg: '16px' },
+                        fontSize: { xs: '10px',sm:'11px', md: '14.22px', lg: '16px' },
+                        lineHeight: { xs: '12px',sm:'13px', md: '14.22px', lg: '16px' },
                     }}>
                     {title}
                 </Typography>
