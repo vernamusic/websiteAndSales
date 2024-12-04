@@ -196,9 +196,6 @@ const Navbar = React.memo((props) => {
         { name: 'Smart Watch', path: '/products/smart-watch' },
     ];
 
-    const toggleDrawer = useCallback((open) => () => setDrawerOpen(open), []);
-    const { authToken, logout } = useAuth(); // Using the useAuth hook
-
     return (
         <>
             <AppBar
