@@ -4,8 +4,7 @@
     import { useAuth } from '../../AuthContext.jsx';
     import ChangeEmail from './ChangeEmail';
     import ChangePhone from './ChangePhone';
-
-
+    import camera from '../../assets/cameraAddPic.png'
     const theme = createTheme({
         typography: {
             h6: {
@@ -55,7 +54,8 @@
         const Token = localStorage.getItem('authToken') || authToken;
         const [isEditing, setIsEditing] = useState(false);
         const [formData, setFormData] = useState({ first_name: '', last_name: '', email: '', phone: '', country: '', city: '' });
-        const [initialFormData, setInitialFormData] = useState({ first_name: '', last_name: '', email: '', phone: '', country: '', city: '' });
+        const [initialFormData, setInitialFormData] = useState({ first_name: '', last_name: '', email: '', phone: '', country: '', city: '',picture:''});
+        const [picData , setPicData] = useState(null);
         const [countryList, setCountryList] = useState([]);
         const [phonePrefix, setPhonePrefix] = useState('');
         const [dialogOpen, setDialogOpen] = useState(false);
@@ -67,11 +67,22 @@
         useEffect(() => {
             const fetchUserData = async () => {
                 try {
-                    const { data } = await axios.get('https://vitruvianshield.com/api/v1/user/settings', { headers: { 'Authorization': `Bearer ${Token}` } });
+                    const { data } = await axios.get(
+                        'https://vitruvianshield.com/api/v1/user/settings',
+                        { headers: { 'Authorization': `Bearer ${Token}` } }
+                    );
+
+                    console.log(data.picture);
                     setFormData(data);
                     setInitialFormData(data);
+
+                    if (data.picture) {
+                        await downloadAndStoreImage(data.picture);
+                    }
+
                     const countriesResponse = await axios.get('https://vitruvianshield.com/api/v1/countries');
                     setCountryList(countriesResponse.data);
+
                     if (data.country) {
                         setPhonePrefix(await getPhonePrefix(data.country));
                     }
@@ -79,6 +90,31 @@
                     console.error('Error fetching user data or countries:', error);
                 }
             };
+
+            const downloadAndStoreImage = async (imageUrl) => {
+                try {
+                    const response = await fetch(imageUrl, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${Token}`,
+                        },
+                    });
+
+                    if (response.ok) {
+                        const imageBlob = await response.blob();
+
+                        const imageObjectURL = URL.createObjectURL(imageBlob);
+
+                        setPicData(imageObjectURL);
+                    } else {
+                        console.error(`Failed to fetch image. Status: ${response.status}`);
+                    }
+                } catch (error) {
+                    console.error('Error downloading and storing image:', error);
+                }
+            };
+
+
             fetchUserData();
         }, [Token]);
 
@@ -103,8 +139,16 @@
         const handleSubmit = async (e) => {
             if (e) e.preventDefault();
             const phoneWithPrefix = `${phonePrefix}${formData.phone}`;
+
+            const dataToSend = { ...formData };
+            delete dataToSend.picture;
+
             try {
-                await axios.patch('https://vitruvianshield.com/api/v1/user/settings', { ...formData, phone: formatPhoneNumber(phoneWithPrefix) }, { headers: { 'Authorization': `Bearer ${Token}` } });
+                await axios.patch(
+                    'https://vitruvianshield.com/api/v1/user/settings',
+                    { ...dataToSend, phone: formatPhoneNumber(phoneWithPrefix) },
+                    { headers: { 'Authorization': `Bearer ${Token}` } }
+                );
                 console.log('Profile updated');
                 setIsEditing(false);
             } catch (error) {
@@ -112,11 +156,45 @@
             }
         };
 
+
         const handleCancel = () => {
             setIsEditing(false);
             setFormData(initialFormData);
         };
 
+        const handleFileChange = async (event) => {
+            const selectedFile = event.target.files[0];
+            if (selectedFile && selectedFile.type === "image/png") {
+                await uploadFile(selectedFile);
+            }
+        };
+
+        const uploadFile = async (file) => {
+            try {
+                const formData = new FormData();
+                formData.append("picture", file);
+
+                const response = await axios.post(
+                    "https://vitruvianshield.com/api/v1/user/new-picture/",
+                    formData,
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${Token}`,
+                        },
+                    }
+                );
+
+
+                if (response.data.status === "success") {
+                    console.log("Upload Successful:", response.data);
+                    alert("Upload Successful");
+                    window.location.reload();
+                }
+            } catch (error) {
+                console.error("Upload Failed:", error.response?.data || error.message);
+                alert("An error occurred during file upload.");
+            }
+        };
         return (
             <ThemeProvider theme={theme}>
                 <Box sx={{ width: '100%', background: '#262626',alignContent:'center',height: '100%',mb:{ sm: '0vw', xs: '13vw' },mt:{ sm: '3vw', xs: '0vw' } }}>
@@ -130,24 +208,72 @@
                             flexDirection: { xs: 'column', sm: 'row' },
                         }}
                     >
-                        <Avatar
-                            sx={{
-                                width: '86.4px',
-                                height: '86.4px',
-                                border: '2px solid #B0EEE9',
-                                boxShadow: '0px 0px 5px 0px #8AE6DE99',
-                            }}
-                        />
+                        <Box sx={{position: 'relative', width: '86.4px', height: '86.4px', justifyItems: 'flex-end'}}>
+
+                            <input
+                                type="file"
+                                accept="image/png"
+                                onChange={handleFileChange}
+                                style={{
+                                    display: "none",
+                                }}
+                                id="file-input"
+                            />
+
+                            <Avatar
+
+                                alt={`${formData.first_name} ${formData.last_name}`}
+                                src={picData}
+                                onClick={() => {
+                                    if (isEditing) {
+                                        document.getElementById("file-input").click();
+                                    }
+                                }}
+                                sx={{
+                                    width: '100%',
+                                    height: '100%',
+                                    border: "2px solid #B0EEE9",
+                                    boxShadow: "0px 0px 5px 0px #8AE6DE99",
+                                    position: "relative",
+                                    zIndex: 1,
+                                    cursor: !isEditing ? 'default' : 'pointer',
+                                }}
+                            />
+                            <Box
+                                onClick={() => {
+                                    if (isEditing) {
+                                        document.getElementById("file-input").click();
+                                    }
+                                }}
+                                sx={{
+                                    position: 'absolute',
+                                    bottom: 0,
+                                    right: 0,
+                                    backgroundImage: `url(${camera})`,
+                                    backgroundPosition: 'center center',
+                                    backgroundRepeat: 'no-repeat',
+                                    backgroundSize: 'contain',
+                                    borderRadius: '100%',
+                                    width: '28px',
+                                    height: '28px',
+                                    backgroundColor: '#fff',
+                                    zIndex: 2,
+                                    cursor: !isEditing ? 'default' : 'pointer',
+                                }}
+                            />
+                        </Box>
+
+
                         <Box
                             sx={{
-                                ml: { sm: '24px', xs: '0' },
-                                mt: { xs: '16px', sm: '0' },
+                                ml: {sm: '24px', xs: '0'},
+                                mt: {xs: '16px', sm: '0'},
                             }}
                         >
                             <Typography
                                 sx={{
                                     ...theme.typography.h3,
-                                    textAlign: { xs: 'center', sm: 'left' }, // Center on xs, left on sm and above
+                                    textAlign: {xs: 'center', sm: 'left'}, // Center on xs, left on sm and above
                                 }}
                             >
                                 {`${formData.first_name} ${formData.last_name}`}
@@ -163,7 +289,7 @@
                             </Typography>
                         </Box>
 
-                    </Box>
+                   </Box>
                     <Box sx={{ml:{ sm: '5vw', xs: '0' },}}>
                         <Paper component="form" onSubmit={handleSubmit} sx={{ml:{xs:'12vw',sm:'5px'},width:{xs:'0vw',sm:'60vw'},pb:'3vw', borderRadius: '16px',background: '#262626', border: '1px solid', borderImageSource: 'linear-gradient(180deg, rgba(31, 31, 31, 0.3) 0%, rgba(20, 20, 20, 0.3) 100%)', boxShadow: '0px 2px 8px 0px #0000001A', }}>
                             <Box
@@ -176,7 +302,7 @@
                                 }}
                             >
                                 {['first_name', 'last_name', 'email', 'phone', 'country', 'city'].map((field, idx) => (
-                                    <Box sx={{ width: {xs:'72vw',sm:'19.58vw'},mx:{xs:'4vw',sm:'1vw'} }} key={idx}>
+                                    <Box sx={{ width: {xs:'72vw',sm:'19.58vw'},mx:{xs:'4vw',sm:'1vw'},cursor: field === 'phone' ? 'not-allowed' : 'pointer', }} key={idx}>
                                         <Typography sx={{ mb: '0.5vw', ...theme.typography.button }}>
                                             {field.charAt(0).toUpperCase() + field.slice(1).replace('_', ' ')}
                                         </Typography>
@@ -198,13 +324,13 @@
                                                     color: !isEditing ? theme.palette.text.disabled : theme.typography.h6.color,
                                                     "&:hover": {
                                                         backgroundColor: !isEditing ? '#262626' : '#333',
-                                                        cursor: !isEditing ? 'not-allowed' : 'pointer',
+                                                        cursor: field === 'phone' ? 'not-allowed' : 'pointer',
                                                     },
                                                     "&.Mui-disabled": {
                                                         backgroundColor: '#262626',
                                                         borderColor: '#ccc',
                                                         color: theme.palette.text.disabled,
-                                                        cursor: 'not-allowed',
+                                                        cursor: field === 'phone' ? 'not-allowed' : 'pointer',
                                                     },
                                                 }}
                                                 disabled={field === 'email' ? !isEditing : field === 'phone' ? true : false}

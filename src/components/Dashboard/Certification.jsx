@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography, createTheme, ThemeProvider } from '@mui/material';
-import cerImage from '../../assets/mobileapp/Group 349.png';
+import cerImage from '../../assets/watch/Group 349.png';
 
 const theme = createTheme({
     typography: {

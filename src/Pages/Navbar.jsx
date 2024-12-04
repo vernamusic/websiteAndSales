@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import {
     AppBar,
     Box,
@@ -27,6 +27,7 @@ import navnews from '../assets/navnews.png';
 import navevent from '../assets/navevent.png';
 import navabout from '../assets/navabout.png';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import axios from "axios";
 
 
 
@@ -94,7 +95,54 @@ const Navbar = React.memo((props) => {
     const [anchorElProfile, setAnchorElProfile] = useState(null);
     const openProductMenu = Boolean(anchorElProduct);
     const openProfileMenu = Boolean(anchorElProfile);
-    const [isProductsOpen, setIsProductsOpen] = useState(false); // State to manage Products menu
+    const [isProductsOpen, setIsProductsOpen] = useState(false);
+    const toggleDrawer = useCallback((open) => () => setDrawerOpen(open), []);
+    const { authToken, logout } = useAuth();
+    const Token = localStorage.getItem('authToken') || authToken;
+    const [picData , setPicData] = useState(null);
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const { data } = await axios.get(
+                    'https://vitruvianshield.com/api/v1/user/settings',
+                    { headers: { 'Authorization': `Bearer ${Token}` } }
+                );
+                console.log(data.picture);
+                if (data.picture) {
+                    await downloadAndStoreImage(data.picture);
+                }
+            } catch (error) {
+                console.error('Error fetching user data or countries:', error);
+            }
+        };
+
+        const downloadAndStoreImage = async (imageUrl) => {
+            try {
+                const response = await fetch(imageUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${Token}`,
+                    },
+                });
+
+                if (response.ok) {
+                    const imageBlob = await response.blob();
+
+                    const imageObjectURL = URL.createObjectURL(imageBlob);
+
+                    setPicData(imageObjectURL);
+                } else {
+                    console.error(`Failed to fetch image. Status: ${response.status}`);
+                }
+            } catch (error) {
+                console.error('Error downloading and storing image:', error);
+            }
+        };
+
+
+        fetchUserData();
+    }, [Token]);
     
     const toggleProductsMenu = () => {
         setIsProductsOpen((prev) => !prev); // Toggle the Products menu
@@ -150,10 +198,6 @@ const Navbar = React.memo((props) => {
 
     const toggleDrawer = useCallback((open) => () => setDrawerOpen(open), []);
     const { authToken, logout } = useAuth(); // Using the useAuth hook
-
-    
-
-    
 
     return (
         <>
@@ -431,6 +475,7 @@ const Navbar = React.memo((props) => {
                                 <Avatar
                                     onClick={handleProfileMenuOpen}
                                     size='large'
+                                    src={picData}
                                     sx={{ cursor: 'pointer', width: {xs:'30px',sm:'40px',md:'50px'}, height: {xs:'30px',sm:'40px',md:'50px'}, mr: '0.5vw',border: '2px solid #B0EEE9',boxShadow: '0px 0px 5px 0px #8AE6DE99', }}
                                 />
                                 <Menu

@@ -1,5 +1,6 @@
 import React from "react";
-import google from "../../assets/Google.png";
+import {Box, Button} from "@mui/material";
+import google from '../../assets/Google.png';
 
 const GoogleSignInButton = () => {
   const googleClientId =
@@ -13,6 +14,7 @@ const GoogleSignInButton = () => {
   };
 
   return (
+
     <button
       onClick={handleSignIn}
       style={{

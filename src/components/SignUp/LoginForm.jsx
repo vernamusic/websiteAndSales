@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-    FormControl, InputLabel, OutlinedInput, Box, Button, Link,
-    InputAdornment, IconButton, Snackbar, Alert, Typography, Checkbox, FormControlLabel
+    FormControl, InputLabel, OutlinedInput, Box, Button, Link,InputAdornment, IconButton, Snackbar, Alert, Typography, Checkbox, FormControlLabel
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import PropTypes from 'prop-types';
@@ -291,6 +290,30 @@ const AuthForm = ({ email: initialEmail = null, onForgotPassword, onLoginSuccess
                     </Alert>
                 </Snackbar>
             </form>
+            <Box display="flex" alignItems="center" width="100%" maxWidth="380px" mb="28px">
+                <Box flexGrow={1} height="1px" bgcolor="#9f9b9b" />
+                <Typography
+                    sx={{
+                        mx: 1.3,
+                        color: '#9f9b9b',
+                        fontSize: '14px',
+                        fontFamily: 'Lato',
+                    }}
+                >
+                    Or
+                </Typography>
+                <Box flexGrow={1} height="1px" bgcolor="#9f9b9b" />
+            </Box>
+            <GoogleSignInButton onSuccess={handleSuccessGoogle} onFailure={handleFailureGoogle} />
+            <Snackbar
+                open={openSnackbar}
+                autoHideDuration={6000}
+                onClose={handleCloseSnackbar}
+            >
+                <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity}>
+                    {snackbarMessage}
+                </Alert>
+            </Snackbar>
         </Box>
     );
 };

@@ -4,10 +4,10 @@ import phonehow1 from '../../assets/phonehow1.png';
 import phonehow2 from '../../assets/phonehow2.png';
 import phonehow3 from '../../assets/phonehow3.png';
 import phonehow4 from '../../assets/phonehow4.png';
-import Platform from '../../assets/mobileapp/platform.svg';
-import Easy from '../../assets/mobileapp/Easy.png';
-import Time from '../../assets/mobileapp/Time.png';
-import Place from '../../assets/mobileapp/Place.png';
+import Platform from '../../assets/watch/platform.svg';
+import Easy from '../../assets/watch/Easy.png';
+import Time from '../../assets/watch/Time.png';
+import Place from '../../assets/watch/Place.png';
 
 const theme = createTheme({
     typography: {
