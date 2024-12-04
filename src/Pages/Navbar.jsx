@@ -148,7 +148,6 @@ const Navbar = React.memo((props) => {
         { name: 'Mobile App', path: '/products/mobile-app' },
         { name: 'Web App', path: '/products/dashboard' },
         { name: 'Smart Watch', path: '/products/smart-watch' },
-        { name: 'Certifications', path: '/certifications' },
     ];
 
     const toggleDrawer = useCallback((open) => () => setDrawerOpen(open), []);
@@ -241,7 +240,7 @@ const Navbar = React.memo((props) => {
                                     {page.name === 'Products' && isProductsOpen && (
                                         <Box
                                             sx={{
-                                                maxHeight: '200px',
+                                                maxHeight: '150px',
                                                 transition: 'max-height 0.3s ease-in-out',
                                                 overflow: 'hidden',
                                             }}
