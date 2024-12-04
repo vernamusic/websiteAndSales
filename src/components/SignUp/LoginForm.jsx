@@ -201,10 +201,10 @@ const AuthForm = ({ email: initialEmail = null, onForgotPassword, onLoginSuccess
                     display="flex"
                     justifyContent="space-between"
                     alignItems="center"
-                    width="380px"
+                    width="355px"
                     sx={{
-                        mb: '24px',
-                        ml: 1,
+                        mb: '16px',
+                        ml: 0.25,
                     }}
                 >
                     <FormControlLabel
@@ -253,7 +253,7 @@ const AuthForm = ({ email: initialEmail = null, onForgotPassword, onLoginSuccess
                     type="submit"
                     fullWidth
                     sx={{
-                        mb: '20px',
+                        mb: '24px',
                         backgroundColor: '#B50304',
                         height: '44px',
                         textTransform: 'none',
@@ -269,7 +269,7 @@ const AuthForm = ({ email: initialEmail = null, onForgotPassword, onLoginSuccess
                     Log in
                 </Button>
 
-                <Box display="flex" alignItems="center" width="100%" maxWidth="380px" mb='28px'>
+                <Box display="flex" alignItems="center" width="100%" maxWidth="380px" mb='24px'>
                     <Box flexGrow={1} height="1px" bgcolor="#9f9b9b" />
                     <Typography sx={{
                         mx: 1.3,

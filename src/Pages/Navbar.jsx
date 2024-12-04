@@ -15,10 +15,9 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import logo from '../assets/redvslogo.png';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import SignUpDialog from '../components/SignUp/SignUpDialog.jsx';
+import SignUpDialog from '../components/SignUp/LogInDialog.jsx';
 import { useAuth } from '../AuthContext.jsx';
 import navhome from '../assets/navhome.png';
 import navproducts from '../assets/navproducts.png';
@@ -28,7 +27,6 @@ import navnews from '../assets/navnews.png';
 import navevent from '../assets/navevent.png';
 import navabout from '../assets/navabout.png';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
 
 
@@ -104,24 +102,24 @@ const Navbar = React.memo((props) => {
     
     const handleProductMenuOpen = (event) => {
         setAnchorElProduct(event.currentTarget);
-        setAnchorElProfile(null); // Close profile menu
-        toggleProductsMenu(); // Toggle products menu state
+        setAnchorElProfile(null);
+        toggleProductsMenu();
     };
 
     const handleProfileMenuOpen = (event) => {
         setAnchorElProfile(event.currentTarget);
-        setAnchorElProduct(null); // بستن منوی محصولات
+        setAnchorElProduct(null);
     };
 
     const handleMenuClose = () => {
         setAnchorElProduct(null);
         setAnchorElProfile(null);
-        setIsProductsOpen(false); // Close products menu
+        setIsProductsOpen(false);
     };
 
     const handleProductSelect = (path) => {
         navigate(path);
-        handleMenuClose(); // Close menu and reset state
+        handleMenuClose();
     };
 
     const handleProfileClick = () => {

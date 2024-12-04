@@ -33,19 +33,20 @@ const LoginDialog = ({ email, onForgotPassword, onClose, onLoginSuccess, onSendR
                 alignItems="center"
                 width="100%"
                 sx={{
-                    pt: '45px'
+                    pt: '40px'
                 }}
             >
                 <Box
                     display="flex"
                     flexDirection="column"
                     alignItems="center"
-                    mb={2}
+                    mb={4}
                 >
                     <Box
                         sx={{
                             width: { xs: '53px' },
-                            height: { xs: '59.19px' }
+                            height: { xs: '59.19px' },
+                            mb:2
                         }}
                     >
                         <img
