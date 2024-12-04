@@ -120,7 +120,7 @@ const Navbar = React.memo((props) => {
 
         const downloadAndStoreImage = async (imageUrl) => {
             try {
-                const response = await fetch(imageUrl+'/', {
+                const response = await fetch(imageUrl, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${Token}`,
