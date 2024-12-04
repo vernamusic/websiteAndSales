@@ -161,36 +161,37 @@
             setIsEditing(false);
             setFormData(initialFormData);
         };
-        const [file, setFile] = useState(null);
 
         const handleFileChange = async (event) => {
             const selectedFile = event.target.files[0];
             if (selectedFile && selectedFile.type === "image/png") {
-                setFile(selectedFile);
-                await uploadFile(selectedFile); // Immediately upload the file after selection
+                await uploadFile(selectedFile);
             }
         };
 
         const uploadFile = async (file) => {
             try {
-                const fileData = await file.arrayBuffer();
-                const blob = new Blob([fileData], { type: file.type });
+                const formData = new FormData();
+                formData.append("picture", file);
 
-                const response = await fetch("https://your-api-url.com/upload", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "image/png",
-                    },
-                    body: blob,
-                });
+                const response = await axios.post(
+                    "https://vitruvianshield.com/api/v1/user/new-picture/",
+                    formData,
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${Token}`,
+                        },
+                    }
+                );
 
-                if (response.ok) {
-                    alert("File uploaded successfully.");
-                } else {
-                    alert("Failed to upload the file.");
+
+                if (response.data.status === "success") {
+                    console.log("Upload Successful:", response.data);
+                    alert("Upload Successful");
+                    window.location.reload();
                 }
             } catch (error) {
-                console.error("Error:", error);
+                console.error("Upload Failed:", error.response?.data || error.message);
                 alert("An error occurred during file upload.");
             }
         };
